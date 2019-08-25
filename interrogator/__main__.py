@@ -1,6 +1,5 @@
 CLASS_SEPARATOR = "_C_"
 RETURN_TYPE_FIRST = 1
-USE_CTOR_NAME = 1
 
 
 FFI_MARK = '_$_'
@@ -115,11 +114,14 @@ with open(TARGET_TMP, 'r') as C:
             qual = ''
             ffi = c_def
 
-        if USE_CTOR_NAME and ffi.find(FFI_MARK) > 0:
+        # find ctor
+        if ffi.find(FFI_MARK) > 0:
             cls, name = stripped_list(ffi.split(FFI_MARK))
             if cls == name:
                 return qual, f"{cls}{FFI_MARK}ctor"
-
+        # class method ?
+        if ffi.startswith('static '):
+            qual = 's'
         return qual, ffi
 
     ##==========================================================================================================================

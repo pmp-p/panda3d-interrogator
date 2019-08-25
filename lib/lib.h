@@ -40,10 +40,13 @@ class EXPORT_CLASS Engine
 
         void attach(NodePath *mdl);
 
-
         void build(); //WindowFramework* window_framework);
 
         void step();
+
+        static std::string get_version_string();
+        MAKE_PROPERTY(version_string, get_version_string);
+
 
         static void call_exit(const Event* event, void* data);
 

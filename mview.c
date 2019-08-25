@@ -12,13 +12,13 @@
 #define Engine char
 #define NodePath char
 #define Filename char
-
+#define string char const
 
 static Engine * E;
 static NodePath * np;
 static Filename * fn;
 
-extern Engine * Engine_C_Engine_p_v();
+extern Engine * Engine_C_ctor_p_v();
 extern NodePath * NP_C_NP_p_v();
 
 extern void Engine_C_build_v_p(Engine *param0);
@@ -33,13 +33,13 @@ extern PT * Engine_C_get_wframe_p_p(Engine const *param0);
 extern Filename * Filename_C_Filename_2_p_p(char const *param0);
 extern Filename * Filename_C_Filename_3_p_p(char const *param0);
 
-extern char const * Filename_C_c_str_p_p(Filename const *param0);
+extern string * Filename_C_c_str_p_p(Filename const *param0);
 
 
 // not original helpers
 extern NodePath * Engine_C_load_model_p_p(Engine *param0, char const *param1);
 extern void Engine_C_attach_v_p(Engine *param0, NodePath *param1);
-
+extern char const * Engine_C_get_version_string_p_v();
 
 
 void
@@ -52,11 +52,14 @@ main_loop_or_step(){
 /*
         fn = Filename_C_Filename_3_p_p(filename);
         puts("-----------------------------");
-        fprintf(stdout,"FILENAME[%s]\n", Filename_C_c_str_p_p(fn) );
+        fprintf(stdout,"VERSION[%s] FILENAME[%s]\n", Engine_C_get_version_string_p_v(), Filename_C_c_str_p_p(fn) );
         puts("-----------------------------");
 */
 
-        E = Engine_C_Engine_p_v();
+    puts("-----------------------------");
+        fprintf(stdout,"VERSION = %s\n", Engine_C_get_version_string_p_v());
+    puts("-----------------------------");
+        E = Engine_C_ctor_p_v();
         Engine_C_build_v_p(E);
 
         PandaFramework * pf = Engine_C_get_framework_p_p(E);

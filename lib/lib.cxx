@@ -32,8 +32,6 @@ NP::reparent_to(const NodePath &other) {
 
 
 
-
-
 Engine::Engine() {
     cout << "->Constructor\n";
     this->framework = &panda_framework;
@@ -86,6 +84,14 @@ Engine::load_model(const char *filename) {
     return new NodePath( this->wframe->load_model( this->framework->get_models() , Filename(filename) ) );
     //return &this->wframe->load_model( this->framework->get_models() , Filename(filename) );
 }
+
+std::string
+Engine::get_version_string() {
+    static std::string version = "0.0.1";
+    return version;
+}
+
+
 
 void
 Engine::attach(NodePath *mdl) {

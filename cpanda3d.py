@@ -114,14 +114,17 @@ def variadic_call(self,ffi_name,*argv,**kw):
 
 for cls in CODE.keys():
 
-    if not cls in ['Engine','PandaSystem']:
+    if not cls in ['Engine', 'PandaSystem']:
         print("SKIPPING", ":", cls)
+        continue
 
     write(f"class {cls}:")
     write()
     write(f'    lib = ffi.open("""{lib}""")')
     write()
+
     for func, targets in CODE[cls].items():
+
         if len(targets) != 1:
             continue
 
@@ -138,7 +141,7 @@ for cls in CODE.keys():
         if len(targets) < 2:
             continue
 
-        write(f'    {ffi_name} = {{')
+        write(f'    {func} = {{')
         for t in targets:
             ret, args, ffi_name = t
             if ret == 'p' and args == 'v':  # ctor
@@ -147,26 +150,32 @@ for cls in CODE.keys():
                 write(f"""        {len(t[VAR])} : lib.func('{ret}','{ffi_name}','{args}'),""")
         write('    }')
 
-    write("# c++ struct")
+    write("# c++ ctor\n")
+
+    write(f"    def __init__(self, *argv, **kw):")
+    write(f"        self.iptr = variadic_call(self, 'ctor', *argv, **kw)")
+
+    write("\n# c++ instance methods\n")
 
     for func, targets in CODE[cls].items():
         if not len(targets):
             continue
 
-        write(f'    def {func}(*argv,**kw):')
+        # FIXME static with multiples args may be not detected
 
         if len(targets) == 1:
             ffi_name = targets[0][FFI]
-            write(f'        return self.{ffi_name}(self.iptr, *argv, **kw)')
+            if ffi_name.endswith('_v'):
+                write(f'    @classmethod')
+                write(f'    def {func}(cls,*argv,**kw):')
+                write(f'        return cls.{ffi_name}(*argv, **kw)')
+            else:
+                write(f'    def {func}(self,*argv,**kw):')
+                write(f'        return self.{ffi_name}(self.iptr, *argv, **kw)')
         else:
+            write(f'    def {func}(*argv,**kw):')
             write(f'        return variadic_call(self, {ffi_name}, *argv, **kw)')
-        #            for t in targets:
-        #                ffi_name = t[FFI]
-        #
-        #                if t[VAR] == 'v':
-        #                    write(f'        if not len(argv): return self.{ffi_name}()')
-        #                else:
-        #                    write(f'        if len(argv)=={len(t[VAR])}: self.{ffi_name}({t[VAR]})')
+
         write()
 
 

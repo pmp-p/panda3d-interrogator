@@ -114,14 +114,17 @@ def variadic_call(self,ffi_name,*argv,**kw):
 
 for cls in CODE.keys():
 
-    if not cls in ['Engine']:
+    if not cls in ['Engine', 'PandaSystem']:
         print("SKIPPING", ":", cls)
+        continue
 
     write("class {}:".format((cls)))
     write()
     write('    lib = ffi.open("""{}""")'.format((lib)))
     write()
+
     for func, targets in CODE[cls].items():
+
         if len(targets) != 1:
             continue
 
@@ -138,7 +141,7 @@ for cls in CODE.keys():
         if len(targets) < 2:
             continue
 
-        write('    {} = {{'.format((ffi_name)))
+        write('    {} = {{'.format((func)))
         for t in targets:
             ret, args, ffi_name = t
             if ret == 'p' and args == 'v':  # ctor
@@ -147,26 +150,32 @@ for cls in CODE.keys():
                 write("""        {} : lib.func('{}','{}','{}'),""".format((len(t[VAR])), (ret), (ffi_name), (args)))
         write('    }')
 
-    write("# c++ struct")
+    write("# c++ ctor\n")
+
+    write("    def __init__(self, *argv, **kw):".format())
+    write("        self.iptr = variadic_call(self, 'ctor', *argv, **kw)".format())
+
+    write("\n# c++ instance methods\n")
 
     for func, targets in CODE[cls].items():
         if not len(targets):
             continue
 
-        write('    def {}(*argv,**kw):'.format((func)))
+        # FIXME static with multiples args may be not detected
 
         if len(targets) == 1:
             ffi_name = targets[0][FFI]
-            write('        return self.{}(self.iptr, *argv, **kw)'.format((ffi_name)))
+            if ffi_name.endswith('_v'):
+                write('    @classmethod'.format())
+                write('    def {}(cls,*argv,**kw):'.format((func)))
+                write('        return cls.{}(*argv, **kw)'.format((ffi_name)))
+            else:
+                write('    def {}(self,*argv,**kw):'.format((func)))
+                write('        return self.{}(self.iptr, *argv, **kw)'.format((ffi_name)))
         else:
+            write('    def {}(*argv,**kw):'.format((func)))
             write('        return variadic_call(self, {}, *argv, **kw)'.format((ffi_name)))
-        #            for t in targets:
-        #                ffi_name = t[FFI]
-        #
-        #                if t[VAR] == 'v':
-        #                    write(f'        if not len(argv): return self.{ffi_name}()')
-        #                else:
-        #                    write(f'        if len(argv)=={len(t[VAR])}: self.{ffi_name}({t[VAR]})')
+
         write()
 
 
