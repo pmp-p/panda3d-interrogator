@@ -1,0 +1,5 @@
+//forcetype PandaFramework
+//forcetype NodePath
+forcetype WindowFramework
+forcetype Filename
+
