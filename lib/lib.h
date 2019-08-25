@@ -36,6 +36,11 @@ class EXPORT_CLASS Engine
 
         int casetest(int i,std::string s,bool b);
 
+        NodePath * load_model(const char *filename);
+
+        void attach(NodePath *mdl);
+
+
         void build(); //WindowFramework* window_framework);
 
         void step();

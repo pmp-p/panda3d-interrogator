@@ -31,6 +31,9 @@ NP::reparent_to(const NodePath &other) {
 }
 
 
+
+
+
 Engine::Engine() {
     cout << "->Constructor\n";
     this->framework = &panda_framework;
@@ -78,6 +81,18 @@ Engine::HelloEngine() {
     return 42;
 }
 
+NodePath *
+Engine::load_model(const char *filename) {
+    return new NodePath( this->wframe->load_model( this->framework->get_models() , Filename(filename) ) );
+    //return &this->wframe->load_model( this->framework->get_models() , Filename(filename) );
+}
+
+void
+Engine::attach(NodePath *mdl) {
+    mdl->reparent_to( this->wframe->get_render() );
+}
+
+
 int
 Engine::casetest(int i,std::string s,bool b) {
     return 0;
@@ -108,12 +123,6 @@ Engine::~Engine() {
 #define ewin engine->wframe
 void
 main_loop_or_step(){
-	#if 1
-    #else
-    void *pf_alloc;
-    pf_alloc = malloc( sizeof(FRAMEWORK) );
-    PandaFramework pf = reinterpret_cast<up3d_framework>(*pf_alloc);
-    #endif
 
     static Engine *engine = new Engine();
 
@@ -129,14 +138,16 @@ main_loop_or_step(){
 		// We now have everything we need. Make an instance of the class and start
 		// 3D rendering
 
+        engine->build();
 
-        engine->build(); //windowFrameworkPtr);
-
-
-		NodePath environ = ewin->load_model(efram->get_models(), "boris.bam");
-		environ.reparent_to(ewin->get_render());
-		environ.set_scale(3,3,3);
-		environ.set_pos(0, 42, 0);
+/*
+		NodePath mdl = ewin->load_model(efram->get_models(), "boris.bam");
+*/
+        NodePath * mdl = engine->load_model("boris.bam");
+        engine->attach(mdl);
+		//mdl->reparent_to(ewin->get_render());
+		mdl->set_scale(3,3,3);
+		mdl->set_pos(0, 42, 0);
 
 
 		return;

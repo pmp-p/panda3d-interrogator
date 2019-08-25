@@ -74,20 +74,76 @@ def dlopen(lib):
 CODE.update(dlopen('upanda3d_c'))
 
 
-write = print
+def write(*argv, **kw):
+    global OUT_FILE
+    print(*argv, **kw)
+    kw['file'] = OUT_FILE
+    print(*argv, **kw)
+
+
+# write = print
+
+
+OUT_FILE = open('testpy.py', 'w')
 
 
 lib = CODE.pop('lib')
 
+
+write(
+    """# upy
+import os
+import sys
+import ffi
+import uctypes
+
+def variadic_call(cls,ffi_name,*argv,**kw):
+    func = cls.get(ffi_name,{})
+    if func:
+        func = func.get( len(argv) , None)
+    if func:
+        return func(*argv)
+
+    raise TypeError("wrong count of positional arguments")
+
+
+"""
+)
+
+
 for cls in CODE.keys():
     write("class {}:".format((cls)))
     write()
-    write('    lib = dlopen("""{})"""'.format((lib)))
+    write('    lib = ffi.open("""{}""")'.format((lib)))
     write()
     for func, targets in CODE[cls].items():
+        if len(targets) != 1:
+            continue
+
         for ret, args, ffi_name in targets:
-            write('    {} = '.format((ffi_name)))
+            write("""    {} = lib.func('{}','{}','{}')""".format((ffi_name), (ret), (ffi_name), (args)))
+
     write()
+    write("# variadic")
+    write()
+    for func, targets in CODE[cls].items():
+        if not len(targets):
+            continue
+
+        if len(targets) < 2:
+            continue
+
+        write('    {} = {{'.format((ffi_name)))
+        for t in targets:
+            ret, args, ffi_name = t
+            if ret == 'p' and args == 'v':  # ctor
+                write("""        {} : lib.func('{}','{}',''),""".format((0), (ret), (ffi_name)))
+            else:
+                write("""        {} : lib.func('{}','{}','{}'),""".format((len(t[VAR])), (ret), (ffi_name), (args)))
+        write('    }')
+
+    write("# c++ struct")
+
     for func, targets in CODE[cls].items():
         if not len(targets):
             continue
@@ -96,15 +152,20 @@ for cls in CODE.keys():
 
         if len(targets) == 1:
             ffi_name = targets[0][FFI]
-            write('        return self.{}({})'.format((ffi_name), (targets[0][VAR])))
+            write('        return self.{}(self.iptr, *argv, **kw)'.format((ffi_name)))
         else:
-            for t in targets:
-                ffi_name = t[FFI]
-                if t[VAR] == 'v':
-                    write('        if not len(argv): return self.{}()'.format((ffi_name)))
-                else:
-                    write('        if len(argv)=={}: self.{}({})'.format((len(t[VAR])), (ffi_name), (t[VAR])))
+            write('        return variadic_call(self, {}, *argv, **kw)'.format((ffi_name)))
+        #            for t in targets:
+        #                ffi_name = t[FFI]
+        #
+        #                if t[VAR] == 'v':
+        #                    write(f'        if not len(argv): return self.{ffi_name}()')
+        #                else:
+        #                    write(f'        if len(argv)=={len(t[VAR])}: self.{ffi_name}({t[VAR]})')
         write()
 
 
-#
+try:
+    OUT_FILE.close()
+except:
+    pass

@@ -219,6 +219,8 @@ EXPORT_FUNC Engine * Engine_C_Engine_p_v();
 EXPORT_FUNC Engine * Engine_C_Engine_p_p(Engine const *param0);
 EXPORT_FUNC int Engine_C_HelloEngine_i_p(Engine *param0);
 EXPORT_FUNC int Engine_C_casetest_i_ppp(Engine *param0, int param1, char const *param2, bool param3);
+EXPORT_FUNC NodePath * Engine_C_load_model_p_p(Engine *param0, char const *param1);
+EXPORT_FUNC void Engine_C_attach_v_p(Engine *param0, NodePath *param1);
 EXPORT_FUNC void Engine_C_build_v_p(Engine *param0);
 EXPORT_FUNC void Engine_C_step_v_p(Engine *param0);
 EXPORT_FUNC PointerTo< WindowFramework > const * Engine_C_get_wframe_p_p(Engine const *param0);
@@ -1963,6 +1965,24 @@ Engine_C_casetest_i_ppp(Engine *param0, int param1, char const *param2, bool par
 
 /*
  * C wrapper for
+ * NodePath *Engine::load_model(char const *filename)
+ */
+NodePath *
+Engine_C_load_model_p_p(Engine *param0, char const *param1) {
+  return (*param0).load_model(param1);
+}
+
+/*
+ * C wrapper for
+ * void Engine::attach(NodePath *mdl)
+ */
+void
+Engine_C_attach_v_p(Engine *param0, NodePath *param1) {
+  (*param0).attach(param1);
+}
+
+/*
+ * C wrapper for
  * void Engine::build(void)
  */
 void
@@ -2044,7 +2064,7 @@ emscripten_force_exit_v_p(int param0) {
 
 
 static InterrogateModuleDef _in_module_def = {
-  1566721792,  /* file_identifier */
+  1566726949,  /* file_identifier */
   "lib",  /* library_name */
   "KD07",  /* library_hash_name */
   "lib",  /* module_name */
@@ -2054,7 +2074,7 @@ static InterrogateModuleDef _in_module_def = {
   nullptr,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  464  /* next_index */
+  468  /* next_index */
 };
 
 Configure(_in_configure_lib);
