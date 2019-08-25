@@ -113,6 +113,10 @@ def variadic_call(self,ffi_name,*argv,**kw):
 
 
 for cls in CODE.keys():
+
+    if not cls in ['Engine']:
+        print("SKIPPING", ":", cls)
+
     write("class {}:".format((cls)))
     write()
     write('    lib = ffi.open("""{}""")'.format((lib)))

@@ -1,5 +1,12 @@
-//forcetype PandaFramework
-//forcetype NodePath
+// forcetype PandaFramework
+// is OK but bloating my tests
+
+// forcetype NodePath
+// Internal error!  Function signature NodePath::get_node(int, Thread *) const repeated!
+
+// forcetype PandaSystem
+// Internal error!  Function signature PandaSystem::get_system(std::size_t) const repeated!
+
 forcetype WindowFramework
 forcetype Filename
 

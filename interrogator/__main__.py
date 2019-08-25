@@ -1,7 +1,9 @@
-FFI_MARK = '_C_'
+CLASS_SEPARATOR = "_C_"
 RETURN_TYPE_FIRST = 1
+USE_CTOR_NAME = 1
 
 
+FFI_MARK = '_$_'
 import sys, os
 import traceback
 
@@ -97,9 +99,28 @@ with open(TARGET_TMP, 'r') as C:
 
     c_out = sys.stdout
 
+    ##==========================================================================================================================
     def CPRINT(*code, **kw):
         kw['file'] = c_out
         # print(*code, **kw)
+
+    ##==========================================================================================================================
+    def make_ffi_names():
+        global relevant, invalidate, c_orig, c_vars, c_def, c_iptr, c_type1, c_type2, c_mn, c_va, c_code, c_block, var_args1, var_args2
+
+        if c_def[0] in '*&':
+            qual = c_def[0]
+            ffi = c_def[1:]
+        else:
+            qual = ''
+            ffi = c_def
+
+        if USE_CTOR_NAME and ffi.find(FFI_MARK) > 0:
+            cls, name = stripped_list(ffi.split(FFI_MARK))
+            if cls == name:
+                return qual, f"{cls}{FFI_MARK}ctor"
+
+        return qual, ffi
 
     ##==========================================================================================================================
     def map_to_friendly():
@@ -109,12 +130,7 @@ with open(TARGET_TMP, 'r') as C:
         if invalidate:
             return
 
-        if c_def[0] in '*&':
-            qual = c_def[0]
-            ffi = c_def[1:]
-        else:
-            qual = ''
-            ffi = c_def
+        qual, ffi = make_ffi_names()
 
         argi = ''
         for a in c_vars:
@@ -229,9 +245,9 @@ def {c_def}({var_args1}) -> {c_type1 or 'void'}:
 #endif // {c_orig}
 
 
-
-
-"""
+""".replace(
+                    FFI_MARK, CLASS_SEPARATOR
+                )
             )
             c_block = 1
             relevant = 0
@@ -288,6 +304,7 @@ with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
     for l in C.readlines():
         for k, v in FFI_MAP.items():
             l = l.replace(k, v['ffi'])
+        l = l.replace(FFI_MARK, CLASS_SEPARATOR)
         l = l.replace('static string ', 'static std::string ')
         l = l.replace('static wstring ', 'static std::wstring ')
         CPP.write(l)
