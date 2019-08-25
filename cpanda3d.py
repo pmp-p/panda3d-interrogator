@@ -15,8 +15,6 @@ class Engine:
     pass
 
 
-
-
 CODE = {}
 
 # fix micropython
@@ -43,7 +41,7 @@ def dlopen(lib):
     code = {}
 
     # platform dependant
-    lib = f"lib{lib}.so"
+    clib = lib = f"lib{lib}.so"
 
     for func in os.popen(f"nm -C {lib} |grep '. T .*_*_.$'|cut -d' ' -f3"):
         ffi_name = func.strip()
@@ -68,7 +66,8 @@ def dlopen(lib):
     except Exception as e:
         sys.print_exception(e)
         print(f'dlopen failed on {lib}')
-    code['lib'] = lib
+        raise SystemExit
+    code['lib'] = clib
     return code
 
 

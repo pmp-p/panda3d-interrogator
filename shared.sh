@@ -4,7 +4,7 @@ LIBS="-L/usr/local/lib/x86_64-linux-gnu/panda3d -lp3framework -lpanda -lpandafx 
 INT="-S/usr/include/panda3d/parser-inc -S/usr/include/"
 
 
-glib="g++ -shared -std=gnu++11 -O0 ${INC} -fPIC -shared -Wno-ignored-attributes -fpermissive"
+glib="g++ -shared -std=gnu++11 -O3 ${INC} -fPIC -shared -Wno-ignored-attributes -fpermissive"
 
 
 if echo "$@"|grep -q fast

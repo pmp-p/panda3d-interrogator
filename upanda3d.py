@@ -1,5 +1,10 @@
 # upy
 
+FFI_MARK = '_C_'
+RETURN_TYPE_FIRST = 1
+LD_LIBRARY_PATH = "/data/cross/panda3d"
+
+
 import os
 import sys
 import ffi
@@ -8,10 +13,6 @@ import uctypes
 
 class Engine:
     pass
-
-
-FFI_MARK = '_C_'
-LD_LIBRARY_PATH = "/data/cross/panda3d"
 
 
 CODE = {}
@@ -40,11 +41,14 @@ def dlopen(lib):
     code = {}
 
     # platform dependant
-    lib = "lib{}.so".format((lib))
+    clib = lib = "lib{}.so".format((lib))
 
     for func in os.popen("nm -C {} |grep '. T .*_*_.$'|cut -d' ' -f3".format((lib))):
         ffi_name = func.strip()
-        func, args, ret = ffi_name.rsplit('_', 2)
+        if RETURN_TYPE_FIRST:
+            func, ret, args = ffi_name.rsplit('_', 2)
+        else:
+            func, args, ret = ffi_name.rsplit('_', 2)
         try:
             cls, func = func.split('_C_', 1)
             code.setdefault(cls, {})
@@ -62,7 +66,8 @@ def dlopen(lib):
     except Exception as e:
         sys.print_exception(e)
         print('dlopen failed on {}'.format((lib)))
-    code['lib'] = lib
+        raise SystemExit
+    code['lib'] = clib
     return code
 
 

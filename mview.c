@@ -41,6 +41,15 @@ void
 main_loop_or_step(){
 	if (!em_steps++) {
 		puts("Step 1 : You are likely to be eaten by a grue.");
+
+
+        const char *filename = "boris.bam" ;
+        fn = Filename_C_Filename_3_p_p(filename);
+        puts("-----------------------------");
+        fprintf(stdout,"FILENAME[%s]\n", Filename_C_c_str_p_p(fn) );
+        puts("-----------------------------");
+
+
         E = Engine_C_Engine_p_v();
         Engine_C_build_v_p(E);
 
@@ -48,14 +57,9 @@ main_loop_or_step(){
         WindowFramework * wf = Engine_C_get_wframe_p_p(E) ;
 
 
-        const char *filename = "boris.bam" ;
-        fn = Filename_C_Filename_3_p_p(filename);
-        puts("-----------------------------");
-        printf(stdout,"FILENAME[%s]\n", Filename_C_c_str_p_p(fn) );
-        puts("-----------------------------");
 
 		np = NP_C_NP_p_v();
-        WindowFramework_C_load_model_p_pp(pf, np, fn );
+        WindowFramework_C_load_model_p_pp(pf, &np, fn );
 
 
         NP_C_reparent_to_v_p(np, wf );
