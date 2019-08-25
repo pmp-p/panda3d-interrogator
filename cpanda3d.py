@@ -84,7 +84,7 @@ def write(*argv, **kw):
 # write = print
 
 
-OUT_FILE = open('testpy.py', 'w')
+OUT_FILE = open('tests/testpy.py', 'w')
 
 
 lib = CODE.pop('lib')
@@ -97,15 +97,16 @@ import sys
 import ffi
 import uctypes
 
-def variadic_call(cls,ffi_name,*argv,**kw):
+def variadic_call(self,ffi_name,*argv,**kw):
     func = cls.get(ffi_name,{})
+
     if func:
         func = func.get( len(argv) , None)
+
     if func:
-        return func(*argv)
+        return func(self.iptr, *argv)
 
-    raise TypeError("wrong count of positional arguments")
-
+    raise TypeError("%s : wrong count of positional arguments" % ffi_name)
 
 """
 )
