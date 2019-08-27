@@ -9,7 +9,9 @@ first target :
 
 requires cpython 3.7+  ( 3.6 NOT TESTED )
 
-requires Panda3D , not that "pip"version won't work as you need C++ part of sdk
+requires Panda3D , not the "pip" version, as it won't work because you need C++ part of sdk
+see https://www.panda3d.org/download/sdk-1-10-4-1/ [other downloads]
+or better build from source and install to /usr/local <= match current test conditions
 
 requires https://github.com/pmp-p/fstrings_helper
 
