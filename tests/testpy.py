@@ -146,6 +146,6 @@ while E.is_alive():
     E.step()
 
 print("C++ engine requested exit")
-E.__del__()
+E.__del__() # <== should not have to be called manually, cpython would do it itself.
 
 
