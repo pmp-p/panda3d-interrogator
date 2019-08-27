@@ -41,7 +41,7 @@ extern NodePath * Engine_C_load_model_p_ps(Engine *param0, char const *param1);
 extern void Engine_C_attach_v_pp(Engine *param0, NodePath *param1);
 extern char const * Engine_C_get_version_string_s_v();
 extern int Engine_C_is_alive_i_v();
-extern void Engine_C_del_v_p(Engine *param0);
+extern void Engine_C_dtor_v_p(Engine *param0);
 
 void
 main_loop_or_step(){
@@ -87,13 +87,13 @@ main_loop_or_step(){
 
     if (em_steps>MAX_em_steps) {
         emscripten_loop_run=0;
-        Engine_C_del_v_p(E);
+        Engine_C_dtor_v_p(E);
         return;
     }
 
     if (!Engine_C_is_alive_i_v())  {
         emscripten_loop_run=0;
-        Engine_C_del_v_p(E);
+        Engine_C_dtor_v_p(E);
         return;
     }
 

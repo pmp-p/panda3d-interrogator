@@ -1,11 +1,12 @@
-
-
+#include <iostream>
 #include <dlfcn.h>
+
 
 #include "pandaFramework.h"
 #include "pandaSystem.h"
+#include "pandabase.h"
 
-#include <iostream>
+
 
 
 #define MAX_em_steps 160
@@ -26,10 +27,24 @@ static FRAMEWORK panda_framework;
 
 
 void
-NP::reparent_to(const NodePath &other) {
+I_NodePath::reparent_to(const NodePath &other) {
     NodePath::reparent_to(other);
 }
 
+void
+I_NodePath::look_at(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) {
+    NodePath::look_at(x,y,z);
+}
+
+void
+I_NodePath::set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz) {
+    NodePath::set_scale(sx,sy,sz);
+}
+
+void
+I_NodePath::set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) {
+    NodePath::set_pos(x, y, z);
+}
 
 
 Engine::Engine() {
@@ -67,7 +82,7 @@ Engine::step() {
 
 	if (!this->framework->do_frame(current_thread)) {
 	    // quit Panda3d
-        this->del();
+        this->dtor();
 	}
 }
 
@@ -113,7 +128,7 @@ Engine::call_exit(const Event* event, void* data) {
 }
 
 void
-Engine::del(){
+Engine::dtor(){
     this->framework->close_framework();
     delete this;
     alive = 0;
@@ -169,13 +184,13 @@ main_loop_or_step(){
 
     if (em_steps>MAX_em_steps) {
         emscripten_loop_run=0;
-        engine->del();
+        engine->dtor();
         return;
     }
 
     if (!engine->is_alive())  {
         emscripten_loop_run=0;
-        engine->del();
+        engine->dtor();
         return;
     }
 

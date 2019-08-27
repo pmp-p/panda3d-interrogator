@@ -352,5 +352,6 @@ with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
         l = l.replace(FFI_MARK, CLASS_SEPARATOR)
         l = l.replace('static string ', 'static std::string ')
         l = l.replace('static wstring ', 'static std::wstring ')
+        l = l.replace('I_NodePath', 'NodePath')
         CPP.write(l)
 #

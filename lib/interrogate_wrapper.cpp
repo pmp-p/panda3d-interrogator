@@ -212,12 +212,15 @@ EXPORT_FUNC void WindowFramework_C_init_type_v_v();
 EXPORT_FUNC int WindowFramework_C_get_type_i_p(WindowFramework const *param0);
 EXPORT_FUNC int WindowFramework_C_force_init_type_i_p(WindowFramework *param0);
 EXPORT_FUNC WindowFramework * WindowFramework_C_ctor_p_p(WindowFramework const *param0);
-EXPORT_FUNC void NP_C_reparent_to_v_pp(NP *param0, NodePath const *param1);
-EXPORT_FUNC NP * NP_C_ctor_p_v();
-EXPORT_FUNC NP * NP_C_ctor_p_p(NP const *param0);
+EXPORT_FUNC void NodePath_C_reparent_to_v_pp(NodePath *param0, NodePath const *param1);
+EXPORT_FUNC void NodePath_C_look_at_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void NodePath_C_set_scale_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void NodePath_C_set_pos_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC NodePath * NodePath_C_ctor_p_v();
+EXPORT_FUNC NodePath * NodePath_C_ctor_p_p(NodePath const *param0);
 EXPORT_FUNC Engine * Engine_C_ctor_p_v();
 EXPORT_FUNC Engine * Engine_C_ctor_p_p(Engine const *param0);
-EXPORT_FUNC void Engine_C_del_v_p(Engine *param0);
+EXPORT_FUNC void Engine_C_dtor_v_p(Engine *param0);
 EXPORT_FUNC int Engine_C_is_alive_i_v();
 EXPORT_FUNC int Engine_C_HelloEngine_i_p(Engine *param0);
 EXPORT_FUNC int Engine_C_casetest_i_pppp(Engine *param0, int param1, char const *param2, bool param3);
@@ -1905,29 +1908,56 @@ WindowFramework_C_ctor_p_p(WindowFramework const *param0) {
 
 /*
  * C wrapper for
- * void NP::reparent_to(NodePath const &other)
+ * void NodePath::reparent_to(NodePath const &other)
  */
 void
-NP_C_reparent_to_v_pp(NP *param0, NodePath const *param1) {
+NodePath_C_reparent_to_v_pp(NodePath *param0, NodePath const *param1) {
   (*param0).reparent_to(*param1);
 }
 
 /*
  * C wrapper for
- * inline NP::NP(void) = default
+ * void NodePath::look_at(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z)
  */
-NP *
-NP_C_ctor_p_v() {
-  return new NP();
+void
+NodePath_C_look_at_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+  (*param0).look_at(param1, param2, param3);
 }
 
 /*
  * C wrapper for
- * inline NP::NP(NP const &) = default
+ * void NodePath::set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz)
  */
-NP *
-NP_C_ctor_p_p(NP const *param0) {
-  return new NP(*param0);
+void
+NodePath_C_set_scale_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+  (*param0).set_scale(param1, param2, param3);
+}
+
+/*
+ * C wrapper for
+ * void NodePath::set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z)
+ */
+void
+NodePath_C_set_pos_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+  (*param0).set_pos(param1, param2, param3);
+}
+
+/*
+ * C wrapper for
+ * inline NodePath::NodePath(void) = default
+ */
+NodePath *
+NodePath_C_ctor_p_v() {
+  return new NodePath();
+}
+
+/*
+ * C wrapper for
+ * inline NodePath::NodePath(NodePath const &) = default
+ */
+NodePath *
+NodePath_C_ctor_p_p(NodePath const *param0) {
+  return new NodePath(*param0);
 }
 
 /*
@@ -1950,11 +1980,11 @@ Engine_C_ctor_p_p(Engine const *param0) {
 
 /*
  * C wrapper for
- * void Engine::del(void)
+ * void Engine::dtor(void)
  */
 void
-Engine_C_del_v_p(Engine *param0) {
-  (*param0).del();
+Engine_C_dtor_v_p(Engine *param0) {
+  (*param0).dtor();
 }
 
 /*
@@ -2095,7 +2125,7 @@ emscripten_force_exit_v_pp(int param0) {
 
 
 static InterrogateModuleDef _in_module_def = {
-  1566873091,  /* file_identifier */
+  1566881816,  /* file_identifier */
   "lib",  /* library_name */
   "KD07",  /* library_hash_name */
   "lib",  /* module_name */
@@ -2105,7 +2135,7 @@ static InterrogateModuleDef _in_module_def = {
   nullptr,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  477  /* next_index */
+  485  /* next_index */
 };
 
 Configure(_in_configure_lib);

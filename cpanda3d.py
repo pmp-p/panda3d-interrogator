@@ -102,19 +102,30 @@ import sys
 import ffi
 import uctypes
 
-def variadic_call(self,ffi_name,*argv,**kw):
-    func = getattr(self, ffi_name, {})
-    try:
-        if func:
-            func = func.get(len(argv), None)
+class cplusplus:
+    def variadic_call(self,ffi_name,*argv,**kw):
+        func = getattr(self, ffi_name, {})
+        try:
+            if func:
+                func = func.get(len(argv), None)
 
-        if func:
-            return func(self.iptr, *argv)
-    except Exception as e:
-        print(e,ffi_name,len(argv),func,'argv=',argv)
-        raise
-    raise TypeError("%s : wrong count of positional arguments" % ffi_name)
+            if func:
+                return func(self.iptr, *argv)
+        except Exception as e:
+            print(e,ffi_name,len(argv),func,'argv=',argv)
+            raise
+        raise TypeError("%s : wrong count of positional arguments" % ffi_name)
 
+    # c++ ctor/dtor
+
+    def __init__(self, *argv, **kw):
+        self.iptr = self.ctor[len(argv)](*argv, **kw)
+
+    def __del__(self):
+        try:
+            self.dtor(self.iptr)
+        finally:
+            self.iptr = None
 """
 )
 
@@ -128,11 +139,16 @@ def handle_return_type(indent, call, *args):
 
 for cls in CODE.keys():
 
-    if not cls in ['Engine', 'PandaSystem']:
+    if not cls in ['Engine', 'NodePath']:
         print("SKIPPING", ":", cls)
         continue
 
-    write(f"class {cls}:")
+    if cls.startswith('_'):
+        pcls = cls[1:]
+    else:
+        pcls = cls
+
+    write(f"class {pcls}(cplusplus):")
     write()
     write(f'    lib = ffi.open("""{lib}""")')
     write()
@@ -155,16 +171,11 @@ for cls in CODE.keys():
         write(f'    {func} = {{')
         for t in targets:
             ret, args, ffi_name = t
-            if ret == 'p' and args == 'v':  # ctor
+            if ret == 'p' and args == 'v':  # ctor/dtor
                 write(f"""        {0} : lib.func('{ret}','{ffi_name}',''),""")
             else:
                 write(f"""        {len(t[VAR])} : lib.func('{ret}','{ffi_name}','{args}'),""")
         write('    }')
-
-    write("# c++ ctor\n")
-
-    write(f"    def __init__(self, *argv, **kw):")
-    write(f"        self.iptr = self.ctor[len(argv)](*argv, **kw)")
 
     write("\n# c++ instance methods\n")
 
@@ -197,47 +208,34 @@ for cls in CODE.keys():
 
         write()
 
-    write(
-        """
-def std_string(addr):
-    max_str = 255
-    mem = uctypes.struct(addr, { "cstr": (uctypes.ARRAY | 0, uctypes.UINT8 | max_str),})
-    for sz in range(0,max_str):
-        if not mem.cstr[sz]:
-            break
-    mem = uctypes.struct(addr, { "cstr": (uctypes.ARRAY | 0, uctypes.UINT8 | sz),})
-    return bytes(mem.cstr).decode('utf-8')
-
-print(Engine.ctor)
+write(
+    """
+print("C++ class constructor",Engine.ctor)
 E = Engine()
 print('engine',E)
+
+# a dumb test that should say 42
 print('hello',E.HelloEngine())
 
-print('versionP','=', E.get_version_string())
-
-#print('versionS','=', std_string( E.get_version_string() ) )
-
-
+print('version','=', E.get_version_string())
 
 E.build()
 
-#ba = bytearray(b"boris.bam")
-#print( memoryview(ba)[0:len(ba)] )
-
-np = E.load_model( "boris.bam" )
+np = E.load_model( "model.bam" )
 
 print("np","=",np)
 
 E.attach(np)
 
 
-
 while E.is_alive():
     E.step()
 
+print("C++ engine requested exit")
+E.__del__()
 
 """
-    )
+)
 
 
 try:

@@ -1,7 +1,7 @@
 // forcetype PandaFramework
 // is OK but bloating my tests
 
-// forcetype NodePath
+//forcetype NodePath
 // Internal error!  Function signature NodePath::get_node(int, Thread *) const repeated!
 
 // forcetype PandaSystem
