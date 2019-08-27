@@ -261,61 +261,7 @@ for cls in CODE.keys():
 
 write(
     """
-def test1():
-    print("C++ class constructor",Engine.ctor)
-    with Engine() as E:
-        print('engine',E)
-
-        # a dumb test that should say 42
-        print('hello',E.HelloEngine())
-
-        print('version','=', E.get_version_string())
-
-        E.build()
-
-        np = E.load_model( "model.bam" )
-
-        print("np","=",np)
-
-        E.attach(np)
-
-
-        while E.is_alive():
-            E.step()
-
-        print("C++ engine requested exit")
-    #E.__del__() # <== should not have to be called manually, cpython would do it itself.
-
-def test2():
-    print("C++ class constructor",Engine.ctor)
-    with Engine() as E:
-        print('engine      ',E, E.iptr)
-        C = E.__class__( iptr=E )
-        print('engine(copy)',C, C.iptr)
-
-        # a dumb test that should say 42
-        print('hello',E.HelloEngine())
-
-        print('version','=', E.get_version_string())
-
-        E.build()
-
-        np = E.load_model( "model.bam" )
-
-        print("np","=",np)
-
-        E.attach(np)
-
-
-        while E.is_alive():
-            E.step()
-
-        print("C++ engine requested exit")
-
-    print("deleting copy")
-    del C #C.__del__() # <== should not have to be called manually, cpython would do it itself.
-
-def test3():
+def test():
     print("C++ class constructor",Engine.ctor)
     E = Engine()
     print('engine      ',E, E.iptr)
@@ -354,27 +300,11 @@ def test3():
     print("deleting copy")
     del C
 
-
-if 0:
-    print("--- test1 with forced del ----")
-    test1()
-    del test1
-    gc.collect()
-    gc.collect()
-
-if 0:
-    print("--- test2 with refcounting ----")
-    test2()
-    del test1,test2
-    gc.collect()
-    gc.collect()
-
-if 1:
-    print("--- test3 with refcounting ----")
-    test3()
-    del test1,test2,test3
-    gc.collect()
-    gc.collect()
+print("--- test3 with refcounting ----")
+test()
+del test
+gc.collect()
+gc.collect()
 
 gc.collect()
 gc.collect()  # one more it's free !
@@ -385,7 +315,6 @@ if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
 REFC = list(REFC.keys())
 while REFC:
     Engine.Engine_C_dtor_v_p(REFC.pop())
-
 
 
 """
