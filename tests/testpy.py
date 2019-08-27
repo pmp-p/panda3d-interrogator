@@ -279,5 +279,13 @@ if 1:
     gc.collect()
 
 print(REFC)
-if GCBAD:print("Bad GC")
+if GCBAD:print(" ----------- Bad GC ------------")
+
+#luckily we have 1 pointer left
+REFC = list(REFC.keys())
+while REFC:
+    Engine.Engine_C_dtor_v_p(REFC.pop())
+
+
+
 
