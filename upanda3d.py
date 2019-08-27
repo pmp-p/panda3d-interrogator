@@ -101,6 +101,11 @@ import os
 import sys
 import ffi
 import uctypes
+import gc
+import time
+
+GCBAD = 0
+REFC = {}
 
 class cplusplus:
     def variadic_call(self,ffi_name,*argv,**kw):
@@ -119,13 +124,52 @@ class cplusplus:
     # c++ ctor/dtor
 
     def __init__(self, *argv, **kw):
-        self.iptr = self.ctor[len(argv)](*argv, **kw)
+        global GCBAD, REFC
+        iref = kw.get('iptr',None)
+        if iref:
+            iref = iref.iptr
+            self.iptr = iref
+            REFC.setdefault(iref,1)
+            REFC[iref]+=1
+        else:
+            GCBAD += 1
+            self.iptr = self.ctor[len(argv)](*argv, **kw)
+
+    def refcount(self):
+        global REFC
+        return REFC.get( id(self.iptr) , 1 )
 
     def __del__(self):
+        global GCBAD
+        nref= REFC.get( self.iptr , 1)
+        if nref > 1:
+            REFC[self.iptr] -= 1
+            print("still",nref-1,"ref. on",self.iptr)
+            del self.iptr, self.dtor
+            return
+        print("__del__",self.iptr)
+        GCBAD -= 1
         try:
             self.dtor(self.iptr)
         finally:
             self.iptr = None
+
+    def __enter__(self,*argv,**kw):
+        return self
+
+    #self.__del__() is not called ...
+    def __exit__(self,*argv,**kw):
+        global REFC
+
+        for attr in dir(self):
+            try:
+                if (not attr in ['dtor','iptr','__del__']):
+                    delattr(E,attr)
+            except:
+                pass
+
+        self.__del__()
+
 """
 )
 
@@ -177,7 +221,14 @@ for cls in CODE.keys():
                 write("""        {} : lib.func('{}','{}','{}'),""".format((len(t[VAR])), (ret), (ffi_name), (args)))
         write('    }')
 
-    write("\n# c++ instance methods\n")
+    write(
+        """
+
+    # c++ instance methods
+
+
+"""
+    )
 
     for func, targets in CODE[cls].items():
         #        if not len(targets):
@@ -210,30 +261,76 @@ for cls in CODE.keys():
 
 write(
     """
-print("C++ class constructor",Engine.ctor)
-E = Engine()
-print('engine',E)
+def test1():
+    print("C++ class constructor",Engine.ctor)
+    with Engine() as E:
+        print('engine',E)
 
-# a dumb test that should say 42
-print('hello',E.HelloEngine())
+        # a dumb test that should say 42
+        print('hello',E.HelloEngine())
 
-print('version','=', E.get_version_string())
+        print('version','=', E.get_version_string())
 
-E.build()
+        E.build()
 
-np = E.load_model( "model.bam" )
+        np = E.load_model( "model.bam" )
 
-print("np","=",np)
+        print("np","=",np)
 
-E.attach(np)
+        E.attach(np)
 
 
-while E.is_alive():
-    E.step()
+        while E.is_alive():
+            E.step()
 
-print("C++ engine requested exit")
-E.__del__() # <== should not have to be called manually, cpython would do it itself.
+        print("C++ engine requested exit")
+    #E.__del__() # <== should not have to be called manually, cpython would do it itself.
 
+def test2():
+    print("C++ class constructor",Engine.ctor)
+    with Engine() as E:
+        print('engine      ',E, E.iptr)
+        C = E.__class__( iptr=E )
+        print('engine(copy)',C, C.iptr)
+
+        # a dumb test that should say 42
+        print('hello',E.HelloEngine())
+
+        print('version','=', E.get_version_string())
+
+        E.build()
+
+        np = E.load_model( "model.bam" )
+
+        print("np","=",np)
+
+        E.attach(np)
+
+
+        while E.is_alive():
+            E.step()
+
+        print("C++ engine requested exit")
+
+    print("deleting copy")
+    del C #C.__del__() # <== should not have to be called manually, cpython would do it itself.
+
+
+if 0:
+    print("--- test1 with forced del ----")
+    test1()
+    del test1
+    gc.collect()
+
+if 1:
+    print("--- test2 with refcounting ----")
+    test2()
+    del test2
+    gc.collect()
+    gc.collect()
+
+print(REFC)
+if GCBAD:print("Bad GC")
 """
 )
 
