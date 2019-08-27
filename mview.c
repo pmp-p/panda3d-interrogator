@@ -37,10 +37,11 @@ extern string * Filename_C_c_str_p_p(Filename const *param0);
 
 
 // not original helpers
-extern NodePath * Engine_C_load_model_p_p(Engine *param0, char const *param1);
-extern void Engine_C_attach_v_p(Engine *param0, NodePath *param1);
-extern char const * Engine_C_get_version_string_p_v();
-
+extern NodePath * Engine_C_load_model_p_ps(Engine *param0, char const *param1);
+extern void Engine_C_attach_v_pp(Engine *param0, NodePath *param1);
+extern char const * Engine_C_get_version_string_s_v();
+extern int Engine_C_is_alive_i_v();
+extern void Engine_C_del_v_p(Engine *param0);
 
 void
 main_loop_or_step(){
@@ -52,12 +53,12 @@ main_loop_or_step(){
 /*
         fn = Filename_C_Filename_3_p_p(filename);
         puts("-----------------------------");
-        fprintf(stdout,"VERSION[%s] FILENAME[%s]\n", Engine_C_get_version_string_p_v(), Filename_C_c_str_p_p(fn) );
+        fprintf(stdout,"VERSION[%s] FILENAME[%s]\n", Engine_C_get_version_string_s_v(), Filename_C_c_str_p_p(fn) );
         puts("-----------------------------");
 */
 
     puts("-----------------------------");
-        fprintf(stdout,"VERSION = %s\n", Engine_C_get_version_string_p_v());
+        fprintf(stdout,"VERSION = %s\n", Engine_C_get_version_string_s_v());
     puts("-----------------------------");
         E = Engine_C_ctor_p_v();
         Engine_C_build_v_p(E);
@@ -69,9 +70,9 @@ main_loop_or_step(){
 
 		// np = NP_C_NP_p_v(); should have been ->get_models() !
 
-        NodePath * mdl = Engine_C_load_model_p_p(E, filename); // WindowFramework_C_load_model_p_pp(pf, np, fn );
+        NodePath * mdl = Engine_C_load_model_p_ps(E, filename); // WindowFramework_C_load_model_p_pp(pf, np, fn );
 
-        Engine_C_attach_v_p(E, mdl);
+        Engine_C_attach_v_pp(E, mdl);
 
         //NP_C_reparent_to_v_p(mdl, wf );
 
@@ -84,10 +85,19 @@ main_loop_or_step(){
 
     }
 
-    if (em_steps>MAX_em_steps)
+    if (em_steps>MAX_em_steps) {
         emscripten_loop_run=0;
-    else
-        Engine_C_step_v_p(E);
+        Engine_C_del_v_p(E);
+        return;
+    }
+
+    if (!Engine_C_is_alive_i_v())  {
+        emscripten_loop_run=0;
+        Engine_C_del_v_p(E);
+        return;
+    }
+
+    Engine_C_step_v_p(E);
 
 }
 

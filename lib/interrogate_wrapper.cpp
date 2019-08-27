@@ -32,26 +32,26 @@
 EXPORT_FUNC Filename * Filename_C_ctor_p_v();
 EXPORT_FUNC Filename * Filename_C_ctor_p_p(Filename *param0);
 EXPORT_FUNC Filename * Filename_C_ctor_1_p_p(Filename const *param0);
-EXPORT_FUNC Filename * Filename_C_ctor_v_pp(Filename const *param0, Filename const *param1);
+EXPORT_FUNC Filename * Filename_C_ctor_p_pp(Filename const *param0, Filename const *param1);
+EXPORT_FUNC Filename * Filename_C_ctor_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_ctor_2_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_ctor_3_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_ctor_4_p_p(wchar_t const *param0);
-EXPORT_FUNC Filename * Filename_C_text_filename_p_p(Filename const *param0);
-EXPORT_FUNC Filename * Filename_C_text_filename_1_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_binary_filename_p_p(Filename const *param0);
-EXPORT_FUNC Filename * Filename_C_binary_filename_1_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_dso_filename_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_executable_filename_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_pattern_filename_p_p(char const *param0);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_p_pp(char const *param0, Filename::Type param1);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_1_p_pp(char const *param0);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_pp(wchar_t const *param0, Filename::Type param1);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_w_1_p_pp(wchar_t const *param0);
-EXPORT_FUNC Filename * Filename_C_expand_from_p_pp(char const *param0, Filename::Type param1);
-EXPORT_FUNC Filename * Filename_C_expand_from_1_p_pp(char const *param0);
-EXPORT_FUNC Filename * Filename_C_temporary_p_pppp(char const *param0, char const *param1, char const *param2, Filename::Type param3);
-EXPORT_FUNC Filename * Filename_C_temporary_1_p_pppp(char const *param0, char const *param1, char const *param2);
-EXPORT_FUNC Filename * Filename_C_temporary_2_p_pppp(char const *param0, char const *param1);
+EXPORT_FUNC Filename * Filename_C_ctor_3_p_p(wchar_t const *param0);
+EXPORT_FUNC Filename * Filename_C_text_filename_p_pp(Filename const *param0);
+EXPORT_FUNC Filename * Filename_C_text_filename_p_sp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_binary_filename_p_pp(Filename const *param0);
+EXPORT_FUNC Filename * Filename_C_binary_filename_p_sp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_dso_filename_p_sp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_executable_filename_p_sp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_pattern_filename_p_sp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_p_spp(char const *param0, Filename::Type param1);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_1_p_spp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_ppp(wchar_t const *param0, Filename::Type param1);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_w_1_p_ppp(wchar_t const *param0);
+EXPORT_FUNC Filename * Filename_C_expand_from_p_spp(char const *param0, Filename::Type param1);
+EXPORT_FUNC Filename * Filename_C_expand_from_1_p_spp(char const *param0);
+EXPORT_FUNC Filename * Filename_C_temporary_p_spppp(char const *param0, char const *param1, char const *param2, Filename::Type param3);
+EXPORT_FUNC Filename * Filename_C_temporary_1_p_spppp(char const *param0, char const *param1, char const *param2);
+EXPORT_FUNC Filename * Filename_C_temporary_2_p_spppp(char const *param0, char const *param1);
 EXPORT_FUNC Filename const * Filename_C_get_home_directory_p_v();
 EXPORT_FUNC Filename const * Filename_C_get_temp_directory_p_v();
 EXPORT_FUNC Filename const * Filename_C_get_user_appdata_directory_p_v();
@@ -61,111 +61,111 @@ EXPORT_FUNC Filename * _inCKD07e4GP(Filename *param0, Filename const *param1);
 EXPORT_FUNC Filename * _inCKD07An_g(Filename *param0, char const *param1);
 EXPORT_FUNC Filename * _inCKD07AEbr(Filename *param0, char const *param1);
 EXPORT_FUNC Filename * _inCKD07wt4w(Filename *param0, wchar_t const *param1);
-EXPORT_FUNC char const * _p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_c_str_p_p(Filename const *param0);
+EXPORT_FUNC char const * _s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_c_str_s_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_empty_B_p(Filename const *param0);
 EXPORT_FUNC std::size_t Filename_C_length_p_p(Filename const *param0);
 EXPORT_FUNC char _inCKD07PYDQ(Filename const *param0, std::size_t param1);
-EXPORT_FUNC char const * Filename_C_substr_p_p(Filename const *param0, std::size_t param1);
-EXPORT_FUNC char const * Filename_C_substr_p_pp(Filename const *param0, std::size_t param1, std::size_t param2);
+EXPORT_FUNC char const * Filename_C_substr_s_pp(Filename const *param0, std::size_t param1);
+EXPORT_FUNC char const * Filename_C_substr_s_ppp(Filename const *param0, std::size_t param1, std::size_t param2);
 EXPORT_FUNC Filename * _inCKD07_CCc(Filename *param0, char const *param1);
 EXPORT_FUNC Filename * _inCKD07dG6k(Filename const *param0, char const *param1);
 EXPORT_FUNC Filename * _inCKD07pD3m(Filename const *param0, Filename const *param1);
-EXPORT_FUNC char const * Filename_C_get_fullpath_p_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_get_fullpath_s_p(Filename const *param0);
 EXPORT_FUNC wchar_t const * Filename_C_get_fullpath_w_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_get_dirname_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_get_basename_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_get_fullpath_wo_extension_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_get_basename_wo_extension_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_get_extension_p_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_set_fullpath_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_set_dirname_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_set_basename_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_set_fullpath_wo_extension_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_set_basename_wo_extension_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_set_extension_v_p(Filename *param0, char const *param1);
+EXPORT_FUNC char const * Filename_C_get_dirname_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_get_basename_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_get_fullpath_wo_extension_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_get_basename_wo_extension_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_get_extension_s_p(Filename const *param0);
+EXPORT_FUNC void Filename_C_set_fullpath_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_set_dirname_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_set_basename_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_set_fullpath_wo_extension_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_set_basename_wo_extension_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_set_extension_v_pp(Filename *param0, char const *param1);
 EXPORT_FUNC void Filename_C_set_binary_v_p(Filename *param0);
 EXPORT_FUNC void Filename_C_set_text_v_p(Filename *param0);
 EXPORT_FUNC bool Filename_C_is_binary_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_text_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_binary_or_text_B_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_set_type_v_p(Filename *param0, Filename::Type param1);
+EXPORT_FUNC void Filename_C_set_type_v_pp(Filename *param0, Filename::Type param1);
 EXPORT_FUNC Filename::Type Filename_C_get_type_p_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_set_pattern_v_p(Filename *param0, bool param1);
+EXPORT_FUNC void Filename_C_set_pattern_v_pp(Filename *param0, bool param1);
 EXPORT_FUNC bool Filename_C_get_pattern_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_has_hash_B_p(Filename const *param0);
-EXPORT_FUNC Filename * Filename_C_get_filename_index_p_p(Filename const *param0, int param1);
-EXPORT_FUNC char const * Filename_C_get_hash_to_end_p_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_set_hash_to_end_v_p(Filename *param0, char const *param1);
-EXPORT_FUNC void Filename_C_extract_components_v_p(Filename const *param0, vector_string *param1);
+EXPORT_FUNC Filename * Filename_C_get_filename_index_p_pp(Filename const *param0, int param1);
+EXPORT_FUNC char const * Filename_C_get_hash_to_end_s_p(Filename const *param0);
+EXPORT_FUNC void Filename_C_set_hash_to_end_v_pp(Filename *param0, char const *param1);
+EXPORT_FUNC void Filename_C_extract_components_v_pp(Filename const *param0, vector_string *param1);
 EXPORT_FUNC void Filename_C_standardize_v_p(Filename *param0);
 EXPORT_FUNC bool Filename_C_is_local_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_fully_qualified_B_p(Filename const *param0);
 EXPORT_FUNC void Filename_C_make_absolute_v_p(Filename *param0);
-EXPORT_FUNC void Filename_C_make_absolute_1_v_p(Filename *param0, Filename const *param1);
+EXPORT_FUNC void Filename_C_make_absolute_v_pp(Filename *param0, Filename const *param1);
 EXPORT_FUNC bool Filename_C_make_canonical_B_p(Filename *param0);
 EXPORT_FUNC bool Filename_C_make_true_case_B_p(Filename *param0);
-EXPORT_FUNC char const * Filename_C_to_os_specific_p_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_to_os_specific_s_p(Filename const *param0);
 EXPORT_FUNC wchar_t const * Filename_C_to_os_specific_w_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_to_os_generic_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_to_os_short_name_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_to_os_long_name_p_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_to_os_generic_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_to_os_short_name_s_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_to_os_long_name_s_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_exists_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_regular_file_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_writable_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_directory_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_executable_B_p(Filename const *param0);
-EXPORT_FUNC int Filename_C_compare_timestamps_i_ppp(Filename const *param0, Filename const *param1, bool param2, bool param3);
-EXPORT_FUNC int Filename_C_compare_timestamps_1_i_ppp(Filename const *param0, Filename const *param1, bool param2);
-EXPORT_FUNC int Filename_C_compare_timestamps_2_i_ppp(Filename const *param0, Filename const *param1);
+EXPORT_FUNC int Filename_C_compare_timestamps_i_pppp(Filename const *param0, Filename const *param1, bool param2, bool param3);
+EXPORT_FUNC int Filename_C_compare_timestamps_1_i_pppp(Filename const *param0, Filename const *param1, bool param2);
+EXPORT_FUNC int Filename_C_compare_timestamps_2_i_pppp(Filename const *param0, Filename const *param1);
 EXPORT_FUNC time_t Filename_C_get_timestamp_p_p(Filename const *param0);
 EXPORT_FUNC time_t Filename_C_get_access_timestamp_p_p(Filename const *param0);
 EXPORT_FUNC std::streamsize Filename_C_get_file_size_p_p(Filename const *param0);
-EXPORT_FUNC bool Filename_C_resolve_filename_B_pp(Filename *param0, DSearchPath const *param1, char const *param2);
-EXPORT_FUNC bool Filename_C_resolve_filename_1_B_pp(Filename *param0, DSearchPath const *param1);
-EXPORT_FUNC bool Filename_C_make_relative_to_B_pp(Filename *param0, Filename *param1, bool param2);
-EXPORT_FUNC bool Filename_C_make_relative_to_1_B_pp(Filename *param0, Filename *param1);
-EXPORT_FUNC int Filename_C_find_on_searchpath_i_p(Filename *param0, DSearchPath const *param1);
-EXPORT_FUNC bool Filename_C_scan_directory_B_p(Filename const *param0, vector_string *param1);
-EXPORT_FUNC bool Filename_C_open_read_B_p(Filename const *param0, pifstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_1_B_p(Filename const *param0, std::ifstream *param1);
-EXPORT_FUNC bool Filename_C_open_write_B_pp(Filename const *param0, pofstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_write_1_B_pp(Filename const *param0, pofstream *param1);
-EXPORT_FUNC bool Filename_C_open_write_2_B_pp(Filename const *param0, std::ofstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_write_3_B_pp(Filename const *param0, std::ofstream *param1);
-EXPORT_FUNC bool Filename_C_open_append_B_p(Filename const *param0, pofstream *param1);
-EXPORT_FUNC bool Filename_C_open_append_1_B_p(Filename const *param0, std::ofstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_write_B_pp(Filename const *param0, pfstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_read_write_1_B_pp(Filename const *param0, pfstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_write_2_B_pp(Filename const *param0, std::fstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_read_write_3_B_pp(Filename const *param0, std::fstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_append_B_p(Filename const *param0, pfstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_append_1_B_p(Filename const *param0, std::fstream *param1);
+EXPORT_FUNC bool Filename_C_resolve_filename_B_ppp(Filename *param0, DSearchPath const *param1, char const *param2);
+EXPORT_FUNC bool Filename_C_resolve_filename_1_B_ppp(Filename *param0, DSearchPath const *param1);
+EXPORT_FUNC bool Filename_C_make_relative_to_B_ppp(Filename *param0, Filename *param1, bool param2);
+EXPORT_FUNC bool Filename_C_make_relative_to_1_B_ppp(Filename *param0, Filename *param1);
+EXPORT_FUNC int Filename_C_find_on_searchpath_i_pp(Filename *param0, DSearchPath const *param1);
+EXPORT_FUNC bool Filename_C_scan_directory_B_pp(Filename const *param0, vector_string *param1);
+EXPORT_FUNC bool Filename_C_open_read_B_pp(Filename const *param0, pifstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_1_B_pp(Filename const *param0, std::ifstream *param1);
+EXPORT_FUNC bool Filename_C_open_write_B_ppp(Filename const *param0, pofstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_write_1_B_ppp(Filename const *param0, pofstream *param1);
+EXPORT_FUNC bool Filename_C_open_write_2_B_ppp(Filename const *param0, std::ofstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_write_3_B_ppp(Filename const *param0, std::ofstream *param1);
+EXPORT_FUNC bool Filename_C_open_append_B_pp(Filename const *param0, pofstream *param1);
+EXPORT_FUNC bool Filename_C_open_append_1_B_pp(Filename const *param0, std::ofstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_write_B_ppp(Filename const *param0, pfstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_read_write_1_B_ppp(Filename const *param0, pfstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_write_2_B_ppp(Filename const *param0, std::fstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_read_write_3_B_ppp(Filename const *param0, std::fstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_append_B_pp(Filename const *param0, pfstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_append_1_B_pp(Filename const *param0, std::fstream *param1);
 EXPORT_FUNC bool Filename_C_chdir_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_touch_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_unlink_B_p(Filename const *param0);
-EXPORT_FUNC bool Filename_C_rename_to_B_p(Filename const *param0, Filename const *param1);
-EXPORT_FUNC bool Filename_C_copy_to_B_p(Filename const *param0, Filename const *param1);
+EXPORT_FUNC bool Filename_C_rename_to_B_pp(Filename const *param0, Filename const *param1);
+EXPORT_FUNC bool Filename_C_copy_to_B_pp(Filename const *param0, Filename const *param1);
 EXPORT_FUNC bool Filename_C_make_dir_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_mkdir_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_rmdir_B_p(Filename const *param0);
 EXPORT_FUNC bool _inCKD07OBrR(Filename const *param0, char const *param1);
 EXPORT_FUNC bool _inCKD07sEaR(Filename const *param0, char const *param1);
 EXPORT_FUNC bool _inCKD07YSEF(Filename const *param0, char const *param1);
-EXPORT_FUNC int Filename_C_compare_to_i_p(Filename const *param0, Filename const *param1);
+EXPORT_FUNC int Filename_C_compare_to_i_pp(Filename const *param0, Filename const *param1);
 EXPORT_FUNC bool Filename_C___nonzero___B_p(Filename const *param0);
 EXPORT_FUNC int Filename_C_get_hash_i_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_output_v_p(Filename const *param0, std::ostream *param1);
-EXPORT_FUNC void Filename_C_set_filesystem_encoding_v_p(TextEncoder::Encoding param0);
-EXPORT_FUNC TextEncoder::Encoding Filename_C_get_filesystem_encoding_p_p();
-EXPORT_FUNC int Filename_C_get_class_type_i_p();
-EXPORT_FUNC void Filename_C_init_type_v_p();
+EXPORT_FUNC void Filename_C_output_v_pp(Filename const *param0, std::ostream *param1);
+EXPORT_FUNC void Filename_C_set_filesystem_encoding_v_pp(TextEncoder::Encoding param0);
+EXPORT_FUNC TextEncoder::Encoding Filename_C_get_filesystem_encoding_p_v();
+EXPORT_FUNC int Filename_C_get_class_type_i_v();
+EXPORT_FUNC void Filename_C_init_type_v_v();
 EXPORT_FUNC PandaFramework * WindowFramework_C_get_panda_framework_p_p(WindowFramework const *param0);
 EXPORT_FUNC GraphicsWindow * WindowFramework_C_get_graphics_window_p_p(WindowFramework const *param0);
 EXPORT_FUNC GraphicsOutput * WindowFramework_C_get_graphics_output_p_p(WindowFramework const *param0);
 EXPORT_FUNC NodePath * WindowFramework_C_get_camera_group_p_p(WindowFramework *param0);
 EXPORT_FUNC int WindowFramework_C_get_num_cameras_i_p(WindowFramework const *param0);
-EXPORT_FUNC Camera * WindowFramework_C_get_camera_p_p(WindowFramework const *param0, int param1);
+EXPORT_FUNC Camera * WindowFramework_C_get_camera_p_pp(WindowFramework const *param0, int param1);
 EXPORT_FUNC DisplayRegion * WindowFramework_C_get_display_region_2d_p_p(WindowFramework const *param0);
 EXPORT_FUNC DisplayRegion * WindowFramework_C_get_display_region_3d_p_p(WindowFramework const *param0);
 EXPORT_FUNC NodePath * WindowFramework_C_get_render_p_p(WindowFramework *param0);
@@ -176,27 +176,27 @@ EXPORT_FUNC NodePath * WindowFramework_C_get_mouse_p_p(WindowFramework *param0);
 EXPORT_FUNC NodePath * WindowFramework_C_get_button_thrower_p_p(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_enable_keyboard_v_p(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_setup_trackball_v_p(WindowFramework *param0);
-EXPORT_FUNC void WindowFramework_C_center_trackball_v_p(WindowFramework *param0, NodePath const *param1);
-EXPORT_FUNC bool WindowFramework_C_load_models_B_pp(WindowFramework *param0, NodePath const *param1, pvector< Filename > const *param2);
-EXPORT_FUNC NodePath * WindowFramework_C_load_model_p_pp(WindowFramework *param0, NodePath const *param1, Filename *param2);
-EXPORT_FUNC NodePath * WindowFramework_C_load_default_model_p_p(WindowFramework *param0, NodePath const *param1);
-EXPORT_FUNC void WindowFramework_C_loop_animations_v_p(WindowFramework *param0, int param1);
-EXPORT_FUNC void WindowFramework_C_loop_animations_1_v_p(WindowFramework *param0);
+EXPORT_FUNC void WindowFramework_C_center_trackball_v_pp(WindowFramework *param0, NodePath const *param1);
+EXPORT_FUNC bool WindowFramework_C_load_models_B_ppp(WindowFramework *param0, NodePath const *param1, pvector< Filename > const *param2);
+EXPORT_FUNC NodePath * WindowFramework_C_load_model_p_ppp(WindowFramework *param0, NodePath const *param1, Filename *param2);
+EXPORT_FUNC NodePath * WindowFramework_C_load_default_model_p_pp(WindowFramework *param0, NodePath const *param1);
+EXPORT_FUNC void WindowFramework_C_loop_animations_v_pp(WindowFramework *param0, int param1);
+EXPORT_FUNC void WindowFramework_C_loop_animations_1_v_pp(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_stagger_animations_v_p(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_next_anim_control_v_p(WindowFramework *param0);
-EXPORT_FUNC void WindowFramework_C_set_anim_controls_v_p(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_anim_controls_v_pp(WindowFramework *param0, bool param1);
 EXPORT_FUNC bool WindowFramework_C_get_anim_controls_B_p(WindowFramework const *param0);
 EXPORT_FUNC void WindowFramework_C_adjust_dimensions_v_p(WindowFramework *param0);
-EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_p_p(WindowFramework *param0, WindowFramework::SplitType param1);
-EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_1_p_p(WindowFramework *param0);
-EXPORT_FUNC void WindowFramework_C_set_wireframe_v_pp(WindowFramework *param0, bool param1, bool param2);
-EXPORT_FUNC void WindowFramework_C_set_wireframe_1_v_pp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_texture_v_p(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_two_sided_v_p(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_one_sided_reverse_v_p(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_lighting_v_p(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_perpixel_v_p(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_background_type_v_p(WindowFramework *param0, WindowFramework::BackgroundType param1);
+EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_p_pp(WindowFramework *param0, WindowFramework::SplitType param1);
+EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_1_p_pp(WindowFramework *param0);
+EXPORT_FUNC void WindowFramework_C_set_wireframe_v_ppp(WindowFramework *param0, bool param1, bool param2);
+EXPORT_FUNC void WindowFramework_C_set_wireframe_1_v_ppp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_texture_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_two_sided_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_one_sided_reverse_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_lighting_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_perpixel_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_background_type_v_pp(WindowFramework *param0, WindowFramework::BackgroundType param1);
 EXPORT_FUNC bool WindowFramework_C_get_wireframe_B_p(WindowFramework const *param0);
 EXPORT_FUNC bool WindowFramework_C_get_wireframe_filled_B_p(WindowFramework const *param0);
 EXPORT_FUNC bool WindowFramework_C_get_texture_B_p(WindowFramework const *param0);
@@ -207,30 +207,32 @@ EXPORT_FUNC bool WindowFramework_C_get_perpixel_B_p(WindowFramework const *param
 EXPORT_FUNC WindowFramework::BackgroundType WindowFramework_C_get_background_type_p_p(WindowFramework const *param0);
 EXPORT_FUNC TextFont * WindowFramework_C_get_shuttle_controls_font_p_v();
 EXPORT_FUNC NodePath * WindowFramework_C_make_camera_p_p(WindowFramework *param0);
-EXPORT_FUNC int WindowFramework_C_get_class_type_i_p();
-EXPORT_FUNC void WindowFramework_C_init_type_v_p();
+EXPORT_FUNC int WindowFramework_C_get_class_type_i_v();
+EXPORT_FUNC void WindowFramework_C_init_type_v_v();
 EXPORT_FUNC int WindowFramework_C_get_type_i_p(WindowFramework const *param0);
 EXPORT_FUNC int WindowFramework_C_force_init_type_i_p(WindowFramework *param0);
 EXPORT_FUNC WindowFramework * WindowFramework_C_ctor_p_p(WindowFramework const *param0);
-EXPORT_FUNC void NP_C_reparent_to_v_p(NP *param0, NodePath const *param1);
+EXPORT_FUNC void NP_C_reparent_to_v_pp(NP *param0, NodePath const *param1);
 EXPORT_FUNC NP * NP_C_ctor_p_v();
 EXPORT_FUNC NP * NP_C_ctor_p_p(NP const *param0);
 EXPORT_FUNC Engine * Engine_C_ctor_p_v();
 EXPORT_FUNC Engine * Engine_C_ctor_p_p(Engine const *param0);
+EXPORT_FUNC void Engine_C_del_v_p(Engine *param0);
+EXPORT_FUNC int Engine_C_is_alive_i_v();
 EXPORT_FUNC int Engine_C_HelloEngine_i_p(Engine *param0);
-EXPORT_FUNC int Engine_C_casetest_i_ppp(Engine *param0, int param1, char const *param2, bool param3);
-EXPORT_FUNC NodePath * Engine_C_load_model_p_p(Engine *param0, char const *param1);
-EXPORT_FUNC void Engine_C_attach_v_p(Engine *param0, NodePath *param1);
+EXPORT_FUNC int Engine_C_casetest_i_pppp(Engine *param0, int param1, char const *param2, bool param3);
+EXPORT_FUNC NodePath * Engine_C_load_model_p_ps(Engine *param0, char const *param1);
+EXPORT_FUNC void Engine_C_attach_v_pp(Engine *param0, NodePath *param1);
 EXPORT_FUNC void Engine_C_build_v_p(Engine *param0);
 EXPORT_FUNC void Engine_C_step_v_p(Engine *param0);
-EXPORT_FUNC char const * Engine_C_get_version_string_p_v();
+EXPORT_FUNC char const * Engine_C_get_version_string_s_v();
 EXPORT_FUNC PointerTo< WindowFramework > const * Engine_C_get_wframe_p_p(Engine const *param0);
 EXPORT_FUNC PandaFramework * Engine_C_get_framework_p_p(Engine const *param0);
-EXPORT_FUNC void Engine_C_set_framework_v_p(Engine *param0, PandaFramework *param1);
-EXPORT_FUNC int check_timer_i_p();
-EXPORT_FUNC void emscripten_cancel_main_loop_v_p();
-EXPORT_FUNC void main_loop_or_step_v_p();
-EXPORT_FUNC void emscripten_force_exit_v_p(int param0);
+EXPORT_FUNC void Engine_C_set_framework_v_pp(Engine *param0, PandaFramework *param1);
+EXPORT_FUNC int check_timer_i_v();
+EXPORT_FUNC void emscripten_cancel_main_loop_v_v();
+EXPORT_FUNC void main_loop_or_step_v_v();
+EXPORT_FUNC void emscripten_force_exit_v_pp(int param0);
 
 
 /*
@@ -265,7 +267,7 @@ Filename_C_ctor_1_p_p(Filename const *param0) {
  * Filename::Filename(Filename const &dirname, Filename const &basename)
  */
 Filename *
-Filename_C_ctor_v_pp(Filename const *param0, Filename const *param1) {
+Filename_C_ctor_p_pp(Filename const *param0, Filename const *param1) {
   return new Filename(*param0, *param1);
 }
 
@@ -274,7 +276,7 @@ Filename_C_ctor_v_pp(Filename const *param0, Filename const *param1) {
  * inline Filename::Filename(char const *filename)
  */
 Filename *
-Filename_C_ctor_2_p_p(char const *param0) {
+Filename_C_ctor_p_s(char const *param0) {
   return new Filename(param0);
 }
 
@@ -283,7 +285,7 @@ Filename_C_ctor_2_p_p(char const *param0) {
  * inline Filename::Filename(std::string const &filename)
  */
 Filename *
-Filename_C_ctor_3_p_p(char const *param0) {
+Filename_C_ctor_2_p_p(char const *param0) {
   return new Filename(std::string(param0));
 }
 
@@ -292,7 +294,7 @@ Filename_C_ctor_3_p_p(char const *param0) {
  * inline Filename::Filename(std::wstring const &filename)
  */
 Filename *
-Filename_C_ctor_4_p_p(wchar_t const *param0) {
+Filename_C_ctor_3_p_p(wchar_t const *param0) {
   return new Filename(std::wstring(param0));
 }
 
@@ -301,7 +303,7 @@ Filename_C_ctor_4_p_p(wchar_t const *param0) {
  * static inline Filename Filename::text_filename(Filename const &filename)
  */
 Filename *
-Filename_C_text_filename_p_p(Filename const *param0) {
+Filename_C_text_filename_p_pp(Filename const *param0) {
   return new Filename(Filename::text_filename(*param0));
 }
 
@@ -310,7 +312,7 @@ Filename_C_text_filename_p_p(Filename const *param0) {
  * static inline Filename Filename::text_filename(std::string const &filename)
  */
 Filename *
-Filename_C_text_filename_1_p_p(char const *param0) {
+Filename_C_text_filename_p_sp(char const *param0) {
   return new Filename(Filename::text_filename(std::string(param0)));
 }
 
@@ -319,7 +321,7 @@ Filename_C_text_filename_1_p_p(char const *param0) {
  * static inline Filename Filename::binary_filename(Filename const &filename)
  */
 Filename *
-Filename_C_binary_filename_p_p(Filename const *param0) {
+Filename_C_binary_filename_p_pp(Filename const *param0) {
   return new Filename(Filename::binary_filename(*param0));
 }
 
@@ -328,7 +330,7 @@ Filename_C_binary_filename_p_p(Filename const *param0) {
  * static inline Filename Filename::binary_filename(std::string const &filename)
  */
 Filename *
-Filename_C_binary_filename_1_p_p(char const *param0) {
+Filename_C_binary_filename_p_sp(char const *param0) {
   return new Filename(Filename::binary_filename(std::string(param0)));
 }
 
@@ -337,7 +339,7 @@ Filename_C_binary_filename_1_p_p(char const *param0) {
  * static inline Filename Filename::dso_filename(std::string const &filename)
  */
 Filename *
-Filename_C_dso_filename_p_p(char const *param0) {
+Filename_C_dso_filename_p_sp(char const *param0) {
   return new Filename(Filename::dso_filename(std::string(param0)));
 }
 
@@ -346,7 +348,7 @@ Filename_C_dso_filename_p_p(char const *param0) {
  * static inline Filename Filename::executable_filename(std::string const &filename)
  */
 Filename *
-Filename_C_executable_filename_p_p(char const *param0) {
+Filename_C_executable_filename_p_sp(char const *param0) {
   return new Filename(Filename::executable_filename(std::string(param0)));
 }
 
@@ -355,7 +357,7 @@ Filename_C_executable_filename_p_p(char const *param0) {
  * static inline Filename Filename::pattern_filename(std::string const &filename)
  */
 Filename *
-Filename_C_pattern_filename_p_p(char const *param0) {
+Filename_C_pattern_filename_p_sp(char const *param0) {
   return new Filename(Filename::pattern_filename(std::string(param0)));
 }
 
@@ -364,7 +366,7 @@ Filename_C_pattern_filename_p_p(char const *param0) {
  * static Filename Filename::from_os_specific(std::string const &os_specific, Filename::Type type)
  */
 Filename *
-Filename_C_from_os_specific_p_pp(char const *param0, Filename::Type param1) {
+Filename_C_from_os_specific_p_spp(char const *param0, Filename::Type param1) {
   return new Filename(Filename::from_os_specific(std::string(param0), param1));
 }
 
@@ -373,7 +375,7 @@ Filename_C_from_os_specific_p_pp(char const *param0, Filename::Type param1) {
  * static Filename Filename::from_os_specific(std::string const &os_specific, Filename::Type type)
  */
 Filename *
-Filename_C_from_os_specific_1_p_pp(char const *param0) {
+Filename_C_from_os_specific_1_p_spp(char const *param0) {
   return new Filename(Filename::from_os_specific(std::string(param0)));
 }
 
@@ -382,7 +384,7 @@ Filename_C_from_os_specific_1_p_pp(char const *param0) {
  * static Filename Filename::from_os_specific_w(std::wstring const &os_specific, Filename::Type type)
  */
 Filename *
-Filename_C_from_os_specific_w_p_pp(wchar_t const *param0, Filename::Type param1) {
+Filename_C_from_os_specific_w_p_ppp(wchar_t const *param0, Filename::Type param1) {
   return new Filename(Filename::from_os_specific_w(std::wstring(param0), param1));
 }
 
@@ -391,7 +393,7 @@ Filename_C_from_os_specific_w_p_pp(wchar_t const *param0, Filename::Type param1)
  * static Filename Filename::from_os_specific_w(std::wstring const &os_specific, Filename::Type type)
  */
 Filename *
-Filename_C_from_os_specific_w_1_p_pp(wchar_t const *param0) {
+Filename_C_from_os_specific_w_1_p_ppp(wchar_t const *param0) {
   return new Filename(Filename::from_os_specific_w(std::wstring(param0)));
 }
 
@@ -400,7 +402,7 @@ Filename_C_from_os_specific_w_1_p_pp(wchar_t const *param0) {
  * static Filename Filename::expand_from(std::string const &user_string, Filename::Type type)
  */
 Filename *
-Filename_C_expand_from_p_pp(char const *param0, Filename::Type param1) {
+Filename_C_expand_from_p_spp(char const *param0, Filename::Type param1) {
   return new Filename(Filename::expand_from(std::string(param0), param1));
 }
 
@@ -409,7 +411,7 @@ Filename_C_expand_from_p_pp(char const *param0, Filename::Type param1) {
  * static Filename Filename::expand_from(std::string const &user_string, Filename::Type type)
  */
 Filename *
-Filename_C_expand_from_1_p_pp(char const *param0) {
+Filename_C_expand_from_1_p_spp(char const *param0) {
   return new Filename(Filename::expand_from(std::string(param0)));
 }
 
@@ -418,7 +420,7 @@ Filename_C_expand_from_1_p_pp(char const *param0) {
  * static Filename Filename::temporary(std::string const &dirname, std::string const &prefix, std::string const &suffix, Filename::Type type)
  */
 Filename *
-Filename_C_temporary_p_pppp(char const *param0, char const *param1, char const *param2, Filename::Type param3) {
+Filename_C_temporary_p_spppp(char const *param0, char const *param1, char const *param2, Filename::Type param3) {
   return new Filename(Filename::temporary(std::string(param0), std::string(param1), std::string(param2), param3));
 }
 
@@ -427,7 +429,7 @@ Filename_C_temporary_p_pppp(char const *param0, char const *param1, char const *
  * static Filename Filename::temporary(std::string const &dirname, std::string const &prefix, std::string const &suffix, Filename::Type type)
  */
 Filename *
-Filename_C_temporary_1_p_pppp(char const *param0, char const *param1, char const *param2) {
+Filename_C_temporary_1_p_spppp(char const *param0, char const *param1, char const *param2) {
   return new Filename(Filename::temporary(std::string(param0), std::string(param1), std::string(param2)));
 }
 
@@ -436,7 +438,7 @@ Filename_C_temporary_1_p_pppp(char const *param0, char const *param1, char const
  * static Filename Filename::temporary(std::string const &dirname, std::string const &prefix, std::string const &suffix, Filename::Type type)
  */
 Filename *
-Filename_C_temporary_2_p_pppp(char const *param0, char const *param1) {
+Filename_C_temporary_2_p_spppp(char const *param0, char const *param1) {
   return new Filename(Filename::temporary(std::string(param0), std::string(param1)));
 }
 
@@ -531,7 +533,7 @@ _inCKD07wt4w(Filename *param0, wchar_t const *param1) {
  * inline operator std::string const &(void) const
  */
 char const *
-_p_p(Filename const *param0) {
+_s_p(Filename const *param0) {
   return ((std::string const &)*param0).c_str();
 }
 
@@ -540,7 +542,7 @@ _p_p(Filename const *param0) {
  * inline char const *Filename::c_str(void) const
  */
 char const *
-Filename_C_c_str_p_p(Filename const *param0) {
+Filename_C_c_str_s_p(Filename const *param0) {
   return (*param0).c_str();
 }
 
@@ -576,7 +578,7 @@ _inCKD07PYDQ(Filename const *param0, std::size_t param1) {
  * inline std::string Filename::substr(std::size_t begin) const
  */
 char const *
-Filename_C_substr_p_p(Filename const *param0, std::size_t param1) {
+Filename_C_substr_s_pp(Filename const *param0, std::size_t param1) {
   static std::string string_holder = (*param0).substr(param1);
   return string_holder.c_str();
 }
@@ -586,7 +588,7 @@ Filename_C_substr_p_p(Filename const *param0, std::size_t param1) {
  * inline std::string Filename::substr(std::size_t begin, std::size_t end) const
  */
 char const *
-Filename_C_substr_p_pp(Filename const *param0, std::size_t param1, std::size_t param2) {
+Filename_C_substr_s_ppp(Filename const *param0, std::size_t param1, std::size_t param2) {
   static std::string string_holder = (*param0).substr(param1, param2);
   return string_holder.c_str();
 }
@@ -624,7 +626,7 @@ _inCKD07pD3m(Filename const *param0, Filename const *param1) {
  * inline std::string Filename::get_fullpath(void) const
  */
 char const *
-Filename_C_get_fullpath_p_p(Filename const *param0) {
+Filename_C_get_fullpath_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_fullpath();
   return string_holder.c_str();
 }
@@ -644,7 +646,7 @@ Filename_C_get_fullpath_w_p_p(Filename const *param0) {
  * inline std::string Filename::get_dirname(void) const
  */
 char const *
-Filename_C_get_dirname_p_p(Filename const *param0) {
+Filename_C_get_dirname_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_dirname();
   return string_holder.c_str();
 }
@@ -654,7 +656,7 @@ Filename_C_get_dirname_p_p(Filename const *param0) {
  * inline std::string Filename::get_basename(void) const
  */
 char const *
-Filename_C_get_basename_p_p(Filename const *param0) {
+Filename_C_get_basename_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_basename();
   return string_holder.c_str();
 }
@@ -664,7 +666,7 @@ Filename_C_get_basename_p_p(Filename const *param0) {
  * inline std::string Filename::get_fullpath_wo_extension(void) const
  */
 char const *
-Filename_C_get_fullpath_wo_extension_p_p(Filename const *param0) {
+Filename_C_get_fullpath_wo_extension_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_fullpath_wo_extension();
   return string_holder.c_str();
 }
@@ -674,7 +676,7 @@ Filename_C_get_fullpath_wo_extension_p_p(Filename const *param0) {
  * inline std::string Filename::get_basename_wo_extension(void) const
  */
 char const *
-Filename_C_get_basename_wo_extension_p_p(Filename const *param0) {
+Filename_C_get_basename_wo_extension_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_basename_wo_extension();
   return string_holder.c_str();
 }
@@ -684,7 +686,7 @@ Filename_C_get_basename_wo_extension_p_p(Filename const *param0) {
  * inline std::string Filename::get_extension(void) const
  */
 char const *
-Filename_C_get_extension_p_p(Filename const *param0) {
+Filename_C_get_extension_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_extension();
   return string_holder.c_str();
 }
@@ -694,7 +696,7 @@ Filename_C_get_extension_p_p(Filename const *param0) {
  * void Filename::set_fullpath(std::string const &s)
  */
 void
-Filename_C_set_fullpath_v_p(Filename *param0, char const *param1) {
+Filename_C_set_fullpath_v_pp(Filename *param0, char const *param1) {
   (*param0).set_fullpath(std::string(param1));
 }
 
@@ -703,7 +705,7 @@ Filename_C_set_fullpath_v_p(Filename *param0, char const *param1) {
  * void Filename::set_dirname(std::string const &s)
  */
 void
-Filename_C_set_dirname_v_p(Filename *param0, char const *param1) {
+Filename_C_set_dirname_v_pp(Filename *param0, char const *param1) {
   (*param0).set_dirname(std::string(param1));
 }
 
@@ -712,7 +714,7 @@ Filename_C_set_dirname_v_p(Filename *param0, char const *param1) {
  * void Filename::set_basename(std::string const &s)
  */
 void
-Filename_C_set_basename_v_p(Filename *param0, char const *param1) {
+Filename_C_set_basename_v_pp(Filename *param0, char const *param1) {
   (*param0).set_basename(std::string(param1));
 }
 
@@ -721,7 +723,7 @@ Filename_C_set_basename_v_p(Filename *param0, char const *param1) {
  * void Filename::set_fullpath_wo_extension(std::string const &s)
  */
 void
-Filename_C_set_fullpath_wo_extension_v_p(Filename *param0, char const *param1) {
+Filename_C_set_fullpath_wo_extension_v_pp(Filename *param0, char const *param1) {
   (*param0).set_fullpath_wo_extension(std::string(param1));
 }
 
@@ -730,7 +732,7 @@ Filename_C_set_fullpath_wo_extension_v_p(Filename *param0, char const *param1) {
  * void Filename::set_basename_wo_extension(std::string const &s)
  */
 void
-Filename_C_set_basename_wo_extension_v_p(Filename *param0, char const *param1) {
+Filename_C_set_basename_wo_extension_v_pp(Filename *param0, char const *param1) {
   (*param0).set_basename_wo_extension(std::string(param1));
 }
 
@@ -739,7 +741,7 @@ Filename_C_set_basename_wo_extension_v_p(Filename *param0, char const *param1) {
  * void Filename::set_extension(std::string const &s)
  */
 void
-Filename_C_set_extension_v_p(Filename *param0, char const *param1) {
+Filename_C_set_extension_v_pp(Filename *param0, char const *param1) {
   (*param0).set_extension(std::string(param1));
 }
 
@@ -793,7 +795,7 @@ Filename_C_is_binary_or_text_B_p(Filename const *param0) {
  * inline void Filename::set_type(Filename::Type type)
  */
 void
-Filename_C_set_type_v_p(Filename *param0, Filename::Type param1) {
+Filename_C_set_type_v_pp(Filename *param0, Filename::Type param1) {
   (*param0).set_type(param1);
 }
 
@@ -811,7 +813,7 @@ Filename_C_get_type_p_p(Filename const *param0) {
  * inline void Filename::set_pattern(bool pattern)
  */
 void
-Filename_C_set_pattern_v_p(Filename *param0, bool param1) {
+Filename_C_set_pattern_v_pp(Filename *param0, bool param1) {
   (*param0).set_pattern(param1);
 }
 
@@ -838,7 +840,7 @@ Filename_C_has_hash_B_p(Filename const *param0) {
  * Filename Filename::get_filename_index(int index) const
  */
 Filename *
-Filename_C_get_filename_index_p_p(Filename const *param0, int param1) {
+Filename_C_get_filename_index_p_pp(Filename const *param0, int param1) {
   return new Filename((*param0).get_filename_index(param1));
 }
 
@@ -847,7 +849,7 @@ Filename_C_get_filename_index_p_p(Filename const *param0, int param1) {
  * inline std::string Filename::get_hash_to_end(void) const
  */
 char const *
-Filename_C_get_hash_to_end_p_p(Filename const *param0) {
+Filename_C_get_hash_to_end_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).get_hash_to_end();
   return string_holder.c_str();
 }
@@ -857,7 +859,7 @@ Filename_C_get_hash_to_end_p_p(Filename const *param0) {
  * void Filename::set_hash_to_end(std::string const &s)
  */
 void
-Filename_C_set_hash_to_end_v_p(Filename *param0, char const *param1) {
+Filename_C_set_hash_to_end_v_pp(Filename *param0, char const *param1) {
   (*param0).set_hash_to_end(std::string(param1));
 }
 
@@ -866,7 +868,7 @@ Filename_C_set_hash_to_end_v_p(Filename *param0, char const *param1) {
  * void Filename::extract_components(vector_string &components) const
  */
 void
-Filename_C_extract_components_v_p(Filename const *param0, vector_string *param1) {
+Filename_C_extract_components_v_pp(Filename const *param0, vector_string *param1) {
   (*param0).extract_components(*param1);
 }
 
@@ -911,7 +913,7 @@ Filename_C_make_absolute_v_p(Filename *param0) {
  * void Filename::make_absolute(Filename const &start_directory)
  */
 void
-Filename_C_make_absolute_1_v_p(Filename *param0, Filename const *param1) {
+Filename_C_make_absolute_v_pp(Filename *param0, Filename const *param1) {
   (*param0).make_absolute(*param1);
 }
 
@@ -938,7 +940,7 @@ Filename_C_make_true_case_B_p(Filename *param0) {
  * std::string Filename::to_os_specific(void) const
  */
 char const *
-Filename_C_to_os_specific_p_p(Filename const *param0) {
+Filename_C_to_os_specific_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).to_os_specific();
   return string_holder.c_str();
 }
@@ -958,7 +960,7 @@ Filename_C_to_os_specific_w_p_p(Filename const *param0) {
  * std::string Filename::to_os_generic(void) const
  */
 char const *
-Filename_C_to_os_generic_p_p(Filename const *param0) {
+Filename_C_to_os_generic_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).to_os_generic();
   return string_holder.c_str();
 }
@@ -968,7 +970,7 @@ Filename_C_to_os_generic_p_p(Filename const *param0) {
  * std::string Filename::to_os_short_name(void) const
  */
 char const *
-Filename_C_to_os_short_name_p_p(Filename const *param0) {
+Filename_C_to_os_short_name_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).to_os_short_name();
   return string_holder.c_str();
 }
@@ -978,7 +980,7 @@ Filename_C_to_os_short_name_p_p(Filename const *param0) {
  * std::string Filename::to_os_long_name(void) const
  */
 char const *
-Filename_C_to_os_long_name_p_p(Filename const *param0) {
+Filename_C_to_os_long_name_s_p(Filename const *param0) {
   static std::string string_holder = (*param0).to_os_long_name();
   return string_holder.c_str();
 }
@@ -1033,7 +1035,7 @@ Filename_C_is_executable_B_p(Filename const *param0) {
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_i_ppp(Filename const *param0, Filename const *param1, bool param2, bool param3) {
+Filename_C_compare_timestamps_i_pppp(Filename const *param0, Filename const *param1, bool param2, bool param3) {
   return (*param0).compare_timestamps(*param1, param2, param3);
 }
 
@@ -1042,7 +1044,7 @@ Filename_C_compare_timestamps_i_ppp(Filename const *param0, Filename const *para
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_1_i_ppp(Filename const *param0, Filename const *param1, bool param2) {
+Filename_C_compare_timestamps_1_i_pppp(Filename const *param0, Filename const *param1, bool param2) {
   return (*param0).compare_timestamps(*param1, param2);
 }
 
@@ -1051,7 +1053,7 @@ Filename_C_compare_timestamps_1_i_ppp(Filename const *param0, Filename const *pa
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_2_i_ppp(Filename const *param0, Filename const *param1) {
+Filename_C_compare_timestamps_2_i_pppp(Filename const *param0, Filename const *param1) {
   return (*param0).compare_timestamps(*param1);
 }
 
@@ -1087,7 +1089,7 @@ Filename_C_get_file_size_p_p(Filename const *param0) {
  * bool Filename::resolve_filename(DSearchPath const &searchpath, std::string const &default_extension)
  */
 bool
-Filename_C_resolve_filename_B_pp(Filename *param0, DSearchPath const *param1, char const *param2) {
+Filename_C_resolve_filename_B_ppp(Filename *param0, DSearchPath const *param1, char const *param2) {
   return (*param0).resolve_filename(*param1, std::string(param2));
 }
 
@@ -1096,7 +1098,7 @@ Filename_C_resolve_filename_B_pp(Filename *param0, DSearchPath const *param1, ch
  * bool Filename::resolve_filename(DSearchPath const &searchpath, std::string const &default_extension)
  */
 bool
-Filename_C_resolve_filename_1_B_pp(Filename *param0, DSearchPath const *param1) {
+Filename_C_resolve_filename_1_B_ppp(Filename *param0, DSearchPath const *param1) {
   return (*param0).resolve_filename(*param1);
 }
 
@@ -1105,7 +1107,7 @@ Filename_C_resolve_filename_1_B_pp(Filename *param0, DSearchPath const *param1) 
  * bool Filename::make_relative_to(Filename directory, bool allow_backups)
  */
 bool
-Filename_C_make_relative_to_B_pp(Filename *param0, Filename *param1, bool param2) {
+Filename_C_make_relative_to_B_ppp(Filename *param0, Filename *param1, bool param2) {
   return (*param0).make_relative_to(*param1, param2);
 }
 
@@ -1114,7 +1116,7 @@ Filename_C_make_relative_to_B_pp(Filename *param0, Filename *param1, bool param2
  * bool Filename::make_relative_to(Filename directory, bool allow_backups)
  */
 bool
-Filename_C_make_relative_to_1_B_pp(Filename *param0, Filename *param1) {
+Filename_C_make_relative_to_1_B_ppp(Filename *param0, Filename *param1) {
   return (*param0).make_relative_to(*param1);
 }
 
@@ -1123,7 +1125,7 @@ Filename_C_make_relative_to_1_B_pp(Filename *param0, Filename *param1) {
  * int Filename::find_on_searchpath(DSearchPath const &searchpath)
  */
 int
-Filename_C_find_on_searchpath_i_p(Filename *param0, DSearchPath const *param1) {
+Filename_C_find_on_searchpath_i_pp(Filename *param0, DSearchPath const *param1) {
   return (*param0).find_on_searchpath(*param1);
 }
 
@@ -1132,7 +1134,7 @@ Filename_C_find_on_searchpath_i_p(Filename *param0, DSearchPath const *param1) {
  * bool Filename::scan_directory(vector_string &contents) const
  */
 bool
-Filename_C_scan_directory_B_p(Filename const *param0, vector_string *param1) {
+Filename_C_scan_directory_B_pp(Filename const *param0, vector_string *param1) {
   return (*param0).scan_directory(*param1);
 }
 
@@ -1141,7 +1143,7 @@ Filename_C_scan_directory_B_p(Filename const *param0, vector_string *param1) {
  * bool Filename::open_read(pifstream &stream) const
  */
 bool
-Filename_C_open_read_B_p(Filename const *param0, pifstream *param1) {
+Filename_C_open_read_B_pp(Filename const *param0, pifstream *param1) {
   return (*param0).open_read(*param1);
 }
 
@@ -1150,7 +1152,7 @@ Filename_C_open_read_B_p(Filename const *param0, pifstream *param1) {
  * bool Filename::open_read(std::ifstream &stream) const
  */
 bool
-Filename_C_open_read_1_B_p(Filename const *param0, std::ifstream *param1) {
+Filename_C_open_read_1_B_pp(Filename const *param0, std::ifstream *param1) {
   return (*param0).open_read(*param1);
 }
 
@@ -1159,7 +1161,7 @@ Filename_C_open_read_1_B_p(Filename const *param0, std::ifstream *param1) {
  * bool Filename::open_write(pofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_B_pp(Filename const *param0, pofstream *param1, bool param2) {
+Filename_C_open_write_B_ppp(Filename const *param0, pofstream *param1, bool param2) {
   return (*param0).open_write(*param1, param2);
 }
 
@@ -1168,7 +1170,7 @@ Filename_C_open_write_B_pp(Filename const *param0, pofstream *param1, bool param
  * bool Filename::open_write(pofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_1_B_pp(Filename const *param0, pofstream *param1) {
+Filename_C_open_write_1_B_ppp(Filename const *param0, pofstream *param1) {
   return (*param0).open_write(*param1);
 }
 
@@ -1177,7 +1179,7 @@ Filename_C_open_write_1_B_pp(Filename const *param0, pofstream *param1) {
  * bool Filename::open_write(std::ofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_2_B_pp(Filename const *param0, std::ofstream *param1, bool param2) {
+Filename_C_open_write_2_B_ppp(Filename const *param0, std::ofstream *param1, bool param2) {
   return (*param0).open_write(*param1, param2);
 }
 
@@ -1186,7 +1188,7 @@ Filename_C_open_write_2_B_pp(Filename const *param0, std::ofstream *param1, bool
  * bool Filename::open_write(std::ofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_3_B_pp(Filename const *param0, std::ofstream *param1) {
+Filename_C_open_write_3_B_ppp(Filename const *param0, std::ofstream *param1) {
   return (*param0).open_write(*param1);
 }
 
@@ -1195,7 +1197,7 @@ Filename_C_open_write_3_B_pp(Filename const *param0, std::ofstream *param1) {
  * bool Filename::open_append(pofstream &stream) const
  */
 bool
-Filename_C_open_append_B_p(Filename const *param0, pofstream *param1) {
+Filename_C_open_append_B_pp(Filename const *param0, pofstream *param1) {
   return (*param0).open_append(*param1);
 }
 
@@ -1204,7 +1206,7 @@ Filename_C_open_append_B_p(Filename const *param0, pofstream *param1) {
  * bool Filename::open_append(std::ofstream &stream) const
  */
 bool
-Filename_C_open_append_1_B_p(Filename const *param0, std::ofstream *param1) {
+Filename_C_open_append_1_B_pp(Filename const *param0, std::ofstream *param1) {
   return (*param0).open_append(*param1);
 }
 
@@ -1213,7 +1215,7 @@ Filename_C_open_append_1_B_p(Filename const *param0, std::ofstream *param1) {
  * bool Filename::open_read_write(pfstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_B_pp(Filename const *param0, pfstream *param1, bool param2) {
+Filename_C_open_read_write_B_ppp(Filename const *param0, pfstream *param1, bool param2) {
   return (*param0).open_read_write(*param1, param2);
 }
 
@@ -1222,7 +1224,7 @@ Filename_C_open_read_write_B_pp(Filename const *param0, pfstream *param1, bool p
  * bool Filename::open_read_write(pfstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_1_B_pp(Filename const *param0, pfstream *param1) {
+Filename_C_open_read_write_1_B_ppp(Filename const *param0, pfstream *param1) {
   return (*param0).open_read_write(*param1);
 }
 
@@ -1231,7 +1233,7 @@ Filename_C_open_read_write_1_B_pp(Filename const *param0, pfstream *param1) {
  * bool Filename::open_read_write(std::fstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_2_B_pp(Filename const *param0, std::fstream *param1, bool param2) {
+Filename_C_open_read_write_2_B_ppp(Filename const *param0, std::fstream *param1, bool param2) {
   return (*param0).open_read_write(*param1, param2);
 }
 
@@ -1240,7 +1242,7 @@ Filename_C_open_read_write_2_B_pp(Filename const *param0, std::fstream *param1, 
  * bool Filename::open_read_write(std::fstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_3_B_pp(Filename const *param0, std::fstream *param1) {
+Filename_C_open_read_write_3_B_ppp(Filename const *param0, std::fstream *param1) {
   return (*param0).open_read_write(*param1);
 }
 
@@ -1249,7 +1251,7 @@ Filename_C_open_read_write_3_B_pp(Filename const *param0, std::fstream *param1) 
  * bool Filename::open_read_append(pfstream &stream) const
  */
 bool
-Filename_C_open_read_append_B_p(Filename const *param0, pfstream *param1) {
+Filename_C_open_read_append_B_pp(Filename const *param0, pfstream *param1) {
   return (*param0).open_read_append(*param1);
 }
 
@@ -1258,7 +1260,7 @@ Filename_C_open_read_append_B_p(Filename const *param0, pfstream *param1) {
  * bool Filename::open_read_append(std::fstream &stream) const
  */
 bool
-Filename_C_open_read_append_1_B_p(Filename const *param0, std::fstream *param1) {
+Filename_C_open_read_append_1_B_pp(Filename const *param0, std::fstream *param1) {
   return (*param0).open_read_append(*param1);
 }
 
@@ -1294,7 +1296,7 @@ Filename_C_unlink_B_p(Filename const *param0) {
  * bool Filename::rename_to(Filename const &other) const
  */
 bool
-Filename_C_rename_to_B_p(Filename const *param0, Filename const *param1) {
+Filename_C_rename_to_B_pp(Filename const *param0, Filename const *param1) {
   return (*param0).rename_to(*param1);
 }
 
@@ -1303,7 +1305,7 @@ Filename_C_rename_to_B_p(Filename const *param0, Filename const *param1) {
  * bool Filename::copy_to(Filename const &other) const
  */
 bool
-Filename_C_copy_to_B_p(Filename const *param0, Filename const *param1) {
+Filename_C_copy_to_B_pp(Filename const *param0, Filename const *param1) {
   return (*param0).copy_to(*param1);
 }
 
@@ -1366,7 +1368,7 @@ _inCKD07YSEF(Filename const *param0, char const *param1) {
  * inline int Filename::compare_to(Filename const &other) const
  */
 int
-Filename_C_compare_to_i_p(Filename const *param0, Filename const *param1) {
+Filename_C_compare_to_i_pp(Filename const *param0, Filename const *param1) {
   return (*param0).compare_to(*param1);
 }
 
@@ -1393,7 +1395,7 @@ Filename_C_get_hash_i_p(Filename const *param0) {
  * inline void Filename::output(std::ostream &out) const
  */
 void
-Filename_C_output_v_p(Filename const *param0, std::ostream *param1) {
+Filename_C_output_v_pp(Filename const *param0, std::ostream *param1) {
   (*param0).output(*param1);
 }
 
@@ -1402,7 +1404,7 @@ Filename_C_output_v_p(Filename const *param0, std::ostream *param1) {
  * static inline void Filename::set_filesystem_encoding(TextEncoder::Encoding encoding)
  */
 void
-Filename_C_set_filesystem_encoding_v_p(TextEncoder::Encoding param0) {
+Filename_C_set_filesystem_encoding_v_pp(TextEncoder::Encoding param0) {
   Filename::set_filesystem_encoding(param0);
 }
 
@@ -1411,7 +1413,7 @@ Filename_C_set_filesystem_encoding_v_p(TextEncoder::Encoding param0) {
  * static inline TextEncoder::Encoding Filename::get_filesystem_encoding(void)
  */
 TextEncoder::Encoding
-Filename_C_get_filesystem_encoding_p_p() {
+Filename_C_get_filesystem_encoding_p_v() {
   return Filename::get_filesystem_encoding();
 }
 
@@ -1420,7 +1422,7 @@ Filename_C_get_filesystem_encoding_p_p() {
  * static TypeHandle Filename::get_class_type(void)
  */
 int
-Filename_C_get_class_type_i_p() {
+Filename_C_get_class_type_i_v() {
   return (Filename::get_class_type()).get_index();
 }
 
@@ -1429,7 +1431,7 @@ Filename_C_get_class_type_i_p() {
  * static void Filename::init_type(void)
  */
 void
-Filename_C_init_type_v_p() {
+Filename_C_init_type_v_v() {
   Filename::init_type();
 }
 
@@ -1483,7 +1485,7 @@ WindowFramework_C_get_num_cameras_i_p(WindowFramework const *param0) {
  * inline Camera *WindowFramework::get_camera(int n) const
  */
 Camera *
-WindowFramework_C_get_camera_p_p(WindowFramework const *param0, int param1) {
+WindowFramework_C_get_camera_p_pp(WindowFramework const *param0, int param1) {
   return (*param0).get_camera(param1);
 }
 
@@ -1582,7 +1584,7 @@ WindowFramework_C_setup_trackball_v_p(WindowFramework *param0) {
  * void WindowFramework::center_trackball(NodePath const &object)
  */
 void
-WindowFramework_C_center_trackball_v_p(WindowFramework *param0, NodePath const *param1) {
+WindowFramework_C_center_trackball_v_pp(WindowFramework *param0, NodePath const *param1) {
   (*param0).center_trackball(*param1);
 }
 
@@ -1591,7 +1593,7 @@ WindowFramework_C_center_trackball_v_p(WindowFramework *param0, NodePath const *
  * bool WindowFramework::load_models(NodePath const &parent, pvector< Filename > const &files)
  */
 bool
-WindowFramework_C_load_models_B_pp(WindowFramework *param0, NodePath const *param1, pvector< Filename > const *param2) {
+WindowFramework_C_load_models_B_ppp(WindowFramework *param0, NodePath const *param1, pvector< Filename > const *param2) {
   return (*param0).load_models(*param1, *param2);
 }
 
@@ -1600,7 +1602,7 @@ WindowFramework_C_load_models_B_pp(WindowFramework *param0, NodePath const *para
  * NodePath WindowFramework::load_model(NodePath const &parent, Filename filename)
  */
 NodePath *
-WindowFramework_C_load_model_p_pp(WindowFramework *param0, NodePath const *param1, Filename *param2) {
+WindowFramework_C_load_model_p_ppp(WindowFramework *param0, NodePath const *param1, Filename *param2) {
   return new NodePath((*param0).load_model(*param1, *param2));
 }
 
@@ -1609,7 +1611,7 @@ WindowFramework_C_load_model_p_pp(WindowFramework *param0, NodePath const *param
  * NodePath WindowFramework::load_default_model(NodePath const &parent)
  */
 NodePath *
-WindowFramework_C_load_default_model_p_p(WindowFramework *param0, NodePath const *param1) {
+WindowFramework_C_load_default_model_p_pp(WindowFramework *param0, NodePath const *param1) {
   return new NodePath((*param0).load_default_model(*param1));
 }
 
@@ -1618,7 +1620,7 @@ WindowFramework_C_load_default_model_p_p(WindowFramework *param0, NodePath const
  * void WindowFramework::loop_animations(int hierarchy_match_flags)
  */
 void
-WindowFramework_C_loop_animations_v_p(WindowFramework *param0, int param1) {
+WindowFramework_C_loop_animations_v_pp(WindowFramework *param0, int param1) {
   (*param0).loop_animations(param1);
 }
 
@@ -1627,7 +1629,7 @@ WindowFramework_C_loop_animations_v_p(WindowFramework *param0, int param1) {
  * void WindowFramework::loop_animations(int hierarchy_match_flags)
  */
 void
-WindowFramework_C_loop_animations_1_v_p(WindowFramework *param0) {
+WindowFramework_C_loop_animations_1_v_pp(WindowFramework *param0) {
   (*param0).loop_animations();
 }
 
@@ -1654,7 +1656,7 @@ WindowFramework_C_next_anim_control_v_p(WindowFramework *param0) {
  * void WindowFramework::set_anim_controls(bool enable)
  */
 void
-WindowFramework_C_set_anim_controls_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_anim_controls_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_anim_controls(param1);
 }
 
@@ -1681,7 +1683,7 @@ WindowFramework_C_adjust_dimensions_v_p(WindowFramework *param0) {
  * WindowFramework *WindowFramework::split_window(WindowFramework::SplitType split_type)
  */
 WindowFramework *
-WindowFramework_C_split_window_p_p(WindowFramework *param0, WindowFramework::SplitType param1) {
+WindowFramework_C_split_window_p_pp(WindowFramework *param0, WindowFramework::SplitType param1) {
   return (*param0).split_window(param1);
 }
 
@@ -1690,7 +1692,7 @@ WindowFramework_C_split_window_p_p(WindowFramework *param0, WindowFramework::Spl
  * WindowFramework *WindowFramework::split_window(WindowFramework::SplitType split_type)
  */
 WindowFramework *
-WindowFramework_C_split_window_1_p_p(WindowFramework *param0) {
+WindowFramework_C_split_window_1_p_pp(WindowFramework *param0) {
   return (*param0).split_window();
 }
 
@@ -1699,7 +1701,7 @@ WindowFramework_C_split_window_1_p_p(WindowFramework *param0) {
  * void WindowFramework::set_wireframe(bool enable, bool filled)
  */
 void
-WindowFramework_C_set_wireframe_v_pp(WindowFramework *param0, bool param1, bool param2) {
+WindowFramework_C_set_wireframe_v_ppp(WindowFramework *param0, bool param1, bool param2) {
   (*param0).set_wireframe(param1, param2);
 }
 
@@ -1708,7 +1710,7 @@ WindowFramework_C_set_wireframe_v_pp(WindowFramework *param0, bool param1, bool 
  * void WindowFramework::set_wireframe(bool enable, bool filled)
  */
 void
-WindowFramework_C_set_wireframe_1_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_wireframe_1_v_ppp(WindowFramework *param0, bool param1) {
   (*param0).set_wireframe(param1);
 }
 
@@ -1717,7 +1719,7 @@ WindowFramework_C_set_wireframe_1_v_pp(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_texture(bool enable)
  */
 void
-WindowFramework_C_set_texture_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_texture_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_texture(param1);
 }
 
@@ -1726,7 +1728,7 @@ WindowFramework_C_set_texture_v_p(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_two_sided(bool enable)
  */
 void
-WindowFramework_C_set_two_sided_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_two_sided_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_two_sided(param1);
 }
 
@@ -1735,7 +1737,7 @@ WindowFramework_C_set_two_sided_v_p(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_one_sided_reverse(bool enable)
  */
 void
-WindowFramework_C_set_one_sided_reverse_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_one_sided_reverse_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_one_sided_reverse(param1);
 }
 
@@ -1744,7 +1746,7 @@ WindowFramework_C_set_one_sided_reverse_v_p(WindowFramework *param0, bool param1
  * void WindowFramework::set_lighting(bool enable)
  */
 void
-WindowFramework_C_set_lighting_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_lighting_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_lighting(param1);
 }
 
@@ -1753,7 +1755,7 @@ WindowFramework_C_set_lighting_v_p(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_perpixel(bool enable)
  */
 void
-WindowFramework_C_set_perpixel_v_p(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_perpixel_v_pp(WindowFramework *param0, bool param1) {
   (*param0).set_perpixel(param1);
 }
 
@@ -1762,7 +1764,7 @@ WindowFramework_C_set_perpixel_v_p(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_background_type(WindowFramework::BackgroundType type)
  */
 void
-WindowFramework_C_set_background_type_v_p(WindowFramework *param0, WindowFramework::BackgroundType param1) {
+WindowFramework_C_set_background_type_v_pp(WindowFramework *param0, WindowFramework::BackgroundType param1) {
   (*param0).set_background_type(param1);
 }
 
@@ -1861,7 +1863,7 @@ WindowFramework_C_make_camera_p_p(WindowFramework *param0) {
  * static TypeHandle WindowFramework::get_class_type(void)
  */
 int
-WindowFramework_C_get_class_type_i_p() {
+WindowFramework_C_get_class_type_i_v() {
   return (WindowFramework::get_class_type()).get_index();
 }
 
@@ -1870,7 +1872,7 @@ WindowFramework_C_get_class_type_i_p() {
  * static void WindowFramework::init_type(void)
  */
 void
-WindowFramework_C_init_type_v_p() {
+WindowFramework_C_init_type_v_v() {
   WindowFramework::init_type();
 }
 
@@ -1906,7 +1908,7 @@ WindowFramework_C_ctor_p_p(WindowFramework const *param0) {
  * void NP::reparent_to(NodePath const &other)
  */
 void
-NP_C_reparent_to_v_p(NP *param0, NodePath const *param1) {
+NP_C_reparent_to_v_pp(NP *param0, NodePath const *param1) {
   (*param0).reparent_to(*param1);
 }
 
@@ -1948,6 +1950,24 @@ Engine_C_ctor_p_p(Engine const *param0) {
 
 /*
  * C wrapper for
+ * void Engine::del(void)
+ */
+void
+Engine_C_del_v_p(Engine *param0) {
+  (*param0).del();
+}
+
+/*
+ * C wrapper for
+ * static int Engine::is_alive(void)
+ */
+int
+Engine_C_is_alive_i_v() {
+  return Engine::is_alive();
+}
+
+/*
+ * C wrapper for
  * int Engine::HelloEngine(void)
  */
 int
@@ -1960,7 +1980,7 @@ Engine_C_HelloEngine_i_p(Engine *param0) {
  * int Engine::casetest(int i, std::string s, bool b)
  */
 int
-Engine_C_casetest_i_ppp(Engine *param0, int param1, char const *param2, bool param3) {
+Engine_C_casetest_i_pppp(Engine *param0, int param1, char const *param2, bool param3) {
   return (*param0).casetest(param1, std::string(param2), param3);
 }
 
@@ -1969,7 +1989,7 @@ Engine_C_casetest_i_ppp(Engine *param0, int param1, char const *param2, bool par
  * NodePath *Engine::load_model(char const *filename)
  */
 NodePath *
-Engine_C_load_model_p_p(Engine *param0, char const *param1) {
+Engine_C_load_model_p_ps(Engine *param0, char const *param1) {
   return (*param0).load_model(param1);
 }
 
@@ -1978,7 +1998,7 @@ Engine_C_load_model_p_p(Engine *param0, char const *param1) {
  * void Engine::attach(NodePath *mdl)
  */
 void
-Engine_C_attach_v_p(Engine *param0, NodePath *param1) {
+Engine_C_attach_v_pp(Engine *param0, NodePath *param1) {
   (*param0).attach(param1);
 }
 
@@ -2005,7 +2025,7 @@ Engine_C_step_v_p(Engine *param0) {
  * static std::string Engine::get_version_string(void)
  */
 char const *
-Engine_C_get_version_string_p_v() {
+Engine_C_get_version_string_s_v() {
   static std::string string_holder = Engine::get_version_string();
   return string_holder.c_str();
 }
@@ -2033,7 +2053,7 @@ Engine_C_get_framework_p_p(Engine const *param0) {
  * void Engine::set_framework(PandaFramework *value)
  */
 void
-Engine_C_set_framework_v_p(Engine *param0, PandaFramework *param1) {
+Engine_C_set_framework_v_pp(Engine *param0, PandaFramework *param1) {
   (param0)->framework = param1;
 }
 
@@ -2042,7 +2062,7 @@ Engine_C_set_framework_v_p(Engine *param0, PandaFramework *param1) {
  * int check_timer(void)
  */
 int
-check_timer_i_p() {
+check_timer_i_v() {
   return ::check_timer();
 }
 
@@ -2051,7 +2071,7 @@ check_timer_i_p() {
  * void emscripten_cancel_main_loop(void)
  */
 void
-emscripten_cancel_main_loop_v_p() {
+emscripten_cancel_main_loop_v_v() {
   ::emscripten_cancel_main_loop();
 }
 
@@ -2060,7 +2080,7 @@ emscripten_cancel_main_loop_v_p() {
  * void main_loop_or_step(void)
  */
 void
-main_loop_or_step_v_p() {
+main_loop_or_step_v_v() {
   ::main_loop_or_step();
 }
 
@@ -2069,13 +2089,13 @@ main_loop_or_step_v_p() {
  * void emscripten_force_exit(int status)
  */
 void
-emscripten_force_exit_v_p(int param0) {
+emscripten_force_exit_v_pp(int param0) {
   ::emscripten_force_exit(param0);
 }
 
 
 static InterrogateModuleDef _in_module_def = {
-  1566761338,  /* file_identifier */
+  1566873091,  /* file_identifier */
   "lib",  /* library_name */
   "KD07",  /* library_hash_name */
   "lib",  /* module_name */
@@ -2085,7 +2105,7 @@ static InterrogateModuleDef _in_module_def = {
   nullptr,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  473  /* next_index */
+  477  /* next_index */
 };
 
 Configure(_in_configure_lib);

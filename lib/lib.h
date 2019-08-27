@@ -23,6 +23,7 @@ class EXPORT_CLASS NP : public NodePath::NodePath
 
 #define FRAMEWORK PandaFramework
 
+static int alive = 1;
 
 class EXPORT_CLASS Engine
 {
@@ -31,6 +32,11 @@ class EXPORT_CLASS Engine
 
         Engine();
         ~Engine();
+
+
+        void del();
+
+        static int is_alive();
 
         int HelloEngine();
 

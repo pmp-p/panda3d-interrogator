@@ -23,7 +23,10 @@ else
         echo "can't run c++ test program"
     fi
 fi
-
+stty sane
+echo
+echo "================================================"
+echo
 
 if [ -f libupanda3d_cpp.so ]
 then

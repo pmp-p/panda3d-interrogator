@@ -43,13 +43,18 @@ def dlopen(lib):
     # platform dependant
     clib = lib = f"lib{lib}.so"
 
-    for func in os.popen(f"nm -C {lib} |grep '. T .*_*_.$'|cut -d' ' -f3"):
+    # FIXME: use readelf tools and wasm tools
+    for func in os.popen(f"nm -C {lib} |grep '. T .*_*_.*$'|cut -d' ' -f3"):
         ffi_name = func.strip()
-        if RETURN_TYPE_FIRST:
-            func, ret, args = ffi_name.rsplit('_', 2)
-        else:
-            func, args, ret = ffi_name.rsplit('_', 2)
+        if ffi_name.find(FFI_MARK) < 1:
+            print("N/I: globals", func)
+            continue
+
         try:
+            if RETURN_TYPE_FIRST:
+                func, ret, args = ffi_name.rsplit('_', 2)
+            else:
+                func, args, ret = ffi_name.rsplit('_', 2)
             cls, func = func.split('_C_', 1)
             code.setdefault(cls, {})
             code[cls].setdefault(func, [])
@@ -98,18 +103,27 @@ import ffi
 import uctypes
 
 def variadic_call(self,ffi_name,*argv,**kw):
-    func = cls.get(ffi_name,{})
+    func = getattr(self, ffi_name, {})
+    try:
+        if func:
+            func = func.get(len(argv), None)
 
-    if func:
-        func = func.get( len(argv) , None)
-
-    if func:
-        return func(self.iptr, *argv)
-
+        if func:
+            return func(self.iptr, *argv)
+    except Exception as e:
+        print(e,ffi_name,len(argv),func,'argv=',argv)
+        raise
     raise TypeError("%s : wrong count of positional arguments" % ffi_name)
 
 """
 )
+
+
+def handle_return_type(indent, call, *args):
+    opening = ""
+    closing = ""
+    rt = ""
+    return f"""{' '*indent}return {rt}{opening}{call}{closing}"""
 
 
 for cls in CODE.keys():
@@ -135,9 +149,6 @@ for cls in CODE.keys():
     write("# variadic")
     write()
     for func, targets in CODE[cls].items():
-        if not len(targets):
-            continue
-
         if len(targets) < 2:
             continue
 
@@ -153,30 +164,80 @@ for cls in CODE.keys():
     write("# c++ ctor\n")
 
     write(f"    def __init__(self, *argv, **kw):")
-    write(f"        self.iptr = variadic_call(self, 'ctor', *argv, **kw)")
+    write(f"        self.iptr = self.ctor[len(argv)](*argv, **kw)")
 
     write("\n# c++ instance methods\n")
 
     for func, targets in CODE[cls].items():
-        if not len(targets):
+        #        if not len(targets):
+        #            continue
+
+        # keep constructor private
+        if func == 'ctor':
             continue
 
         # FIXME static with multiples args may be not detected
+        indent = 8
 
         if len(targets) == 1:
             ffi_name = targets[0][FFI]
             if ffi_name.endswith('_v'):
                 write(f'    @classmethod')
                 write(f'    def {func}(cls,*argv,**kw):')
-                write(f'        return cls.{ffi_name}(*argv, **kw)')
+                # write(f'        return cls.{ffi_name}(*argv, **kw)')
+                write(handle_return_type(indent, f'cls.{ffi_name}(*argv, **kw)'))
             else:
                 write(f'    def {func}(self,*argv,**kw):')
-                write(f'        return self.{ffi_name}(self.iptr, *argv, **kw)')
+                # write(f'        return self.{ffi_name}(self.iptr, *argv, **kw)')
+                write(handle_return_type(indent, f'self.{ffi_name}(self.iptr, *argv, **kw)'))
         else:
             write(f'    def {func}(*argv,**kw):')
-            write(f'        return variadic_call(self, {ffi_name}, *argv, **kw)')
+            # write(f'        return variadic_call(self, {ffi_name}, *argv, **kw)')
+            write(handle_return_type(indent, f'variadic_call(self, {ffi_name}, *argv, **kw)'))
 
         write()
+
+    write(
+        """
+def std_string(addr):
+    max_str = 255
+    mem = uctypes.struct(addr, { "cstr": (uctypes.ARRAY | 0, uctypes.UINT8 | max_str),})
+    for sz in range(0,max_str):
+        if not mem.cstr[sz]:
+            break
+    mem = uctypes.struct(addr, { "cstr": (uctypes.ARRAY | 0, uctypes.UINT8 | sz),})
+    return bytes(mem.cstr).decode('utf-8')
+
+print(Engine.ctor)
+E = Engine()
+print('engine',E)
+print('hello',E.HelloEngine())
+
+print('versionP','=', E.get_version_string())
+
+#print('versionS','=', std_string( E.get_version_string() ) )
+
+
+
+E.build()
+
+#ba = bytearray(b"boris.bam")
+#print( memoryview(ba)[0:len(ba)] )
+
+np = E.load_model( "boris.bam" )
+
+print("np","=",np)
+
+E.attach(np)
+
+
+
+while E.is_alive():
+    E.step()
+
+
+"""
+    )
 
 
 try:

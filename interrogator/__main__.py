@@ -1,6 +1,6 @@
 CLASS_SEPARATOR = "_C_"
 RETURN_TYPE_FIRST = 1
-
+DBG = 0
 
 FFI_MARK = '_$_'
 import sys, os
@@ -48,7 +48,6 @@ else:
 
 c_iptr = '?'
 c_orig = ''
-c_vars = []
 c_type1 = c_type2 = '?'
 c_def = '?'
 c_mn = '?'
@@ -56,11 +55,14 @@ c_va = ('void',)
 c_code = []
 c_block = 0
 c_vars = []
+var_args1 = ""
+var_args2 = ""
 relevant = 0
 invalidate = 0
 
 
 FFI_TYPE_MAP = {
+    "": "v",
     "void": "v",
     "int": "i",
     "signed-char": "b",
@@ -127,7 +129,7 @@ with open(TARGET_TMP, 'r') as C:
     ##==========================================================================================================================
     def map_to_friendly():
 
-        global FFI_DECL, c_vars, invalidate
+        global FFI_DECL, c_vars, invalidate, var_args1, var_args2
 
         if invalidate:
             return
@@ -135,24 +137,60 @@ with open(TARGET_TMP, 'r') as C:
         qual, ffi = make_ffi_names()
 
         argi = ''
-        for a in c_vars:
-            if '*' in a:
+        disp = 0
+        if ffi.count('Engine_$_get_version_string'):
+            disp = 1
+            print(ffi)
+            print(c_orig)
+            print("c_vars", c_vars)
+            print("var_args1", var_args1)
+            print("var_args2", var_args2)
+
+        if c_vars[0] == '':
+            start = 1  # static method
+        else:
+            start = 0
+
+        # handle func(...,void)
+        if c_vars[-1] == "void":
+            end = -1
+        else:
+            end = 999
+
+        args = c_vars[start:end]
+
+        for a in args:
+            if a.startswith('char const *'):
+                argi += 's'
+            elif '*' in a:
                 argi += 'p'
             else:
                 argi += FFI_TYPE_MAP.get(a.replace(' ', '').strip(), 'p')
 
-        varsi = ', '.join(c_vars)
-        # handle ctor case which is * _p_v()
-        if not varsi and '*' in c_type2:
-            reti = 'p'
+        if not argi:
             argi = 'v'
+
+        varsi = ', '.join(c_vars)
+
+        # handle ctor case which is * _p_v() or * _p_%() for overloads and * func(void)
+        if ffi.count(FFI_MARK + 'ctor'):
+            reti = 'p'
+            if argi == 'v':
+                pass  # non overloaded default  * ctor(void)
+            else:
+                argi = argi[1:]  # overloaded
+
         else:
             # default is void _v_v(void)
-
-            if c_type1 not in ('void', ''):
-                reti = FFI_TYPE_MAP.get(c_type2, 'p')
-            else:
+            if c_orig.startswith('void '):
                 reti = 'v'
+            elif c_type1 not in ('void', ''):
+                if c_type2 == 'char const *':
+                    reti = 's'
+                else:
+                    reti = FFI_TYPE_MAP.get(c_type2, 'p')
+            else:
+                reti = 'p'
 
         # ffi = ffi.replace(FFI_MARK, f'__{ret}_?__')
         clash = 0
@@ -170,6 +208,8 @@ with open(TARGET_TMP, 'r') as C:
         ffi = test
         FFI_DECL.append(ffi)
         FFI_MAP[c_mn] = {'ret': (reti, c_type2), 'args': (argi, varsi), 'qual': qual, 'ffi': ffi}
+        if disp:
+            print(FFI_MAP[c_mn])
 
     ##==========================================================================================================================
 
@@ -179,7 +219,8 @@ with open(TARGET_TMP, 'r') as C:
         if cline.startswith('* '):  # original C++ def
             if cline.find('::operator') > 0:
                 invalidate = 1
-                print("SKIPPING", ":", c_orig)
+                if DBG:
+                    print("SKIPPING", ":", c_orig)
 
             c_orig = cline[2:]
             c_def, var_args1 = c_orig.rsplit('(', 1)
@@ -223,7 +264,8 @@ with open(TARGET_TMP, 'r') as C:
 
             code = '\n'.join(c_code)
 
-            c_vars[0] = c_iptr
+            # add self since C++ don't mention "this" in (...)
+            c_vars.insert(0, c_iptr)
 
             map_to_friendly()
 
@@ -276,7 +318,8 @@ def {c_def}({var_args1}) -> {c_type1 or 'void'}:
 
         # =========
         if invalidate:
-            print(cline, end='')
+            if DBG:
+                print(cline, end='')
 
         if relevant:
             cline = cline.strip()
@@ -299,8 +342,8 @@ def {c_def}({var_args1}) -> {c_type1 or 'void'}:
                 c_code.append(f'    {cline}')
 
 
-for k, v in FFI_MAP.items():
-    print(k, v)
+# for k, v in FFI_MAP.items():
+#    print(k, v)
 
 with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
     for l in C.readlines():

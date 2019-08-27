@@ -65,11 +65,9 @@ void
 Engine::step() {
 	Thread *current_thread = Thread::get_current_thread();
 
-	if (!this->framework->do_frame(current_thread) or (em_steps>MAX_em_steps) ) {
+	if (!this->framework->do_frame(current_thread)) {
 	    // quit Panda3d
-	    this->framework->close_framework();
-        delete this;
-		emscripten_force_exit(0);
+        this->del();
 	}
 }
 
@@ -82,7 +80,6 @@ Engine::HelloEngine() {
 NodePath *
 Engine::load_model(const char *filename) {
     return new NodePath( this->wframe->load_model( this->framework->get_models() , Filename(filename) ) );
-    //return &this->wframe->load_model( this->framework->get_models() , Filename(filename) );
 }
 
 std::string
@@ -91,6 +88,10 @@ Engine::get_version_string() {
     return version;
 }
 
+int
+Engine::is_alive() {
+    return alive;
+}
 
 
 void
@@ -108,9 +109,16 @@ void
 Engine::call_exit(const Event* event, void* data) {
     nout << "Goodbye." << endl;
     em_steps = MAX_em_steps ;
+    alive = 0;
 }
 
-
+void
+Engine::del(){
+    this->framework->close_framework();
+    delete this;
+    alive = 0;
+	emscripten_force_exit(0);
+}
 
 Engine::~Engine() {
     cout << "->Destructor\n";
@@ -158,6 +166,18 @@ main_loop_or_step(){
 
 		return;
 	}
+
+    if (em_steps>MAX_em_steps) {
+        emscripten_loop_run=0;
+        engine->del();
+        return;
+    }
+
+    if (!engine->is_alive())  {
+        emscripten_loop_run=0;
+        engine->del();
+        return;
+    }
 
 	if (em_steps>1) {
         engine->step();
