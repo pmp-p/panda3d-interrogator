@@ -19,7 +19,7 @@ from .common import get_compiler_name, is_64_bit, try_execute, join_abs, get_scr
 
 def check_ignore(source):
     """ This function checks if a file is on the ignore list """
-    for f in ["interrogate_module.cpp", "interrogate_wrapper.cpp","interrogate_temp.cpp"]:
+    for f in ["interrogate_module.cpp","interrogate_temp.cpp", "interrogate_wrapper.cpp", "interrogate_wrapper.h"]:
         if f.lower() in source.lower():
             return False
     return True

@@ -9,4 +9,4 @@
 
 forcetype WindowFramework
 forcetype Filename
-
+forcetype LVecBase3f

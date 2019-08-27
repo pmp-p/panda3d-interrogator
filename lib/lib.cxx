@@ -25,27 +25,23 @@ using namespace std;
 
 static FRAMEWORK panda_framework;
 
+/*
+void
+Engine::some_ops(NodePath *np) {
+    np->set_scale(2.0,2.0,2.0);
+    np->set_pos(0.0, 42.0, 0.0);
+}*/
 
 void
-I_NodePath::reparent_to(const NodePath &other) {
-    NodePath::reparent_to(other);
+Engine::op_pos(NodePath *np, LVecBase3f *v3f) {
+
+    np->set_pos(*v3f);
 }
 
 void
-I_NodePath::look_at(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) {
-    NodePath::look_at(x,y,z);
+Engine::op_scale(NodePath *np, LVecBase3f *v3f) {
+    np->set_scale(*v3f);
 }
-
-void
-I_NodePath::set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz) {
-    NodePath::set_scale(sx,sy,sz);
-}
-
-void
-I_NodePath::set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) {
-    NodePath::set_pos(x, y, z);
-}
-
 
 Engine::Engine() {
     cout << "->Constructor\n";
@@ -53,8 +49,9 @@ Engine::Engine() {
 };
 
 
+
 void
-Engine::build() { //WindowFramework* window_framework) {
+Engine::build() {
     cout << "->build()\n";
 	// setup Panda3d
 	this->framework->open_framework(g_argc, (char **&)g_argv);
@@ -76,13 +73,15 @@ Engine::build() { //WindowFramework* window_framework) {
     wframe->get_panda_framework()->define_key("escape", "escapeQuits", call_exit, NULL);
 }
 
+
 void
 Engine::step() {
 	Thread *current_thread = Thread::get_current_thread();
 
 	if (!this->framework->do_frame(current_thread)) {
 	    // quit Panda3d
-        this->dtor();
+        cout << "->step : render error" << endl;
+        this->stop();
 	}
 }
 
@@ -121,10 +120,15 @@ Engine::casetest(int i,std::string s,bool b) {
 }
 
 void
-Engine::call_exit(const Event* event, void* data) {
-    nout << "Goodbye." << endl;
+Engine::stop() {
+    cout << "->stop\n";
     em_steps = MAX_em_steps ;
     alive = 0;
+}
+void
+Engine::call_exit(const Event* event, void* data) {
+    stop();
+    cout << "->call_exit (WM)" << endl;
 }
 
 void
@@ -178,7 +182,7 @@ main_loop_or_step(){
 		mdl->set_scale(3,3,3);
 		mdl->set_pos(0, 42, 0);
 
-
+        cout << "sizeof(LVecBase3f) = " << sizeof(LVecBase3f) << endl;
 		return;
 	}
 

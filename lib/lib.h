@@ -13,15 +13,21 @@
 #include "pandaSystem.h"
 
 
-
+#ifdef CPPPARSER
 class EXPORT_CLASS I_NodePath : public NodePath::NodePath
 {
     PUBLISHED:
         void reparent_to(const NodePath &other);
         void look_at(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
-        void set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz);
-        void set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+        //void set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz);
+        //void set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+        void set_pos(LVecBase3f const&);
+        void set_scale(LVecBase3f const&);
 };
+#else
+#pragma message "hiding I_ inherited"
+#endif
+
 
 
 #define FRAMEWORK PandaFramework
@@ -39,6 +45,8 @@ class EXPORT_CLASS Engine
 
         void dtor();
 
+        static void stop();
+
         static int is_alive();
 
         int HelloEngine();
@@ -48,6 +56,10 @@ class EXPORT_CLASS Engine
         NodePath * load_model(const char *filename);
 
         void attach(NodePath *mdl);
+
+        void op_pos(NodePath *np, LVecBase3f *v3f);
+        void op_scale(NodePath *np, LVecBase3f *v3f);
+
 
         void build(); //WindowFramework* window_framework);
 

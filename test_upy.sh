@@ -8,6 +8,6 @@ then
     if python3.8 -m fstrings_helper cpanda3d.py > upanda3d.py
     then
         LD_LIBRARY_PATH=$(pwd) micropython upanda3d.py
-        LD_LIBRARY_PATH=$(pwd) micropython tests/testpy.py
+        LD_LIBRARY_PATH=$(pwd) micropython  -X heapsize=256K tests/testpy.py
     fi
 fi

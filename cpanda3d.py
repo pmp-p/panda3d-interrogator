@@ -108,7 +108,7 @@ GCBAD = 0
 REFC = {}
 
 class cplusplus:
-    def variadic_call(self,ffi_name,*argv,**kw):
+    def variadic_call(self, ffi_name, *argv, **kw):
         func = getattr(self, ffi_name, {})
         try:
             if func:
@@ -117,7 +117,7 @@ class cplusplus:
             if func:
                 return func(self.iptr, *argv)
         except Exception as e:
-            print(e,ffi_name,len(argv),func,'argv=',argv)
+            print(e, ffi_name, len(argv), func, 'argv=',argv)
             raise
         raise TypeError("%s : wrong count of positional arguments" % ffi_name)
 
@@ -125,9 +125,8 @@ class cplusplus:
 
     def __init__(self, *argv, **kw):
         global GCBAD, REFC
-        iref = kw.get('iptr',None)
+        iref = kw.pop('iptr',None)
         if iref:
-            iref = iref.iptr
             self.iptr = iref
             REFC.setdefault(iref,1)
             REFC[iref]+=1
@@ -183,12 +182,12 @@ def handle_return_type(indent, call, *args):
 
 for cls in CODE.keys():
 
-    if not cls in ['Engine', 'NodePath']:
+    if not cls in ['Engine', 'NodePath', 'LVecBase3f']:
         print("SKIPPING", ":", cls)
         continue
 
     if cls.startswith('_'):
-        pcls = cls[1:]
+        pcls = cls[2:]
     else:
         pcls = cls
 
@@ -205,9 +204,12 @@ for cls in CODE.keys():
         for ret, args, ffi_name in targets:
             write(f"""    {ffi_name} = lib.func('{ret}','{ffi_name}','{args}')""")
 
-    write()
-    write("# variadic")
-    write()
+    write(
+        """
+    # variadic
+"""
+    )
+
     for func, targets in CODE[cls].items():
         if len(targets) < 2:
             continue
@@ -245,17 +247,15 @@ for cls in CODE.keys():
             ffi_name = targets[0][FFI]
             if ffi_name.endswith('_v'):
                 write(f'    @classmethod')
-                write(f'    def {func}(cls,*argv,**kw):')
-                # write(f'        return cls.{ffi_name}(*argv, **kw)')
+                write(f'    def {func}(cls, *argv, **kw):')
                 write(handle_return_type(indent, f'cls.{ffi_name}(*argv, **kw)'))
             else:
-                write(f'    def {func}(self,*argv,**kw):')
-                # write(f'        return self.{ffi_name}(self.iptr, *argv, **kw)')
+                write(f'    def {func}(self, *argv, **kw):')
                 write(handle_return_type(indent, f'self.{ffi_name}(self.iptr, *argv, **kw)'))
         else:
-            write(f'    def {func}(*argv,**kw):')
-            # write(f'        return variadic_call(self, {ffi_name}, *argv, **kw)')
-            write(handle_return_type(indent, f'variadic_call(self, {ffi_name}, *argv, **kw)'))
+            write(f'    def {func}(self, *argv, **kw):')
+            # ffi_name replace the argv slot of instance ptr so count is still good
+            write(handle_return_type(indent, f'self.variadic_call("{ffi_name}", *argv, **kw)'))
 
         write()
 
@@ -319,7 +319,7 @@ def test3():
     print("C++ class constructor",Engine.ctor)
     E = Engine()
     print('engine      ',E, E.iptr)
-    C = E.__class__( iptr=E )
+    C = E.__class__( iptr=E.iptr )
     print('engine(copy)',C, C.iptr)
 
     # a dumb test that should say 42
@@ -334,6 +334,16 @@ def test3():
     print("np","=",np)
 
     E.attach(np)
+
+    np = NodePath(iptr=np)
+
+    v3 = LVecBase3f(0.01, 42.01, 0.01)
+    print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+    np.set_pos( uctypes.bytearray_at(v3.iptr, 12) )
+
+    v3 = LVecBase3f(2.0, 2.0, 2.0)
+    print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+    np.set_scale( uctypes.bytearray_at(v3.iptr, 12) )
 
 
     while E.is_alive():
@@ -350,6 +360,7 @@ if 0:
     test1()
     del test1
     gc.collect()
+    gc.collect()
 
 if 0:
     print("--- test2 with refcounting ----")
@@ -365,8 +376,10 @@ if 1:
     gc.collect()
     gc.collect()
 
+gc.collect()
+gc.collect()  # one more it's free !
 print(REFC)
-if GCBAD:print(" ----------- Bad GC ------------")
+if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
 
 #luckily we have 1 pointer left
 REFC = list(REFC.keys())

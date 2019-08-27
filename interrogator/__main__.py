@@ -2,7 +2,16 @@ CLASS_SEPARATOR = "_C_"
 RETURN_TYPE_FIRST = 1
 DBG = 0
 
+
+TARGET = 'interrogate'
+TARGET_TMP = f'{TARGET}_temp.cpp'
+TARGET_CPP = f'{TARGET}_wrapper.cpp'
+TARGET_H = f'{TARGET}_wrapper.h'
+
+
 FFI_MARK = '_$_'
+
+
 import sys, os
 import traceback
 
@@ -27,10 +36,6 @@ inter.VERBOSE_LVL = int(sys.argv[2])  # Assume the user did specify something va
 if len(sys.argv) != 3:
     debug_out("Usage: python interrogate.py <module-name> <verbose-level>")
     sys.exit(1)
-
-
-TARGET_TMP = 'interrogate_temp.cpp'
-TARGET_CPP = 'interrogate_wrapper.cpp'
 
 
 # Change into the source directory
@@ -64,6 +69,8 @@ invalidate = 0
 FFI_TYPE_MAP = {
     "": "v",
     "void": "v",
+    "char const *": "s",
+    "const char *": "s",
     "int": "i",
     "signed-char": "b",
     "unsigned-char": "B",
@@ -77,6 +84,7 @@ FFI_TYPE_MAP = {
     "unsigned-long-long": "Q",
     "enum": "i",
     "float": "f",
+    "PN_stdfloat": "f",
     "double": "d",
     "uint8_t": "B",
     "uint16_t": "H",
@@ -138,7 +146,7 @@ with open(TARGET_TMP, 'r') as C:
 
         argi = ''
         disp = 0
-        if ffi.count('Engine_$_get_version_string'):
+        if ffi.count('NodePath_$_set_pos'):
             disp = 1
             print(ffi)
             print(c_orig)
@@ -160,6 +168,12 @@ with open(TARGET_TMP, 'r') as C:
         args = c_vars[start:end]
 
         for a in args:
+            # get only type, not C++ name but only if not void
+            if a.count('*'):
+                a = a.rsplit('*', 1)[0].strip() + ' *'
+            elif a.count(' '):
+                a = a.rsplit(' ', 1)[0].strip()
+
             if a.startswith('char const *'):
                 argi += 's'
             elif '*' in a:
@@ -354,4 +368,123 @@ with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
         l = l.replace('static wstring ', 'static std::wstring ')
         l = l.replace('I_NodePath', 'NodePath')
         CPP.write(l)
+
+# fmt: off
+h_map = {
+    'std::size_t '  : 'unsigned int ',
+    'PN_stdfloat '  : 'float ',
+    'wchar_t const ': 'char const ',
+    'PointerTo< WindowFramework > ': 'char ',
+    'time_t ' : None,
+}
+
+nope = {
+    'wchar_t ': 'char ',
+    'vector_string': 'char ',
+
+    'DSearchPath ' : None,
+    'pifstream ': None
+}
+# fmt: on
+
+# TODO: add the #define for custom types -> char
+if 0:
+    with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
+        H.write(
+            """// - only for pure C inclusion - auto generated via interrogator python module
+#include <stdio.h>
+    #include <stdbool.h>
+
+    """
+        )
+        for l in C.readlines():
+            if not l.startswith('EXPORT_FUNC '):
+                continue
+
+            if l.find('::') > 0:
+                print("c.h skipping ::", l, end="")
+                continue
+
+            for k, v in h_map.items():
+                if v is None:
+                    if l.find(k) > 0:
+                        skip = 1
+                        break
+                else:
+                    l = l.replace(k, v)
+            else:
+                skip = 0
+
+            if not skip:
+                l = l.replace('EXPORT_FUNC', 'extern', 1)
+                H.write(l)
+
+
+def CARG(cpp):
+    global h_map
+    for k, v in h_map.items():
+        if v is None:
+            if l.find(k) >= 0:
+                askip = 1
+                break
+        else:
+            cpp = cpp.replace(k, v)
+    else:
+        askip = 0
+    return cpp, askip
+
+
+with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
+    H.write(
+        """
+#include <stdio.h>
+#include <stdbool.h>
+"""
+    )
+
+    cut = 'EXPORT_FUNC '
+    lcut = len(cut)
+
+    for l in C.readlines():
+        if not l.startswith(cut):
+            continue
+        skip = 0
+
+        decl, params = l[lcut:].strip()[:-2].split('(', 1)
+
+        c_args = []
+
+        if len(params):
+            for idx, cpp in enumerate(params.split(', ')):
+                if idx == 0:
+                    baset = cpp.split(' ', 1)[0].strip()
+                    baset += CLASS_SEPARATOR
+                    if decl.count(baset):
+                        c_args.append(cpp)
+                        continue
+
+                    # print("c.h warning (", baset, ') from :', decl)
+                    c_args.append(f'char *param{idx}')
+
+                elif '::' in cpp:
+                    c_args.append(f'char *param{idx}')
+                elif '*' in cpp:
+                    c_args.append(f'char *param{idx}')
+                else:
+                    c_args.append(CARG(cpp)[0])
+
+        decl, skip = CARG(decl)
+
+        if decl.find('::') > 0:
+            decl = f"char * {decl.split(' ',1)[-1]}"
+
+        if decl.find('PointerTo<') >= 0:
+            skip = 1
+
+        if not skip:
+            H.write(f"extern {decl}({', '.join(c_args)});\n")
+        else:
+            print("c.h unsupported C++ return type :", decl)
+
+
 #

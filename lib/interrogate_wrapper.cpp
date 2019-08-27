@@ -91,10 +91,10 @@ EXPORT_FUNC bool Filename_C_is_text_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_binary_or_text_B_p(Filename const *param0);
 EXPORT_FUNC void Filename_C_set_type_v_pp(Filename *param0, Filename::Type param1);
 EXPORT_FUNC Filename::Type Filename_C_get_type_p_p(Filename const *param0);
-EXPORT_FUNC void Filename_C_set_pattern_v_pp(Filename *param0, bool param1);
+EXPORT_FUNC void Filename_C_set_pattern_v_pB(Filename *param0, bool param1);
 EXPORT_FUNC bool Filename_C_get_pattern_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_has_hash_B_p(Filename const *param0);
-EXPORT_FUNC Filename * Filename_C_get_filename_index_p_pp(Filename const *param0, int param1);
+EXPORT_FUNC Filename * Filename_C_get_filename_index_p_pi(Filename const *param0, int param1);
 EXPORT_FUNC char const * Filename_C_get_hash_to_end_s_p(Filename const *param0);
 EXPORT_FUNC void Filename_C_set_hash_to_end_v_pp(Filename *param0, char const *param1);
 EXPORT_FUNC void Filename_C_extract_components_v_pp(Filename const *param0, vector_string *param1);
@@ -115,30 +115,30 @@ EXPORT_FUNC bool Filename_C_is_regular_file_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_writable_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_directory_B_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_is_executable_B_p(Filename const *param0);
-EXPORT_FUNC int Filename_C_compare_timestamps_i_pppp(Filename const *param0, Filename const *param1, bool param2, bool param3);
-EXPORT_FUNC int Filename_C_compare_timestamps_1_i_pppp(Filename const *param0, Filename const *param1, bool param2);
-EXPORT_FUNC int Filename_C_compare_timestamps_2_i_pppp(Filename const *param0, Filename const *param1);
+EXPORT_FUNC int Filename_C_compare_timestamps_i_ppBB(Filename const *param0, Filename const *param1, bool param2, bool param3);
+EXPORT_FUNC int Filename_C_compare_timestamps_1_i_ppBB(Filename const *param0, Filename const *param1, bool param2);
+EXPORT_FUNC int Filename_C_compare_timestamps_2_i_ppBB(Filename const *param0, Filename const *param1);
 EXPORT_FUNC time_t Filename_C_get_timestamp_p_p(Filename const *param0);
 EXPORT_FUNC time_t Filename_C_get_access_timestamp_p_p(Filename const *param0);
 EXPORT_FUNC std::streamsize Filename_C_get_file_size_p_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_resolve_filename_B_ppp(Filename *param0, DSearchPath const *param1, char const *param2);
 EXPORT_FUNC bool Filename_C_resolve_filename_1_B_ppp(Filename *param0, DSearchPath const *param1);
-EXPORT_FUNC bool Filename_C_make_relative_to_B_ppp(Filename *param0, Filename *param1, bool param2);
-EXPORT_FUNC bool Filename_C_make_relative_to_1_B_ppp(Filename *param0, Filename *param1);
+EXPORT_FUNC bool Filename_C_make_relative_to_B_ppB(Filename *param0, Filename *param1, bool param2);
+EXPORT_FUNC bool Filename_C_make_relative_to_1_B_ppB(Filename *param0, Filename *param1);
 EXPORT_FUNC int Filename_C_find_on_searchpath_i_pp(Filename *param0, DSearchPath const *param1);
 EXPORT_FUNC bool Filename_C_scan_directory_B_pp(Filename const *param0, vector_string *param1);
 EXPORT_FUNC bool Filename_C_open_read_B_pp(Filename const *param0, pifstream *param1);
 EXPORT_FUNC bool Filename_C_open_read_1_B_pp(Filename const *param0, std::ifstream *param1);
-EXPORT_FUNC bool Filename_C_open_write_B_ppp(Filename const *param0, pofstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_write_1_B_ppp(Filename const *param0, pofstream *param1);
-EXPORT_FUNC bool Filename_C_open_write_2_B_ppp(Filename const *param0, std::ofstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_write_3_B_ppp(Filename const *param0, std::ofstream *param1);
+EXPORT_FUNC bool Filename_C_open_write_B_ppB(Filename const *param0, pofstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_write_1_B_ppB(Filename const *param0, pofstream *param1);
+EXPORT_FUNC bool Filename_C_open_write_2_B_ppB(Filename const *param0, std::ofstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_write_3_B_ppB(Filename const *param0, std::ofstream *param1);
 EXPORT_FUNC bool Filename_C_open_append_B_pp(Filename const *param0, pofstream *param1);
 EXPORT_FUNC bool Filename_C_open_append_1_B_pp(Filename const *param0, std::ofstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_write_B_ppp(Filename const *param0, pfstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_read_write_1_B_ppp(Filename const *param0, pfstream *param1);
-EXPORT_FUNC bool Filename_C_open_read_write_2_B_ppp(Filename const *param0, std::fstream *param1, bool param2);
-EXPORT_FUNC bool Filename_C_open_read_write_3_B_ppp(Filename const *param0, std::fstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_write_B_ppB(Filename const *param0, pfstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_read_write_1_B_ppB(Filename const *param0, pfstream *param1);
+EXPORT_FUNC bool Filename_C_open_read_write_2_B_ppB(Filename const *param0, std::fstream *param1, bool param2);
+EXPORT_FUNC bool Filename_C_open_read_write_3_B_ppB(Filename const *param0, std::fstream *param1);
 EXPORT_FUNC bool Filename_C_open_read_append_B_pp(Filename const *param0, pfstream *param1);
 EXPORT_FUNC bool Filename_C_open_read_append_1_B_pp(Filename const *param0, std::fstream *param1);
 EXPORT_FUNC bool Filename_C_chdir_B_p(Filename const *param0);
@@ -160,12 +160,94 @@ EXPORT_FUNC void Filename_C_set_filesystem_encoding_v_pp(TextEncoder::Encoding p
 EXPORT_FUNC TextEncoder::Encoding Filename_C_get_filesystem_encoding_p_v();
 EXPORT_FUNC int Filename_C_get_class_type_i_v();
 EXPORT_FUNC void Filename_C_init_type_v_v();
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_v();
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_pf(LVecBase2f const *param0, float param1);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_1_p_p(LVecBase3f::EVector3 const *param0);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_f(float param0);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_fff(float param0, float param1, float param2);
+EXPORT_FUNC void _inCKD074Nkp(LVecBase3f *param0, std::size_t param1);
+EXPORT_FUNC LVecBase3f * _inCKD07qOP9(LVecBase3f *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * _inCKD07rfXC(LVecBase3f *param0, float param1);
+EXPORT_FUNC LVecBase3f const * LVecBase3f_C_zero_p_v();
+EXPORT_FUNC LVecBase3f const * LVecBase3f_C_unit_x_p_v();
+EXPORT_FUNC LVecBase3f const * LVecBase3f_C_unit_y_p_v();
+EXPORT_FUNC LVecBase3f const * LVecBase3f_C_unit_z_p_v();
+EXPORT_FUNC void _inCKD0701HX(LVecBase3f *param0, int param1, float param2);
+EXPORT_FUNC float _inCKD07nq7z(LVecBase3f const *param0, int param1);
+EXPORT_FUNC int LVecBase3f_C_size_i_v();
+EXPORT_FUNC bool LVecBase3f_C_is_nan_B_p(LVecBase3f const *param0);
+EXPORT_FUNC float LVecBase3f_C_get_cell_f_pi(LVecBase3f const *param0, int param1);
+EXPORT_FUNC float LVecBase3f_C_get_x_f_p(LVecBase3f const *param0);
+EXPORT_FUNC float LVecBase3f_C_get_y_f_p(LVecBase3f const *param0);
+EXPORT_FUNC float LVecBase3f_C_get_z_f_p(LVecBase3f const *param0);
+EXPORT_FUNC void LVecBase3f_C_set_cell_v_pif(LVecBase3f *param0, int param1, float param2);
+EXPORT_FUNC void LVecBase3f_C_set_x_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_set_y_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_set_z_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC LVecBase2f * LVecBase3f_C_get_xy_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LVecBase2f * LVecBase3f_C_get_xz_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LVecBase2f * LVecBase3f_C_get_yz_p_p(LVecBase3f const *param0);
+EXPORT_FUNC void LVecBase3f_C_add_to_cell_v_pif(LVecBase3f *param0, int param1, float param2);
+EXPORT_FUNC void LVecBase3f_C_add_x_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_add_y_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_add_z_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_get_data_v_p(LVecBase3f const *param0);
+EXPORT_FUNC int LVecBase3f_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase3f_C_begin_v_p(LVecBase3f *param0);
+EXPORT_FUNC void LVecBase3f_C_begin_1_v_p(LVecBase3f const *param0);
+EXPORT_FUNC void LVecBase3f_C_end_v_p(LVecBase3f *param0);
+EXPORT_FUNC void LVecBase3f_C_end_1_v_p(LVecBase3f const *param0);
+EXPORT_FUNC void LVecBase3f_C_fill_v_pf(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_set_v_pfff(LVecBase3f *param0, float param1, float param2, float param3);
+EXPORT_FUNC float LVecBase3f_C_dot_f_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC float LVecBase3f_C_length_squared_f_p(LVecBase3f const *param0);
+EXPORT_FUNC float LVecBase3f_C_length_f_p(LVecBase3f const *param0);
+EXPORT_FUNC bool LVecBase3f_C_normalize_B_p(LVecBase3f *param0);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_normalized_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_project_p_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_cross_p_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC bool _inCKD07dE8o(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC bool _inCKD07Ft4v(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC bool _inCKD07BNge(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_get_standardized_hpr_p_p(LVecBase3f const *param0);
+EXPORT_FUNC int LVecBase3f_C_compare_to_i_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC int LVecBase3f_C_compare_to_i_ppf(LVecBase3f const *param0, LVecBase3f const *param1, float param2);
+EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_p_p(LVecBase3f const *param0);
+EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_p_pf(LVecBase3f const *param0, float param1);
+EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_p_pp(LVecBase3f const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_p_ppf(LVecBase3f const *param0, std::size_t param1, float param2);
+EXPORT_FUNC void LVecBase3f_C_generate_hash_v_pp(LVecBase3f const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase3f_C_generate_hash_v_ppf(LVecBase3f const *param0, ChecksumHashGenerator *param1, float param2);
+EXPORT_FUNC LVecBase3f * _inCKD07iO_P(LVecBase3f const *param0);
+EXPORT_FUNC LVecBase3f * _inCKD07fM9C(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * _inCKD07f8eW(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * _inCKD07Hdlj(LVecBase3f const *param0, float param1);
+EXPORT_FUNC LVecBase3f * _inCKD07Y1ZU(LVecBase3f const *param0, float param1);
+EXPORT_FUNC LVecBase3f * _inCKD07GqXQ(LVecBase3f *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * _inCKD07Ga5j(LVecBase3f *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * _inCKD07PZfq(LVecBase3f *param0, float param1);
+EXPORT_FUNC LVecBase3f * _inCKD07OhTb(LVecBase3f *param0, float param1);
+EXPORT_FUNC void LVecBase3f_C_componentwise_mult_v_pp(LVecBase3f *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_fmax_p_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVecBase3f * LVecBase3f_C_fmin_p_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC void LVecBase3f_C_cross_into_v_pp(LVecBase3f *param0, LVecBase3f const *param1);
+EXPORT_FUNC bool LVecBase3f_C_almost_equal_B_pp(LVecBase3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC bool LVecBase3f_C_almost_equal_B_ppf(LVecBase3f const *param0, LVecBase3f const *param1, float param2);
+EXPORT_FUNC void LVecBase3f_C_output_v_pp(LVecBase3f const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase3f_C_write_datagram_fixed_v_pp(LVecBase3f const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase3f_C_read_datagram_fixed_v_pp(LVecBase3f *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase3f_C_write_datagram_v_pp(LVecBase3f const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase3f_C_read_datagram_v_pp(LVecBase3f *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase3f::EVector3 * LVecBase3f_C_get_v_p_p(LVecBase3f const *param0);
+EXPORT_FUNC int LVecBase3f_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase3f_C_init_type_v_v();
 EXPORT_FUNC PandaFramework * WindowFramework_C_get_panda_framework_p_p(WindowFramework const *param0);
 EXPORT_FUNC GraphicsWindow * WindowFramework_C_get_graphics_window_p_p(WindowFramework const *param0);
 EXPORT_FUNC GraphicsOutput * WindowFramework_C_get_graphics_output_p_p(WindowFramework const *param0);
 EXPORT_FUNC NodePath * WindowFramework_C_get_camera_group_p_p(WindowFramework *param0);
 EXPORT_FUNC int WindowFramework_C_get_num_cameras_i_p(WindowFramework const *param0);
-EXPORT_FUNC Camera * WindowFramework_C_get_camera_p_pp(WindowFramework const *param0, int param1);
+EXPORT_FUNC Camera * WindowFramework_C_get_camera_p_pi(WindowFramework const *param0, int param1);
 EXPORT_FUNC DisplayRegion * WindowFramework_C_get_display_region_2d_p_p(WindowFramework const *param0);
 EXPORT_FUNC DisplayRegion * WindowFramework_C_get_display_region_3d_p_p(WindowFramework const *param0);
 EXPORT_FUNC NodePath * WindowFramework_C_get_render_p_p(WindowFramework *param0);
@@ -180,22 +262,22 @@ EXPORT_FUNC void WindowFramework_C_center_trackball_v_pp(WindowFramework *param0
 EXPORT_FUNC bool WindowFramework_C_load_models_B_ppp(WindowFramework *param0, NodePath const *param1, pvector< Filename > const *param2);
 EXPORT_FUNC NodePath * WindowFramework_C_load_model_p_ppp(WindowFramework *param0, NodePath const *param1, Filename *param2);
 EXPORT_FUNC NodePath * WindowFramework_C_load_default_model_p_pp(WindowFramework *param0, NodePath const *param1);
-EXPORT_FUNC void WindowFramework_C_loop_animations_v_pp(WindowFramework *param0, int param1);
-EXPORT_FUNC void WindowFramework_C_loop_animations_1_v_pp(WindowFramework *param0);
+EXPORT_FUNC void WindowFramework_C_loop_animations_v_pi(WindowFramework *param0, int param1);
+EXPORT_FUNC void WindowFramework_C_loop_animations_1_v_pi(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_stagger_animations_v_p(WindowFramework *param0);
 EXPORT_FUNC void WindowFramework_C_next_anim_control_v_p(WindowFramework *param0);
-EXPORT_FUNC void WindowFramework_C_set_anim_controls_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_anim_controls_v_pB(WindowFramework *param0, bool param1);
 EXPORT_FUNC bool WindowFramework_C_get_anim_controls_B_p(WindowFramework const *param0);
 EXPORT_FUNC void WindowFramework_C_adjust_dimensions_v_p(WindowFramework *param0);
 EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_p_pp(WindowFramework *param0, WindowFramework::SplitType param1);
 EXPORT_FUNC WindowFramework * WindowFramework_C_split_window_1_p_pp(WindowFramework *param0);
-EXPORT_FUNC void WindowFramework_C_set_wireframe_v_ppp(WindowFramework *param0, bool param1, bool param2);
-EXPORT_FUNC void WindowFramework_C_set_wireframe_1_v_ppp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_texture_v_pp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_two_sided_v_pp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_one_sided_reverse_v_pp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_lighting_v_pp(WindowFramework *param0, bool param1);
-EXPORT_FUNC void WindowFramework_C_set_perpixel_v_pp(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_wireframe_v_pBB(WindowFramework *param0, bool param1, bool param2);
+EXPORT_FUNC void WindowFramework_C_set_wireframe_1_v_pBB(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_texture_v_pB(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_two_sided_v_pB(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_one_sided_reverse_v_pB(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_lighting_v_pB(WindowFramework *param0, bool param1);
+EXPORT_FUNC void WindowFramework_C_set_perpixel_v_pB(WindowFramework *param0, bool param1);
 EXPORT_FUNC void WindowFramework_C_set_background_type_v_pp(WindowFramework *param0, WindowFramework::BackgroundType param1);
 EXPORT_FUNC bool WindowFramework_C_get_wireframe_B_p(WindowFramework const *param0);
 EXPORT_FUNC bool WindowFramework_C_get_wireframe_filled_B_p(WindowFramework const *param0);
@@ -213,19 +295,22 @@ EXPORT_FUNC int WindowFramework_C_get_type_i_p(WindowFramework const *param0);
 EXPORT_FUNC int WindowFramework_C_force_init_type_i_p(WindowFramework *param0);
 EXPORT_FUNC WindowFramework * WindowFramework_C_ctor_p_p(WindowFramework const *param0);
 EXPORT_FUNC void NodePath_C_reparent_to_v_pp(NodePath *param0, NodePath const *param1);
-EXPORT_FUNC void NodePath_C_look_at_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
-EXPORT_FUNC void NodePath_C_set_scale_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
-EXPORT_FUNC void NodePath_C_set_pos_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void NodePath_C_look_at_v_pfff(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void NodePath_C_set_pos_v_pp(NodePath *param0, LVecBase3f const *param1);
+EXPORT_FUNC void NodePath_C_set_scale_v_pp(NodePath *param0, LVecBase3f const *param1);
 EXPORT_FUNC NodePath * NodePath_C_ctor_p_v();
 EXPORT_FUNC NodePath * NodePath_C_ctor_p_p(NodePath const *param0);
 EXPORT_FUNC Engine * Engine_C_ctor_p_v();
 EXPORT_FUNC Engine * Engine_C_ctor_p_p(Engine const *param0);
 EXPORT_FUNC void Engine_C_dtor_v_p(Engine *param0);
+EXPORT_FUNC void Engine_C_stop_v_v();
 EXPORT_FUNC int Engine_C_is_alive_i_v();
 EXPORT_FUNC int Engine_C_HelloEngine_i_p(Engine *param0);
-EXPORT_FUNC int Engine_C_casetest_i_pppp(Engine *param0, int param1, char const *param2, bool param3);
+EXPORT_FUNC int Engine_C_casetest_i_pipB(Engine *param0, int param1, char const *param2, bool param3);
 EXPORT_FUNC NodePath * Engine_C_load_model_p_ps(Engine *param0, char const *param1);
 EXPORT_FUNC void Engine_C_attach_v_pp(Engine *param0, NodePath *param1);
+EXPORT_FUNC void Engine_C_op_pos_v_ppp(Engine *param0, NodePath *param1, LVecBase3f *param2);
+EXPORT_FUNC void Engine_C_op_scale_v_ppp(Engine *param0, NodePath *param1, LVecBase3f *param2);
 EXPORT_FUNC void Engine_C_build_v_p(Engine *param0);
 EXPORT_FUNC void Engine_C_step_v_p(Engine *param0);
 EXPORT_FUNC char const * Engine_C_get_version_string_s_v();
@@ -235,7 +320,7 @@ EXPORT_FUNC void Engine_C_set_framework_v_pp(Engine *param0, PandaFramework *par
 EXPORT_FUNC int check_timer_i_v();
 EXPORT_FUNC void emscripten_cancel_main_loop_v_v();
 EXPORT_FUNC void main_loop_or_step_v_v();
-EXPORT_FUNC void emscripten_force_exit_v_pp(int param0);
+EXPORT_FUNC void emscripten_force_exit_v_ii(int param0);
 
 
 /*
@@ -816,7 +901,7 @@ Filename_C_get_type_p_p(Filename const *param0) {
  * inline void Filename::set_pattern(bool pattern)
  */
 void
-Filename_C_set_pattern_v_pp(Filename *param0, bool param1) {
+Filename_C_set_pattern_v_pB(Filename *param0, bool param1) {
   (*param0).set_pattern(param1);
 }
 
@@ -843,7 +928,7 @@ Filename_C_has_hash_B_p(Filename const *param0) {
  * Filename Filename::get_filename_index(int index) const
  */
 Filename *
-Filename_C_get_filename_index_p_pp(Filename const *param0, int param1) {
+Filename_C_get_filename_index_p_pi(Filename const *param0, int param1) {
   return new Filename((*param0).get_filename_index(param1));
 }
 
@@ -1038,7 +1123,7 @@ Filename_C_is_executable_B_p(Filename const *param0) {
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_i_pppp(Filename const *param0, Filename const *param1, bool param2, bool param3) {
+Filename_C_compare_timestamps_i_ppBB(Filename const *param0, Filename const *param1, bool param2, bool param3) {
   return (*param0).compare_timestamps(*param1, param2, param3);
 }
 
@@ -1047,7 +1132,7 @@ Filename_C_compare_timestamps_i_pppp(Filename const *param0, Filename const *par
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_1_i_pppp(Filename const *param0, Filename const *param1, bool param2) {
+Filename_C_compare_timestamps_1_i_ppBB(Filename const *param0, Filename const *param1, bool param2) {
   return (*param0).compare_timestamps(*param1, param2);
 }
 
@@ -1056,7 +1141,7 @@ Filename_C_compare_timestamps_1_i_pppp(Filename const *param0, Filename const *p
  * int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old, bool other_missing_is_old) const
  */
 int
-Filename_C_compare_timestamps_2_i_pppp(Filename const *param0, Filename const *param1) {
+Filename_C_compare_timestamps_2_i_ppBB(Filename const *param0, Filename const *param1) {
   return (*param0).compare_timestamps(*param1);
 }
 
@@ -1110,7 +1195,7 @@ Filename_C_resolve_filename_1_B_ppp(Filename *param0, DSearchPath const *param1)
  * bool Filename::make_relative_to(Filename directory, bool allow_backups)
  */
 bool
-Filename_C_make_relative_to_B_ppp(Filename *param0, Filename *param1, bool param2) {
+Filename_C_make_relative_to_B_ppB(Filename *param0, Filename *param1, bool param2) {
   return (*param0).make_relative_to(*param1, param2);
 }
 
@@ -1119,7 +1204,7 @@ Filename_C_make_relative_to_B_ppp(Filename *param0, Filename *param1, bool param
  * bool Filename::make_relative_to(Filename directory, bool allow_backups)
  */
 bool
-Filename_C_make_relative_to_1_B_ppp(Filename *param0, Filename *param1) {
+Filename_C_make_relative_to_1_B_ppB(Filename *param0, Filename *param1) {
   return (*param0).make_relative_to(*param1);
 }
 
@@ -1164,7 +1249,7 @@ Filename_C_open_read_1_B_pp(Filename const *param0, std::ifstream *param1) {
  * bool Filename::open_write(pofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_B_ppp(Filename const *param0, pofstream *param1, bool param2) {
+Filename_C_open_write_B_ppB(Filename const *param0, pofstream *param1, bool param2) {
   return (*param0).open_write(*param1, param2);
 }
 
@@ -1173,7 +1258,7 @@ Filename_C_open_write_B_ppp(Filename const *param0, pofstream *param1, bool para
  * bool Filename::open_write(pofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_1_B_ppp(Filename const *param0, pofstream *param1) {
+Filename_C_open_write_1_B_ppB(Filename const *param0, pofstream *param1) {
   return (*param0).open_write(*param1);
 }
 
@@ -1182,7 +1267,7 @@ Filename_C_open_write_1_B_ppp(Filename const *param0, pofstream *param1) {
  * bool Filename::open_write(std::ofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_2_B_ppp(Filename const *param0, std::ofstream *param1, bool param2) {
+Filename_C_open_write_2_B_ppB(Filename const *param0, std::ofstream *param1, bool param2) {
   return (*param0).open_write(*param1, param2);
 }
 
@@ -1191,7 +1276,7 @@ Filename_C_open_write_2_B_ppp(Filename const *param0, std::ofstream *param1, boo
  * bool Filename::open_write(std::ofstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_write_3_B_ppp(Filename const *param0, std::ofstream *param1) {
+Filename_C_open_write_3_B_ppB(Filename const *param0, std::ofstream *param1) {
   return (*param0).open_write(*param1);
 }
 
@@ -1218,7 +1303,7 @@ Filename_C_open_append_1_B_pp(Filename const *param0, std::ofstream *param1) {
  * bool Filename::open_read_write(pfstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_B_ppp(Filename const *param0, pfstream *param1, bool param2) {
+Filename_C_open_read_write_B_ppB(Filename const *param0, pfstream *param1, bool param2) {
   return (*param0).open_read_write(*param1, param2);
 }
 
@@ -1227,7 +1312,7 @@ Filename_C_open_read_write_B_ppp(Filename const *param0, pfstream *param1, bool 
  * bool Filename::open_read_write(pfstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_1_B_ppp(Filename const *param0, pfstream *param1) {
+Filename_C_open_read_write_1_B_ppB(Filename const *param0, pfstream *param1) {
   return (*param0).open_read_write(*param1);
 }
 
@@ -1236,7 +1321,7 @@ Filename_C_open_read_write_1_B_ppp(Filename const *param0, pfstream *param1) {
  * bool Filename::open_read_write(std::fstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_2_B_ppp(Filename const *param0, std::fstream *param1, bool param2) {
+Filename_C_open_read_write_2_B_ppB(Filename const *param0, std::fstream *param1, bool param2) {
   return (*param0).open_read_write(*param1, param2);
 }
 
@@ -1245,7 +1330,7 @@ Filename_C_open_read_write_2_B_ppp(Filename const *param0, std::fstream *param1,
  * bool Filename::open_read_write(std::fstream &stream, bool truncate) const
  */
 bool
-Filename_C_open_read_write_3_B_ppp(Filename const *param0, std::fstream *param1) {
+Filename_C_open_read_write_3_B_ppB(Filename const *param0, std::fstream *param1) {
   return (*param0).open_read_write(*param1);
 }
 
@@ -1440,6 +1525,750 @@ Filename_C_init_type_v_v() {
 
 /*
  * C wrapper for
+ * inline LVecBase3f::LVecBase3f(void) = default
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_p_v() {
+  return new LVecBase3f();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::LVecBase3f(LVecBase2f const &copy, float z)
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_p_pf(LVecBase2f const *param0, float param1) {
+  return new LVecBase3f(*param0, param1);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::LVecBase3f(LVecBase3f const &) = default
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_p_p(LVecBase3f const *param0) {
+  return new LVecBase3f(*param0);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::LVecBase3f(LVecBase3f::EVector3 const &v)
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_1_p_p(LVecBase3f::EVector3 const *param0) {
+  return new LVecBase3f(*param0);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::LVecBase3f(float fill_value)
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_p_f(float param0) {
+  return new LVecBase3f(param0);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::LVecBase3f(float x, float y, float z)
+ */
+LVecBase3f *
+LVecBase3f_C_ctor_p_fff(float param0, float param1, float param2) {
+  return new LVecBase3f(param0, param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline void *LVecBase3f::operator new(std::size_t size)
+ */
+void
+_inCKD074Nkp(LVecBase3f *param0, std::size_t param1) {
+  (*param0).operator new(param1);
+}
+
+/*
+ * C wrapper for
+ * void LVecBase3f::operator =(LVecBase3f const &copy) = default
+ */
+LVecBase3f *
+_inCKD07qOP9(LVecBase3f *param0, LVecBase3f const *param1) {
+  (*param0).operator =(*param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * void LVecBase3f::operator =(float fill_value) = default
+ */
+LVecBase3f *
+_inCKD07rfXC(LVecBase3f *param0, float param1) {
+  (*param0).operator =(param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * static inline LVecBase3f const &LVecBase3f::zero(void)
+ */
+LVecBase3f const *
+LVecBase3f_C_zero_p_v() {
+  return &(LVecBase3f::zero());
+}
+
+/*
+ * C wrapper for
+ * static inline LVecBase3f const &LVecBase3f::unit_x(void)
+ */
+LVecBase3f const *
+LVecBase3f_C_unit_x_p_v() {
+  return &(LVecBase3f::unit_x());
+}
+
+/*
+ * C wrapper for
+ * static inline LVecBase3f const &LVecBase3f::unit_y(void)
+ */
+LVecBase3f const *
+LVecBase3f_C_unit_y_p_v() {
+  return &(LVecBase3f::unit_y());
+}
+
+/*
+ * C wrapper for
+ * static inline LVecBase3f const &LVecBase3f::unit_z(void)
+ */
+LVecBase3f const *
+LVecBase3f_C_unit_z_p_v() {
+  return &(LVecBase3f::unit_z());
+}
+
+/*
+ * C wrapper for
+ * inline float &LVecBase3f::operator [](int i)
+ */
+void
+_inCKD0701HX(LVecBase3f *param0, int param1, float param2) {
+  (*param0).operator [](param1) = param2;
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::operator [](int i) const
+ */
+float
+_inCKD07nq7z(LVecBase3f const *param0, int param1) {
+  return (*param0).operator [](param1);
+}
+
+/*
+ * C wrapper for
+ * static constexpr int LVecBase3f::size(void)
+ */
+int
+LVecBase3f_C_size_i_v() {
+  return LVecBase3f::size();
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::is_nan(void) const
+ */
+bool
+LVecBase3f_C_is_nan_B_p(LVecBase3f const *param0) {
+  return (*param0).is_nan();
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::get_cell(int i) const
+ */
+float
+LVecBase3f_C_get_cell_f_pi(LVecBase3f const *param0, int param1) {
+  return (*param0).get_cell(param1);
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::get_x(void) const
+ */
+float
+LVecBase3f_C_get_x_f_p(LVecBase3f const *param0) {
+  return (*param0).get_x();
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::get_y(void) const
+ */
+float
+LVecBase3f_C_get_y_f_p(LVecBase3f const *param0) {
+  return (*param0).get_y();
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::get_z(void) const
+ */
+float
+LVecBase3f_C_get_z_f_p(LVecBase3f const *param0) {
+  return (*param0).get_z();
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::set_cell(int i, float value)
+ */
+void
+LVecBase3f_C_set_cell_v_pif(LVecBase3f *param0, int param1, float param2) {
+  (*param0).set_cell(param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::set_x(float value)
+ */
+void
+LVecBase3f_C_set_x_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).set_x(param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::set_y(float value)
+ */
+void
+LVecBase3f_C_set_y_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).set_y(param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::set_z(float value)
+ */
+void
+LVecBase3f_C_set_z_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).set_z(param1);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase2f LVecBase3f::get_xy(void) const
+ */
+LVecBase2f *
+LVecBase3f_C_get_xy_p_p(LVecBase3f const *param0) {
+  return new LVecBase2f((*param0).get_xy());
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase2f LVecBase3f::get_xz(void) const
+ */
+LVecBase2f *
+LVecBase3f_C_get_xz_p_p(LVecBase3f const *param0) {
+  return new LVecBase2f((*param0).get_xz());
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase2f LVecBase3f::get_yz(void) const
+ */
+LVecBase2f *
+LVecBase3f_C_get_yz_p_p(LVecBase3f const *param0) {
+  return new LVecBase2f((*param0).get_yz());
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::add_to_cell(int i, float value)
+ */
+void
+LVecBase3f_C_add_to_cell_v_pif(LVecBase3f *param0, int param1, float param2) {
+  (*param0).add_to_cell(param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::add_x(float value)
+ */
+void
+LVecBase3f_C_add_x_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).add_x(param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::add_y(float value)
+ */
+void
+LVecBase3f_C_add_y_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).add_y(param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::add_z(float value)
+ */
+void
+LVecBase3f_C_add_z_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).add_z(param1);
+}
+
+/*
+ * C wrapper for
+ * inline float const *LVecBase3f::get_data(void) const
+ */
+void
+LVecBase3f_C_get_data_v_p(LVecBase3f const *param0) {
+  (*param0).get_data();
+}
+
+/*
+ * C wrapper for
+ * static constexpr int LVecBase3f::get_num_components(void)
+ */
+int
+LVecBase3f_C_get_num_components_i_v() {
+  return LVecBase3f::get_num_components();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::iterator LVecBase3f::begin(void)
+ */
+void
+LVecBase3f_C_begin_v_p(LVecBase3f *param0) {
+  (*param0).begin();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::const_iterator LVecBase3f::begin(void) const
+ */
+void
+LVecBase3f_C_begin_1_v_p(LVecBase3f const *param0) {
+  (*param0).begin();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::iterator LVecBase3f::end(void)
+ */
+void
+LVecBase3f_C_end_v_p(LVecBase3f *param0) {
+  (*param0).end();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f::const_iterator LVecBase3f::end(void) const
+ */
+void
+LVecBase3f_C_end_1_v_p(LVecBase3f const *param0) {
+  (*param0).end();
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::fill(float fill_value)
+ */
+void
+LVecBase3f_C_fill_v_pf(LVecBase3f *param0, float param1) {
+  (*param0).fill(param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::set(float x, float y, float z)
+ */
+void
+LVecBase3f_C_set_v_pfff(LVecBase3f *param0, float param1, float param2, float param3) {
+  (*param0).set(param1, param2, param3);
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::dot(LVecBase3f const &other) const
+ */
+float
+LVecBase3f_C_dot_f_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).dot(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::length_squared(void) const
+ */
+float
+LVecBase3f_C_length_squared_f_p(LVecBase3f const *param0) {
+  return (*param0).length_squared();
+}
+
+/*
+ * C wrapper for
+ * inline float LVecBase3f::length(void) const
+ */
+float
+LVecBase3f_C_length_f_p(LVecBase3f const *param0) {
+  return (*param0).length();
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::normalize(void)
+ */
+bool
+LVecBase3f_C_normalize_B_p(LVecBase3f *param0) {
+  return (*param0).normalize();
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::normalized(void) const
+ */
+LVecBase3f *
+LVecBase3f_C_normalized_p_p(LVecBase3f const *param0) {
+  return new LVecBase3f((*param0).normalized());
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::project(LVecBase3f const &onto) const
+ */
+LVecBase3f *
+LVecBase3f_C_project_p_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).project(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::cross(LVecBase3f const &other) const
+ */
+LVecBase3f *
+LVecBase3f_C_cross_p_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).cross(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::operator <(LVecBase3f const &other) const
+ */
+bool
+_inCKD07dE8o(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).operator <(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::operator ==(LVecBase3f const &other) const
+ */
+bool
+_inCKD07Ft4v(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).operator ==(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::operator !=(LVecBase3f const &other) const
+ */
+bool
+_inCKD07BNge(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).operator !=(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::get_standardized_hpr(void) const
+ */
+LVecBase3f *
+LVecBase3f_C_get_standardized_hpr_p_p(LVecBase3f const *param0) {
+  return new LVecBase3f((*param0).get_standardized_hpr());
+}
+
+/*
+ * C wrapper for
+ * inline int LVecBase3f::compare_to(LVecBase3f const &other) const
+ */
+int
+LVecBase3f_C_compare_to_i_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).compare_to(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline int LVecBase3f::compare_to(LVecBase3f const &other, float threshold) const
+ */
+int
+LVecBase3f_C_compare_to_i_ppf(LVecBase3f const *param0, LVecBase3f const *param1, float param2) {
+  return (*param0).compare_to(*param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline std::size_t LVecBase3f::get_hash(void) const
+ */
+std::size_t
+LVecBase3f_C_get_hash_p_p(LVecBase3f const *param0) {
+  return (*param0).get_hash();
+}
+
+/*
+ * C wrapper for
+ * inline std::size_t LVecBase3f::get_hash(float threshold) const
+ */
+std::size_t
+LVecBase3f_C_get_hash_p_pf(LVecBase3f const *param0, float param1) {
+  return (*param0).get_hash(param1);
+}
+
+/*
+ * C wrapper for
+ * inline std::size_t LVecBase3f::add_hash(std::size_t hash) const
+ */
+std::size_t
+LVecBase3f_C_add_hash_p_pp(LVecBase3f const *param0, std::size_t param1) {
+  return (*param0).add_hash(param1);
+}
+
+/*
+ * C wrapper for
+ * inline std::size_t LVecBase3f::add_hash(std::size_t hash, float threshold) const
+ */
+std::size_t
+LVecBase3f_C_add_hash_p_ppf(LVecBase3f const *param0, std::size_t param1, float param2) {
+  return (*param0).add_hash(param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::generate_hash(ChecksumHashGenerator &hashgen) const
+ */
+void
+LVecBase3f_C_generate_hash_v_pp(LVecBase3f const *param0, ChecksumHashGenerator *param1) {
+  (*param0).generate_hash(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::generate_hash(ChecksumHashGenerator &hashgen, float threshold) const
+ */
+void
+LVecBase3f_C_generate_hash_v_ppf(LVecBase3f const *param0, ChecksumHashGenerator *param1, float param2) {
+  (*param0).generate_hash(*param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::operator -(void) const
+ */
+LVecBase3f *
+_inCKD07iO_P(LVecBase3f const *param0) {
+  return new LVecBase3f((*param0).operator -());
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::operator +(LVecBase3f const &other) const
+ */
+LVecBase3f *
+_inCKD07fM9C(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).operator +(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::operator -(LVecBase3f const &other) const
+ */
+LVecBase3f *
+_inCKD07f8eW(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).operator -(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::operator *(float scalar) const
+ */
+LVecBase3f *
+_inCKD07Hdlj(LVecBase3f const *param0, float param1) {
+  return new LVecBase3f((*param0).operator *(param1));
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::operator /(float scalar) const
+ */
+LVecBase3f *
+_inCKD07Y1ZU(LVecBase3f const *param0, float param1) {
+  return new LVecBase3f((*param0).operator /(param1));
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::operator +=(LVecBase3f const &other)
+ */
+LVecBase3f *
+_inCKD07GqXQ(LVecBase3f *param0, LVecBase3f const *param1) {
+  (*param0).operator +=(*param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::operator -=(LVecBase3f const &other)
+ */
+LVecBase3f *
+_inCKD07Ga5j(LVecBase3f *param0, LVecBase3f const *param1) {
+  (*param0).operator -=(*param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::operator *=(float scalar)
+ */
+LVecBase3f *
+_inCKD07PZfq(LVecBase3f *param0, float param1) {
+  (*param0).operator *=(param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::operator /=(float scalar)
+ */
+LVecBase3f *
+_inCKD07OhTb(LVecBase3f *param0, float param1) {
+  (*param0).operator /=(param1);
+  return param0;
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::componentwise_mult(LVecBase3f const &other)
+ */
+void
+LVecBase3f_C_componentwise_mult_v_pp(LVecBase3f *param0, LVecBase3f const *param1) {
+  (*param0).componentwise_mult(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::fmax(LVecBase3f const &other) const
+ */
+LVecBase3f *
+LVecBase3f_C_fmax_p_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).fmax(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline LVecBase3f LVecBase3f::fmin(LVecBase3f const &other) const
+ */
+LVecBase3f *
+LVecBase3f_C_fmin_p_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return new LVecBase3f((*param0).fmin(*param1));
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::cross_into(LVecBase3f const &other)
+ */
+void
+LVecBase3f_C_cross_into_v_pp(LVecBase3f *param0, LVecBase3f const *param1) {
+  (*param0).cross_into(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::almost_equal(LVecBase3f const &other) const
+ */
+bool
+LVecBase3f_C_almost_equal_B_pp(LVecBase3f const *param0, LVecBase3f const *param1) {
+  return (*param0).almost_equal(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline bool LVecBase3f::almost_equal(LVecBase3f const &other, float threshold) const
+ */
+bool
+LVecBase3f_C_almost_equal_B_ppf(LVecBase3f const *param0, LVecBase3f const *param1, float param2) {
+  return (*param0).almost_equal(*param1, param2);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::output(std::ostream &out) const
+ */
+void
+LVecBase3f_C_output_v_pp(LVecBase3f const *param0, std::ostream *param1) {
+  (*param0).output(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::write_datagram_fixed(Datagram &destination) const
+ */
+void
+LVecBase3f_C_write_datagram_fixed_v_pp(LVecBase3f const *param0, Datagram *param1) {
+  (*param0).write_datagram_fixed(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::read_datagram_fixed(DatagramIterator &source)
+ */
+void
+LVecBase3f_C_read_datagram_fixed_v_pp(LVecBase3f *param0, DatagramIterator *param1) {
+  (*param0).read_datagram_fixed(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::write_datagram(Datagram &destination) const
+ */
+void
+LVecBase3f_C_write_datagram_v_pp(LVecBase3f const *param0, Datagram *param1) {
+  (*param0).write_datagram(*param1);
+}
+
+/*
+ * C wrapper for
+ * inline void LVecBase3f::read_datagram(DatagramIterator &source)
+ */
+void
+LVecBase3f_C_read_datagram_v_pp(LVecBase3f *param0, DatagramIterator *param1) {
+  (*param0).read_datagram(*param1);
+}
+
+/*
+ * C wrapper for
+ * LVecBase3f::EVector3 LVecBase3f::get_v(void) const
+ */
+LVecBase3f::EVector3 *
+LVecBase3f_C_get_v_p_p(LVecBase3f const *param0) {
+  return new LVecBase3f::EVector3((param0)->_v);
+}
+
+/*
+ * C wrapper for
+ * static TypeHandle LVecBase3f::get_class_type(void)
+ */
+int
+LVecBase3f_C_get_class_type_i_v() {
+  return (LVecBase3f::get_class_type()).get_index();
+}
+
+/*
+ * C wrapper for
+ * static void LVecBase3f::init_type(void)
+ */
+void
+LVecBase3f_C_init_type_v_v() {
+  LVecBase3f::init_type();
+}
+
+/*
+ * C wrapper for
  * inline PandaFramework *WindowFramework::get_panda_framework(void) const
  */
 PandaFramework *
@@ -1488,7 +2317,7 @@ WindowFramework_C_get_num_cameras_i_p(WindowFramework const *param0) {
  * inline Camera *WindowFramework::get_camera(int n) const
  */
 Camera *
-WindowFramework_C_get_camera_p_pp(WindowFramework const *param0, int param1) {
+WindowFramework_C_get_camera_p_pi(WindowFramework const *param0, int param1) {
   return (*param0).get_camera(param1);
 }
 
@@ -1623,7 +2452,7 @@ WindowFramework_C_load_default_model_p_pp(WindowFramework *param0, NodePath cons
  * void WindowFramework::loop_animations(int hierarchy_match_flags)
  */
 void
-WindowFramework_C_loop_animations_v_pp(WindowFramework *param0, int param1) {
+WindowFramework_C_loop_animations_v_pi(WindowFramework *param0, int param1) {
   (*param0).loop_animations(param1);
 }
 
@@ -1632,7 +2461,7 @@ WindowFramework_C_loop_animations_v_pp(WindowFramework *param0, int param1) {
  * void WindowFramework::loop_animations(int hierarchy_match_flags)
  */
 void
-WindowFramework_C_loop_animations_1_v_pp(WindowFramework *param0) {
+WindowFramework_C_loop_animations_1_v_pi(WindowFramework *param0) {
   (*param0).loop_animations();
 }
 
@@ -1659,7 +2488,7 @@ WindowFramework_C_next_anim_control_v_p(WindowFramework *param0) {
  * void WindowFramework::set_anim_controls(bool enable)
  */
 void
-WindowFramework_C_set_anim_controls_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_anim_controls_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_anim_controls(param1);
 }
 
@@ -1704,7 +2533,7 @@ WindowFramework_C_split_window_1_p_pp(WindowFramework *param0) {
  * void WindowFramework::set_wireframe(bool enable, bool filled)
  */
 void
-WindowFramework_C_set_wireframe_v_ppp(WindowFramework *param0, bool param1, bool param2) {
+WindowFramework_C_set_wireframe_v_pBB(WindowFramework *param0, bool param1, bool param2) {
   (*param0).set_wireframe(param1, param2);
 }
 
@@ -1713,7 +2542,7 @@ WindowFramework_C_set_wireframe_v_ppp(WindowFramework *param0, bool param1, bool
  * void WindowFramework::set_wireframe(bool enable, bool filled)
  */
 void
-WindowFramework_C_set_wireframe_1_v_ppp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_wireframe_1_v_pBB(WindowFramework *param0, bool param1) {
   (*param0).set_wireframe(param1);
 }
 
@@ -1722,7 +2551,7 @@ WindowFramework_C_set_wireframe_1_v_ppp(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_texture(bool enable)
  */
 void
-WindowFramework_C_set_texture_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_texture_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_texture(param1);
 }
 
@@ -1731,7 +2560,7 @@ WindowFramework_C_set_texture_v_pp(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_two_sided(bool enable)
  */
 void
-WindowFramework_C_set_two_sided_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_two_sided_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_two_sided(param1);
 }
 
@@ -1740,7 +2569,7 @@ WindowFramework_C_set_two_sided_v_pp(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_one_sided_reverse(bool enable)
  */
 void
-WindowFramework_C_set_one_sided_reverse_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_one_sided_reverse_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_one_sided_reverse(param1);
 }
 
@@ -1749,7 +2578,7 @@ WindowFramework_C_set_one_sided_reverse_v_pp(WindowFramework *param0, bool param
  * void WindowFramework::set_lighting(bool enable)
  */
 void
-WindowFramework_C_set_lighting_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_lighting_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_lighting(param1);
 }
 
@@ -1758,7 +2587,7 @@ WindowFramework_C_set_lighting_v_pp(WindowFramework *param0, bool param1) {
  * void WindowFramework::set_perpixel(bool enable)
  */
 void
-WindowFramework_C_set_perpixel_v_pp(WindowFramework *param0, bool param1) {
+WindowFramework_C_set_perpixel_v_pB(WindowFramework *param0, bool param1) {
   (*param0).set_perpixel(param1);
 }
 
@@ -1920,26 +2749,26 @@ NodePath_C_reparent_to_v_pp(NodePath *param0, NodePath const *param1) {
  * void NodePath::look_at(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z)
  */
 void
-NodePath_C_look_at_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+NodePath_C_look_at_v_pfff(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
   (*param0).look_at(param1, param2, param3);
 }
 
 /*
  * C wrapper for
- * void NodePath::set_scale(PN_stdfloat sx, PN_stdfloat sy, PN_stdfloat sz)
+ * void NodePath::set_pos(LVecBase3f const &)
  */
 void
-NodePath_C_set_scale_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
-  (*param0).set_scale(param1, param2, param3);
+NodePath_C_set_pos_v_pp(NodePath *param0, LVecBase3f const *param1) {
+  (*param0).set_pos(*param1);
 }
 
 /*
  * C wrapper for
- * void NodePath::set_pos(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z)
+ * void NodePath::set_scale(LVecBase3f const &)
  */
 void
-NodePath_C_set_pos_v_pppp(NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
-  (*param0).set_pos(param1, param2, param3);
+NodePath_C_set_scale_v_pp(NodePath *param0, LVecBase3f const *param1) {
+  (*param0).set_scale(*param1);
 }
 
 /*
@@ -1989,6 +2818,15 @@ Engine_C_dtor_v_p(Engine *param0) {
 
 /*
  * C wrapper for
+ * static void Engine::stop(void)
+ */
+void
+Engine_C_stop_v_v() {
+  Engine::stop();
+}
+
+/*
+ * C wrapper for
  * static int Engine::is_alive(void)
  */
 int
@@ -2010,7 +2848,7 @@ Engine_C_HelloEngine_i_p(Engine *param0) {
  * int Engine::casetest(int i, std::string s, bool b)
  */
 int
-Engine_C_casetest_i_pppp(Engine *param0, int param1, char const *param2, bool param3) {
+Engine_C_casetest_i_pipB(Engine *param0, int param1, char const *param2, bool param3) {
   return (*param0).casetest(param1, std::string(param2), param3);
 }
 
@@ -2030,6 +2868,24 @@ Engine_C_load_model_p_ps(Engine *param0, char const *param1) {
 void
 Engine_C_attach_v_pp(Engine *param0, NodePath *param1) {
   (*param0).attach(param1);
+}
+
+/*
+ * C wrapper for
+ * void Engine::op_pos(NodePath *np, LVecBase3f *v3f)
+ */
+void
+Engine_C_op_pos_v_ppp(Engine *param0, NodePath *param1, LVecBase3f *param2) {
+  (*param0).op_pos(param1, param2);
+}
+
+/*
+ * C wrapper for
+ * void Engine::op_scale(NodePath *np, LVecBase3f *v3f)
+ */
+void
+Engine_C_op_scale_v_ppp(Engine *param0, NodePath *param1, LVecBase3f *param2) {
+  (*param0).op_scale(param1, param2);
 }
 
 /*
@@ -2119,13 +2975,13 @@ main_loop_or_step_v_v() {
  * void emscripten_force_exit(int status)
  */
 void
-emscripten_force_exit_v_pp(int param0) {
+emscripten_force_exit_v_ii(int param0) {
   ::emscripten_force_exit(param0);
 }
 
 
 static InterrogateModuleDef _in_module_def = {
-  1566881816,  /* file_identifier */
+  1566937475,  /* file_identifier */
   "lib",  /* library_name */
   "KD07",  /* library_hash_name */
   "lib",  /* module_name */
@@ -2135,7 +2991,7 @@ static InterrogateModuleDef _in_module_def = {
   nullptr,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  485  /* next_index */
+  683  /* next_index */
 };
 
 Configure(_in_configure_lib);
