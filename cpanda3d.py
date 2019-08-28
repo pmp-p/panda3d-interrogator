@@ -104,70 +104,9 @@ import uctypes
 import gc
 import time
 
-GCBAD = 0
-REFC = {}
 
-class cplusplus:
-    def variadic_call(self, ffi_name, *argv, **kw):
-        func = getattr(self, ffi_name, {})
-        try:
-            if func:
-                func = func.get(len(argv), None)
-
-            if func:
-                return func(self.iptr, *argv)
-        except Exception as e:
-            print(e, ffi_name, len(argv), func, 'argv=',argv)
-            raise
-        raise TypeError("%s : wrong count of positional arguments" % ffi_name)
-
-    # c++ ctor/dtor
-
-    def __init__(self, *argv, **kw):
-        global GCBAD, REFC
-        iref = kw.pop('iptr',None)
-        if iref:
-            self.iptr = iref
-            REFC.setdefault(iref,1)
-            REFC[iref]+=1
-        else:
-            GCBAD += 1
-            self.iptr = self.ctor[len(argv)](*argv, **kw)
-
-    def refcount(self):
-        global REFC
-        return REFC.get( id(self.iptr) , 1 )
-
-    def __del__(self):
-        global GCBAD
-        nref= REFC.get( self.iptr , 1)
-        if nref > 1:
-            REFC[self.iptr] -= 1
-            print("still",nref-1,"ref. on",self.iptr)
-            del self.iptr, self.dtor
-            return
-        print("__del__",self.iptr)
-        GCBAD -= 1
-        try:
-            self.dtor(self.iptr)
-        finally:
-            self.iptr = None
-
-    def __enter__(self,*argv,**kw):
-        return self
-
-    #self.__del__() is not called ...
-    def __exit__(self,*argv,**kw):
-        global REFC
-
-        for attr in dir(self):
-            try:
-                if (not attr in ['dtor','iptr','__del__']):
-                    delattr(E,attr)
-            except:
-                pass
-
-        self.__del__()
+if not '.' in sys.path: sys.path.insert(0,'.')
+from interrogator.uplusplus import cplusplus, cstructs
 
 """
 )
@@ -178,6 +117,22 @@ def handle_return_type(indent, call, *args):
     closing = ""
     rt = ""
     return f"""{' '*indent}return {rt}{opening}{call}{closing}"""
+
+
+def variadics(func, targets, ct='d'):
+    write(f"    c.ct['{func}'] = {{")
+    for t in targets:
+        ret, args, ffi_name = t
+        if ret == 'p' and args == 'v':
+            write(f"""        {0} : ['s','{ret}', c.lib.func('{ret}','{ffi_name}','')],""")
+        else:
+
+            write(f"""        {len(t[VAR])} : ['{ct}','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')],""")
+    write('    }')
+
+
+def is_tor(func):
+    return func.startswith('ctor') or func.startswith('dtor')
 
 
 for cls in CODE.keys():
@@ -191,18 +146,44 @@ for cls in CODE.keys():
     else:
         pcls = cls
 
-    write(f"class {pcls}(cplusplus):")
-    write()
-    write(f'    lib = ffi.open("""{lib}""")')
-    write()
+    write(
+        f'''
+class {pcls}(cplusplus):
+    c = cstructs()
+    c.name = """{pcls}@{lib[3:-3]}"""
+    c.dlopen("""{lib}""")
+'''
+    )
+
+    write(
+        """
+    # ctor/dtor
+"""
+    )
 
     for func, targets in CODE[cls].items():
 
-        if len(targets) != 1:
+        if not is_tor(func):
+            continue
+
+        if len(targets) == 1:
+            for ret, args, ffi_name in targets:
+                write(f"""    c.ct['{func}'] = ['s','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')]""")
+        else:
+            variadics(func, targets, 's')
+
+    write(
+        """
+    # fixed pos
+"""
+    )
+
+    for func, targets in CODE[cls].items():
+        if is_tor(func) or (len(targets) != 1):
             continue
 
         for ret, args, ffi_name in targets:
-            write(f"""    {ffi_name} = lib.func('{ret}','{ffi_name}','{args}')""")
+            write(f"""    c.ct['{func}'] = ['d','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')]""")
 
     write(
         """
@@ -211,62 +192,64 @@ for cls in CODE.keys():
     )
 
     for func, targets in CODE[cls].items():
-        if len(targets) < 2:
+        if is_tor(func) or (len(targets) < 2):
             continue
 
-        write(f'    {func} = {{')
-        for t in targets:
-            ret, args, ffi_name = t
-            if ret == 'p' and args == 'v':  # ctor/dtor
-                write(f"""        {0} : lib.func('{ret}','{ffi_name}',''),""")
-            else:
-                write(f"""        {len(t[VAR])} : lib.func('{ret}','{ffi_name}','{args}'),""")
-        write('    }')
+        variadics(func, targets)
 
     write(
         """
 
     # c++ instance methods
 
+    def __getattr__(self, attr):
+        return self.__call(attr)
 
 """
     )
+    if 0:
+        for func, targets in CODE[cls].items():
 
-    for func, targets in CODE[cls].items():
-        #        if not len(targets):
-        #            continue
+            # keep constructor private
+            if func == 'ctor':
+                continue
 
-        # keep constructor private
-        if func == 'ctor':
-            continue
+            # FIXME static with multiples args may be not detected
+            indent = 8
 
-        # FIXME static with multiples args may be not detected
-        indent = 8
-
-        if len(targets) == 1:
             ffi_name = targets[0][FFI]
+
             if ffi_name.endswith('_v'):
                 write(f'    @classmethod')
                 write(f'    def {func}(cls, *argv, **kw):')
                 write(handle_return_type(indent, f'cls.{ffi_name}(*argv, **kw)'))
+
             else:
                 write(f'    def {func}(self, *argv, **kw):')
-                write(handle_return_type(indent, f'self.{ffi_name}(self.iptr, *argv, **kw)'))
-        else:
-            write(f'    def {func}(self, *argv, **kw):')
-            # ffi_name replace the argv slot of instance ptr so count is still good
-            write(handle_return_type(indent, f'self.variadic_call("{ffi_name}", *argv, **kw)'))
+                # ffi_name replace the argv slot of instance ptr so count is still good
+                # write(f'        print("CALL=",getattr(self.__class__,"{ffi_name}"))')
+                write(handle_return_type(indent, f'self.cplusplus("{ffi_name}", *argv, **kw)'))
 
-        write()
+            write()
+
+    write(
+        """
+    del c.lib
+"""
+    )
+
+#  (*param0).set_pos( const_cast<LVecBase3f*>(param1));
+# lib/interrogate_wrapper.cpp:2763:53: error: no matching function for call to ‘NodePath::set_pos(LVecBase3f*)
+
 
 write(
     """
 def test():
-    print("C++ class constructor",Engine.ctor)
+    print("C++ class constructor", Engine.c.ct['ctor'])
     E = Engine()
-    print('engine      ',E, E.iptr)
-    C = E.__class__( iptr=E.iptr )
-    print('engine(copy)',C, C.iptr)
+    print('engine      ',E)
+    C = E.__class__( iptr=E )
+    print('engine(copy)',C)
 
     # a dumb test that should say 42
     print('hello',E.HelloEngine())
@@ -281,15 +264,18 @@ def test():
 
     E.attach(np)
 
-    np = NodePath(iptr=np)
+    np = NodePath(cptr=np)
 
     v3 = LVecBase3f(0.01, 42.01, 0.01)
     print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-    np.set_pos( uctypes.bytearray_at(v3.iptr, 12) )
+    np.set_pos( v3 )
 
     v3 = LVecBase3f(2.0, 2.0, 2.0)
     print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-    np.set_scale( uctypes.bytearray_at(v3.iptr, 12) )
+
+    np.set_scale( v3 )
+
+
 
 
     while E.is_alive():
@@ -315,7 +301,6 @@ if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
 REFC = list(REFC.keys())
 while REFC:
     Engine.Engine_C_dtor_v_p(REFC.pop())
-
 
 """
 )

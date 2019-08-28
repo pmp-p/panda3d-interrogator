@@ -6,455 +6,200 @@ import uctypes
 import gc
 import time
 
-GCBAD = 0
-REFC = {}
 
-class cplusplus:
-    def variadic_call(self, ffi_name, *argv, **kw):
-        func = getattr(self, ffi_name, {})
-        try:
-            if func:
-                func = func.get(len(argv), None)
+if not '.' in sys.path: sys.path.insert(0,'.')
+from cplusplus import cplusplus, cstructs
 
-            if func:
-                return func(self.iptr, *argv)
-        except Exception as e:
-            print(e, ffi_name, len(argv), func, 'argv=',argv)
-            raise
-        raise TypeError("%s : wrong count of positional arguments" % ffi_name)
-
-    # c++ ctor/dtor
-
-    def __init__(self, *argv, **kw):
-        global GCBAD, REFC
-        iref = kw.pop('iptr',None)
-        if iref:
-            self.iptr = iref
-            REFC.setdefault(iref,1)
-            REFC[iref]+=1
-        else:
-            GCBAD += 1
-            self.iptr = self.ctor[len(argv)](*argv, **kw)
-
-    def refcount(self):
-        global REFC
-        return REFC.get( id(self.iptr) , 1 )
-
-    def __del__(self):
-        global GCBAD
-        nref= REFC.get( self.iptr , 1)
-        if nref > 1:
-            REFC[self.iptr] -= 1
-            print("still",nref-1,"ref. on",self.iptr)
-            del self.iptr, self.dtor
-            return
-        print("__del__",self.iptr)
-        GCBAD -= 1
-        try:
-            self.dtor(self.iptr)
-        finally:
-            self.iptr = None
-
-    def __enter__(self,*argv,**kw):
-        return self
-
-    #self.__del__() is not called ...
-    def __exit__(self,*argv,**kw):
-        global REFC
-
-        for attr in dir(self):
-            try:
-                if (not attr in ['dtor','iptr','__del__']):
-                    delattr(E,attr)
-            except:
-                pass
-
-        self.__del__()
 
 
 class NodePath(cplusplus):
+    c = cstructs()
+    c.name = """NodePath@upanda3d_c"""
+    c.dlopen("""libupanda3d_c.so""")
 
-    lib = ffi.open("""libupanda3d_c.so""")
 
-    NodePath_C_look_at_v_pfff = lib.func('v','NodePath_C_look_at_v_pfff','pfff')
-    NodePath_C_set_scale_v_pp = lib.func('v','NodePath_C_set_scale_v_pp','pp')
-    NodePath_C_set_pos_v_pp = lib.func('v','NodePath_C_set_pos_v_pp','pp')
-    NodePath_C_reparent_to_v_pp = lib.func('v','NodePath_C_reparent_to_v_pp','pp')
+    # ctor/dtor
+
+    c.ct['ctor'] = {
+        1 : ['s','p', c.lib.func('p','NodePath_C_ctor_p_p','p')],
+        0 : ['s','p', c.lib.func('p','NodePath_C_ctor_p_v','')],
+    }
+
+    # fixed pos
+
+    c.ct['look_at'] = ['d','v', c.lib.func('v','NodePath_C_look_at_v_pfff','pfff')]
+    c.ct['set_scale'] = ['d','v', c.lib.func('v','NodePath_C_set_scale_v_pp','pp')]
+    c.ct['set_pos'] = ['d','v', c.lib.func('v','NodePath_C_set_pos_v_pp','pp')]
+    c.ct['reparent_to'] = ['d','v', c.lib.func('v','NodePath_C_reparent_to_v_pp','pp')]
 
     # variadic
 
-    ctor = {
-        1 : lib.func('p','NodePath_C_ctor_p_p','p'),
-        0 : lib.func('p','NodePath_C_ctor_p_v',''),
-    }
 
 
     # c++ instance methods
 
+    def __getattr__(self, attr):
+        return self.__call(attr)
 
 
-    def look_at(self, *argv, **kw):
-        return self.NodePath_C_look_at_v_pfff(self.iptr, *argv, **kw)
 
-    def set_scale(self, *argv, **kw):
-        return self.NodePath_C_set_scale_v_pp(self.iptr, *argv, **kw)
+    del c.lib
 
-    def set_pos(self, *argv, **kw):
-        return self.NodePath_C_set_pos_v_pp(self.iptr, *argv, **kw)
-
-    def reparent_to(self, *argv, **kw):
-        return self.NodePath_C_reparent_to_v_pp(self.iptr, *argv, **kw)
 
 class LVecBase3f(cplusplus):
+    c = cstructs()
+    c.name = """LVecBase3f@upanda3d_c"""
+    c.dlopen("""libupanda3d_c.so""")
 
-    lib = ffi.open("""libupanda3d_c.so""")
 
-    LVecBase3f_C_get_standardized_hpr_p_p = lib.func('p','LVecBase3f_C_get_standardized_hpr_p_p','p')
-    LVecBase3f_C_add_to_cell_v_pif = lib.func('v','LVecBase3f_C_add_to_cell_v_pif','pif')
-    LVecBase3f_C_get_class_type_i_v = lib.func('i','LVecBase3f_C_get_class_type_i_v','v')
-    LVecBase3f_C_fill_v_pf = lib.func('v','LVecBase3f_C_fill_v_pf','pf')
-    LVecBase3f_C_normalized_p_p = lib.func('p','LVecBase3f_C_normalized_p_p','p')
-    LVecBase3f_C_normalize_B_p = lib.func('B','LVecBase3f_C_normalize_B_p','p')
-    LVecBase3f_C_read_datagram_v_pp = lib.func('v','LVecBase3f_C_read_datagram_v_pp','pp')
-    LVecBase3f_C_fmin_p_pp = lib.func('p','LVecBase3f_C_fmin_p_pp','pp')
-    LVecBase3f_C_get_y_f_p = lib.func('f','LVecBase3f_C_get_y_f_p','p')
-    LVecBase3f_C_get_z_f_p = lib.func('f','LVecBase3f_C_get_z_f_p','p')
-    LVecBase3f_C_length_squared_f_p = lib.func('f','LVecBase3f_C_length_squared_f_p','p')
-    LVecBase3f_C_get_cell_f_pi = lib.func('f','LVecBase3f_C_get_cell_f_pi','pi')
-    LVecBase3f_C_output_v_pp = lib.func('v','LVecBase3f_C_output_v_pp','pp')
-    LVecBase3f_C_get_v_p_p = lib.func('p','LVecBase3f_C_get_v_p_p','p')
-    LVecBase3f_C_get_yz_p_p = lib.func('p','LVecBase3f_C_get_yz_p_p','p')
-    LVecBase3f_C_ctor_1_p_p = lib.func('p','LVecBase3f_C_ctor_1_p_p','p')
-    LVecBase3f_C_length_f_p = lib.func('f','LVecBase3f_C_length_f_p','p')
-    LVecBase3f_C_end_1_v_p = lib.func('v','LVecBase3f_C_end_1_v_p','p')
-    LVecBase3f_C_get_num_components_i_v = lib.func('i','LVecBase3f_C_get_num_components_i_v','v')
-    LVecBase3f_C_end_v_p = lib.func('v','LVecBase3f_C_end_v_p','p')
-    LVecBase3f_C_read_datagram_fixed_v_pp = lib.func('v','LVecBase3f_C_read_datagram_fixed_v_pp','pp')
-    LVecBase3f_C_set_v_pfff = lib.func('v','LVecBase3f_C_set_v_pfff','pfff')
-    LVecBase3f_C_get_data_v_p = lib.func('v','LVecBase3f_C_get_data_v_p','p')
-    LVecBase3f_C_get_x_f_p = lib.func('f','LVecBase3f_C_get_x_f_p','p')
-    LVecBase3f_C_set_y_v_pf = lib.func('v','LVecBase3f_C_set_y_v_pf','pf')
-    LVecBase3f_C_set_z_v_pf = lib.func('v','LVecBase3f_C_set_z_v_pf','pf')
-    LVecBase3f_C_unit_x_p_v = lib.func('p','LVecBase3f_C_unit_x_p_v','v')
-    LVecBase3f_C_size_i_v = lib.func('i','LVecBase3f_C_size_i_v','v')
-    LVecBase3f_C_dot_f_pp = lib.func('f','LVecBase3f_C_dot_f_pp','pp')
-    LVecBase3f_C_get_xy_p_p = lib.func('p','LVecBase3f_C_get_xy_p_p','p')
-    LVecBase3f_C_get_xz_p_p = lib.func('p','LVecBase3f_C_get_xz_p_p','p')
-    LVecBase3f_C_unit_y_p_v = lib.func('p','LVecBase3f_C_unit_y_p_v','v')
-    LVecBase3f_C_unit_z_p_v = lib.func('p','LVecBase3f_C_unit_z_p_v','v')
-    LVecBase3f_C_write_datagram_fixed_v_pp = lib.func('v','LVecBase3f_C_write_datagram_fixed_v_pp','pp')
-    LVecBase3f_C_project_p_pp = lib.func('p','LVecBase3f_C_project_p_pp','pp')
-    LVecBase3f_C_begin_v_p = lib.func('v','LVecBase3f_C_begin_v_p','p')
-    LVecBase3f_C_write_datagram_v_pp = lib.func('v','LVecBase3f_C_write_datagram_v_pp','pp')
-    LVecBase3f_C_fmax_p_pp = lib.func('p','LVecBase3f_C_fmax_p_pp','pp')
-    LVecBase3f_C_add_z_v_pf = lib.func('v','LVecBase3f_C_add_z_v_pf','pf')
-    LVecBase3f_C_add_y_v_pf = lib.func('v','LVecBase3f_C_add_y_v_pf','pf')
-    LVecBase3f_C_is_nan_B_p = lib.func('B','LVecBase3f_C_is_nan_B_p','p')
-    LVecBase3f_C_add_x_v_pf = lib.func('v','LVecBase3f_C_add_x_v_pf','pf')
-    LVecBase3f_C_set_cell_v_pif = lib.func('v','LVecBase3f_C_set_cell_v_pif','pif')
-    LVecBase3f_C_begin_1_v_p = lib.func('v','LVecBase3f_C_begin_1_v_p','p')
-    LVecBase3f_C_cross_p_pp = lib.func('p','LVecBase3f_C_cross_p_pp','pp')
-    LVecBase3f_C_zero_p_v = lib.func('p','LVecBase3f_C_zero_p_v','v')
-    LVecBase3f_C_componentwise_mult_v_pp = lib.func('v','LVecBase3f_C_componentwise_mult_v_pp','pp')
-    LVecBase3f_C_init_type_v_v = lib.func('v','LVecBase3f_C_init_type_v_v','v')
-    LVecBase3f_C_cross_into_v_pp = lib.func('v','LVecBase3f_C_cross_into_v_pp','pp')
-    LVecBase3f_C_set_x_v_pf = lib.func('v','LVecBase3f_C_set_x_v_pf','pf')
+    # ctor/dtor
+
+    c.ct['ctor_1'] = ['s','p', c.lib.func('p','LVecBase3f_C_ctor_1_p_p','p')]
+    c.ct['ctor'] = {
+        1 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_f','f')],
+        3 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_fff','fff')],
+        1 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_p','p')],
+        2 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_pf','pf')],
+        0 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_v','')],
+    }
+
+    # fixed pos
+
+    c.ct['get_standardized_hpr'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_standardized_hpr_p_p','p')]
+    c.ct['add_to_cell'] = ['d','v', c.lib.func('v','LVecBase3f_C_add_to_cell_v_pif','pif')]
+    c.ct['get_class_type'] = ['d','i', c.lib.func('i','LVecBase3f_C_get_class_type_i_v','v')]
+    c.ct['fill'] = ['d','v', c.lib.func('v','LVecBase3f_C_fill_v_pf','pf')]
+    c.ct['normalized'] = ['d','p', c.lib.func('p','LVecBase3f_C_normalized_p_p','p')]
+    c.ct['normalize'] = ['d','B', c.lib.func('B','LVecBase3f_C_normalize_B_p','p')]
+    c.ct['read_datagram'] = ['d','v', c.lib.func('v','LVecBase3f_C_read_datagram_v_pp','pp')]
+    c.ct['fmin'] = ['d','p', c.lib.func('p','LVecBase3f_C_fmin_p_pp','pp')]
+    c.ct['get_y'] = ['d','f', c.lib.func('f','LVecBase3f_C_get_y_f_p','p')]
+    c.ct['get_z'] = ['d','f', c.lib.func('f','LVecBase3f_C_get_z_f_p','p')]
+    c.ct['length_squared'] = ['d','f', c.lib.func('f','LVecBase3f_C_length_squared_f_p','p')]
+    c.ct['get_cell'] = ['d','f', c.lib.func('f','LVecBase3f_C_get_cell_f_pi','pi')]
+    c.ct['output'] = ['d','v', c.lib.func('v','LVecBase3f_C_output_v_pp','pp')]
+    c.ct['get_v'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_v_p_p','p')]
+    c.ct['get_yz'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_yz_p_p','p')]
+    c.ct['length'] = ['d','f', c.lib.func('f','LVecBase3f_C_length_f_p','p')]
+    c.ct['end_1'] = ['d','v', c.lib.func('v','LVecBase3f_C_end_1_v_p','p')]
+    c.ct['get_num_components'] = ['d','i', c.lib.func('i','LVecBase3f_C_get_num_components_i_v','v')]
+    c.ct['end'] = ['d','v', c.lib.func('v','LVecBase3f_C_end_v_p','p')]
+    c.ct['read_datagram_fixed'] = ['d','v', c.lib.func('v','LVecBase3f_C_read_datagram_fixed_v_pp','pp')]
+    c.ct['set'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_v_pfff','pfff')]
+    c.ct['get_data'] = ['d','v', c.lib.func('v','LVecBase3f_C_get_data_v_p','p')]
+    c.ct['get_x'] = ['d','f', c.lib.func('f','LVecBase3f_C_get_x_f_p','p')]
+    c.ct['set_y'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_y_v_pf','pf')]
+    c.ct['set_z'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_z_v_pf','pf')]
+    c.ct['unit_x'] = ['d','p', c.lib.func('p','LVecBase3f_C_unit_x_p_v','v')]
+    c.ct['size'] = ['d','i', c.lib.func('i','LVecBase3f_C_size_i_v','v')]
+    c.ct['dot'] = ['d','f', c.lib.func('f','LVecBase3f_C_dot_f_pp','pp')]
+    c.ct['get_xy'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_xy_p_p','p')]
+    c.ct['get_xz'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_xz_p_p','p')]
+    c.ct['unit_y'] = ['d','p', c.lib.func('p','LVecBase3f_C_unit_y_p_v','v')]
+    c.ct['unit_z'] = ['d','p', c.lib.func('p','LVecBase3f_C_unit_z_p_v','v')]
+    c.ct['write_datagram_fixed'] = ['d','v', c.lib.func('v','LVecBase3f_C_write_datagram_fixed_v_pp','pp')]
+    c.ct['project'] = ['d','p', c.lib.func('p','LVecBase3f_C_project_p_pp','pp')]
+    c.ct['begin'] = ['d','v', c.lib.func('v','LVecBase3f_C_begin_v_p','p')]
+    c.ct['write_datagram'] = ['d','v', c.lib.func('v','LVecBase3f_C_write_datagram_v_pp','pp')]
+    c.ct['fmax'] = ['d','p', c.lib.func('p','LVecBase3f_C_fmax_p_pp','pp')]
+    c.ct['add_z'] = ['d','v', c.lib.func('v','LVecBase3f_C_add_z_v_pf','pf')]
+    c.ct['add_y'] = ['d','v', c.lib.func('v','LVecBase3f_C_add_y_v_pf','pf')]
+    c.ct['is_nan'] = ['d','B', c.lib.func('B','LVecBase3f_C_is_nan_B_p','p')]
+    c.ct['add_x'] = ['d','v', c.lib.func('v','LVecBase3f_C_add_x_v_pf','pf')]
+    c.ct['set_cell'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_cell_v_pif','pif')]
+    c.ct['begin_1'] = ['d','v', c.lib.func('v','LVecBase3f_C_begin_1_v_p','p')]
+    c.ct['cross'] = ['d','p', c.lib.func('p','LVecBase3f_C_cross_p_pp','pp')]
+    c.ct['zero'] = ['d','p', c.lib.func('p','LVecBase3f_C_zero_p_v','v')]
+    c.ct['componentwise_mult'] = ['d','v', c.lib.func('v','LVecBase3f_C_componentwise_mult_v_pp','pp')]
+    c.ct['init_type'] = ['d','v', c.lib.func('v','LVecBase3f_C_init_type_v_v','v')]
+    c.ct['cross_into'] = ['d','v', c.lib.func('v','LVecBase3f_C_cross_into_v_pp','pp')]
+    c.ct['set_x'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_x_v_pf','pf')]
 
     # variadic
 
-    generate_hash = {
-        2 : lib.func('v','LVecBase3f_C_generate_hash_v_pp','pp'),
-        3 : lib.func('v','LVecBase3f_C_generate_hash_v_ppf','ppf'),
+    c.ct['generate_hash'] = {
+        2 : ['d','v', c.lib.func('v','LVecBase3f_C_generate_hash_v_pp','pp')],
+        3 : ['d','v', c.lib.func('v','LVecBase3f_C_generate_hash_v_ppf','ppf')],
     }
-    ctor = {
-        1 : lib.func('p','LVecBase3f_C_ctor_p_f','f'),
-        3 : lib.func('p','LVecBase3f_C_ctor_p_fff','fff'),
-        1 : lib.func('p','LVecBase3f_C_ctor_p_p','p'),
-        2 : lib.func('p','LVecBase3f_C_ctor_p_pf','pf'),
-        0 : lib.func('p','LVecBase3f_C_ctor_p_v',''),
+    c.ct['add_hash'] = {
+        2 : ['d','p', c.lib.func('p','LVecBase3f_C_add_hash_p_pp','pp')],
+        3 : ['d','p', c.lib.func('p','LVecBase3f_C_add_hash_p_ppf','ppf')],
     }
-    add_hash = {
-        2 : lib.func('p','LVecBase3f_C_add_hash_p_pp','pp'),
-        3 : lib.func('p','LVecBase3f_C_add_hash_p_ppf','ppf'),
+    c.ct['compare_to'] = {
+        2 : ['d','i', c.lib.func('i','LVecBase3f_C_compare_to_i_pp','pp')],
+        3 : ['d','i', c.lib.func('i','LVecBase3f_C_compare_to_i_ppf','ppf')],
     }
-    compare_to = {
-        2 : lib.func('i','LVecBase3f_C_compare_to_i_pp','pp'),
-        3 : lib.func('i','LVecBase3f_C_compare_to_i_ppf','ppf'),
+    c.ct['almost_equal'] = {
+        2 : ['d','B', c.lib.func('B','LVecBase3f_C_almost_equal_B_pp','pp')],
+        3 : ['d','B', c.lib.func('B','LVecBase3f_C_almost_equal_B_ppf','ppf')],
     }
-    almost_equal = {
-        2 : lib.func('B','LVecBase3f_C_almost_equal_B_pp','pp'),
-        3 : lib.func('B','LVecBase3f_C_almost_equal_B_ppf','ppf'),
-    }
-    get_hash = {
-        1 : lib.func('p','LVecBase3f_C_get_hash_p_p','p'),
-        2 : lib.func('p','LVecBase3f_C_get_hash_p_pf','pf'),
+    c.ct['get_hash'] = {
+        1 : ['d','p', c.lib.func('p','LVecBase3f_C_get_hash_p_p','p')],
+        2 : ['d','p', c.lib.func('p','LVecBase3f_C_get_hash_p_pf','pf')],
     }
 
 
     # c++ instance methods
 
+    def __getattr__(self, attr):
+        return self.__call(attr)
 
 
-    def get_standardized_hpr(self, *argv, **kw):
-        return self.LVecBase3f_C_get_standardized_hpr_p_p(self.iptr, *argv, **kw)
 
-    def add_to_cell(self, *argv, **kw):
-        return self.LVecBase3f_C_add_to_cell_v_pif(self.iptr, *argv, **kw)
+    del c.lib
 
-    @classmethod
-    def get_class_type(cls, *argv, **kw):
-        return cls.LVecBase3f_C_get_class_type_i_v(*argv, **kw)
-
-    def fill(self, *argv, **kw):
-        return self.LVecBase3f_C_fill_v_pf(self.iptr, *argv, **kw)
-
-    def normalized(self, *argv, **kw):
-        return self.LVecBase3f_C_normalized_p_p(self.iptr, *argv, **kw)
-
-    def normalize(self, *argv, **kw):
-        return self.LVecBase3f_C_normalize_B_p(self.iptr, *argv, **kw)
-
-    def read_datagram(self, *argv, **kw):
-        return self.LVecBase3f_C_read_datagram_v_pp(self.iptr, *argv, **kw)
-
-    def fmin(self, *argv, **kw):
-        return self.LVecBase3f_C_fmin_p_pp(self.iptr, *argv, **kw)
-
-    def get_y(self, *argv, **kw):
-        return self.LVecBase3f_C_get_y_f_p(self.iptr, *argv, **kw)
-
-    def get_z(self, *argv, **kw):
-        return self.LVecBase3f_C_get_z_f_p(self.iptr, *argv, **kw)
-
-    def length_squared(self, *argv, **kw):
-        return self.LVecBase3f_C_length_squared_f_p(self.iptr, *argv, **kw)
-
-    def get_cell(self, *argv, **kw):
-        return self.LVecBase3f_C_get_cell_f_pi(self.iptr, *argv, **kw)
-
-    def output(self, *argv, **kw):
-        return self.LVecBase3f_C_output_v_pp(self.iptr, *argv, **kw)
-
-    def get_v(self, *argv, **kw):
-        return self.LVecBase3f_C_get_v_p_p(self.iptr, *argv, **kw)
-
-    def get_yz(self, *argv, **kw):
-        return self.LVecBase3f_C_get_yz_p_p(self.iptr, *argv, **kw)
-
-    def ctor_1(self, *argv, **kw):
-        return self.LVecBase3f_C_ctor_1_p_p(self.iptr, *argv, **kw)
-
-    def length(self, *argv, **kw):
-        return self.LVecBase3f_C_length_f_p(self.iptr, *argv, **kw)
-
-    def end_1(self, *argv, **kw):
-        return self.LVecBase3f_C_end_1_v_p(self.iptr, *argv, **kw)
-
-    @classmethod
-    def get_num_components(cls, *argv, **kw):
-        return cls.LVecBase3f_C_get_num_components_i_v(*argv, **kw)
-
-    def end(self, *argv, **kw):
-        return self.LVecBase3f_C_end_v_p(self.iptr, *argv, **kw)
-
-    def generate_hash(self, *argv, **kw):
-        return self.variadic_call("LVecBase3f_C_end_v_p", *argv, **kw)
-
-    def read_datagram_fixed(self, *argv, **kw):
-        return self.LVecBase3f_C_read_datagram_fixed_v_pp(self.iptr, *argv, **kw)
-
-    def set(self, *argv, **kw):
-        return self.LVecBase3f_C_set_v_pfff(self.iptr, *argv, **kw)
-
-    def get_data(self, *argv, **kw):
-        return self.LVecBase3f_C_get_data_v_p(self.iptr, *argv, **kw)
-
-    def get_x(self, *argv, **kw):
-        return self.LVecBase3f_C_get_x_f_p(self.iptr, *argv, **kw)
-
-    def set_y(self, *argv, **kw):
-        return self.LVecBase3f_C_set_y_v_pf(self.iptr, *argv, **kw)
-
-    def set_z(self, *argv, **kw):
-        return self.LVecBase3f_C_set_z_v_pf(self.iptr, *argv, **kw)
-
-    @classmethod
-    def unit_x(cls, *argv, **kw):
-        return cls.LVecBase3f_C_unit_x_p_v(*argv, **kw)
-
-    @classmethod
-    def size(cls, *argv, **kw):
-        return cls.LVecBase3f_C_size_i_v(*argv, **kw)
-
-    def dot(self, *argv, **kw):
-        return self.LVecBase3f_C_dot_f_pp(self.iptr, *argv, **kw)
-
-    def get_xy(self, *argv, **kw):
-        return self.LVecBase3f_C_get_xy_p_p(self.iptr, *argv, **kw)
-
-    def get_xz(self, *argv, **kw):
-        return self.LVecBase3f_C_get_xz_p_p(self.iptr, *argv, **kw)
-
-    @classmethod
-    def unit_y(cls, *argv, **kw):
-        return cls.LVecBase3f_C_unit_y_p_v(*argv, **kw)
-
-    @classmethod
-    def unit_z(cls, *argv, **kw):
-        return cls.LVecBase3f_C_unit_z_p_v(*argv, **kw)
-
-    def write_datagram_fixed(self, *argv, **kw):
-        return self.LVecBase3f_C_write_datagram_fixed_v_pp(self.iptr, *argv, **kw)
-
-    def project(self, *argv, **kw):
-        return self.LVecBase3f_C_project_p_pp(self.iptr, *argv, **kw)
-
-    def begin(self, *argv, **kw):
-        return self.LVecBase3f_C_begin_v_p(self.iptr, *argv, **kw)
-
-    def write_datagram(self, *argv, **kw):
-        return self.LVecBase3f_C_write_datagram_v_pp(self.iptr, *argv, **kw)
-
-    def fmax(self, *argv, **kw):
-        return self.LVecBase3f_C_fmax_p_pp(self.iptr, *argv, **kw)
-
-    def add_z(self, *argv, **kw):
-        return self.LVecBase3f_C_add_z_v_pf(self.iptr, *argv, **kw)
-
-    def add_y(self, *argv, **kw):
-        return self.LVecBase3f_C_add_y_v_pf(self.iptr, *argv, **kw)
-
-    def is_nan(self, *argv, **kw):
-        return self.LVecBase3f_C_is_nan_B_p(self.iptr, *argv, **kw)
-
-    def add_x(self, *argv, **kw):
-        return self.LVecBase3f_C_add_x_v_pf(self.iptr, *argv, **kw)
-
-    def set_cell(self, *argv, **kw):
-        return self.LVecBase3f_C_set_cell_v_pif(self.iptr, *argv, **kw)
-
-    def begin_1(self, *argv, **kw):
-        return self.LVecBase3f_C_begin_1_v_p(self.iptr, *argv, **kw)
-
-    def cross(self, *argv, **kw):
-        return self.LVecBase3f_C_cross_p_pp(self.iptr, *argv, **kw)
-
-    def add_hash(self, *argv, **kw):
-        return self.variadic_call("LVecBase3f_C_cross_p_pp", *argv, **kw)
-
-    @classmethod
-    def zero(cls, *argv, **kw):
-        return cls.LVecBase3f_C_zero_p_v(*argv, **kw)
-
-    def compare_to(self, *argv, **kw):
-        return self.variadic_call("LVecBase3f_C_zero_p_v", *argv, **kw)
-
-    def componentwise_mult(self, *argv, **kw):
-        return self.LVecBase3f_C_componentwise_mult_v_pp(self.iptr, *argv, **kw)
-
-    def almost_equal(self, *argv, **kw):
-        return self.variadic_call("LVecBase3f_C_componentwise_mult_v_pp", *argv, **kw)
-
-    @classmethod
-    def init_type(cls, *argv, **kw):
-        return cls.LVecBase3f_C_init_type_v_v(*argv, **kw)
-
-    def get_hash(self, *argv, **kw):
-        return self.variadic_call("LVecBase3f_C_init_type_v_v", *argv, **kw)
-
-    def cross_into(self, *argv, **kw):
-        return self.LVecBase3f_C_cross_into_v_pp(self.iptr, *argv, **kw)
-
-    def set_x(self, *argv, **kw):
-        return self.LVecBase3f_C_set_x_v_pf(self.iptr, *argv, **kw)
 
 class Engine(cplusplus):
+    c = cstructs()
+    c.name = """Engine@upanda3d_c"""
+    c.dlopen("""libupanda3d_c.so""")
 
-    lib = ffi.open("""libupanda3d_c.so""")
 
-    Engine_C_get_framework_p_p = lib.func('p','Engine_C_get_framework_p_p','p')
-    Engine_C_casetest_i_pipB = lib.func('i','Engine_C_casetest_i_pipB','pipB')
-    Engine_C_HelloEngine_i_p = lib.func('i','Engine_C_HelloEngine_i_p','p')
-    Engine_C_load_model_p_ps = lib.func('p','Engine_C_load_model_p_ps','ps')
-    Engine_C_attach_v_pp = lib.func('v','Engine_C_attach_v_pp','pp')
-    Engine_C_dtor_v_p = lib.func('v','Engine_C_dtor_v_p','p')
-    Engine_C_get_version_string_s_v = lib.func('s','Engine_C_get_version_string_s_v','v')
-    Engine_C_op_scale_v_ppp = lib.func('v','Engine_C_op_scale_v_ppp','ppp')
-    Engine_C_set_framework_v_pp = lib.func('v','Engine_C_set_framework_v_pp','pp')
-    Engine_C_step_v_p = lib.func('v','Engine_C_step_v_p','p')
-    Engine_C_stop_v_v = lib.func('v','Engine_C_stop_v_v','v')
-    Engine_C_is_alive_i_v = lib.func('i','Engine_C_is_alive_i_v','v')
-    Engine_C_build_v_p = lib.func('v','Engine_C_build_v_p','p')
-    Engine_C_op_pos_v_ppp = lib.func('v','Engine_C_op_pos_v_ppp','ppp')
-    Engine_C_get_wframe_p_p = lib.func('p','Engine_C_get_wframe_p_p','p')
+    # ctor/dtor
+
+    c.ct['ctor'] = {
+        1 : ['s','p', c.lib.func('p','Engine_C_ctor_p_p','p')],
+        0 : ['s','p', c.lib.func('p','Engine_C_ctor_p_v','')],
+    }
+    c.ct['dtor'] = ['s','v', c.lib.func('v','Engine_C_dtor_v_p','p')]
+
+    # fixed pos
+
+    c.ct['get_framework'] = ['d','p', c.lib.func('p','Engine_C_get_framework_p_p','p')]
+    c.ct['casetest'] = ['d','i', c.lib.func('i','Engine_C_casetest_i_pipB','pipB')]
+    c.ct['HelloEngine'] = ['d','i', c.lib.func('i','Engine_C_HelloEngine_i_p','p')]
+    c.ct['load_model'] = ['d','p', c.lib.func('p','Engine_C_load_model_p_ps','ps')]
+    c.ct['attach'] = ['d','v', c.lib.func('v','Engine_C_attach_v_pp','pp')]
+    c.ct['get_version_string'] = ['d','s', c.lib.func('s','Engine_C_get_version_string_s_v','v')]
+    c.ct['op_scale'] = ['d','v', c.lib.func('v','Engine_C_op_scale_v_ppp','ppp')]
+    c.ct['set_framework'] = ['d','v', c.lib.func('v','Engine_C_set_framework_v_pp','pp')]
+    c.ct['step'] = ['d','v', c.lib.func('v','Engine_C_step_v_p','p')]
+    c.ct['stop'] = ['d','v', c.lib.func('v','Engine_C_stop_v_v','v')]
+    c.ct['is_alive'] = ['d','i', c.lib.func('i','Engine_C_is_alive_i_v','v')]
+    c.ct['build'] = ['d','v', c.lib.func('v','Engine_C_build_v_p','p')]
+    c.ct['op_pos'] = ['d','v', c.lib.func('v','Engine_C_op_pos_v_ppp','ppp')]
+    c.ct['get_wframe'] = ['d','p', c.lib.func('p','Engine_C_get_wframe_p_p','p')]
 
     # variadic
 
-    ctor = {
-        1 : lib.func('p','Engine_C_ctor_p_p','p'),
-        0 : lib.func('p','Engine_C_ctor_p_v',''),
-    }
 
 
     # c++ instance methods
 
+    def __getattr__(self, attr):
+        return self.__call(attr)
 
 
-    def get_framework(self, *argv, **kw):
-        return self.Engine_C_get_framework_p_p(self.iptr, *argv, **kw)
 
-    def casetest(self, *argv, **kw):
-        return self.Engine_C_casetest_i_pipB(self.iptr, *argv, **kw)
-
-    def HelloEngine(self, *argv, **kw):
-        return self.Engine_C_HelloEngine_i_p(self.iptr, *argv, **kw)
-
-    def load_model(self, *argv, **kw):
-        return self.Engine_C_load_model_p_ps(self.iptr, *argv, **kw)
-
-    def attach(self, *argv, **kw):
-        return self.Engine_C_attach_v_pp(self.iptr, *argv, **kw)
-
-    def dtor(self, *argv, **kw):
-        return self.Engine_C_dtor_v_p(self.iptr, *argv, **kw)
-
-    @classmethod
-    def get_version_string(cls, *argv, **kw):
-        return cls.Engine_C_get_version_string_s_v(*argv, **kw)
-
-    def op_scale(self, *argv, **kw):
-        return self.Engine_C_op_scale_v_ppp(self.iptr, *argv, **kw)
-
-    def set_framework(self, *argv, **kw):
-        return self.Engine_C_set_framework_v_pp(self.iptr, *argv, **kw)
-
-    def step(self, *argv, **kw):
-        return self.Engine_C_step_v_p(self.iptr, *argv, **kw)
-
-    @classmethod
-    def stop(cls, *argv, **kw):
-        return cls.Engine_C_stop_v_v(*argv, **kw)
-
-    @classmethod
-    def is_alive(cls, *argv, **kw):
-        return cls.Engine_C_is_alive_i_v(*argv, **kw)
-
-    def build(self, *argv, **kw):
-        return self.Engine_C_build_v_p(self.iptr, *argv, **kw)
-
-    def op_pos(self, *argv, **kw):
-        return self.Engine_C_op_pos_v_ppp(self.iptr, *argv, **kw)
-
-    def get_wframe(self, *argv, **kw):
-        return self.Engine_C_get_wframe_p_p(self.iptr, *argv, **kw)
+    del c.lib
 
 
 def test():
-    print("C++ class constructor",Engine.ctor)
+    print("C++ class constructor", Engine.c.ct['ctor'])
     E = Engine()
-    print('engine      ',E, E.iptr)
-    C = E.__class__( iptr=E.iptr )
-    print('engine(copy)',C, C.iptr)
+    print('engine      ',E)
+    C = E.__class__( iptr=E )
+    print('engine(copy)',C)
 
     # a dumb test that should say 42
     print('hello',E.HelloEngine())
@@ -469,15 +214,18 @@ def test():
 
     E.attach(np)
 
-    np = NodePath(iptr=np)
+    np = NodePath(cptr=np)
 
     v3 = LVecBase3f(0.01, 42.01, 0.01)
     print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-    np.set_pos( uctypes.bytearray_at(v3.iptr, 12) )
+    np.set_pos( v3 )
 
     v3 = LVecBase3f(2.0, 2.0, 2.0)
     print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-    np.set_scale( uctypes.bytearray_at(v3.iptr, 12) )
+
+    np.set_scale( v3 )
+
+
 
 
     while E.is_alive():
@@ -503,6 +251,5 @@ if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
 REFC = list(REFC.keys())
 while REFC:
     Engine.Engine_C_dtor_v_p(REFC.pop())
-
 
 

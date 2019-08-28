@@ -439,6 +439,25 @@ with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
         """
 #include <stdio.h>
 #include <stdbool.h>
+
+#define PT char
+#define WindowFramework char
+#define PandaFramework char
+#define Engine char
+#define NodePath char
+#define Filename char
+#define GraphicsWindow char
+#define GraphicsOutput char
+#define Camera char
+#define DisplayRegion char
+#define TextFont char
+#define LVecBase3f char
+#define LVecBase2f char
+
+#define string char const
+#define PN_stdfloat float
+
+
 """
     )
 

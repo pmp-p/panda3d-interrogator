@@ -5,65 +5,27 @@
 
 #include "em.h"
 
+#include "lib/interrogate_wrapper.h"
 
-#define PT char
-#define WindowFramework char
-#define PandaFramework char
-#define Engine char
-#define NodePath char
-#define I_NodePath char
-#define Filename char
-#define GraphicsWindow char
-#define GraphicsOutput char
-#define Camera char
-#define DisplayRegion char
-#define TextFont char
-#define LVecBase3f char
-#define LVecBase2f char
-
-#define string char const
-#define PN_stdfloat float
 
 
 static Engine * E;
 static NodePath * np;
 static Filename * fn;
 
-#if 0
-extern Engine * Engine_C_ctor_p_v();
-extern NodePath * NP_C_NP_p_v();
 
-extern void Engine_C_build_v_p(Engine *param0);
-extern void Engine_C_step_v_p(Engine *param0);
-extern PandaFramework * Engine_C_get_framework_p_p(Engine const *param0);
+/*
+void
+NodePath_C_set_pos_v_pp(NodePath *param0, LVecBase3f const *param1) {
 
-extern void NP_C_reparent_to_v_p(NodePath *param0, NodePath const *param1);
-extern NodePath * WindowFramework_C_get_render_p_p(WindowFramework *param0);
+  (*param0).set_pos(  static_cast<LVecBase3f const&>(*param1));
+}
 
-extern PT * Engine_C_get_wframe_p_p(Engine const *param0);
-
-extern Filename * Filename_C_Filename_2_p_p(char const *param0);
-extern Filename * Filename_C_Filename_3_p_p(char const *param0);
-
-extern string * Filename_C_c_str_p_p(Filename const *param0);
-
-//borrowed
-extern void NodePath_C_set_scale_v_pfff(I_NodePath *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
-extern void NodePath_C_set_pos_v_pfff(I_NodePath *param0, float param1, float param2, float param3);
-
-// not original helpers
-extern NodePath * Engine_C_load_model_p_ps(Engine *param0, char const *param1);
-extern void Engine_C_attach_v_pp(Engine *param0, NodePath *param1);
-extern char const * Engine_C_get_version_string_s_v();
-extern int Engine_C_is_alive_i_v();
-extern void Engine_C_dtor_v_p(Engine *param0);
-
-void Engine_C_some_ops_v_pp(Engine *param0, NodePath *param1);
-#else
-
-#include "lib/interrogate_wrapper.h"
-
-#endif
+void
+NodePath_C_set_scale_v_pp(NodePath *param0, LVecBase3f const *param1) {
+  (*param0).set_scale( static_cast<LVecBase3f const&>(*param1));
+}
+*/
 
 void
 main_loop_or_step(){
@@ -106,13 +68,16 @@ main_loop_or_step(){
         //NodePath_C_set_scale_v_pfff( mdl, 2,2,2);
         //NodePath_C_set_pos_v_pfff( mdl, 0,42,0);
 
-        //Engine_C_some_ops_v_pp(E, mdl);
 
+/* OK
         LVecBase3f * s3f = LVecBase3f_C_ctor_p_fff(2,2,2);
         Engine_C_op_scale_v_ppp(E, mdl, s3f );
 
         LVecBase3f * v3f = LVecBase3f_C_ctor_p_fff(0,42,0);
         Engine_C_op_pos_v_ppp(E, mdl, v3f );
+*/
+
+
 
 
     }
