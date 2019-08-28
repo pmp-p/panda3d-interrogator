@@ -138,8 +138,7 @@ import interrogator.uplusplus as cxx
             f'''
 class {pcls}(cxx.cplusplus):
     c = cxx.cstructs()
-    c.name = """{pcls}@{lib[3:-3]}"""
-    c.dlopen("""{lib}""")
+    c.register("{pcls}", "{TARGET}", """{lib}""")
 '''
         )
 
@@ -186,14 +185,18 @@ class {pcls}(cxx.cplusplus):
             variadics(func, targets)
 
         write(
-            """
+            f"""
 
     # c++ instance methods
+
+    def __del__(self):
+        self.__class__.destroy(self)
 
     def __getattr__(self, attr):
         return self.__call(attr)
 
-    del c.lib
+{pcls}.c.link({pcls})
+
 """
         )
 
@@ -205,7 +208,6 @@ if __name__ == '__main__':
     import gc
     import time
     REFC = cxx.REFC
-    GCBAD = cxx.GCBAD
 
     def test():
         print("C++ class constructor", Engine.c.ct['ctor'])
@@ -243,6 +245,8 @@ if __name__ == '__main__':
 
         while E.is_alive():
             E.step()
+            gc.collect()
+            time.sleep(.016)
 
         print("C++ engine requested exit")
         del E
@@ -255,15 +259,8 @@ if __name__ == '__main__':
     gc.collect()
     gc.collect()
 
-    gc.collect()
-    gc.collect()  # one more it's free !
-    print(REFC)
-    if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
+    cxx.gc()
 
-    #luckily we have 1 pointer left
-    REFC = list(REFC.keys())
-    while REFC:
-        Engine( cptr = REFC.pop()).__del__()
 """
         )
 

@@ -23,10 +23,15 @@ or old cpython targets
 
 ```
 # run interrogate to get the lib/interrogate_wrapper.cpp from lib/lib.*
-./test_i.sh
+# args: folderoflib verbositylevel
+# .cxx and .h of your lib must be already there
 
+PYTHONPATH=. python3.7 -m interrogator lib 1
+
+# a lib for linking a Panda3D C interface is used for demo
 # link the c++ libupanda_cpp.so then build its C only interface libupanda_c.so
-# there a test for both
+# there a test for both give it a model.bam to display
+
 ./shared.sh
 
 

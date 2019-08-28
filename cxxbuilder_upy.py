@@ -138,10 +138,9 @@ import interrogator.uplusplus as cxx
             '''
 class {}(cxx.cplusplus):
     c = cxx.cstructs()
-    c.name = """{}@{}"""
-    c.dlopen("""{}""")
+    c.register("{}", "{}", """{}""")
 '''
-.format((pcls), (pcls), (lib[3:-3]), (lib))        )
+.format((pcls), (pcls), (TARGET), (lib))        )
 
         write(
             """
@@ -190,12 +189,16 @@ class {}(cxx.cplusplus):
 
     # c++ instance methods
 
+    def __del__(self):
+        self.__class__.destroy(self)
+
     def __getattr__(self, attr):
         return self.__call(attr)
 
-    del c.lib
+{}.c.link({})
+
 """
-        )
+.format((pcls), (pcls))        )
 
     if TARGET == 'upanda3d':
         write(
@@ -205,7 +208,6 @@ if __name__ == '__main__':
     import gc
     import time
     REFC = cxx.REFC
-    GCBAD = cxx.GCBAD
 
     def test():
         print("C++ class constructor", Engine.c.ct['ctor'])
@@ -243,6 +245,8 @@ if __name__ == '__main__':
 
         while E.is_alive():
             E.step()
+            gc.collect()
+            time.sleep(.016)
 
         print("C++ engine requested exit")
         del E
@@ -255,15 +259,8 @@ if __name__ == '__main__':
     gc.collect()
     gc.collect()
 
-    gc.collect()
-    gc.collect()  # one more it's free !
-    print(REFC)
-    if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
+    cxx.gc()
 
-    #luckily we have 1 pointer left
-    REFC = list(REFC.keys())
-    while REFC:
-        Engine( cptr = REFC.pop()).__del__()
 """
         )
 

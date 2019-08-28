@@ -15,16 +15,51 @@ import ffi
 
 
 class cstructs(dict):
+    pool = []
+
     def __init__(self):
         self.ct = dict()
         self.ref = dict()
         self.jit = dict()
 
-    def dlopen(self, lib):
+    def register(self, cname, lname, lib):
+        self.name = "{0}::{1}".format(lname, cname)
         self.lib = ffi.open(lib)
+
+    def link(self,cls):
+        del self.lib
+        self.factory = cls
+        #if not self in self.__class__.pool:
+        self.__class__.pool.append(self)
+
+
 
 
 class cplusplus:
+
+    # c++ ctor/dtor
+
+    def __init__(self, *argv, **kw):
+        global GCBAD, REFC
+        c = self.__class__.c
+        iref = kw.pop('iptr', None)
+        cref = kw.pop('cptr', None)
+        if iref or cref:
+            # extract pointer addr from source
+            if isinstance(iref, cplusplus):
+                cref = c.ref[id(iref)]
+
+            # add the cref to class handler for this instance
+            c.ref[id(self)] = cref
+            REFC.setdefault(cref, 1)
+            REFC[cref] += 1
+        else:
+            GCBAD += 1
+            c.ref[id(self)] = self.__cplusplus(c.ct['ctor'], *argv, **kw)
+
+
+    # ffi interface
+
     def __cplusplus(self, call, *argv, **kw):
 
         if isinstance(call, dict):
@@ -62,6 +97,13 @@ class cplusplus:
 
         raise TypeError("%s : wrong count of positional arguments" % kw.get('hint', '?jit?'))
 
+
+    # python interface
+
+    def __repr__(self):
+        c = self.__class__.c
+        return '<{0} *>({1}#{2})'.format(c.name, c.ref[id(self)], self.refcount())
+
     def __call(self, attr):
         c = self.__class__.c
         if attr[0] != '_':
@@ -79,62 +121,125 @@ class cplusplus:
             return jit
         raise AttributeError("'{0}' C++ class has no method '{1}'".format(c.name, attr))
 
-    # c++ ctor/dtor
 
-    def __init__(self, *argv, **kw):
+    # forced gc
+
+    @classmethod
+    def destroy(cls, self):
         global GCBAD, REFC
-        c = self.__class__.c
-        iref = kw.pop('iptr', None)
-        cref = kw.pop('cptr', None)
-        if iref or cref:
-            # extract pointer addr from source
-            if isinstance(iref, cplusplus):
-                cref = c.ref[id(iref)]
+        c = cls.c
+        cref =  c.ref[id(self)]
 
-            # add the cref to class handler for this instance
-            c.ref[id(self)] = cref
-            REFC.setdefault(cref, 1)
-            REFC[cref] += 1
-        else:
-            GCBAD += 1
-            c.ref[id(self)] = self.__cplusplus(c.ct['ctor'], *argv, **kw)
+        for attr in dir(self):
+            try:
+                if attr not in ('c','__del__'):
+                    delattr(self, attr)
+            except:
+                pass
+
+        nref = self.refcount()
+        if nref > 1:
+            REFC[cref] -= 1
+            print("still", nref - 1, "ref. on", cref)
+            return
+        print("__del__", cref)
+        GCBAD -= 1
+        try:
+            c.ct['dtor'][2](cref)
+        finally:
+            c.ref.pop(id(self), None)
+
+
+
+    def __enter__(self, *argv, **kw):
+        return self
+
+
+    # self.__del__() is not called ...
+    def __exit__(self, *argv, **kw):
+        global REFC
+        self.__class__.destroy(self)
+
 
     def refcount(self):
         global REFC
         return REFC.get(self.__class__.c.ref[id(self)], 1)
 
-    def __repr__(self):
-        global REFC
-        c = self.__class__.c
-        return '<{0} *>({1}#{2})'.format(c.name, c.ref[id(self)], self.refcount())
 
-    def __del__(self):
-        global GCBAD
-        c = self.__class__.c
-        nref = self.refcount()
-        if nref > 1:
-            REFC[self.__iptr] -= 1
-            print("still", nref - 1, "ref. on", c.ref[id(self)])
-            return
-        print("__del__", c.ref[id(self)])
-        GCBAD -= 1
-        try:
-            self._['dtor'][2](c.ref[id(self)])
-        finally:
-            c.ref.pop(id(self))
 
-    def __enter__(self, *argv, **kw):
-        return self
 
-    # self.__del__() is not called ...
-    def __exit__(self, *argv, **kw):
-        global REFC
 
-        for attr in dir(self):
-            try:
-                if attr != '__del__':
-                    delattr(self, attr)
-            except:
-                pass
 
-        self.__del__()
+
+
+
+def noop(*args,**kw):pass
+
+
+def gc():
+    global GCBAD, REFC
+    import gc
+    gc.collect()
+
+    gc.collect()  # one more it's free !
+    print("REFS", GCBAD,"ptr=",REFC)
+    if GCBAD:print(" ----------- Bad GC ------------") # who said free ?
+
+
+    for c in cstructs.pool:
+        items = []
+        for item in c.ref.values():
+            if not item in items:
+                items.append(item)
+
+        c.ref.clear()
+        while items:
+            item = items.pop()
+            print(c.factory,'dangling ptr', item)
+            c.ct.get('dtor',['','',noop])[2](item)
+
+
+
+
+
+    #luckily we have the pointers left in cstructs of each classes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
