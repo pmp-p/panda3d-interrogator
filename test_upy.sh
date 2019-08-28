@@ -1,13 +1,13 @@
 reset;
 clear >> /tmp/log
-rm tests/testpy.py
+rm build/upanda3d.py
 
-if black -S -l 132 cpanda3d.py
+if black -S -l 132 cxxbuilder_cpy.py
 then
 
-    if python3.8 -m fstrings_helper cpanda3d.py > upanda3d.py
+    if python3.8 -m fstrings_helper cxxbuilder_cpy.py > cxxbuilder_upy.py
     then
-        LD_LIBRARY_PATH=$(pwd) micropython upanda3d.py
-        LD_LIBRARY_PATH=$(pwd) micropython  -X heapsize=256K tests/testpy.py
+        LD_LIBRARY_PATH=$(pwd)/build micropython cxxbuilder_upy.py
+        LD_LIBRARY_PATH=$(pwd)/build micropython  -X heapsize=256K build/upanda3d.py
     fi
 fi

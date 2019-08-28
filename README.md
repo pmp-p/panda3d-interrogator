@@ -10,10 +10,15 @@ first target :
 requires cpython 3.7+  ( 3.6 NOT TESTED )
 
 requires Panda3D , not the "pip" version, as it won't work because you need C++ part of sdk
-see https://www.panda3d.org/download/sdk-1-10-4-1/ [other downloads]
-or better build from source and install to /usr/local <= match current test conditions
 
-requires https://github.com/pmp-p/fstrings_helper
+see :
+
+ https://www.panda3d.org/download/sdk-1-10-4-1/ [other downloads]
+
+ but better build from source and install to /usr/local <= preferred : match current test conditions
+
+requires https://github.com/pmp-p/fstrings_helper for MicroPython f-strings support
+or old cpython targets
 
 
 ```
@@ -28,11 +33,13 @@ requires https://github.com/pmp-p/fstrings_helper
 #test micropython build ( need uctypes and ffi modules enabled on unix port )
 ./test_upy.sh
 
-# enjoy micropython bindings in tests/testpy.py
+# enjoy micropython bindings in build/upanda3d.py
 # and write your own game in place of the test
 # ( kidding there is not whole Panda3D API in there ! -yet- )
 ```
 
 Thanks thetestgame for teasing with C bindings.
+
 Thanks rdb and C​FSworks for help on implementation.
+
 Thanks to pfalcon for micropython-ffigen inspiration.
