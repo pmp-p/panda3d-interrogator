@@ -15,7 +15,10 @@ see :
 
  https://www.panda3d.org/download/sdk-1-10-4-1/ [other downloads]
 
- but better build from source and install to /usr/local <= preferred : match current test conditions
+ but better build from source locally  <= preferred : match current test conditions
+
+ full sdk installed to /usr/local should be ok too if you create a config.env
+
 
 requires https://github.com/pmp-p/fstrings_helper for MicroPython f-strings support
 or old cpython targets
@@ -26,7 +29,7 @@ or old cpython targets
 # args: folderoflib verbositylevel
 # .cxx and .h of your lib must be already there
 
-PYTHONPATH=. python3.7 -m interrogator lib 1
+CONFIG=linux-x64.env ./interrogator.sh
 
 # a lib for linking a Panda3D C interface is used for demo
 # link the c++ libupanda_cpp.so then build its C only interface libupanda_c.so
