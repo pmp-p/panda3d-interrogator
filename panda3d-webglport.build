@@ -1,0 +1,30 @@
+#!/bin/bash
+export PYTHONDONTWRITEBYTECODE=1
+
+PYTHON=python3.7
+
+if which emmake
+then
+    PLAT="--no-png --no-jpeg --use-egl"
+    TARGET=emscripten
+    echo EMSDK
+else
+    TARGET=panda3d-$($PYTHON -V|cut -c8-)-$(gcc -v 2>&1|grep Target|cut -c 9-)
+    PLAT="--use-x11 --use-egl --use-gl --use-egg --use-png --use-jpeg"
+    echo Desktop
+fi
+
+ROOT=$(realpath $(pwd)/../build/$TARGET)
+
+echo $TARGET
+echo $ROOT
+echo
+
+PATH=${ROOT}/bin:$PATH LD_LIBRARY_PATH=${ROOT}/lib $PYTHON makepanda/makepanda.py\
+ --outputdir $ROOT --nothing --threads 3\
+ $PLAT --use-gles --use-gles2 --use-tinydisplay --use-pandatool\
+ --use-python --no-eigen --use-openal\
+ --use-direct --use-vorbis --use-bullet --use-freetype --use-harfbuzz\
+ --use-assimp --use-pandafx --use-pandaphysics --use-pandaparticlesystem "$@"
+# --override STDFLOAT_DOUBLE=1
+# --python-incdir=${UROOT}/include --python-libdir=${UROOT}/lib $*

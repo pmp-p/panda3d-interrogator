@@ -13,21 +13,21 @@ class NodePath(cxx.cplusplus):
     c.register("NodePath", "upanda3d", """libupanda3d_c.so""")
 
 
-    # ctor/dtor
+    # ctor/dtor : classmethod type calls and return only raw pointer or void
 
     c.ct['ctor'] = {
         1 : ['s','p', c.lib.func('p','NodePath_C_ctor_p_p','p')],
         0 : ['s','p', c.lib.func('p','NodePath_C_ctor_p_v','')],
     }
 
-    # fixed pos
+    # fixed pos : return basic types or other C++ classes
 
     c.ct['look_at'] = ['d','v', c.lib.func('v','NodePath_C_look_at_v_pfff','pfff')]
     c.ct['set_scale'] = ['d','v', c.lib.func('v','NodePath_C_set_scale_v_pp','pp')]
     c.ct['set_pos'] = ['d','v', c.lib.func('v','NodePath_C_set_pos_v_pp','pp')]
     c.ct['reparent_to'] = ['d','v', c.lib.func('v','NodePath_C_reparent_to_v_pp','pp')]
 
-    # variadic
+    # variadic : return basic types or other C++ classes
 
 
 
@@ -48,7 +48,7 @@ class LVecBase3f(cxx.cplusplus):
     c.register("LVecBase3f", "upanda3d", """libupanda3d_c.so""")
 
 
-    # ctor/dtor
+    # ctor/dtor : classmethod type calls and return only raw pointer or void
 
     c.ct['ctor_1'] = ['s','p', c.lib.func('p','LVecBase3f_C_ctor_1_p_p','p')]
     c.ct['ctor'] = {
@@ -59,7 +59,7 @@ class LVecBase3f(cxx.cplusplus):
         0 : ['s','p', c.lib.func('p','LVecBase3f_C_ctor_p_v','')],
     }
 
-    # fixed pos
+    # fixed pos : return basic types or other C++ classes
 
     c.ct['get_standardized_hpr'] = ['d','p', c.lib.func('p','LVecBase3f_C_get_standardized_hpr_p_p','p')]
     c.ct['add_to_cell'] = ['d','v', c.lib.func('v','LVecBase3f_C_add_to_cell_v_pif','pif')]
@@ -111,7 +111,7 @@ class LVecBase3f(cxx.cplusplus):
     c.ct['cross_into'] = ['d','v', c.lib.func('v','LVecBase3f_C_cross_into_v_pp','pp')]
     c.ct['set_x'] = ['d','v', c.lib.func('v','LVecBase3f_C_set_x_v_pf','pf')]
 
-    # variadic
+    # variadic : return basic types or other C++ classes
 
     c.ct['generate_hash'] = {
         2 : ['d','v', c.lib.func('v','LVecBase3f_C_generate_hash_v_pp','pp')],
@@ -152,7 +152,7 @@ class Engine(cxx.cplusplus):
     c.register("Engine", "upanda3d", """libupanda3d_c.so""")
 
 
-    # ctor/dtor
+    # ctor/dtor : classmethod type calls and return only raw pointer or void
 
     c.ct['ctor'] = {
         1 : ['s','p', c.lib.func('p','Engine_C_ctor_p_p','p')],
@@ -160,7 +160,7 @@ class Engine(cxx.cplusplus):
     }
     c.ct['dtor'] = ['s','v', c.lib.func('v','Engine_C_dtor_v_p','p')]
 
-    # fixed pos
+    # fixed pos : return basic types or other C++ classes
 
     c.ct['get_framework'] = ['d','p', c.lib.func('p','Engine_C_get_framework_p_p','p')]
     c.ct['casetest'] = ['d','i', c.lib.func('i','Engine_C_casetest_i_pipB','pipB')]
@@ -177,7 +177,7 @@ class Engine(cxx.cplusplus):
     c.ct['op_pos'] = ['d','v', c.lib.func('v','Engine_C_op_pos_v_ppp','ppp')]
     c.ct['get_wframe'] = ['d','p', c.lib.func('p','Engine_C_get_wframe_p_p','p')]
 
-    # variadic
+    # variadic : return basic types or other C++ classes
 
 
 

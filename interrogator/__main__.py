@@ -3,17 +3,17 @@ RETURN_TYPE_FIRST = 1
 DBG = 0
 
 
-TARGET = 'interrogate'
+TARGET = 'build/interrogate'
 TARGET_TMP = f'{TARGET}_temp.cpp'
 TARGET_CPP = f'{TARGET}_wrapper.cpp'
 TARGET_H = f'{TARGET}_wrapper.h'
 
-
-FFI_MARK = '_$_'
+FFI_MARK = '$'
 
 
 import sys, os
 import traceback
+import argparse
 
 
 def print_exception(e, out, **kw):
@@ -24,30 +24,61 @@ def print_exception(e, out, **kw):
 sys.print_exception = print_exception
 
 
-from . import interrogate as inter
-
 # Parameters
-inter.MODULE_PATH = sys.argv[1]
-inter.MODULE_NAME = sys.argv[1].rsplit('/')[-1]
 
-inter.VERBOSE_LVL = int(sys.argv[2])  # Assume the user did specify something valid
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--built", default='/usr/local', help="panda ./built directory or /usr /usr/local")
+parser.add_argument("--source", default="./lib", help="cxx/h lib folder")
+parser.add_argument("--name", default="", help="target lib name")
+parser.add_argument("--toolchain", default="", help="toolchain root")
+parser.add_argument("--sysroot", default="", help="toolchain sysroot")
+
+args = parser.parse_args()
 
 
-if len(sys.argv) != 3:
-    debug_out("Usage: python interrogate.py <module-name> <verbose-level>")
-    sys.exit(1)
+if os.path.exists(args.source):
 
+    # os.chdir(inter.MODULE_PATH)
+    inc = []
+    if not args.built.startswith('/usr'):
+        sys.path.insert(0, args.built)
+        if not args.built in os.environ.get('LD_LIBRARY_PATH', ''):
+            print(f"please prepend this : LD_LIBRARY_PATH={args.built}/lib ")
+            raise SystemExit
 
-# Change into the source directory
-if os.path.exists(inter.MODULE_PATH):
-    os.chdir(inter.MODULE_PATH)
+    inc.append(f'{args.built}/include')
+    inc.append(f'{args.built}/include/parser-inc')
 
-    inter.interrogate("interrogate", "-promiscuous", "-string", "-c", "-fnames")  # ,"-fptrs")
+    if not args.toolchain:
+        inc.append('/usr/include')
+        inc.append('/usr/include/x86_64-linux-gnu')
+
+    # inc.append('/usr/lib/gcc/x86_64-linux-gnu/7/include')
+    # inc.append('/usr/include/linux')
+    # inc.append('/opt/sdk/wasi-sdk/share/wasi-sysroot/include')
+
+    print(inc)
 
     relevant = 0
+    try:
+        import panda3d.core
+    except ModuleNotFoundError:
+        print(f"bad --built parameter, default is '{args.built}' but panda3d.core not found")
+        raise SystemExit
 
+    from . import interrogate as inter
 
+    inter.PANDA_BUILD = args.built
+    inter.MODULE_PATH = args.source
+    inter.MODULE_NAME = args.name
+    inter.VERBOSE_LVL = 1
+    inter.BUILD_PATH = "./build"
+
+    inter.interrogate(f"{inter.PANDA_BUILD}/bin/interrogate", "-promiscuous", "-string", "-fnames", "-assert", "-c", includes=inc)
+    # ,"-fptrs")
 else:
+    print(f"--source folder invalid [args.source]")
     raise SystemExit
 
 
@@ -104,6 +135,12 @@ def stripped_list(l):
 
 with open(TARGET_TMP, 'r') as C:
 
+    basict = "void,char,short,unsigned,signed,int,long,float,double,long,byte,bool".split(',')
+    basict.extend("std::size_t,wchar_t,std::streamsize,time_t".split(','))
+    ptypes = []
+
+    rtypes = {}
+
     from io import StringIO
 
     c_out = sys.stdout
@@ -133,6 +170,30 @@ with open(TARGET_TMP, 'r') as C:
         if ffi.startswith('static '):
             qual = 's'
         return qual, ffi
+
+    ## =========================================================================================================================
+    def map_return_types(bt, ffidef):
+        if bt.find('<') > 0:
+            return
+
+        bt = bt.split(' ', 1)[0]
+        if bt.startswith('I_'):
+            bt = bt[2:]
+
+        if not bt in basict:
+            cls, func = ffidef.split(FFI_MARK, 1)
+            if cls.startswith('I_'):
+                cls = cls[2:]
+
+            ffidef = CLASS_SEPARATOR.join([cls, func])
+
+            if bt in ptypes:
+                rtypes[ffidef] = ptypes.index(bt)
+            else:
+                ptypes.append(bt)
+                rtypes[bt] = []
+
+                # print(" RT :", bt, '%s->(...)' % cls)
 
     ##==========================================================================================================================
     def map_to_friendly():
@@ -221,9 +282,15 @@ with open(TARGET_TMP, 'r') as C:
 
         ffi = test
         FFI_DECL.append(ffi)
+
+        # try to gather return type for complex types
+        if reti == 'p':
+            map_return_types(c_type2, ffi)
+
         FFI_MAP[c_mn] = {'ret': (reti, c_type2), 'args': (argi, varsi), 'qual': qual, 'ffi': ffi}
+
         if disp:
-            print(FFI_MAP[c_mn])
+            print(c_mn, FFI_MAP[c_mn])
 
     ##==========================================================================================================================
 
@@ -372,19 +439,13 @@ with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
 # fmt: off
 h_map = {
     'std::size_t '  : 'unsigned int ',
+    'std::streamsize' : 'int ',
     'PN_stdfloat '  : 'float ',
     'wchar_t const ': 'char const ',
     'PointerTo< WindowFramework > ': 'char ',
-    'time_t ' : None,
+#    'time_t ' : None,
 }
 
-nope = {
-    'wchar_t ': 'char ',
-    'vector_string': 'char ',
-
-    'DSearchPath ' : None,
-    'pifstream ': None
-}
 # fmt: on
 
 # TODO: add the #define for custom types -> char
@@ -393,7 +454,8 @@ if 0:
         H.write(
             """// - only for pure C inclusion - auto generated via interrogator python module
 #include <stdio.h>
-    #include <stdbool.h>
+#include <stdbool.h>
+#include <time.h>
 
     """
         )
@@ -420,40 +482,39 @@ if 0:
                 H.write(l)
 
 
-def CARG(cpp):
-    global h_map
-    for k, v in h_map.items():
-        if v is None:
-            if l.find(k) >= 0:
-                askip = 1
-                break
-        else:
-            cpp = cpp.replace(k, v)
-    else:
-        askip = 0
-    return cpp, askip
+# =================================================================
+ptypes.sort()
+ptypes.reverse()
+
+
+print("PTYPES:", ptypes)
+
+
+# =================================================================
 
 
 with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
+
+    def CARG(cpp):
+        global h_map
+        for k, v in h_map.items():
+            if v is None:
+                if l.find(k) >= 0:
+                    askip = 1
+                    break
+            else:
+                cpp = cpp.replace(k, v)
+        else:
+            askip = 0
+        return cpp, askip
+
     H.write(
         """
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 
 #define PT char
-#define WindowFramework char
-#define PandaFramework char
-#define Engine char
-#define NodePath char
-#define Filename char
-#define GraphicsWindow char
-#define GraphicsOutput char
-#define Camera char
-#define DisplayRegion char
-#define TextFont char
-#define LVecBase3f char
-#define LVecBase2f char
-
 #define string char const
 #define PN_stdfloat float
 
@@ -461,6 +522,11 @@ with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
 """
     )
 
+    for pt in ptypes:
+        # H.write(f"#define {pt.replace('::','$$')} char\n")
+        H.write(f"#define {pt.replace('::','__')} char\n")
+
+    H.write("\n")
     cut = 'EXPORT_FUNC '
     lcut = len(cut)
 
@@ -495,7 +561,9 @@ with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
         decl, skip = CARG(decl)
 
         if decl.find('::') > 0:
-            decl = f"char * {decl.split(' ',1)[-1]}"
+            rt, decl = decl.split(' ', 1)
+            # decl = f"{rt.replace('::','$$')} {decl}"
+            decl = f"{rt.replace('::','__')} {decl}"
 
         if decl.find('PointerTo<') >= 0:
             skip = 1

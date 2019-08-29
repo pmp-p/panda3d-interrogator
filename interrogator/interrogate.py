@@ -32,52 +32,62 @@ def find_sources(base_dir):
     p = re.compile(r'.*\.(h|c)((pp|xx)?)$', flags=re.I)
     for f in files:
         fpath = join(base_dir, f)
+
         if isfile(fpath) and check_ignore(f) and  p.match(f) is not None:
             if f.endswith(".pb.h"):
                 continue # Skip protobuf
-            sources.append(fpath)
+            sources.append(f)
         elif isdir(fpath):
             sources += find_sources(fpath)
     return sources
 
 
-def interrogate(*cmd):
+def interrogate(*cmd,includes=[]):
     """ Runs interrogate over the source directory """
 
-    # Collect source files and convert them to a relative path
-    all_sources = find_sources(".")
+    MAJ = PandaSystem.get_major_version() == 1
+    MIN = PandaSystem.get_minor_version()
+
+    print(f"Panda3D {MAJ}.{MIN}")
+
 
     cmd = list(cmd)
 
     if VERBOSE_LVL == 1:
-        cmd += ["-v"]
+        cmd.append("-v")
+
     elif VERBOSE_LVL == 2:
-        cmd += ["-vv"]
+        cmd.append("-vv")
 
-    cmd += ["-S" + "/usr/local/include/panda3d/include" + "/parser-inc"]
-    cmd += ["-S" + "/usr/local/include/panda3d/include" + "/"]
-    cmd += ["-S" + "/usr/local/include" ]
-    cmd += ["-S" + "/usr/include"]
-    cmd += ["-S" + "/usr/include/x86_64-linux-gnu" ]
+    for include in includes:
+        cmd.append("-S")
+        cmd.append(include)
+
     # Add all subdirectories
-    for pth in listdir("."):
+    for pth in listdir(MODULE_PATH):
         if isdir(pth):
-            cmd += ["-I" + pth]
+            cmd.append(f"-I{pth}")
 
-    cmd += ["-srcdir", "."]
+    cmd.append( "--oc" )
+
     if "-c" in cmd:
-        cmd += ["-oc", "interrogate_temp.cpp"]
+        cmd.append( f"{BUILD_PATH}/interrogate_temp.cpp" )
     else:
-        cmd += ["-oc", "interrogate_wrapper.cpp"]
-    cmd += ["-od", "interrogate.in"]
-    cmd += ["-module", MODULE_NAME]
-    cmd += ["-library", MODULE_NAME]
+        cmd.append( f"{BUILD_PATH}/interrogate_wrapper.cpp" )
 
-    if PandaSystem.get_major_version() > 1 or PandaSystem.get_minor_version() > 9:
+    cmd.append("-srcdir")
+    cmd.append(MODULE_PATH)
+
+
+    if MAJ > 1 or MIN > 9:
         # Add nomangle option, but only for recent builds
         cmd += ["-nomangle"]
 
-    if PandaSystem.get_major_version() == 1 and PandaSystem.get_minor_version() < 10:
+    cmd += ["-od", f"{BUILD_PATH}/interrogate.in"]
+    cmd += ["-module", MODULE_NAME]
+    cmd += ["-library", MODULE_NAME]
+
+    if MAJ==1 and MIN < 10:
         # Old interrogate options cant handle volatile
         cmd += ["-Dvolatile="]
 
@@ -85,24 +95,32 @@ def interrogate(*cmd):
     defines = ["INTERROGATE", "CPPPARSER", "__STDC__=1", "__cplusplus=201103L"]
 
     if get_compiler_name() == "MSC":
+        print("Using MSC")
         defines += ["__inline", "_X86_", "WIN32_VC", "WIN32", "_WIN32"]
         if is_64_bit():
             defines += ["WIN64_VC", "WIN64", "_WIN64"]
         # NOTE: this 1600 value is the version number for VC2010.
         defines += ["_MSC_VER=1600", '"__declspec(param)="', "__cdecl", "_near",
                     "_far", "__near", "__far", "__stdcall"]
-
-    if get_compiler_name() == "GCC":
+    elif get_compiler_name() == "GCC":
+        print("Using gcc")
         defines += ['__attribute__\(x\)=']
-        if is_64_bit():
-            defines += ['_LP64']
-        else:
+        defines += ['__x86_64__','_LP64']
+        if 0:
             defines += ['__i386__']
 
     for define in defines:
         cmd += ["-D" + define]
 
+
+    # Collect source files and convert them to a relative path
+    all_sources = find_sources(MODULE_PATH)
+
     cmd += all_sources
+
+    print( ' '.join(cmd))
+    print()
+
     try_execute(*cmd)
 
 

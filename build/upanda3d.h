@@ -1,24 +1,29 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 
 #define PT char
-#define WindowFramework char
-#define PandaFramework char
-#define Engine char
-#define NodePath char
-#define Filename char
-#define GraphicsWindow char
-#define GraphicsOutput char
-#define Camera char
-#define DisplayRegion char
-#define TextFont char
-#define LVecBase3f char
-#define LVecBase2f char
-
 #define string char const
 #define PN_stdfloat float
 
+
+#define WindowFramework__BackgroundType char
+#define WindowFramework char
+#define TextFont char
+#define TextEncoder__Encoding char
+#define PandaFramework char
+#define NodePath char
+#define LVecBase3f__EVector3 char
+#define LVecBase3f char
+#define LVecBase2f char
+#define GraphicsWindow char
+#define GraphicsOutput char
+#define Filename__Type char
+#define Filename char
+#define Engine char
+#define DisplayRegion char
+#define Camera char
 
 extern Filename * Filename_C_ctor_p_v();
 extern Filename * Filename_C_ctor_p_p(Filename *param0);
@@ -47,21 +52,21 @@ extern Filename const * Filename_C_get_home_directory_p_v();
 extern Filename const * Filename_C_get_temp_directory_p_v();
 extern Filename const * Filename_C_get_user_appdata_directory_p_v();
 extern Filename const * Filename_C_get_common_appdata_directory_p_v();
-extern Filename * _inCKD07UZ8w(char *param0, char *param1);
-extern Filename * _inCKD07e4GP(char *param0, char *param1);
-extern Filename * _inCKD07An_g(char *param0, char *param1);
-extern Filename * _inCKD07AEbr(char *param0, char *param1);
-extern Filename * _inCKD07wt4w(char *param0, char *param1);
+extern Filename * _inCAAAAUZ8w(char *param0, char *param1);
+extern Filename * _inCAAAAe4GP(char *param0, char *param1);
+extern Filename * _inCAAAAAn_g(char *param0, char *param1);
+extern Filename * _inCAAAAAEbr(char *param0, char *param1);
+extern Filename * _inCAAAAwt4w(char *param0, char *param1);
 extern char const * _s_p(char *param0);
 extern char const * Filename_C_c_str_s_p(Filename const *param0);
 extern bool Filename_C_empty_B_p(Filename const *param0);
 extern unsigned int Filename_C_length_p_p(Filename const *param0);
-extern char _inCKD07PYDQ(char *param0, char *param1);
+extern char _inCAAAAPYDQ(char *param0, char *param1);
 extern char const * Filename_C_substr_s_pp(Filename const *param0, char *param1);
 extern char const * Filename_C_substr_s_ppp(Filename const *param0, char *param1, char *param2);
-extern Filename * _inCKD07_CCc(char *param0, char *param1);
-extern Filename * _inCKD07dG6k(char *param0, char *param1);
-extern Filename * _inCKD07pD3m(char *param0, char *param1);
+extern Filename * _inCAAAA_CCc(char *param0, char *param1);
+extern Filename * _inCAAAAdG6k(char *param0, char *param1);
+extern Filename * _inCAAAApD3m(char *param0, char *param1);
 extern char const * Filename_C_get_fullpath_s_p(Filename const *param0);
 extern char const * Filename_C_get_fullpath_w_p_p(Filename const *param0);
 extern char const * Filename_C_get_dirname_s_p(Filename const *param0);
@@ -81,7 +86,7 @@ extern bool Filename_C_is_binary_B_p(Filename const *param0);
 extern bool Filename_C_is_text_B_p(Filename const *param0);
 extern bool Filename_C_is_binary_or_text_B_p(Filename const *param0);
 extern void Filename_C_set_type_v_pp(Filename *param0, char *param1);
-extern char * Filename_C_get_type_p_p(Filename const *param0);
+extern Filename__Type Filename_C_get_type_p_p(Filename const *param0);
 extern void Filename_C_set_pattern_v_pB(Filename *param0, bool param1);
 extern bool Filename_C_get_pattern_B_p(Filename const *param0);
 extern bool Filename_C_has_hash_B_p(Filename const *param0);
@@ -109,7 +114,9 @@ extern bool Filename_C_is_executable_B_p(Filename const *param0);
 extern int Filename_C_compare_timestamps_i_ppBB(Filename const *param0, char *param1, bool param2, bool param3);
 extern int Filename_C_compare_timestamps_1_i_ppBB(Filename const *param0, char *param1, bool param2);
 extern int Filename_C_compare_timestamps_2_i_ppBB(Filename const *param0, char *param1);
-extern char * Filename_C_get_file_size_p_p(Filename const *param0);
+extern time_t Filename_C_get_timestamp_p_p(Filename const *param0);
+extern time_t Filename_C_get_access_timestamp_p_p(Filename const *param0);
+extern int  Filename_C_get_file_size_p_p(Filename const *param0);
 extern bool Filename_C_resolve_filename_B_ppp(Filename *param0, char *param1, char *param2);
 extern bool Filename_C_resolve_filename_1_B_ppp(Filename *param0, char *param1);
 extern bool Filename_C_make_relative_to_B_ppB(Filename *param0, char *param1, bool param2);
@@ -138,15 +145,15 @@ extern bool Filename_C_copy_to_B_pp(Filename const *param0, char *param1);
 extern bool Filename_C_make_dir_B_p(Filename const *param0);
 extern bool Filename_C_mkdir_B_p(Filename const *param0);
 extern bool Filename_C_rmdir_B_p(Filename const *param0);
-extern bool _inCKD07OBrR(char *param0, char *param1);
-extern bool _inCKD07sEaR(char *param0, char *param1);
-extern bool _inCKD07YSEF(char *param0, char *param1);
+extern bool _inCAAAAOBrR(char *param0, char *param1);
+extern bool _inCAAAAsEaR(char *param0, char *param1);
+extern bool _inCAAAAYSEF(char *param0, char *param1);
 extern int Filename_C_compare_to_i_pp(Filename const *param0, char *param1);
 extern bool Filename_C___nonzero___B_p(Filename const *param0);
 extern int Filename_C_get_hash_i_p(Filename const *param0);
 extern void Filename_C_output_v_pp(Filename const *param0, char *param1);
 extern void Filename_C_set_filesystem_encoding_v_pp(char *param0);
-extern char * Filename_C_get_filesystem_encoding_p_v();
+extern TextEncoder__Encoding Filename_C_get_filesystem_encoding_p_v();
 extern int Filename_C_get_class_type_i_v();
 extern void Filename_C_init_type_v_v();
 extern LVecBase3f * LVecBase3f_C_ctor_p_v();
@@ -155,15 +162,15 @@ extern LVecBase3f * LVecBase3f_C_ctor_p_p(LVecBase3f const *param0);
 extern LVecBase3f * LVecBase3f_C_ctor_1_p_p(char *param0);
 extern LVecBase3f * LVecBase3f_C_ctor_p_f(char *param0);
 extern LVecBase3f * LVecBase3f_C_ctor_p_fff(char *param0, float param1, float param2);
-extern void _inCKD074Nkp(char *param0, char *param1);
-extern LVecBase3f * _inCKD07qOP9(char *param0, char *param1);
-extern LVecBase3f * _inCKD07rfXC(char *param0, float param1);
+extern void _inCAAAA4Nkp(char *param0, char *param1);
+extern LVecBase3f * _inCAAAAqOP9(char *param0, char *param1);
+extern LVecBase3f * _inCAAAArfXC(char *param0, float param1);
 extern LVecBase3f const * LVecBase3f_C_zero_p_v();
 extern LVecBase3f const * LVecBase3f_C_unit_x_p_v();
 extern LVecBase3f const * LVecBase3f_C_unit_y_p_v();
 extern LVecBase3f const * LVecBase3f_C_unit_z_p_v();
-extern void _inCKD0701HX(char *param0, int param1, float param2);
-extern float _inCKD07nq7z(char *param0, int param1);
+extern void _inCAAAA01HX(char *param0, int param1, float param2);
+extern float _inCAAAAnq7z(char *param0, int param1);
 extern int LVecBase3f_C_size_i_v();
 extern bool LVecBase3f_C_is_nan_B_p(LVecBase3f const *param0);
 extern float LVecBase3f_C_get_cell_f_pi(LVecBase3f const *param0, int param1);
@@ -196,9 +203,9 @@ extern bool LVecBase3f_C_normalize_B_p(LVecBase3f *param0);
 extern LVecBase3f * LVecBase3f_C_normalized_p_p(LVecBase3f const *param0);
 extern LVecBase3f * LVecBase3f_C_project_p_pp(LVecBase3f const *param0, char *param1);
 extern LVecBase3f * LVecBase3f_C_cross_p_pp(LVecBase3f const *param0, char *param1);
-extern bool _inCKD07dE8o(char *param0, char *param1);
-extern bool _inCKD07Ft4v(char *param0, char *param1);
-extern bool _inCKD07BNge(char *param0, char *param1);
+extern bool _inCAAAAdE8o(char *param0, char *param1);
+extern bool _inCAAAAFt4v(char *param0, char *param1);
+extern bool _inCAAAABNge(char *param0, char *param1);
 extern LVecBase3f * LVecBase3f_C_get_standardized_hpr_p_p(LVecBase3f const *param0);
 extern int LVecBase3f_C_compare_to_i_pp(LVecBase3f const *param0, char *param1);
 extern int LVecBase3f_C_compare_to_i_ppf(LVecBase3f const *param0, char *param1, float param2);
@@ -208,15 +215,15 @@ extern unsigned int LVecBase3f_C_add_hash_p_pp(LVecBase3f const *param0, char *p
 extern unsigned int LVecBase3f_C_add_hash_p_ppf(LVecBase3f const *param0, char *param1, float param2);
 extern void LVecBase3f_C_generate_hash_v_pp(LVecBase3f const *param0, char *param1);
 extern void LVecBase3f_C_generate_hash_v_ppf(LVecBase3f const *param0, char *param1, float param2);
-extern LVecBase3f * _inCKD07iO_P(char *param0);
-extern LVecBase3f * _inCKD07fM9C(char *param0, char *param1);
-extern LVecBase3f * _inCKD07f8eW(char *param0, char *param1);
-extern LVecBase3f * _inCKD07Hdlj(char *param0, float param1);
-extern LVecBase3f * _inCKD07Y1ZU(char *param0, float param1);
-extern LVecBase3f * _inCKD07GqXQ(char *param0, char *param1);
-extern LVecBase3f * _inCKD07Ga5j(char *param0, char *param1);
-extern LVecBase3f * _inCKD07PZfq(char *param0, float param1);
-extern LVecBase3f * _inCKD07OhTb(char *param0, float param1);
+extern LVecBase3f * _inCAAAAiO_P(char *param0);
+extern LVecBase3f * _inCAAAAfM9C(char *param0, char *param1);
+extern LVecBase3f * _inCAAAAf8eW(char *param0, char *param1);
+extern LVecBase3f * _inCAAAAHdlj(char *param0, float param1);
+extern LVecBase3f * _inCAAAAY1ZU(char *param0, float param1);
+extern LVecBase3f * _inCAAAAGqXQ(char *param0, char *param1);
+extern LVecBase3f * _inCAAAAGa5j(char *param0, char *param1);
+extern LVecBase3f * _inCAAAAPZfq(char *param0, float param1);
+extern LVecBase3f * _inCAAAAOhTb(char *param0, float param1);
 extern void LVecBase3f_C_componentwise_mult_v_pp(LVecBase3f *param0, char *param1);
 extern LVecBase3f * LVecBase3f_C_fmax_p_pp(LVecBase3f const *param0, char *param1);
 extern LVecBase3f * LVecBase3f_C_fmin_p_pp(LVecBase3f const *param0, char *param1);
@@ -228,7 +235,7 @@ extern void LVecBase3f_C_write_datagram_fixed_v_pp(LVecBase3f const *param0, cha
 extern void LVecBase3f_C_read_datagram_fixed_v_pp(LVecBase3f *param0, char *param1);
 extern void LVecBase3f_C_write_datagram_v_pp(LVecBase3f const *param0, char *param1);
 extern void LVecBase3f_C_read_datagram_v_pp(LVecBase3f *param0, char *param1);
-extern char * * LVecBase3f_C_get_v_p_p(LVecBase3f const *param0);
+extern LVecBase3f__EVector3 * LVecBase3f_C_get_v_p_p(LVecBase3f const *param0);
 extern int LVecBase3f_C_get_class_type_i_v();
 extern void LVecBase3f_C_init_type_v_v();
 extern PandaFramework * WindowFramework_C_get_panda_framework_p_p(WindowFramework const *param0);
@@ -275,7 +282,7 @@ extern bool WindowFramework_C_get_two_sided_B_p(WindowFramework const *param0);
 extern bool WindowFramework_C_get_one_sided_reverse_B_p(WindowFramework const *param0);
 extern bool WindowFramework_C_get_lighting_B_p(WindowFramework const *param0);
 extern bool WindowFramework_C_get_perpixel_B_p(WindowFramework const *param0);
-extern char * WindowFramework_C_get_background_type_p_p(WindowFramework const *param0);
+extern WindowFramework__BackgroundType WindowFramework_C_get_background_type_p_p(WindowFramework const *param0);
 extern TextFont * WindowFramework_C_get_shuttle_controls_font_p_v();
 extern NodePath * WindowFramework_C_make_camera_p_p(WindowFramework *param0);
 extern int WindowFramework_C_get_class_type_i_v();

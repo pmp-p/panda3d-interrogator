@@ -1,7 +1,10 @@
 # upy
 
+
 FFI_MARK = '_C_'
 RETURN_TYPE_FIRST = 1
+
+DBG = 0
 
 
 import os
@@ -40,36 +43,45 @@ def dlopen(lib):
     code = {}
 
     # platform dependant
-    clib = lib = f"lib{lib}_c.so"
+    clib = f"lib{lib}_c.so"
+
+    def ffimap(ffi_name):
+        global RETURN_TYPE_FIRST
+        if RETURN_TYPE_FIRST:
+            func, ret, args = ffi_name.rsplit('_', 2)
+        else:
+            func, args, ret = ffi_name.rsplit('_', 2)
+        return func, ret, args
 
     # FIXME: use readelf tools and wasm tools
-    for func in os.popen(f"nm -C build/{lib} |grep '. T .*_*_.*$'|cut -d' ' -f3"):
+    # for func in os.popen(f"nm --demangle --defined-only --dynamic {clib} |grep '. T .*_._.*$'|cut -d' ' -f3"):
+    for func in os.popen(f"nm -C build/{clib} |grep '. T .*_*_.*$'|cut -d' ' -f3"):
         ffi_name = func.strip()
         if ffi_name.find(FFI_MARK) < 1:
-            print("N/I: globals", func)
+            if DBG:
+                print("N/I: globals", func, end='')
             continue
 
         try:
-            if RETURN_TYPE_FIRST:
-                func, ret, args = ffi_name.rsplit('_', 2)
-            else:
-                func, args, ret = ffi_name.rsplit('_', 2)
+            func, ret, args = ffimap(ffi_name)
             cls, func = func.split('_C_', 1)
             code.setdefault(cls, {})
             code[cls].setdefault(func, [])
             code[cls][func].append((ret, args, ffi_name))
 
-            print(cls, '.', func, args, '->', ret)
+            if DBG:
+                print(cls, '.', func, args, '->', ret)
         except:
-            print("N/I:", func)
+            if DBG:
+                print("N/I:", func, end='')
 
-    print("Loading native lib", lib, file=sys.stderr)
+    print("Loading native lib", clib, file=sys.stderr)
 
     try:
-        lib = ffi.open(lib)
+        lib = ffi.open(clib)
     except Exception as e:
         sys.print_exception(e)
-        print(f'dlopen failed on {lib}')
+        print(f'dlopen failed on {clib}')
         raise SystemExit
     code['lib'] = clib
     return code
@@ -92,7 +104,8 @@ def build(TARGET):
     OUT_FILE = open('build/%s.py' % TARGET, 'w')
 
     def write(*argv, **kw):
-        print(*argv, **kw)
+        if DBG:
+            print(*argv, **kw)
         kw['file'] = OUT_FILE
         print(*argv, **kw)
 
@@ -144,7 +157,7 @@ class {pcls}(cxx.cplusplus):
 
         write(
             """
-    # ctor/dtor
+    # ctor/dtor : classmethod type calls and return only raw pointer or void
 """
         )
 
@@ -161,7 +174,7 @@ class {pcls}(cxx.cplusplus):
 
         write(
             """
-    # fixed pos
+    # fixed pos : return basic types or other C++ classes
 """
         )
 
@@ -174,7 +187,7 @@ class {pcls}(cxx.cplusplus):
 
         write(
             """
-    # variadic
+    # variadic : return basic types or other C++ classes
 """
         )
 

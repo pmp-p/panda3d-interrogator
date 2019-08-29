@@ -7,6 +7,10 @@
 // forcetype PandaSystem
 // Internal error!  Function signature PandaSystem::get_system(std::size_t) const repeated!
 
+//forcetype ConfigPage
+//Internal error!  Function signature ConfigPage::modify_declaration(std::size_t) repeated!
+
+
 forcetype WindowFramework
 forcetype Filename
 forcetype LVecBase3f
