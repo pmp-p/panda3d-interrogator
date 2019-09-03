@@ -176,7 +176,8 @@ with open(TARGET_TMP, 'r') as C:
     ## =========================================================================================================================
     def map_return_types(bt, ffidef):
         if bt.find('<') > 0:
-            return
+            bt = bt.split(' > ')[0].split('< ', 1)[-1]
+            bt += ' *'
 
         bt = bt.split(' ', 1)[0]
         if bt.startswith('I_'):
@@ -284,6 +285,9 @@ with open(TARGET_TMP, 'r') as C:
 
         ffi = test
         FFI_DECL.append(ffi)
+
+        if ffi.count('get_wframe'):
+            disp = 1
 
         # try to gather return type for complex types
         if reti == 'p':

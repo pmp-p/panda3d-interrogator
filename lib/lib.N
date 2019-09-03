@@ -1,16 +1,21 @@
-// forcetype PandaFramework
+forcetype PandaFramework
 // is OK but bloating my tests
 
-//forcetype NodePath
+forcetype NodePath
 // Internal error!  Function signature NodePath::get_node(int, Thread *) const repeated!
 
-// forcetype PandaSystem
+forcetype PandaSystem
 // Internal error!  Function signature PandaSystem::get_system(std::size_t) const repeated!
 
-//forcetype ConfigPage
+forcetype ConfigPage
 //Internal error!  Function signature ConfigPage::modify_declaration(std::size_t) repeated!
 
+forcetype Camera
+//Internal error!  Function signature Camera::get_display_region(std::size_t) const repeated!
 
 forcetype WindowFramework
 forcetype Filename
 forcetype LVecBase3f
+
+forcetype NodePathCollection
+

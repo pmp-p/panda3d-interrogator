@@ -177,9 +177,10 @@ cxx.cstructs.decl.extend({})
 
     for cls in CODE.keys():
 
-        if not cls in ['Engine', 'NodePath', 'LVecBase3f']:
-            print("SKIPPING", ":", cls)
-            continue
+        if 0:
+            if not cls in ['Engine', 'NodePath', 'LVecBase3f']:
+                print("maybe skipPING", ":", cls)
+                continue
 
         if cls.startswith('_'):
             pcls = cls[2:]
@@ -276,21 +277,23 @@ if __name__ == '__main__':
 
         E.build()
 
+        print('framework=', E.get_wframe() )
+
 
         np = E.load_model( "model.bam" )
 
         print("np","=",np)
 
         E.attach(np)
+        if 0:
+            v3 = LVecBase3f(0.01, 42.01, 0.01)
+            print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+            np.set_pos( v3 )
 
-        v3 = LVecBase3f(0.01, 42.01, 0.01)
-        print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-        np.set_pos( v3 )
+            v3 = LVecBase3f(2.0, 2.0, 2.0)
+            print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
 
-        v3 = LVecBase3f(2.0, 2.0, 2.0)
-        print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-
-        np.set_scale( v3 )
+            np.set_scale( v3 )
 
 
         while E.is_alive():

@@ -13,7 +13,7 @@
 #include "pandaSystem.h"
 
 
-#ifdef CPPPARSER
+#if 0 //.def CPPPARSER
 class EXPORT_CLASS I_NodePath : public NodePath::NodePath
 {
     PUBLISHED:

@@ -121,11 +121,12 @@ class cplusplus:
                 if call is not None:
                     # can we return a C++ type ?
                     slot = call[1]
+
                     if isinstance(slot, int ) and not isinstance( c.decl[slot], str ):
-                            rt  = c.decl[slot]
-                            def jit(*argv, **kw):
-                                kw['hint'] = attr
-                                return rt(cptr=self.__cplusplus(call, *argv, **kw))
+                        rt  = c.decl[slot]
+                        def jit(*argv, **kw):
+                            kw['hint'] = attr
+                            return rt(cptr=self.__cplusplus(call, *argv, **kw))
                     else:
                         def jit(*argv, **kw):
                             kw['hint'] = attr

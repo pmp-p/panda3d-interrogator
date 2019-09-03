@@ -1,12 +1,14 @@
 #include <iostream>
 #include <dlfcn.h>
 
-
 #include "pandaFramework.h"
 #include "pandaSystem.h"
 #include "pandabase.h"
 
-
+#include "nodePath.h"
+#include "internalNameCollection.h"
+#include "nodePathCollection.h"
+#include "materialCollection.h"
 
 
 #define MAX_em_steps 160

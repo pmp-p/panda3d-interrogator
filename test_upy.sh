@@ -30,6 +30,6 @@ then
     if $PYTHON -m fstrings_helper cxxbuilder_cpy.py > cxxbuilder_upy.py
     then
         micropython cxxbuilder_upy.py
-        micropython -X heapsize=128K build/upanda3d.py
+        micropython -X heapsize=1024K build/upanda3d.py
     fi
 fi
