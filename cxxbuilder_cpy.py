@@ -1,5 +1,20 @@
 # upy
 
+# STM GC
+#   https://bitbucket.org/pypy/stmgc/src/default/
+
+# ffi
+#   https://pycopy.readthedocs.io/en/latest/library/ffi.html
+
+# jni
+#   https://github.com/pfalcon/pycopy/blob/pfalcon/ports/unix/modjni.c
+
+# llvm
+#   https://github.com/pfalcon/ullvm
+
+
+# https://github.com/pfalcon/awesome-micropython
+
 
 FFI_MARK = '_C_'
 RETURN_TYPE_FIRST = 1
@@ -9,12 +24,18 @@ DBG = 0
 
 import os
 import sys
-import ffi
 import uctypes
 
+try:
+    import ffi
+except:
+    print("FIXME: cpython")
 
-class Engine:
-    pass
+
+try:
+    import json
+except:
+    import ujson as json
 
 
 CODE = {}
@@ -40,7 +61,11 @@ FFI = 2
 
 
 def dlopen(lib):
+
     code = {}
+
+    with open(f"build/{lib}.json", 'r') as jsonf:
+        retmap = json.loads(jsonf.read())
 
     # platform dependant
     clib = f"lib{lib}_c.so"
@@ -84,6 +109,8 @@ def dlopen(lib):
         print(f'dlopen failed on {clib}')
         raise SystemExit
     code['lib'] = clib
+    code['retmap'] = retmap.pop('retmap')
+    code['forward_decl'] = retmap.pop('forward_decl')
     return code
 
 
@@ -109,29 +136,41 @@ def build(TARGET):
         kw['file'] = OUT_FILE
         print(*argv, **kw)
 
+    def ret_cpp(ret, ffi_name):
+        pret = "'%s'" % ret
+        if ret == 'p':
+            pret = retmap.get(ffi_name, "'p'")
+            if pret in forward_decl:
+                pret = forward_decl.index(pret)
+        return pret
+
     def variadics(func, targets, ct='d'):
         write(f"    c.ct['{func}'] = {{")
         for t in targets:
             ret, args, ffi_name = t
-            if ret == 'p' and args == 'v':
-                write(f"""        {0} : ['s','{ret}', c.lib.func('{ret}','{ffi_name}','')],""")
-            else:
-
-                write(f"""        {len(t[VAR])} : ['{ct}','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')],""")
+            pret = ret_cpp(ret, ffi_name)
+            if args == 'v':
+                write(f"""        {0} : ['s', {pret}, c.lib.func('{ret}','{ffi_name}','')],""")
+                continue
+            write(f"""        {len(t[VAR])} : ['{ct}', {pret}, c.lib.func('{ret}','{ffi_name}','{args}')],""")
         write('    }')
 
     CODE.update(dlopen(TARGET))
 
     lib = CODE.pop('lib')
-
+    retmap = CODE.pop('retmap')
+    forward_decl = CODE.pop('forward_decl')
     write(
-        """# upy
+        f"""# upy
 
 import sys
 
 
 if not '.' in sys.path: sys.path.insert(0,'.')
 import interrogator.uplusplus as cxx
+
+cxx.cstructs.decl.extend({forward_decl})
+
 
 """
     )
@@ -150,8 +189,7 @@ import interrogator.uplusplus as cxx
         write(
             f'''
 class {pcls}(cxx.cplusplus):
-    c = cxx.cstructs()
-    c.register("{pcls}", "{TARGET}", """{lib}""")
+    c = cxx.cstructs().register("{pcls}", "{TARGET}", """{lib}""")
 '''
         )
 
@@ -168,7 +206,8 @@ class {pcls}(cxx.cplusplus):
 
             if len(targets) == 1:
                 for ret, args, ffi_name in targets:
-                    write(f"""    c.ct['{func}'] = ['s','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')]""")
+                    pret = ret_cpp(ret, ffi_name)
+                    write(f"""    c.ct['{func}'] = ['s', {pret}, c.lib.func('{ret}','{ffi_name}','{args}')]""")
             else:
                 variadics(func, targets, 's')
 
@@ -183,7 +222,8 @@ class {pcls}(cxx.cplusplus):
                 continue
 
             for ret, args, ffi_name in targets:
-                write(f"""    c.ct['{func}'] = ['d','{ret}', c.lib.func('{ret}','{ffi_name}','{args}')]""")
+                pret = ret_cpp(ret, ffi_name)
+                write(f"""    c.ct['{func}'] = ['d', {pret}, c.lib.func('{ret}','{ffi_name}','{args}')]""")
 
         write(
             """
@@ -236,13 +276,12 @@ if __name__ == '__main__':
 
         E.build()
 
+
         np = E.load_model( "model.bam" )
 
         print("np","=",np)
 
         E.attach(np)
-
-        np = NodePath(cptr=np)
 
         v3 = LVecBase3f(0.01, 42.01, 0.01)
         print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
@@ -252,8 +291,6 @@ if __name__ == '__main__':
         print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
 
         np.set_scale( v3 )
-
-
 
 
         while E.is_alive():

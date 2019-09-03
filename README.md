@@ -25,9 +25,9 @@ or old cpython targets
 
 
 ```
-# run interrogate to get the lib/interrogate_wrapper.cpp from lib/lib.*
-# args: folderoflib verbositylevel
-# .cxx and .h of your lib must be already there
+# run interrogator.sh to get the lib/interrogate_wrapper.cpp from lib/lib.*
+# .cxx and .h of your lib must be already in ./lib/
+# forced exports of extern classes is made by adding them to lib.N
 
 CONFIG=linux-x64.env ./interrogator.sh
 
@@ -35,7 +35,7 @@ CONFIG=linux-x64.env ./interrogator.sh
 # link the c++ libupanda_cpp.so then build its C only interface libupanda_c.so
 # there a test for both give it a model.bam to display
 
-./shared.sh
+./build_c_interface.sh
 
 
 #test micropython build ( need uctypes and ffi modules enabled on unix port )

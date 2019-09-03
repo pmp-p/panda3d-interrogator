@@ -7,6 +7,7 @@ TARGET = 'build/interrogate'
 TARGET_TMP = f'{TARGET}_temp.cpp'
 TARGET_CPP = f'{TARGET}_wrapper.cpp'
 TARGET_H = f'{TARGET}_wrapper.h'
+TARGET_JSON = f'{TARGET}_wrapper.json'
 
 FFI_MARK = '$'
 
@@ -14,6 +15,7 @@ FFI_MARK = '$'
 import sys, os
 import traceback
 import argparse
+import json
 
 
 def print_exception(e, out, **kw):
@@ -188,10 +190,10 @@ with open(TARGET_TMP, 'r') as C:
             ffidef = CLASS_SEPARATOR.join([cls, func])
 
             if bt in ptypes:
-                rtypes[ffidef] = ptypes.index(bt)
+                rtypes[ffidef] = bt  # ptypes.index(bt)
             else:
                 ptypes.append(bt)
-                rtypes[bt] = []
+                # rtypes[bt] = []
 
                 # print(" RT :", bt, '%s->(...)' % cls)
 
@@ -423,9 +425,6 @@ def {c_def}({var_args1}) -> {c_type1 or 'void'}:
                 c_code.append(f'    {cline}')
 
 
-# for k, v in FFI_MAP.items():
-#    print(k, v)
-
 with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
     for l in C.readlines():
         for k, v in FFI_MAP.items():
@@ -435,6 +434,9 @@ with open(TARGET_TMP, 'r') as C, open(TARGET_CPP, 'w') as CPP:
         l = l.replace('static wstring ', 'static std::wstring ')
         l = l.replace('I_NodePath', 'NodePath')
         CPP.write(l)
+
+
+# =================================================================
 
 # fmt: off
 h_map = {
@@ -448,47 +450,19 @@ h_map = {
 
 # fmt: on
 
-# TODO: add the #define for custom types -> char
-if 0:
-    with open(TARGET_CPP, 'r') as C, open(TARGET_H, 'w') as H:
-        H.write(
-            """// - only for pure C inclusion - auto generated via interrogator python module
-#include <stdio.h>
-#include <stdbool.h>
-#include <time.h>
 
-    """
-        )
-        for l in C.readlines():
-            if not l.startswith('EXPORT_FUNC '):
-                continue
-
-            if l.find('::') > 0:
-                print("c.h skipping ::", l, end="")
-                continue
-
-            for k, v in h_map.items():
-                if v is None:
-                    if l.find(k) > 0:
-                        skip = 1
-                        break
-                else:
-                    l = l.replace(k, v)
-            else:
-                skip = 0
-
-            if not skip:
-                l = l.replace('EXPORT_FUNC', 'extern', 1)
-                H.write(l)
-
-
-# =================================================================
 ptypes.sort()
 ptypes.reverse()
 
 
 print("PTYPES:", ptypes)
 
+# for k, v in rtypes.items():
+#    print(v, k)
+
+
+with open(TARGET_JSON, 'w') as RT:
+    print(json.dumps({'forward_decl': ptypes, 'retmap': rtypes}), file=RT)
 
 # =================================================================
 

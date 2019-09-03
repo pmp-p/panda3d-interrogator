@@ -22,10 +22,12 @@ else
     git clone https://github.com/pmp-p/fstrings_helper.git
 fi
 
+echo LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
 if black -S -l 132 cxxbuilder_cpy.py
 then
 
-    if python3.8 -m fstrings_helper cxxbuilder_cpy.py > cxxbuilder_upy.py
+    if $PYTHON -m fstrings_helper cxxbuilder_cpy.py > cxxbuilder_upy.py
     then
         micropython cxxbuilder_upy.py
         micropython -X heapsize=128K build/upanda3d.py

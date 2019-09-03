@@ -17,6 +17,8 @@ import ffi
 class cstructs(dict):
     pool = []
 
+    decl = []
+
     def __init__(self):
         self.ct = dict()
         self.ref = dict()
@@ -25,17 +27,22 @@ class cstructs(dict):
     def register(self, cname, lname, lib):
         self.name = "{0}::{1}".format(lname, cname)
         self.lib = ffi.open(lib)
+        return self
 
     def link(self,cls):
         del self.lib
         self.factory = cls
-        #if not self in self.__class__.pool:
+        if cls.__name__ in self.decl:
+            slot = self.decl.index(cls.__name__)
+            self.decl[slot] = cls
+            print("c++",cls.__name__,"found and avail. as Python return type")
         self.__class__.pool.append(self)
 
 
 
 
 class cplusplus:
+
 
     # c++ ctor/dtor
 
@@ -112,10 +119,17 @@ class cplusplus:
             if jit is None:
                 call = c.ct.get(attr, None)
                 if call is not None:
-
-                    def jit(*argv, **kw):
-                        kw['hint'] = attr
-                        return self.__cplusplus(call, *argv, **kw)
+                    # can we return a C++ type ?
+                    slot = call[1]
+                    if isinstance(slot, int ) and not isinstance( c.decl[slot], str ):
+                            rt  = c.decl[slot]
+                            def jit(*argv, **kw):
+                                kw['hint'] = attr
+                                return rt(cptr=self.__cplusplus(call, *argv, **kw))
+                    else:
+                        def jit(*argv, **kw):
+                            kw['hint'] = attr
+                            return self.__cplusplus(call, *argv, **kw)
 
                     c[hsum] = jit
             return jit
