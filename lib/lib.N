@@ -18,4 +18,4 @@ forcetype Filename
 forcetype LVecBase3f
 
 forcetype NodePathCollection
-
+forcetype LVecBase3f::EVector3

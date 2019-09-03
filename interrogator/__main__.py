@@ -201,7 +201,7 @@ with open(TARGET_TMP, 'r') as C:
     ##==========================================================================================================================
     def map_to_friendly():
 
-        global FFI_DECL, c_vars, invalidate, var_args1, var_args2
+        global FFI_DECL, c_vars, invalidate, var_args1, var_args2, c_orig
 
         if invalidate:
             return
@@ -286,7 +286,7 @@ with open(TARGET_TMP, 'r') as C:
         ffi = test
         FFI_DECL.append(ffi)
 
-        if ffi.count('get_wframe'):
+        if c_orig.count('vector_uchar'):
             disp = 1
 
         # try to gather return type for complex types
@@ -448,7 +448,14 @@ h_map = {
     'std::streamsize' : 'int ',
     'PN_stdfloat '  : 'float ',
     'wchar_t const ': 'char const ',
-    'PointerTo< WindowFramework > ': 'char ',
+    'vector_uchar ' : 'unsigned char ',
+
+    'PointerTo< WindowFramework >': 'char ',
+    'ConstPointerTo< TransformState >' : 'char',
+    'ConstPointerTo< RenderState >' : 'char',
+    'PointerTo< Material >' : 'char',
+    'PointerTo< BoundingVolume >' : 'char',
+
 #    'time_t ' : None,
 }
 

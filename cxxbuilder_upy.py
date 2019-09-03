@@ -150,7 +150,10 @@ def build(TARGET):
             ret, args, ffi_name = t
             pret = ret_cpp(ret, ffi_name)
             if args == 'v':
-                write("""        {} : ['s', {}, c.lib.func('{}','{}','')],""".format((0), (pret), (ret), (ffi_name)))
+                if ct == 's':
+                    write("""        {} : ['{}', {}, c.lib.func('{}','{}','')],""".format((0), (ct), (pret), (ret), (ffi_name)))
+                else:
+                    write("""        {} : ['{}', {}, c.lib.func('{}','{}','')],""".format((1), (ct), (pret), (ret), (ffi_name)))
                 continue
             write("""        {} : ['{}', {}, c.lib.func('{}','{}','{}')],""".format((len(t[VAR])), (ct), (pret), (ret), (ffi_name), (args)))
         write('    }')
@@ -284,16 +287,30 @@ if __name__ == '__main__':
 
         print("np","=",np)
 
+
+        cxx.TRACE = 0
         E.attach(np)
-        if 0:
-            v3 = LVecBase3f(0.01, 42.01, 0.01)
+
+        if 1:
+            v3 = LVecBase3f()
+            v3.set_x(0.01)
+            v3.set_y(42.01)
+            v3.set_z(0.01)
+
             print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+
             np.set_pos( v3 )
+
+        if 1:
+            v3 = LVecBase3f(0.01, 42.01, 0.01)
+
+            np.set_pos( v3 )
+            #E.op_pos(v3)
 
             v3 = LVecBase3f(2.0, 2.0, 2.0)
             print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-
             np.set_scale( v3 )
+            #E.op_scale(v3)
 
 
         while E.is_alive():

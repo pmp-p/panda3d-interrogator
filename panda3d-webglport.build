@@ -1,7 +1,7 @@
 #!/bin/bash
 export PYTHONDONTWRITEBYTECODE=1
 
-PYTHON=python3.7
+PYTHON=python3.8
 
 if which emmake
 then
@@ -23,7 +23,7 @@ echo
 PATH=${ROOT}/bin:$PATH LD_LIBRARY_PATH=${ROOT}/lib $PYTHON makepanda/makepanda.py\
  --outputdir $ROOT --nothing --threads 3\
  $PLAT --use-gles --use-gles2 --use-tinydisplay --use-pandatool\
- --use-python --no-eigen --use-openal\
+ --use-python --no-eigen --use-openal --use-egg\
  --use-direct --use-vorbis --use-bullet --use-freetype --use-harfbuzz\
  --use-assimp --use-pandafx --use-pandaphysics --use-pandaparticlesystem "$@"
 # --override STDFLOAT_DOUBLE=1
