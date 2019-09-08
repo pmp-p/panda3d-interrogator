@@ -347,7 +347,7 @@ if __name__ == '__main__':
 
         E.build()
 
-        #cxx.TRACE=1
+        cxx.TRACE=1
         print('framework=', E.get_wframe() )
 
 
@@ -356,6 +356,8 @@ if __name__ == '__main__':
         print("np","=",np)
 
         E.attach(np)
+
+        cxx.TRACE=0
 
         Vec3 = LVecBase3f
 

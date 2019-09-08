@@ -478,7 +478,7 @@ extern void Engine$12$attach(Engine *self, NodePath *mdl);
 extern void Engine$13$build(Engine *self);
 
 // _inCAAAAMIC_ : C++() ==> C(Engine *)
-extern int Engine$14$step(Engine *self);
+extern void Engine$14$step(Engine *self);
 
 // _inCAAAAcpk6 : C++() ==> C()
 extern char const * Engine$15$get_version_string(void);

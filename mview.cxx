@@ -1,4 +1,5 @@
 #include <iostream>
+#include <set>
 #include <dlfcn.h>
 
 #include "pandaFramework.h"
@@ -9,6 +10,9 @@
 #include "internalNameCollection.h"
 #include "nodePathCollection.h"
 #include "materialCollection.h"
+#include "geomTriangles.h"
+#include "geomVertexWriter.h"
+#include "threadPriority.h"
 
 
 #define MAX_em_steps 160
@@ -27,29 +31,37 @@ using namespace std;
 
 static FRAMEWORK panda_framework;
 
-/*
-void
-Engine::some_ops(NodePath *np) {
-    np->set_scale(2.0,2.0,2.0);
-    np->set_pos(0.0, 42.0, 0.0);
-}*/
 
-void
-Engine::op_pos(NodePath *np, LVecBase3f *v3f) {
 
-    np->set_pos(*v3f);
+GeomT::~GeomT(){
+    cout << "GeomT->Destructor" <<endl;
+}
+
+GeomVertexWriter *
+Engine::new_GeomVertexWriter(GeomVertexData *data, const char *gvw_name) {
+    return new GeomVertexWriter(data, CPT_InternalName(gvw_name) ); //InternalName::get_vertex()
 }
 
 void
-Engine::op_scale(NodePath *np, LVecBase3f *v3f) {
-    np->set_scale(*v3f);
+Engine::add_primitive(Geom *geom, GeomTriangles *pri) {
+    cout << "->add_primitive" << endl;
+    cout << geom << endl;
+    geom->add_primitive(pri);
 }
+
+void
+Engine::close_primitive(GeomTriangles *pri) {
+    cout << "->close_primitive(begin)" << endl;
+    cout << pri << endl;
+    pri->close_primitive();
+    cout << "->close_primitive(end)" << endl;
+}
+
 
 Engine::Engine() {
     cout << "->Constructor\n";
     this->framework = &panda_framework;
 };
-
 
 
 void
@@ -69,7 +81,7 @@ Engine::build() {
 	}
 
 
-   // Escape quits
+    // Escape quits
     wframe=    window_framework;
     wframe->enable_keyboard();
     wframe->get_panda_framework()->define_key("escape", "escapeQuits", call_exit, NULL);
@@ -212,6 +224,7 @@ int main(int argc, char *argv[]) {
 	g_argc = argc;
 	g_argv = (void*)argv;
 
+    cout << "Geom::UH_static = " << int(Geom::UH_static) << endl;
 
     emscripten_set_main_loop(main_loop_or_step, 0, 1);     // <= this will exit to js now.
     cout << "exit" << endl;

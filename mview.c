@@ -14,19 +14,6 @@ static NodePath * np;
 static Filename * fn;
 
 
-/*
-void
-NodePath_C_set_pos_v_pp(NodePath *param0, LVecBase3f const *param1) {
-
-  (*param0).set_pos(  static_cast<LVecBase3f const&>(*param1));
-}
-
-void
-NodePath_C_set_scale_v_pp(NodePath *param0, LVecBase3f const *param1) {
-  (*param0).set_scale( static_cast<LVecBase3f const&>(*param1));
-}
-*/
-
 void
 main_loop_or_step(){
 	if (!em_steps++) {
@@ -34,12 +21,6 @@ main_loop_or_step(){
 
 
         const char *filename = "boris.bam" ;
-/*
-        fn = Filename_C_Filename_3_p_p(filename);
-        puts("-----------------------------");
-        fprintf(stdout,"VERSION[%s] FILENAME[%s]\n", Engine_C_get_version_string_s_v(), Filename_C_c_str_p_p(fn) );
-        puts("-----------------------------");
-*/
 
     puts("-----------------------------");
         fprintf(stdout,"VERSION = %s\n", Engine_C_get_version_string_s_v());
@@ -49,7 +30,6 @@ main_loop_or_step(){
 
         PandaFramework * pf = Engine_C_get_framework_p_p(E);
         WindowFramework * wf = Engine_C_get_wframe_p_p(E) ;
-
 
 
 		// np = NP_C_NP_p_v(); should have been ->get_models() !

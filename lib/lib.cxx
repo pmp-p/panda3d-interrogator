@@ -32,6 +32,7 @@ using namespace std;
 static FRAMEWORK panda_framework;
 
 
+
 GeomT::~GeomT(){
     cout << "GeomT->Destructor" <<endl;
 }
@@ -87,7 +88,7 @@ Engine::build() {
 }
 
 
-int
+void
 Engine::step() {
 	Thread *current_thread = Thread::get_current_thread();
 
@@ -96,7 +97,6 @@ Engine::step() {
         cout << "->step : render error" << endl;
         this->stop();
 	}
-    return 666;
 }
 
 int

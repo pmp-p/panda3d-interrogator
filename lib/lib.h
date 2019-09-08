@@ -76,7 +76,7 @@ class EXPORT_CLASS Engine
 
         void build(); //WindowFramework* window_framework);
 
-        int step();
+        void step();
 
         static std::string get_version_string();
         MAKE_PROPERTY(version_string, get_version_string);

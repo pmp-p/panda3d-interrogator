@@ -312,7 +312,7 @@ class Camera(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'Camera_C_list_aux_scene_data_v_pp', 'pp'), ['out']),
     ]
     c.ct['make_copy'] = [
-        ('d', 'p', 0, ('p', 'Camera_C_make_copy_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'Camera_C_make_copy_p_p', 'p'), []),
     ]
     c.ct['safe_to_flatten'] = [
         ('d', 'B', 0, ('B', 'Camera_C_safe_to_flatten_B_p', 'p'), []),
@@ -381,10 +381,10 @@ class ConfigPage(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['get_default_page'] = [
-        ('s', 'p', 0, ('p', 'ConfigPage_C_get_default_page_p_v', ''), []),
+        ('s', 2, 0, ('p', 'ConfigPage_C_get_default_page_p_v', ''), []),
     ]
     c.ct['get_local_page'] = [
-        ('s', 'p', 0, ('p', 'ConfigPage_C_get_local_page_p_v', ''), []),
+        ('s', 2, 0, ('p', 'ConfigPage_C_get_local_page_p_v', ''), []),
     ]
 
     @classmethod
@@ -495,13 +495,13 @@ class CopyOnWriteObject(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_Geom'] = [
-        ('d', 'p', 0, ('p', 'CopyOnWriteObject_C_downcast_to_Geom_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'CopyOnWriteObject_C_downcast_to_Geom_p_p', 'p'), []),
     ]
     c.ct['downcast_to_GeomPrimitive'] = [
-        ('d', 'p', 0, ('p', 'CopyOnWriteObject_C_downcast_to_GeomPrimitive_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'CopyOnWriteObject_C_downcast_to_GeomPrimitive_p_p', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexData'] = [
-        ('d', 'p', 0, ('p', 'CopyOnWriteObject_C_downcast_to_GeomVertexData_p_p', 'p'), []),
+        ('d', 12, 0, ('p', 'CopyOnWriteObject_C_downcast_to_GeomVertexData_p_p', 'p'), []),
     ]
 
 
@@ -577,22 +577,22 @@ class Engine(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'Engine_C_dtor_v_p', 'p'), []),
     ]
     c.ct['get_framework'] = [
-        ('d', 'p', 0, ('p', 'Engine_C_get_framework_p_p', 'p'), []),
+        ('d', 23, 0, ('p', 'Engine_C_get_framework_p_p', 'p'), []),
     ]
     c.ct['get_wframe'] = [
-        ('d', 'p', 0, ('p', 'Engine_C_get_wframe_p_p', 'p'), []),
+        ('d', 32, 0, ('p', 'Engine_C_get_wframe_p_p', 'p'), []),
     ]
     c.ct['load_model'] = [
-        ('d', 'p', 1, ('p', 'Engine_C_load_model_p_ps', 'ps'), ['filename']),
+        ('d', 21, 1, ('p', 'Engine_C_load_model_p_ps', 'ps'), ['filename']),
     ]
     c.ct['new_GeomVertexWriter'] = [
-        ('d', 'p', 2, ('p', 'Engine_C_new_GeomVertexWriter_p_pps', 'pps'), ['data', 'gvw_name']),
+        ('d', 14, 2, ('p', 'Engine_C_new_GeomVertexWriter_p_pps', 'pps'), ['data', 'gvw_name']),
     ]
     c.ct['set_framework'] = [
         ('d', 'v', 1, ('v', 'Engine_C_set_framework_v_pp', 'pp'), ['value']),
     ]
     c.ct['step'] = [
-        ('d', 'i', 0, ('i', 'Engine_C_step_i_p', 'p'), []),
+        ('d', 'v', 0, ('v', 'Engine_C_step_v_p', 'p'), []),
     ]
 
 
@@ -643,14 +643,14 @@ class Filename(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['binary_filename'] = [
-        ('s', 'p', 1, ('p', 'Filename_C_binary_filename_p_p', 'p'), ['filename']),
-        ('s', 'p', 1, ('p', 'Filename_C_binary_filename_p_s', 's'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_binary_filename_p_p', 'p'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_binary_filename_p_s', 's'), ['filename']),
     ]
     c.ct['dso_filename'] = [
-        ('s', 'p', 1, ('p', 'Filename_C_dso_filename_p_s', 's'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_dso_filename_p_s', 's'), ['filename']),
     ]
     c.ct['executable_filename'] = [
-        ('s', 'p', 1, ('p', 'Filename_C_executable_filename_p_s', 's'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_executable_filename_p_s', 's'), ['filename']),
     ]
     c.ct['expand_from'] = [
         ('s', 5, 2, ('p', 'Filename_C_expand_from_p_sp', 'sp'), ['user_string', 'type']),
@@ -686,7 +686,7 @@ class Filename(cxx.cplusplus):
         ('s', 'v', 0, ('v', 'Filename_C_init_type_v_v', ''), []),
     ]
     c.ct['pattern_filename'] = [
-        ('s', 'p', 1, ('p', 'Filename_C_pattern_filename_p_s', 's'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_pattern_filename_p_s', 's'), ['filename']),
     ]
     c.ct['set_filesystem_encoding'] = [
         ('s', 'v', 1, ('v', 'Filename_C_set_filesystem_encoding_v_p', 'p'), ['encoding']),
@@ -697,8 +697,8 @@ class Filename(cxx.cplusplus):
         ('s', 5, 2, ('p', 'Filename_C_temporary_p_ss', 'ss'), ['dirname', 'prefix']),
     ]
     c.ct['text_filename'] = [
-        ('s', 'p', 1, ('p', 'Filename_C_text_filename_p_p', 'p'), ['filename']),
-        ('s', 'p', 1, ('p', 'Filename_C_text_filename_p_s', 's'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_text_filename_p_p', 'p'), ['filename']),
+        ('s', 5, 1, ('p', 'Filename_C_text_filename_p_s', 's'), ['filename']),
     ]
 
     @classmethod
@@ -1083,13 +1083,13 @@ class Geom(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'Geom_C_copy_primitives_from_B_pp', 'pp'), ['other']),
     ]
     c.ct['decompose'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_decompose_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_decompose_p_p', 'p'), []),
     ]
     c.ct['decompose_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_decompose_in_place_v_p', 'p'), []),
     ]
     c.ct['doubleside'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_doubleside_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_doubleside_p_p', 'p'), []),
     ]
     c.ct['doubleside_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_doubleside_in_place_v_p', 'p'), []),
@@ -1104,8 +1104,8 @@ class Geom(cxx.cplusplus):
         ('d', 'i', 0, ('i', 'Geom_C_force_init_type_i_p', 'p'), []),
     ]
     c.ct['get_animated_vertex_data'] = [
-        ('d', 'p', 2, ('p', 'Geom_C_get_animated_vertex_data_p_pBp', 'pBp'), ['force', 'current_thread']),
-        ('d', 'p', 1, ('p', 'Geom_C_get_animated_vertex_data_p_pB', 'pB'), ['force']),
+        ('d', 12, 2, ('p', 'Geom_C_get_animated_vertex_data_p_pBp', 'pBp'), ['force', 'current_thread']),
+        ('d', 12, 1, ('p', 'Geom_C_get_animated_vertex_data_p_pB', 'pB'), ['force']),
     ]
     c.ct['get_bounds'] = [
         ('d', 'p', 1, ('p', 'Geom_C_get_bounds_p_pp', 'pp'), ['current_thread']),
@@ -1132,7 +1132,7 @@ class Geom(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'Geom_C_get_num_primitives_p_p', 'p'), []),
     ]
     c.ct['get_primitive'] = [
-        ('d', 'p', 1, ('p', 'Geom_C_get_primitive_p_pp', 'pp'), ['i']),
+        ('d', 9, 1, ('p', 'Geom_C_get_primitive_p_pp', 'pp'), ['i']),
     ]
     c.ct['get_primitive_type'] = [
         ('d', 'p', 0, ('p', 'Geom_C_get_primitive_type_p_p', 'p'), []),
@@ -1147,8 +1147,8 @@ class Geom(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'Geom_C_get_usage_hint_p_p', 'p'), []),
     ]
     c.ct['get_vertex_data'] = [
-        ('d', 'p', 1, ('p', 'Geom_C_get_vertex_data_p_pp', 'pp'), ['current_thread']),
-        ('d', 'p', 0, ('p', 'Geom_C_get_vertex_data_p_p', 'p'), []),
+        ('d', 12, 1, ('p', 'Geom_C_get_vertex_data_p_pp', 'pp'), ['current_thread']),
+        ('d', 12, 0, ('p', 'Geom_C_get_vertex_data_p_p', 'p'), []),
     ]
     c.ct['insert_primitive'] = [
         ('d', 'v', 2, ('v', 'Geom_C_insert_primitive_v_ppp', 'ppp'), ['i', 'primitive']),
@@ -1160,16 +1160,16 @@ class Geom(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'Geom_C_is_prepared_B_pp', 'pp'), ['prepared_objects']),
     ]
     c.ct['make_adjacency'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_make_adjacency_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_make_adjacency_p_p', 'p'), []),
     ]
     c.ct['make_adjacency_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_make_adjacency_in_place_v_p', 'p'), []),
     ]
     c.ct['make_copy'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_make_copy_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_make_copy_p_p', 'p'), []),
     ]
     c.ct['make_lines'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_make_lines_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_make_lines_p_p', 'p'), []),
     ]
     c.ct['make_lines_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_make_lines_in_place_v_p', 'p'), []),
@@ -1178,13 +1178,13 @@ class Geom(cxx.cplusplus):
         ('d', 'i', 1, ('i', 'Geom_C_make_nonindexed_i_pB', 'pB'), ['composite_only']),
     ]
     c.ct['make_patches'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_make_patches_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_make_patches_p_p', 'p'), []),
     ]
     c.ct['make_patches_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_make_patches_in_place_v_p', 'p'), []),
     ]
     c.ct['make_points'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_make_points_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_make_points_p_p', 'p'), []),
     ]
     c.ct['make_points_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_make_points_in_place_v_p', 'p'), []),
@@ -1193,10 +1193,10 @@ class Geom(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'Geom_C_mark_bounds_stale_v_p', 'p'), []),
     ]
     c.ct['modify_primitive'] = [
-        ('d', 'p', 1, ('p', 'Geom_C_modify_primitive_p_pp', 'pp'), ['i']),
+        ('d', 9, 1, ('p', 'Geom_C_modify_primitive_p_pp', 'pp'), ['i']),
     ]
     c.ct['modify_vertex_data'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_modify_vertex_data_p_p', 'p'), []),
+        ('d', 12, 0, ('p', 'Geom_C_modify_vertex_data_p_p', 'p'), []),
     ]
     c.ct['offset_vertices'] = [
         ('d', 'v', 2, ('v', 'Geom_C_offset_vertices_v_ppi', 'ppi'), ['data', 'offset']),
@@ -1223,13 +1223,13 @@ class Geom(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'Geom_C_request_resident_B_p', 'p'), []),
     ]
     c.ct['reverse'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_reverse_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_reverse_p_p', 'p'), []),
     ]
     c.ct['reverse_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_reverse_in_place_v_p', 'p'), []),
     ]
     c.ct['rotate'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_rotate_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'Geom_C_rotate_p_p', 'p'), []),
     ]
     c.ct['rotate_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom_C_rotate_in_place_v_p', 'p'), []),
@@ -1253,16 +1253,16 @@ class Geom(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'Geom_C_transform_vertices_v_pp', 'pp'), ['mat']),
     ]
     c.ct['unify'] = [
-        ('d', 'p', 2, ('p', 'Geom_C_unify_p_piB', 'piB'), ['max_indices', 'preserve_order']),
+        ('d', 6, 2, ('p', 'Geom_C_unify_p_piB', 'piB'), ['max_indices', 'preserve_order']),
     ]
     c.ct['unify_in_place'] = [
         ('d', 'v', 2, ('v', 'Geom_C_unify_in_place_v_piB', 'piB'), ['max_indices', 'preserve_order']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
+        ('d', 3, 0, ('p', 'Geom_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 'p', 0, ('p', 'Geom_C_upcast_to_GeomEnums_p_p', 'p'), []),
+        ('d', 7, 0, ('p', 'Geom_C_upcast_to_GeomEnums_p_p', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'Geom_C_write_v_ppi', 'ppi'), ['out', 'indent_level']),
@@ -1394,16 +1394,16 @@ class GeomEnums(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_Geom'] = [
-        ('d', 'p', 0, ('p', 'GeomEnums_C_downcast_to_Geom_p_p', 'p'), []),
+        ('d', 6, 0, ('p', 'GeomEnums_C_downcast_to_Geom_p_p', 'p'), []),
     ]
     c.ct['downcast_to_GeomPrimitive'] = [
-        ('d', 'p', 0, ('p', 'GeomEnums_C_downcast_to_GeomPrimitive_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomEnums_C_downcast_to_GeomPrimitive_p_p', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexData'] = [
-        ('d', 'p', 0, ('p', 'GeomEnums_C_downcast_to_GeomVertexData_p_p', 'p'), []),
+        ('d', 12, 0, ('p', 'GeomEnums_C_downcast_to_GeomVertexData_p_p', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexFormat'] = [
-        ('d', 'p', 0, ('p', 'GeomEnums_C_downcast_to_GeomVertexFormat_p_p', 'p'), []),
+        ('d', 13, 0, ('p', 'GeomEnums_C_downcast_to_GeomVertexFormat_p_p', 'p'), []),
     ]
 
 
@@ -1492,7 +1492,7 @@ class GeomNode(cxx.cplusplus):
         ('d', 'i', 0, ('i', 'GeomNode_C_force_init_type_i_p', 'p'), []),
     ]
     c.ct['get_geom'] = [
-        ('d', 'p', 1, ('p', 'GeomNode_C_get_geom_p_pi', 'pi'), ['n']),
+        ('d', 6, 1, ('p', 'GeomNode_C_get_geom_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_geom_state'] = [
         ('d', 'p', 1, ('p', 'GeomNode_C_get_geom_state_p_pi', 'pi'), ['n']),
@@ -1514,7 +1514,7 @@ class GeomNode(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'GeomNode_C_is_renderable_B_p', 'p'), []),
     ]
     c.ct['modify_geom'] = [
-        ('d', 'p', 1, ('p', 'GeomNode_C_modify_geom_p_pi', 'pi'), ['n']),
+        ('d', 6, 1, ('p', 'GeomNode_C_modify_geom_p_pi', 'pi'), ['n']),
     ]
     c.ct['r_prepare_scene'] = [
         ('d', 'v', 4, ('v', 'GeomNode_C_r_prepare_scene_v_ppppp', 'ppppp'), ['gsg', 'node_state', 'transformer', 'current_thread']),
@@ -1632,10 +1632,10 @@ class GeomPrimitive(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'GeomPrimitive_C_close_primitive_B_p', 'p'), []),
     ]
     c.ct['decompose'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_decompose_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_decompose_p_p', 'p'), []),
     ]
     c.ct['doubleside'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_doubleside_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_doubleside_p_p', 'p'), []),
     ]
     c.ct['draw'] = [
         ('d', 'B', 3, ('B', 'GeomPrimitive_C_draw_B_pppB', 'pppB'), ['gsg', 'reader', 'force']),
@@ -1759,10 +1759,10 @@ class GeomPrimitive(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'GeomPrimitive_C_is_prepared_B_pp', 'pp'), ['prepared_objects']),
     ]
     c.ct['make_adjacency'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_adjacency_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_make_adjacency_p_p', 'p'), []),
     ]
     c.ct['make_copy'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_copy_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_make_copy_p_p', 'p'), []),
     ]
     c.ct['make_index_data'] = [
         ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_index_data_p_p', 'p'), []),
@@ -1771,19 +1771,19 @@ class GeomPrimitive(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'GeomPrimitive_C_make_indexed_v_p', 'p'), []),
     ]
     c.ct['make_lines'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_lines_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_make_lines_p_p', 'p'), []),
     ]
     c.ct['make_nonindexed'] = [
         ('d', 'v', 2, ('v', 'GeomPrimitive_C_make_nonindexed_v_ppp', 'ppp'), ['dest', 'source']),
     ]
     c.ct['make_patches'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_patches_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_make_patches_p_p', 'p'), []),
     ]
     c.ct['make_points'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_make_points_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_make_points_p_p', 'p'), []),
     ]
     c.ct['match_shade_model'] = [
-        ('d', 'p', 1, ('p', 'GeomPrimitive_C_match_shade_model_p_pp', 'pp'), ['shade_model']),
+        ('d', 9, 1, ('p', 'GeomPrimitive_C_match_shade_model_p_pp', 'pp'), ['shade_model']),
     ]
     c.ct['modify_ends'] = [
         ('d', 'p', 0, ('p', 'GeomPrimitive_C_modify_ends_p_p', 'p'), []),
@@ -1825,10 +1825,10 @@ class GeomPrimitive(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'GeomPrimitive_C_reserve_num_vertices_v_pi', 'pi'), ['num_vertices']),
     ]
     c.ct['reverse'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_reverse_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_reverse_p_p', 'p'), []),
     ]
     c.ct['rotate'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_rotate_p_p', 'p'), []),
+        ('d', 9, 0, ('p', 'GeomPrimitive_C_rotate_p_p', 'p'), []),
     ]
     c.ct['set_ends'] = [
         ('d', 'v', 1, ('v', 'GeomPrimitive_C_set_ends_v_pp', 'pp'), ['ends']),
@@ -1853,10 +1853,10 @@ class GeomPrimitive(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'GeomPrimitive_C_set_vertices_v_pp', 'pp'), ['vertices']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
+        ('d', 3, 0, ('p', 'GeomPrimitive_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 'p', 0, ('p', 'GeomPrimitive_C_upcast_to_GeomEnums_p_p', 'p'), []),
+        ('d', 7, 0, ('p', 'GeomPrimitive_C_upcast_to_GeomEnums_p_p', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomPrimitive_C_write_v_ppi', 'ppi'), ['out', 'indent_level']),
@@ -2072,7 +2072,7 @@ class GeomVertexData(cxx.cplusplus):
     # instance method type calls
 
     c.ct['animate_vertices'] = [
-        ('d', 'p', 2, ('p', 'GeomVertexData_C_animate_vertices_p_pBp', 'pBp'), ['force', 'current_thread']),
+        ('d', 12, 2, ('p', 'GeomVertexData_C_animate_vertices_p_pBp', 'pBp'), ['force', 'current_thread']),
     ]
     c.ct['clear_animated_vertices'] = [
         ('d', 'v', 0, ('v', 'GeomVertexData_C_clear_animated_vertices_v_p', 'p'), []),
@@ -2099,7 +2099,7 @@ class GeomVertexData(cxx.cplusplus):
         ('d', 'i', 1, ('i', 'GeomVertexData_C_compare_to_i_pp', 'pp'), ['other']),
     ]
     c.ct['convert_to'] = [
-        ('d', 'p', 1, ('p', 'GeomVertexData_C_convert_to_p_pp', 'pp'), ['new_format']),
+        ('d', 12, 1, ('p', 'GeomVertexData_C_convert_to_p_pp', 'pp'), ['new_format']),
     ]
     c.ct['copy_from'] = [
         ('d', 'v', 3, ('v', 'GeomVertexData_C_copy_from_v_ppBp', 'ppBp'), ['source', 'keep_data_objects', 'current_thread']),
@@ -2173,7 +2173,7 @@ class GeomVertexData(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'GeomVertexData_C_output_v_pp', 'pp'), ['out']),
     ]
     c.ct['replace_column'] = [
-        ('d', 'p', 4, ('p', 'GeomVertexData_C_replace_column_p_ppipp', 'ppipp'), ['name', 'num_components', 'numeric_type', 'contents']),
+        ('d', 12, 4, ('p', 'GeomVertexData_C_replace_column_p_ppipp', 'ppipp'), ['name', 'num_components', 'numeric_type', 'contents']),
     ]
     c.ct['request_resident'] = [
         ('d', 'B', 0, ('B', 'GeomVertexData_C_request_resident_B_p', 'p'), []),
@@ -2185,18 +2185,18 @@ class GeomVertexData(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'GeomVertexData_C_reserve_num_rows_B_pi', 'pi'), ['n']),
     ]
     c.ct['reverse_normals'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexData_C_reverse_normals_p_p', 'p'), []),
+        ('d', 12, 0, ('p', 'GeomVertexData_C_reverse_normals_p_p', 'p'), []),
     ]
     c.ct['scale_color'] = [
-        ('d', 'p', 1, ('p', 'GeomVertexData_C_scale_color_p_pp', 'pp'), ['color_scale']),
-        ('d', 'p', 4, ('p', 'GeomVertexData_C_scale_color_p_ppipp', 'ppipp'), ['color_scale', 'num_components', 'numeric_type', 'contents']),
+        ('d', 12, 1, ('p', 'GeomVertexData_C_scale_color_p_pp', 'pp'), ['color_scale']),
+        ('d', 12, 4, ('p', 'GeomVertexData_C_scale_color_p_ppipp', 'ppipp'), ['color_scale', 'num_components', 'numeric_type', 'contents']),
     ]
     c.ct['set_array'] = [
         ('d', 'v', 2, ('v', 'GeomVertexData_C_set_array_v_ppp', 'ppp'), ['i', 'array']),
     ]
     c.ct['set_color'] = [
-        ('d', 'p', 1, ('p', 'GeomVertexData_C_set_color_p_pp', 'pp'), ['color']),
-        ('d', 'p', 4, ('p', 'GeomVertexData_C_set_color_p_ppipp', 'ppipp'), ['color', 'num_components', 'numeric_type', 'contents']),
+        ('d', 12, 1, ('p', 'GeomVertexData_C_set_color_p_pp', 'pp'), ['color']),
+        ('d', 12, 4, ('p', 'GeomVertexData_C_set_color_p_ppipp', 'ppipp'), ['color', 'num_components', 'numeric_type', 'contents']),
     ]
     c.ct['set_format'] = [
         ('d', 'v', 1, ('v', 'GeomVertexData_C_set_format_v_pp', 'pp'), ['format']),
@@ -2231,10 +2231,10 @@ class GeomVertexData(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'GeomVertexData_C_unclean_set_num_rows_B_pi', 'pi'), ['n']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexData_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
+        ('d', 3, 0, ('p', 'GeomVertexData_C_upcast_to_CopyOnWriteObject_p_p', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexData_C_upcast_to_GeomEnums_p_p', 'p'), []),
+        ('d', 7, 0, ('p', 'GeomVertexData_C_upcast_to_GeomEnums_p_p', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomVertexData_C_write_v_ppi', 'ppi'), ['out', 'indent_level']),
@@ -2318,8 +2318,8 @@ class GeomVertexFormat(cxx.cplusplus):
         ('s', 'v', 0, ('v', 'GeomVertexFormat_C_init_type_v_v', ''), []),
     ]
     c.ct['register_format'] = [
-        ('s', 'p', 1, ('p', 'GeomVertexFormat_C_register_format_p_p', 'p'), ['format']),
-        ('s', 'p', 1, ('p', 'GeomVertexFormat_C_register_format_p_p_1_p_p', 'p'), ['format']),
+        ('s', 13, 1, ('p', 'GeomVertexFormat_C_register_format_p_p', 'p'), ['format']),
+        ('s', 13, 1, ('p', 'GeomVertexFormat_C_register_format_p_p_1_p_p', 'p'), ['format']),
     ]
     c.ct['register_with_read_factory'] = [
         ('s', 'v', 0, ('v', 'GeomVertexFormat_C_register_with_read_factory_v_v', ''), []),
@@ -2470,7 +2470,7 @@ class GeomVertexFormat(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'GeomVertexFormat_C_get_point_p_pp', 'pp'), ['n']),
     ]
     c.ct['get_post_animated_format'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexFormat_C_get_post_animated_format_p_p', 'p'), []),
+        ('d', 13, 0, ('p', 'GeomVertexFormat_C_get_post_animated_format_p_p', 'p'), []),
     ]
     c.ct['get_texcoord'] = [
         ('d', 'p', 1, ('p', 'GeomVertexFormat_C_get_texcoord_p_pp', 'pp'), ['n']),
@@ -2479,7 +2479,7 @@ class GeomVertexFormat(cxx.cplusplus):
         ('d', 'i', 0, ('i', 'GeomVertexFormat_C_get_type_i_p', 'p'), []),
     ]
     c.ct['get_union_format'] = [
-        ('d', 'p', 1, ('p', 'GeomVertexFormat_C_get_union_format_p_pp', 'pp'), ['other']),
+        ('d', 13, 1, ('p', 'GeomVertexFormat_C_get_union_format_p_pp', 'pp'), ['other']),
     ]
     c.ct['get_vector'] = [
         ('d', 'p', 1, ('p', 'GeomVertexFormat_C_get_vector_p_pp', 'pp'), ['n']),
@@ -2531,10 +2531,10 @@ class GeomVertexFormat(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'GeomVertexFormat_C_unref_B_p', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexFormat_C_upcast_to_GeomEnums_p_p', 'p'), []),
+        ('d', 7, 0, ('p', 'GeomVertexFormat_C_upcast_to_GeomEnums_p_p', 'p'), []),
     ]
     c.ct['upcast_to_TypedWritableReferenceCount'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexFormat_C_upcast_to_TypedWritableReferenceCount_p_p', 'p'), []),
+        ('d', 31, 0, ('p', 'GeomVertexFormat_C_upcast_to_TypedWritableReferenceCount_p_p', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomVertexFormat_C_write_v_ppi', 'ppi'), ['out', 'indent_level']),
@@ -2681,7 +2681,7 @@ class GeomVertexWriter(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'GeomVertexWriter_C_get_column_p_p', 'p'), []),
     ]
     c.ct['get_current_thread'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexWriter_C_get_current_thread_p_p', 'p'), []),
+        ('d', 27, 0, ('p', 'GeomVertexWriter_C_get_current_thread_p_p', 'p'), []),
     ]
     c.ct['get_start_row'] = [
         ('d', 'i', 0, ('i', 'GeomVertexWriter_C_get_start_row_i_p', 'p'), []),
@@ -2690,7 +2690,7 @@ class GeomVertexWriter(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'GeomVertexWriter_C_get_stride_p_p', 'p'), []),
     ]
     c.ct['get_vertex_data'] = [
-        ('d', 'p', 0, ('p', 'GeomVertexWriter_C_get_vertex_data_p_p', 'p'), []),
+        ('d', 12, 0, ('p', 'GeomVertexWriter_C_get_vertex_data_p_p', 'p'), []),
     ]
     c.ct['get_write_row'] = [
         ('d', 'i', 0, ('i', 'GeomVertexWriter_C_get_write_row_i_p', 'p'), []),
@@ -2821,83 +2821,83 @@ class InternalName(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['get_aspect_ratio'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_aspect_ratio_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_aspect_ratio_p_v', ''), []),
     ]
     c.ct['get_binormal'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_binormal_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_binormal_p_v', ''), []),
     ]
     c.ct['get_binormal_name'] = [
-        ('s', 'p', 1, ('p', 'InternalName_C_get_binormal_name_p_s', 's'), ['name']),
+        ('s', 15, 1, ('p', 'InternalName_C_get_binormal_name_p_s', 's'), ['name']),
     ]
     c.ct['get_camera'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_camera_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_camera_p_v', ''), []),
     ]
     c.ct['get_class_type'] = [
         ('s', 'i', 0, ('i', 'InternalName_C_get_class_type_i_v', ''), []),
     ]
     c.ct['get_color'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_color_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_color_p_v', ''), []),
     ]
     c.ct['get_error'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_error_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_error_p_v', ''), []),
     ]
     c.ct['get_index'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_index_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_index_p_v', ''), []),
     ]
     c.ct['get_model'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_model_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_model_p_v', ''), []),
     ]
     c.ct['get_morph'] = [
-        ('s', 'p', 2, ('p', 'InternalName_C_get_morph_p_ps', 'ps'), ['column', 'slider']),
+        ('s', 15, 2, ('p', 'InternalName_C_get_morph_p_ps', 'ps'), ['column', 'slider']),
     ]
     c.ct['get_normal'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_normal_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_normal_p_v', ''), []),
     ]
     c.ct['get_root'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_root_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_root_p_v', ''), []),
     ]
     c.ct['get_rotate'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_rotate_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_rotate_p_v', ''), []),
     ]
     c.ct['get_size'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_size_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_size_p_v', ''), []),
     ]
     c.ct['get_tangent'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_tangent_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_tangent_p_v', ''), []),
     ]
     c.ct['get_tangent_name'] = [
-        ('s', 'p', 1, ('p', 'InternalName_C_get_tangent_name_p_s', 's'), ['name']),
+        ('s', 15, 1, ('p', 'InternalName_C_get_tangent_name_p_s', 's'), ['name']),
     ]
     c.ct['get_texcoord'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_texcoord_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_texcoord_p_v', ''), []),
     ]
     c.ct['get_texcoord_name'] = [
-        ('s', 'p', 1, ('p', 'InternalName_C_get_texcoord_name_p_s', 's'), ['name']),
+        ('s', 15, 1, ('p', 'InternalName_C_get_texcoord_name_p_s', 's'), ['name']),
     ]
     c.ct['get_transform_blend'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_transform_blend_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_transform_blend_p_v', ''), []),
     ]
     c.ct['get_transform_index'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_transform_index_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_transform_index_p_v', ''), []),
     ]
     c.ct['get_transform_weight'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_transform_weight_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_transform_weight_p_v', ''), []),
     ]
     c.ct['get_vertex'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_vertex_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_vertex_p_v', ''), []),
     ]
     c.ct['get_view'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_view_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_view_p_v', ''), []),
     ]
     c.ct['get_world'] = [
-        ('s', 'p', 0, ('p', 'InternalName_C_get_world_p_v', ''), []),
+        ('s', 15, 0, ('p', 'InternalName_C_get_world_p_v', ''), []),
     ]
     c.ct['init_type'] = [
         ('s', 'v', 0, ('v', 'InternalName_C_init_type_v_v', ''), []),
     ]
     c.ct['make'] = [
-        ('s', 'p', 1, ('p', 'InternalName_C_make_p_s', 's'), ['name']),
-        ('s', 'p', 2, ('p', 'InternalName_C_make_p_si', 'si'), ['name', 'index']),
+        ('s', 15, 1, ('p', 'InternalName_C_make_p_s', 's'), ['name']),
+        ('s', 15, 2, ('p', 'InternalName_C_make_p_si', 'si'), ['name', 'index']),
     ]
     c.ct['register_with_read_factory'] = [
         ('s', 'v', 0, ('v', 'InternalName_C_register_with_read_factory_v_v', ''), []),
@@ -3014,7 +3014,7 @@ class InternalName(cxx.cplusplus):
     # instance method type calls
 
     c.ct['append'] = [
-        ('d', 'p', 1, ('p', 'InternalName_C_append_p_ps', 'ps'), ['basename']),
+        ('d', 15, 1, ('p', 'InternalName_C_append_p_ps', 'ps'), ['basename']),
     ]
     c.ct['finalize'] = [
         ('d', 'v', 1, ('v', 'InternalName_C_finalize_v_pp', 'pp'), ['manager']),
@@ -3038,7 +3038,7 @@ class InternalName(cxx.cplusplus):
         ('d', 's', 1, ('s', 'InternalName_C_get_net_basename_s_pi', 'pi'), ['n']),
     ]
     c.ct['get_parent'] = [
-        ('d', 'p', 0, ('p', 'InternalName_C_get_parent_p_p', 'p'), []),
+        ('d', 15, 0, ('p', 'InternalName_C_get_parent_p_p', 'p'), []),
     ]
     c.ct['get_top'] = [
         ('d', 'p', 0, ('p', 'InternalName_C_get_top_p_p', 'p'), []),
@@ -3184,7 +3184,7 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'LVecBase3f_C_componentwise_mult_v_pp', 'pp'), ['other']),
     ]
     c.ct['cross'] = [
-        ('d', 'p', 1, ('p', 'LVecBase3f_C_cross_p_pp', 'pp'), ['other']),
+        ('d', 16, 1, ('p', 'LVecBase3f_C_cross_p_pp', 'pp'), ['other']),
     ]
     c.ct['cross_into'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f_C_cross_into_v_pp', 'pp'), ['other']),
@@ -3200,10 +3200,10 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'LVecBase3f_C_fill_v_pf', 'pf'), ['fill_value']),
     ]
     c.ct['fmax'] = [
-        ('d', 'p', 1, ('p', 'LVecBase3f_C_fmax_p_pp', 'pp'), ['other']),
+        ('d', 16, 1, ('p', 'LVecBase3f_C_fmax_p_pp', 'pp'), ['other']),
     ]
     c.ct['fmin'] = [
-        ('d', 'p', 1, ('p', 'LVecBase3f_C_fmin_p_pp', 'pp'), ['other']),
+        ('d', 16, 1, ('p', 'LVecBase3f_C_fmin_p_pp', 'pp'), ['other']),
     ]
     c.ct['generate_hash'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f_C_generate_hash_v_pp', 'pp'), ['hashgen']),
@@ -3220,7 +3220,7 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'LVecBase3f_C_get_hash_p_pf', 'pf'), ['threshold']),
     ]
     c.ct['get_standardized_hpr'] = [
-        ('d', 'p', 0, ('p', 'LVecBase3f_C_get_standardized_hpr_p_p', 'p'), []),
+        ('d', 16, 0, ('p', 'LVecBase3f_C_get_standardized_hpr_p_p', 'p'), []),
     ]
     c.ct['get_v'] = [
         ('d', 'p', 0, ('p', 'LVecBase3f_C_get_v_p_p', 'p'), []),
@@ -3256,13 +3256,13 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'LVecBase3f_C_normalize_B_p', 'p'), []),
     ]
     c.ct['normalized'] = [
-        ('d', 'p', 0, ('p', 'LVecBase3f_C_normalized_p_p', 'p'), []),
+        ('d', 16, 0, ('p', 'LVecBase3f_C_normalized_p_p', 'p'), []),
     ]
     c.ct['output'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f_C_output_v_pp', 'pp'), ['out']),
     ]
     c.ct['project'] = [
-        ('d', 'p', 1, ('p', 'LVecBase3f_C_project_p_pp', 'pp'), ['onto']),
+        ('d', 16, 1, ('p', 'LVecBase3f_C_project_p_pp', 'pp'), ['onto']),
     ]
     c.ct['read_datagram'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f_C_read_datagram_v_pp', 'pp'), ['source']),
@@ -3417,7 +3417,7 @@ class LinkedListNode(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 'p', 0, ('p', 'LinkedListNode_C_downcast_to_PandaNode_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'LinkedListNode_C_downcast_to_PandaNode_p_p', 'p'), []),
     ]
 
 
@@ -3451,10 +3451,10 @@ class MemoryBase(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_ReferenceCount'] = [
-        ('d', 'p', 0, ('p', 'MemoryBase_C_downcast_to_ReferenceCount_p_p', 'p'), []),
+        ('d', 26, 0, ('p', 'MemoryBase_C_downcast_to_ReferenceCount_p_p', 'p'), []),
     ]
     c.ct['downcast_to_TypedObject'] = [
-        ('d', 'p', 0, ('p', 'MemoryBase_C_downcast_to_TypedObject_p_p', 'p'), []),
+        ('d', 28, 0, ('p', 'MemoryBase_C_downcast_to_TypedObject_p_p', 'p'), []),
     ]
 
 
@@ -3484,10 +3484,10 @@ class Namable(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 'p', 0, ('p', 'Namable_C_downcast_to_PandaNode_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'Namable_C_downcast_to_PandaNode_p_p', 'p'), []),
     ]
     c.ct['downcast_to_Thread'] = [
-        ('d', 'p', 0, ('p', 'Namable_C_downcast_to_Thread_p_p', 'p'), []),
+        ('d', 27, 0, ('p', 'Namable_C_downcast_to_Thread_p_p', 'p'), []),
     ]
 
 
@@ -3533,15 +3533,15 @@ class NodePath(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['any_path'] = [
-        ('s', 'p', 2, ('p', 'NodePath_C_any_path_p_pp', 'pp'), ['node', 'current_thread']),
-        ('s', 'p', 1, ('p', 'NodePath_C_any_path_p_p', 'p'), ['node']),
+        ('s', 21, 2, ('p', 'NodePath_C_any_path_p_pp', 'pp'), ['node', 'current_thread']),
+        ('s', 21, 1, ('p', 'NodePath_C_any_path_p_p', 'p'), ['node']),
     ]
     c.ct['decode_from_bam_stream'] = [
         ('s', 21, 2, ('p', 'NodePath_C_decode_from_bam_stream_p_pp', 'pp'), ['data', 'reader']),
         ('s', 21, 1, ('p', 'NodePath_C_decode_from_bam_stream_p_p', 'p'), ['data']),
     ]
     c.ct['fail'] = [
-        ('s', 'p', 0, ('p', 'NodePath_C_fail_p_v', ''), []),
+        ('s', 21, 0, ('p', 'NodePath_C_fail_p_v', ''), []),
     ]
     c.ct['get_class_type'] = [
         ('s', 'i', 0, ('i', 'NodePath_C_get_class_type_i_v', ''), []),
@@ -3553,10 +3553,10 @@ class NodePath(cxx.cplusplus):
         ('s', 'v', 0, ('v', 'NodePath_C_init_type_v_v', ''), []),
     ]
     c.ct['not_found'] = [
-        ('s', 'p', 0, ('p', 'NodePath_C_not_found_p_v', ''), []),
+        ('s', 21, 0, ('p', 'NodePath_C_not_found_p_v', ''), []),
     ]
     c.ct['removed'] = [
-        ('s', 'p', 0, ('p', 'NodePath_C_removed_p_v', ''), []),
+        ('s', 21, 0, ('p', 'NodePath_C_removed_p_v', ''), []),
     ]
     c.ct['set_max_search_depth'] = [
         ('s', 'v', 1, ('v', 'NodePath_C_set_max_search_depth_v_i', 'i'), ['max_search_depth']),
@@ -3613,9 +3613,9 @@ class NodePath(cxx.cplusplus):
         ('d', 21, 3, ('p', 'NodePath_C_attach_new_node_p_ppip', 'ppip'), ['node', 'sort', 'current_thread']),
         ('d', 21, 2, ('p', 'NodePath_C_attach_new_node_p_ppi', 'ppi'), ['node', 'sort']),
         ('d', 21, 1, ('p', 'NodePath_C_attach_new_node_p_pp', 'pp'), ['node']),
-        ('d', 'p', 3, ('p', 'NodePath_C_attach_new_node_p_psip', 'psip'), ['name', 'sort', 'current_thread']),
-        ('d', 'p', 2, ('p', 'NodePath_C_attach_new_node_p_psi', 'psi'), ['name', 'sort']),
-        ('d', 'p', 1, ('p', 'NodePath_C_attach_new_node_p_ps', 'ps'), ['name']),
+        ('d', 21, 3, ('p', 'NodePath_C_attach_new_node_p_psip', 'psip'), ['name', 'sort', 'current_thread']),
+        ('d', 21, 2, ('p', 'NodePath_C_attach_new_node_p_psi', 'psi'), ['name', 'sort']),
+        ('d', 21, 1, ('p', 'NodePath_C_attach_new_node_p_ps', 'ps'), ['name']),
     ]
     c.ct['calc_tight_bounds'] = [
         ('d', 'B', 4, ('B', 'NodePath_C_calc_tight_bounds_B_ppppp', 'ppppp'), ['min_point', 'max_point', 'other', 'current_thread']),
@@ -3858,8 +3858,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath_C_get_bounds_p_p', 'p'), []),
     ]
     c.ct['get_child'] = [
-        ('d', 'p', 2, ('p', 'NodePath_C_get_child_p_pip', 'pip'), ['n', 'current_thread']),
-        ('d', 'p', 1, ('p', 'NodePath_C_get_child_p_pi', 'pi'), ['n']),
+        ('d', 21, 2, ('p', 'NodePath_C_get_child_p_pip', 'pip'), ['n', 'current_thread']),
+        ('d', 21, 1, ('p', 'NodePath_C_get_child_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_children'] = [
         ('d', 22, 1, ('p', 'NodePath_C_get_children_p_pp', 'pp'), ['current_thread']),
@@ -3875,8 +3875,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath_C_get_color_scale_p_p', 'p'), []),
     ]
     c.ct['get_common_ancestor'] = [
-        ('d', 'p', 2, ('p', 'NodePath_C_get_common_ancestor_p_ppp', 'ppp'), ['other', 'current_thread']),
-        ('d', 'p', 1, ('p', 'NodePath_C_get_common_ancestor_p_pp', 'pp'), ['other']),
+        ('d', 21, 2, ('p', 'NodePath_C_get_common_ancestor_p_ppp', 'ppp'), ['other', 'current_thread']),
+        ('d', 21, 1, ('p', 'NodePath_C_get_common_ancestor_p_pp', 'pp'), ['other']),
     ]
     c.ct['get_depth_offset'] = [
         ('d', 'i', 0, ('i', 'NodePath_C_get_depth_offset_i_p', 'p'), []),
@@ -3953,8 +3953,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath_C_get_net_transform_p_p', 'p'), []),
     ]
     c.ct['get_node'] = [
-        ('d', 'p', 2, ('p', 'NodePath_C_get_node_p_pip', 'pip'), ['index', 'current_thread']),
-        ('d', 'p', 1, ('p', 'NodePath_C_get_node_p_pi', 'pi'), ['index']),
+        ('d', 24, 2, ('p', 'NodePath_C_get_node_p_pip', 'pip'), ['index', 'current_thread']),
+        ('d', 24, 1, ('p', 'NodePath_C_get_node_p_pi', 'pi'), ['index']),
     ]
     c.ct['get_num_children'] = [
         ('d', 'i', 1, ('i', 'NodePath_C_get_num_children_i_pp', 'pp'), ['current_thread']),
@@ -3969,8 +3969,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'f', 1, ('f', 'NodePath_C_get_p_f_pp', 'pp'), ['other']),
     ]
     c.ct['get_parent'] = [
-        ('d', 'p', 1, ('p', 'NodePath_C_get_parent_p_pp', 'pp'), ['current_thread']),
-        ('d', 'p', 0, ('p', 'NodePath_C_get_parent_p_p', 'p'), []),
+        ('d', 21, 1, ('p', 'NodePath_C_get_parent_p_pp', 'pp'), ['current_thread']),
+        ('d', 21, 0, ('p', 'NodePath_C_get_parent_p_p', 'p'), []),
     ]
     c.ct['get_pos'] = [
         ('d', 'p', 0, ('p', 'NodePath_C_get_pos_p_p', 'p'), []),
@@ -4133,8 +4133,8 @@ class NodePath(cxx.cplusplus):
         ('d', 21, 0, ('p', 'NodePath_C_get_top_p_p', 'p'), []),
     ]
     c.ct['get_top_node'] = [
-        ('d', 'p', 1, ('p', 'NodePath_C_get_top_node_p_pp', 'pp'), ['current_thread']),
-        ('d', 'p', 0, ('p', 'NodePath_C_get_top_node_p_p', 'p'), []),
+        ('d', 24, 1, ('p', 'NodePath_C_get_top_node_p_pp', 'pp'), ['current_thread']),
+        ('d', 24, 0, ('p', 'NodePath_C_get_top_node_p_p', 'p'), []),
     ]
     c.ct['get_transform'] = [
         ('d', 'p', 2, ('p', 'NodePath_C_get_transform_p_ppp', 'ppp'), ['other', 'current_thread']),
@@ -4339,7 +4339,7 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'NodePath_C_ls_v_pp', 'pp'), ['out']),
     ]
     c.ct['node'] = [
-        ('d', 'p', 0, ('p', 'NodePath_C_node_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'NodePath_C_node_p_p', 'p'), []),
     ]
     c.ct['output'] = [
         ('d', 'v', 1, ('v', 'NodePath_C_output_v_pp', 'pp'), ['out']),
@@ -5179,7 +5179,7 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'PandaFramework_C_get_lighting_B_p', 'p'), []),
     ]
     c.ct['get_models'] = [
-        ('d', 'p', 0, ('p', 'PandaFramework_C_get_models_p_p', 'p'), []),
+        ('d', 21, 0, ('p', 'PandaFramework_C_get_models_p_p', 'p'), []),
     ]
     c.ct['get_mouse'] = [
         ('d', 21, 1, ('p', 'PandaFramework_C_get_mouse_p_pp', 'pp'), ['window']),
@@ -5203,7 +5203,7 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'PandaFramework_C_get_two_sided_B_p', 'p'), []),
     ]
     c.ct['get_window'] = [
-        ('d', 'p', 1, ('p', 'PandaFramework_C_get_window_p_pi', 'pi'), ['n']),
+        ('d', 32, 1, ('p', 'PandaFramework_C_get_window_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_wireframe'] = [
         ('d', 'B', 0, ('B', 'PandaFramework_C_get_wireframe_B_p', 'p'), []),
@@ -5218,12 +5218,12 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'PandaFramework_C_open_framework_v_p', 'p'), []),
     ]
     c.ct['open_window'] = [
-        ('d', 'p', 0, ('p', 'PandaFramework_C_open_window_p_p', 'p'), []),
-        ('d', 'p', 2, ('p', 'PandaFramework_C_open_window_p_ppp', 'ppp'), ['pipe', 'gsg']),
-        ('d', 'p', 1, ('p', 'PandaFramework_C_open_window_p_pp', 'pp'), ['pipe']),
-        ('d', 'p', 4, ('p', 'PandaFramework_C_open_window_p_ppipp', 'ppipp'), ['props', 'flags', 'pipe', 'gsg']),
-        ('d', 'p', 3, ('p', 'PandaFramework_C_open_window_p_ppip', 'ppip'), ['props', 'flags', 'pipe']),
-        ('d', 'p', 2, ('p', 'PandaFramework_C_open_window_p_ppi', 'ppi'), ['props', 'flags']),
+        ('d', 32, 0, ('p', 'PandaFramework_C_open_window_p_p', 'p'), []),
+        ('d', 32, 2, ('p', 'PandaFramework_C_open_window_p_ppp', 'ppp'), ['pipe', 'gsg']),
+        ('d', 32, 1, ('p', 'PandaFramework_C_open_window_p_pp', 'pp'), ['pipe']),
+        ('d', 32, 4, ('p', 'PandaFramework_C_open_window_p_ppipp', 'ppipp'), ['props', 'flags', 'pipe', 'gsg']),
+        ('d', 32, 3, ('p', 'PandaFramework_C_open_window_p_ppip', 'ppip'), ['props', 'flags', 'pipe']),
+        ('d', 32, 2, ('p', 'PandaFramework_C_open_window_p_ppi', 'ppi'), ['props', 'flags']),
     ]
     c.ct['remove_mouse'] = [
         ('d', 'v', 1, ('v', 'PandaFramework_C_remove_mouse_v_pp', 'pp'), ['window']),
@@ -5311,8 +5311,8 @@ class PandaNode(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['decode_from_bam_stream'] = [
-        ('s', 'p', 2, ('p', 'PandaNode_C_decode_from_bam_stream_p_pp', 'pp'), ['data', 'reader']),
-        ('s', 'p', 1, ('p', 'PandaNode_C_decode_from_bam_stream_p_p', 'p'), ['data']),
+        ('s', 24, 2, ('p', 'PandaNode_C_decode_from_bam_stream_p_pp', 'pp'), ['data', 'reader']),
+        ('s', 24, 1, ('p', 'PandaNode_C_decode_from_bam_stream_p_p', 'p'), ['data']),
     ]
     c.ct['get_all_camera_mask'] = [
         ('s', 'p', 0, ('p', 'PandaNode_C_get_all_camera_mask_p_v', ''), []),
@@ -5416,7 +5416,7 @@ class PandaNode(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'PandaNode_C_clear_unexpected_change_v_pI', 'pI'), ['flags']),
     ]
     c.ct['combine_with'] = [
-        ('d', 'p', 1, ('p', 'PandaNode_C_combine_with_p_pp', 'pp'), ['other']),
+        ('d', 24, 1, ('p', 'PandaNode_C_combine_with_p_pp', 'pp'), ['other']),
     ]
     c.ct['compare_tags'] = [
         ('d', 'i', 1, ('i', 'PandaNode_C_compare_tags_i_pp', 'pp'), ['other']),
@@ -5429,8 +5429,8 @@ class PandaNode(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'PandaNode_C_copy_children_v_pp', 'pp'), ['other']),
     ]
     c.ct['copy_subgraph'] = [
-        ('d', 'p', 1, ('p', 'PandaNode_C_copy_subgraph_p_pp', 'pp'), ['current_thread']),
-        ('d', 'p', 0, ('p', 'PandaNode_C_copy_subgraph_p_p', 'p'), []),
+        ('d', 24, 1, ('p', 'PandaNode_C_copy_subgraph_p_pp', 'pp'), ['current_thread']),
+        ('d', 24, 0, ('p', 'PandaNode_C_copy_subgraph_p_p', 'p'), []),
     ]
     c.ct['copy_tags'] = [
         ('d', 'v', 1, ('v', 'PandaNode_C_copy_tags_v_pp', 'pp'), ['other']),
@@ -5442,7 +5442,7 @@ class PandaNode(cxx.cplusplus):
         ('d', 'B', 2, ('B', 'PandaNode_C_cull_callback_B_ppp', 'ppp'), ['trav', 'data']),
     ]
     c.ct['dupe_for_flatten'] = [
-        ('d', 'p', 0, ('p', 'PandaNode_C_dupe_for_flatten_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'PandaNode_C_dupe_for_flatten_p_p', 'p'), []),
     ]
     c.ct['find_child'] = [
         ('d', 'i', 2, ('i', 'PandaNode_C_find_child_i_ppp', 'ppp'), ['node', 'current_thread']),
@@ -5473,8 +5473,8 @@ class PandaNode(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'PandaNode_C_get_bounds_type_p_p', 'p'), []),
     ]
     c.ct['get_child'] = [
-        ('d', 'p', 2, ('p', 'PandaNode_C_get_child_p_pip', 'pip'), ['n', 'current_thread']),
-        ('d', 'p', 1, ('p', 'PandaNode_C_get_child_p_pi', 'pi'), ['n']),
+        ('d', 24, 2, ('p', 'PandaNode_C_get_child_p_pip', 'pip'), ['n', 'current_thread']),
+        ('d', 24, 1, ('p', 'PandaNode_C_get_child_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_child_sort'] = [
         ('d', 'i', 2, ('i', 'PandaNode_C_get_child_sort_i_pip', 'pip'), ['n', 'current_thread']),
@@ -5555,8 +5555,8 @@ class PandaNode(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'PandaNode_C_get_off_clip_planes_p_p', 'p'), []),
     ]
     c.ct['get_parent'] = [
-        ('d', 'p', 2, ('p', 'PandaNode_C_get_parent_p_pip', 'pip'), ['n', 'current_thread']),
-        ('d', 'p', 1, ('p', 'PandaNode_C_get_parent_p_pi', 'pi'), ['n']),
+        ('d', 24, 2, ('p', 'PandaNode_C_get_parent_p_pip', 'pip'), ['n', 'current_thread']),
+        ('d', 24, 1, ('p', 'PandaNode_C_get_parent_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_parents'] = [
         ('d', 'p', 1, ('p', 'PandaNode_C_get_parents_p_pp', 'pp'), ['current_thread']),
@@ -5569,8 +5569,8 @@ class PandaNode(cxx.cplusplus):
     c.ct['get_stashed'] = [
         ('d', 'p', 1, ('p', 'PandaNode_C_get_stashed_p_pp', 'pp'), ['current_thread']),
         ('d', 'p', 0, ('p', 'PandaNode_C_get_stashed_p_p', 'p'), []),
-        ('d', 'p', 2, ('p', 'PandaNode_C_get_stashed_p_pip', 'pip'), ['n', 'current_thread']),
-        ('d', 'p', 1, ('p', 'PandaNode_C_get_stashed_p_pi', 'pi'), ['n']),
+        ('d', 24, 2, ('p', 'PandaNode_C_get_stashed_p_pip', 'pip'), ['n', 'current_thread']),
+        ('d', 24, 1, ('p', 'PandaNode_C_get_stashed_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_stashed_sort'] = [
         ('d', 'i', 2, ('i', 'PandaNode_C_get_stashed_sort_i_pip', 'pip'), ['n', 'current_thread']),
@@ -5668,7 +5668,7 @@ class PandaNode(cxx.cplusplus):
         ('d', 'v', 2, ('v', 'PandaNode_C_ls_v_ppi', 'ppi'), ['out', 'indent_level']),
     ]
     c.ct['make_copy'] = [
-        ('d', 'p', 0, ('p', 'PandaNode_C_make_copy_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'PandaNode_C_make_copy_p_p', 'p'), []),
     ]
     c.ct['mark_bounds_stale'] = [
         ('d', 'v', 1, ('v', 'PandaNode_C_mark_bounds_stale_v_pp', 'pp'), ['current_thread']),
@@ -5798,13 +5798,13 @@ class PandaNode(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'PandaNode_C_unstash_child_v_pi', 'pi'), ['stashed_index']),
     ]
     c.ct['upcast_to_LinkedListNode'] = [
-        ('d', 'p', 0, ('p', 'PandaNode_C_upcast_to_LinkedListNode_p_p', 'p'), []),
+        ('d', 18, 0, ('p', 'PandaNode_C_upcast_to_LinkedListNode_p_p', 'p'), []),
     ]
     c.ct['upcast_to_Namable'] = [
-        ('d', 'p', 0, ('p', 'PandaNode_C_upcast_to_Namable_p_p', 'p'), []),
+        ('d', 20, 0, ('p', 'PandaNode_C_upcast_to_Namable_p_p', 'p'), []),
     ]
     c.ct['upcast_to_TypedWritableReferenceCount'] = [
-        ('d', 'p', 0, ('p', 'PandaNode_C_upcast_to_TypedWritableReferenceCount_p_p', 'p'), []),
+        ('d', 31, 0, ('p', 'PandaNode_C_upcast_to_TypedWritableReferenceCount_p_p', 'p'), []),
     ]
     c.ct['update_bam_nested'] = [
         ('d', 'v', 1, ('v', 'PandaNode_C_update_bam_nested_v_pp', 'pp'), ['manager']),
@@ -5861,7 +5861,7 @@ class PandaSystem(cxx.cplusplus):
         ('s', 's', 0, ('s', 'PandaSystem_C_get_git_commit_s_v', ''), []),
     ]
     c.ct['get_global_ptr'] = [
-        ('s', 'p', 0, ('p', 'PandaSystem_C_get_global_ptr_p_v', ''), []),
+        ('s', 25, 0, ('p', 'PandaSystem_C_get_global_ptr_p_v', ''), []),
     ]
     c.ct['get_major_version'] = [
         ('s', 'i', 0, ('i', 'PandaSystem_C_get_major_version_i_v', ''), []),
@@ -6063,7 +6063,7 @@ class ReferenceCount(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'ReferenceCount_C_unref_B_p', 'p'), []),
     ]
     c.ct['upcast_to_MemoryBase'] = [
-        ('d', 'p', 0, ('p', 'ReferenceCount_C_upcast_to_MemoryBase_p_p', 'p'), []),
+        ('d', 19, 0, ('p', 'ReferenceCount_C_upcast_to_MemoryBase_p_p', 'p'), []),
     ]
     c.ct['weak_ref'] = [
         ('d', 'p', 0, ('p', 'ReferenceCount_C_weak_ref_p_p', 'p'), []),
@@ -6096,7 +6096,7 @@ class Thread(cxx.cplusplus):
     # classmethod type calls
 
     c.ct['bind_thread'] = [
-        ('s', 'p', 2, ('p', 'Thread_C_bind_thread_p_ss', 'ss'), ['name', 'sync_name']),
+        ('s', 27, 2, ('p', 'Thread_C_bind_thread_p_ss', 'ss'), ['name', 'sync_name']),
     ]
     c.ct['consider_yield'] = [
         ('s', 'v', 0, ('v', 'Thread_C_consider_yield_v_v', ''), []),
@@ -6111,13 +6111,13 @@ class Thread(cxx.cplusplus):
         ('s', 'i', 0, ('i', 'Thread_C_get_current_pipeline_stage_i_v', ''), []),
     ]
     c.ct['get_current_thread'] = [
-        ('s', 'p', 0, ('p', 'Thread_C_get_current_thread_p_v', ''), []),
+        ('s', 27, 0, ('p', 'Thread_C_get_current_thread_p_v', ''), []),
     ]
     c.ct['get_external_thread'] = [
-        ('s', 'p', 0, ('p', 'Thread_C_get_external_thread_p_v', ''), []),
+        ('s', 27, 0, ('p', 'Thread_C_get_external_thread_p_v', ''), []),
     ]
     c.ct['get_main_thread'] = [
-        ('s', 'p', 0, ('p', 'Thread_C_get_main_thread_p_v', ''), []),
+        ('s', 27, 0, ('p', 'Thread_C_get_main_thread_p_v', ''), []),
     ]
     c.ct['init_type'] = [
         ('s', 'v', 0, ('v', 'Thread_C_init_type_v_v', ''), []),
@@ -6207,7 +6207,7 @@ class Thread(cxx.cplusplus):
         ('d', 'i', 0, ('i', 'Thread_C_force_init_type_i_p', 'p'), []),
     ]
     c.ct['get_current_task'] = [
-        ('d', 'p', 0, ('p', 'Thread_C_get_current_task_p_p', 'p'), []),
+        ('d', 29, 0, ('p', 'Thread_C_get_current_task_p_p', 'p'), []),
     ]
     c.ct['get_pipeline_stage'] = [
         ('d', 'i', 0, ('i', 'Thread_C_get_pipeline_stage_i_p', 'p'), []),
@@ -6267,10 +6267,10 @@ class Thread(cxx.cplusplus):
         ('d', 'B', 2, ('B', 'Thread_C_start_B_ppB', 'ppB'), ['priority', 'joinable']),
     ]
     c.ct['upcast_to_Namable'] = [
-        ('d', 'p', 0, ('p', 'Thread_C_upcast_to_Namable_p_p', 'p'), []),
+        ('d', 20, 0, ('p', 'Thread_C_upcast_to_Namable_p_p', 'p'), []),
     ]
     c.ct['upcast_to_TypedReferenceCount'] = [
-        ('d', 'p', 0, ('p', 'Thread_C_upcast_to_TypedReferenceCount_p_p', 'p'), []),
+        ('d', 29, 0, ('p', 'Thread_C_upcast_to_TypedReferenceCount_p_p', 'p'), []),
     ]
 
 
@@ -6314,7 +6314,7 @@ class TypedObject(cxx.cplusplus):
     # instance method type calls
 
     c.ct['as_typed_object'] = [
-        ('d', 'p', 0, ('p', 'TypedObject_C_as_typed_object_p_p', 'p'), []),
+        ('d', 28, 0, ('p', 'TypedObject_C_as_typed_object_p_p', 'p'), []),
         ('d', 'p', 0, ('p', 'TypedObject_C_as_typed_object_p_p_1_p_p', 'p'), []),
     ]
     c.ct['force_init_type'] = [
@@ -6336,7 +6336,7 @@ class TypedObject(cxx.cplusplus):
         ('d', 'B', 1, ('B', 'TypedObject_C_is_of_type_B_pi', 'pi'), ['handle']),
     ]
     c.ct['upcast_to_MemoryBase'] = [
-        ('d', 'p', 0, ('p', 'TypedObject_C_upcast_to_MemoryBase_p_p', 'p'), []),
+        ('d', 19, 0, ('p', 'TypedObject_C_upcast_to_MemoryBase_p_p', 'p'), []),
     ]
 
 
@@ -6366,7 +6366,7 @@ class TypedReferenceCount(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_Thread'] = [
-        ('d', 'p', 0, ('p', 'TypedReferenceCount_C_downcast_to_Thread_p_p', 'p'), []),
+        ('d', 27, 0, ('p', 'TypedReferenceCount_C_downcast_to_Thread_p_p', 'p'), []),
     ]
 
 
@@ -6414,7 +6414,7 @@ class TypedWritable(cxx.cplusplus):
     # instance method type calls
 
     c.ct['as_reference_count'] = [
-        ('d', 'p', 0, ('p', 'TypedWritable_C_as_reference_count_p_p', 'p'), []),
+        ('d', 26, 0, ('p', 'TypedWritable_C_as_reference_count_p_p', 'p'), []),
     ]
     c.ct['encode_to_bam_stream'] = [
         ('d', 'p', 0, ('p', 'TypedWritable_C_encode_to_bam_stream_p_p', 'p'), []),
@@ -6473,10 +6473,10 @@ class TypedWritableReferenceCount(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_GeomVertexFormat'] = [
-        ('d', 'p', 0, ('p', 'TypedWritableReferenceCount_C_downcast_to_GeomVertexFormat_p_p', 'p'), []),
+        ('d', 13, 0, ('p', 'TypedWritableReferenceCount_C_downcast_to_GeomVertexFormat_p_p', 'p'), []),
     ]
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 'p', 0, ('p', 'TypedWritableReferenceCount_C_downcast_to_PandaNode_p_p', 'p'), []),
+        ('d', 24, 0, ('p', 'TypedWritableReferenceCount_C_downcast_to_PandaNode_p_p', 'p'), []),
     ]
 
 
@@ -6571,7 +6571,7 @@ class WindowFramework(cxx.cplusplus):
         ('d', 21, 0, ('p', 'WindowFramework_C_get_button_thrower_p_p', 'p'), []),
     ]
     c.ct['get_camera'] = [
-        ('d', 'p', 1, ('p', 'WindowFramework_C_get_camera_p_pi', 'pi'), ['n']),
+        ('d', 1, 1, ('p', 'WindowFramework_C_get_camera_p_pi', 'pi'), ['n']),
     ]
     c.ct['get_camera_group'] = [
         ('d', 21, 0, ('p', 'WindowFramework_C_get_camera_group_p_p', 'p'), []),
@@ -6601,7 +6601,7 @@ class WindowFramework(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'WindowFramework_C_get_one_sided_reverse_B_p', 'p'), []),
     ]
     c.ct['get_panda_framework'] = [
-        ('d', 'p', 0, ('p', 'WindowFramework_C_get_panda_framework_p_p', 'p'), []),
+        ('d', 23, 0, ('p', 'WindowFramework_C_get_panda_framework_p_p', 'p'), []),
     ]
     c.ct['get_perpixel'] = [
         ('d', 'B', 0, ('B', 'WindowFramework_C_get_perpixel_B_p', 'p'), []),
@@ -6678,8 +6678,8 @@ class WindowFramework(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'WindowFramework_C_setup_trackball_v_p', 'p'), []),
     ]
     c.ct['split_window'] = [
-        ('d', 'p', 1, ('p', 'WindowFramework_C_split_window_p_pp', 'pp'), ['split_type']),
-        ('d', 'p', 0, ('p', 'WindowFramework_C_split_window_p_p', 'p'), []),
+        ('d', 32, 1, ('p', 'WindowFramework_C_split_window_p_pp', 'pp'), ['split_type']),
+        ('d', 32, 0, ('p', 'WindowFramework_C_split_window_p_p', 'p'), []),
     ]
     c.ct['stagger_animations'] = [
         ('d', 'v', 0, ('v', 'WindowFramework_C_stagger_animations_v_p', 'p'), []),
@@ -6733,6 +6733,8 @@ if __name__ == '__main__':
         print("np","=",np)
 
         E.attach(np)
+
+        cxx.TRACE=0
 
         Vec3 = LVecBase3f
 

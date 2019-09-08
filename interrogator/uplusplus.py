@@ -77,8 +77,12 @@ def call1(ancestor, cls, instance, attr, decl):
     argc = decl[IDX_ARGC]
 
     if isinstance(rt, int):
+        if TRACE:
+            print("   JIT-1",rt,c.decl[rt])
         rt = c.decl[rt]
     else:
+        if TRACE:
+            print("   JIT-1 passthrough")
         rt = passthrough
 
     # OPTIM
@@ -114,18 +118,18 @@ def call1(ancestor, cls, instance, attr, decl):
         def jit1(*argv, **kw):
             argv, kw = cxx_stack(*argv, **kw)
             if TRACE:
-                print("   JIT-%s" % ct, argv, FFI_TRACK[id(ffi)])
+                print("   JIT1-%s" % ct, argv, FFI_TRACK[id(ffi)])
             return rt(cptr=ffi(*argv))
     else:
         # check nullptr ?
         def jit1(*argv, **kw):
             argv, kw = cxx_stack(instance, *argv, **kw)
             if TRACE:
-                print("   JIT-%s" % instance, argv, FFI_TRACK[id(ffi)])
+                print("   JIT1-%s" % instance, argv, FFI_TRACK[id(ffi)])
             return rt(cptr=ffi(*argv))
 
 
-    FFI_TRACK[id(jit1)] = decl[IDX_FFI]
+    FFI_TRACK[id(ffi)] = decl
     ancestor.c[attr] = jit1
 
     # alias to parent so child can call directly next time
@@ -156,7 +160,7 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
     #
 
     if DBG:
-        print('  JIT CACHING', sigkey, argc)
+        print('  JIT-x CACHING', sigkey, argc)
 
     cl = []
     for proto in get_match(ancestor, cls, rt, ct, pl, argc):
@@ -168,7 +172,7 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
         raise TypeError("%s->%s : no match for arguments count" % (ancestor.__name__, attr))
 
     if len(cl) > 1:
-        print("  JIT ERROR N/I call sig dependant proto")
+        print("  JIT-x ERROR N/I call sig dependant proto")
 
     cl = cl[-1][0]
 
@@ -273,7 +277,7 @@ def jit_table(cls, instance, attr):
                 if cl:
                     return cl(*argv,**kw)
                 if DBG:
-                    print("JIT INIT[%s-%d] %s->%s(%s) -> %s" % (ct, argc, ancestor, attr, instance, rt), argv, kw)
+                    print("JIT-x INIT[%s-%d] %s->%s(%s) -> %s" % (ct, argc, ancestor, attr, instance, rt), argv, kw)
                 return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
         else:
             def jit_x(*argv, **kw):
@@ -283,7 +287,7 @@ def jit_table(cls, instance, attr):
                 if cl:
                     return cl(*argv,**kw)
                 if DBG:
-                    print("JIT INIT[%s-%d] %s->%s(%s) -> %s" % (ct,argc, ancestor, attr, instance, rt), argv, kw)
+                    print("JIT-x INIT[%s-%d] %s->%s(%s) -> %s" % (ct,argc, ancestor, attr, instance, rt), argv, kw)
                 return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
 
         return jit_x
@@ -367,6 +371,8 @@ class cplusplus:
             c.ref[id(self)] = cref
             REFC.setdefault(cref, 1)
             REFC[cref] += 1
+            if TRACE:
+                print("   ATTACH",iref,cref,'=>',self)
         else:
             GCBAD += 1
             ctor = jit_table(self.__class__, None, 'ctor')

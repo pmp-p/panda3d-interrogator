@@ -357,6 +357,8 @@ if __name__ == '__main__':
 
         E.attach(np)
 
+        cxx.TRACE=0
+
         Vec3 = LVecBase3f
 
         if 0:

@@ -48,7 +48,14 @@ def igate_to_json(file_like):
             ct = 's'
             decal = 0
         else:
-            return_type = cpp_type
+            return_type = cpp_type.replace('inline ','')
+            return_type = return_type.replace('&','')
+            return_type = return_type.replace('*','').strip()
+            return_type = return_type.replace('virtual ','')
+            if return_type.find('>')>0:
+                return_type = return_type.split('< ',1)[-1]
+                return_type = return_type.rsplit(' >',1)[0]
+
 
         args = []
 
