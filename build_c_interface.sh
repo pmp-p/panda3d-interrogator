@@ -39,7 +39,7 @@ then
     echo "skipping c++ build+test"
     rm build/lib${LIB}_c.so
 else
-    rm build/lib${LIB}_cpp.so build/lib${LIB}_c.so mview_cpp mview_c
+    rm build/lib${LIB}_*.so mview_cpp mview_c
 
     $link -o build/lib${LIB}_cpp.so lib/lib.cxx ${LIBS}
 
@@ -66,16 +66,16 @@ mkdir -p build
 
 if [ -f build/lib${LIB}_cpp.so ]
 then
+    if $link -o build/lib${LIB}_cni.so build/interrogate_cni.cpp ${LIBS} -l${LIB}_cpp
+    then
+        echo "C native ffi interface for C++ built"
+    fi
+
     if $link -o build/lib${LIB}_c.so build/interrogate_wrapper.cpp ${LIBS} -l${LIB}_cpp
     then
-        /bin/mv -vf build/interrogate_wrapper.h    build/${LIB}.h
-        if which json_pp
-        then
-            json_pp < build/interrogate_wrapper.json > build/${LIB}.json
-        else
-            /bin/mv -vf build/interrogate_wrapper.json build/${LIB}.json
-        fi
-        cmd="$cc -o mview_c mview.c ${LIBS} -l${LIB}_cpp -l${LIB}_c"
+        /bin/mv -vf build/interrogate_wrapper.h build/${LIB}.h
+        /bin/mv -vf build/interrogate_wrapper.json build/${LIB}.json
+        cmd="$cc -o mview_c mview.c ${LIBS} -l${LIB}_cpp -l${LIB}_cni"
         echo $cmd
         $cmd
         ./mview_c

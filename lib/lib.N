@@ -1,21 +1,30 @@
-forcetype PandaFramework
-// is OK but bloating my tests
-
-forcetype NodePath
-// Internal error!  Function signature NodePath::get_node(int, Thread *) const repeated!
-
-forcetype PandaSystem
-// Internal error!  Function signature PandaSystem::get_system(std::size_t) const repeated!
-
-forcetype ConfigPage
-//Internal error!  Function signature ConfigPage::modify_declaration(std::size_t) repeated!
-
+forcetype CachedTypedWritableReferenceCount
 forcetype Camera
-//Internal error!  Function signature Camera::get_display_region(std::size_t) const repeated!
-
-forcetype WindowFramework
+forcetype ConfigPage
 forcetype Filename
+forcetype Geom
+forcetype GeomEnums
+forcetype GeomNode
+forcetype GeomPoints
+forcetype GeomPrimitive
+forcetype GeomTriangles
+forcetype GeomVertexData
+forcetype GeomVertexFormat
+forcetype GeomVertexWriter
+forcetype LensNode
+forcetype LQuaternion
 forcetype LVecBase3f
-
-forcetype NodePathCollection
 forcetype LVecBase3f::EVector3
+forcetype MemoryBase
+forcetype NodePath
+forcetype NodePathCollection
+forcetype PandaFramework
+forcetype PandaNode
+forcetype PandaSystem
+forcetype ReferenceCount
+forcetype Thread
+forcetype TypedObject
+forcetype TypedWritable
+forcetype WindowFramework
+forcetype InternalName
+

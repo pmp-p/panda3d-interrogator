@@ -17,6 +17,8 @@
 
 
 FFI_MARK = '_C_'
+CNI = 1
+
 RETURN_TYPE_FIRST = 1
 
 DBG = 0
@@ -24,7 +26,11 @@ DBG = 0
 
 import os
 import sys
-import uctypes
+
+try:
+    import uctypes
+except:
+    print('CPY')
 
 try:
     import ffi
@@ -33,9 +39,9 @@ except:
 
 
 try:
-    import json
-except:
     import ujson as json
+except:
+    import json
 
 
 CODE = {}
@@ -55,20 +61,19 @@ def vars(o=__import__("__main__")):
 
 builtins.vars = vars
 
-RET = 0
-VAR = 1
-FFI = 2
+CTP = 0
+RET = 1
+VAR = 2
+FFI = 3
 
 
 def dlopen(lib):
 
-    code = {}
-
     with open("build/{}.json".format((lib)), 'r') as jsonf:
-        retmap = json.loads(jsonf.read())
+        code = json.loads(jsonf.read())
 
     # platform dependant
-    clib = "lib{}_c.so".format((lib))
+    clib = "lib{}_cni.so".format((lib))
 
     def ffimap(ffi_name):
         global RETURN_TYPE_FIRST
@@ -89,10 +94,10 @@ def dlopen(lib):
 
         try:
             func, ret, args = ffimap(ffi_name)
-            cls, func = func.split('_C_', 1)
+            cls, func = func.split(FFI_MARK, 1)
             code.setdefault(cls, {})
             code[cls].setdefault(func, [])
-            code[cls][func].append((ret, args, ffi_name))
+            code[cls][func].append((code['callmap'].get(ffi_name, 'd'), ret, args, ffi_name))
 
             if DBG:
                 print(cls, '.', func, args, '->', ret)
@@ -108,9 +113,29 @@ def dlopen(lib):
         sys.print_exception(e)
         print('dlopen failed on {}'.format((clib)))
         raise SystemExit
+
     code['lib'] = clib
-    code['retmap'] = retmap.pop('retmap')
-    code['forward_decl'] = retmap.pop('forward_decl')
+    del code['btypes']
+
+    forward_decl = []
+    cls = code['classes']
+    ck = list(cls.keys())
+    ck.sort()
+    mx = 0
+    for cn in ck:
+        mx = max(mx, len(cls[cn]['bases']))
+
+    print('MAX PARENTS =', mx)
+    for p in range(mx + 1):
+        for cn in ck:
+            if p == len(cls[cn]['bases']):
+                forward_decl.append(cn)
+
+    forward_decl.sort()
+    print(forward_decl)
+
+    code['forward_decl'] = forward_decl
+
     return code
 
 
@@ -126,11 +151,12 @@ def is_tor(func):
 
 
 def build(TARGET):
-    global CODE
+    global CODE, DBG
 
     OUT_FILE = open('build/%s.py' % TARGET, 'w')
 
     def write(*argv, **kw):
+        global DBG
         if DBG:
             print(*argv, **kw)
         kw['file'] = OUT_FILE
@@ -139,30 +165,44 @@ def build(TARGET):
     def ret_cpp(ret, ffi_name):
         pret = "'%s'" % ret
         if ret == 'p':
-            pret = retmap.get(ffi_name, "'p'")
-            if pret in forward_decl:
-                pret = forward_decl.index(pret)
-        return pret
+            if ffi_name in forward_decl:
+                pret = forward_decl.index(ffi_name)
+        return pret, ffi_name
 
-    def variadics(func, targets, ct='d'):
-        write("    c.ct['{}'] = {{".format((func)))
-        for t in targets:
-            ret, args, ffi_name = t
-            pret = ret_cpp(ret, ffi_name)
-            if args == 'v':
-                if ct == 's':
-                    write("""        {} : ['{}', {}, c.lib.func('{}','{}','')],""".format((0), (ct), (pret), (ret), (ffi_name)))
-                else:
-                    write("""        {} : ['{}', {}, c.lib.func('{}','{}','')],""".format((1), (ct), (pret), (ret), (ffi_name)))
-                continue
-            write("""        {} : ['{}', {}, c.lib.func('{}','{}','{}')],""".format((len(t[VAR])), (ct), (pret), (ret), (ffi_name), (args)))
-        write('    }')
+    def enums(cls, indent=0):
+        for enum_name, enums in cls['enums'].items():
+            write(
+                """{}# enum {}
+"""
+.format(("    "*indent), (enum_name))            )
+
+            for enum in enums:
+                write("""{}{} = const({})""".format(("    "*indent), (enum[0]), (enum[1])))
+
+            write("\n")
+
+    #
+
+    #
+
+    #
+
+    #
 
     CODE.update(dlopen(TARGET))
 
     lib = CODE.pop('lib')
-    retmap = CODE.pop('retmap')
+
+    # callmap = CODE.pop('callmap')
+    # retmap = CODE.pop('retmap')
+
     forward_decl = CODE.pop('forward_decl')
+
+    has_main_enum = forward_decl[0] == ''
+
+    if has_main_enum:
+        forward_decl.pop(0)
+
     write(
         """# upy
 
@@ -172,90 +212,112 @@ import sys
 if not '.' in sys.path: sys.path.insert(0,'.')
 import interrogator.uplusplus as cxx
 
-cxx.cstructs.decl.extend({})
+extern = cxx.cstructs.decl.append"""
+.format()    )
+    for decl in forward_decl:
+        write("extern('{}')".format((decl)))
 
+    write("del extern\n")
 
-"""
-.format((forward_decl))    )
+    classes = CODE['classes']
 
-    for cls in CODE.keys():
+    if has_main_enum:
+        enums(classes[''], indent=0)
 
-        if 0:
-            if not cls in ['Engine', 'NodePath', 'LVecBase3f']:
-                print("maybe skipPING", ":", cls)
-                continue
+    indent = 1
 
-        if cls.startswith('_'):
-            pcls = cls[2:]
-        else:
-            pcls = cls
+    for cn in forward_decl:
+        ancestor = 'cxx.cplusplus'
 
         write(
             '''
-class {}(cxx.cplusplus):
-    c = cxx.cstructs().register("{}", "{}", """{}""")
+class {}({}):
+
+    c = cxx.cstructs()
+    c.register("{}", "{}", """{}""")
 '''
-.format((pcls), (pcls), (TARGET), (lib))        )
+.format((cn), (ancestor), (cn), (TARGET), (lib))        )
+        enums(classes[cn], indent=1)
+        # write("# ============== ENUM OFF ====================")
 
-        write(
-            """
-    # ctor/dtor : classmethod type calls and return only raw pointer or void
+        def dump(cls, ct, ctor=0):
+            global CNI
+
+            fnlist = []
+
+            for proto in cls['proto']:
+                if proto['ctor'] != ctor:
+                    continue
+
+                if proto['ct'] != ct:
+                    continue
+
+                if not proto['fn'] in fnlist:
+                    fnlist.append(proto['fn'])
+            fnlist.sort()
+
+            for func in fnlist:
+                if ctor:
+                    write("{}c.ct['ctor'] = [".format(('    '*indent)))
+                else:
+                    write("{}c.ct['{}'] = [".format(('    '*indent), (func)))
+
+                for proto in cls['proto']:
+                    if proto['fn'] != func:
+                        continue
+
+                    ret = proto['cni_rt']
+                    pret, cret = ret_cpp(ret, proto['rt'])
+
+                    args = proto['cni_args']
+                    if CNI:
+                        ffi_name = proto['cni']
+                    else:
+                        ffi_name = proto['indexed']
+
+                    # cffi = f"c.lib.func('{ret}','{ffi_name}','{args}')"
+                    cffi = "('{}', '{}', '{}')".format((ret), (ffi_name), (args))
+                    write("{}    ('{}', {}, {}, {}, {}),".format(('    '*indent), (ct), (pret), (proto['argc']), (cffi), (proto['argn'])))
+
+                write("{}]".format(('    '*indent)))
+
+            # write("\n#", fnlist)
+            write("")
+            return fnlist
+
+        write("    # ctor/dtor\n")
+
+        dump(classes[cn], 's', ctor=1)
+
+        write("    # classmethod type calls\n")
+
+        for cm in dump(classes[cn], 's', ctor=0):
+            write(
+                """{}@classmethod
+{}def {}(cls, *args,**kw):
+{}    return ( cls.c.get('{}', None) or cls.c.call({}, '{}', None) )(*args,**kw)
 """
-        )
+.format(('    '*indent), ('    '*indent), (cm), ('    '*indent), (cm), (cn), (cm))            )
 
-        for func, targets in CODE[cls].items():
+        write("    # instance method type calls\n")
 
-            if not is_tor(func):
-                continue
-
-            if len(targets) == 1:
-                for ret, args, ffi_name in targets:
-                    pret = ret_cpp(ret, ffi_name)
-                    write("""    c.ct['{}'] = ['s', {}, c.lib.func('{}','{}','{}')]""".format((func), (pret), (ret), (ffi_name), (args)))
-            else:
-                variadics(func, targets, 's')
+        dump(classes[cn], 'd', ctor=0)
 
         write(
             """
-    # fixed pos : return basic types or other C++ classes
-"""
-        )
+{}# c++ instance methods
 
-        for func, targets in CODE[cls].items():
-            if is_tor(func) or (len(targets) != 1):
-                continue
+{}def __del__(self):
+{}    self.c.destroy(self)
 
-            for ret, args, ffi_name in targets:
-                pret = ret_cpp(ret, ffi_name)
-                write("""    c.ct['{}'] = ['d', {}, c.lib.func('{}','{}','{}')]""".format((func), (pret), (ret), (ffi_name), (args)))
-
-        write(
-            """
-    # variadic : return basic types or other C++ classes
-"""
-        )
-
-        for func, targets in CODE[cls].items():
-            if is_tor(func) or (len(targets) < 2):
-                continue
-
-            variadics(func, targets)
-
-        write(
-            """
-
-    # c++ instance methods
-
-    def __del__(self):
-        self.__class__.destroy(self)
-
-    def __getattr__(self, attr):
-        return self.__call(attr)
+{}def __getattr__(self, attr):
+{}    if attr[0]!='_':
+{}        return ( self.c.get(attr,None) or  self.c.call({}, attr, self) )
 
 {}.c.link({})
 
 """
-.format((pcls), (pcls))        )
+.format(('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), (cn), (cn), (cn))        )
 
     if TARGET == 'upanda3d':
         write(
@@ -264,11 +326,17 @@ if __name__ == '__main__':
     import os
     import gc
     import time
+    import uctypes
     REFC = cxx.REFC
 
     def test():
-        print("C++ class constructor", Engine.c.ct['ctor'])
+
+
+        for proto in Engine.c.ct['ctor']:
+            print("C++ class constructor", proto)
+
         E = Engine()
+
         print('engine      ',E)
         C = E.__class__( iptr=E )
         print('engine(copy)',C)
@@ -287,30 +355,102 @@ if __name__ == '__main__':
 
         print("np","=",np)
 
-
-        cxx.TRACE = 0
         E.attach(np)
 
-        if 1:
-            v3 = LVecBase3f()
-            v3.set_x(0.01)
-            v3.set_y(42.01)
-            v3.set_z(0.01)
+        Vec3 = LVecBase3f
 
-            print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+        if 0:
+            # feed the monkey
+            Geom.UH_static = 3
+            GeomTriangles.c.bases.append( GeomPrimitive )
+            #GeomT.c.bases.append( GeomTriangles )
+            #GeomT.c.bases.append( GeomPrimitive )
+
+
+
+        def Cube(size=1.0, geom_name="CubeMaker", gvd_name="Data", gvw_name="vertex"):
+
+
+
+
+            format = GeomVertexFormat.get_v3()
+            print("GeomVertexFormat.format =",format)
+
+            data = GeomVertexData(gvd_name, format, Geom.UH_static )
+            print("GeomVertexData=", data)
+
+
+            cthr = Thread.get_current_thread()
+            print('CurrentThread=', cthr )
+
+
+            #vertices = GeomVertexWriter(data, gvw_name)
+            #vertices = GeomVertexWriter( cptr=
+
+            vertices = E.new_GeomVertexWriter( data, gvw_name);
+            vertices = GeomVertexWriter( cptr= vertices )
+            print("GeomVertexWriter=", vertices)
+
+            triangles = GeomTriangles(Geom.UH_static)
+
+            print("triangles=",triangles)
+
+
+
+            size = float(size) / 2.0
+            vertices.add_data3f(-size, -size, -size)
+            vertices.add_data3f(+size, -size, -size)
+            vertices.add_data3f(-size, +size, -size)
+            vertices.add_data3f(+size, +size, -size)
+            vertices.add_data3f(-size, -size, +size)
+            vertices.add_data3f(+size, -size, +size)
+            vertices.add_data3f(-size, +size, +size)
+            vertices.add_data3f(+size, +size, +size)
+
+
+            if 0:
+                def add_quad(v0, v1, v2, v3):
+                    triangles.add_vertices(v0, v1, v2)
+                    triangles.add_vertices(v0, v2, v3)
+                    cxx.TRACE = 1
+                    #triangles.close_primitive()
+                    E.close_primitive(triangles)
+
+                add_quad(4, 5, 7, 6)  # Z+
+                add_quad(0, 2, 3, 1)  # Z-
+                add_quad(3, 7, 5, 1)  # X+
+                add_quad(4, 6, 2, 0)  # X-
+                add_quad(2, 6, 7, 3)  # Y+
+                add_quad(0, 1, 5, 4)  # Y+
+
+            geom = Geom(data)
+            print("Geom=",geom)
+
+            cxx.TRACE = 1
+            #geom.add_primitive(triangles)
+            E.add_primitive( geom, triangles )
+
+
+            print("geom=",geom)
+
+            node = GeomNode(geom_name)
+            node.add_geom(geom)
+            return NodePath(node)
+
+
+        if 0:
+            cube = Cube(size=1.0)
+
+        if 0:
+
+            v3 = Vec3(0.01, 42.01, 0.01)
 
             np.set_pos( v3 )
 
-        if 1:
-            v3 = LVecBase3f(0.01, 42.01, 0.01)
-
-            np.set_pos( v3 )
-            #E.op_pos(v3)
-
-            v3 = LVecBase3f(2.0, 2.0, 2.0)
+            v3 = Vec3(2.0, 2.0, 2.0)
             print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
             np.set_scale( v3 )
-            #E.op_scale(v3)
+
 
 
         while E.is_alive():

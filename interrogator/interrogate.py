@@ -45,7 +45,7 @@ def find_sources(base_dir):
 def interrogate(*cmd,includes=[]):
     """ Runs interrogate over the source directory """
 
-    MAJ = PandaSystem.get_major_version() == 1
+    MAJ = PandaSystem.get_major_version()
     MIN = PandaSystem.get_minor_version()
 
     print(f"Panda3D {MAJ}.{MIN}")
@@ -118,8 +118,8 @@ def interrogate(*cmd,includes=[]):
 
     cmd += all_sources
 
-    print( ' '.join(cmd))
-    print()
+    #print( ' '.join(cmd))
+    #print()
 
     try_execute(*cmd)
 

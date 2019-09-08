@@ -4,6 +4,8 @@ TRACE = 0
 GCBAD = 0
 REFC = {}
 
+FFI_TRACK = {}
+
 
 def djb2(s):
     hash = 5381
@@ -15,11 +17,283 @@ def djb2(s):
 import ffi
 import sys
 
+DBG = 0
+
+
+class nullptr(Exception):
+    pass
+
+
+# this is not hashable
+nullptr = Exception('NPE')
+
+
+IDX_CT = const(0)
+IDX_RET = const(1)
+IDX_ARGC = const(2)
+IDX_FFI = const(3)
+IDX_KW = const(4)
+
+
+def passthrough(**kw):
+    if TRACE:
+        print("  JIT PT", kw.get('cptr'))
+    return kw.get('cptr')
+
+
+def cxx_stack(*argv, **kw):
+    argv = list(argv)
+    for idx, arg in enumerate(argv):
+        if isinstance(arg, cplusplus):
+            argv[idx] = arg.__class__.c.ref[id(arg)]
+
+    return argv, kw
+
+
+def wrap(call, rt, argv, kw, instance=None):
+    if TRACE:
+        print("  wrap", 'instance=', instance, argv, kw)
+
+    if instance is None:
+        argv, kw = cxx_stack(*argv, **kw)
+        jt = '  JIT-s'
+    else:
+        argv, kw = cxx_stack(instance, *argv, **kw)
+        jt = '  JIT-d'
+
+    print(jt, instance, '->',argv,'ffi=', FFI_TRACK[id(call)])
+
+    rv = call(*argv)
+    print(jt, 'CPTR rv=', rv)
+    rv = rt(cptr=rv)
+    print(jt, 'PTYPE(%s) rv=' % rt, rv)
+    return rv
+
+
+def call1(ancestor, cls, instance, attr, decl):
+    c = cls.c
+
+    ct = decl[IDX_CT]
+    rt = decl[IDX_RET]
+
+    argc = decl[IDX_ARGC]
+
+    if isinstance(rt, int):
+        rt = c.decl[rt]
+    else:
+        rt = passthrough
+    ffi = ancestor.c.lib.func(*decl[IDX_FFI])
+    FFI_TRACK[id(ffi)] = decl[IDX_FFI]
+    ancestor.c[attr] = ffi
+
+    # alias to parent so child can call directly next time
+    if instance and (ancestor is not cls):
+        c[attr] = ancestor.c[attr]
+
+    # basic/complex return types can be optimized
+
+    # no call stack could be optimized via direct function pointer call
+
+    # kw could be used to pass runtime jit info
+
+    # if not instance(rt,int):
+    if TRACE:
+        print(" -> DIRECT for %s->%s calltype=%s" % (c.name, attr, ct))
+
+    # static call , hide instance if any
+    if ct == 's':
+        instance = None
+
+    if TRACE:
+
+        def jit(*argv, **kw):
+            return wrap(c[attr], rt, argv, kw, instance)
+
+        return jit
+
+    # check nullptr ?
+    if instance is None:
+
+        def jit(*argv, **kw):
+            argv, kw = cxx_stack(*argv, **kw)
+            if TRACE:
+                print("   JIT-%s" % ct, argv, FFI_TRACK[id(c[attr])])
+            return rt(cptr=c[attr](*argv))
+
+    else:
+
+        def jit(*argv, **kw):
+            argv, kw = cxx_stack(instance, *argv, **kw)
+            if TRACE:
+                print("   JIT-%s" % instance, argv, FFI_TRACK[id(c[attr])])
+            return rt(cptr=c[attr](*argv))
+
+    return jit
+
+
+# need *HUGE* optim
+
+
+def get_match(ancestor, cls, rt, ct, pl, argc):
+    cando = []
+    for proto in pl:
+        if argc < proto[IDX_ARGC]:
+            break
+        elif argc == proto[IDX_ARGC]:
+            if TRACE:
+                print("   matched", proto, "for argc=", argc)
+            cando.append(proto)
+    return cando
+
+
+def call_match(ancestor, cls, instance, rt, ct, pl, argv, kw, attr):
+    argc = len(argv) + len(kw)
+    if ct == 'd':
+        argc += 1
+
+    #
+    sigkey = '{}-{}'.format(attr, argc)
+    #
+    cl = ancestor.c.get(sigkey, None)
+    if DBG:
+        print('  JIT CACHE', sigkey, cl)
+
+    if cl is None:
+        cl = []
+        for proto in get_match(ancestor, cls, rt, ct, pl, argc):
+            ffi = ancestor.c.lib.func(*proto[IDX_FFI])
+            FFI_TRACK[id(ffi)] = proto[IDX_FFI]
+            cl.append([ffi, proto[IDX_KW]])
+
+        if not len(cl):
+            raise TypeError("%s->%s : no match for arguments count" % (ancestor.__name__, attr))
+
+        if len(cl) > 1:
+            print("  JIT ERROR N/I call sig dependant proto")
+
+        ancestor.c[sigkey] = cl
+
+        # alias to parent so child can call directly next time
+        cls.c[sigkey] = cl
+
+    cl = cl[-1][0]
+
+    return wrap(cl, rt, argv, kw, instance)
+
+    if instance:
+        argv, kw = cxx_stack(instance, *argv, **kw)
+    else:
+        argv, kw = cxx_stack(*argv, **kw)
+
+    if DBG:
+        pass
+        # PMPP ERROR : POSSIBLE VM BUG remove print FIXME: TODO:
+        # print('177: possible vm bug',file=sys.stderr)
+        # print('  FFI:',FFI_TRACK[ id(cl) ] )
+
+    rv = cl(*argv)
+
+    if DBG:
+        print('  JIT CALL', sigkey, cl, 'rv=', rv)
+
+    return rt(cptr=rv)
+
+
+def callx(ancestor, cls, instance, rt, ct, pl, attr):
+    # sort by positional args count to exit faster from table loop
+    pl.sort(key=lambda x: x[IDX_ARGC])
+
+    if TRACE:
+        for proto in pl:
+            print('    *', "jit (...)", proto)
+
+    def jit_none(*argv, **kw):
+        if DBG:
+            print("JIT INIT %s->%s(%s : %s]) -> %s" % (ancestor, attr, ct, instance, rt), argv, kw)
+
+        return rt(cptr=call_match(ancestor, cls, instance, rt, ct, pl, argv, kw, attr))
+
+    return jit_none
+
+
+def jit_table(cls, instance, attr):
+    global TRACE
+
+    mro = [instance]
+
+    if instance is None:
+        mro.append(cls)
+
+    mro.extend(cls.c.bases)  # TODO: recurse ?
+
+    if DBG:
+        print("inspecting", mro)
+
+    # maybe self maybe not
+    for call_ancestor, ancestor in enumerate(mro):
+
+        # static call don't pass instance so skip and go "call_ancestor==True"
+        if not ancestor:
+            continue
+
+        c = ancestor.c
+
+        call = c.ct.get(attr, None)
+        if not call:
+            if TRACE:
+                print(" -> no match for %s->%s from %s" % (c.name, attr, cls.c.name))
+            continue
+
+        if attr == 'step':
+            TRACE = 1
+
+        # reduce table to direct call if only 1 choice
+        if len(call) == 1:
+            return call1(ancestor, cls, instance, attr, call[0])
+
+        if TRACE:
+            print(" -> call table for %s->%s from %s" % (c.name, attr, cls.c.name))
+
+        # else build a dynamic proto list candidate table
+        rt = ct = None
+        pl = []
+        for decl in call:
+            pl.append(list(decl))
+            nct = pl[-1][IDX_CT]
+            if ct and (ct != nct):
+                raise Exception("174: can't mix static/class and instance method calls on same attribute %s" % attr)
+            ct = nct
+
+            nrt = pl[-1][IDX_RET]
+            if rt and (rt != nrt):
+                raise Exception("177: won't allow mixing return types on same attribute %s %s!=%s" % (attr, rt, nrt))
+            rt = nrt
+
+        # do not convert to py class when ctor since raw c pointer will be stored by __init__
+        if isinstance(rt, int) and (attr != 'ctor'):
+            rt = cls.c.decl[rt]
+        else:
+            rt = passthrough
+
+        del nrt, nct
+
+        if ct == 's':
+            instance = None
+
+        return callx(ancestor, cls, instance, rt, ct, pl, attr)
+
+    raise Exception("%s->%s jit compilation failed" % (cls.__class__.__name__, attr))
+
 
 class cstructs(dict):
+
+    lib = None
+
     pool = []
 
     decl = []
+
+    bases = []
 
     def __init__(self):
         self.ct = dict()
@@ -28,22 +302,50 @@ class cstructs(dict):
 
     def register(self, cname, lname, lib):
         self.name = "{0}::{1}".format(lname, cname)
-        self.lib = ffi.open(lib)
+        if self.__class__.lib is None:
+            self.__class__.lib = ffi.open(lib)
+        #            if DBG:
+        #                print("loading Cni lib %s" % lib)
         return self
 
     def link(self, cls):
-        del self.lib
+        # del self.lib
         self.factory = cls
         if cls.__name__ in self.decl:
             slot = self.decl.index(cls.__name__)
             self.decl[slot] = cls
-            print("c++", cls.__name__, "found and avail. as Python return type")
+            if DBG:
+                print("c++", cls.__name__, "found and avail. as Python return type")
         self.__class__.pool.append(self)
+
+    def call(self, cls, attr, instance=None):
+        global TRACE
+        c = cls.c
+        try:
+            # how to get cross interpreter to match instances ?
+            hsum = '%s-%s' % (id(self), attr)
+            jit = self.get(hsum, None)
+            # OPTIM
+            if jit is None or TRACE:
+                jit = jit_table(cls, instance, attr)
+                c[hsum] = jit
+
+            return jit
+
+        except Exception as e:
+            sys.print_exception(e, sys.stdout)
+            raise Exception("%s->%s jit compilation failed" % (c.name, attr))
+
+        if instance:
+            raise AttributeError("'{0}' C++ class has no method '{1}'".format(c.name, attr))
+        raise AttributeError("'{0}->{1}' is not a C++ static".format(c.name, attr))
 
 
 class cplusplus:
 
     # c++ ctor/dtor
+
+    # ffi call interface 2 types of calls   f(this, ...)  f( ... )
 
     def __init__(self, *argv, **kw):
         global GCBAD, REFC
@@ -61,167 +363,19 @@ class cplusplus:
             REFC[cref] += 1
         else:
             GCBAD += 1
-            kw['hint'] = 'ctor'
-            c.ref[id(self)] = self.__cplusplus_s(c.ct['ctor'], *argv, **kw)
-
-    # ffi call interface 2 types of calls   f(this, ...)  f( ... )
-
-
-    def __proto_mismatch(self,attr):
-        te = TypeError("%s->%s : wrong count of positional arguments" % (self.__class__.__name__,attr) )
-        print("ERROR",te,file=sys.stderr)
-
-        c = self.__class__.c
-        print("Possible candidate for %s->%s are :" % (self.__class__,attr), file=sys.stderr)
-        proto = c.ct.get(attr, None)
-        if not isinstance(proto, dict):
-            proto = {'*': proto}
-        for argc, decl in proto.items():
-            print('    %s : %s' % (argc, decl), file=sys.stderr)
-        return te
-
-
-    # instance methods
-    def __cplusplus_d(self, call, *argv, **kw):
-
-        if isinstance(call, dict):
-            try:
-                # get the matching variadic call if any
-                call = call.get(1+len(argv), None)
-
-            except Exception as e:
-                print(e, ffi_name, len(argv), call, 'argv=', argv)
-                raise
-        # make it mutable
-        argv = list(argv)
-
-        # TODO: debug flag for type checking
-
-        # convert call stack to raw pointer to C structs
-        for idx, arg in enumerate(argv):
-            if isinstance(arg, cplusplus):
-                try:
-                    argv[idx] = arg.__class__.c.ref[id(arg)]
-                except KeyError:
-                    print("arg[%s]=" % idx, arg, "dangling ptr", id(arg), arg.__class__.c.ref)
-                    raise
-        if call:
-            c = self.__class__.c
-            ftype, rtype, func = call
-            try:
-                return func(c.ref[id(self)], *argv)
-            except KeyError:
-                print(kw, ftype, rtype, func, "dangling ptr", id(self), c.ref)
-                raise
-
-        raise self.__proto_mismatch( kw.get('hint', '?jit?') )
-
-
-    # classmethod (static)
-    def __cplusplus_s(self, call, *argv, **kw):
-
-        if isinstance(call, dict):
-            try:
-                # get the matching variadic call if any
-                call = call.get(len(argv), None)
-
-            except Exception as e:
-                print(e, ffi_name, len(argv), call, 'argv=', argv)
-                raise
-        # make it mutable
-        argv = list(argv)
-
-        # TODO: debug flag for type checking
-
-        # convert call stack to raw pointer to C structs
-        for idx, arg in enumerate(argv):
-            if isinstance(arg, cplusplus):
-                try:
-                    argv[idx] = arg.__class__.c.ref[id(arg)]
-                except KeyError:
-                    print("arg[%s]=" % idx, arg, "dangling ptr", id(arg), arg.__class__.c.ref)
-                    raise
-        if call:
-            c = self.__class__.c
-            ftype, rtype, func = call
-            return func(*argv)
-
-        raise self.__proto_mismatch( kw.get('hint', '?jit?') )
+            ctor = jit_table(self.__class__, None, 'ctor')
+            c.ref[id(self)] = ctor(*argv, **kw)
 
     # python interface
 
     def __repr__(self):
         c = self.__class__.c
-        return '<{0} *>({1}#{2})'.format(c.name, c.ref[id(self)], self.refcount())
+        try:
+            return '<{0} *>({1}#{2})'.format(c.name, c.ref[id(self)], self.refcount())
+        except KeyError:
+            return '<{0} *>'.format(c.name)
 
-    def __jit(self, c, attr, *args, **kw):
-        global TRACE
-
-        call = c.ct.get(attr, None)
-        if not isinstance(call, dict):
-            if TRACE:
-                print('TRACE', "jit direct", call)
-            call = {'*': call}
-
-        k = list(call.keys())
-        k.sort()
-
-        ct = None
-        rt = None
-
-        for key in k:
-            proto = call[key]
-
-            if TRACE:
-                print('TRACE', "jit (...) *", key, proto)
-
-            if ct and proto[0] != ct:
-                raise Error("174: can't mix static/class and instance method calls on same attribute %s" % attr)
-            ct = proto[0]
-
-            if rt and proto[1] != rt:
-                raise Error("177: can't mix return types on same attribute %s %s!=%s" % (attr, rt, proto[1]))
-            rt = proto[1]
-
-        if ct == 's':
-            inline = self.__cplusplus_s
-        if ct == 'd':
-            inline = self.__cplusplus_d
-
-        # reduce call table if possible
-        if call.get('*'):
-            call = call['*']
-
-        # can we return a wrapped C++ type ?
-        if isinstance(rt, int) and not isinstance(c.decl[rt], str):
-            rt = c.decl[rt]
-
-            def jit(*argv, **kw):
-                kw['hint'] = attr
-                return rt(cptr=inline(call, *argv, **kw))
-
-        else:
-            # return raw pointer
-            def jit(*argv, **kw):
-                kw['hint'] = attr
-                return inline(call, *argv, **kw)
-
-        return jit
-
-    def __call(self, attr):
-        global TRACE
-        c = self.__class__.c
-        if attr[0] != '_':
-            if TRACE:
-                return self.__jit(c, attr)
-
-            hsum = '%s-%s' % (hash(attr), attr)  # should use djb2 to get cross interpreter
-            jit = c.get(hsum, None)
-            if jit is None:
-                jit = self.__jit(c, attr)
-                c[hsum] = jit
-            return jit
-        raise AttributeError("'{0}' C++ class has no method '{1}'".format(c.name, attr))
+        # return '<%s *>'%self.__class__.__name__
 
     # forced gc
 

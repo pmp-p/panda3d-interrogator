@@ -6,11 +6,10 @@
 #include "dconfig.h"
 #include "dtoolbase.h"
 
-//NotifyCategoryDecl(lib, EXPCL_LIB, EXPTP_LIB);
-
-
 #include "pandaFramework.h"
 #include "pandaSystem.h"
+
+//NotifyCategoryDecl(lib, EXPCL_LIB, EXPTP_LIB);
 
 
 #if 0 //.def CPPPARSER
@@ -27,6 +26,13 @@ class EXPORT_CLASS I_NodePath : public NodePath::NodePath
 #else
 #pragma message "hiding I_ inherited"
 #endif
+
+
+class EXPORT_CLASS GeomT : public GeomTriangles
+{
+    PUBLISHED:
+        ~GeomT();
+};
 
 
 
@@ -55,15 +61,22 @@ class EXPORT_CLASS Engine
 
         NodePath * load_model(const char *filename);
 
-        void attach(NodePath *mdl);
+        GeomVertexWriter * new_GeomVertexWriter(GeomVertexData *data, const char *gvw_name);
 
+        void add_primitive(Geom *geom, GeomTriangles *pri);
+
+        void close_primitive(GeomTriangles *pri);
+
+
+        void attach(NodePath *mdl);
+/*
         void op_pos(NodePath *np, LVecBase3f *v3f);
         void op_scale(NodePath *np, LVecBase3f *v3f);
-
+*/
 
         void build(); //WindowFramework* window_framework);
 
-        void step();
+        int step();
 
         static std::string get_version_string();
         MAKE_PROPERTY(version_string, get_version_string);
