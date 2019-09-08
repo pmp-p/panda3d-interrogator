@@ -311,8 +311,7 @@ class {cn}({ancestor}):
 {'    '*indent}    self.c.destroy(self)
 
 {'    '*indent}def __getattr__(self, attr):
-{'    '*indent}    if attr[0]!='_':
-{'    '*indent}        return ( self.c.get(attr,None) or  self.c.call({cn}, attr, self) )
+{'    '*indent}    return self.c.get(attr,None) or  self.c.call({cn}, attr, self)
 
 {cn}.c.link({cn})
 
@@ -348,6 +347,7 @@ if __name__ == '__main__':
 
         E.build()
 
+        #cxx.TRACE=1
         print('framework=', E.get_wframe() )
 
 

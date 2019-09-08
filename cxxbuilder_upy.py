@@ -311,13 +311,12 @@ class {}({}):
 {}    self.c.destroy(self)
 
 {}def __getattr__(self, attr):
-{}    if attr[0]!='_':
-{}        return ( self.c.get(attr,None) or  self.c.call({}, attr, self) )
+{}    return self.c.get(attr,None) or  self.c.call({}, attr, self)
 
 {}.c.link({})
 
 """
-.format(('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), (cn), (cn), (cn))        )
+.format(('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), (cn), (cn), (cn))        )
 
     if TARGET == 'upanda3d':
         write(
@@ -348,6 +347,7 @@ if __name__ == '__main__':
 
         E.build()
 
+        cxx.TRACE=1
         print('framework=', E.get_wframe() )
 
 

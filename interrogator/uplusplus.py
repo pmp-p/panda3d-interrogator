@@ -61,8 +61,6 @@ def wrap(call, rt, argv, kw, instance=None):
         argv, kw = cxx_stack(instance, *argv, **kw)
         jt = '  JIT-d'
 
-    print(jt, instance, '->',argv,'ffi=', FFI_TRACK[id(call)])
-
     rv = call(*argv)
     print(jt, 'CPTR rv=', rv)
     rv = rt(cptr=rv)
@@ -82,13 +80,16 @@ def call1(ancestor, cls, instance, attr, decl):
         rt = c.decl[rt]
     else:
         rt = passthrough
-    ffi = ancestor.c.lib.func(*decl[IDX_FFI])
-    FFI_TRACK[id(ffi)] = decl[IDX_FFI]
-    ancestor.c[attr] = ffi
 
-    # alias to parent so child can call directly next time
-    if instance and (ancestor is not cls):
-        c[attr] = ancestor.c[attr]
+    # OPTIM
+    # for TRACE
+    ffi = c.get('%s-ffi'%attr,None)
+    if ffi is None:
+        ffi = ancestor.c.lib.func(*decl[IDX_FFI])
+        c['%s-ffi'%attr] = ffi
+
+    # no TRACE
+    # ffi = ancestor.c.lib.func(*decl[IDX_FFI])
 
     # basic/complex return types can be optimized
 
@@ -97,38 +98,41 @@ def call1(ancestor, cls, instance, attr, decl):
     # kw could be used to pass runtime jit info
 
     # if not instance(rt,int):
-    if TRACE:
+    if DBG:
         print(" -> DIRECT for %s->%s calltype=%s" % (c.name, attr, ct))
+
+        if ct == 's':
+            instance = None
+        def jit(*argv, **kw):
+            return wrap(ffi, rt, argv, kw, instance)
+
+        return jit
 
     # static call , hide instance if any
     if ct == 's':
         instance = None
-
-    if TRACE:
-
-        def jit(*argv, **kw):
-            return wrap(c[attr], rt, argv, kw, instance)
-
-        return jit
-
-    # check nullptr ?
-    if instance is None:
-
-        def jit(*argv, **kw):
+        def jit1(*argv, **kw):
             argv, kw = cxx_stack(*argv, **kw)
             if TRACE:
-                print("   JIT-%s" % ct, argv, FFI_TRACK[id(c[attr])])
-            return rt(cptr=c[attr](*argv))
-
+                print("   JIT-%s" % ct, argv, FFI_TRACK[id(ffi)])
+            return rt(cptr=ffi(*argv))
     else:
-
-        def jit(*argv, **kw):
+        # check nullptr ?
+        def jit1(*argv, **kw):
             argv, kw = cxx_stack(instance, *argv, **kw)
             if TRACE:
-                print("   JIT-%s" % instance, argv, FFI_TRACK[id(c[attr])])
-            return rt(cptr=c[attr](*argv))
+                print("   JIT-%s" % instance, argv, FFI_TRACK[id(ffi)])
+            return rt(cptr=ffi(*argv))
 
-    return jit
+
+    FFI_TRACK[id(jit1)] = decl[IDX_FFI]
+    ancestor.c[attr] = jit1
+
+    # alias to parent so child can call directly next time
+    if instance and (ancestor is not cls):
+        c[attr] = jit1
+
+    return jit1
 
 
 # need *HUGE* optim
@@ -146,74 +150,50 @@ def get_match(ancestor, cls, rt, ct, pl, argc):
     return cando
 
 
-def call_match(ancestor, cls, instance, rt, ct, pl, argv, kw, attr):
-    argc = len(argv) + len(kw)
-    if ct == 'd':
-        argc += 1
-
+def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
     #
     sigkey = '{}-{}'.format(attr, argc)
     #
-    cl = ancestor.c.get(sigkey, None)
+
     if DBG:
-        print('  JIT CACHE', sigkey, cl)
+        print('  JIT CACHING', sigkey, argc)
 
-    if cl is None:
-        cl = []
-        for proto in get_match(ancestor, cls, rt, ct, pl, argc):
-            ffi = ancestor.c.lib.func(*proto[IDX_FFI])
-            FFI_TRACK[id(ffi)] = proto[IDX_FFI]
-            cl.append([ffi, proto[IDX_KW]])
+    cl = []
+    for proto in get_match(ancestor, cls, rt, ct, pl, argc):
+        ffi = ancestor.c.lib.func(*proto[IDX_FFI])
+        FFI_TRACK[id(ffi)] = proto[IDX_FFI]
+        cl.append([ffi, proto[IDX_KW]])
 
-        if not len(cl):
-            raise TypeError("%s->%s : no match for arguments count" % (ancestor.__name__, attr))
+    if not len(cl):
+        raise TypeError("%s->%s : no match for arguments count" % (ancestor.__name__, attr))
 
-        if len(cl) > 1:
-            print("  JIT ERROR N/I call sig dependant proto")
-
-        ancestor.c[sigkey] = cl
-
-        # alias to parent so child can call directly next time
-        cls.c[sigkey] = cl
+    if len(cl) > 1:
+        print("  JIT ERROR N/I call sig dependant proto")
 
     cl = cl[-1][0]
 
-    return wrap(cl, rt, argv, kw, instance)
-
     if instance:
-        argv, kw = cxx_stack(instance, *argv, **kw)
+        def jit_n(*argv, **kw):
+            argv, kw = cxx_stack(instance, *argv, **kw)
+            if TRACE:
+                print("   JIT-%s" % ct, argv, FFI_TRACK[id(cl)])
+            return rt(cptr=cl(*argv))
+
     else:
-        argv, kw = cxx_stack(*argv, **kw)
-
-    if DBG:
-        pass
-        # PMPP ERROR : POSSIBLE VM BUG remove print FIXME: TODO:
-        # print('177: possible vm bug',file=sys.stderr)
-        # print('  FFI:',FFI_TRACK[ id(cl) ] )
-
-    rv = cl(*argv)
-
-    if DBG:
-        print('  JIT CALL', sigkey, cl, 'rv=', rv)
-
-    return rt(cptr=rv)
+        def jit_n(*argv, **kw):
+            argv, kw = cxx_stack(*argv, **kw)
+            if TRACE:
+                print("   JIT-%s" % ct, argv, FFI_TRACK[id(cl)])
+            return rt(cptr=cl(*argv))
 
 
-def callx(ancestor, cls, instance, rt, ct, pl, attr):
-    # sort by positional args count to exit faster from table loop
-    pl.sort(key=lambda x: x[IDX_ARGC])
+    ancestor.c[sigkey] = jit_n
 
-    if TRACE:
-        for proto in pl:
-            print('    *', "jit (...)", proto)
+    # alias to parent so child can call directly next time
+    cls.c[sigkey] = jit_n
 
-    def jit_none(*argv, **kw):
-        if DBG:
-            print("JIT INIT %s->%s(%s : %s]) -> %s" % (ancestor, attr, ct, instance, rt), argv, kw)
+    return rt(cptr=jit_n(*argv,**kw))
 
-        return rt(cptr=call_match(ancestor, cls, instance, rt, ct, pl, argv, kw, attr))
-
-    return jit_none
 
 
 def jit_table(cls, instance, attr):
@@ -244,12 +224,14 @@ def jit_table(cls, instance, attr):
                 print(" -> no match for %s->%s from %s" % (c.name, attr, cls.c.name))
             continue
 
-        if attr == 'step':
-            TRACE = 1
 
         # reduce table to direct call if only 1 choice
         if len(call) == 1:
             return call1(ancestor, cls, instance, attr, call[0])
+
+        if attr == 'step':
+            TRACE = 1
+
 
         if TRACE:
             print(" -> call table for %s->%s from %s" % (c.name, attr, cls.c.name))
@@ -277,10 +259,34 @@ def jit_table(cls, instance, attr):
 
         del nrt, nct
 
+        # sort by positional args count to exit faster from table loop
+        pl.sort(key=lambda x: x[IDX_ARGC])
+
+
         if ct == 's':
             instance = None
 
-        return callx(ancestor, cls, instance, rt, ct, pl, attr)
+            def jit_x(*argv, **kw):
+                argc = len(argv) + len(kw)
+                sigkey = '{}-{}'.format(attr, argc)
+                cl = cls.c.get(sigkey, None)
+                if cl:
+                    return cl(*argv,**kw)
+                if DBG:
+                    print("JIT INIT[%s-%d] %s->%s(%s) -> %s" % (ct, argc, ancestor, attr, instance, rt), argv, kw)
+                return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
+        else:
+            def jit_x(*argv, **kw):
+                argc = len(argv) + len(kw) +1
+                sigkey = '{}-{}'.format(attr, argc)
+                cl = instance.c.get(sigkey, None)
+                if cl:
+                    return cl(*argv,**kw)
+                if DBG:
+                    print("JIT INIT[%s-%d] %s->%s(%s) -> %s" % (ct,argc, ancestor, attr, instance, rt), argv, kw)
+                return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
+
+        return jit_x
 
     raise Exception("%s->%s jit compilation failed" % (cls.__class__.__name__, attr))
 

@@ -202,8 +202,7 @@ class CachedTypedWritableReferenceCount(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(CachedTypedWritableReferenceCount, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(CachedTypedWritableReferenceCount, attr, self)
 
 CachedTypedWritableReferenceCount.c.link(CachedTypedWritableReferenceCount)
 
@@ -365,8 +364,7 @@ class Camera(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Camera, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Camera, attr, self)
 
 Camera.c.link(Camera)
 
@@ -477,8 +475,7 @@ class ConfigPage(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(ConfigPage, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(ConfigPage, attr, self)
 
 ConfigPage.c.link(ConfigPage)
 
@@ -514,8 +511,7 @@ class CopyOnWriteObject(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(CopyOnWriteObject, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(CopyOnWriteObject, attr, self)
 
 CopyOnWriteObject.c.link(CopyOnWriteObject)
 
@@ -606,8 +602,7 @@ class Engine(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Engine, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Engine, attr, self)
 
 Engine.c.link(Engine)
 
@@ -1015,8 +1010,7 @@ class Filename(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Filename, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Filename, attr, self)
 
 Filename.c.link(Filename)
 
@@ -1285,8 +1279,7 @@ class Geom(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Geom, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Geom, attr, self)
 
 Geom.c.link(Geom)
 
@@ -1420,8 +1413,7 @@ class GeomEnums(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomEnums, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomEnums, attr, self)
 
 GeomEnums.c.link(GeomEnums)
 
@@ -1571,8 +1563,7 @@ class GeomNode(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomNode, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomNode, attr, self)
 
 GeomNode.c.link(GeomNode)
 
@@ -1881,8 +1872,7 @@ class GeomPrimitive(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomPrimitive, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomPrimitive, attr, self)
 
 GeomPrimitive.c.link(GeomPrimitive)
 
@@ -1912,8 +1902,7 @@ class GeomT(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomT, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomT, attr, self)
 
 GeomT.c.link(GeomT)
 
@@ -1974,8 +1963,7 @@ class GeomTriangles(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomTriangles, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomTriangles, attr, self)
 
 GeomTriangles.c.link(GeomTriangles)
 
@@ -2263,8 +2251,7 @@ class GeomVertexData(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomVertexData, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomVertexData, attr, self)
 
 GeomVertexData.c.link(GeomVertexData)
 
@@ -2567,8 +2554,7 @@ class GeomVertexFormat(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomVertexFormat, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomVertexFormat, attr, self)
 
 GeomVertexFormat.c.link(GeomVertexFormat)
 
@@ -2818,8 +2804,7 @@ class GeomVertexWriter(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(GeomVertexWriter, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(GeomVertexWriter, attr, self)
 
 GeomVertexWriter.c.link(GeomVertexWriter)
 
@@ -3078,8 +3063,7 @@ class InternalName(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(InternalName, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(InternalName, attr, self)
 
 InternalName.c.link(InternalName)
 
@@ -3315,8 +3299,7 @@ class LVecBase3f(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(LVecBase3f, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(LVecBase3f, attr, self)
 
 LVecBase3f.c.link(LVecBase3f)
 
@@ -3414,8 +3397,7 @@ class LensNode(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(LensNode, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(LensNode, attr, self)
 
 LensNode.c.link(LensNode)
 
@@ -3445,8 +3427,7 @@ class LinkedListNode(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(LinkedListNode, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(LinkedListNode, attr, self)
 
 LinkedListNode.c.link(LinkedListNode)
 
@@ -3483,8 +3464,7 @@ class MemoryBase(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(MemoryBase, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(MemoryBase, attr, self)
 
 MemoryBase.c.link(MemoryBase)
 
@@ -3517,8 +3497,7 @@ class Namable(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Namable, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Namable, attr, self)
 
 Namable.c.link(Namable)
 
@@ -4952,8 +4931,7 @@ class NodePath(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(NodePath, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(NodePath, attr, self)
 
 NodePath.c.link(NodePath)
 
@@ -5110,8 +5088,7 @@ class NodePathCollection(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(NodePathCollection, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(NodePathCollection, attr, self)
 
 NodePathCollection.c.link(NodePathCollection)
 
@@ -5295,8 +5272,7 @@ class PandaFramework(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(PandaFramework, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(PandaFramework, attr, self)
 
 PandaFramework.c.link(PandaFramework)
 
@@ -5853,8 +5829,7 @@ class PandaNode(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(PandaNode, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(PandaNode, attr, self)
 
 PandaNode.c.link(PandaNode)
 
@@ -6027,8 +6002,7 @@ class PandaSystem(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(PandaSystem, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(PandaSystem, attr, self)
 
 PandaSystem.c.link(PandaSystem)
 
@@ -6105,8 +6079,7 @@ class ReferenceCount(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(ReferenceCount, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(ReferenceCount, attr, self)
 
 ReferenceCount.c.link(ReferenceCount)
 
@@ -6307,8 +6280,7 @@ class Thread(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(Thread, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(Thread, attr, self)
 
 Thread.c.link(Thread)
 
@@ -6374,8 +6346,7 @@ class TypedObject(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(TypedObject, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(TypedObject, attr, self)
 
 TypedObject.c.link(TypedObject)
 
@@ -6405,8 +6376,7 @@ class TypedReferenceCount(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(TypedReferenceCount, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(TypedReferenceCount, attr, self)
 
 TypedReferenceCount.c.link(TypedReferenceCount)
 
@@ -6483,8 +6453,7 @@ class TypedWritable(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(TypedWritable, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(TypedWritable, attr, self)
 
 TypedWritable.c.link(TypedWritable)
 
@@ -6517,8 +6486,7 @@ class TypedWritableReferenceCount(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(TypedWritableReferenceCount, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(TypedWritableReferenceCount, attr, self)
 
 TypedWritableReferenceCount.c.link(TypedWritableReferenceCount)
 
@@ -6724,8 +6692,7 @@ class WindowFramework(cxx.cplusplus):
         self.c.destroy(self)
 
     def __getattr__(self, attr):
-        if attr[0]!='_':
-            return ( self.c.get(attr,None) or  self.c.call(WindowFramework, attr, self) )
+        return self.c.get(attr,None) or  self.c.call(WindowFramework, attr, self)
 
 WindowFramework.c.link(WindowFramework)
 
@@ -6757,6 +6724,7 @@ if __name__ == '__main__':
 
         E.build()
 
+        cxx.TRACE=1
         print('framework=', E.get_wframe() )
 
 
