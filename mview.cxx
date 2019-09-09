@@ -32,12 +32,12 @@ using namespace std;
 static FRAMEWORK panda_framework;
 
 
-
+/*
 GeomT::~GeomT(){
     cout << "GeomT->Destructor" <<endl;
 }
-
-GeomTriangles *
+*/
+PT(GeomTriangles)
 Engine::new_GeomTriangles() {
     return new GeomTriangles(GeomEnums::UH_static);
 }
@@ -67,6 +67,18 @@ Engine::Engine() {
     this->framework = &panda_framework;
 };
 
+int
+Engine::inc_ref(ReferenceCount * rc) {
+    rc->ref();
+    return rc->get_ref_count();
+}
+
+int
+Engine::dec_ref(ReferenceCount * rc) {
+    rc->unref();
+    return rc->get_ref_count();
+}
+
 
 void
 Engine::build() {
@@ -74,11 +86,15 @@ Engine::build() {
 	// setup Panda3d
 	this->framework->open_framework(g_argc, (char **&)g_argv);
 
-	WindowFramework *window = this->framework->open_window();
+//	WindowFramework *window = this->framework->open_window();
+//	PT(WindowFramework) window_framework = window;
+    wframe = this->framework->open_window();
+    wframe->ref();
 
-	PT(WindowFramework) window_framework = window;
 
-	if(window_framework == NULL) {
+
+	//if(window_framework == NULL) {
+    if(wframe == NULL) {
 		nout << "ERROR: could not open the WindowFramework." << endl;
         emscripten_force_exit(0);
 		return ; // error
@@ -86,7 +102,7 @@ Engine::build() {
 
 
     // Escape quits
-    wframe=    window_framework;
+    // wframe=    window_framework;
     wframe->enable_keyboard();
     wframe->get_panda_framework()->define_key("escape", "escapeQuits", call_exit, NULL);
 }
@@ -167,34 +183,49 @@ Engine::~Engine() {
 
 
 //-----------------------------------------------------------------------------
+
+
+
 void add_quad(GeomTriangles * triangles, int v0, int v1, int v2, int v3) {
     triangles->add_vertices(v0, v1, v2);
     triangles->add_vertices(v0, v2, v3);
     triangles->close_primitive();
 }
 
-NodePath * Cube(float size=1.0) {
-    const char * geom_name="CubeMaker";
-    const char * gvd_name="Data";
-    const char * gvw_name="vertex";
+NodePath *
+Engine::new_Cube(float size, str geom_name, str gvd_name) {
 
-    GeomVertexFormat const * format = GeomVertexFormat::get_v3();
+GeomTriangles * triangles;
+//PT(GeomTriangles) triangles;
+GeomVertexFormat const * format;
+GeomVertexData * data ;
+Geom * geom;
+GeomNode * node;
+GeomVertexWriter vertices;
 
-    GeomVertexData * data = new GeomVertexData(gvd_name, format, GeomEnums::UH_static );
+    format = GeomVertexFormat::get_v3();
 
-    GeomVertexWriter * vertices = new GeomVertexWriter(data, CPT_InternalName(gvw_name));
+    data = new GeomVertexData(gvd_name, format, GeomEnums::UH_static );
+
+
+    vertices = GeomVertexWriter(data, CPT_InternalName("vertex"));
 
     size /= 2.0 ;
-    vertices->add_data3f(-size, -size, -size);
-    vertices->add_data3f(+size, -size, -size);
-    vertices->add_data3f(-size, +size, -size);
-    vertices->add_data3f(+size, +size, -size);
-    vertices->add_data3f(-size, -size, +size);
-    vertices->add_data3f(+size, -size, +size);
-    vertices->add_data3f(-size, +size, +size);
-    vertices->add_data3f(+size, +size, +size);
+    vertices.add_data3f(-size, -size, -size);
+    vertices.add_data3f(+size, -size, -size);
+    vertices.add_data3f(-size, +size, -size);
+    vertices.add_data3f(+size, +size, -size);
+    vertices.add_data3f(-size, -size, +size);
+    vertices.add_data3f(+size, -size, +size);
+    vertices.add_data3f(-size, +size, +size);
+    vertices.add_data3f(+size, +size, +size);
 
-    GeomTriangles * triangles = new GeomTriangles(GeomEnums::UH_static);
+
+
+    triangles = new GeomTriangles(GeomEnums::UH_static);
+
+// ? lifetime of triangles ?
+    Engine::inc_ref(triangles);
 
 
     add_quad(triangles, 4, 5, 7, 6);  // Z+
@@ -205,10 +236,10 @@ NodePath * Cube(float size=1.0) {
     add_quad(triangles, 0, 1, 5, 4);  // Y+
 
 
-    Geom * geom = new Geom(data);
+    geom = new Geom(data);
     geom->add_primitive( triangles );
 
-    GeomNode * node = new GeomNode(geom_name);
+    node = new GeomNode(geom_name);
     node->add_geom(geom);
 
     return new NodePath(node);
@@ -246,7 +277,7 @@ main_loop_or_step(){
 		mdl->set_scale(3,3,3);
 		mdl->set_pos(0, 42, 0);
 
-        Cube(1.0);
+        engine->attach( engine->new_Cube(1.0,"cm","data") );
 
         cout << "sizeof(LVecBase3f) = " << sizeof(LVecBase3f) << endl;
 		return;

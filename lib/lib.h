@@ -23,10 +23,6 @@ class EXPORT_CLASS I_NodePath : public NodePath::NodePath
         void set_pos(LVecBase3f const&);
         void set_scale(LVecBase3f const&);
 };
-#else
-#pragma message "hiding I_ inherited"
-#endif
-
 
 class EXPORT_CLASS GeomT : public GeomTriangles
 {
@@ -36,7 +32,17 @@ class EXPORT_CLASS GeomT : public GeomTriangles
 
 
 
+#else
+#pragma message "hiding I_ inherited"
+#endif
+
+
+
 #define FRAMEWORK PandaFramework
+
+
+#define str const char*
+
 
 static int alive = 1;
 
@@ -67,26 +73,31 @@ class EXPORT_CLASS Engine
 
         void close_primitive(GeomTriangles *pri);
 
-        GeomTriangles * new_GeomTriangles();
+        PT(GeomTriangles) new_GeomTriangles();
+
+        NodePath * new_Cube(float size, str geom_name, str gvd_name);
 
         void attach(NodePath *mdl);
+
+        static int inc_ref(ReferenceCount * rc);
+        static int dec_ref(ReferenceCount * rc);
+
 /*
         void op_pos(NodePath *np, LVecBase3f *v3f);
         void op_scale(NodePath *np, LVecBase3f *v3f);
 */
 
-        void build(); //WindowFramework* window_framework);
+        void build();
 
         void step();
 
         static std::string get_version_string();
         MAKE_PROPERTY(version_string, get_version_string);
 
-
         static void call_exit(const Event* event, void* data);
 
-
-        PT(WindowFramework) wframe;
+        //PT(WindowFramework) wframe;
+        WindowFramework * wframe;
 
         FRAMEWORK * framework;
 };

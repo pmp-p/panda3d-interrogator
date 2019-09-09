@@ -1,5 +1,14 @@
 # upy
 
+# py: __del__ special method not implemented for user-defined classes
+# BLOCKER: https://github.com/micropython/micropython/issues/1878
+
+# PEP572 https://github.com/micropython/micropython/pull/4908
+
+# next()
+# https://github.com/micropython/micropython/issues/5046
+
+
 # STM GC
 #   https://bitbucket.org/pypy/stmgc/src/default/
 
@@ -17,7 +26,7 @@
 
 
 FFI_MARK = '_C_'
-CNI = 1
+CNI = 0
 
 RETURN_TYPE_FIRST = 1
 
@@ -73,7 +82,10 @@ def dlopen(lib):
         code = json.loads(jsonf.read())
 
     # platform dependant
-    clib = "lib{}_cni.so".format((lib))
+    if CNI:
+        clib = "lib{}_cni.so".format((lib))
+    else:
+        clib = "lib{}_c.so".format((lib))
 
     def ffimap(ffi_name):
         global RETURN_TYPE_FIRST
@@ -269,11 +281,11 @@ extern = cxx.cstructs.decl.append"""
         write(
             '''
 class {}({}):
-
+    __bases__ = tuple([{}])
     c = cxx.cstructs()
     c.register("{}", "{}", """{}""")
 '''
-.format((cn), (ancestor), (cn), (TARGET), (lib))        )
+.format((cn), (ancestor), (', '.join(classes[cn]['bases'])), (cn), (TARGET), (lib))        )
         enums(classes[cn], indent=1)
         # write("# ============== ENUM OFF ====================")
 
@@ -354,10 +366,21 @@ class {}({}):
 
 """
 .format(('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), ('    '*indent), (cn), (cn), (cn))        )
+    write(
+        """
+
+cxx.REFCOUNTED = ReferenceCount
+cxx.INCREF = Engine.inc_ref
+cxx.DECREF = Engine.dec_ref
+"""
+    )
 
     if TARGET == 'upanda3d':
         write(
             """
+
+
+
 if __name__ == '__main__':
     import os
     import gc
@@ -409,87 +432,8 @@ if __name__ == '__main__':
         np.set_scale( v3 )
 
 
-        # feed the monkey
-        GeomTriangles.c.bases.append( GeomPrimitive )
-
-        #Geom.UH_static = 3
-        #GeomT.c.bases.append( GeomTriangles )
-        #GeomT.c.bases.append( GeomPrimitive )
-
-
-        def Cube(size=1.0, geom_name="CubeMaker", gvd_name="Data", gvw_name="vertex"):
-
-            format = GeomVertexFormat.get_v3()
-            print("GeomVertexFormat.format =",format)
-
-            data = GeomVertexData(gvd_name, format, GeomEnums.UH_static )
-            print("GeomVertexData=", data)
-
-
-            cthr = Thread.get_current_thread()
-            print('CurrentThread=', cthr )
-
-            #cxx.TRACE=1
-            # BUG
-            #vertices = GeomVertexWriter(data,addr gvw_name)
-            vertices = E.new_GeomVertexWriter( data, gvw_name);
-            cxx.TRACE=0
-
-            print("GeomVertexWriter=", vertices)
-
-            size = float(size) / 2.0
-            vertices.add_data3f(-size, -size, -size)
-            vertices.add_data3f(+size, -size, -size)
-            vertices.add_data3f(-size, +size, -size)
-            vertices.add_data3f(+size, +size, -size)
-            vertices.add_data3f(-size, -size, +size)
-            vertices.add_data3f(+size, -size, +size)
-            vertices.add_data3f(-size, +size, +size)
-            vertices.add_data3f(+size, +size, +size)
-
-            #triangles = GeomTriangles(GeomEnums.UH_static)
-            triangles = E.new_GeomTriangles()
-
-            print("triangles=",triangles)
-
-
-            def add_quad(v0, v1, v2, v3):
-                triangles.add_vertices(v0, v1, v2)
-                triangles.add_vertices(v0, v2, v3)
-                #
-                #BUG
-                #triangles.close_primitive()
-                cxx.TRACE = 1
-                E.close_primitive(triangles)
-                cxx.TRACE = 0
-
-            add_quad(4, 5, 7, 6)  # Z+
-            add_quad(0, 2, 3, 1)  # Z-
-            add_quad(3, 7, 5, 1)  # X+
-            add_quad(4, 6, 2, 0)  # X-
-            add_quad(2, 6, 7, 3)  # Y+
-            add_quad(0, 1, 5, 4)  # Y+
-
-            geom = Geom(data)
-            print("Geom=",geom)
-
-            cxx.TRACE = 1
-
-# BUG geom ptr not converted
-            E.add_primitive( geom, triangles )
-            #geom.add_primitive(triangles)
-            cxx.TRACE = 0
-
-            print("geom=",geom)
-
-            node = GeomNode(geom_name)
-            node.add_geom(geom)
-            return NodePath(node)
-
-
-        cube = Cube(size=1.0)
-
-
+        cube = E.new_Cube(1.0, "CubeMaker", "Data")
+        print('cube=',cube)
 
         while E.is_alive():
             E.step()

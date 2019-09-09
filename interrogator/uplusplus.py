@@ -3,6 +3,10 @@
 TRACE = 0
 GCBAD = 0
 REFC = {}
+REFCOUNTED = None
+INCREF = None
+DECREF = None
+
 
 FFI_TRACK = {}
 
@@ -379,7 +383,7 @@ class cplusplus:
         cref = kw.pop('cptr', None)
         if iref or cref:
             # extract pointer addr from source
-            if not isinstance(cref, int):
+            if (cref is not None) and (not isinstance(cref, int)):
                 print("ERROR cref is not a raw pointer but a ",cref)
                 iref=cref
 
@@ -392,6 +396,11 @@ class cplusplus:
             c.ref[id(self)] = cref
             REFC.setdefault(cref, 1)
             REFC[cref] += 1
+            if REFCOUNTED and isinstance(self, REFCOUNTED ):
+                if 1: #TRACE:
+                    print("   REF %s" % INCREF(cref), 'on',self)
+                else:
+                    INCREF(cref)
             if TRACE:
                 print("   ATTACH",iref,cref,'=>',self)
         else:

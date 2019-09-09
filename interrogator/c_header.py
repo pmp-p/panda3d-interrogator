@@ -170,6 +170,8 @@ def c_header(H, source):
 
             ex_type = fix_c_types(ex_type)
             ex_name = proto['demangled'].replace('$_$', '$%s$' % protocnt)
+            proto['indexed'] = ex_name
+
             ex_decl = fix_c_types(ex_decl.replace('$_$', '$%s$' % protocnt))
             ffi_args = []
 

@@ -62,7 +62,6 @@
 #define GeomNode$_Geoms char
 #define GeomPrimitive char
 #define GeomPrimitivePipelineReader char
-#define GeomT char
 #define GeomTransformer char
 #define GeomTriangles char
 #define GeomVertexAnimationSpec char
@@ -472,28 +471,40 @@ extern void Engine$10$add_primitive(Engine *self, Geom *geom, GeomTriangles *pri
 extern void Engine$11$close_primitive(Engine *self, GeomTriangles *pri);
 
 // _inCAAAAn6WY : C++() ==> C(Engine *)
-extern GeomTriangles * Engine$12$new_GeomTriangles(Engine *self);
+extern char ** Engine$12$new_GeomTriangles(Engine *self);
+
+// _inCAAAAPpvK : C++(float size, char const *geom_name, char const *gvd_name) ==> C(Engine *, float, char const *, char const *)
+extern NodePath * Engine$13$new_Cube(Engine *self, float size, char const *geom_name, char const *gvd_name);
 
 // _inCAAAA3rLd : C++(NodePath *mdl) ==> C(Engine *, NodePath *)
-extern void Engine$13$attach(Engine *self, NodePath *mdl);
+extern void Engine$14$attach(Engine *self, NodePath *mdl);
+
+// _inCAAAAlJYA : C++(ReferenceCount *rc) ==> C(ReferenceCount *)
+extern int Engine$15$inc_ref(ReferenceCount *rc);
+
+// _inCAAAAr8mf : C++(ReferenceCount *rc) ==> C(ReferenceCount *)
+extern int Engine$16$dec_ref(ReferenceCount *rc);
 
 // _inCAAAAB_Fq : C++() ==> C(Engine *)
-extern void Engine$14$build(Engine *self);
+extern void Engine$17$build(Engine *self);
 
 // _inCAAAAMIC_ : C++() ==> C(Engine *)
-extern void Engine$15$step(Engine *self);
+extern void Engine$18$step(Engine *self);
 
 // _inCAAAAcpk6 : C++() ==> C()
-extern char const * Engine$16$get_version_string(void);
+extern char const * Engine$19$get_version_string(void);
 
 // _inCAAAA4rrc : C++() ==> C(Engine const *)
-extern char * Engine$17$get_wframe(Engine const *self);
+extern WindowFramework * Engine$20$get_wframe(Engine const *self);
+
+// _inCAAAAGUc7 : C++(WindowFramework *value) ==> C(Engine *, WindowFramework *)
+extern void Engine$21$set_wframe(Engine *self, WindowFramework *value);
 
 // _inCAAAAHww4 : C++() ==> C(Engine const *)
-extern PandaFramework * Engine$18$get_framework(Engine const *self);
+extern PandaFramework * Engine$22$get_framework(Engine const *self);
 
 // _inCAAAAbucf : C++(PandaFramework *value) ==> C(Engine *, PandaFramework *)
-extern void Engine$19$set_framework(Engine *self, PandaFramework *value);
+extern void Engine$23$set_framework(Engine *self, PandaFramework *value);
 
 
 // Filename
@@ -1526,12 +1537,6 @@ extern int GeomPrimitive$93$get_type(GeomPrimitive const *self);
 
 // _inCAAAA9Zyd : C++() ==> C(GeomPrimitive *)
 extern int GeomPrimitive$94$force_init_type(GeomPrimitive *self);
-
-
-// GeomT
-
-// _inCAAAAPCAm : C++(GeomT const &) ==> C(GeomT const *)
-extern GeomT * GeomT$1$GeomT(GeomT const *arg0);
 
 
 // GeomTriangles
