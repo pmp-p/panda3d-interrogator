@@ -127,16 +127,61 @@ def dlopen(lib):
 
     print('MAX PARENTS =', mx)
     for p in range(mx + 1):
+        lot = []
         for cn in ck:
             if p == len(cls[cn]['bases']):
-                forward_decl.append(cn)
+                lot.append(cn)
 
-    forward_decl.sort()
+        lot.sort()
+        forward_decl.extend(lot)
+
     print(forward_decl)
 
-    code['forward_decl'] = forward_decl
+    code['forward_decl'] = sort_inheritance(code, forward_decl)
 
     return code
+
+
+def sort_inheritance(code, fwd):
+    def bases(cn):
+        return list(cls[cn]['bases'])
+
+    # fwd = code['forward_decl']
+
+    cls = code['classes']
+
+    first = 0
+    for cn in fwd:
+        if len(bases(cn)):
+            break
+        first += 1
+
+    unsorted = True
+    slot = ''
+
+    while first < len(fwd):
+        tosort = fwd[first]
+        parents = bases(fwd[first])
+        while parents:
+            for i in range(first):
+                if fwd[i] in parents:
+                    parents.remove(fwd[i])
+            else:
+                if len(parents):
+                    unsorted = True
+                    slot = parents.pop(0)
+                    print(tosort, 'wrong position vs', slot)
+                    break
+        else:
+            first += 1
+
+        if unsorted:
+            good = fwd.index(slot)
+            fwd.insert(good + 1, tosort)
+            fwd.pop(first)
+            unsorted = False
+
+    return fwd
 
 
 def handle_return_type(indent, call, *args):
@@ -181,22 +226,11 @@ def build(TARGET):
 
             write("\n")
 
-    #
-
-    #
-
-    #
-
-    #
-
     CODE.update(dlopen(TARGET))
 
-    lib = CODE.pop('lib')
+    lib = CODE['lib']
 
-    # callmap = CODE.pop('callmap')
-    # retmap = CODE.pop('retmap')
-
-    forward_decl = CODE.pop('forward_decl')
+    forward_decl = CODE['forward_decl']
 
     has_main_enum = forward_decl[0] == ''
 
@@ -214,12 +248,13 @@ import interrogator.uplusplus as cxx
 
 extern = cxx.cstructs.decl.append"""
 .format()    )
-    for decl in forward_decl:
-        write("extern('{}')".format((decl)))
-
-    write("del extern\n")
 
     classes = CODE['classes']
+
+    for cn in forward_decl:
+        write("extern('{}') # {}".format((cn), (', '.join(classes[cn]['bases']))))
+
+    write("del extern\n")
 
     if has_main_enum:
         enums(classes[''], indent=0)
@@ -228,6 +263,8 @@ extern = cxx.cstructs.decl.append"""
 
     for cn in forward_decl:
         ancestor = 'cxx.cplusplus'
+        if len(classes[cn]['bases']):
+            ancestor = ', '.join(classes[cn]['bases'])
 
         write(
             '''
@@ -275,13 +312,13 @@ class {}({}):
                     else:
                         ffi_name = proto['indexed']
 
-                    # cffi = f"c.lib.func('{ret}','{ffi_name}','{args}')"
                     cffi = "('{}', '{}', '{}')".format((ret), (ffi_name), (args))
-                    write("{}    ('{}', {}, {}, {}, {}),".format(('    '*indent), (ct), (pret), (proto['argc']), (cffi), (proto['argn'])))
+
+                    # kw arguments ?
+                    write("{}    ('{}', {}, {}, {}, {}),".format(('    '*indent), (ct), (pret), (proto['argc']), (cffi), (proto['argt'])))
 
                 write("{}]".format(('    '*indent)))
 
-            # write("\n#", fnlist)
             write("")
             return fnlist
 
@@ -347,7 +384,7 @@ if __name__ == '__main__':
 
         E.build()
 
-        cxx.TRACE=1
+
         print('framework=', E.get_wframe() )
 
 
@@ -357,47 +394,48 @@ if __name__ == '__main__':
 
         E.attach(np)
 
-        cxx.TRACE=0
 
         Vec3 = LVecBase3f
 
-        if 0:
-            # feed the monkey
-            Geom.UH_static = 3
-            GeomTriangles.c.bases.append( GeomPrimitive )
-            #GeomT.c.bases.append( GeomTriangles )
-            #GeomT.c.bases.append( GeomPrimitive )
 
+        v3 = Vec3(0.01, 42.01, 0.01)
+        print("Vec3=", v3)
+
+
+        np.set_pos( v3 )
+
+        v3 = Vec3(2.0, 2.0, 2.0)
+        print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+        np.set_scale( v3 )
+
+
+        # feed the monkey
+        GeomTriangles.c.bases.append( GeomPrimitive )
+
+        #Geom.UH_static = 3
+        #GeomT.c.bases.append( GeomTriangles )
+        #GeomT.c.bases.append( GeomPrimitive )
 
 
         def Cube(size=1.0, geom_name="CubeMaker", gvd_name="Data", gvw_name="vertex"):
 
-
-
-
             format = GeomVertexFormat.get_v3()
             print("GeomVertexFormat.format =",format)
 
-            data = GeomVertexData(gvd_name, format, Geom.UH_static )
+            data = GeomVertexData(gvd_name, format, GeomEnums.UH_static )
             print("GeomVertexData=", data)
 
 
             cthr = Thread.get_current_thread()
             print('CurrentThread=', cthr )
 
-
-            #vertices = GeomVertexWriter(data, gvw_name)
-            #vertices = GeomVertexWriter( cptr=
-
+            #cxx.TRACE=1
+            # BUG
+            #vertices = GeomVertexWriter(data,addr gvw_name)
             vertices = E.new_GeomVertexWriter( data, gvw_name);
-            vertices = GeomVertexWriter( cptr= vertices )
+            cxx.TRACE=0
+
             print("GeomVertexWriter=", vertices)
-
-            triangles = GeomTriangles(Geom.UH_static)
-
-            print("triangles=",triangles)
-
-
 
             size = float(size) / 2.0
             vertices.add_data3f(-size, -size, -size)
@@ -409,29 +447,38 @@ if __name__ == '__main__':
             vertices.add_data3f(-size, +size, +size)
             vertices.add_data3f(+size, +size, +size)
 
+            #triangles = GeomTriangles(GeomEnums.UH_static)
+            triangles = E.new_GeomTriangles()
 
-            if 0:
-                def add_quad(v0, v1, v2, v3):
-                    triangles.add_vertices(v0, v1, v2)
-                    triangles.add_vertices(v0, v2, v3)
-                    cxx.TRACE = 1
-                    #triangles.close_primitive()
-                    E.close_primitive(triangles)
+            print("triangles=",triangles)
 
-                add_quad(4, 5, 7, 6)  # Z+
-                add_quad(0, 2, 3, 1)  # Z-
-                add_quad(3, 7, 5, 1)  # X+
-                add_quad(4, 6, 2, 0)  # X-
-                add_quad(2, 6, 7, 3)  # Y+
-                add_quad(0, 1, 5, 4)  # Y+
+
+            def add_quad(v0, v1, v2, v3):
+                triangles.add_vertices(v0, v1, v2)
+                triangles.add_vertices(v0, v2, v3)
+                #
+                #BUG
+                #triangles.close_primitive()
+                cxx.TRACE = 1
+                E.close_primitive(triangles)
+                cxx.TRACE = 0
+
+            add_quad(4, 5, 7, 6)  # Z+
+            add_quad(0, 2, 3, 1)  # Z-
+            add_quad(3, 7, 5, 1)  # X+
+            add_quad(4, 6, 2, 0)  # X-
+            add_quad(2, 6, 7, 3)  # Y+
+            add_quad(0, 1, 5, 4)  # Y+
 
             geom = Geom(data)
             print("Geom=",geom)
 
             cxx.TRACE = 1
-            #geom.add_primitive(triangles)
-            E.add_primitive( geom, triangles )
 
+# BUG geom ptr not converted
+            E.add_primitive( geom, triangles )
+            #geom.add_primitive(triangles)
+            cxx.TRACE = 0
 
             print("geom=",geom)
 
@@ -440,18 +487,7 @@ if __name__ == '__main__':
             return NodePath(node)
 
 
-        if 0:
-            cube = Cube(size=1.0)
-
-        if 0:
-
-            v3 = Vec3(0.01, 42.01, 0.01)
-
-            np.set_pos( v3 )
-
-            v3 = Vec3(2.0, 2.0, 2.0)
-            print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
-            np.set_scale( v3 )
+        cube = Cube(size=1.0)
 
 
 

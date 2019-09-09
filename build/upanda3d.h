@@ -471,26 +471,29 @@ extern void Engine$10$add_primitive(Engine *self, Geom *geom, GeomTriangles *pri
 // _inCAAAA9r7J : C++(GeomTriangles *pri) ==> C(Engine *, GeomTriangles *)
 extern void Engine$11$close_primitive(Engine *self, GeomTriangles *pri);
 
+// _inCAAAAn6WY : C++() ==> C(Engine *)
+extern GeomTriangles * Engine$12$new_GeomTriangles(Engine *self);
+
 // _inCAAAA3rLd : C++(NodePath *mdl) ==> C(Engine *, NodePath *)
-extern void Engine$12$attach(Engine *self, NodePath *mdl);
+extern void Engine$13$attach(Engine *self, NodePath *mdl);
 
 // _inCAAAAB_Fq : C++() ==> C(Engine *)
-extern void Engine$13$build(Engine *self);
+extern void Engine$14$build(Engine *self);
 
 // _inCAAAAMIC_ : C++() ==> C(Engine *)
-extern void Engine$14$step(Engine *self);
+extern void Engine$15$step(Engine *self);
 
 // _inCAAAAcpk6 : C++() ==> C()
-extern char const * Engine$15$get_version_string(void);
+extern char const * Engine$16$get_version_string(void);
 
 // _inCAAAA4rrc : C++() ==> C(Engine const *)
-extern char * Engine$16$get_wframe(Engine const *self);
+extern char * Engine$17$get_wframe(Engine const *self);
 
 // _inCAAAAHww4 : C++() ==> C(Engine const *)
-extern PandaFramework * Engine$17$get_framework(Engine const *self);
+extern PandaFramework * Engine$18$get_framework(Engine const *self);
 
 // _inCAAAAbucf : C++(PandaFramework *value) ==> C(Engine *, PandaFramework *)
-extern void Engine$18$set_framework(Engine *self, PandaFramework *value);
+extern void Engine$19$set_framework(Engine *self, PandaFramework *value);
 
 
 // Filename
@@ -1871,14 +1874,12 @@ extern int GeomVertexFormat$24$get_array_with(GeomVertexFormat const *self, Inte
 
 // _inCAAAANXXj : C++(std::size_t i) ==> C(GeomVertexFormat const *, std::size_t)
 extern int GeomVertexFormat$25$get_array_with(GeomVertexFormat const *self, std$_size_t i);
-// COLLISION : GeomVertexFormat_C_get_array_with_i_pp GeomVertexFormat$25$get_array_with
 
 // _inCAAAAzgLi : C++(InternalName const *name) ==> C(GeomVertexFormat const *, InternalName const *)
 extern GeomVertexColumn const * GeomVertexFormat$26$get_column(GeomVertexFormat const *self, InternalName const *name);
 
 // _inCAAAAObkc : C++(std::size_t i) ==> C(GeomVertexFormat const *, std::size_t)
 extern GeomVertexColumn const * GeomVertexFormat$27$get_column(GeomVertexFormat const *self, std$_size_t i);
-// COLLISION : GeomVertexFormat_C_get_column_p_pp GeomVertexFormat$27$get_column
 
 // _inCAAAArn1o : C++(InternalName const *name) ==> C(GeomVertexFormat const *, InternalName const *)
 extern bool GeomVertexFormat$28$has_column(GeomVertexFormat const *self, InternalName const *name);
@@ -2041,7 +2042,6 @@ extern GeomVertexWriter * GeomVertexWriter$5$GeomVertexWriter(GeomVertexData *ve
 
 // _inCAAAA0Ikz : C++(GeomVertexData *vertex_data, CPT_InternalName name) ==> C(GeomVertexData *, CPT_InternalName *)
 extern GeomVertexWriter * GeomVertexWriter$6$GeomVertexWriter(GeomVertexData *vertex_data, CPT_InternalName *name);
-// COLLISION : GeomVertexWriter_C_ctor_p_pp GeomVertexWriter$6$GeomVertexWriter
 
 // _inCAAAA_sLT : C++(GeomVertexData *vertex_data, Thread *current_thread) ==> C(GeomVertexData *, Thread *)
 extern GeomVertexWriter * GeomVertexWriter$7$GeomVertexWriter(GeomVertexData *vertex_data, Thread *current_thread);
@@ -2053,7 +2053,7 @@ extern GeomVertexWriter * GeomVertexWriter$8$GeomVertexWriter(GeomVertexData *ve
 
 // _inCAAAA2HJ_ : C++(GeomVertexDataPipelineWriter *data_writer, InternalName const *name) ==> C(GeomVertexDataPipelineWriter *, InternalName const *)
 extern GeomVertexWriter * GeomVertexWriter$9$GeomVertexWriter(GeomVertexDataPipelineWriter *data_writer, InternalName const *name);
-// COLLISION : GeomVertexWriter_C_ctor_p_pp GeomVertexWriter$9$GeomVertexWriter
+// COLLISION : GeomVertexWriter_C_ctor_p_ps GeomVertexWriter$9$GeomVertexWriter
 
 // _inCAAAA3jti : C++(GeomVertexWriter const &copy) ==> C(GeomVertexWriter const *)
 extern GeomVertexWriter * GeomVertexWriter$10$GeomVertexWriter(GeomVertexWriter const *copy);
@@ -3929,67 +3929,67 @@ extern void NodePath$383$set_shader_input(NodePath *self, CPT_InternalName *id, 
 
 // _inCAAAAeGYc : C++(CPT_InternalName id, LMatrix4 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LMatrix4 const *, int)
 extern void NodePath$384$set_shader_input(NodePath *self, CPT_InternalName *id, LMatrix4 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$384$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$384$set_shader_input
 
 // _inCAAAA3WkM : C++(CPT_InternalName id, LMatrix4 const &v) ==> C(NodePath *, CPT_InternalName *, LMatrix4 const *)
 extern void NodePath$385$set_shader_input(NodePath *self, CPT_InternalName *id, LMatrix4 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$385$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$385$set_shader_input
 
 // _inCAAAAGNEb : C++(CPT_InternalName id, LVecBase2 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase2 const *, int)
 extern void NodePath$386$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase2 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$386$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$386$set_shader_input
 
 // _inCAAAA1Svg : C++(CPT_InternalName id, LVecBase2 const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase2 const *)
 extern void NodePath$387$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase2 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$387$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$387$set_shader_input
 
 // _inCAAAAs2g7 : C++(CPT_InternalName id, LVecBase2i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase2i const *, int)
 extern void NodePath$388$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase2i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$388$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$388$set_shader_input
 
 // _inCAAAAvyGw : C++(CPT_InternalName id, LVecBase2i const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase2i const *)
 extern void NodePath$389$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase2i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$389$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$389$set_shader_input
 
 // _inCAAAAwgGb : C++(CPT_InternalName id, LVecBase3 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase3 const *, int)
 extern void NodePath$390$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase3 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$390$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$390$set_shader_input
 
 // _inCAAAA7_yg : C++(CPT_InternalName id, LVecBase3 const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase3 const *)
 extern void NodePath$391$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase3 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$391$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$391$set_shader_input
 
 // _inCAAAAaal7 : C++(CPT_InternalName id, LVecBase3i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase3i const *, int)
 extern void NodePath$392$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase3i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$392$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$392$set_shader_input
 
 // _inCAAAAheIw : C++(CPT_InternalName id, LVecBase3i const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase3i const *)
 extern void NodePath$393$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase3i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$393$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$393$set_shader_input
 
 // _inCAAAAiELb : C++(CPT_InternalName id, LVecBase4 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase4 const *, int)
 extern void NodePath$394$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase4 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$394$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$394$set_shader_input
 
 // _inCAAAAJd0g : C++(CPT_InternalName id, LVecBase4 const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase4 const *)
 extern void NodePath$395$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase4 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$395$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$395$set_shader_input
 
 // _inCAAAAI_n7 : C++(CPT_InternalName id, LVecBase4i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, LVecBase4i const *, int)
 extern void NodePath$396$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase4i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$396$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$396$set_shader_input
 
 // _inCAAAAT9Lw : C++(CPT_InternalName id, LVecBase4i const &v) ==> C(NodePath *, CPT_InternalName *, LVecBase4i const *)
 extern void NodePath$397$set_shader_input(NodePath *self, CPT_InternalName *id, LVecBase4i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$397$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$397$set_shader_input
 
 // _inCAAAA_yEU : C++(CPT_InternalName id, NodePath const &np, int priority) ==> C(NodePath *, CPT_InternalName *, NodePath const *, int)
 extern void NodePath$398$set_shader_input(NodePath *self, CPT_InternalName *id, NodePath const *np, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$398$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$398$set_shader_input
 
 // _inCAAAAULTE : C++(CPT_InternalName id, NodePath const &np) ==> C(NodePath *, CPT_InternalName *, NodePath const *)
 extern void NodePath$399$set_shader_input(NodePath *self, CPT_InternalName *id, NodePath const *np);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$399$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$399$set_shader_input
 
 // _inCAAAA0P__ : C++(CPT_InternalName id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority) ==> C(NodePath *, CPT_InternalName *, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat, int)
 extern void NodePath$400$set_shader_input(NodePath *self, CPT_InternalName *id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority);
@@ -4005,99 +4005,99 @@ extern void NodePath$403$set_shader_input(NodePath *self, CPT_InternalName *id, 
 
 // _inCAAAAg8Ek : C++(CPT_InternalName id, PTA_LMatrix3 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LMatrix3 const *, int)
 extern void NodePath$404$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LMatrix3 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$404$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$404$set_shader_input
 
 // _inCAAAADLGj : C++(CPT_InternalName id, PTA_LMatrix3 const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LMatrix3 const *)
 extern void NodePath$405$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LMatrix3 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$405$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$405$set_shader_input
 
 // _inCAAAAM80F : C++(CPT_InternalName id, PTA_LMatrix4 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LMatrix4 const *, int)
 extern void NodePath$406$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LMatrix4 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$406$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$406$set_shader_input
 
 // _inCAAAA3I2E : C++(CPT_InternalName id, PTA_LMatrix4 const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LMatrix4 const *)
 extern void NodePath$407$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LMatrix4 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$407$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$407$set_shader_input
 
 // _inCAAAAG1ud : C++(CPT_InternalName id, PTA_LVecBase2 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase2 const *, int)
 extern void NodePath$408$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase2 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$408$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$408$set_shader_input
 
 // _inCAAAA3qH_ : C++(CPT_InternalName id, PTA_LVecBase2 const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase2 const *)
 extern void NodePath$409$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase2 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$409$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$409$set_shader_input
 
 // _inCAAAAgmxb : C++(CPT_InternalName id, PTA_LVecBase2i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase2i const *, int)
 extern void NodePath$410$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase2i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$410$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$410$set_shader_input
 
 // _inCAAAAx0En : C++(CPT_InternalName id, PTA_LVecBase2i const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase2i const *)
 extern void NodePath$411$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase2i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$411$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$411$set_shader_input
 
 // _inCAAAA8xvV : C++(CPT_InternalName id, PTA_LVecBase3 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase3 const *, int)
 extern void NodePath$412$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase3 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$412$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$412$set_shader_input
 
 // _inCAAAAAwH2 : C++(CPT_InternalName id, PTA_LVecBase3 const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase3 const *)
 extern void NodePath$413$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase3 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$413$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$413$set_shader_input
 
 // _inCAAAAzoxT : C++(CPT_InternalName id, PTA_LVecBase3i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase3i const *, int)
 extern void NodePath$414$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase3i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$414$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$414$set_shader_input
 
 // _inCAAAACuEf : C++(CPT_InternalName id, PTA_LVecBase3i const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase3i const *)
 extern void NodePath$415$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase3i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$415$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$415$set_shader_input
 
 // _inCAAAAjrvN : C++(CPT_InternalName id, PTA_LVecBase4 const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase4 const *, int)
 extern void NodePath$416$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase4 const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$416$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$416$set_shader_input
 
 // _inCAAAAR_Hu : C++(CPT_InternalName id, PTA_LVecBase4 const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase4 const *)
 extern void NodePath$417$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase4 const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$417$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$417$set_shader_input
 
 // _inCAAAACxxL : C++(CPT_InternalName id, PTA_LVecBase4i const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase4i const *, int)
 extern void NodePath$418$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase4i const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$418$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$418$set_shader_input
 
 // _inCAAAATgEX : C++(CPT_InternalName id, PTA_LVecBase4i const &v) ==> C(NodePath *, CPT_InternalName *, PTA_LVecBase4i const *)
 extern void NodePath$419$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_LVecBase4i const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$419$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$419$set_shader_input
 
 // _inCAAAAwB0q : C++(CPT_InternalName id, PTA_double const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_double const *, int)
 extern void NodePath$420$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_double const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$420$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$420$set_shader_input
 
 // _inCAAAAplZf : C++(CPT_InternalName id, PTA_double const &v) ==> C(NodePath *, CPT_InternalName *, PTA_double const *)
 extern void NodePath$421$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_double const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$421$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$421$set_shader_input
 
 // _inCAAAAOR8U : C++(CPT_InternalName id, PTA_float const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_float const *, int)
 extern void NodePath$422$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_float const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$422$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$422$set_shader_input
 
 // _inCAAAAvCna : C++(CPT_InternalName id, PTA_float const &v) ==> C(NodePath *, CPT_InternalName *, PTA_float const *)
 extern void NodePath$423$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_float const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$423$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$423$set_shader_input
 
 // _inCAAAAS_0B : C++(CPT_InternalName id, PTA_int const &v, int priority) ==> C(NodePath *, CPT_InternalName *, PTA_int const *, int)
 extern void NodePath$424$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_int const *v, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$424$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$424$set_shader_input
 
 // _inCAAAAvhUh : C++(CPT_InternalName id, PTA_int const &v) ==> C(NodePath *, CPT_InternalName *, PTA_int const *)
 extern void NodePath$425$set_shader_input(NodePath *self, CPT_InternalName *id, PTA_int const *v);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$425$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$425$set_shader_input
 
 // _inCAAAAja9D : C++(CPT_InternalName id, ShaderBuffer *buf, int priority) ==> C(NodePath *, CPT_InternalName *, ShaderBuffer *, int)
 extern void NodePath$426$set_shader_input(NodePath *self, CPT_InternalName *id, ShaderBuffer *buf, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$426$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$426$set_shader_input
 
 // _inCAAAAt0RP : C++(CPT_InternalName id, ShaderBuffer *buf) ==> C(NodePath *, CPT_InternalName *, ShaderBuffer *)
 extern void NodePath$427$set_shader_input(NodePath *self, CPT_InternalName *id, ShaderBuffer *buf);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$427$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$427$set_shader_input
 
 // _inCAAAANs3k : C++(CPT_InternalName id, Texture *tex, SamplerState const &sampler, int priority) ==> C(NodePath *, CPT_InternalName *, Texture *, SamplerState const *, int)
 extern void NodePath$428$set_shader_input(NodePath *self, CPT_InternalName *id, Texture *tex, SamplerState const *sampler, int priority);
@@ -4119,11 +4119,11 @@ extern void NodePath$433$set_shader_input(NodePath *self, CPT_InternalName *id, 
 
 // _inCAAAA_Ni0 : C++(CPT_InternalName id, Texture *tex, int priority) ==> C(NodePath *, CPT_InternalName *, Texture *, int)
 extern void NodePath$434$set_shader_input(NodePath *self, CPT_InternalName *id, Texture *tex, int priority);
-// COLLISION : NodePath_C_set_shader_input_v_pppi NodePath$434$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_pspi NodePath$434$set_shader_input
 
 // _inCAAAA_jM6 : C++(CPT_InternalName id, Texture *tex) ==> C(NodePath *, CPT_InternalName *, Texture *)
 extern void NodePath$435$set_shader_input(NodePath *self, CPT_InternalName *id, Texture *tex);
-// COLLISION : NodePath_C_set_shader_input_v_ppp NodePath$435$set_shader_input
+// COLLISION : NodePath_C_set_shader_input_v_psp NodePath$435$set_shader_input
 
 // _inCAAAArRyK : C++(CPT_InternalName id, int n1, int n2, int n3, int n4, int priority) ==> C(NodePath *, CPT_InternalName *, int, int, int, int, int)
 extern void NodePath$436$set_shader_input(NodePath *self, CPT_InternalName *id, int n1, int n2, int n3, int n4, int priority);

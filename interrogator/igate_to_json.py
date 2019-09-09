@@ -48,15 +48,17 @@ def igate_to_json(file_like):
             ct = 's'
             decal = 0
         else:
-            return_type = cpp_type.replace('inline ','')
+            return_type = cpp_type.replace('inline','')
+            return_type = return_type.replace('static','')
+            return_type = return_type.replace('const','')
             return_type = return_type.replace('&','')
-            return_type = return_type.replace('*','').strip()
-            return_type = return_type.replace('virtual ','')
+            return_type = return_type.replace('*','')
+            return_type = return_type.replace('virtual','')
+            return_type = return_type.replace('InternalName ','')
             if return_type.find('>')>0:
                 return_type = return_type.split('< ',1)[-1]
                 return_type = return_type.rsplit(' >',1)[0]
-
-
+            return_type = return_type.strip()
         args = []
 
         for arg in tail.rsplit(')', 1)[0].split(', '):
@@ -67,7 +69,7 @@ def igate_to_json(file_like):
 
         disp = 0
 
-        if cpp_def.count('build('):
+        if cpp_def.count('set_scale('):
             disp = 1
 
         if disp:
@@ -110,61 +112,65 @@ def igate_to_json(file_like):
         }, disp
 
 
+    def dump_info(cpp_def,c_def,ret):
+        print("cpp :", cpp_def)
+        print("c   :", c_def)
+        for k, v in ret.items():
+            print("    ", k, ":", v)
+        print("\n\n\n")
+
+
     def extract_class(cpp_def, c_def):
         ret,disp = extract_cpp_names(cpp_def)
-
-        #  f(void)
-        if (not ret['argc']) and (ret['ct'] == 's'):
-            ret['c_argv'] = []
-            return ret
-
-        cd = c_def.rsplit('(', 1)[-1]
-        cd = cd.rsplit(')', 1)[0]
-
-        c_argv = []
-        for ca in cd.split(','):
-            c_argv.append(ca.rsplit('param')[0].strip())
-
-        # interrogate's fault c++ comments may have more args than C exports
-        # https://github.com/panda3d/panda3d/issues/732
-
-        if len(c_argv) and (c_argv[0]==''):
-            c_argv=[]
-
-        ret['c_argv'] = c_argv
-
-        if ret['argc']:
-            if ret['ct'] == 's':
-                while len(ret['args']) > len(ret['c_argv']):
-                    ret['args'].pop()
-                    ret['argt'].pop()
-                    ret['argn'].pop()
-                    ret['argc'] -= 1
-            else:
-                while len(ret['args']) > len(ret['c_argv']) - 1:
-                    ret['args'].pop()
-                    ret['argt'].pop()
-                    ret['argn'].pop()
-                    ret['argc'] -= 1
-
-        # interrogate's fault c++ comments may have more args than C exports
         try:
+            #  f(void)
+            if (not ret['argc']) and (ret['ct'] == 's'):
+                ret['c_argv'] = []
+                return ret
+
+            cd = c_def.rsplit('(', 1)[-1]
+            cd = cd.rsplit(')', 1)[0]
+
+            c_argv = []
+            for ca in cd.split(','):
+                c_argv.append(ca.rsplit('param')[0].strip())
+
+            # interrogate's fault c++ comments may have more args than C exports
+            # https://github.com/panda3d/panda3d/issues/732
+
+            if len(c_argv) and (c_argv[0]==''):
+                c_argv=[]
+
+            ret['c_argv'] = c_argv
+
             if ret['argc']:
                 if ret['ct'] == 's':
-                    assert len(ret['args']) == len(ret['c_argv'])
+                    while len(ret['args']) > len(ret['c_argv']):
+                        ret['args'].pop()
+                        ret['argt'].pop()
+                        ret['argn'].pop()
+                        ret['argc'] -= 1
                 else:
-                    assert len(ret['args']) == len(ret['c_argv']) - 1
-        except AssertionError as e:
-            sys.print_exception(e, sys.stdout)
+                    while len(ret['args']) > len(ret['c_argv']) - 1:
+                        ret['args'].pop()
+                        ret['argt'].pop()
+                        ret['argn'].pop()
+                        ret['argc'] -= 1
 
-        if disp:
-            print("cpp :", cpp_def)
-            print("c   :", c_def)
-            for k, v in ret.items():
-                print("    ", k, ":", v)
-            print("\n\n\n")
+            # interrogate's fault c++ comments may have more args than C exports
+            try:
+                if ret['argc']:
+                    if ret['ct'] == 's':
+                        assert len(ret['args']) == len(ret['c_argv'])
+                    else:
+                        assert len(ret['args']) == len(ret['c_argv']) - 1
+            except AssertionError as e:
+                sys.print_exception(e, sys.stdout)
 
-        return ret
+            return ret
+        finally:
+            if disp:
+                dump_info(cpp_def,c_def,ret)
 
     # default : ignore everything
     invalidate = 1

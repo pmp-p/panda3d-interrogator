@@ -992,7 +992,7 @@
                     "fn": "get_scene",
                     "mangled": "_inCAAAA_CJc",
                     "ot": "inline NodePath const&",
-                    "rt": "NodePath const"
+                    "rt": "NodePath"
                 },
                 {
                     "argc": 0,
@@ -1181,7 +1181,7 @@
                     "fn": "get_cull_center",
                     "mangled": "_inCAAAAYdSn",
                     "ot": "inline NodePath const&",
-                    "rt": "NodePath const"
+                    "rt": "NodePath"
                 },
                 {
                     "argc": 1,
@@ -1307,7 +1307,7 @@
                     "fn": "get_lod_center",
                     "mangled": "_inCAAAAX15y",
                     "ot": "inline NodePath const&",
-                    "rt": "NodePath const"
+                    "rt": "NodePath"
                 },
                 {
                     "argc": 1,
@@ -1433,7 +1433,7 @@
                     "fn": "get_tag_state_key",
                     "mangled": "_inCAAAAoh3v",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 1,
@@ -2134,7 +2134,7 @@
                     "fn": "get_name",
                     "mangled": "_inCAAAAUNsX",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 0,
@@ -2372,7 +2372,7 @@
                     "fn": "get_signature",
                     "mangled": "_inCAAAAobQg",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 0,
@@ -2650,7 +2650,7 @@
                     "fn": "get_declaration",
                     "mangled": "_inCAAAArbFa",
                     "ot": "ConfigDeclaration const*",
-                    "rt": "ConfigDeclaration const"
+                    "rt": "ConfigDeclaration"
                 },
                 {
                     "argc": 1,
@@ -3353,6 +3353,34 @@
                     "mangled": "_inCAAAA9r7J",
                     "ot": "void",
                     "rt": "void"
+                },
+                {
+                    "argc": 0,
+                    "argn": [],
+                    "args": [],
+                    "argt": [],
+                    "c_argv": [
+                        "Engine *"
+                    ],
+                    "c_ref": "Engine$_$new_GeomTriangles(Engine *param0)",
+                    "c_type": "GeomTriangles *",
+                    "cn": "Engine",
+                    "cni": "Engine_C_new_GeomTriangles_p_p",
+                    "cni_args": "p",
+                    "cni_rt": "p",
+                    "code": "2020202072657475726e20282a706172616d30292e6e65775f47656f6d547269616e676c657328293b",
+                    "cpp_ref": "GeomTriangles *Engine::new_GeomTriangles(void)",
+                    "ct": "d",
+                    "ctor": 0,
+                    "demangled": "Engine$_$new_GeomTriangles",
+                    "extern": [
+                        "GeomTriangles *",
+                        "Engine$_$new_GeomTriangles(Engine *param0)"
+                    ],
+                    "fn": "new_GeomTriangles",
+                    "mangled": "_inCAAAAn6WY",
+                    "ot": "GeomTriangles*",
+                    "rt": "GeomTriangles"
                 },
                 {
                     "argc": 1,
@@ -4439,7 +4467,7 @@
                     "fn": "get_home_directory",
                     "mangled": "_inCAAAAf_0B",
                     "ot": "Filename const&",
-                    "rt": "Filename const"
+                    "rt": "Filename"
                 },
                 {
                     "argc": 0,
@@ -4465,7 +4493,7 @@
                     "fn": "get_temp_directory",
                     "mangled": "_inCAAAAeDx2",
                     "ot": "Filename const&",
-                    "rt": "Filename const"
+                    "rt": "Filename"
                 },
                 {
                     "argc": 0,
@@ -4491,7 +4519,7 @@
                     "fn": "get_user_appdata_directory",
                     "mangled": "_inCAAAA4CLy",
                     "ot": "Filename const&",
-                    "rt": "Filename const"
+                    "rt": "Filename"
                 },
                 {
                     "argc": 0,
@@ -4517,7 +4545,7 @@
                     "fn": "get_common_appdata_directory",
                     "mangled": "_inCAAAAw0eY",
                     "ot": "Filename const&",
-                    "rt": "Filename const"
+                    "rt": "Filename"
                 },
                 {
                     "argc": 0,
@@ -4545,7 +4573,7 @@
                     "fn": "c_str",
                     "mangled": "_inCAAAAmyvU",
                     "ot": "inline char const*",
-                    "rt": "char const"
+                    "rt": "char"
                 },
                 {
                     "argc": 0,
@@ -10856,7 +10884,7 @@
                     "fn": "get_geom_state",
                     "mangled": "_inCAAAAeIGG",
                     "ot": "inline RenderState const*",
-                    "rt": "RenderState const"
+                    "rt": "RenderState"
                 },
                 {
                     "argc": 2,
@@ -14353,7 +14381,7 @@
                     "fn": "get_index_format",
                     "mangled": "_inCAAAAdWeC",
                     "ot": "inline GeomVertexArrayFormat const*",
-                    "rt": "GeomVertexArrayFormat const"
+                    "rt": "GeomVertexArrayFormat"
                 },
                 {
                     "argc": 1,
@@ -14387,7 +14415,7 @@
                     "fn": "get_index_format",
                     "mangled": "_inCAAAARRdn",
                     "ot": "GeomVertexArrayFormat const*",
-                    "rt": "GeomVertexArrayFormat const"
+                    "rt": "GeomVertexArrayFormat"
                 },
                 {
                     "argc": 0,
@@ -15177,7 +15205,7 @@
                     "fn": "get_name",
                     "mangled": "_inCAAAABGI0",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 1,
@@ -15303,7 +15331,7 @@
                     "fn": "get_format",
                     "mangled": "_inCAAAA67sy",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 1,
@@ -15393,8 +15421,8 @@
                     "c_ref": "GeomVertexData$_$has_column(GeomVertexData const *param0, InternalName const *param1)",
                     "c_type": "bool",
                     "cn": "GeomVertexData",
-                    "cni": "GeomVertexData_C_has_column_B_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexData_C_has_column_B_ps",
+                    "cni_args": "ps",
                     "cni_rt": "B",
                     "code": "2020202072657475726e20282a706172616d30292e6861735f636f6c756d6e28706172616d31293b",
                     "cpp_ref": "inline bool GeomVertexData::has_column(InternalName const *name) const",
@@ -15804,7 +15832,7 @@
                     "fn": "get_transform_table",
                     "mangled": "_inCAAAABS4c",
                     "ot": "inline TransformTable const*",
-                    "rt": "TransformTable const"
+                    "rt": "TransformTable"
                 },
                 {
                     "argc": 1,
@@ -16014,7 +16042,7 @@
                     "fn": "get_slider_table",
                     "mangled": "_inCAAAAED2E",
                     "ot": "inline SliderTable const*",
-                    "rt": "SliderTable const"
+                    "rt": "SliderTable"
                 },
                 {
                     "argc": 1,
@@ -17860,7 +17888,7 @@
                     "fn": "get_animation",
                     "mangled": "_inCAAAARiXK",
                     "ot": "inline GeomVertexAnimationSpec const&",
-                    "rt": "GeomVertexAnimationSpec const"
+                    "rt": "GeomVertexAnimationSpec"
                 },
                 {
                     "argc": 1,
@@ -18021,7 +18049,7 @@
                     "fn": "get_array",
                     "mangled": "_inCAAAA03f6",
                     "ot": "inline GeomVertexArrayFormat const*",
-                    "rt": "GeomVertexArrayFormat const"
+                    "rt": "GeomVertexArrayFormat"
                 },
                 {
                     "argc": 1,
@@ -18308,8 +18336,8 @@
                     "c_ref": "GeomVertexFormat$_$get_array_with(GeomVertexFormat const *param0, InternalName const *param1)",
                     "c_type": "int",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_array_with_i_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexFormat_C_get_array_with_i_ps",
+                    "cni_args": "ps",
                     "cni_rt": "i",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f61727261795f7769746828706172616d31293b",
                     "cpp_ref": "int GeomVertexFormat::get_array_with(InternalName const *name) const",
@@ -18343,7 +18371,7 @@
                     "c_ref": "GeomVertexFormat$_$get_array_with(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "int",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_array_with_i_pp_1_i_pp",
+                    "cni": "GeomVertexFormat_C_get_array_with_i_pp",
                     "cni_args": "pp",
                     "cni_rt": "i",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f61727261795f7769746828706172616d31293b",
@@ -18378,8 +18406,8 @@
                     "c_ref": "GeomVertexFormat$_$get_column(GeomVertexFormat const *param0, InternalName const *param1)",
                     "c_type": "GeomVertexColumn const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_column_p_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexFormat_C_get_column_p_ps",
+                    "cni_args": "ps",
                     "cni_rt": "p",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f636f6c756d6e28706172616d31293b",
                     "cpp_ref": "GeomVertexColumn const *GeomVertexFormat::get_column(InternalName const *name) const",
@@ -18393,7 +18421,7 @@
                     "fn": "get_column",
                     "mangled": "_inCAAAAzgLi",
                     "ot": "GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 1,
@@ -18413,7 +18441,7 @@
                     "c_ref": "GeomVertexFormat$_$get_column(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "GeomVertexColumn const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_column_p_pp_1_p_pp",
+                    "cni": "GeomVertexFormat_C_get_column_p_pp",
                     "cni_args": "pp",
                     "cni_rt": "p",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f636f6c756d6e28706172616d31293b",
@@ -18428,7 +18456,7 @@
                     "fn": "get_column",
                     "mangled": "_inCAAAAObkc",
                     "ot": "GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 1,
@@ -18448,8 +18476,8 @@
                     "c_ref": "GeomVertexFormat$_$has_column(GeomVertexFormat const *param0, InternalName const *param1)",
                     "c_type": "bool",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_has_column_B_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexFormat_C_has_column_B_ps",
+                    "cni_args": "ps",
                     "cni_rt": "B",
                     "code": "2020202072657475726e20282a706172616d30292e6861735f636f6c756d6e28706172616d31293b",
                     "cpp_ref": "inline bool GeomVertexFormat::has_column(InternalName const *name) const",
@@ -18483,9 +18511,9 @@
                     "c_ref": "GeomVertexFormat$_$get_column_name(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_column_name_p_pp",
+                    "cni": "GeomVertexFormat_C_get_column_name_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f636f6c756d6e5f6e616d6528706172616d31293b",
                     "cpp_ref": "InternalName const *GeomVertexFormat::get_column_name(std::size_t i) const",
                     "ct": "d",
@@ -18498,7 +18526,7 @@
                     "fn": "get_column_name",
                     "mangled": "_inCAAAAnri4",
                     "ot": "InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 2,
@@ -18522,8 +18550,8 @@
                     "c_ref": "GeomVertexFormat$_$remove_column(GeomVertexFormat *param0, InternalName const *param1, bool param2)",
                     "c_type": "void",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_remove_column_v_ppB",
-                    "cni_args": "ppB",
+                    "cni": "GeomVertexFormat_C_remove_column_v_psB",
+                    "cni_args": "psB",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e72656d6f76655f636f6c756d6e28706172616d312c20706172616d32293b",
                     "cpp_ref": "void GeomVertexFormat::remove_column(InternalName const *name, bool keep_empty_array)",
@@ -18557,8 +18585,8 @@
                     "c_ref": "GeomVertexFormat$_$remove_column(GeomVertexFormat *param0, InternalName const *param1)",
                     "c_type": "void",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_remove_column_v_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexFormat_C_remove_column_v_ps",
+                    "cni_args": "ps",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e72656d6f76655f636f6c756d6e28706172616d31293b",
                     "cpp_ref": "void GeomVertexFormat::remove_column(InternalName const *name, bool keep_empty_array)",
@@ -18704,9 +18732,9 @@
                     "c_ref": "GeomVertexFormat$_$get_point(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_point_p_pp",
+                    "cni": "GeomVertexFormat_C_get_point_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f706f696e7428706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_point(std::size_t n) const",
                     "ct": "d",
@@ -18719,7 +18747,7 @@
                     "fn": "get_point",
                     "mangled": "_inCAAAAD_LF",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 0,
@@ -18767,9 +18795,9 @@
                     "c_ref": "GeomVertexFormat$_$get_vector(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_vector_p_pp",
+                    "cni": "GeomVertexFormat_C_get_vector_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f766563746f7228706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_vector(std::size_t n) const",
                     "ct": "d",
@@ -18782,7 +18810,7 @@
                     "fn": "get_vector",
                     "mangled": "_inCAAAAbrqq",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 0,
@@ -18830,9 +18858,9 @@
                     "c_ref": "GeomVertexFormat$_$get_texcoord(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_texcoord_p_pp",
+                    "cni": "GeomVertexFormat_C_get_texcoord_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f746578636f6f726428706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_texcoord(std::size_t n) const",
                     "ct": "d",
@@ -18845,7 +18873,7 @@
                     "fn": "get_texcoord",
                     "mangled": "_inCAAAAJc1b",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 0,
@@ -18893,9 +18921,9 @@
                     "c_ref": "GeomVertexFormat$_$get_morph_slider(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_morph_slider_p_pp",
+                    "cni": "GeomVertexFormat_C_get_morph_slider_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f6d6f7270685f736c6964657228706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_morph_slider(std::size_t n) const",
                     "ct": "d",
@@ -18908,7 +18936,7 @@
                     "fn": "get_morph_slider",
                     "mangled": "_inCAAAAIUdD",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 1,
@@ -18928,9 +18956,9 @@
                     "c_ref": "GeomVertexFormat$_$get_morph_base(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_morph_base_p_pp",
+                    "cni": "GeomVertexFormat_C_get_morph_base_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f6d6f7270685f6261736528706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_morph_base(std::size_t n) const",
                     "ct": "d",
@@ -18943,7 +18971,7 @@
                     "fn": "get_morph_base",
                     "mangled": "_inCAAAAzhGZ",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 1,
@@ -18963,9 +18991,9 @@
                     "c_ref": "GeomVertexFormat$_$get_morph_delta(GeomVertexFormat const *param0, std::size_t param1)",
                     "c_type": "InternalName const *",
                     "cn": "GeomVertexFormat",
-                    "cni": "GeomVertexFormat_C_get_morph_delta_p_pp",
+                    "cni": "GeomVertexFormat_C_get_morph_delta_s_pp",
                     "cni_args": "pp",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f6d6f7270685f64656c746128706172616d31293b",
                     "cpp_ref": "inline InternalName const *GeomVertexFormat::get_morph_delta(std::size_t n) const",
                     "ct": "d",
@@ -18978,7 +19006,7 @@
                     "fn": "get_morph_delta",
                     "mangled": "_inCAAAA9ztO",
                     "ot": "inline InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 1,
@@ -19156,7 +19184,7 @@
                     "fn": "get_empty",
                     "mangled": "_inCAAAALAhu",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19182,7 +19210,7 @@
                     "fn": "get_v3",
                     "mangled": "_inCAAAAM264",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19208,7 +19236,7 @@
                     "fn": "get_v3n3",
                     "mangled": "_inCAAAAw8Vh",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19234,7 +19262,7 @@
                     "fn": "get_v3t2",
                     "mangled": "_inCAAAA6P2g",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19260,7 +19288,7 @@
                     "fn": "get_v3n3t2",
                     "mangled": "_inCAAAAp05G",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19286,7 +19314,7 @@
                     "fn": "get_v3cp",
                     "mangled": "_inCAAAAm2WG",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19312,7 +19340,7 @@
                     "fn": "get_v3cpt2",
                     "mangled": "_inCAAAAE76r",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19338,7 +19366,7 @@
                     "fn": "get_v3n3cp",
                     "mangled": "_inCAAAAxdLR",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19364,7 +19392,7 @@
                     "fn": "get_v3n3cpt2",
                     "mangled": "_inCAAAAaDrT",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19390,7 +19418,7 @@
                     "fn": "get_v3c4",
                     "mangled": "_inCAAAAlkvh",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19416,7 +19444,7 @@
                     "fn": "get_v3c4t2",
                     "mangled": "_inCAAAAEtTH",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19442,7 +19470,7 @@
                     "fn": "get_v3n3c4",
                     "mangled": "_inCAAAA_Erc",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19468,7 +19496,7 @@
                     "fn": "get_v3n3c4t2",
                     "mangled": "_inCAAAAE8Lf",
                     "ot": "inline GeomVertexFormat const*",
-                    "rt": "GeomVertexFormat const"
+                    "rt": "GeomVertexFormat"
                 },
                 {
                     "argc": 0,
@@ -19524,7 +19552,7 @@
                     "fn": "get_vertex_column",
                     "mangled": "_inCAAAAnqvf",
                     "ot": "inline GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 0,
@@ -19580,7 +19608,7 @@
                     "fn": "get_normal_column",
                     "mangled": "_inCAAAAAPWL",
                     "ot": "inline GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 0,
@@ -19636,7 +19664,7 @@
                     "fn": "get_color_column",
                     "mangled": "_inCAAAAvorX",
                     "ot": "inline GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 1,
@@ -20031,8 +20059,8 @@
                     "c_ref": "GeomVertexWriter$_$GeomVertexWriter(GeomVertexData *param0, CPT_InternalName *param1, Thread *param2)",
                     "c_type": "GeomVertexWriter *",
                     "cn": "GeomVertexWriter",
-                    "cni": "GeomVertexWriter_C_ctor_p_ppp",
-                    "cni_args": "ppp",
+                    "cni": "GeomVertexWriter_C_ctor_p_psp",
+                    "cni_args": "psp",
                     "cni_rt": "p",
                     "code": "2020202072657475726e206e65772047656f6d56657274657857726974657228706172616d302c202a706172616d312c20706172616d32293b",
                     "cpp_ref": "inline GeomVertexWriter::GeomVertexWriter(GeomVertexData *vertex_data, CPT_InternalName name, Thread *current_thread)",
@@ -20069,8 +20097,8 @@
                     "c_ref": "GeomVertexWriter$_$GeomVertexWriter(GeomVertexData *param0, CPT_InternalName *param1)",
                     "c_type": "GeomVertexWriter *",
                     "cn": "GeomVertexWriter",
-                    "cni": "GeomVertexWriter_C_ctor_p_pp_1_p_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexWriter_C_ctor_p_ps",
+                    "cni_args": "ps",
                     "cni_rt": "p",
                     "code": "2020202072657475726e206e65772047656f6d56657274657857726974657228706172616d302c202a706172616d31293b",
                     "cpp_ref": "inline GeomVertexWriter::GeomVertexWriter(GeomVertexData *vertex_data, CPT_InternalName name, Thread *current_thread)",
@@ -20107,7 +20135,7 @@
                     "c_ref": "GeomVertexWriter$_$GeomVertexWriter(GeomVertexData *param0, Thread *param1)",
                     "c_type": "GeomVertexWriter *",
                     "cn": "GeomVertexWriter",
-                    "cni": "GeomVertexWriter_C_ctor_p_pp_1_p_pp_2_p_pp",
+                    "cni": "GeomVertexWriter_C_ctor_p_pp_1_p_pp",
                     "cni_args": "pp",
                     "cni_rt": "p",
                     "code": "2020202072657475726e206e65772047656f6d56657274657857726974657228706172616d302c20706172616d31293b",
@@ -20179,8 +20207,8 @@
                     "c_ref": "GeomVertexWriter$_$GeomVertexWriter(GeomVertexDataPipelineWriter *param0, InternalName const *param1)",
                     "c_type": "GeomVertexWriter *",
                     "cn": "GeomVertexWriter",
-                    "cni": "GeomVertexWriter_C_ctor_p_pp_1_p_pp_2_p_pp_3_p_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexWriter_C_ctor_p_ps_1_p_ps",
+                    "cni_args": "ps",
                     "cni_rt": "p",
                     "code": "2020202072657475726e206e65772047656f6d56657274657857726974657228706172616d302c20706172616d31293b",
                     "cpp_ref": "inline GeomVertexWriter::GeomVertexWriter(GeomVertexDataPipelineWriter *data_writer, InternalName const *name)",
@@ -20448,8 +20476,8 @@
                     "c_ref": "GeomVertexWriter$_$set_column(GeomVertexWriter *param0, CPT_InternalName *param1)",
                     "c_type": "bool",
                     "cn": "GeomVertexWriter",
-                    "cni": "GeomVertexWriter_C_set_column_B_pp",
-                    "cni_args": "pp",
+                    "cni": "GeomVertexWriter_C_set_column_B_ps",
+                    "cni_args": "ps",
                     "cni_rt": "B",
                     "code": "2020202072657475726e20282a706172616d30292e7365745f636f6c756d6e282a706172616d31293b",
                     "cpp_ref": "inline bool GeomVertexWriter::set_column(CPT_InternalName name)",
@@ -20684,7 +20712,7 @@
                     "fn": "get_column",
                     "mangled": "_inCAAAATOZs",
                     "ot": "inline GeomVertexColumn const*",
-                    "rt": "GeomVertexColumn const"
+                    "rt": "GeomVertexColumn"
                 },
                 {
                     "argc": 1,
@@ -23487,7 +23515,7 @@
                     "fn": "make",
                     "mangled": "_inCAAAAMlqi",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 2,
@@ -23525,7 +23553,7 @@
                     "fn": "make",
                     "mangled": "_inCAAAAJP_c",
                     "ot": "PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 1,
@@ -23560,7 +23588,7 @@
                     "fn": "append",
                     "mangled": "_inCAAAA3rOD",
                     "ot": "PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -23636,8 +23664,8 @@
                     "c_ref": "InternalName$_$join(InternalName const *param0, char const *param1)",
                     "c_type": "char const *",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_join_s_ps",
-                    "cni_args": "ps",
+                    "cni": "InternalName_C_join_s_ss",
+                    "cni_args": "ss",
                     "cni_rt": "s",
                     "code": "2020202073746174696320737472696e6720737472696e675f686f6c646572203d20282a706172616d30292e6a6f696e287374643a3a737472696e6728706172616d3129293b0a2020202072657475726e20737472696e675f686f6c6465722e635f73747228293b",
                     "cpp_ref": "std::string InternalName::join(std::string const &sep) const",
@@ -23679,7 +23707,7 @@
                     "fn": "get_basename",
                     "mangled": "_inCAAAAlDZ2",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 1,
@@ -23699,8 +23727,8 @@
                     "c_ref": "InternalName$_$find_ancestor(InternalName const *param0, char const *param1)",
                     "c_type": "int",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_find_ancestor_i_ps",
-                    "cni_args": "ps",
+                    "cni": "InternalName_C_find_ancestor_i_ss",
+                    "cni_args": "ss",
                     "cni_rt": "i",
                     "code": "2020202072657475726e20282a706172616d30292e66696e645f616e636573746f72287374643a3a737472696e6728706172616d3129293b",
                     "cpp_ref": "int InternalName::find_ancestor(std::string const &basename) const",
@@ -23734,9 +23762,9 @@
                     "c_ref": "InternalName$_$get_ancestor(InternalName const *param0, int param1)",
                     "c_type": "InternalName const *",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_get_ancestor_p_pi",
-                    "cni_args": "pi",
-                    "cni_rt": "p",
+                    "cni": "InternalName_C_get_ancestor_s_si",
+                    "cni_args": "si",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f616e636573746f7228706172616d31293b",
                     "cpp_ref": "InternalName const *InternalName::get_ancestor(int n) const",
                     "ct": "d",
@@ -23749,7 +23777,7 @@
                     "fn": "get_ancestor",
                     "mangled": "_inCAAAAymmN",
                     "ot": "InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 0,
@@ -23762,9 +23790,9 @@
                     "c_ref": "InternalName$_$get_top(InternalName const *param0)",
                     "c_type": "InternalName const *",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_get_top_p_p",
+                    "cni": "InternalName_C_get_top_s_p",
                     "cni_args": "p",
-                    "cni_rt": "p",
+                    "cni_rt": "s",
                     "code": "2020202072657475726e20282a706172616d30292e6765745f746f7028293b",
                     "cpp_ref": "InternalName const *InternalName::get_top(void) const",
                     "ct": "d",
@@ -23777,7 +23805,7 @@
                     "fn": "get_top",
                     "mangled": "_inCAAAADhts",
                     "ot": "InternalName const*",
-                    "rt": "InternalName const"
+                    "rt": ""
                 },
                 {
                     "argc": 1,
@@ -23797,8 +23825,8 @@
                     "c_ref": "InternalName$_$get_net_basename(InternalName const *param0, int param1)",
                     "c_type": "char const *",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_get_net_basename_s_pi",
-                    "cni_args": "pi",
+                    "cni": "InternalName_C_get_net_basename_s_si",
+                    "cni_args": "si",
                     "cni_rt": "s",
                     "code": "2020202073746174696320737472696e6720737472696e675f686f6c646572203d20282a706172616d30292e6765745f6e65745f626173656e616d6528706172616d31293b0a2020202072657475726e20737472696e675f686f6c6465722e635f73747228293b",
                     "cpp_ref": "std::string InternalName::get_net_basename(int n) const",
@@ -23832,8 +23860,8 @@
                     "c_ref": "InternalName$_$output(InternalName const *param0, std::ostream *param1)",
                     "c_type": "void",
                     "cn": "InternalName",
-                    "cni": "InternalName_C_output_v_pp",
-                    "cni_args": "pp",
+                    "cni": "InternalName_C_output_v_sp",
+                    "cni_args": "sp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e6f7574707574282a706172616d31293b",
                     "cpp_ref": "void InternalName::output(std::ostream &out) const",
@@ -23873,7 +23901,7 @@
                     "fn": "get_root",
                     "mangled": "_inCAAAAOVm7",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -23899,7 +23927,7 @@
                     "fn": "get_error",
                     "mangled": "_inCAAAA6f4T",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -23925,7 +23953,7 @@
                     "fn": "get_vertex",
                     "mangled": "_inCAAAAa072",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -23951,7 +23979,7 @@
                     "fn": "get_normal",
                     "mangled": "_inCAAAA2d7w",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -23977,7 +24005,7 @@
                     "fn": "get_tangent",
                     "mangled": "_inCAAAABCM_",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 1,
@@ -24011,7 +24039,7 @@
                     "fn": "get_tangent_name",
                     "mangled": "_inCAAAAHp_A",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24037,7 +24065,7 @@
                     "fn": "get_binormal",
                     "mangled": "_inCAAAAgGjH",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 1,
@@ -24071,7 +24099,7 @@
                     "fn": "get_binormal_name",
                     "mangled": "_inCAAAA8aPj",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24097,7 +24125,7 @@
                     "fn": "get_texcoord",
                     "mangled": "_inCAAAAaaiB",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 1,
@@ -24131,7 +24159,7 @@
                     "fn": "get_texcoord_name",
                     "mangled": "_inCAAAAGWNd",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24157,7 +24185,7 @@
                     "fn": "get_color",
                     "mangled": "_inCAAAAkPBk",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24183,7 +24211,7 @@
                     "fn": "get_rotate",
                     "mangled": "_inCAAAAEmsm",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24209,7 +24237,7 @@
                     "fn": "get_size",
                     "mangled": "_inCAAAA1bcz",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24235,7 +24263,7 @@
                     "fn": "get_aspect_ratio",
                     "mangled": "_inCAAAAoQxT",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24261,7 +24289,7 @@
                     "fn": "get_transform_blend",
                     "mangled": "_inCAAAAOgr2",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24287,7 +24315,7 @@
                     "fn": "get_transform_weight",
                     "mangled": "_inCAAAAZaFB",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24313,7 +24341,7 @@
                     "fn": "get_transform_index",
                     "mangled": "_inCAAAAPrB9",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 2,
@@ -24351,7 +24379,7 @@
                     "fn": "get_morph",
                     "mangled": "_inCAAAAFeUd",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24377,7 +24405,7 @@
                     "fn": "get_index",
                     "mangled": "_inCAAAATtkc",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24403,7 +24431,7 @@
                     "fn": "get_world",
                     "mangled": "_inCAAAAr1c_",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24429,7 +24457,7 @@
                     "fn": "get_camera",
                     "mangled": "_inCAAAAJLm5",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24455,7 +24483,7 @@
                     "fn": "get_model",
                     "mangled": "_inCAAAASAUz",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24481,7 +24509,7 @@
                     "fn": "get_view",
                     "mangled": "_inCAAAAokyx",
                     "ot": "inline PointerTo< InternalName >",
-                    "rt": "InternalName"
+                    "rt": ">"
                 },
                 {
                     "argc": 0,
@@ -24940,7 +24968,7 @@
                     "fn": "zero",
                     "mangled": "_inCAAAAKGfx",
                     "ot": "inline LVecBase3f const&",
-                    "rt": "LVecBase3f const"
+                    "rt": "LVecBase3f"
                 },
                 {
                     "argc": 0,
@@ -24966,7 +24994,7 @@
                     "fn": "unit_x",
                     "mangled": "_inCAAAAmCVV",
                     "ot": "inline LVecBase3f const&",
-                    "rt": "LVecBase3f const"
+                    "rt": "LVecBase3f"
                 },
                 {
                     "argc": 0,
@@ -24992,7 +25020,7 @@
                     "fn": "unit_y",
                     "mangled": "_inCAAAAgCjx",
                     "ot": "inline LVecBase3f const&",
-                    "rt": "LVecBase3f const"
+                    "rt": "LVecBase3f"
                 },
                 {
                     "argc": 0,
@@ -25018,7 +25046,7 @@
                     "fn": "unit_z",
                     "mangled": "_inCAAAAjCxN",
                     "ot": "inline LVecBase3f const&",
-                    "rt": "LVecBase3f const"
+                    "rt": "LVecBase3f"
                 },
                 {
                     "argc": 0,
@@ -25044,7 +25072,7 @@
                     "fn": "size",
                     "mangled": "_inCAAAAEZPb",
                     "ot": "constexpr int",
-                    "rt": "constexpr int"
+                    "rt": "expr int"
                 },
                 {
                     "argc": 0,
@@ -25591,7 +25619,7 @@
                     "fn": "get_data",
                     "mangled": "_inCAAAAjRCm",
                     "ot": "inline float const*",
-                    "rt": "float const"
+                    "rt": "float"
                 },
                 {
                     "argc": 0,
@@ -25617,7 +25645,7 @@
                     "fn": "get_num_components",
                     "mangled": "_inCAAAAx5U3",
                     "ot": "constexpr int",
-                    "rt": "constexpr int"
+                    "rt": "expr int"
                 },
                 {
                     "argc": 0,
@@ -25673,7 +25701,7 @@
                     "fn": "begin",
                     "mangled": "_inCAAAApFFN",
                     "ot": "inline LVecBase3f::const_iterator",
-                    "rt": "LVecBase3f::const_iterator"
+                    "rt": "LVecBase3f::_iterator"
                 },
                 {
                     "argc": 0,
@@ -25729,7 +25757,7 @@
                     "fn": "end",
                     "mangled": "_inCAAAAaC7x",
                     "ot": "inline LVecBase3f::const_iterator",
-                    "rt": "LVecBase3f::const_iterator"
+                    "rt": "LVecBase3f::_iterator"
                 },
                 {
                     "argc": 1,
@@ -31191,7 +31219,7 @@
                     "fn": "get_state",
                     "mangled": "_inCAAAANmZv",
                     "ot": "RenderState const*",
-                    "rt": "RenderState const"
+                    "rt": "RenderState"
                 },
                 {
                     "argc": 0,
@@ -31219,7 +31247,7 @@
                     "fn": "get_state",
                     "mangled": "_inCAAAAMd52",
                     "ot": "RenderState const*",
-                    "rt": "RenderState const"
+                    "rt": "RenderState"
                 },
                 {
                     "argc": 3,
@@ -31547,7 +31575,7 @@
                     "fn": "get_attrib",
                     "mangled": "_inCAAAAEHFA",
                     "ot": "inline RenderAttrib const*",
-                    "rt": "RenderAttrib const"
+                    "rt": "RenderAttrib"
                 },
                 {
                     "argc": 1,
@@ -31687,7 +31715,7 @@
                     "fn": "get_effect",
                     "mangled": "_inCAAAAYm6g",
                     "ot": "inline RenderEffect const*",
-                    "rt": "RenderEffect const"
+                    "rt": "RenderEffect"
                 },
                 {
                     "argc": 1,
@@ -31820,7 +31848,7 @@
                     "fn": "get_effects",
                     "mangled": "_inCAAAAuJzu",
                     "ot": "inline RenderEffects const*",
-                    "rt": "RenderEffects const"
+                    "rt": "RenderEffects"
                 },
                 {
                     "argc": 0,
@@ -31957,7 +31985,7 @@
                     "fn": "get_transform",
                     "mangled": "_inCAAAA_qAT",
                     "ot": "TransformState const*",
-                    "rt": "TransformState const"
+                    "rt": "TransformState"
                 },
                 {
                     "argc": 0,
@@ -31985,7 +32013,7 @@
                     "fn": "get_transform",
                     "mangled": "_inCAAAAbFez",
                     "ot": "TransformState const*",
-                    "rt": "TransformState const"
+                    "rt": "TransformState"
                 },
                 {
                     "argc": 2,
@@ -32450,7 +32478,7 @@
                     "fn": "get_prev_transform",
                     "mangled": "_inCAAAAUJSd",
                     "ot": "TransformState const*",
-                    "rt": "TransformState const"
+                    "rt": "TransformState"
                 },
                 {
                     "argc": 0,
@@ -32478,7 +32506,7 @@
                     "fn": "get_prev_transform",
                     "mangled": "_inCAAAAaXOe",
                     "ot": "TransformState const*",
-                    "rt": "TransformState const"
+                    "rt": "TransformState"
                 },
                 {
                     "argc": 3,
@@ -37137,7 +37165,7 @@
                     "fn": "get_mat",
                     "mangled": "_inCAAAAIMoG",
                     "ot": "inline LMatrix4 const&",
-                    "rt": "LMatrix4 const"
+                    "rt": "LMatrix4"
                 },
                 {
                     "argc": 1,
@@ -38988,7 +39016,7 @@
                     "fn": "get_color_scale",
                     "mangled": "_inCAAAAH9dO",
                     "ot": "LVecBase4 const&",
-                    "rt": "LVecBase4 const"
+                    "rt": "LVecBase4"
                 },
                 {
                     "argc": 0,
@@ -41238,7 +41266,7 @@
                     "fn": "get_texture_sampler",
                     "mangled": "_inCAAAAE2EV",
                     "ot": "SamplerState const&",
-                    "rt": "SamplerState const"
+                    "rt": "SamplerState"
                 },
                 {
                     "argc": 1,
@@ -41273,7 +41301,7 @@
                     "fn": "get_texture_sampler",
                     "mangled": "_inCAAAA35fO",
                     "ot": "SamplerState const&",
-                    "rt": "SamplerState const"
+                    "rt": "SamplerState"
                 },
                 {
                     "argc": 2,
@@ -41603,8 +41631,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LMatrix3 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LMatrix3 const &v, int priority)",
@@ -41642,8 +41670,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LMatrix3 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LMatrix3 const &v, int priority)",
@@ -41685,8 +41713,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LMatrix4 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LMatrix4 const &v, int priority)",
@@ -41724,8 +41752,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LMatrix4 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LMatrix4 const &v, int priority)",
@@ -41767,8 +41795,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase2 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase2 const &v, int priority)",
@@ -41806,8 +41834,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase2 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase2 const &v, int priority)",
@@ -41849,8 +41877,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase2i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase2i const &v, int priority)",
@@ -41888,8 +41916,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase2i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase2i const &v, int priority)",
@@ -41931,8 +41959,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase3 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase3 const &v, int priority)",
@@ -41970,8 +41998,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase3 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase3 const &v, int priority)",
@@ -42013,8 +42041,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase3i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase3i const &v, int priority)",
@@ -42052,8 +42080,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase3i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase3i const &v, int priority)",
@@ -42095,8 +42123,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase4 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase4 const &v, int priority)",
@@ -42134,8 +42162,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase4 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase4 const &v, int priority)",
@@ -42177,8 +42205,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase4i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase4i const &v, int priority)",
@@ -42216,8 +42244,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, LVecBase4i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, LVecBase4i const &v, int priority)",
@@ -42259,8 +42287,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, NodePath const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, NodePath const &np, int priority)",
@@ -42298,8 +42326,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, NodePath const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, NodePath const &np, int priority)",
@@ -42353,8 +42381,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5, int param6)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppffffi",
-                    "cni_args": "ppffffi",
+                    "cni": "NodePath_C_set_shader_input_v_psffffi",
+                    "cni_args": "psffffi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d352c20706172616d36293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority)",
@@ -42404,8 +42432,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppffff",
-                    "cni_args": "ppffff",
+                    "cni": "NodePath_C_set_shader_input_v_psffff",
+                    "cni_args": "psffff",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d35293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority)",
@@ -42451,8 +42479,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppfff",
-                    "cni_args": "ppfff",
+                    "cni": "NodePath_C_set_shader_input_v_psfff",
+                    "cni_args": "psfff",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d34293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority)",
@@ -42494,8 +42522,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PN_stdfloat param2, PN_stdfloat param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppff",
-                    "cni_args": "ppff",
+                    "cni": "NodePath_C_set_shader_input_v_psff",
+                    "cni_args": "psff",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PN_stdfloat n1, PN_stdfloat n2, PN_stdfloat n3, PN_stdfloat n4, int priority)",
@@ -42537,8 +42565,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LMatrix3 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LMatrix3 const &v, int priority)",
@@ -42576,8 +42604,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LMatrix3 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LMatrix3 const &v, int priority)",
@@ -42619,8 +42647,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LMatrix4 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LMatrix4 const &v, int priority)",
@@ -42658,8 +42686,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LMatrix4 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LMatrix4 const &v, int priority)",
@@ -42701,8 +42729,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase2 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase2 const &v, int priority)",
@@ -42740,8 +42768,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase2 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase2 const &v, int priority)",
@@ -42783,8 +42811,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase2i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase2i const &v, int priority)",
@@ -42822,8 +42850,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase2i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase2i const &v, int priority)",
@@ -42865,8 +42893,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase3 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase3 const &v, int priority)",
@@ -42904,8 +42932,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase3 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase3 const &v, int priority)",
@@ -42947,8 +42975,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase3i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase3i const &v, int priority)",
@@ -42986,8 +43014,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase3i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase3i const &v, int priority)",
@@ -43029,8 +43057,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase4 const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase4 const &v, int priority)",
@@ -43068,8 +43096,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase4 const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase4 const &v, int priority)",
@@ -43111,8 +43139,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase4i const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase4i const &v, int priority)",
@@ -43150,8 +43178,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_LVecBase4i const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_LVecBase4i const &v, int priority)",
@@ -43193,8 +43221,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_double const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi_17_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi_17_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_double const &v, int priority)",
@@ -43232,8 +43260,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_double const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp_17_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp_17_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_double const &v, int priority)",
@@ -43275,8 +43303,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_float const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi_17_v_pppi_18_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi_17_v_pspi_18_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_float const &v, int priority)",
@@ -43314,8 +43342,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_float const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp_17_v_ppp_18_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp_17_v_psp_18_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_float const &v, int priority)",
@@ -43357,8 +43385,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_int const *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi_17_v_pppi_18_v_pppi_19_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi_17_v_pspi_18_v_pspi_19_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_int const &v, int priority)",
@@ -43396,8 +43424,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, PTA_int const *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp_17_v_ppp_18_v_ppp_19_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp_17_v_psp_18_v_psp_19_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c202a706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, PTA_int const &v, int priority)",
@@ -43439,8 +43467,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, ShaderBuffer *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi_17_v_pppi_18_v_pppi_19_v_pppi_20_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi_17_v_pspi_18_v_pspi_19_v_pspi_20_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, ShaderBuffer *buf, int priority)",
@@ -43478,8 +43506,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, ShaderBuffer *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp_17_v_ppp_18_v_ppp_19_v_ppp_20_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp_17_v_psp_18_v_psp_19_v_psp_20_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, ShaderBuffer *buf, int priority)",
@@ -43525,8 +43553,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, SamplerState const *param3, int param4)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppppi",
-                    "cni_args": "ppppi",
+                    "cni": "NodePath_C_set_shader_input_v_psppi",
+                    "cni_args": "psppi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c202a706172616d332c20706172616d34293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, SamplerState const &sampler, int priority)",
@@ -43568,8 +43596,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, SamplerState const *param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppp",
-                    "cni_args": "pppp",
+                    "cni": "NodePath_C_set_shader_input_v_pspp",
+                    "cni_args": "pspp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c202a706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, SamplerState const &sampler, int priority)",
@@ -43627,8 +43655,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, bool param3, bool param4, int param5, int param6, int param7)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppBBiii",
-                    "cni_args": "pppBBiii",
+                    "cni": "NodePath_C_set_shader_input_v_pspBBiii",
+                    "cni_args": "pspBBiii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d352c20706172616d362c20706172616d37293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, bool read, bool write, int z, int n, int priority)",
@@ -43682,8 +43710,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, bool param3, bool param4, int param5, int param6)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppBBii",
-                    "cni_args": "pppBBii",
+                    "cni": "NodePath_C_set_shader_input_v_pspBBii",
+                    "cni_args": "pspBBii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d352c20706172616d36293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, bool read, bool write, int z, int n, int priority)",
@@ -43733,8 +43761,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, bool param3, bool param4, int param5)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppBBi",
-                    "cni_args": "pppBBi",
+                    "cni": "NodePath_C_set_shader_input_v_pspBBi",
+                    "cni_args": "pspBBi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d35293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, bool read, bool write, int z, int n, int priority)",
@@ -43780,8 +43808,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, bool param3, bool param4)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppBB",
-                    "cni_args": "pppBB",
+                    "cni": "NodePath_C_set_shader_input_v_pspBB",
+                    "cni_args": "pspBB",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d34293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, bool read, bool write, int z, int n, int priority)",
@@ -43823,8 +43851,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_pppi_1_v_pppi_2_v_pppi_3_v_pppi_4_v_pppi_5_v_pppi_6_v_pppi_7_v_pppi_8_v_pppi_9_v_pppi_10_v_pppi_11_v_pppi_12_v_pppi_13_v_pppi_14_v_pppi_15_v_pppi_16_v_pppi_17_v_pppi_18_v_pppi_19_v_pppi_20_v_pppi_21_v_pppi",
-                    "cni_args": "pppi",
+                    "cni": "NodePath_C_set_shader_input_v_pspi_1_v_pspi_2_v_pspi_3_v_pspi_4_v_pspi_5_v_pspi_6_v_pspi_7_v_pspi_8_v_pspi_9_v_pspi_10_v_pspi_11_v_pspi_12_v_pspi_13_v_pspi_14_v_pspi_15_v_pspi_16_v_pspi_17_v_pspi_18_v_pspi_19_v_pspi_20_v_pspi_21_v_pspi",
+                    "cni_args": "pspi",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, int priority)",
@@ -43862,8 +43890,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, Texture *param2)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppp_1_v_ppp_2_v_ppp_3_v_ppp_4_v_ppp_5_v_ppp_6_v_ppp_7_v_ppp_8_v_ppp_9_v_ppp_10_v_ppp_11_v_ppp_12_v_ppp_13_v_ppp_14_v_ppp_15_v_ppp_16_v_ppp_17_v_ppp_18_v_ppp_19_v_ppp_20_v_ppp_21_v_ppp",
-                    "cni_args": "ppp",
+                    "cni": "NodePath_C_set_shader_input_v_psp_1_v_psp_2_v_psp_3_v_psp_4_v_psp_5_v_psp_6_v_psp_7_v_psp_8_v_psp_9_v_psp_10_v_psp_11_v_psp_12_v_psp_13_v_psp_14_v_psp_15_v_psp_16_v_psp_17_v_psp_18_v_psp_19_v_psp_20_v_psp_21_v_psp",
+                    "cni_args": "psp",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d32293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, Texture *tex, int priority)",
@@ -43917,8 +43945,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, int param2, int param3, int param4, int param5, int param6)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppiiiii",
-                    "cni_args": "ppiiiii",
+                    "cni": "NodePath_C_set_shader_input_v_psiiiii",
+                    "cni_args": "psiiiii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d352c20706172616d36293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, int n1, int n2, int n3, int n4, int priority)",
@@ -43968,8 +43996,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, int param2, int param3, int param4, int param5)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppiiii",
-                    "cni_args": "ppiiii",
+                    "cni": "NodePath_C_set_shader_input_v_psiiii",
+                    "cni_args": "psiiii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d342c20706172616d35293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, int n1, int n2, int n3, int n4, int priority)",
@@ -44015,8 +44043,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, int param2, int param3, int param4)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppiii",
-                    "cni_args": "ppiii",
+                    "cni": "NodePath_C_set_shader_input_v_psiii",
+                    "cni_args": "psiii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d332c20706172616d34293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, int n1, int n2, int n3, int n4, int priority)",
@@ -44058,8 +44086,8 @@
                     "c_ref": "NodePath$_$set_shader_input(NodePath *param0, CPT_InternalName *param1, int param2, int param3)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_set_shader_input_v_ppii",
-                    "cni_args": "ppii",
+                    "cni": "NodePath_C_set_shader_input_v_psii",
+                    "cni_args": "psii",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e7365745f7368616465725f696e707574282a706172616d312c20706172616d322c20706172616d33293b",
                     "cpp_ref": "inline void NodePath::set_shader_input(CPT_InternalName id, int n1, int n2, int n3, int n4, int priority)",
@@ -44163,8 +44191,8 @@
                     "c_ref": "NodePath$_$clear_shader_input(NodePath *param0, CPT_InternalName *param1)",
                     "c_type": "void",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_clear_shader_input_v_pp",
-                    "cni_args": "pp",
+                    "cni": "NodePath_C_clear_shader_input_v_ps",
+                    "cni_args": "ps",
                     "cni_rt": "v",
                     "code": "20202020282a706172616d30292e636c6561725f7368616465725f696e707574282a706172616d31293b",
                     "cpp_ref": "void NodePath::clear_shader_input(CPT_InternalName id)",
@@ -44241,7 +44269,7 @@
                     "fn": "get_shader",
                     "mangled": "_inCAAAAXRer",
                     "ot": "Shader const*",
-                    "rt": "Shader const"
+                    "rt": "Shader"
                 },
                 {
                     "argc": 1,
@@ -44261,8 +44289,8 @@
                     "c_ref": "NodePath$_$get_shader_input(NodePath const *param0, CPT_InternalName *param1)",
                     "c_type": "ShaderInput *",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_get_shader_input_p_pp",
-                    "cni_args": "pp",
+                    "cni": "NodePath_C_get_shader_input_p_ps",
+                    "cni_args": "ps",
                     "cni_rt": "p",
                     "code": "2020202072657475726e206e657720536861646572496e70757428282a706172616d30292e6765745f7368616465725f696e707574282a706172616d3129293b",
                     "cpp_ref": "ShaderInput NodePath::get_shader_input(CPT_InternalName id) const",
@@ -46746,8 +46774,8 @@
                     "c_ref": "NodePath$_$has_vertex_column(NodePath const *param0, InternalName const *param1)",
                     "c_type": "bool",
                     "cn": "NodePath",
-                    "cni": "NodePath_C_has_vertex_column_B_pp",
-                    "cni_args": "pp",
+                    "cni": "NodePath_C_has_vertex_column_B_ps",
+                    "cni_args": "ps",
                     "cni_rt": "B",
                     "code": "2020202072657475726e20282a706172616d30292e6861735f7665727465785f636f6c756d6e28706172616d31293b",
                     "cpp_ref": "bool NodePath::has_vertex_column(InternalName const *name) const",
@@ -55130,7 +55158,7 @@
                     "fn": "get_data_root",
                     "mangled": "_inCAAAAG8gO",
                     "ot": "inline NodePath const&",
-                    "rt": "NodePath const"
+                    "rt": "NodePath"
                 },
                 {
                     "argc": 0,
@@ -56472,7 +56500,7 @@
                     "fn": "get_highlight",
                     "mangled": "_inCAAAAAalq",
                     "ot": "inline NodePath const&",
-                    "rt": "NodePath const"
+                    "rt": "NodePath"
                 },
                 {
                     "argc": 0,
@@ -64970,7 +64998,7 @@
                     "fn": "get_sync_name",
                     "mangled": "_inCAAAAjq87",
                     "ot": "inline std::string const&",
-                    "rt": "std::string const"
+                    "rt": "std::string"
                 },
                 {
                     "argc": 0,
@@ -66251,7 +66279,7 @@
                     "fn": "as_typed_object",
                     "mangled": "_inCAAAAWG8l",
                     "ot": "inline TypedObject const*",
-                    "rt": "TypedObject const"
+                    "rt": "TypedObject"
                 },
                 {
                     "argc": 0,

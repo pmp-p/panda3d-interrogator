@@ -14,6 +14,15 @@ static NodePath * np;
 static Filename * fn;
 
 
+
+
+
+
+
+
+
+
+
 void
 main_loop_or_step(){
 	if (!em_steps++) {
@@ -31,31 +40,39 @@ main_loop_or_step(){
         PandaFramework * pf = Engine_C_get_framework_p_p(E);
         WindowFramework * wf = Engine_C_get_wframe_p_p(E) ;
 
-
-		// np = NP_C_NP_p_v(); should have been ->get_models() !
-
         NodePath * mdl = Engine_C_load_model_p_ps(E, filename);
-        Engine_C_attach_v_pp(E, mdl);
-
+        //Engine_C_attach_v_pp(E, mdl);
 
         //NP_C_reparent_to_v_p(mdl, rd );
 
 /*
 		environ.reparent_to(ewin->get_render());
 		environ.set_scale(3,3,3);
-		environ.set_pos(0, 42, 0);
-*/
-        //NodePath_C_set_scale_v_pfff( mdl, 2,2,2);
-        //NodePath_C_set_pos_v_pfff( mdl, 0,42,0);
-
-
-/* OK
+    	environ.set_pos(0, 42, 0);
+    // OK
         LVecBase3f * s3f = LVecBase3f_C_ctor_p_fff(2,2,2);
         Engine_C_op_scale_v_ppp(E, mdl, s3f );
 
         LVecBase3f * v3f = LVecBase3f_C_ctor_p_fff(0,42,0);
         Engine_C_op_pos_v_ppp(E, mdl, v3f );
 */
+
+        NodePath_C_set_scale_v_pfff( mdl, 2,2,2);
+        NodePath_C_set_pos_v_pfff( mdl, 0,42,0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

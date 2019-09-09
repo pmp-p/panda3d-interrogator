@@ -37,6 +37,10 @@ GeomT::~GeomT(){
     cout << "GeomT->Destructor" <<endl;
 }
 
+GeomTriangles *
+Engine::new_GeomTriangles() {
+    return new GeomTriangles(GeomEnums::UH_static);
+}
 GeomVertexWriter *
 Engine::new_GeomVertexWriter(GeomVertexData *data, const char *gvw_name) {
     return new GeomVertexWriter(data, CPT_InternalName(gvw_name) ); //InternalName::get_vertex()
@@ -163,7 +167,53 @@ Engine::~Engine() {
 
 
 //-----------------------------------------------------------------------------
+void add_quad(GeomTriangles * triangles, int v0, int v1, int v2, int v3) {
+    triangles->add_vertices(v0, v1, v2);
+    triangles->add_vertices(v0, v2, v3);
+    triangles->close_primitive();
+}
 
+NodePath * Cube(float size=1.0) {
+    const char * geom_name="CubeMaker";
+    const char * gvd_name="Data";
+    const char * gvw_name="vertex";
+
+    GeomVertexFormat const * format = GeomVertexFormat::get_v3();
+
+    GeomVertexData * data = new GeomVertexData(gvd_name, format, GeomEnums::UH_static );
+
+    GeomVertexWriter * vertices = new GeomVertexWriter(data, CPT_InternalName(gvw_name));
+
+    size /= 2.0 ;
+    vertices->add_data3f(-size, -size, -size);
+    vertices->add_data3f(+size, -size, -size);
+    vertices->add_data3f(-size, +size, -size);
+    vertices->add_data3f(+size, +size, -size);
+    vertices->add_data3f(-size, -size, +size);
+    vertices->add_data3f(+size, -size, +size);
+    vertices->add_data3f(-size, +size, +size);
+    vertices->add_data3f(+size, +size, +size);
+
+    GeomTriangles * triangles = new GeomTriangles(GeomEnums::UH_static);
+
+
+    add_quad(triangles, 4, 5, 7, 6);  // Z+
+    add_quad(triangles, 0, 2, 3, 1);  // Z-
+    add_quad(triangles, 3, 7, 5, 1);  // X+
+    add_quad(triangles, 4, 6, 2, 0);  // X-
+    add_quad(triangles, 2, 6, 7, 3);  // Y+
+    add_quad(triangles, 0, 1, 5, 4);  // Y+
+
+
+    Geom * geom = new Geom(data);
+    geom->add_primitive( triangles );
+
+    GeomNode * node = new GeomNode(geom_name);
+    node->add_geom(geom);
+
+    return new NodePath(node);
+
+}
 
 
 #define efram engine->framework
@@ -195,6 +245,8 @@ main_loop_or_step(){
 		//mdl->reparent_to(ewin->get_render());
 		mdl->set_scale(3,3,3);
 		mdl->set_pos(0, 42, 0);
+
+        Cube(1.0);
 
         cout << "sizeof(LVecBase3f) = " << sizeof(LVecBase3f) << endl;
 		return;

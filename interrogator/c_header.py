@@ -203,7 +203,7 @@ def c_header(H, source):
             c = ', '.join(proto['c_argv'])
             print(f"// {proto['mangled']} : C++({cpp}) ==> C({c})", file=H)
             print(f"extern {ex_type} {ex_name}({', '.join(argv)});", file=H)
-            CNI(H, proto, ex_type.strip().replace(' ','-'), ex_name, ffi_args, is_void)
+            CNI(H, proto, ex_type, ex_name, ffi_args, is_void)
             print("", file=H)
 
         print("", file=H)
@@ -224,7 +224,6 @@ FFI_TYPE_MAP = {
     "long": "l",
     "enum": "i",
     "float": "f",
-    "PN_stdfloat": "f",
     "double": "d",
     "uint8_t": "B",
     "uint16_t": "H",
@@ -246,6 +245,11 @@ FFI_TYPE_MAP = {
     "long-long": "q",
     "unsigned-long-long": "Q",
     "long-long-unsigned": "Q",
+
+    "InternalName-const-*":"s",
+    'CPT_InternalName-*' : "s",
+    "PN_stdfloat": "f",
+
 }
 
 COLLISIONS = []
@@ -253,6 +257,10 @@ COLLISIONS = []
 
 
 def CNI(H, proto, rt, target, ffi_args, is_void):
+
+    rt = rt.strip().replace(' ','-')
+    #rt = rt.replace('-*','*')
+
     rt = FFI_TYPE_MAP.get(rt,'p')
 
     argt = []
@@ -270,17 +278,14 @@ def CNI(H, proto, rt, target, ffi_args, is_void):
     proto['cni_rt'] = rt
 
     if is_void and args=='v':
+        # 'v' => modffi.c:355: ffifunc_call: Assertion `n_args == self->cif.nargs' failed.
         proto['cni_args'] = ''
     else:
         proto['cni_args'] = args
 
 
-    # 'v' => modffi.c:355: ffifunc_call: Assertion `n_args == self->cif.nargs' failed.
 
     cni = f"{cni}_{rt}_{args}"
-
-    if cni=='Engine_C_load_model_p_pp':
-        print("ARGS :", rt, cargs)
 
     if cni in COLLISIONS:
         print(f"// COLLISION : {cni} {target}", file=H)

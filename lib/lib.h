@@ -67,6 +67,7 @@ class EXPORT_CLASS Engine
 
         void close_primitive(GeomTriangles *pri);
 
+        GeomTriangles * new_GeomTriangles();
 
         void attach(NodePath *mdl);
 /*

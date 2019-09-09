@@ -57,30 +57,35 @@ else
     fi
 fi
 
-stty sane
-echo
-echo "================================================"
-echo
-
-mkdir -p build
-
-if [ -f build/lib${LIB}_cpp.so ]
+if echo "$@" |grep -q cpponly
 then
-    if $link -o build/lib${LIB}_cni.so build/interrogate_cni.cpp ${LIBS} -l${LIB}_cpp
-    then
-        echo "C native ffi interface for C++ built"
-    fi
+    echo skipping C test
+else
 
-    if $link -o build/lib${LIB}_c.so build/interrogate_wrapper.cpp ${LIBS} -l${LIB}_cpp
+    stty sane
+    echo
+    echo "================================================"
+    echo
+
+    mkdir -p build
+
+    if [ -f build/lib${LIB}_cpp.so ]
     then
-        /bin/mv -vf build/interrogate_wrapper.h build/${LIB}.h
-        /bin/mv -vf build/interrogate_wrapper.json build/${LIB}.json
-        cmd="$cc -o mview_c mview.c ${LIBS} -l${LIB}_cpp -l${LIB}_cni"
-        echo $cmd
-        $cmd
-        ./mview_c
-    else
-        echo "build C lib failed"
+        if $link -o build/lib${LIB}_cni.so build/interrogate_cni.cpp ${LIBS} -l${LIB}_cpp
+        then
+            echo "C native ffi interface for C++ built"
+        fi
+
+        if $link -o build/lib${LIB}_c.so build/interrogate_wrapper.cpp ${LIBS} -l${LIB}_cpp
+        then
+            /bin/mv -vf build/interrogate_wrapper.h build/${LIB}.h
+            /bin/mv -vf build/interrogate_wrapper.json build/${LIB}.json
+            cmd="$cc -o mview_c mview.c ${LIBS} -l${LIB}_cpp -l${LIB}_cni"
+            echo $cmd
+            $cmd
+            ./mview_c
+        else
+            echo "build C lib failed"
+        fi
     fi
 fi
-
