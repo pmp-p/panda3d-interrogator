@@ -14,6 +14,9 @@
 #include "geomVertexWriter.h"
 #include "threadPriority.h"
 
+#include "texture.h"
+#include "texturePeeker.h"
+
 
 #define MAX_em_steps 160
 

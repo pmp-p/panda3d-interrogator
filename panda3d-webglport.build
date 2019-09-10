@@ -25,6 +25,6 @@ PATH=${ROOT}/bin:$PATH LD_LIBRARY_PATH=${ROOT}/lib $PYTHON makepanda/makepanda.p
  $PLAT --use-gles --use-gles2 --use-tinydisplay --use-pandatool\
  --use-python --no-eigen --use-openal --use-egg\
  --use-direct --use-vorbis --use-bullet --use-freetype --use-harfbuzz\
- --use-assimp --use-pandafx --use-pandaphysics --use-pandaparticlesystem --use-zlib "$@"
-# --override STDFLOAT_DOUBLE=1
+ --use-assimp --use-pandafx --use-pandaphysics --use-pandaparticlesystem --use-zlib \
+ --override STDFLOAT_DOUBLE=1 "$@"
 # --python-incdir=${UROOT}/include --python-libdir=${UROOT}/lib $*

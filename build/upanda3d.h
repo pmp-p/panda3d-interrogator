@@ -7,7 +7,7 @@
 #define PN_stdfloat float
 
 #define wchar_t char
-#define string char const
+//#define string char const
 
 #define std$_size_t unsigned int
 #define std$_streamsize int
@@ -22,8 +22,12 @@
 
 #define AccumulatedAttribs char
 #define AsyncFuture char
+#define AsyncTask char
 #define AsyncTaskManager char
+#define AtomicAdjust$_Integer char
+#define AutoTextureScale int
 #define AuxSceneData char
+#define BamCacheRecord char
 #define BamReader char
 #define BamWriter char
 #define BitMask32 char
@@ -31,16 +35,21 @@
 #define BoundingVolume$_BoundsType char
 #define ButtonMap char
 #define CPTA_int char
+#define CPTA_uchar char
 #define CPT_InternalName char
 #define CachedTypedWritableReferenceCount char
+#define CallbackObject char
 #define Camera char
 #define ChecksumHashGenerator char
 #define CollideMask char
 #define ConfigDeclaration char
 #define ConfigPage char
 #define ConfigVariableCore char
+#define ConstPointerTo char
 #define CoordinateSystem int
 #define CopyOnWriteObject char
+#define CullHandler char
+#define CullResult char
 #define CullTraverser char
 #define CullTraverserData char
 #define DSearchPath char
@@ -52,10 +61,13 @@
 #define DrawableRegion char
 #define DrawableRegion$_RenderTexturePlane char
 #define Engine char
+#define Event char
 #define EventHandler char
+#define EventQueue char
 #define Filename char
 #define Filename$_Type char
 #define Fog char
+#define Fog$_Mode char
 #define FrameBufferProperties char
 #define Geom char
 #define GeomContext char
@@ -89,6 +101,7 @@
 #define GraphicsPipe char
 #define GraphicsStateGuardian char
 #define GraphicsStateGuardianBase char
+#define GraphicsThreadingModel char
 #define GraphicsWindow char
 #define GraphicsWindowProc char
 #define GraphicsWindowProcCallbackData char
@@ -103,6 +116,9 @@
 #define LMatrix4 char
 #define LMatrix4d char
 #define LMatrix4f char
+#define LPoint2 char
+#define LPoint2f char
+#define LPoint2i char
 #define LPoint3 char
 #define LPoint3f char
 #define LPoint3i char
@@ -111,7 +127,9 @@
 #define LVecBase2 char
 #define LVecBase2d char
 #define LVecBase2f char
+#define LVecBase2f$_EVector2 char
 #define LVecBase2i char
+#define LVecBase2i$_EVector2 char
 #define LVecBase3 char
 #define LVecBase3d char
 #define LVecBase3f char
@@ -125,42 +143,64 @@
 #define LVecBase4i char
 #define LVecBase4i$_EVector4 char
 #define LVector2 char
+#define LVector2f char
+#define LVector2i char
 #define LVector3 char
 #define LVector3f char
 #define LVector3i char
 #define Lens char
+#define Lens$_StereoChannel char
 #define LensNode char
 #define Light char
 #define LinkedListNode char
+#define Loader char
+#define LoaderOptions char
 #define LogicOpAttrib$_Operation char
 #define Material char
 #define MaterialCollection char
 #define MemoryBase char
 #define MouseData char
 #define Namable char
+#define NodeCachedReferenceCount char
 #define NodePath char
 #define NodePath$_ErrorType char
 #define NodePathCollection char
 #define PNMImage char
 #define PStatCollector char
 #define PTA_LMatrix3 char
+#define PTA_LMatrix3d char
+#define PTA_LMatrix3f char
 #define PTA_LMatrix4 char
+#define PTA_LMatrix4d char
+#define PTA_LMatrix4f char
 #define PTA_LVecBase2 char
+#define PTA_LVecBase2d char
+#define PTA_LVecBase2f char
 #define PTA_LVecBase2i char
 #define PTA_LVecBase3 char
+#define PTA_LVecBase3d char
+#define PTA_LVecBase3f char
 #define PTA_LVecBase3i char
 #define PTA_LVecBase4 char
+#define PTA_LVecBase4d char
+#define PTA_LVecBase4f char
 #define PTA_LVecBase4i char
 #define PTA_double char
 #define PTA_float char
 #define PTA_int char
+#define PTA_uchar char
 #define PandaFramework char
 #define PandaNode char
 #define PandaNode$_Children char
 #define PandaNode$_Parents char
 #define PandaNode$_Stashed char
 #define PandaSystem char
+#define ParamValueBase char
+#define PfmFile char
+#define Pipeline char
+#define PointerTo char
 #define PreparedGraphicsObjects char
+#define ReMutex char
 #define RecorderController char
 #define ReferenceCount char
 #define RenderAttrib char
@@ -169,21 +209,47 @@
 #define RenderEffects char
 #define RenderModeAttrib$_Mode char
 #define RenderState char
+#define RenderState$_SlotMask char
 #define SamplerState char
+#define SamplerState$_FilterType char
+#define SamplerState$_WrapMode char
+#define SceneSetup char
 #define Shader char
+#define Shader$_ShaderArgInfo char
+#define Shader$_ShaderCaps char
+#define Shader$_ShaderLanguage char
+#define Shader$_ShaderMatInput char
+#define Shader$_ShaderMatSpec char
+#define Shader$_ShaderPtrData char
+#define Shader$_ShaderType char
+#define ShaderAttrib char
 #define ShaderBuffer char
+#define ShaderContext char
 #define ShaderInput char
+#define SimpleLru char
+#define SimpleLruPage char
 #define SliderTable char
 #define SparseArray char
 #define StereoDisplayRegion char
 #define TextEncoder char
 #define TextEncoder$_Encoding char
 #define TextFont char
+#define TextFont$_RenderMode char
+#define TextGlyph char
 #define TextNode char
 #define TextProperties char
 #define TextProperties$_Alignment char
 #define Texture char
+#define Texture$_ComponentType char
+#define Texture$_CompressionMode char
+#define Texture$_FilterType char
+#define Texture$_Format char
+#define Texture$_QualityLevel char
+#define Texture$_TextureType char
+#define Texture$_WrapMode char
 #define TextureCollection char
+#define TextureContext char
+#define TexturePeeker char
 #define TextureStage char
 #define TextureStageCollection char
 #define Thread char
@@ -202,13 +268,19 @@
 #define UnalignedLVecBase4f char
 #define UnalignedLVecBase4i char
 #define UpdateSeq char
+#define VertexBufferContext char
+#define VertexDataBook char
+#define VertexTransform char
 #define WeakNodePath char
 #define WeakReferenceList char
 #define WindowFramework char
 #define WindowFramework$_BackgroundType char
 #define WindowFramework$_SplitType char
 #define WindowHandle char
+#define WindowHandle$_OSHandle char
 #define WindowProperties char
+#define WindowProperties$_MouseMode char
+#define WindowProperties$_ZOrder char
 #define pfstream char
 #define pifstream char
 #define pofstream char
@@ -464,8 +536,263 @@ extern Geom * CopyOnWriteObject$1$downcast_to_Geom(CopyOnWriteObject *self);
 // _inCAAAAdtth : C++() ==> C(CopyOnWriteObject *)
 extern GeomPrimitive * CopyOnWriteObject$2$downcast_to_GeomPrimitive(CopyOnWriteObject *self);
 
+// _inCAAAAHqaf : C++() ==> C(CopyOnWriteObject *)
+extern GeomVertexArrayData * CopyOnWriteObject$3$downcast_to_GeomVertexArrayData(CopyOnWriteObject *self);
+
 // _inCAAAAT3AG : C++() ==> C(CopyOnWriteObject *)
-extern GeomVertexData * CopyOnWriteObject$3$downcast_to_GeomVertexData(CopyOnWriteObject *self);
+extern GeomVertexData * CopyOnWriteObject$4$downcast_to_GeomVertexData(CopyOnWriteObject *self);
+
+
+// DisplayRegion
+
+// _inCAAAAS8DN : C++() ==> C(DisplayRegion *)
+extern TypedReferenceCount * DisplayRegion$1$upcast_to_TypedReferenceCount(DisplayRegion *self);
+
+// _inCAAAAlwzo : C++() ==> C(DisplayRegion *)
+extern DrawableRegion * DisplayRegion$2$upcast_to_DrawableRegion(DisplayRegion *self);
+
+// _inCAAAAxLef : C++() ==> C(DisplayRegion *)
+extern void DisplayRegion$3$cleanup(DisplayRegion *self);
+
+// _inCAAAAZzns : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$4$get_num_regions(DisplayRegion const *self);
+
+// _inCAAAALWD0 : C++(int i) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$5$set_num_regions(DisplayRegion *self, int i);
+
+// _inCAAAA3AS_ : C++(int i) ==> C(DisplayRegion const *, int)
+extern LVecBase4 * DisplayRegion$6$get_dimensions(DisplayRegion const *self, int i);
+
+// _inCAAAAVdpt : C++() ==> C(DisplayRegion const *)
+extern LVecBase4 * DisplayRegion$7$get_dimensions(DisplayRegion const *self);
+
+// _inCAAAAKJ5y : C++(int i) ==> C(DisplayRegion const *, int)
+extern PN_stdfloat DisplayRegion$8$get_left(DisplayRegion const *self, int i);
+
+// _inCAAAA8EnQ : C++() ==> C(DisplayRegion const *)
+extern PN_stdfloat DisplayRegion$9$get_left(DisplayRegion const *self);
+
+// _inCAAAAKI2S : C++(int i) ==> C(DisplayRegion const *, int)
+extern PN_stdfloat DisplayRegion$10$get_right(DisplayRegion const *self, int i);
+
+// _inCAAAA85BK : C++() ==> C(DisplayRegion const *)
+extern PN_stdfloat DisplayRegion$11$get_right(DisplayRegion const *self);
+
+// _inCAAAAvsR4 : C++(int i) ==> C(DisplayRegion const *, int)
+extern PN_stdfloat DisplayRegion$12$get_bottom(DisplayRegion const *self, int i);
+
+// _inCAAAACJld : C++() ==> C(DisplayRegion const *)
+extern PN_stdfloat DisplayRegion$13$get_bottom(DisplayRegion const *self);
+
+// _inCAAAA7G3P : C++(int i) ==> C(DisplayRegion const *, int)
+extern PN_stdfloat DisplayRegion$14$get_top(DisplayRegion const *self, int i);
+
+// _inCAAAApTxi : C++() ==> C(DisplayRegion const *)
+extern PN_stdfloat DisplayRegion$15$get_top(DisplayRegion const *self);
+
+// _inCAAAAdwOl : C++(LVecBase4 const &dimensions) ==> C(DisplayRegion *, LVecBase4 const *)
+extern void DisplayRegion$16$set_dimensions(DisplayRegion *self, LVecBase4 const *dimensions);
+
+// _inCAAAAu59a : C++(PN_stdfloat l, PN_stdfloat r, PN_stdfloat b, PN_stdfloat t) ==> C(DisplayRegion *, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void DisplayRegion$17$set_dimensions(DisplayRegion *self, PN_stdfloat l, PN_stdfloat r, PN_stdfloat b, PN_stdfloat t);
+
+// _inCAAAAvKw_ : C++(int i, LVecBase4 const &dimensions) ==> C(DisplayRegion *, int, LVecBase4 const *)
+extern void DisplayRegion$18$set_dimensions(DisplayRegion *self, int i, LVecBase4 const *dimensions);
+
+// _inCAAAAOuar : C++(int i, PN_stdfloat l, PN_stdfloat r, PN_stdfloat b, PN_stdfloat t) ==> C(DisplayRegion *, int, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void DisplayRegion$19$set_dimensions(DisplayRegion *self, int i, PN_stdfloat l, PN_stdfloat r, PN_stdfloat b, PN_stdfloat t);
+
+// _inCAAAAKjj6 : C++() ==> C(DisplayRegion const *)
+extern GraphicsOutput * DisplayRegion$20$get_window(DisplayRegion const *self);
+
+// _inCAAAA668k : C++() ==> C(DisplayRegion const *)
+extern GraphicsPipe * DisplayRegion$21$get_pipe(DisplayRegion const *self);
+
+// _inCAAAAHd9E : C++() ==> C(DisplayRegion const *)
+extern bool DisplayRegion$22$is_stereo(DisplayRegion const *self);
+
+// _inCAAAAsRD1 : C++(NodePath const &camera) ==> C(DisplayRegion *, NodePath const *)
+extern void DisplayRegion$23$set_camera(DisplayRegion *self, NodePath const *camera);
+
+// _inCAAAAQE0w : C++(Thread *current_thread) ==> C(DisplayRegion const *, Thread *)
+extern NodePath * DisplayRegion$24$get_camera(DisplayRegion const *self, Thread *current_thread);
+
+// _inCAAAAM2LQ : C++() ==> C(DisplayRegion const *)
+extern NodePath * DisplayRegion$25$get_camera(DisplayRegion const *self);
+
+// _inCAAAAPMVE : C++(bool active) ==> C(DisplayRegion *, bool)
+extern void DisplayRegion$26$set_active(DisplayRegion *self, bool active);
+
+// _inCAAAApe7G : C++() ==> C(DisplayRegion const *)
+extern bool DisplayRegion$27$is_active(DisplayRegion const *self);
+
+// _inCAAAAJhLw : C++(int sort) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$28$set_sort(DisplayRegion *self, int sort);
+
+// _inCAAAAkJ4o : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$29$get_sort(DisplayRegion const *self);
+
+// _inCAAAAwg4T : C++(Lens::StereoChannel stereo_channel) ==> C(DisplayRegion *, Lens::StereoChannel)
+extern void DisplayRegion$30$set_stereo_channel(DisplayRegion *self, Lens$_StereoChannel stereo_channel);
+
+// _inCAAAAGBUH : C++() ==> C(DisplayRegion const *)
+extern Lens$_StereoChannel DisplayRegion$31$get_stereo_channel(DisplayRegion const *self);
+
+// _inCAAAAotSp : C++(int tex_view_offset) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$32$set_tex_view_offset(DisplayRegion *self, int tex_view_offset);
+
+// _inCAAAAYFGv : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$33$get_tex_view_offset(DisplayRegion const *self);
+
+// _inCAAAADC63 : C++(bool incomplete_render) ==> C(DisplayRegion *, bool)
+extern void DisplayRegion$34$set_incomplete_render(DisplayRegion *self, bool incomplete_render);
+
+// _inCAAAA6SQs : C++() ==> C(DisplayRegion const *)
+extern bool DisplayRegion$35$get_incomplete_render(DisplayRegion const *self);
+
+// _inCAAAA7uok : C++(int texture_reload_priority) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$36$set_texture_reload_priority(DisplayRegion *self, int texture_reload_priority);
+
+// _inCAAAApMFg : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$37$get_texture_reload_priority(DisplayRegion const *self);
+
+// _inCAAAAt3kY : C++(int index) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$38$set_lens_index(DisplayRegion *self, int index);
+
+// _inCAAAAHvi6 : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$39$get_lens_index(DisplayRegion const *self);
+
+// _inCAAAAuCaA : C++(CullTraverser *trav) ==> C(DisplayRegion *, CullTraverser *)
+extern void DisplayRegion$40$set_cull_traverser(DisplayRegion *self, CullTraverser *trav);
+
+// _inCAAAAmlBH : C++() ==> C(DisplayRegion *)
+extern CullTraverser * DisplayRegion$41$get_cull_traverser(DisplayRegion *self);
+
+// _inCAAAAVFCA : C++(int cube_map_index) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$42$set_cube_map_index(DisplayRegion *self, int cube_map_index);
+
+// _inCAAAA_ppu : C++(int page) ==> C(DisplayRegion *, int)
+extern void DisplayRegion$43$set_target_tex_page(DisplayRegion *self, int page);
+
+// _inCAAAANBc0 : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$44$get_target_tex_page(DisplayRegion const *self);
+
+// _inCAAAAN2Nd : C++(bool scissor_enabled) ==> C(DisplayRegion *, bool)
+extern void DisplayRegion$45$set_scissor_enabled(DisplayRegion *self, bool scissor_enabled);
+
+// _inCAAAAih6g : C++() ==> C(DisplayRegion const *)
+extern bool DisplayRegion$46$get_scissor_enabled(DisplayRegion const *self);
+
+// _inCAAAAZe2r : C++(CallbackObject *object) ==> C(DisplayRegion *, CallbackObject *)
+extern void DisplayRegion$47$set_cull_callback(DisplayRegion *self, CallbackObject *object);
+
+// _inCAAAAlceA : C++() ==> C(DisplayRegion *)
+extern void DisplayRegion$48$clear_cull_callback(DisplayRegion *self);
+
+// _inCAAAAIcXV : C++() ==> C(DisplayRegion const *)
+extern CallbackObject * DisplayRegion$49$get_cull_callback(DisplayRegion const *self);
+
+// _inCAAAA12YM : C++(CallbackObject *object) ==> C(DisplayRegion *, CallbackObject *)
+extern void DisplayRegion$50$set_draw_callback(DisplayRegion *self, CallbackObject *object);
+
+// _inCAAAAmEIH : C++() ==> C(DisplayRegion *)
+extern void DisplayRegion$51$clear_draw_callback(DisplayRegion *self);
+
+// _inCAAAATl41 : C++() ==> C(DisplayRegion const *)
+extern CallbackObject * DisplayRegion$52$get_draw_callback(DisplayRegion const *self);
+
+// _inCAAAA_lBg : C++(int i) ==> C(DisplayRegion const *, int)
+extern int DisplayRegion$53$get_pixel_width(DisplayRegion const *self, int i);
+
+// _inCAAAA9Qnq : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$54$get_pixel_width(DisplayRegion const *self);
+
+// _inCAAAAkzp_ : C++(int i) ==> C(DisplayRegion const *, int)
+extern int DisplayRegion$55$get_pixel_height(DisplayRegion const *self, int i);
+
+// _inCAAAAKQDR : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$56$get_pixel_height(DisplayRegion const *self);
+
+// _inCAAAAFi2h : C++(int i) ==> C(DisplayRegion const *, int)
+extern LVecBase2i * DisplayRegion$57$get_pixel_size(DisplayRegion const *self, int i);
+
+// _inCAAAAa7MQ : C++() ==> C(DisplayRegion const *)
+extern LVecBase2i * DisplayRegion$58$get_pixel_size(DisplayRegion const *self);
+
+// _inCAAAA2Wm3 : C++(std::ostream &out) ==> C(DisplayRegion const *, std::ostream *)
+extern void DisplayRegion$59$output(DisplayRegion const *self, std$_ostream *out);
+
+// _inCAAAAoh_C : C++(std::string const &prefix) ==> C(char const *)
+extern Filename * DisplayRegion$60$make_screenshot_filename(char const *prefix);
+
+// _inCAAAAWeJc : C++() ==> C()
+extern Filename * DisplayRegion$61$make_screenshot_filename(void);
+
+// _inCAAAATPtp : C++(std::string const &prefix) ==> C(DisplayRegion *, char const *)
+extern Filename * DisplayRegion$62$save_screenshot_default(DisplayRegion *self, char const *prefix);
+
+// _inCAAAAJTg6 : C++() ==> C(DisplayRegion *)
+extern Filename * DisplayRegion$63$save_screenshot_default(DisplayRegion *self);
+
+// _inCAAAAeeKk : C++(Filename const &filename, std::string const &image_comment) ==> C(DisplayRegion *, Filename const *, char const *)
+extern bool DisplayRegion$64$save_screenshot(DisplayRegion *self, Filename const *filename, char const *image_comment);
+
+// _inCAAAAN5lm : C++(Filename const &filename) ==> C(DisplayRegion *, Filename const *)
+extern bool DisplayRegion$65$save_screenshot(DisplayRegion *self, Filename const *filename);
+
+// _inCAAAAVX7L : C++() ==> C(DisplayRegion *)
+extern char ** DisplayRegion$66$get_screenshot(DisplayRegion *self);
+
+// _inCAAAA__qS : C++(PNMImage &image) ==> C(DisplayRegion *, PNMImage *)
+extern bool DisplayRegion$67$get_screenshot(DisplayRegion *self, PNMImage *image);
+
+// _inCAAAAGzuE : C++() ==> C(DisplayRegion *)
+extern char ** DisplayRegion$68$make_cull_result_graph(DisplayRegion *self);
+
+// _inCAAAAZxAV : C++() ==> C(DisplayRegion *)
+extern void DisplayRegion$69$compute_pixels(DisplayRegion *self);
+
+// _inCAAAAjMLv : C++(int x_size, int y_size) ==> C(DisplayRegion *, int, int)
+extern void DisplayRegion$70$compute_pixels(DisplayRegion *self, int x_size, int y_size);
+
+// _inCAAAAm_3J : C++() ==> C(DisplayRegion *)
+extern void DisplayRegion$71$compute_pixels_all_stages(DisplayRegion *self);
+
+// _inCAAAA8yEm : C++(int x_size, int y_size) ==> C(DisplayRegion *, int, int)
+extern void DisplayRegion$72$compute_pixels_all_stages(DisplayRegion *self, int x_size, int y_size);
+
+// _inCAAAATfgV : C++() ==> C(DisplayRegion const *)
+extern bool DisplayRegion$73$supports_pixel_zoom(DisplayRegion const *self);
+
+// _inCAAAAUp_E : C++(PointerTo< CullResult > cull_result, PointerTo< SceneSetup > scene_setup, Thread *current_thread) ==> C(DisplayRegion *, PointerTo< CullResult > *, PointerTo< SceneSetup > *, Thread *)
+extern void DisplayRegion$74$set_cull_result(DisplayRegion *self, char **cull_result, char **scene_setup, Thread *current_thread);
+
+// _inCAAAAnPTH : C++(Thread *current_thread) ==> C(DisplayRegion const *, Thread *)
+extern CullResult * DisplayRegion$75$get_cull_result(DisplayRegion const *self, Thread *current_thread);
+
+// _inCAAAA1FTE : C++(Thread *current_thread) ==> C(DisplayRegion const *, Thread *)
+extern SceneSetup * DisplayRegion$76$get_scene_setup(DisplayRegion const *self, Thread *current_thread);
+
+// _inCAAAAJB1x : C++() ==> C(DisplayRegion *)
+extern PStatCollector * DisplayRegion$77$get_cull_region_pcollector(DisplayRegion *self);
+
+// _inCAAAAeuWS : C++() ==> C(DisplayRegion *)
+extern PStatCollector * DisplayRegion$78$get_draw_region_pcollector(DisplayRegion *self);
+
+// _inCAAAAL_be : C++() ==> C(DisplayRegion const *)
+extern char const * DisplayRegion$79$get_debug_name(DisplayRegion const *self);
+
+// _inCAAAAZZzb : C++() ==> C()
+extern int DisplayRegion$80$get_class_type(void);
+
+// _inCAAAA9gxY : C++() ==> C()
+extern void DisplayRegion$81$init_type(void);
+
+// _inCAAAAoy3p : C++() ==> C(DisplayRegion const *)
+extern int DisplayRegion$82$get_type(DisplayRegion const *self);
+
+// _inCAAAAvyNU : C++() ==> C(DisplayRegion *)
+extern int DisplayRegion$83$force_init_type(DisplayRegion *self);
 
 
 // DrawableRegion
@@ -554,8 +881,11 @@ extern int DrawableRegion$27$get_screenshot_buffer_type(DrawableRegion const *se
 // _inCAAAAsUy9 : C++() ==> C(DrawableRegion const *)
 extern int DrawableRegion$28$get_draw_buffer_type(DrawableRegion const *self);
 
+// _inCAAAAWozv : C++() ==> C(DrawableRegion *)
+extern DisplayRegion * DrawableRegion$29$downcast_to_DisplayRegion(DrawableRegion *self);
+
 // _inCAAAAuJDd : C++() ==> C(DrawableRegion *)
-extern GraphicsOutput * DrawableRegion$29$downcast_to_GraphicsOutput(DrawableRegion *self);
+extern GraphicsOutput * DrawableRegion$30$downcast_to_GraphicsOutput(DrawableRegion *self);
 
 
 // Engine
@@ -636,6 +966,48 @@ extern PandaFramework * Engine$24$get_framework(Engine const *self);
 extern void Engine$25$set_framework(Engine *self, PandaFramework *value);
 
 
+// EventHandler
+
+// _inCAAAAwhlR : C++(EventQueue *ev_queue) ==> C(EventQueue *)
+extern EventHandler * EventHandler$1$EventHandler(EventQueue *ev_queue);
+
+// _inCAAAAnmDs : C++(std::string const &event_name) ==> C(EventHandler *, char const *)
+extern AsyncFuture * EventHandler$2$get_future(EventHandler *self, char const *event_name);
+
+// _inCAAAAIZkG : C++() ==> C(EventHandler *)
+extern void EventHandler$3$process_events(EventHandler *self);
+
+// _inCAAAAH0sA : C++(Event const *event) ==> C(EventHandler *, Event const *)
+extern void EventHandler$4$dispatch_event(EventHandler *self, Event const *event);
+
+// _inCAAAAunvO : C++(std::ostream &out) ==> C(EventHandler const *, std::ostream *)
+extern void EventHandler$5$write(EventHandler const *self, std$_ostream *out);
+
+// _inCAAAAcYKa : C++(EventQueue *queue) ==> C(EventQueue *)
+extern EventHandler * EventHandler$6$get_global_event_handler(EventQueue *queue);
+
+// _inCAAAAJp0Z : C++() ==> C()
+extern EventHandler * EventHandler$7$get_global_event_handler(void);
+
+// _inCAAAAhLAB : C++(std::string const &event_name) ==> C(EventHandler const *, char const *)
+extern bool EventHandler$8$has_hook(EventHandler const *self, char const *event_name);
+
+// _inCAAAAA1Et : C++(std::string const &event_name) ==> C(EventHandler *, char const *)
+extern bool EventHandler$9$remove_hooks(EventHandler *self, char const *event_name);
+
+// _inCAAAAT_2Q : C++() ==> C(EventHandler *)
+extern void EventHandler$10$remove_all_hooks(EventHandler *self);
+
+// _inCAAAARkjs : C++() ==> C()
+extern int EventHandler$11$get_class_type(void);
+
+// _inCAAAAq2fe : C++() ==> C()
+extern void EventHandler$12$init_type(void);
+
+// _inCAAAAXST6 : C++() ==> C(EventHandler *)
+extern int EventHandler$13$force_init_type(EventHandler *self);
+
+
 // Filename
 
 // _inCAAAAzHmO : C++() ==> C()
@@ -660,7 +1032,7 @@ extern Filename * Filename$6$Filename(char const *filename);
 
 // _inCAAAAw0Fd : C++(std::wstring const &filename) ==> C(wchar_t const *)
 extern Filename * Filename$7$Filename(wchar_t const *filename);
-// COLLISION : Filename_C_ctor_p_p Filename$7$Filename
+// COLLISION : Filename_C_ctor_p_s Filename$7$Filename
 
 // _inCAAAAC1b2 : C++(Filename const &filename) ==> C(Filename const *)
 extern Filename * Filename$8$text_filename(Filename const *filename);
@@ -1003,6 +1375,276 @@ extern int Filename$117$get_class_type(void);
 extern void Filename$118$init_type(void);
 
 
+// Fog
+
+// _inCAAAAzFvF : C++(std::string const &name) ==> C(char const *)
+extern Fog * Fog$1$Fog(char const *name);
+
+// _inCAAAAvuvC : C++(LMatrix4 const &mat) ==> C(Fog *, LMatrix4 const *)
+extern void Fog$2$xform(Fog *self, LMatrix4 const *mat);
+
+// _inCAAAANq_P : C++() ==> C(Fog const *)
+extern Fog$_Mode Fog$3$get_mode(Fog const *self);
+
+// _inCAAAAGgPt : C++(Fog::Mode mode) ==> C(Fog *, Fog::Mode)
+extern void Fog$4$set_mode(Fog *self, Fog$_Mode mode);
+
+// _inCAAAARSgO : C++() ==> C(Fog const *)
+extern LColor const * Fog$5$get_color(Fog const *self);
+
+// _inCAAAAj5NA : C++(LColor const &color) ==> C(Fog *, LColor const *)
+extern void Fog$6$set_color(Fog *self, LColor const *color);
+
+// _inCAAAADs_X : C++(PN_stdfloat r, PN_stdfloat g, PN_stdfloat b) ==> C(Fog *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Fog$7$set_color(Fog *self, PN_stdfloat r, PN_stdfloat g, PN_stdfloat b);
+
+// _inCAAAA0kVN : C++(PN_stdfloat onset, PN_stdfloat opaque) ==> C(Fog *, PN_stdfloat, PN_stdfloat)
+extern void Fog$8$set_linear_range(Fog *self, PN_stdfloat onset, PN_stdfloat opaque);
+
+// _inCAAAA9LTt : C++() ==> C(Fog const *)
+extern LPoint3 const * Fog$9$get_linear_onset_point(Fog const *self);
+
+// _inCAAAAv6E_ : C++(LPoint3 const &linear_onset_point) ==> C(Fog *, LPoint3 const *)
+extern void Fog$10$set_linear_onset_point(Fog *self, LPoint3 const *linear_onset_point);
+
+// _inCAAAAlav2 : C++(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) ==> C(Fog *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Fog$11$set_linear_onset_point(Fog *self, PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+
+// _inCAAAAjQae : C++() ==> C(Fog const *)
+extern LPoint3 const * Fog$12$get_linear_opaque_point(Fog const *self);
+
+// _inCAAAAIH2I : C++(LPoint3 const &linear_opaque_point) ==> C(Fog *, LPoint3 const *)
+extern void Fog$13$set_linear_opaque_point(Fog *self, LPoint3 const *linear_opaque_point);
+
+// _inCAAAA5AEB : C++(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z) ==> C(Fog *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Fog$14$set_linear_opaque_point(Fog *self, PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+
+// _inCAAAA7Y5e : C++(PN_stdfloat angle, PN_stdfloat onset, PN_stdfloat opaque) ==> C(Fog *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Fog$15$set_linear_fallback(Fog *self, PN_stdfloat angle, PN_stdfloat onset, PN_stdfloat opaque);
+
+// _inCAAAAE35n : C++() ==> C(Fog const *)
+extern PN_stdfloat Fog$16$get_exp_density(Fog const *self);
+
+// _inCAAAAf7po : C++(PN_stdfloat exp_density) ==> C(Fog *, PN_stdfloat)
+extern void Fog$17$set_exp_density(Fog *self, PN_stdfloat exp_density);
+
+// _inCAAAAfXKO : C++(TransformState const *camera_transform) ==> C(Fog *, TransformState const *)
+extern void Fog$18$adjust_to_camera(Fog *self, TransformState const *camera_transform);
+
+// _inCAAAAJQI7 : C++() ==> C()
+extern void Fog$19$register_with_read_factory(void);
+
+// _inCAAAAp6eO : C++(BamWriter *manager, Datagram &dg) ==> C(Fog *, BamWriter *, Datagram *)
+extern void Fog$20$write_datagram(Fog *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAfLii : C++() ==> C()
+extern int Fog$21$get_class_type(void);
+
+// _inCAAAA86zx : C++() ==> C()
+extern void Fog$22$init_type(void);
+
+// _inCAAAAbiE2 : C++() ==> C(Fog const *)
+extern int Fog$23$get_type(Fog const *self);
+
+// _inCAAAAN8pQ : C++() ==> C(Fog *)
+extern int Fog$24$force_init_type(Fog *self);
+
+
+// FrameBufferProperties
+
+// _inCAAAA6uCK : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$1$get_depth_bits(FrameBufferProperties const *self);
+
+// _inCAAAAp9ex : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$2$get_color_bits(FrameBufferProperties const *self);
+
+// _inCAAAA5QAD : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$3$get_red_bits(FrameBufferProperties const *self);
+
+// _inCAAAAQvTg : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$4$get_green_bits(FrameBufferProperties const *self);
+
+// _inCAAAA641f : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$5$get_blue_bits(FrameBufferProperties const *self);
+
+// _inCAAAAYuZb : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$6$get_alpha_bits(FrameBufferProperties const *self);
+
+// _inCAAAACuvJ : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$7$get_stencil_bits(FrameBufferProperties const *self);
+
+// _inCAAAAzcaD : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$8$get_accum_bits(FrameBufferProperties const *self);
+
+// _inCAAAAi42A : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$9$get_aux_rgba(FrameBufferProperties const *self);
+
+// _inCAAAA6m6B : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$10$get_aux_hrgba(FrameBufferProperties const *self);
+
+// _inCAAAAFEoX : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$11$get_aux_float(FrameBufferProperties const *self);
+
+// _inCAAAASH90 : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$12$get_multisamples(FrameBufferProperties const *self);
+
+// _inCAAAA1QBe : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$13$get_coverage_samples(FrameBufferProperties const *self);
+
+// _inCAAAAn2ht : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$14$get_back_buffers(FrameBufferProperties const *self);
+
+// _inCAAAAQkg0 : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$15$get_indexed_color(FrameBufferProperties const *self);
+
+// _inCAAAA7V7R : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$16$get_rgb_color(FrameBufferProperties const *self);
+
+// _inCAAAA1KER : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$17$get_stereo(FrameBufferProperties const *self);
+
+// _inCAAAAmgiH : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$18$get_force_hardware(FrameBufferProperties const *self);
+
+// _inCAAAAI_F1 : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$19$get_force_software(FrameBufferProperties const *self);
+
+// _inCAAAABmVi : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$20$get_srgb_color(FrameBufferProperties const *self);
+
+// _inCAAAAi3on : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$21$get_float_color(FrameBufferProperties const *self);
+
+// _inCAAAApwLM : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$22$get_float_depth(FrameBufferProperties const *self);
+
+// _inCAAAA4McT : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$23$set_depth_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAgD26 : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$24$set_color_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAkJPN : C++(int r, int g, int b, int a) ==> C(FrameBufferProperties *, int, int, int, int)
+extern void FrameBufferProperties$25$set_rgba_bits(FrameBufferProperties *self, int r, int g, int b, int a);
+
+// _inCAAAA2pP2 : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$26$set_red_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAJyqp : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$27$set_green_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAlx3u : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$28$set_blue_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAjyyk : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$29$set_alpha_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAwbci : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$30$set_stencil_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAA2I1M : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$31$set_accum_bits(FrameBufferProperties *self, int n);
+
+// _inCAAAAIVH0 : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$32$set_aux_rgba(FrameBufferProperties *self, int n);
+
+// _inCAAAAJ2_Q : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$33$set_aux_hrgba(FrameBufferProperties *self, int n);
+
+// _inCAAAAqLrm : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$34$set_aux_float(FrameBufferProperties *self, int n);
+
+// _inCAAAA6_qN : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$35$set_multisamples(FrameBufferProperties *self, int n);
+
+// _inCAAAAmvEd : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$36$set_coverage_samples(FrameBufferProperties *self, int n);
+
+// _inCAAAAcsOG : C++(int n) ==> C(FrameBufferProperties *, int)
+extern void FrameBufferProperties$37$set_back_buffers(FrameBufferProperties *self, int n);
+
+// _inCAAAANnI5 : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$38$set_indexed_color(FrameBufferProperties *self, bool n);
+
+// _inCAAAAoLwD : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$39$set_rgb_color(FrameBufferProperties *self, bool n);
+
+// _inCAAAAkw5k : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$40$set_stereo(FrameBufferProperties *self, bool n);
+
+// _inCAAAA1_ND : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$41$set_force_hardware(FrameBufferProperties *self, bool n);
+
+// _inCAAAAtZww : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$42$set_force_software(FrameBufferProperties *self, bool n);
+
+// _inCAAAAxQEF : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$43$set_srgb_color(FrameBufferProperties *self, bool n);
+
+// _inCAAAAh1Rn : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$44$set_float_color(FrameBufferProperties *self, bool n);
+
+// _inCAAAA_s0L : C++(bool n) ==> C(FrameBufferProperties *, bool)
+extern void FrameBufferProperties$45$set_float_depth(FrameBufferProperties *self, bool n);
+
+// _inCAAAA0P03 : C++() ==> C()
+extern FrameBufferProperties * FrameBufferProperties$46$FrameBufferProperties(void);
+
+// _inCAAAAOlPt : C++(FrameBufferProperties const &) ==> C(FrameBufferProperties const *)
+extern FrameBufferProperties * FrameBufferProperties$47$FrameBufferProperties(FrameBufferProperties const *arg0);
+
+// _inCAAAAFGOb : C++() ==> C()
+extern FrameBufferProperties const * FrameBufferProperties$48$get_default(void);
+
+// _inCAAAAfz7q : C++() ==> C(FrameBufferProperties *)
+extern void FrameBufferProperties$49$clear(FrameBufferProperties *self);
+
+// _inCAAAAzSla : C++() ==> C(FrameBufferProperties *)
+extern void FrameBufferProperties$50$set_all_specified(FrameBufferProperties *self);
+
+// _inCAAAArBZu : C++(FrameBufferProperties const &other) ==> C(FrameBufferProperties const *, FrameBufferProperties const *)
+extern bool FrameBufferProperties$51$subsumes(FrameBufferProperties const *self, FrameBufferProperties const *other);
+
+// _inCAAAAHaxr : C++(FrameBufferProperties const &other) ==> C(FrameBufferProperties *, FrameBufferProperties const *)
+extern void FrameBufferProperties$52$add_properties(FrameBufferProperties *self, FrameBufferProperties const *other);
+
+// _inCAAAAxfF7 : C++(std::ostream &out) ==> C(FrameBufferProperties const *, std::ostream *)
+extern void FrameBufferProperties$53$output(FrameBufferProperties const *self, std$_ostream *out);
+
+// _inCAAAAs3_4 : C++() ==> C(FrameBufferProperties *)
+extern void FrameBufferProperties$54$set_one_bit_per_channel(FrameBufferProperties *self);
+
+// _inCAAAAx4ZJ : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$55$is_stereo(FrameBufferProperties const *self);
+
+// _inCAAAAWlX5 : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$56$is_single_buffered(FrameBufferProperties const *self);
+
+// _inCAAAAJ6K8 : C++(FrameBufferProperties const &reqs) ==> C(FrameBufferProperties const *, FrameBufferProperties const *)
+extern int FrameBufferProperties$57$get_quality(FrameBufferProperties const *self, FrameBufferProperties const *reqs);
+
+// _inCAAAA5Lag : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$58$is_any_specified(FrameBufferProperties const *self);
+
+// _inCAAAAByA7 : C++() ==> C(FrameBufferProperties const *)
+extern bool FrameBufferProperties$59$is_basic(FrameBufferProperties const *self);
+
+// _inCAAAATi5r : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$60$get_aux_mask(FrameBufferProperties const *self);
+
+// _inCAAAAFEQC : C++() ==> C(FrameBufferProperties const *)
+extern int FrameBufferProperties$61$get_buffer_mask(FrameBufferProperties const *self);
+
+// _inCAAAAw54T : C++(FrameBufferProperties const &props, std::string const &renderer) ==> C(FrameBufferProperties const *, FrameBufferProperties const *, char const *)
+extern bool FrameBufferProperties$62$verify_hardware_software(FrameBufferProperties const *self, FrameBufferProperties const *props, char const *renderer);
+
+// _inCAAAAv7ob : C++(Texture *tex) ==> C(FrameBufferProperties const *, Texture *)
+extern bool FrameBufferProperties$63$setup_color_texture(FrameBufferProperties const *self, Texture *tex);
+
+// _inCAAAA_Hak : C++(Texture *tex) ==> C(FrameBufferProperties const *, Texture *)
+extern bool FrameBufferProperties$64$setup_depth_texture(FrameBufferProperties const *self, Texture *tex);
+
+
 // Geom
 
 // _inCAAAAMO36 : C++() ==> C(Geom *)
@@ -1260,11 +1902,20 @@ extern Geom * GeomEnums$3$downcast_to_Geom(GeomEnums *self);
 // _inCAAAA94K1 : C++() ==> C(GeomEnums *)
 extern GeomPrimitive * GeomEnums$4$downcast_to_GeomPrimitive(GeomEnums *self);
 
+// _inCAAAAIzps : C++() ==> C(GeomEnums *)
+extern GeomVertexArrayData * GeomEnums$5$downcast_to_GeomVertexArrayData(GeomEnums *self);
+
+// _inCAAAAo05j : C++() ==> C(GeomEnums *)
+extern GeomVertexArrayFormat * GeomEnums$6$downcast_to_GeomVertexArrayFormat(GeomEnums *self);
+
+// _inCAAAAL1Nu : C++() ==> C(GeomEnums *)
+extern GeomVertexArrayDataHandle * GeomEnums$7$downcast_to_GeomVertexArrayDataHandle(GeomEnums *self);
+
 // _inCAAAALM59 : C++() ==> C(GeomEnums *)
-extern GeomVertexData * GeomEnums$5$downcast_to_GeomVertexData(GeomEnums *self);
+extern GeomVertexData * GeomEnums$8$downcast_to_GeomVertexData(GeomEnums *self);
 
 // _inCAAAACWg5 : C++() ==> C(GeomEnums *)
-extern GeomVertexFormat * GeomEnums$6$downcast_to_GeomVertexFormat(GeomEnums *self);
+extern GeomVertexFormat * GeomEnums$9$downcast_to_GeomVertexFormat(GeomEnums *self);
 
 
 // GeomNode
@@ -1694,6 +2345,466 @@ extern int GeomTriangles$7$get_type(GeomTriangles const *self);
 
 // _inCAAAAbRHm : C++() ==> C(GeomTriangles *)
 extern int GeomTriangles$8$force_init_type(GeomTriangles *self);
+
+
+// GeomVertexArrayData
+
+// _inCAAAAurBl : C++() ==> C(GeomVertexArrayData *)
+extern CopyOnWriteObject * GeomVertexArrayData$1$upcast_to_CopyOnWriteObject(GeomVertexArrayData *self);
+
+// _inCAAAAi7GK : C++() ==> C(GeomVertexArrayData *)
+extern SimpleLruPage * GeomVertexArrayData$2$upcast_to_SimpleLruPage(GeomVertexArrayData *self);
+
+// _inCAAAASXKf : C++() ==> C(GeomVertexArrayData *)
+extern GeomEnums * GeomVertexArrayData$3$upcast_to_GeomEnums(GeomVertexArrayData *self);
+
+// _inCAAAAVjYG : C++(GeomVertexArrayData const &copy) ==> C(GeomVertexArrayData const *)
+extern GeomVertexArrayData * GeomVertexArrayData$4$GeomVertexArrayData(GeomVertexArrayData const *copy);
+
+// _inCAAAAL33s : C++(GeomVertexArrayFormat const *array_format, GeomEnums::UsageHint usage_hint) ==> C(GeomVertexArrayFormat const *, GeomEnums::UsageHint)
+extern GeomVertexArrayData * GeomVertexArrayData$5$GeomVertexArrayData(GeomVertexArrayFormat const *array_format, GeomEnums$_UsageHint usage_hint);
+
+// _inCAAAAaxwn : C++(GeomVertexArrayData const &other) ==> C(GeomVertexArrayData const *, GeomVertexArrayData const *)
+extern int GeomVertexArrayData$6$compare_to(GeomVertexArrayData const *self, GeomVertexArrayData const *other);
+
+// _inCAAAA3CJD : C++() ==> C(GeomVertexArrayData const *)
+extern GeomVertexArrayFormat const * GeomVertexArrayData$7$get_array_format(GeomVertexArrayData const *self);
+
+// _inCAAAAxPce : C++() ==> C(GeomVertexArrayData const *)
+extern GeomEnums$_UsageHint GeomVertexArrayData$8$get_usage_hint(GeomVertexArrayData const *self);
+
+// _inCAAAAvFNt : C++(GeomEnums::UsageHint usage_hint) ==> C(GeomVertexArrayData *, GeomEnums::UsageHint)
+extern void GeomVertexArrayData$9$set_usage_hint(GeomVertexArrayData *self, GeomEnums$_UsageHint usage_hint);
+
+// _inCAAAAW_sd : C++(InternalName const *name) ==> C(GeomVertexArrayData const *, InternalName const *)
+extern bool GeomVertexArrayData$10$has_column(GeomVertexArrayData const *self, InternalName const *name);
+
+// _inCAAAAC4RN : C++() ==> C(GeomVertexArrayData const *)
+extern int GeomVertexArrayData$11$get_num_rows(GeomVertexArrayData const *self);
+
+// _inCAAAATaOY : C++(int n) ==> C(GeomVertexArrayData *, int)
+extern bool GeomVertexArrayData$12$set_num_rows(GeomVertexArrayData *self, int n);
+
+// _inCAAAAwI3w : C++(int n) ==> C(GeomVertexArrayData *, int)
+extern bool GeomVertexArrayData$13$unclean_set_num_rows(GeomVertexArrayData *self, int n);
+
+// _inCAAAAAyse : C++(int n) ==> C(GeomVertexArrayData *, int)
+extern bool GeomVertexArrayData$14$reserve_num_rows(GeomVertexArrayData *self, int n);
+
+// _inCAAAAWjyr : C++() ==> C(GeomVertexArrayData *)
+extern void GeomVertexArrayData$15$clear_rows(GeomVertexArrayData *self);
+
+// _inCAAAAfqwK : C++() ==> C(GeomVertexArrayData const *)
+extern std$_size_t GeomVertexArrayData$16$get_data_size_bytes(GeomVertexArrayData const *self);
+
+// _inCAAAATXp2 : C++() ==> C(GeomVertexArrayData const *)
+extern UpdateSeq * GeomVertexArrayData$17$get_modified(GeomVertexArrayData const *self);
+
+// _inCAAAA2OGu : C++(std::ostream &out) ==> C(GeomVertexArrayData const *, std::ostream *)
+extern void GeomVertexArrayData$18$output(GeomVertexArrayData const *self, std$_ostream *out);
+
+// _inCAAAAQjIM : C++(std::ostream &out, int indent_level) ==> C(GeomVertexArrayData const *, std::ostream *, int)
+extern void GeomVertexArrayData$19$write(GeomVertexArrayData const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAUqLX : C++(std::ostream &out) ==> C(GeomVertexArrayData const *, std::ostream *)
+extern void GeomVertexArrayData$20$write(GeomVertexArrayData const *self, std$_ostream *out);
+
+// _inCAAAAuF5z : C++(Thread *current_thread) ==> C(GeomVertexArrayData const *, Thread *)
+extern bool GeomVertexArrayData$21$request_resident(GeomVertexArrayData const *self, Thread *current_thread);
+
+// _inCAAAA_mAM : C++() ==> C(GeomVertexArrayData const *)
+extern bool GeomVertexArrayData$22$request_resident(GeomVertexArrayData const *self);
+
+// _inCAAAAWh8V : C++(Thread *current_thread) ==> C(GeomVertexArrayData const *, Thread *)
+extern char ** GeomVertexArrayData$23$get_handle(GeomVertexArrayData const *self, Thread *current_thread);
+
+// _inCAAAA7UXr : C++() ==> C(GeomVertexArrayData const *)
+extern char ** GeomVertexArrayData$24$get_handle(GeomVertexArrayData const *self);
+
+// _inCAAAAY1wV : C++(Thread *current_thread) ==> C(GeomVertexArrayData *, Thread *)
+extern char ** GeomVertexArrayData$25$modify_handle(GeomVertexArrayData *self, Thread *current_thread);
+
+// _inCAAAAIcmt : C++() ==> C(GeomVertexArrayData *)
+extern char ** GeomVertexArrayData$26$modify_handle(GeomVertexArrayData *self);
+
+// _inCAAAAKLkX : C++(PreparedGraphicsObjects *prepared_objects) ==> C(GeomVertexArrayData *, PreparedGraphicsObjects *)
+extern void GeomVertexArrayData$27$prepare(GeomVertexArrayData *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAA_PUd : C++(PreparedGraphicsObjects *prepared_objects) ==> C(GeomVertexArrayData const *, PreparedGraphicsObjects *)
+extern bool GeomVertexArrayData$28$is_prepared(GeomVertexArrayData const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAJDsu : C++(PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg) ==> C(GeomVertexArrayData *, PreparedGraphicsObjects *, GraphicsStateGuardianBase *)
+extern VertexBufferContext * GeomVertexArrayData$29$prepare_now(GeomVertexArrayData *self, PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg);
+
+// _inCAAAAKEuC : C++(PreparedGraphicsObjects *prepared_objects) ==> C(GeomVertexArrayData *, PreparedGraphicsObjects *)
+extern bool GeomVertexArrayData$30$release(GeomVertexArrayData *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAA_7uC : C++() ==> C(GeomVertexArrayData *)
+extern int GeomVertexArrayData$31$release_all(GeomVertexArrayData *self);
+
+// _inCAAAAqXbF : C++() ==> C()
+extern SimpleLru * GeomVertexArrayData$32$get_independent_lru(void);
+
+// _inCAAAAEw5_ : C++() ==> C()
+extern SimpleLru * GeomVertexArrayData$33$get_small_lru(void);
+
+// _inCAAAAsD26 : C++() ==> C()
+extern void GeomVertexArrayData$34$lru_epoch(void);
+
+// _inCAAAAFQim : C++() ==> C()
+extern VertexDataBook * GeomVertexArrayData$35$get_book(void);
+
+// _inCAAAAIza_ : C++() ==> C(GeomVertexArrayData *)
+extern void GeomVertexArrayData$36$evict_lru(GeomVertexArrayData *self);
+
+// _inCAAAAJdqX : C++() ==> C()
+extern void GeomVertexArrayData$37$register_with_read_factory(void);
+
+// _inCAAAACjy_ : C++(BamWriter *manager, Datagram &dg) ==> C(GeomVertexArrayData *, BamWriter *, Datagram *)
+extern void GeomVertexArrayData$38$write_datagram(GeomVertexArrayData *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAroP3 : C++(BamReader *manager, DatagramIterator &source) ==> C(GeomVertexArrayData *, BamReader *, DatagramIterator *)
+extern PTA_uchar * GeomVertexArrayData$39$read_raw_data(GeomVertexArrayData *self, BamReader *manager, DatagramIterator *source);
+
+// _inCAAAAohN3 : C++(BamReader *manager) ==> C(GeomVertexArrayData *, BamReader *)
+extern void GeomVertexArrayData$40$finalize(GeomVertexArrayData *self, BamReader *manager);
+
+// _inCAAAANsR3 : C++() ==> C()
+extern int GeomVertexArrayData$41$get_class_type(void);
+
+// _inCAAAAByUz : C++() ==> C()
+extern void GeomVertexArrayData$42$init_type(void);
+
+// _inCAAAAkps6 : C++() ==> C(GeomVertexArrayData const *)
+extern int GeomVertexArrayData$43$get_type(GeomVertexArrayData const *self);
+
+// _inCAAAAbnzP : C++() ==> C(GeomVertexArrayData *)
+extern int GeomVertexArrayData$44$force_init_type(GeomVertexArrayData *self);
+
+
+// GeomVertexArrayDataHandle
+
+// _inCAAAAThJE : C++() ==> C(GeomVertexArrayDataHandle *)
+extern ReferenceCount * GeomVertexArrayDataHandle$1$upcast_to_ReferenceCount(GeomVertexArrayDataHandle *self);
+
+// _inCAAAA4wn1 : C++() ==> C(GeomVertexArrayDataHandle *)
+extern GeomEnums * GeomVertexArrayDataHandle$2$upcast_to_GeomEnums(GeomVertexArrayDataHandle *self);
+
+// _inCAAAAv92t : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern Thread * GeomVertexArrayDataHandle$3$get_current_thread(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAi1lt : C++(bool force) ==> C(GeomVertexArrayDataHandle const *, bool)
+extern void GeomVertexArrayDataHandle$4$get_read_pointer(GeomVertexArrayDataHandle const *self, bool force);
+
+// _inCAAAAKSlP : C++() ==> C(GeomVertexArrayDataHandle *)
+extern void GeomVertexArrayDataHandle$5$get_write_pointer(GeomVertexArrayDataHandle *self);
+
+// _inCAAAAuaEm : C++() ==> C(GeomVertexArrayDataHandle *)
+extern GeomVertexArrayData * GeomVertexArrayDataHandle$6$get_object(GeomVertexArrayDataHandle *self);
+
+// _inCAAAAaPDR : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern GeomVertexArrayData const * GeomVertexArrayDataHandle$7$get_object(GeomVertexArrayDataHandle const *self);
+// COLLISION : GeomVertexArrayDataHandle_C_get_object_p_p GeomVertexArrayDataHandle$7$get_object
+
+// _inCAAAAksp0 : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern GeomVertexArrayFormat const * GeomVertexArrayDataHandle$8$get_array_format(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAtdrI : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern GeomEnums$_UsageHint GeomVertexArrayDataHandle$9$get_usage_hint(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAi9M9 : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern int GeomVertexArrayDataHandle$10$get_num_rows(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAA_DY4 : C++(int n) ==> C(GeomVertexArrayDataHandle *, int)
+extern bool GeomVertexArrayDataHandle$11$set_num_rows(GeomVertexArrayDataHandle *self, int n);
+
+// _inCAAAAJbnk : C++(int n) ==> C(GeomVertexArrayDataHandle *, int)
+extern bool GeomVertexArrayDataHandle$12$unclean_set_num_rows(GeomVertexArrayDataHandle *self, int n);
+
+// _inCAAAAAN5W : C++(int n) ==> C(GeomVertexArrayDataHandle *, int)
+extern bool GeomVertexArrayDataHandle$13$reserve_num_rows(GeomVertexArrayDataHandle *self, int n);
+
+// _inCAAAARt2b : C++() ==> C(GeomVertexArrayDataHandle *)
+extern void GeomVertexArrayDataHandle$14$clear_rows(GeomVertexArrayDataHandle *self);
+
+// _inCAAAAs9ud : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern std$_size_t GeomVertexArrayDataHandle$15$get_data_size_bytes(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAlsYT : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern UpdateSeq * GeomVertexArrayDataHandle$16$get_modified(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAjdit : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern bool GeomVertexArrayDataHandle$17$request_resident(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAivjI : C++(PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg) ==> C(GeomVertexArrayDataHandle const *, PreparedGraphicsObjects *, GraphicsStateGuardianBase *)
+extern VertexBufferContext * GeomVertexArrayDataHandle$18$prepare_now(GeomVertexArrayDataHandle const *self, PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg);
+
+// _inCAAAA1fE3 : C++(GeomVertexArrayDataHandle const *other) ==> C(GeomVertexArrayDataHandle *, GeomVertexArrayDataHandle const *)
+extern void GeomVertexArrayDataHandle$19$copy_data_from(GeomVertexArrayDataHandle *self, GeomVertexArrayDataHandle const *other);
+
+// _inCAAAA8fdZ : C++(std::size_t to_start, std::size_t to_size, GeomVertexArrayDataHandle const *other, std::size_t from_start, std::size_t from_size) ==> C(GeomVertexArrayDataHandle *, std::size_t, std::size_t, GeomVertexArrayDataHandle const *, std::size_t, std::size_t)
+extern void GeomVertexArrayDataHandle$20$copy_subdata_from(GeomVertexArrayDataHandle *self, std$_size_t to_start, std$_size_t to_size, GeomVertexArrayDataHandle const *other, std$_size_t from_start, std$_size_t from_size);
+
+// _inCAAAAYqmb : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern vector_uchar GeomVertexArrayDataHandle$21$get_data(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAYJdC : C++(vector_uchar const &data) ==> C(GeomVertexArrayDataHandle *, vector_uchar)
+extern void GeomVertexArrayDataHandle$22$set_data(GeomVertexArrayDataHandle *self, vector_uchar data);
+
+// _inCAAAA7hK5 : C++(std::size_t start, std::size_t size) ==> C(GeomVertexArrayDataHandle const *, std::size_t, std::size_t)
+extern vector_uchar GeomVertexArrayDataHandle$23$get_subdata(GeomVertexArrayDataHandle const *self, std$_size_t start, std$_size_t size);
+
+// _inCAAAARcnF : C++(std::size_t start, std::size_t size, vector_uchar const &data) ==> C(GeomVertexArrayDataHandle *, std::size_t, std::size_t, vector_uchar)
+extern void GeomVertexArrayDataHandle$24$set_subdata(GeomVertexArrayDataHandle *self, std$_size_t start, std$_size_t size, vector_uchar data);
+
+// _inCAAAAyhDL : C++() ==> C(GeomVertexArrayDataHandle const *)
+extern void GeomVertexArrayDataHandle$25$mark_used(GeomVertexArrayDataHandle const *self);
+
+// _inCAAAAVIB7 : C++() ==> C()
+extern int GeomVertexArrayDataHandle$26$get_class_type(void);
+
+// _inCAAAAWKb8 : C++() ==> C()
+extern void GeomVertexArrayDataHandle$27$init_type(void);
+
+
+// GeomVertexArrayFormat
+
+// _inCAAAA7ZDF : C++() ==> C(GeomVertexArrayFormat *)
+extern TypedWritableReferenceCount * GeomVertexArrayFormat$1$upcast_to_TypedWritableReferenceCount(GeomVertexArrayFormat *self);
+
+// _inCAAAAbG5U : C++() ==> C(GeomVertexArrayFormat *)
+extern GeomEnums * GeomVertexArrayFormat$2$upcast_to_GeomEnums(GeomVertexArrayFormat *self);
+
+// _inCAAAAqhGa : C++() ==> C()
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$3$GeomVertexArrayFormat(void);
+
+// _inCAAAArTI3 : C++(CPT_InternalName name0, int num_components0, GeomEnums::NumericType numeric_type0, GeomEnums::Contents contents0) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents)
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$4$GeomVertexArrayFormat(CPT_InternalName *name0, int num_components0, GeomEnums$_NumericType numeric_type0, GeomEnums$_Contents contents0);
+
+// _inCAAAARCcs : C++(CPT_InternalName name0, int num_components0, GeomEnums::NumericType numeric_type0, GeomEnums::Contents contents0, CPT_InternalName name1, int num_components1, GeomEnums::NumericType numeric_type1, GeomEnums::Contents contents1) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents)
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$5$GeomVertexArrayFormat(CPT_InternalName *name0, int num_components0, GeomEnums$_NumericType numeric_type0, GeomEnums$_Contents contents0, CPT_InternalName *name1, int num_components1, GeomEnums$_NumericType numeric_type1, GeomEnums$_Contents contents1);
+
+// _inCAAAAf_nE : C++(CPT_InternalName name0, int num_components0, GeomEnums::NumericType numeric_type0, GeomEnums::Contents contents0, CPT_InternalName name1, int num_components1, GeomEnums::NumericType numeric_type1, GeomEnums::Contents contents1, CPT_InternalName name2, int num_components2, GeomEnums::NumericType numeric_type2, GeomEnums::Contents contents2) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents)
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$6$GeomVertexArrayFormat(CPT_InternalName *name0, int num_components0, GeomEnums$_NumericType numeric_type0, GeomEnums$_Contents contents0, CPT_InternalName *name1, int num_components1, GeomEnums$_NumericType numeric_type1, GeomEnums$_Contents contents1, CPT_InternalName *name2, int num_components2, GeomEnums$_NumericType numeric_type2, GeomEnums$_Contents contents2);
+
+// _inCAAAAZO9K : C++(CPT_InternalName name0, int num_components0, GeomEnums::NumericType numeric_type0, GeomEnums::Contents contents0, CPT_InternalName name1, int num_components1, GeomEnums::NumericType numeric_type1, GeomEnums::Contents contents1, CPT_InternalName name2, int num_components2, GeomEnums::NumericType numeric_type2, GeomEnums::Contents contents2, CPT_InternalName name3, int num_components3, GeomEnums::NumericType numeric_type3, GeomEnums::Contents contents3) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents)
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$7$GeomVertexArrayFormat(CPT_InternalName *name0, int num_components0, GeomEnums$_NumericType numeric_type0, GeomEnums$_Contents contents0, CPT_InternalName *name1, int num_components1, GeomEnums$_NumericType numeric_type1, GeomEnums$_Contents contents1, CPT_InternalName *name2, int num_components2, GeomEnums$_NumericType numeric_type2, GeomEnums$_Contents contents2, CPT_InternalName *name3, int num_components3, GeomEnums$_NumericType numeric_type3, GeomEnums$_Contents contents3);
+
+// _inCAAAAEyku : C++(GeomVertexArrayFormat const &copy) ==> C(GeomVertexArrayFormat const *)
+extern GeomVertexArrayFormat * GeomVertexArrayFormat$8$GeomVertexArrayFormat(GeomVertexArrayFormat const *copy);
+
+// _inCAAAAnmU1 : C++() ==> C(GeomVertexArrayFormat const *)
+extern bool GeomVertexArrayFormat$9$unref(GeomVertexArrayFormat const *self);
+
+// _inCAAAAUdKQ : C++() ==> C(GeomVertexArrayFormat const *)
+extern bool GeomVertexArrayFormat$10$is_registered(GeomVertexArrayFormat const *self);
+
+// _inCAAAAojG9 : C++(GeomVertexArrayFormat const *format) ==> C(GeomVertexArrayFormat const *)
+extern char ** GeomVertexArrayFormat$11$register_format(GeomVertexArrayFormat const *format);
+
+// _inCAAAAJA_4 : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$12$get_stride(GeomVertexArrayFormat const *self);
+
+// _inCAAAAkPw2 : C++(int stride) ==> C(GeomVertexArrayFormat *, int)
+extern void GeomVertexArrayFormat$13$set_stride(GeomVertexArrayFormat *self, int stride);
+
+// _inCAAAA5U9H : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$14$get_pad_to(GeomVertexArrayFormat const *self);
+
+// _inCAAAAugvF : C++(int pad_to) ==> C(GeomVertexArrayFormat *, int)
+extern void GeomVertexArrayFormat$15$set_pad_to(GeomVertexArrayFormat *self, int pad_to);
+
+// _inCAAAAzIwh : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$16$get_divisor(GeomVertexArrayFormat const *self);
+
+// _inCAAAAFbHC : C++(int divisor) ==> C(GeomVertexArrayFormat *, int)
+extern void GeomVertexArrayFormat$17$set_divisor(GeomVertexArrayFormat *self, int divisor);
+
+// _inCAAAAt2Rt : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$18$get_total_bytes(GeomVertexArrayFormat const *self);
+
+// _inCAAAAR9f6 : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start, int column_alignment) ==> C(GeomVertexArrayFormat *, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int, int)
+extern int GeomVertexArrayFormat$19$add_column(GeomVertexArrayFormat *self, CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start, int column_alignment);
+
+// _inCAAAAWLj5 : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start) ==> C(GeomVertexArrayFormat *, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int)
+extern int GeomVertexArrayFormat$20$add_column(GeomVertexArrayFormat *self, CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start);
+
+// _inCAAAAtZDZ : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents) ==> C(GeomVertexArrayFormat *, CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents)
+extern int GeomVertexArrayFormat$21$add_column(GeomVertexArrayFormat *self, CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents);
+
+// _inCAAAAGAtY : C++(GeomVertexColumn const &column) ==> C(GeomVertexArrayFormat *, GeomVertexColumn const *)
+extern int GeomVertexArrayFormat$22$add_column(GeomVertexArrayFormat *self, GeomVertexColumn const *column);
+
+// _inCAAAAvK2M : C++(InternalName const *name) ==> C(GeomVertexArrayFormat *, InternalName const *)
+extern void GeomVertexArrayFormat$23$remove_column(GeomVertexArrayFormat *self, InternalName const *name);
+
+// _inCAAAA2EfH : C++() ==> C(GeomVertexArrayFormat *)
+extern void GeomVertexArrayFormat$24$clear_columns(GeomVertexArrayFormat *self);
+
+// _inCAAAAnS7c : C++() ==> C(GeomVertexArrayFormat *)
+extern void GeomVertexArrayFormat$25$pack_columns(GeomVertexArrayFormat *self);
+
+// _inCAAAAruWO : C++() ==> C(GeomVertexArrayFormat *)
+extern void GeomVertexArrayFormat$26$align_columns_for_animation(GeomVertexArrayFormat *self);
+
+// _inCAAAA5qdH : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$27$get_num_columns(GeomVertexArrayFormat const *self);
+
+// _inCAAAAC_4r : C++(InternalName const *name) ==> C(GeomVertexArrayFormat const *, InternalName const *)
+extern GeomVertexColumn const * GeomVertexArrayFormat$28$get_column(GeomVertexArrayFormat const *self, InternalName const *name);
+
+// _inCAAAA0ltF : C++(int i) ==> C(GeomVertexArrayFormat const *, int)
+extern GeomVertexColumn const * GeomVertexArrayFormat$29$get_column(GeomVertexArrayFormat const *self, int i);
+
+// _inCAAAAxBGV : C++(int start_byte, int num_bytes) ==> C(GeomVertexArrayFormat const *, int, int)
+extern GeomVertexColumn const * GeomVertexArrayFormat$30$get_column(GeomVertexArrayFormat const *self, int start_byte, int num_bytes);
+
+// _inCAAAAq1M5 : C++(InternalName const *name) ==> C(GeomVertexArrayFormat const *, InternalName const *)
+extern bool GeomVertexArrayFormat$31$has_column(GeomVertexArrayFormat const *self, InternalName const *name);
+
+// _inCAAAAHc2c : C++(GeomVertexArrayFormat const &other) ==> C(GeomVertexArrayFormat const *, GeomVertexArrayFormat const *)
+extern bool GeomVertexArrayFormat$32$is_data_subset_of(GeomVertexArrayFormat const *self, GeomVertexArrayFormat const *other);
+
+// _inCAAAAbNhQ : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$33$count_unused_space(GeomVertexArrayFormat const *self);
+
+// _inCAAAAVHAm : C++(std::ostream &out) ==> C(GeomVertexArrayFormat const *, std::ostream *)
+extern void GeomVertexArrayFormat$34$output(GeomVertexArrayFormat const *self, std$_ostream *out);
+
+// _inCAAAAzpEZ : C++(std::ostream &out, int indent_level) ==> C(GeomVertexArrayFormat const *, std::ostream *, int)
+extern void GeomVertexArrayFormat$35$write(GeomVertexArrayFormat const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAb7K_ : C++(std::ostream &out) ==> C(GeomVertexArrayFormat const *, std::ostream *)
+extern void GeomVertexArrayFormat$36$write(GeomVertexArrayFormat const *self, std$_ostream *out);
+
+// _inCAAAAsgyH : C++(std::ostream &out, int indent_level, GeomVertexArrayData const *array_data) ==> C(GeomVertexArrayFormat const *, std::ostream *, int, GeomVertexArrayData const *)
+extern void GeomVertexArrayFormat$37$write_with_data(GeomVertexArrayFormat const *self, std$_ostream *out, int indent_level, GeomVertexArrayData const *array_data);
+
+// _inCAAAAJ8Vx : C++(bool pad) ==> C(GeomVertexArrayFormat const *, bool)
+extern char const * GeomVertexArrayFormat$38$get_format_string(GeomVertexArrayFormat const *self, bool pad);
+
+// _inCAAAADuRs : C++() ==> C(GeomVertexArrayFormat const *)
+extern char const * GeomVertexArrayFormat$39$get_format_string(GeomVertexArrayFormat const *self);
+
+// _inCAAAAcO2K : C++(GeomVertexArrayFormat const &other) ==> C(GeomVertexArrayFormat const *, GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$40$compare_to(GeomVertexArrayFormat const *self, GeomVertexArrayFormat const *other);
+
+// _inCAAAAq4QS : C++() ==> C()
+extern void GeomVertexArrayFormat$41$register_with_read_factory(void);
+
+// _inCAAAAW_j4 : C++(BamWriter *manager, Datagram &dg) ==> C(GeomVertexArrayFormat *, BamWriter *, Datagram *)
+extern void GeomVertexArrayFormat$42$write_datagram(GeomVertexArrayFormat *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAJAN_ : C++(BamReader *manager) ==> C(GeomVertexArrayFormat *, BamReader *)
+extern void GeomVertexArrayFormat$43$finalize(GeomVertexArrayFormat *self, BamReader *manager);
+
+// _inCAAAAqo7q : C++() ==> C()
+extern int GeomVertexArrayFormat$44$get_class_type(void);
+
+// _inCAAAABrMB : C++() ==> C()
+extern void GeomVertexArrayFormat$45$init_type(void);
+
+// _inCAAAAIXPn : C++() ==> C(GeomVertexArrayFormat const *)
+extern int GeomVertexArrayFormat$46$get_type(GeomVertexArrayFormat const *self);
+
+// _inCAAAA7upc : C++() ==> C(GeomVertexArrayFormat *)
+extern int GeomVertexArrayFormat$47$force_init_type(GeomVertexArrayFormat *self);
+
+
+// GeomVertexColumn
+
+// _inCAAAA6X6g : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start, int column_alignment, int num_elements, int element_stride) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int, int, int, int)
+extern GeomVertexColumn * GeomVertexColumn$1$GeomVertexColumn(CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start, int column_alignment, int num_elements, int element_stride);
+
+// _inCAAAA6xVi : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start, int column_alignment, int num_elements) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int, int, int)
+extern GeomVertexColumn * GeomVertexColumn$2$GeomVertexColumn(CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start, int column_alignment, int num_elements);
+
+// _inCAAAA2ODj : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start, int column_alignment) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int, int)
+extern GeomVertexColumn * GeomVertexColumn$3$GeomVertexColumn(CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start, int column_alignment);
+
+// _inCAAAAvjbD : C++(CPT_InternalName name, int num_components, GeomEnums::NumericType numeric_type, GeomEnums::Contents contents, int start) ==> C(CPT_InternalName *, int, GeomEnums::NumericType, GeomEnums::Contents, int)
+extern GeomVertexColumn * GeomVertexColumn$4$GeomVertexColumn(CPT_InternalName *name, int num_components, GeomEnums$_NumericType numeric_type, GeomEnums$_Contents contents, int start);
+
+// _inCAAAAvt5j : C++(GeomVertexColumn const &copy) ==> C(GeomVertexColumn const *)
+extern GeomVertexColumn * GeomVertexColumn$5$GeomVertexColumn(GeomVertexColumn const *copy);
+
+// _inCAAAAdOcj : C++() ==> C(GeomVertexColumn const *)
+extern InternalName const * GeomVertexColumn$6$get_name(GeomVertexColumn const *self);
+
+// _inCAAAA_29x : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$7$get_num_components(GeomVertexColumn const *self);
+
+// _inCAAAAVlzN : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$8$get_num_values(GeomVertexColumn const *self);
+
+// _inCAAAA_ry0 : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$9$get_num_elements(GeomVertexColumn const *self);
+
+// _inCAAAA_YBU : C++() ==> C(GeomVertexColumn const *)
+extern GeomEnums$_NumericType GeomVertexColumn$10$get_numeric_type(GeomVertexColumn const *self);
+
+// _inCAAAAWN4C : C++() ==> C(GeomVertexColumn const *)
+extern GeomEnums$_Contents GeomVertexColumn$11$get_contents(GeomVertexColumn const *self);
+
+// _inCAAAAKNfk : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$12$get_start(GeomVertexColumn const *self);
+
+// _inCAAAAi3H3 : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$13$get_column_alignment(GeomVertexColumn const *self);
+
+// _inCAAAA1whk : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$14$get_element_stride(GeomVertexColumn const *self);
+
+// _inCAAAATwV4 : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$15$get_component_bytes(GeomVertexColumn const *self);
+
+// _inCAAAAcXJp : C++() ==> C(GeomVertexColumn const *)
+extern int GeomVertexColumn$16$get_total_bytes(GeomVertexColumn const *self);
+
+// _inCAAAAQEWs : C++() ==> C(GeomVertexColumn const *)
+extern bool GeomVertexColumn$17$has_homogeneous_coord(GeomVertexColumn const *self);
+
+// _inCAAAAZDLZ : C++(int start_byte, int num_bytes) ==> C(GeomVertexColumn const *, int, int)
+extern bool GeomVertexColumn$18$overlaps_with(GeomVertexColumn const *self, int start_byte, int num_bytes);
+
+// _inCAAAAs2pJ : C++(GeomVertexColumn const &other) ==> C(GeomVertexColumn const *, GeomVertexColumn const *)
+extern bool GeomVertexColumn$19$is_bytewise_equivalent(GeomVertexColumn const *self, GeomVertexColumn const *other);
+
+// _inCAAAAnbg_ : C++(InternalName *name) ==> C(GeomVertexColumn *, InternalName *)
+extern void GeomVertexColumn$20$set_name(GeomVertexColumn *self, InternalName *name);
+
+// _inCAAAAoJ_s : C++(int num_components) ==> C(GeomVertexColumn *, int)
+extern void GeomVertexColumn$21$set_num_components(GeomVertexColumn *self, int num_components);
+
+// _inCAAAAS9TK : C++(GeomEnums::NumericType numeric_type) ==> C(GeomVertexColumn *, GeomEnums::NumericType)
+extern void GeomVertexColumn$22$set_numeric_type(GeomVertexColumn *self, GeomEnums$_NumericType numeric_type);
+
+// _inCAAAAboYz : C++(GeomEnums::Contents contents) ==> C(GeomVertexColumn *, GeomEnums::Contents)
+extern void GeomVertexColumn$23$set_contents(GeomVertexColumn *self, GeomEnums$_Contents contents);
+
+// _inCAAAANQ3w : C++(int start) ==> C(GeomVertexColumn *, int)
+extern void GeomVertexColumn$24$set_start(GeomVertexColumn *self, int start);
+
+// _inCAAAAldo2 : C++(int column_alignment) ==> C(GeomVertexColumn *, int)
+extern void GeomVertexColumn$25$set_column_alignment(GeomVertexColumn *self, int column_alignment);
+
+// _inCAAAA_4fl : C++(std::ostream &out) ==> C(GeomVertexColumn const *, std::ostream *)
+extern void GeomVertexColumn$26$output(GeomVertexColumn const *self, std$_ostream *out);
+
+// _inCAAAAGIla : C++() ==> C(GeomVertexColumn const *)
+extern bool GeomVertexColumn$27$is_packed_argb(GeomVertexColumn const *self);
+
+// _inCAAAAohWB : C++() ==> C(GeomVertexColumn const *)
+extern bool GeomVertexColumn$28$is_uint8_rgba(GeomVertexColumn const *self);
+
+// _inCAAAAdxPj : C++(GeomVertexColumn const &other) ==> C(GeomVertexColumn const *, GeomVertexColumn const *)
+extern int GeomVertexColumn$29$compare_to(GeomVertexColumn const *self, GeomVertexColumn const *other);
+
+// _inCAAAAtQxO : C++(BamWriter *manager, Datagram &dg) ==> C(GeomVertexColumn *, BamWriter *, Datagram *)
+extern void GeomVertexColumn$30$write_datagram(GeomVertexColumn *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAA_EdR : C++(DatagramIterator &scan, BamReader *manager) ==> C(GeomVertexColumn *, DatagramIterator *, BamReader *)
+extern void GeomVertexColumn$31$fillin(GeomVertexColumn *self, DatagramIterator *scan, BamReader *manager);
 
 
 // GeomVertexData
@@ -2462,6 +3573,115 @@ extern void GeomVertexWriter$98$add_data4i(GeomVertexWriter *self, int a, int b,
 extern void GeomVertexWriter$99$output(GeomVertexWriter const *self, std$_ostream *out);
 
 
+// GraphicsEngine
+
+// _inCAAAAGcAr : C++(Pipeline *pipeline) ==> C(Pipeline *)
+extern GraphicsEngine * GraphicsEngine$1$GraphicsEngine(Pipeline *pipeline);
+
+// _inCAAAA3Xr_ : C++() ==> C()
+extern GraphicsEngine * GraphicsEngine$2$GraphicsEngine(void);
+
+// _inCAAAAkzZy : C++(GraphicsThreadingModel const &threading_model) ==> C(GraphicsEngine *, GraphicsThreadingModel const *)
+extern void GraphicsEngine$3$set_threading_model(GraphicsEngine *self, GraphicsThreadingModel const *threading_model);
+
+// _inCAAAA_NLg : C++() ==> C(GraphicsEngine const *)
+extern GraphicsThreadingModel * GraphicsEngine$4$get_threading_model(GraphicsEngine const *self);
+
+// _inCAAAAbqNp : C++() ==> C(GraphicsEngine const *)
+extern ReMutex const * GraphicsEngine$5$get_render_lock(GraphicsEngine const *self);
+
+// _inCAAAApnHT : C++(bool auto_flip) ==> C(GraphicsEngine *, bool)
+extern void GraphicsEngine$6$set_auto_flip(GraphicsEngine *self, bool auto_flip);
+
+// _inCAAAAdDTb : C++() ==> C(GraphicsEngine const *)
+extern bool GraphicsEngine$7$get_auto_flip(GraphicsEngine const *self);
+
+// _inCAAAA5bdZ : C++(bool value) ==> C(GraphicsEngine *, bool)
+extern void GraphicsEngine$8$set_portal_cull(GraphicsEngine *self, bool value);
+
+// _inCAAAAsi85 : C++() ==> C(GraphicsEngine const *)
+extern bool GraphicsEngine$9$get_portal_cull(GraphicsEngine const *self);
+
+// _inCAAAAm7fs : C++(Loader *loader) ==> C(GraphicsEngine *, Loader *)
+extern void GraphicsEngine$10$set_default_loader(GraphicsEngine *self, Loader *loader);
+
+// _inCAAAAL2Ib : C++() ==> C(GraphicsEngine const *)
+extern Loader * GraphicsEngine$11$get_default_loader(GraphicsEngine const *self);
+
+// _inCAAAA6OWU : C++(GraphicsPipe *pipe, std::string const &name, int sort, FrameBufferProperties const &fb_prop, WindowProperties const &win_prop, int flags, GraphicsStateGuardian *gsg, GraphicsOutput *host) ==> C(GraphicsEngine *, GraphicsPipe *, char const *, int, FrameBufferProperties const *, WindowProperties const *, int, GraphicsStateGuardian *, GraphicsOutput *)
+extern GraphicsOutput * GraphicsEngine$12$make_output(GraphicsEngine *self, GraphicsPipe *pipe, char const *name, int sort, FrameBufferProperties const *fb_prop, WindowProperties const *win_prop, int flags, GraphicsStateGuardian *gsg, GraphicsOutput *host);
+
+// _inCAAAArUQm : C++(GraphicsPipe *pipe, std::string const &name, int sort, FrameBufferProperties const &fb_prop, WindowProperties const &win_prop, int flags, GraphicsStateGuardian *gsg) ==> C(GraphicsEngine *, GraphicsPipe *, char const *, int, FrameBufferProperties const *, WindowProperties const *, int, GraphicsStateGuardian *)
+extern GraphicsOutput * GraphicsEngine$13$make_output(GraphicsEngine *self, GraphicsPipe *pipe, char const *name, int sort, FrameBufferProperties const *fb_prop, WindowProperties const *win_prop, int flags, GraphicsStateGuardian *gsg);
+
+// _inCAAAAwoVp : C++(GraphicsPipe *pipe, std::string const &name, int sort, FrameBufferProperties const &fb_prop, WindowProperties const &win_prop, int flags) ==> C(GraphicsEngine *, GraphicsPipe *, char const *, int, FrameBufferProperties const *, WindowProperties const *, int)
+extern GraphicsOutput * GraphicsEngine$14$make_output(GraphicsEngine *self, GraphicsPipe *pipe, char const *name, int sort, FrameBufferProperties const *fb_prop, WindowProperties const *win_prop, int flags);
+
+// _inCAAAAn59A : C++(GraphicsOutput *host, std::string const &name, int sort, int x_size, int y_size) ==> C(GraphicsEngine *, GraphicsOutput *, char const *, int, int, int)
+extern GraphicsOutput * GraphicsEngine$15$make_buffer(GraphicsEngine *self, GraphicsOutput *host, char const *name, int sort, int x_size, int y_size);
+
+// _inCAAAAhjI_ : C++(GraphicsStateGuardian *gsg, std::string const &name, int sort, int x_size, int y_size) ==> C(GraphicsEngine *, GraphicsStateGuardian *, char const *, int, int, int)
+extern GraphicsOutput * GraphicsEngine$16$make_buffer(GraphicsEngine *self, GraphicsStateGuardian *gsg, char const *name, int sort, int x_size, int y_size);
+// COLLISION : GraphicsEngine_C_make_buffer_p_ppsiii GraphicsEngine$16$make_buffer
+
+// _inCAAAAaoR1 : C++(GraphicsOutput *host, std::string const &name, int sort, int x_size, int y_size) ==> C(GraphicsEngine *, GraphicsOutput *, char const *, int, int, int)
+extern GraphicsOutput * GraphicsEngine$17$make_parasite(GraphicsEngine *self, GraphicsOutput *host, char const *name, int sort, int x_size, int y_size);
+
+// _inCAAAA_ZrR : C++(GraphicsOutput *window, int sort) ==> C(GraphicsEngine *, GraphicsOutput *, int)
+extern bool GraphicsEngine$18$add_window(GraphicsEngine *self, GraphicsOutput *window, int sort);
+
+// _inCAAAAQEjj : C++(GraphicsOutput *window) ==> C(GraphicsEngine *, GraphicsOutput *)
+extern bool GraphicsEngine$19$remove_window(GraphicsEngine *self, GraphicsOutput *window);
+
+// _inCAAAAbizP : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$20$remove_all_windows(GraphicsEngine *self);
+
+// _inCAAAA7tzD : C++(bool swapchain) ==> C(GraphicsEngine *, bool)
+extern void GraphicsEngine$21$reset_all_windows(GraphicsEngine *self, bool swapchain);
+
+// _inCAAAAqWta : C++() ==> C(GraphicsEngine const *)
+extern bool GraphicsEngine$22$is_empty(GraphicsEngine const *self);
+
+// _inCAAAAxJBp : C++() ==> C(GraphicsEngine const *)
+extern int GraphicsEngine$23$get_num_windows(GraphicsEngine const *self);
+
+// _inCAAAALl7l : C++(int n) ==> C(GraphicsEngine const *, int)
+extern GraphicsOutput * GraphicsEngine$24$get_window(GraphicsEngine const *self, int n);
+
+// _inCAAAA4GAK : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$25$render_frame(GraphicsEngine *self);
+
+// _inCAAAAfeD_ : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$26$open_windows(GraphicsEngine *self);
+
+// _inCAAAANMb_ : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$27$sync_frame(GraphicsEngine *self);
+
+// _inCAAAAmoKK : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$28$ready_flip(GraphicsEngine *self);
+
+// _inCAAAAbWRO : C++() ==> C(GraphicsEngine *)
+extern void GraphicsEngine$29$flip_frame(GraphicsEngine *self);
+
+// _inCAAAA8ADE : C++(Texture *tex, GraphicsStateGuardian *gsg) ==> C(GraphicsEngine *, Texture *, GraphicsStateGuardian *)
+extern bool GraphicsEngine$30$extract_texture_data(GraphicsEngine *self, Texture *tex, GraphicsStateGuardian *gsg);
+
+// _inCAAAAFtSe : C++(LVecBase3i const &work_groups, ShaderAttrib const *sattr, GraphicsStateGuardian *gsg) ==> C(GraphicsEngine *, LVecBase3i const *, ShaderAttrib const *, GraphicsStateGuardian *)
+extern void GraphicsEngine$31$dispatch_compute(GraphicsEngine *self, LVecBase3i const *work_groups, ShaderAttrib const *sattr, GraphicsStateGuardian *gsg);
+
+// _inCAAAAB52G : C++() ==> C()
+extern GraphicsEngine * GraphicsEngine$32$get_global_ptr(void);
+
+// _inCAAAA_UQG : C++(Texture *tex) ==> C(GraphicsEngine *, Texture *)
+extern void GraphicsEngine$33$texture_uploaded(GraphicsEngine *self, Texture *tex);
+
+// _inCAAAAP18_ : C++(DisplayRegion *region, GraphicsStateGuardian *gsg) ==> C(GraphicsEngine *, DisplayRegion *, GraphicsStateGuardian *)
+extern char ** GraphicsEngine$34$do_get_screenshot(GraphicsEngine *self, DisplayRegion *region, GraphicsStateGuardian *gsg);
+
+// _inCAAAAT0cY : C++(CullHandler *cull_handler, SceneSetup *scene_setup, GraphicsStateGuardian *gsg, Thread *current_thread) ==> C(CullHandler *, SceneSetup *, GraphicsStateGuardian *, Thread *)
+extern void GraphicsEngine$35$do_cull(CullHandler *cull_handler, SceneSetup *scene_setup, GraphicsStateGuardian *gsg, Thread *current_thread);
+
+
 // GraphicsOutput
 
 // _inCAAAA_FL1 : C++() ==> C(GraphicsOutput *)
@@ -3087,6 +4307,462 @@ extern int InternalName$41$get_type(InternalName const *self);
 
 // _inCAAAAENPw : C++() ==> C(InternalName *)
 extern int InternalName$42$force_init_type(InternalName *self);
+
+
+// LPoint2f
+
+// _inCAAAAzKKY : C++() ==> C()
+extern LPoint2f * LPoint2f$1$LPoint2f(void);
+
+// _inCAAAADtDz : C++(LPoint2f const &) ==> C(LPoint2f const *)
+extern LPoint2f * LPoint2f$2$LPoint2f(LPoint2f const *arg0);
+
+// _inCAAAAtY8N : C++(LVecBase2f const &copy) ==> C(LVecBase2f const *)
+extern LPoint2f * LPoint2f$3$LPoint2f(LVecBase2f const *copy);
+// COLLISION : LPoint2f_C_ctor_p_p LPoint2f$3$LPoint2f
+
+// _inCAAAACtvQ : C++(float fill_value) ==> C(float)
+extern LPoint2f * LPoint2f$4$LPoint2f(float fill_value);
+
+// _inCAAAAqlQB : C++(float x, float y) ==> C(float, float)
+extern LPoint2f * LPoint2f$5$LPoint2f(float x, float y);
+
+// _inCAAAAqnt3 : C++() ==> C()
+extern LPoint2f const * LPoint2f$6$zero(void);
+
+// _inCAAAACGWE : C++() ==> C()
+extern LPoint2f const * LPoint2f$7$unit_x(void);
+
+// _inCAAAAaRgE : C++() ==> C()
+extern LPoint2f const * LPoint2f$8$unit_y(void);
+
+// _inCAAAASq5_ : C++() ==> C(LPoint2f const *)
+extern LPoint2f * LPoint2f$9$normalized(LPoint2f const *self);
+
+// _inCAAAAP_bo : C++(LVecBase2f const &onto) ==> C(LPoint2f const *, LVecBase2f const *)
+extern LPoint2f * LPoint2f$10$project(LPoint2f const *self, LVecBase2f const *onto);
+
+// _inCAAAAntNT : C++() ==> C()
+extern int LPoint2f$11$get_class_type(void);
+
+// _inCAAAA0Stx : C++() ==> C()
+extern void LPoint2f$12$init_type(void);
+
+
+// LPoint2i
+
+// _inCAAAA8q_h : C++() ==> C()
+extern LPoint2i * LPoint2i$1$LPoint2i(void);
+
+// _inCAAAA5_d3 : C++(LPoint2i const &) ==> C(LPoint2i const *)
+extern LPoint2i * LPoint2i$2$LPoint2i(LPoint2i const *arg0);
+
+// _inCAAAAzLwr : C++(LVecBase2i const &copy) ==> C(LVecBase2i const *)
+extern LPoint2i * LPoint2i$3$LPoint2i(LVecBase2i const *copy);
+// COLLISION : LPoint2i_C_ctor_p_p LPoint2i$3$LPoint2i
+
+// _inCAAAAWar6 : C++(int fill_value) ==> C(int)
+extern LPoint2i * LPoint2i$4$LPoint2i(int fill_value);
+
+// _inCAAAA87LW : C++(int x, int y) ==> C(int, int)
+extern LPoint2i * LPoint2i$5$LPoint2i(int x, int y);
+
+// _inCAAAAkH3s : C++() ==> C()
+extern LPoint2i const * LPoint2i$6$zero(void);
+
+// _inCAAAADmg5 : C++() ==> C()
+extern LPoint2i const * LPoint2i$7$unit_x(void);
+
+// _inCAAAAbxq5 : C++() ==> C()
+extern LPoint2i const * LPoint2i$8$unit_y(void);
+
+// _inCAAAApNXI : C++() ==> C()
+extern int LPoint2i$9$get_class_type(void);
+
+// _inCAAAAyy3m : C++() ==> C()
+extern void LPoint2i$10$init_type(void);
+
+
+// LPoint3f
+
+// _inCAAAAz3Qe : C++() ==> C()
+extern LPoint3f * LPoint3f$1$LPoint3f(void);
+
+// _inCAAAAjyx5 : C++(LPoint3f const &) ==> C(LPoint3f const *)
+extern LPoint3f * LPoint3f$2$LPoint3f(LPoint3f const *arg0);
+
+// _inCAAAAL4E1 : C++(LVecBase2f const &copy, float z) ==> C(LVecBase2f const *, float)
+extern LPoint3f * LPoint3f$3$LPoint3f(LVecBase2f const *copy, float z);
+
+// _inCAAAAb_6E : C++(LVecBase3f const &copy) ==> C(LVecBase3f const *)
+extern LPoint3f * LPoint3f$4$LPoint3f(LVecBase3f const *copy);
+// COLLISION : LPoint3f_C_ctor_p_p LPoint3f$4$LPoint3f
+
+// _inCAAAACO2W : C++(float fill_value) ==> C(float)
+extern LPoint3f * LPoint3f$5$LPoint3f(float fill_value);
+
+// _inCAAAAMxu6 : C++(float x, float y, float z) ==> C(float, float, float)
+extern LPoint3f * LPoint3f$6$LPoint3f(float x, float y, float z);
+
+// _inCAAAAqu74 : C++() ==> C()
+extern LPoint3f const * LPoint3f$7$zero(void);
+
+// _inCAAAACPkF : C++() ==> C()
+extern LPoint3f const * LPoint3f$8$unit_x(void);
+
+// _inCAAAAaeuF : C++() ==> C()
+extern LPoint3f const * LPoint3f$9$unit_y(void);
+
+// _inCAAAASp3F : C++() ==> C()
+extern LPoint3f const * LPoint3f$10$unit_z(void);
+
+// _inCAAAAxis3 : C++() ==> C(LPoint3f const *)
+extern LPoint2f * LPoint3f$11$get_xy(LPoint3f const *self);
+
+// _inCAAAApT23 : C++() ==> C(LPoint3f const *)
+extern LPoint2f * LPoint3f$12$get_xz(LPoint3f const *self);
+
+// _inCAAAALH2n : C++() ==> C(LPoint3f const *)
+extern LPoint2f * LPoint3f$13$get_yz(LPoint3f const *self);
+
+// _inCAAAA3m20 : C++(LVecBase3f const &other) ==> C(LPoint3f const *, LVecBase3f const *)
+extern LPoint3f * LPoint3f$14$cross(LPoint3f const *self, LVecBase3f const *other);
+
+// _inCAAAATTHA : C++() ==> C(LPoint3f const *)
+extern LPoint3f * LPoint3f$15$normalized(LPoint3f const *self);
+
+// _inCAAAAPmL9 : C++(LVecBase3f const &onto) ==> C(LPoint3f const *, LVecBase3f const *)
+extern LPoint3f * LPoint3f$16$project(LPoint3f const *self, LVecBase3f const *onto);
+
+// _inCAAAAVRyH : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LPoint3f const * LPoint3f$17$origin(CoordinateSystem cs);
+
+// _inCAAAAM16_ : C++() ==> C()
+extern LPoint3f const * LPoint3f$18$origin(void);
+
+// _inCAAAAkaIy : C++(float right, float fwd, float up, CoordinateSystem cs) ==> C(float, float, float, CoordinateSystem)
+extern LPoint3f * LPoint3f$19$rfu(float right, float fwd, float up, CoordinateSystem cs);
+
+// _inCAAAA2tjk : C++(float right, float fwd, float up) ==> C(float, float, float)
+extern LPoint3f * LPoint3f$20$rfu(float right, float fwd, float up);
+
+// _inCAAAAnkbU : C++() ==> C()
+extern int LPoint3f$21$get_class_type(void);
+
+// _inCAAAA0b7y : C++() ==> C()
+extern void LPoint3f$22$init_type(void);
+
+
+// LVecBase2f
+
+// _inCAAAAgaIU : C++() ==> C()
+extern LVecBase2f * LVecBase2f$1$LVecBase2f(void);
+
+// _inCAAAAVQfL : C++(LVecBase2f const &) ==> C(LVecBase2f const *)
+extern LVecBase2f * LVecBase2f$2$LVecBase2f(LVecBase2f const *arg0);
+
+// _inCAAAA2wpe : C++(LVecBase2f::EVector2 const &v) ==> C(LVecBase2f::EVector2 const *)
+extern LVecBase2f * LVecBase2f$3$LVecBase2f(LVecBase2f$_EVector2 const *v);
+// COLLISION : LVecBase2f_C_ctor_p_p LVecBase2f$3$LVecBase2f
+
+// _inCAAAAlRq3 : C++(float fill_value) ==> C(float)
+extern LVecBase2f * LVecBase2f$4$LVecBase2f(float fill_value);
+
+// _inCAAAAoQsK : C++(float x, float y) ==> C(float, float)
+extern LVecBase2f * LVecBase2f$5$LVecBase2f(float x, float y);
+
+// _inCAAAAfGvP : C++() ==> C()
+extern LVecBase2f const * LVecBase2f$6$zero(void);
+
+// _inCAAAAaClz : C++() ==> C()
+extern LVecBase2f const * LVecBase2f$7$unit_x(void);
+
+// _inCAAAAVCzP : C++() ==> C()
+extern LVecBase2f const * LVecBase2f$8$unit_y(void);
+
+// _inCAAAAoYf5 : C++() ==> C()
+extern int LVecBase2f$9$size(void);
+
+// _inCAAAAI5WA : C++() ==> C(LVecBase2f const *)
+extern bool LVecBase2f$10$is_nan(LVecBase2f const *self);
+
+// _inCAAAAy_vl : C++(int i) ==> C(LVecBase2f const *, int)
+extern float LVecBase2f$11$get_cell(LVecBase2f const *self, int i);
+
+// _inCAAAAnQnT : C++(int i, float value) ==> C(LVecBase2f *, int, float)
+extern void LVecBase2f$12$set_cell(LVecBase2f *self, int i, float value);
+
+// _inCAAAAuYPR : C++() ==> C(LVecBase2f const *)
+extern float LVecBase2f$13$get_x(LVecBase2f const *self);
+
+// _inCAAAAu8IW : C++() ==> C(LVecBase2f const *)
+extern float LVecBase2f$14$get_y(LVecBase2f const *self);
+
+// _inCAAAAgvpl : C++(float value) ==> C(LVecBase2f *, float)
+extern void LVecBase2f$15$set_x(LVecBase2f *self, float value);
+
+// _inCAAAAgLiq : C++(float value) ==> C(LVecBase2f *, float)
+extern void LVecBase2f$16$set_y(LVecBase2f *self, float value);
+
+// _inCAAAAqznS : C++(int i, float value) ==> C(LVecBase2f *, int, float)
+extern void LVecBase2f$17$add_to_cell(LVecBase2f *self, int i, float value);
+
+// _inCAAAABpGk : C++(float value) ==> C(LVecBase2f *, float)
+extern void LVecBase2f$18$add_x(LVecBase2f *self, float value);
+
+// _inCAAAABN_o : C++(float value) ==> C(LVecBase2f *, float)
+extern void LVecBase2f$19$add_y(LVecBase2f *self, float value);
+
+// _inCAAAAMuTE : C++() ==> C(LVecBase2f const *)
+extern void LVecBase2f$20$get_data(LVecBase2f const *self);
+
+// _inCAAAAC4kV : C++() ==> C()
+extern int LVecBase2f$21$get_num_components(void);
+
+// _inCAAAA9oqE : C++() ==> C(LVecBase2f *)
+extern void LVecBase2f$22$begin(LVecBase2f *self);
+
+// _inCAAAA1FVr : C++() ==> C(LVecBase2f const *)
+extern void LVecBase2f$23$begin(LVecBase2f const *self);
+// COLLISION : LVecBase2f_C_begin_v_p LVecBase2f$23$begin
+
+// _inCAAAAeX_b : C++() ==> C(LVecBase2f *)
+extern void LVecBase2f$24$end(LVecBase2f *self);
+
+// _inCAAAAJCLQ : C++() ==> C(LVecBase2f const *)
+extern void LVecBase2f$25$end(LVecBase2f const *self);
+// COLLISION : LVecBase2f_C_end_v_p LVecBase2f$25$end
+
+// _inCAAAA91nF : C++(float fill_value) ==> C(LVecBase2f *, float)
+extern void LVecBase2f$26$fill(LVecBase2f *self, float fill_value);
+
+// _inCAAAAmT_9 : C++(float x, float y) ==> C(LVecBase2f *, float, float)
+extern void LVecBase2f$27$set(LVecBase2f *self, float x, float y);
+
+// _inCAAAA9RXz : C++(LVecBase2f const &other) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern float LVecBase2f$28$dot(LVecBase2f const *self, LVecBase2f const *other);
+
+// _inCAAAAIV8b : C++() ==> C(LVecBase2f const *)
+extern float LVecBase2f$29$length_squared(LVecBase2f const *self);
+
+// _inCAAAAvbI8 : C++() ==> C(LVecBase2f const *)
+extern float LVecBase2f$30$length(LVecBase2f const *self);
+
+// _inCAAAA7siR : C++() ==> C(LVecBase2f *)
+extern bool LVecBase2f$31$normalize(LVecBase2f *self);
+
+// _inCAAAA0cTu : C++() ==> C(LVecBase2f const *)
+extern LVecBase2f * LVecBase2f$32$normalized(LVecBase2f const *self);
+
+// _inCAAAAkm2c : C++(LVecBase2f const &onto) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern LVecBase2f * LVecBase2f$33$project(LVecBase2f const *self, LVecBase2f const *onto);
+
+// _inCAAAAVWAg : C++(LVecBase2f const &other) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern int LVecBase2f$34$compare_to(LVecBase2f const *self, LVecBase2f const *other);
+
+// _inCAAAAgmxE : C++(LVecBase2f const &other, float threshold) ==> C(LVecBase2f const *, LVecBase2f const *, float)
+extern int LVecBase2f$35$compare_to(LVecBase2f const *self, LVecBase2f const *other, float threshold);
+
+// _inCAAAAit5w : C++() ==> C(LVecBase2f const *)
+extern std$_size_t LVecBase2f$36$get_hash(LVecBase2f const *self);
+
+// _inCAAAAcmf3 : C++(float threshold) ==> C(LVecBase2f const *, float)
+extern std$_size_t LVecBase2f$37$get_hash(LVecBase2f const *self, float threshold);
+
+// _inCAAAAIsPn : C++(std::size_t hash) ==> C(LVecBase2f const *, std::size_t)
+extern std$_size_t LVecBase2f$38$add_hash(LVecBase2f const *self, std$_size_t hash);
+
+// _inCAAAAGrY6 : C++(std::size_t hash, float threshold) ==> C(LVecBase2f const *, std::size_t, float)
+extern std$_size_t LVecBase2f$39$add_hash(LVecBase2f const *self, std$_size_t hash, float threshold);
+
+// _inCAAAAsW5B : C++(ChecksumHashGenerator &hashgen) ==> C(LVecBase2f const *, ChecksumHashGenerator *)
+extern void LVecBase2f$40$generate_hash(LVecBase2f const *self, ChecksumHashGenerator *hashgen);
+
+// _inCAAAAiO1N : C++(ChecksumHashGenerator &hashgen, float threshold) ==> C(LVecBase2f const *, ChecksumHashGenerator *, float)
+extern void LVecBase2f$41$generate_hash(LVecBase2f const *self, ChecksumHashGenerator *hashgen, float threshold);
+
+// _inCAAAAMnKH : C++(LVecBase2f const &other) ==> C(LVecBase2f *, LVecBase2f const *)
+extern void LVecBase2f$42$componentwise_mult(LVecBase2f *self, LVecBase2f const *other);
+
+// _inCAAAAljgh : C++(LVecBase2f const &other) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern LVecBase2f * LVecBase2f$43$fmax(LVecBase2f const *self, LVecBase2f const *other);
+
+// _inCAAAALXBg : C++(LVecBase2f const &other) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern LVecBase2f * LVecBase2f$44$fmin(LVecBase2f const *self, LVecBase2f const *other);
+
+// _inCAAAANeTt : C++(LVecBase2f const &other) ==> C(LVecBase2f const *, LVecBase2f const *)
+extern bool LVecBase2f$45$almost_equal(LVecBase2f const *self, LVecBase2f const *other);
+
+// _inCAAAAnTFd : C++(LVecBase2f const &other, float threshold) ==> C(LVecBase2f const *, LVecBase2f const *, float)
+extern bool LVecBase2f$46$almost_equal(LVecBase2f const *self, LVecBase2f const *other, float threshold);
+
+// _inCAAAAUmI3 : C++(std::ostream &out) ==> C(LVecBase2f const *, std::ostream *)
+extern void LVecBase2f$47$output(LVecBase2f const *self, std$_ostream *out);
+
+// _inCAAAAO_h0 : C++(Datagram &destination) ==> C(LVecBase2f const *, Datagram *)
+extern void LVecBase2f$48$write_datagram_fixed(LVecBase2f const *self, Datagram *destination);
+
+// _inCAAAAOJCx : C++(DatagramIterator &source) ==> C(LVecBase2f *, DatagramIterator *)
+extern void LVecBase2f$49$read_datagram_fixed(LVecBase2f *self, DatagramIterator *source);
+
+// _inCAAAA2Mbx : C++(Datagram &destination) ==> C(LVecBase2f const *, Datagram *)
+extern void LVecBase2f$50$write_datagram(LVecBase2f const *self, Datagram *destination);
+
+// _inCAAAA3ccD : C++(DatagramIterator &source) ==> C(LVecBase2f *, DatagramIterator *)
+extern void LVecBase2f$51$read_datagram(LVecBase2f *self, DatagramIterator *source);
+
+// _inCAAAAugfH : C++() ==> C(LVecBase2f const *)
+extern LVecBase2f$_EVector2 * LVecBase2f$52$get_v(LVecBase2f const *self);
+
+// _inCAAAAKNOA : C++() ==> C()
+extern int LVecBase2f$53$get_class_type(void);
+
+// _inCAAAAGYag : C++() ==> C()
+extern void LVecBase2f$54$init_type(void);
+
+
+// LVecBase2i
+
+// _inCAAAAtBdZ : C++() ==> C()
+extern LVecBase2i * LVecBase2i$1$LVecBase2i(void);
+
+// _inCAAAAaaD2 : C++(LVecBase2i const &) ==> C(LVecBase2i const *)
+extern LVecBase2i * LVecBase2i$2$LVecBase2i(LVecBase2i const *arg0);
+
+// _inCAAAAW2MJ : C++(LVecBase2i::EVector2 const &v) ==> C(LVecBase2i::EVector2 const *)
+extern LVecBase2i * LVecBase2i$3$LVecBase2i(LVecBase2i$_EVector2 const *v);
+// COLLISION : LVecBase2i_C_ctor_p_p LVecBase2i$3$LVecBase2i
+
+// _inCAAAAjSAD : C++(int fill_value) ==> C(int)
+extern LVecBase2i * LVecBase2i$4$LVecBase2i(int fill_value);
+
+// _inCAAAAFeso : C++(int x, int y) ==> C(int, int)
+extern LVecBase2i * LVecBase2i$5$LVecBase2i(int x, int y);
+
+// _inCAAAAGJw3 : C++() ==> C()
+extern LVecBase2i const * LVecBase2i$6$zero(void);
+
+// _inCAAAA63nb : C++() ==> C()
+extern LVecBase2i const * LVecBase2i$7$unit_x(void);
+
+// _inCAAAA4313 : C++() ==> C()
+extern LVecBase2i const * LVecBase2i$8$unit_y(void);
+
+// _inCAAAAT6gh : C++() ==> C()
+extern int LVecBase2i$9$size(void);
+
+// _inCAAAAceXo : C++() ==> C(LVecBase2i const *)
+extern bool LVecBase2i$10$is_nan(LVecBase2i const *self);
+
+// _inCAAAANawN : C++(int i) ==> C(LVecBase2i const *, int)
+extern int LVecBase2i$11$get_cell(LVecBase2i const *self, int i);
+
+// _inCAAAAK9CT : C++(int i, int value) ==> C(LVecBase2i *, int, int)
+extern void LVecBase2i$12$set_cell(LVecBase2i *self, int i, int value);
+
+// _inCAAAAnKQ5 : C++() ==> C(LVecBase2i const *)
+extern int LVecBase2i$13$get_x(LVecBase2i const *self);
+
+// _inCAAAAnmI_ : C++() ==> C(LVecBase2i const *)
+extern int LVecBase2i$14$get_y(LVecBase2i const *self);
+
+// _inCAAAA5Urw : C++(int value) ==> C(LVecBase2i *, int)
+extern void LVecBase2i$15$set_x(LVecBase2i *self, int value);
+
+// _inCAAAA5wj1 : C++(int value) ==> C(LVecBase2i *, int)
+extern void LVecBase2i$16$set_y(LVecBase2i *self, int value);
+
+// _inCAAAAjSE7 : C++(int i, int value) ==> C(LVecBase2i *, int, int)
+extern void LVecBase2i$17$add_to_cell(LVecBase2i *self, int i, int value);
+
+// _inCAAAAIsIv : C++(int value) ==> C(LVecBase2i *, int)
+extern void LVecBase2i$18$add_x(LVecBase2i *self, int value);
+
+// _inCAAAAIIB0 : C++(int value) ==> C(LVecBase2i *, int)
+extern void LVecBase2i$19$add_y(LVecBase2i *self, int value);
+
+// _inCAAAAwQUs : C++() ==> C(LVecBase2i const *)
+extern void LVecBase2i$20$get_data(LVecBase2i const *self);
+
+// _inCAAAA7ok9 : C++() ==> C()
+extern int LVecBase2i$21$get_num_components(void);
+
+// _inCAAAAmZqs : C++() ==> C(LVecBase2i *)
+extern void LVecBase2i$22$begin(LVecBase2i *self);
+
+// _inCAAAAjOWT : C++() ==> C(LVecBase2i const *)
+extern void LVecBase2i$23$begin(LVecBase2i const *self);
+// COLLISION : LVecBase2i_C_begin_v_p LVecBase2i$23$begin
+
+// _inCAAAA6C_D : C++() ==> C(LVecBase2i *)
+extern void LVecBase2i$24$end(LVecBase2i *self);
+
+// _inCAAAASfM4 : C++() ==> C(LVecBase2i const *)
+extern void LVecBase2i$25$end(LVecBase2i const *self);
+// COLLISION : LVecBase2i_C_end_v_p LVecBase2i$25$end
+
+// _inCAAAABZvo : C++(int fill_value) ==> C(LVecBase2i *, int)
+extern void LVecBase2i$26$fill(LVecBase2i *self, int fill_value);
+
+// _inCAAAAbE9S : C++(int x, int y) ==> C(LVecBase2i *, int, int)
+extern void LVecBase2i$27$set(LVecBase2i *self, int x, int y);
+
+// _inCAAAA7TNd : C++(LVecBase2i const &other) ==> C(LVecBase2i const *, LVecBase2i const *)
+extern int LVecBase2i$28$dot(LVecBase2i const *self, LVecBase2i const *other);
+
+// _inCAAAAsl9D : C++() ==> C(LVecBase2i const *)
+extern int LVecBase2i$29$length_squared(LVecBase2i const *self);
+
+// _inCAAAA9jRt : C++(LVecBase2i const &other) ==> C(LVecBase2i const *, LVecBase2i const *)
+extern int LVecBase2i$30$compare_to(LVecBase2i const *self, LVecBase2i const *other);
+
+// _inCAAAAq87Y : C++() ==> C(LVecBase2i const *)
+extern std$_size_t LVecBase2i$31$get_hash(LVecBase2i const *self);
+
+// _inCAAAA0UQP : C++(std::size_t hash) ==> C(LVecBase2i const *, std::size_t)
+extern std$_size_t LVecBase2i$32$add_hash(LVecBase2i const *self, std$_size_t hash);
+
+// _inCAAAAXD6p : C++(ChecksumHashGenerator &hashgen) ==> C(LVecBase2i const *, ChecksumHashGenerator *)
+extern void LVecBase2i$33$generate_hash(LVecBase2i const *self, ChecksumHashGenerator *hashgen);
+
+// _inCAAAAwV29 : C++(LVecBase2i const &other) ==> C(LVecBase2i *, LVecBase2i const *)
+extern void LVecBase2i$34$componentwise_mult(LVecBase2i *self, LVecBase2i const *other);
+
+// _inCAAAAwfHE : C++(LVecBase2i const &other) ==> C(LVecBase2i const *, LVecBase2i const *)
+extern LVecBase2i * LVecBase2i$35$fmax(LVecBase2i const *self, LVecBase2i const *other);
+
+// _inCAAAAusnC : C++(LVecBase2i const &other) ==> C(LVecBase2i const *, LVecBase2i const *)
+extern LVecBase2i * LVecBase2i$36$fmin(LVecBase2i const *self, LVecBase2i const *other);
+
+// _inCAAAAfkiV : C++(LVecBase2i const &other) ==> C(LVecBase2i const *, LVecBase2i const *)
+extern bool LVecBase2i$37$almost_equal(LVecBase2i const *self, LVecBase2i const *other);
+
+// _inCAAAA_gWE : C++(LVecBase2i const &other, int threshold) ==> C(LVecBase2i const *, LVecBase2i const *, int)
+extern bool LVecBase2i$38$almost_equal(LVecBase2i const *self, LVecBase2i const *other, int threshold);
+
+// _inCAAAAJlJf : C++(std::ostream &out) ==> C(LVecBase2i const *, std::ostream *)
+extern void LVecBase2i$39$output(LVecBase2i const *self, std$_ostream *out);
+
+// _inCAAAATYic : C++(Datagram &destination) ==> C(LVecBase2i const *, Datagram *)
+extern void LVecBase2i$40$write_datagram_fixed(LVecBase2i const *self, Datagram *destination);
+
+// _inCAAAAbIEZ : C++(DatagramIterator &source) ==> C(LVecBase2i *, DatagramIterator *)
+extern void LVecBase2i$41$read_datagram_fixed(LVecBase2i *self, DatagramIterator *source);
+
+// _inCAAAAu9cZ : C++(Datagram &destination) ==> C(LVecBase2i const *, Datagram *)
+extern void LVecBase2i$42$write_datagram(LVecBase2i const *self, Datagram *destination);
+
+// _inCAAAAOtdr : C++(DatagramIterator &source) ==> C(LVecBase2i *, DatagramIterator *)
+extern void LVecBase2i$43$read_datagram(LVecBase2i *self, DatagramIterator *source);
+
+// _inCAAAAnShv : C++() ==> C(LVecBase2i const *)
+extern LVecBase2i$_EVector2 * LVecBase2i$44$get_v(LVecBase2i const *self);
+
+// _inCAAAAb8Po : C++() ==> C()
+extern int LVecBase2i$45$get_class_type(void);
+
+// _inCAAAAKrbI : C++() ==> C()
+extern void LVecBase2i$46$init_type(void);
 
 
 // LVecBase3f
@@ -3866,6 +5542,264 @@ extern int LVecBase4i$59$get_class_type(void);
 extern void LVecBase4i$60$init_type(void);
 
 
+// Lens
+
+// _inCAAAAg23I : C++() ==> C(Lens const *)
+extern char ** Lens$1$make_copy(Lens const *self);
+
+// _inCAAAAUN_H : C++(LPoint2 const &point2d, LPoint3 &near_point, LPoint3 &far_point) ==> C(Lens const *, LPoint2 const *, LPoint3 *, LPoint3 *)
+extern bool Lens$2$extrude(Lens const *self, LPoint2 const *point2d, LPoint3 *near_point, LPoint3 *far_point);
+
+// _inCAAAAkiTI : C++(LPoint3 const &point2d, LPoint3 &near_point, LPoint3 &far_point) ==> C(Lens const *, LPoint3 const *, LPoint3 *, LPoint3 *)
+extern bool Lens$3$extrude(Lens const *self, LPoint3 const *point2d, LPoint3 *near_point, LPoint3 *far_point);
+// COLLISION : Lens_C_extrude_B_pppp Lens$3$extrude
+
+// _inCAAAAI544 : C++(LPoint3 const &point2d, LPoint3 &point3d) ==> C(Lens const *, LPoint3 const *, LPoint3 *)
+extern bool Lens$4$extrude_depth(Lens const *self, LPoint3 const *point2d, LPoint3 *point3d);
+
+// _inCAAAAGNeD : C++(LPoint2 const &point2d, LVector3 &vec3d) ==> C(Lens const *, LPoint2 const *, LVector3 *)
+extern bool Lens$5$extrude_vec(Lens const *self, LPoint2 const *point2d, LVector3 *vec3d);
+
+// _inCAAAAJffD : C++(LPoint3 const &point2d, LVector3 &vec3d) ==> C(Lens const *, LPoint3 const *, LVector3 *)
+extern bool Lens$6$extrude_vec(Lens const *self, LPoint3 const *point2d, LVector3 *vec3d);
+// COLLISION : Lens_C_extrude_vec_B_ppp Lens$6$extrude_vec
+
+// _inCAAAAhNpd : C++(LPoint3 const &point3d, LPoint2 &point2d) ==> C(Lens const *, LPoint3 const *, LPoint2 *)
+extern bool Lens$7$project(Lens const *self, LPoint3 const *point3d, LPoint2 *point2d);
+
+// _inCAAAAXpsd : C++(LPoint3 const &point3d, LPoint3 &point2d) ==> C(Lens const *, LPoint3 const *, LPoint3 *)
+extern bool Lens$8$project(Lens const *self, LPoint3 const *point3d, LPoint3 *point2d);
+// COLLISION : Lens_C_project_B_ppp Lens$8$project
+
+// _inCAAAALuYi : C++(std::string const &event) ==> C(Lens *, char const *)
+extern void Lens$9$set_change_event(Lens *self, char const *event);
+
+// _inCAAAAI_Ni : C++() ==> C(Lens const *)
+extern char const * Lens$10$get_change_event(Lens const *self);
+
+// _inCAAAA0iUE : C++(CoordinateSystem cs) ==> C(Lens *, CoordinateSystem)
+extern void Lens$11$set_coordinate_system(Lens *self, CoordinateSystem cs);
+
+// _inCAAAAsmpX : C++() ==> C(Lens const *)
+extern CoordinateSystem Lens$12$get_coordinate_system(Lens const *self);
+
+// _inCAAAAOuga : C++() ==> C(Lens *)
+extern void Lens$13$clear(Lens *self);
+
+// _inCAAAAJjVd : C++(LVecBase2 const &film_size) ==> C(Lens *, LVecBase2 const *)
+extern void Lens$14$set_film_size(Lens *self, LVecBase2 const *film_size);
+
+// _inCAAAAar31 : C++(PN_stdfloat width) ==> C(Lens *, PN_stdfloat)
+extern void Lens$15$set_film_size(Lens *self, PN_stdfloat width);
+
+// _inCAAAAke0N : C++(PN_stdfloat width, PN_stdfloat height) ==> C(Lens *, PN_stdfloat, PN_stdfloat)
+extern void Lens$16$set_film_size(Lens *self, PN_stdfloat width, PN_stdfloat height);
+
+// _inCAAAApaPJ : C++() ==> C(Lens const *)
+extern LVecBase2 const * Lens$17$get_film_size(Lens const *self);
+
+// _inCAAAAznjM : C++(LVecBase2 const &film_offset) ==> C(Lens *, LVecBase2 const *)
+extern void Lens$18$set_film_offset(Lens *self, LVecBase2 const *film_offset);
+
+// _inCAAAAA7dQ : C++(PN_stdfloat x, PN_stdfloat y) ==> C(Lens *, PN_stdfloat, PN_stdfloat)
+extern void Lens$19$set_film_offset(Lens *self, PN_stdfloat x, PN_stdfloat y);
+
+// _inCAAAAY8t_ : C++() ==> C(Lens const *)
+extern LVector2 const * Lens$20$get_film_offset(Lens const *self);
+
+// _inCAAAAKJcD : C++(PN_stdfloat focal_length) ==> C(Lens *, PN_stdfloat)
+extern void Lens$21$set_focal_length(Lens *self, PN_stdfloat focal_length);
+
+// _inCAAAAaQhl : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$22$get_focal_length(Lens const *self);
+
+// _inCAAAANfwm : C++(PN_stdfloat min_fov) ==> C(Lens *, PN_stdfloat)
+extern void Lens$23$set_min_fov(Lens *self, PN_stdfloat min_fov);
+
+// _inCAAAAwW8x : C++(LVecBase2 const &fov) ==> C(Lens *, LVecBase2 const *)
+extern void Lens$24$set_fov(Lens *self, LVecBase2 const *fov);
+
+// _inCAAAAn5Vz : C++(PN_stdfloat fov) ==> C(Lens *, PN_stdfloat)
+extern void Lens$25$set_fov(Lens *self, PN_stdfloat fov);
+
+// _inCAAAAFDor : C++(PN_stdfloat hfov, PN_stdfloat vfov) ==> C(Lens *, PN_stdfloat, PN_stdfloat)
+extern void Lens$26$set_fov(Lens *self, PN_stdfloat hfov, PN_stdfloat vfov);
+
+// _inCAAAAGTNq : C++() ==> C(Lens const *)
+extern LVecBase2 const * Lens$27$get_fov(Lens const *self);
+
+// _inCAAAAFGjN : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$28$get_hfov(Lens const *self);
+
+// _inCAAAA9tnO : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$29$get_vfov(Lens const *self);
+
+// _inCAAAAuTcw : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$30$get_min_fov(Lens const *self);
+
+// _inCAAAAcR5a : C++(PN_stdfloat aspect_ratio) ==> C(Lens *, PN_stdfloat)
+extern void Lens$31$set_aspect_ratio(Lens *self, PN_stdfloat aspect_ratio);
+
+// _inCAAAAjb98 : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$32$get_aspect_ratio(Lens const *self);
+
+// _inCAAAAUjqV : C++(PN_stdfloat near_distance) ==> C(Lens *, PN_stdfloat)
+extern void Lens$33$set_near(Lens *self, PN_stdfloat near_distance);
+
+// _inCAAAAvVA4 : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$34$get_near(Lens const *self);
+
+// _inCAAAAqluY : C++(PN_stdfloat far_distance) ==> C(Lens *, PN_stdfloat)
+extern void Lens$35$set_far(Lens *self, PN_stdfloat far_distance);
+
+// _inCAAAA9WmP : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$36$get_far(Lens const *self);
+
+// _inCAAAAHoCf : C++(PN_stdfloat near_distance, PN_stdfloat far_distance) ==> C(Lens *, PN_stdfloat, PN_stdfloat)
+extern void Lens$37$set_near_far(Lens *self, PN_stdfloat near_distance, PN_stdfloat far_distance);
+
+// _inCAAAAyde1 : C++() ==> C()
+extern PN_stdfloat Lens$38$get_default_near(void);
+
+// _inCAAAAChjq : C++() ==> C()
+extern PN_stdfloat Lens$39$get_default_far(void);
+
+// _inCAAAAG8U6 : C++(LVecBase3 const &view_hpr) ==> C(Lens *, LVecBase3 const *)
+extern void Lens$40$set_view_hpr(Lens *self, LVecBase3 const *view_hpr);
+
+// _inCAAAASEvf : C++(PN_stdfloat h, PN_stdfloat p, PN_stdfloat r) ==> C(Lens *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Lens$41$set_view_hpr(Lens *self, PN_stdfloat h, PN_stdfloat p, PN_stdfloat r);
+
+// _inCAAAAzOnI : C++() ==> C(Lens const *)
+extern LVecBase3 const * Lens$42$get_view_hpr(Lens const *self);
+
+// _inCAAAAxUJc : C++(LVector3 const &view_vector, LVector3 const &up_vector) ==> C(Lens *, LVector3 const *, LVector3 const *)
+extern void Lens$43$set_view_vector(Lens *self, LVector3 const *view_vector, LVector3 const *up_vector);
+
+// _inCAAAAYeim : C++(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z, PN_stdfloat i, PN_stdfloat j, PN_stdfloat k) ==> C(Lens *, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void Lens$44$set_view_vector(Lens *self, PN_stdfloat x, PN_stdfloat y, PN_stdfloat z, PN_stdfloat i, PN_stdfloat j, PN_stdfloat k);
+
+// _inCAAAAyzLu : C++() ==> C(Lens const *)
+extern LVector3 const * Lens$45$get_view_vector(Lens const *self);
+
+// _inCAAAAryc7 : C++() ==> C(Lens const *)
+extern LVector3 const * Lens$46$get_up_vector(Lens const *self);
+
+// _inCAAAADlmp : C++() ==> C(Lens const *)
+extern LPoint3 * Lens$47$get_nodal_point(Lens const *self);
+
+// _inCAAAAzfrM : C++(PN_stdfloat interocular_distance) ==> C(Lens *, PN_stdfloat)
+extern void Lens$48$set_interocular_distance(Lens *self, PN_stdfloat interocular_distance);
+
+// _inCAAAACou8 : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$49$get_interocular_distance(Lens const *self);
+
+// _inCAAAAV7_f : C++(PN_stdfloat convergence_distance) ==> C(Lens *, PN_stdfloat)
+extern void Lens$50$set_convergence_distance(Lens *self, PN_stdfloat convergence_distance);
+
+// _inCAAAAjWCQ : C++() ==> C(Lens const *)
+extern PN_stdfloat Lens$51$get_convergence_distance(Lens const *self);
+
+// _inCAAAAd6hB : C++(LMatrix4 const &view_mat) ==> C(Lens *, LMatrix4 const *)
+extern void Lens$52$set_view_mat(Lens *self, LMatrix4 const *view_mat);
+
+// _inCAAAAM_m4 : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$53$get_view_mat(Lens const *self);
+
+// _inCAAAAkqkp : C++() ==> C(Lens *)
+extern void Lens$54$clear_view_mat(Lens *self);
+
+// _inCAAAAFbmD : C++(LVecBase2 const &keystone) ==> C(Lens *, LVecBase2 const *)
+extern void Lens$55$set_keystone(Lens *self, LVecBase2 const *keystone);
+
+// _inCAAAAvPzC : C++() ==> C(Lens const *)
+extern LVecBase2 const * Lens$56$get_keystone(Lens const *self);
+
+// _inCAAAAp1qZ : C++() ==> C(Lens *)
+extern void Lens$57$clear_keystone(Lens *self);
+
+// _inCAAAAYIXx : C++(LMatrix4 const &custom_film_mat) ==> C(Lens *, LMatrix4 const *)
+extern void Lens$58$set_custom_film_mat(Lens *self, LMatrix4 const *custom_film_mat);
+
+// _inCAAAAZBGv : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$59$get_custom_film_mat(Lens const *self);
+
+// _inCAAAABwR4 : C++() ==> C(Lens *)
+extern void Lens$60$clear_custom_film_mat(Lens *self);
+
+// _inCAAAAikJq : C++(LVecBase3 const &ul, LVecBase3 const &ur, LVecBase3 const &ll, LVecBase3 const &lr, int flags) ==> C(Lens *, LVecBase3 const *, LVecBase3 const *, LVecBase3 const *, LVecBase3 const *, int)
+extern void Lens$61$set_frustum_from_corners(Lens *self, LVecBase3 const *ul, LVecBase3 const *ur, LVecBase3 const *ll, LVecBase3 const *lr, int flags);
+
+// _inCAAAASJre : C++() ==> C(Lens *)
+extern void Lens$62$recompute_all(Lens *self);
+
+// _inCAAAA6Z__ : C++() ==> C(Lens const *)
+extern bool Lens$63$is_linear(Lens const *self);
+
+// _inCAAAABoQp : C++() ==> C(Lens const *)
+extern bool Lens$64$is_perspective(Lens const *self);
+
+// _inCAAAAlQp5 : C++() ==> C(Lens const *)
+extern bool Lens$65$is_orthographic(Lens const *self);
+
+// _inCAAAAJeEy : C++() ==> C(Lens *)
+extern char ** Lens$66$make_geometry(Lens *self);
+
+// _inCAAAAb5g0 : C++() ==> C(Lens const *)
+extern char ** Lens$67$make_bounds(Lens const *self);
+
+// _inCAAAAAAmb : C++(Lens::StereoChannel channel) ==> C(Lens const *, Lens::StereoChannel)
+extern LMatrix4 const * Lens$68$get_projection_mat(Lens const *self, Lens$_StereoChannel channel);
+
+// _inCAAAArmTG : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$69$get_projection_mat(Lens const *self);
+
+// _inCAAAAK_5F : C++(Lens::StereoChannel channel) ==> C(Lens const *, Lens::StereoChannel)
+extern LMatrix4 const * Lens$70$get_projection_mat_inv(Lens const *self, Lens$_StereoChannel channel);
+
+// _inCAAAAmcoU : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$71$get_projection_mat_inv(Lens const *self);
+
+// _inCAAAAOjJ3 : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$72$get_film_mat(Lens const *self);
+
+// _inCAAAAHzXh : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$73$get_film_mat_inv(Lens const *self);
+
+// _inCAAAAFMDf : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$74$get_lens_mat(Lens const *self);
+
+// _inCAAAAAERJ : C++() ==> C(Lens const *)
+extern LMatrix4 const * Lens$75$get_lens_mat_inv(Lens const *self);
+
+// _inCAAAA9t29 : C++(std::ostream &out) ==> C(Lens const *, std::ostream *)
+extern void Lens$76$output(Lens const *self, std$_ostream *out);
+
+// _inCAAAAnKlR : C++(std::ostream &out, int indent_level) ==> C(Lens const *, std::ostream *, int)
+extern void Lens$77$write(Lens const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAHB_a : C++(std::ostream &out) ==> C(Lens const *, std::ostream *)
+extern void Lens$78$write(Lens const *self, std$_ostream *out);
+
+// _inCAAAAgaL6 : C++() ==> C(Lens const *)
+extern UpdateSeq * Lens$79$get_last_change(Lens const *self);
+
+// _inCAAAAAaAg : C++(BamWriter *manager, Datagram &dg) ==> C(Lens *, BamWriter *, Datagram *)
+extern void Lens$80$write_datagram(Lens *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAvAbP : C++() ==> C(Lens const *)
+extern int Lens$81$get_type(Lens const *self);
+
+// _inCAAAAYIEi : C++() ==> C(Lens *)
+extern int Lens$82$force_init_type(Lens *self);
+
+// _inCAAAAX6_e : C++() ==> C()
+extern int Lens$83$get_class_type(void);
+
+// _inCAAAAgngG : C++() ==> C()
+extern void Lens$84$init_type(void);
+
+
 // LensNode
 
 // _inCAAAAPTYI : C++(std::string const &name, Lens *lens) ==> C(char const *, Lens *)
@@ -3944,6 +5878,87 @@ extern int LensNode$23$force_init_type(LensNode *self);
 extern PandaNode * LinkedListNode$1$downcast_to_PandaNode(LinkedListNode *self);
 
 
+// Loader
+
+// _inCAAAAFJ3o : C++() ==> C(Loader *)
+extern TypedReferenceCount * Loader$1$upcast_to_TypedReferenceCount(Loader *self);
+
+// _inCAAAAEQJP : C++() ==> C(Loader *)
+extern Namable * Loader$2$upcast_to_Namable(Loader *self);
+
+// _inCAAAAmM_G : C++(Loader const &) ==> C(Loader const *)
+extern Loader * Loader$3$Loader(Loader const *arg0);
+
+// _inCAAAAJSqR : C++(std::string const &name) ==> C(char const *)
+extern Loader * Loader$4$Loader(char const *name);
+
+// _inCAAAAq8fi : C++() ==> C()
+extern Loader * Loader$5$Loader(void);
+
+// _inCAAAAmL1N : C++(AsyncTaskManager *task_manager) ==> C(Loader *, AsyncTaskManager *)
+extern void Loader$6$set_task_manager(Loader *self, AsyncTaskManager *task_manager);
+
+// _inCAAAAf__I : C++() ==> C(Loader const *)
+extern AsyncTaskManager * Loader$7$get_task_manager(Loader const *self);
+
+// _inCAAAAmcVR : C++(std::string const &task_chain) ==> C(Loader *, char const *)
+extern void Loader$8$set_task_chain(Loader *self, char const *task_chain);
+
+// _inCAAAAHjyK : C++() ==> C(Loader const *)
+extern char const * Loader$9$get_task_chain(Loader const *self);
+
+// _inCAAAAbFzS : C++() ==> C(Loader *)
+extern void Loader$10$stop_threads(Loader *self);
+
+// _inCAAAAehh9 : C++(AsyncTask *task) ==> C(Loader *, AsyncTask *)
+extern bool Loader$11$remove(Loader *self, AsyncTask *task);
+
+// _inCAAAAPkHz : C++(Filename const &filename, LoaderOptions const &options) ==> C(Loader const *, Filename const *, LoaderOptions const *)
+extern char ** Loader$12$load_sync(Loader const *self, Filename const *filename, LoaderOptions const *options);
+
+// _inCAAAAz7yV : C++(Filename const &filename) ==> C(Loader const *, Filename const *)
+extern char ** Loader$13$load_sync(Loader const *self, Filename const *filename);
+
+// _inCAAAArRYJ : C++(Filename const &filename, LoaderOptions const &options) ==> C(Loader *, Filename const *, LoaderOptions const *)
+extern char ** Loader$14$make_async_request(Loader *self, Filename const *filename, LoaderOptions const *options);
+
+// _inCAAAACUjc : C++(Filename const &filename) ==> C(Loader *, Filename const *)
+extern char ** Loader$15$make_async_request(Loader *self, Filename const *filename);
+
+// _inCAAAAiGlw : C++(AsyncTask *request) ==> C(Loader *, AsyncTask *)
+extern void Loader$16$load_async(Loader *self, AsyncTask *request);
+
+// _inCAAAAeSFK : C++(Filename const &filename, LoaderOptions const &options, PandaNode *node) ==> C(Loader const *, Filename const *, LoaderOptions const *, PandaNode *)
+extern bool Loader$17$save_sync(Loader const *self, Filename const *filename, LoaderOptions const *options, PandaNode *node);
+
+// _inCAAAA7ykw : C++(Filename const &filename, LoaderOptions const &options, PandaNode *node) ==> C(Loader *, Filename const *, LoaderOptions const *, PandaNode *)
+extern char ** Loader$18$make_async_save_request(Loader *self, Filename const *filename, LoaderOptions const *options, PandaNode *node);
+
+// _inCAAAADh1Q : C++(AsyncTask *request) ==> C(Loader *, AsyncTask *)
+extern void Loader$19$save_async(Loader *self, AsyncTask *request);
+
+// _inCAAAA17N9 : C++(std::istream &in) ==> C(Loader *, std::istream *)
+extern char ** Loader$20$load_bam_stream(Loader *self, std$_istream *in);
+
+// _inCAAAATK1z : C++(std::ostream &out) ==> C(Loader const *, std::ostream *)
+extern void Loader$21$output(Loader const *self, std$_ostream *out);
+
+// _inCAAAA4Ib_ : C++() ==> C()
+extern Loader * Loader$22$get_global_ptr(void);
+
+// _inCAAAA9reE : C++() ==> C()
+extern int Loader$23$get_class_type(void);
+
+// _inCAAAA6DRH : C++() ==> C()
+extern void Loader$24$init_type(void);
+
+// _inCAAAA7HB8 : C++() ==> C(Loader const *)
+extern int Loader$25$get_type(Loader const *self);
+
+// _inCAAAApktK : C++() ==> C(Loader *)
+extern int Loader$26$force_init_type(Loader *self);
+
+
 // MemoryBase
 
 // _inCAAAAVh0N : C++() ==> C()
@@ -3964,8 +5979,41 @@ extern TypedObject * MemoryBase$4$downcast_to_TypedObject(MemoryBase *self);
 // _inCAAAAPzAU : C++() ==> C(Namable *)
 extern PandaNode * Namable$1$downcast_to_PandaNode(Namable *self);
 
+// _inCAAAA2lYW : C++() ==> C(Namable *)
+extern Loader * Namable$2$downcast_to_Loader(Namable *self);
+
+// _inCAAAA5Y1p : C++() ==> C(Namable *)
+extern TextFont * Namable$3$downcast_to_TextFont(Namable *self);
+
+// _inCAAAASRIH : C++() ==> C(Namable *)
+extern Texture * Namable$4$downcast_to_Texture(Namable *self);
+
 // _inCAAAAFtoz : C++() ==> C(Namable *)
-extern Thread * Namable$2$downcast_to_Thread(Namable *self);
+extern Thread * Namable$5$downcast_to_Thread(Namable *self);
+
+
+// NodeCachedReferenceCount
+
+// _inCAAAAHv2I : C++() ==> C(NodeCachedReferenceCount const *)
+extern int NodeCachedReferenceCount$1$get_node_ref_count(NodeCachedReferenceCount const *self);
+
+// _inCAAAAC_qZ : C++() ==> C(NodeCachedReferenceCount const *)
+extern void NodeCachedReferenceCount$2$node_ref(NodeCachedReferenceCount const *self);
+
+// _inCAAAA35Q1 : C++() ==> C(NodeCachedReferenceCount const *)
+extern bool NodeCachedReferenceCount$3$node_unref(NodeCachedReferenceCount const *self);
+
+// _inCAAAA6xUo : C++() ==> C(NodeCachedReferenceCount const *)
+extern bool NodeCachedReferenceCount$4$test_ref_count_integrity(NodeCachedReferenceCount const *self);
+
+// _inCAAAAwI10 : C++() ==> C(NodeCachedReferenceCount const *)
+extern int NodeCachedReferenceCount$5$get_referenced_bits(NodeCachedReferenceCount const *self);
+
+// _inCAAAA_DaH : C++() ==> C()
+extern int NodeCachedReferenceCount$6$get_class_type(void);
+
+// _inCAAAA_Le_ : C++() ==> C()
+extern void NodeCachedReferenceCount$7$init_type(void);
 
 
 // NodePath
@@ -7214,11 +9262,892 @@ extern int ReferenceCount$13$get_class_type(void);
 // _inCAAAAssbs : C++() ==> C()
 extern void ReferenceCount$14$init_type(void);
 
+// _inCAAAAYaNv : C++() ==> C(ReferenceCount *)
+extern GeomVertexArrayDataHandle * ReferenceCount$15$downcast_to_GeomVertexArrayDataHandle(ReferenceCount *self);
+
+
+// RenderEffect
+
+// _inCAAAA3gZk : C++() ==> C(RenderEffect const *)
+extern bool RenderEffect$1$safe_to_transform(RenderEffect const *self);
+
+// _inCAAAApIlC : C++(TransformState const *net_transform) ==> C(RenderEffect const *, TransformState const *)
+extern char ** RenderEffect$2$prepare_flatten_transform(RenderEffect const *self, TransformState const *net_transform);
+
+// _inCAAAAWhOL : C++() ==> C(RenderEffect const *)
+extern bool RenderEffect$3$safe_to_combine(RenderEffect const *self);
+
+// _inCAAAALtWD : C++(LMatrix4 const &mat) ==> C(RenderEffect const *, LMatrix4 const *)
+extern char ** RenderEffect$4$xform(RenderEffect const *self, LMatrix4 const *mat);
+
+// _inCAAAATb6Y : C++() ==> C(RenderEffect const *)
+extern bool RenderEffect$5$has_cull_callback(RenderEffect const *self);
+
+// _inCAAAA_7JB : C++(CullTraverser *trav, CullTraverserData &data, ConstPointerTo< TransformState > &node_transform, ConstPointerTo< RenderState > &node_state) ==> C(RenderEffect const *, CullTraverser *, CullTraverserData *, ConstPointerTo< TransformState > *, ConstPointerTo< RenderState > *)
+extern void RenderEffect$6$cull_callback(RenderEffect const *self, CullTraverser *trav, CullTraverserData *data, char **node_transform, char **node_state);
+
+// _inCAAAAVo28 : C++() ==> C(RenderEffect const *)
+extern bool RenderEffect$7$has_adjust_transform(RenderEffect const *self);
+
+// _inCAAAAfn1n : C++(ConstPointerTo< TransformState > &net_transform, ConstPointerTo< TransformState > &node_transform, PandaNode const *node) ==> C(RenderEffect const *, ConstPointerTo< TransformState > *, ConstPointerTo< TransformState > *, PandaNode const *)
+extern void RenderEffect$8$adjust_transform(RenderEffect const *self, char **net_transform, char **node_transform, PandaNode const *node);
+
+// _inCAAAAZvzD : C++(RenderEffect const &other) ==> C(RenderEffect const *, RenderEffect const *)
+extern int RenderEffect$9$compare_to(RenderEffect const *self, RenderEffect const *other);
+
+// _inCAAAAuTcF : C++(std::ostream &out) ==> C(RenderEffect const *, std::ostream *)
+extern void RenderEffect$10$output(RenderEffect const *self, std$_ostream *out);
+
+// _inCAAAAvVQe : C++(std::ostream &out, int indent_level) ==> C(RenderEffect const *, std::ostream *, int)
+extern void RenderEffect$11$write(RenderEffect const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAvz2e : C++() ==> C()
+extern int RenderEffect$12$get_num_effects(void);
+
+// _inCAAAAxoWw : C++(std::ostream &out) ==> C(std::ostream *)
+extern void RenderEffect$13$list_effects(std$_ostream *out);
+
+// _inCAAAALUB_ : C++() ==> C()
+extern bool RenderEffect$14$validate_effects(void);
+
+// _inCAAAAgoCa : C++(BamWriter *manager, Datagram &dg) ==> C(RenderEffect *, BamWriter *, Datagram *)
+extern void RenderEffect$15$write_datagram(RenderEffect *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAPNYY : C++(TypedWritable *old_ptr, BamReader *manager) ==> C(TypedWritable *, BamReader *)
+extern TypedWritable * RenderEffect$16$change_this(TypedWritable *old_ptr, BamReader *manager);
+
+// _inCAAAAxZ_O : C++(BamReader *manager) ==> C(RenderEffect *, BamReader *)
+extern void RenderEffect$17$finalize(RenderEffect *self, BamReader *manager);
+
+// _inCAAAA3Lms : C++() ==> C()
+extern int RenderEffect$18$get_class_type(void);
+
+// _inCAAAAWfie : C++() ==> C()
+extern void RenderEffect$19$init_type(void);
+
+// _inCAAAA2eDP : C++() ==> C(RenderEffect const *)
+extern int RenderEffect$20$get_type(RenderEffect const *self);
+
+// _inCAAAACEW6 : C++() ==> C(RenderEffect *)
+extern int RenderEffect$21$force_init_type(RenderEffect *self);
+
+
+// RenderState
+
+// _inCAAAAtw5H : C++(RenderState const &other) ==> C(RenderState const *, RenderState const *)
+extern int RenderState$1$compare_to(RenderState const *self, RenderState const *other);
+
+// _inCAAAAfAFv : C++(RenderState const &other) ==> C(RenderState const *, RenderState const *)
+extern int RenderState$2$compare_sort(RenderState const *self, RenderState const *other);
+
+// _inCAAAAFWTs : C++(RenderState const &other, RenderState::SlotMask compare_mask) ==> C(RenderState const *, RenderState const *, RenderState::SlotMask *)
+extern int RenderState$3$compare_mask(RenderState const *self, RenderState const *other, RenderState$_SlotMask *compare_mask);
+
+// _inCAAAAxGYM : C++() ==> C(RenderState const *)
+extern std$_size_t RenderState$4$get_hash(RenderState const *self);
+
+// _inCAAAAbG0o : C++() ==> C(RenderState const *)
+extern bool RenderState$5$is_empty(RenderState const *self);
+
+// _inCAAAA8NWA : C++() ==> C(RenderState const *)
+extern bool RenderState$6$has_cull_callback(RenderState const *self);
+
+// _inCAAAA8pTl : C++(CullTraverser *trav, CullTraverserData const &data) ==> C(RenderState const *, CullTraverser *, CullTraverserData const *)
+extern bool RenderState$7$cull_callback(RenderState const *self, CullTraverser *trav, CullTraverserData const *data);
+
+// _inCAAAAGuHJ : C++() ==> C()
+extern char ** RenderState$8$make_empty(void);
+
+// _inCAAAAPEg_ : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, RenderAttrib const *attrib5, int override) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, int)
+extern char ** RenderState$9$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, RenderAttrib const *attrib5, int override);
+
+// _inCAAAAk6LE : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, RenderAttrib const *attrib5) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *)
+extern char ** RenderState$10$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, RenderAttrib const *attrib5);
+
+// _inCAAAARRYz : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, int override) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, int)
+extern char ** RenderState$11$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4, int override);
+
+// _inCAAAAjeWF : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, RenderAttrib const *)
+extern char ** RenderState$12$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, RenderAttrib const *attrib4);
+
+// _inCAAAAK6X3 : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, int override) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *, int)
+extern char ** RenderState$13$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3, int override);
+
+// _inCAAAAbtvX : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3) ==> C(RenderAttrib const *, RenderAttrib const *, RenderAttrib const *)
+extern char ** RenderState$14$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, RenderAttrib const *attrib3);
+
+// _inCAAAAu7vK : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2, int override) ==> C(RenderAttrib const *, RenderAttrib const *, int)
+extern char ** RenderState$15$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2, int override);
+
+// _inCAAAASK5z : C++(RenderAttrib const *attrib1, RenderAttrib const *attrib2) ==> C(RenderAttrib const *, RenderAttrib const *)
+extern char ** RenderState$16$make(RenderAttrib const *attrib1, RenderAttrib const *attrib2);
+
+// _inCAAAAiqB_ : C++(RenderAttrib const *attrib, int override) ==> C(RenderAttrib const *, int)
+extern char ** RenderState$17$make(RenderAttrib const *attrib, int override);
+
+// _inCAAAAT9E9 : C++(RenderAttrib const *attrib) ==> C(RenderAttrib const *)
+extern char ** RenderState$18$make(RenderAttrib const *attrib);
+
+// _inCAAAAsYED : C++(RenderState const *other) ==> C(RenderState const *, RenderState const *)
+extern char ** RenderState$19$compose(RenderState const *self, RenderState const *other);
+
+// _inCAAAA_7EZ : C++(RenderState const *other) ==> C(RenderState const *, RenderState const *)
+extern char ** RenderState$20$invert_compose(RenderState const *self, RenderState const *other);
+
+// _inCAAAAMVE4 : C++(RenderAttrib const *attrib, int override) ==> C(RenderState const *, RenderAttrib const *, int)
+extern char ** RenderState$21$add_attrib(RenderState const *self, RenderAttrib const *attrib, int override);
+
+// _inCAAAAyvO6 : C++(RenderAttrib const *attrib) ==> C(RenderState const *, RenderAttrib const *)
+extern char ** RenderState$22$add_attrib(RenderState const *self, RenderAttrib const *attrib);
+
+// _inCAAAATzrr : C++(RenderAttrib const *attrib) ==> C(RenderState const *, RenderAttrib const *)
+extern char ** RenderState$23$set_attrib(RenderState const *self, RenderAttrib const *attrib);
+
+// _inCAAAAtlgp : C++(RenderAttrib const *attrib, int override) ==> C(RenderState const *, RenderAttrib const *, int)
+extern char ** RenderState$24$set_attrib(RenderState const *self, RenderAttrib const *attrib, int override);
+
+// _inCAAAAyYRK : C++(TypeHandle type) ==> C(RenderState const *, int)
+extern char ** RenderState$25$remove_attrib(RenderState const *self, int type);
+
+// _inCAAAAfoiT : C++(int slot) ==> C(RenderState const *, int)
+extern char ** RenderState$26$remove_attrib(RenderState const *self, int slot);
+// COLLISION : RenderState_C_remove_attrib_p_pi RenderState$26$remove_attrib
+
+// _inCAAAA_mZy : C++(int adjustment) ==> C(RenderState const *, int)
+extern char ** RenderState$27$adjust_all_priorities(RenderState const *self, int adjustment);
+
+// _inCAAAA2r9x : C++(TypeHandle type) ==> C(RenderState const *, int)
+extern bool RenderState$28$has_attrib(RenderState const *self, int type);
+
+// _inCAAAAuEau : C++(int slot) ==> C(RenderState const *, int)
+extern bool RenderState$29$has_attrib(RenderState const *self, int slot);
+// COLLISION : RenderState_C_has_attrib_B_pi RenderState$29$has_attrib
+
+// _inCAAAAQqmu : C++(TypeHandle type) ==> C(RenderState const *, int)
+extern RenderAttrib const * RenderState$30$get_attrib(RenderState const *self, int type);
+
+// _inCAAAAUEFr : C++(int slot) ==> C(RenderState const *, int)
+extern RenderAttrib const * RenderState$31$get_attrib(RenderState const *self, int slot);
+// COLLISION : RenderState_C_get_attrib_p_pi RenderState$31$get_attrib
+
+// _inCAAAAo_W5 : C++(int slot) ==> C(RenderState const *, int)
+extern RenderAttrib const * RenderState$32$get_attrib_def(RenderState const *self, int slot);
+
+// _inCAAAAuZNq : C++(TypeHandle type) ==> C(RenderState const *, int)
+extern int RenderState$33$get_override(RenderState const *self, int type);
+
+// _inCAAAAbchm : C++(int slot) ==> C(RenderState const *, int)
+extern int RenderState$34$get_override(RenderState const *self, int slot);
+// COLLISION : RenderState_C_get_override_i_pi RenderState$34$get_override
+
+// _inCAAAA9oPR : C++() ==> C(RenderState const *)
+extern char ** RenderState$35$get_unique(RenderState const *self);
+
+// _inCAAAArMAG : C++() ==> C(RenderState const *)
+extern void RenderState$36$cache_ref(RenderState const *self);
+
+// _inCAAAAK_kx : C++() ==> C(RenderState const *)
+extern bool RenderState$37$cache_unref(RenderState const *self);
+
+// _inCAAAAlWCY : C++() ==> C(RenderState const *)
+extern void RenderState$38$node_ref(RenderState const *self);
+
+// _inCAAAAVnZl : C++() ==> C(RenderState const *)
+extern bool RenderState$39$node_unref(RenderState const *self);
+
+// _inCAAAATur9 : C++() ==> C(RenderState const *)
+extern std$_size_t RenderState$40$get_composition_cache_num_entries(RenderState const *self);
+
+// _inCAAAAGL_W : C++() ==> C(RenderState const *)
+extern std$_size_t RenderState$41$get_invert_composition_cache_num_entries(RenderState const *self);
+
+// _inCAAAAvxQh : C++() ==> C(RenderState const *)
+extern std$_size_t RenderState$42$get_composition_cache_size(RenderState const *self);
+
+// _inCAAAARKsy : C++(std::size_t n) ==> C(RenderState const *, std::size_t)
+extern RenderState const * RenderState$43$get_composition_cache_source(RenderState const *self, std$_size_t n);
+
+// _inCAAAAVby2 : C++(std::size_t n) ==> C(RenderState const *, std::size_t)
+extern RenderState const * RenderState$44$get_composition_cache_result(RenderState const *self, std$_size_t n);
+
+// _inCAAAAs0y1 : C++() ==> C(RenderState const *)
+extern std$_size_t RenderState$45$get_invert_composition_cache_size(RenderState const *self);
+
+// _inCAAAATU4o : C++(std::size_t n) ==> C(RenderState const *, std::size_t)
+extern RenderState const * RenderState$46$get_invert_composition_cache_source(RenderState const *self, std$_size_t n);
+
+// _inCAAAAXcaM : C++(std::size_t n) ==> C(RenderState const *, std::size_t)
+extern RenderState const * RenderState$47$get_invert_composition_cache_result(RenderState const *self, std$_size_t n);
+
+// _inCAAAAsQsV : C++(std::ostream &out) ==> C(RenderState const *, std::ostream *)
+extern void RenderState$48$output(RenderState const *self, std$_ostream *out);
+
+// _inCAAAAwidi : C++(std::ostream &out, int indent_level) ==> C(RenderState const *, std::ostream *, int)
+extern void RenderState$49$write(RenderState const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAV3mc : C++() ==> C()
+extern int RenderState$50$get_max_priority(void);
+
+// _inCAAAASXJI : C++() ==> C()
+extern int RenderState$51$get_num_states(void);
+
+// _inCAAAAB8ph : C++() ==> C()
+extern int RenderState$52$get_num_unused_states(void);
+
+// _inCAAAAfP1U : C++() ==> C()
+extern int RenderState$53$clear_cache(void);
+
+// _inCAAAAMpuX : C++() ==> C()
+extern void RenderState$54$clear_munger_cache(void);
+
+// _inCAAAAGhmY : C++() ==> C()
+extern int RenderState$55$garbage_collect(void);
+
+// _inCAAAAzmYN : C++(std::ostream &out) ==> C(std::ostream *)
+extern void RenderState$56$list_cycles(std$_ostream *out);
+
+// _inCAAAA8l1q : C++(std::ostream &out) ==> C(std::ostream *)
+extern void RenderState$57$list_states(std$_ostream *out);
+
+// _inCAAAAYm1k : C++() ==> C()
+extern bool RenderState$58$validate_states(void);
+
+// _inCAAAAwxn3 : C++() ==> C(RenderState const *)
+extern int RenderState$59$get_draw_order(RenderState const *self);
+
+// _inCAAAAP6sb : C++() ==> C(RenderState const *)
+extern int RenderState$60$get_bin_index(RenderState const *self);
+
+// _inCAAAAaUkU : C++(int geom_rendering) ==> C(RenderState const *, int)
+extern int RenderState$61$get_geom_rendering(RenderState const *self, int geom_rendering);
+
+// _inCAAAAMQFW : C++(int bin_index) ==> C(int)
+extern void RenderState$62$bin_removed(int bin_index);
+
+// _inCAAAAU3_y : C++() ==> C()
+extern void RenderState$63$flush_level(void);
+
+// _inCAAAANu47 : C++() ==> C()
+extern void RenderState$64$init_states(void);
+
+// _inCAAAACFbT : C++() ==> C(RenderState const *)
+extern char * RenderState$65$get_generated_shader(RenderState const *self);
+
+// _inCAAAAQScJ : C++() ==> C(RenderState const *)
+extern UpdateSeq const * RenderState$66$get_generated_shader_seq(RenderState const *self);
+
+// _inCAAAAy5yg : C++() ==> C()
+extern void RenderState$67$register_with_read_factory(void);
+
+// _inCAAAAJwXK : C++(BamWriter *manager, Datagram &dg) ==> C(RenderState *, BamWriter *, Datagram *)
+extern void RenderState$68$write_datagram(RenderState *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAurSi : C++(TypedWritable *old_ptr, BamReader *manager) ==> C(TypedWritable *, BamReader *)
+extern TypedWritable * RenderState$69$change_this(TypedWritable *old_ptr, BamReader *manager);
+
+// _inCAAAA_DEs : C++(BamReader *manager) ==> C(RenderState *, BamReader *)
+extern void RenderState$70$finalize(RenderState *self, BamReader *manager);
+
+// _inCAAAAF592 : C++() ==> C()
+extern int RenderState$71$get_class_type(void);
+
+// _inCAAAAOHi8 : C++() ==> C()
+extern void RenderState$72$init_type(void);
+
+// _inCAAAAFaFm : C++() ==> C(RenderState const *)
+extern int RenderState$73$get_type(RenderState const *self);
+
+// _inCAAAAcXYD : C++() ==> C(RenderState *)
+extern int RenderState$74$force_init_type(RenderState *self);
+
+
+// Shader
+
+// _inCAAAAlkb4 : C++(Filename const &file, Shader::ShaderLanguage lang) ==> C(Filename const *, Shader::ShaderLanguage)
+extern char ** Shader$1$load(Filename const *file, Shader$_ShaderLanguage lang);
+
+// _inCAAAAJQgeyebf : C++(Filename const &file) ==> C(Filename const *)
+extern char ** Shader$2$load(Filename const *file);
+
+// _inCAAAAcNl2 : C++(Shader::ShaderLanguage lang, Filename const &vertex, Filename const &fragment, Filename const &geometry, Filename const &tess_control, Filename const &tess_evaluation) ==> C(Shader::ShaderLanguage, Filename const *, Filename const *, Filename const *, Filename const *, Filename const *)
+extern char ** Shader$3$load(Shader$_ShaderLanguage lang, Filename const *vertex, Filename const *fragment, Filename const *geometry, Filename const *tess_control, Filename const *tess_evaluation);
+
+// _inCAAAABaKU : C++(Shader::ShaderLanguage lang, Filename const &vertex, Filename const &fragment, Filename const &geometry, Filename const &tess_control) ==> C(Shader::ShaderLanguage, Filename const *, Filename const *, Filename const *, Filename const *)
+extern char ** Shader$4$load(Shader$_ShaderLanguage lang, Filename const *vertex, Filename const *fragment, Filename const *geometry, Filename const *tess_control);
+
+// _inCAAAAHylL : C++(Shader::ShaderLanguage lang, Filename const &vertex, Filename const &fragment, Filename const &geometry) ==> C(Shader::ShaderLanguage, Filename const *, Filename const *, Filename const *)
+extern char ** Shader$5$load(Shader$_ShaderLanguage lang, Filename const *vertex, Filename const *fragment, Filename const *geometry);
+
+// _inCAAAA7Ee5 : C++(Shader::ShaderLanguage lang, Filename const &vertex, Filename const &fragment) ==> C(Shader::ShaderLanguage, Filename const *, Filename const *)
+extern char ** Shader$6$load(Shader$_ShaderLanguage lang, Filename const *vertex, Filename const *fragment);
+
+// _inCAAAAJQns : C++(Shader::ShaderLanguage lang, std::string vertex, std::string fragment, std::string geometry, std::string tess_control, std::string tess_evaluation) ==> C(Shader::ShaderLanguage, char const *, char const *, char const *, char const *, char const *)
+extern char ** Shader$7$make(Shader$_ShaderLanguage lang, char const *vertex, char const *fragment, char const *geometry, char const *tess_control, char const *tess_evaluation);
+
+// _inCAAAA6JBv : C++(Shader::ShaderLanguage lang, std::string vertex, std::string fragment, std::string geometry, std::string tess_control) ==> C(Shader::ShaderLanguage, char const *, char const *, char const *, char const *)
+extern char ** Shader$8$make(Shader$_ShaderLanguage lang, char const *vertex, char const *fragment, char const *geometry, char const *tess_control);
+
+// _inCAAAAPxke : C++(Shader::ShaderLanguage lang, std::string vertex, std::string fragment, std::string geometry) ==> C(Shader::ShaderLanguage, char const *, char const *, char const *)
+extern char ** Shader$9$make(Shader$_ShaderLanguage lang, char const *vertex, char const *fragment, char const *geometry);
+
+// _inCAAAAyPee : C++(Shader::ShaderLanguage lang, std::string vertex, std::string fragment) ==> C(Shader::ShaderLanguage, char const *, char const *)
+extern char ** Shader$10$make(Shader$_ShaderLanguage lang, char const *vertex, char const *fragment);
+
+// _inCAAAAfVW3 : C++(std::string body, Shader::ShaderLanguage lang) ==> C(char const *, Shader::ShaderLanguage)
+extern char ** Shader$11$make(char const *body, Shader$_ShaderLanguage lang);
+
+// _inCAAAAksXI : C++(std::string body) ==> C(char const *)
+extern char ** Shader$12$make(char const *body);
+
+// _inCAAAAZRki : C++(Shader::ShaderLanguage lang, Filename const &fn) ==> C(Shader::ShaderLanguage, Filename const *)
+extern char ** Shader$13$load_compute(Shader$_ShaderLanguage lang, Filename const *fn);
+
+// _inCAAAAAl3T : C++(Shader::ShaderLanguage lang, std::string body) ==> C(Shader::ShaderLanguage, char const *)
+extern char ** Shader$14$make_compute(Shader$_ShaderLanguage lang, char const *body);
+
+// _inCAAAAz0qU : C++(Shader::ShaderType type) ==> C(Shader const *, Shader::ShaderType)
+extern Filename * Shader$15$get_filename(Shader const *self, Shader$_ShaderType type);
+
+// _inCAAAAlNEW : C++() ==> C(Shader const *)
+extern Filename * Shader$16$get_filename(Shader const *self);
+
+// _inCAAAAzxUC : C++(Shader::ShaderType type, Filename const &filename) ==> C(Shader *, Shader::ShaderType, Filename const *)
+extern void Shader$17$set_filename(Shader *self, Shader$_ShaderType type, Filename const *filename);
+
+// _inCAAAA_cue : C++(Shader::ShaderType type) ==> C(Shader const *, Shader::ShaderType)
+extern char const * Shader$18$get_text(Shader const *self, Shader$_ShaderType type);
+
+// _inCAAAAdfN0 : C++() ==> C(Shader const *)
+extern char const * Shader$19$get_text(Shader const *self);
+
+// _inCAAAAcUW2 : C++() ==> C(Shader const *)
+extern bool Shader$20$get_error_flag(Shader const *self);
+
+// _inCAAAAXpMn : C++() ==> C(Shader const *)
+extern Shader$_ShaderLanguage Shader$21$get_language(Shader const *self);
+
+// _inCAAAAsvmd : C++() ==> C(Shader const *)
+extern bool Shader$22$has_fullpath(Shader const *self);
+
+// _inCAAAAAA7b : C++() ==> C(Shader const *)
+extern Filename const * Shader$23$get_fullpath(Shader const *self);
+
+// _inCAAAAPWQZ : C++() ==> C(Shader const *)
+extern bool Shader$24$get_cache_compiled_shader(Shader const *self);
+
+// _inCAAAAISFa : C++(bool flag) ==> C(Shader *, bool)
+extern void Shader$25$set_cache_compiled_shader(Shader *self, bool flag);
+
+// _inCAAAA_Ayr : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Shader *, PreparedGraphicsObjects *)
+extern char ** Shader$26$prepare(Shader *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAA5KiR : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Shader const *, PreparedGraphicsObjects *)
+extern bool Shader$27$is_prepared(Shader const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAnXbA : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Shader *, PreparedGraphicsObjects *)
+extern bool Shader$28$release(Shader *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAr_x5 : C++() ==> C(Shader *)
+extern int Shader$29$release_all(Shader *self);
+
+// _inCAAAALkrK : C++(PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg) ==> C(Shader *, PreparedGraphicsObjects *, GraphicsStateGuardianBase *)
+extern ShaderContext * Shader$30$prepare_now(Shader *self, PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg);
+
+// _inCAAAAGT7t : C++() ==> C(Shader *)
+extern void Shader$31$parse_init(Shader *self);
+
+// _inCAAAAJCZl : C++() ==> C(Shader *)
+extern bool Shader$32$parse_eof(Shader *self);
+
+// _inCAAAAE6x1 : C++(Shader::ShaderArgInfo &arg, std::string const &msg) ==> C(Shader *, Shader::ShaderArgInfo *, char const *)
+extern void Shader$33$cp_report_error(Shader *self, Shader$_ShaderArgInfo *arg, char const *msg);
+
+// _inCAAAAMyxQ : C++(Shader::ShaderArgInfo &arg, int len) ==> C(Shader *, Shader::ShaderArgInfo *, int)
+extern bool Shader$34$cp_errchk_parameter_words(Shader *self, Shader$_ShaderArgInfo *arg, int len);
+
+// _inCAAAAZ4oC : C++(Shader::ShaderArgInfo &arg) ==> C(Shader *, Shader::ShaderArgInfo *)
+extern bool Shader$35$cp_errchk_parameter_in(Shader *self, Shader$_ShaderArgInfo *arg);
+
+// _inCAAAAGDAc : C++(Shader::ShaderArgInfo &p) ==> C(Shader *, Shader::ShaderArgInfo *)
+extern bool Shader$36$cp_errchk_parameter_ptr(Shader *self, Shader$_ShaderArgInfo *p);
+
+// _inCAAAAa7LC : C++(Shader::ShaderArgInfo &arg) ==> C(Shader *, Shader::ShaderArgInfo *)
+extern bool Shader$37$cp_errchk_parameter_varying(Shader *self, Shader$_ShaderArgInfo *arg);
+
+// _inCAAAA7Yog : C++(Shader::ShaderArgInfo &arg) ==> C(Shader *, Shader::ShaderArgInfo *)
+extern bool Shader$38$cp_errchk_parameter_uniform(Shader *self, Shader$_ShaderArgInfo *arg);
+
+// _inCAAAA7ghf : C++(Shader::ShaderArgInfo &arg, int lo, int hi) ==> C(Shader *, Shader::ShaderArgInfo *, int, int)
+extern bool Shader$39$cp_errchk_parameter_float(Shader *self, Shader$_ShaderArgInfo *arg, int lo, int hi);
+
+// _inCAAAAuAr2 : C++(Shader::ShaderArgInfo &arg) ==> C(Shader *, Shader::ShaderArgInfo *)
+extern bool Shader$40$cp_errchk_parameter_sampler(Shader *self, Shader$_ShaderArgInfo *arg);
+
+// _inCAAAA9iLT : C++(Shader::ShaderMatInput inp) ==> C(Shader *, Shader::ShaderMatInput)
+extern int Shader$41$cp_dependency(Shader *self, Shader$_ShaderMatInput inp);
+
+// _inCAAAAv4FE : C++(Shader::ShaderMatSpec &spec) ==> C(Shader *, Shader::ShaderMatSpec *)
+extern void Shader$42$cp_optimize_mat_spec(Shader *self, Shader$_ShaderMatSpec *spec);
+
+// _inCAAAA4XWy : C++() ==> C(Shader *)
+extern void Shader$43$clear_parameters(Shader *self);
+
+// _inCAAAAAbvN : C++(unsigned int format, char const *data, std::size_t length) ==> C(Shader *, unsigned int, char const *, std::size_t)
+extern void Shader$44$set_compiled(Shader *self, unsigned int format, char const *data, std$_size_t length);
+
+// _inCAAAAdah5 : C++(Shader::ShaderCaps const &caps) ==> C(Shader::ShaderCaps const *)
+extern void Shader$45$set_default_caps(Shader$_ShaderCaps const *caps);
+
+// _inCAAAAkWbw : C++() ==> C(Shader const *)
+extern char ** Shader$46$get_ptr_spec(Shader const *self);
+
+// _inCAAAATBpj : C++() ==> C(Shader const *)
+extern char ** Shader$47$get_mat_spec(Shader const *self);
+
+// _inCAAAAXTbU : C++() ==> C(Shader const *)
+extern char ** Shader$48$get_tex_spec(Shader const *self);
+
+// _inCAAAACqlC : C++() ==> C(Shader const *)
+extern char ** Shader$49$get_var_spec(Shader const *self);
+
+// _inCAAAAaDIx : C++() ==> C(Shader const *)
+extern int Shader$50$get_mat_deps(Shader const *self);
+
+// _inCAAAApCin : C++(int value) ==> C(Shader *, int)
+extern void Shader$51$set_mat_deps(Shader *self, int value);
+
+// _inCAAAAqxty : C++(bool value) ==> C(Shader *, bool)
+extern void Shader$52$set_error_flag(Shader *self, bool value);
+
+// _inCAAAAADEx : C++(int index, Shader::ShaderType type) ==> C(Shader const *, int, Shader::ShaderType)
+extern Filename * Shader$53$get_filename_from_index(Shader const *self, int index, Shader$_ShaderType type);
+
+// _inCAAAAuCQ1 : C++() ==> C()
+extern void Shader$54$register_with_read_factory(void);
+
+// _inCAAAAQmAK : C++(BamWriter *manager, Datagram &dg) ==> C(Shader *, BamWriter *, Datagram *)
+extern void Shader$55$write_datagram(Shader *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAshVA : C++() ==> C()
+extern int Shader$56$get_class_type(void);
+
+// _inCAAAAtdID : C++() ==> C()
+extern void Shader$57$init_type(void);
+
+// _inCAAAAKK43 : C++() ==> C(Shader const *)
+extern int Shader$58$get_type(Shader const *self);
+
+// _inCAAAA4qkG : C++() ==> C(Shader *)
+extern int Shader$59$force_init_type(Shader *self);
+
+// _inCAAAAGVBG : C++(Shader const &) ==> C(Shader const *)
+extern Shader * Shader$60$Shader(Shader const *arg0);
+
+
+// ShaderInput
+
+// _inCAAAAB963 : C++() ==> C()
+extern ShaderInput const * ShaderInput$1$get_blank(void);
+
+// _inCAAAAztM0 : C++() ==> C()
+extern ShaderInput * ShaderInput$2$ShaderInput(void);
+
+// _inCAAAAY1Pn : C++(CPT_InternalName name, LMatrix3d const &mat, int priority) ==> C(CPT_InternalName *, LMatrix3d const *, int)
+extern ShaderInput * ShaderInput$3$ShaderInput(CPT_InternalName *name, LMatrix3d const *mat, int priority);
+
+// _inCAAAAOpxG : C++(CPT_InternalName name, LMatrix3d const &mat) ==> C(CPT_InternalName *, LMatrix3d const *)
+extern ShaderInput * ShaderInput$4$ShaderInput(CPT_InternalName *name, LMatrix3d const *mat);
+
+// _inCAAAA01_I : C++(CPT_InternalName name, LMatrix3f const &mat, int priority) ==> C(CPT_InternalName *, LMatrix3f const *, int)
+extern ShaderInput * ShaderInput$5$ShaderInput(CPT_InternalName *name, LMatrix3f const *mat, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$5$ShaderInput
+
+// _inCAAAAdpho : C++(CPT_InternalName name, LMatrix3f const &mat) ==> C(CPT_InternalName *, LMatrix3f const *)
+extern ShaderInput * ShaderInput$6$ShaderInput(CPT_InternalName *name, LMatrix3f const *mat);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$6$ShaderInput
+
+// _inCAAAAYFw6 : C++(CPT_InternalName name, LMatrix4d const &mat, int priority) ==> C(CPT_InternalName *, LMatrix4d const *, int)
+extern ShaderInput * ShaderInput$7$ShaderInput(CPT_InternalName *name, LMatrix4d const *mat, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$7$ShaderInput
+
+// _inCAAAAOZTa : C++(CPT_InternalName name, LMatrix4d const &mat) ==> C(CPT_InternalName *, LMatrix4d const *)
+extern ShaderInput * ShaderInput$8$ShaderInput(CPT_InternalName *name, LMatrix4d const *mat);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$8$ShaderInput
+
+// _inCAAAA0Fgc : C++(CPT_InternalName name, LMatrix4f const &mat, int priority) ==> C(CPT_InternalName *, LMatrix4f const *, int)
+extern ShaderInput * ShaderInput$9$ShaderInput(CPT_InternalName *name, LMatrix4f const *mat, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$9$ShaderInput
+
+// _inCAAAAdZD8 : C++(CPT_InternalName name, LMatrix4f const &mat) ==> C(CPT_InternalName *, LMatrix4f const *)
+extern ShaderInput * ShaderInput$10$ShaderInput(CPT_InternalName *name, LMatrix4f const *mat);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$10$ShaderInput
+
+// _inCAAAAeq8X : C++(CPT_InternalName name, LVecBase2d const &vec, int priority) ==> C(CPT_InternalName *, LVecBase2d const *, int)
+extern ShaderInput * ShaderInput$11$ShaderInput(CPT_InternalName *name, LVecBase2d const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$11$ShaderInput
+
+// _inCAAAAu8JI : C++(CPT_InternalName name, LVecBase2d const &vec) ==> C(CPT_InternalName *, LVecBase2d const *)
+extern ShaderInput * ShaderInput$12$ShaderInput(CPT_InternalName *name, LVecBase2d const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$12$ShaderInput
+
+// _inCAAAAgn9P : C++(CPT_InternalName name, LVecBase2f const &vec, int priority) ==> C(CPT_InternalName *, LVecBase2f const *, int)
+extern ShaderInput * ShaderInput$13$ShaderInput(CPT_InternalName *name, LVecBase2f const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$13$ShaderInput
+
+// _inCAAAAZ2JA : C++(CPT_InternalName name, LVecBase2f const &vec) ==> C(CPT_InternalName *, LVecBase2f const *)
+extern ShaderInput * ShaderInput$14$ShaderInput(CPT_InternalName *name, LVecBase2f const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$14$ShaderInput
+
+// _inCAAAAL09j : C++(CPT_InternalName name, LVecBase2i const &vec, int priority) ==> C(CPT_InternalName *, LVecBase2i const *, int)
+extern ShaderInput * ShaderInput$15$ShaderInput(CPT_InternalName *name, LVecBase2i const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$15$ShaderInput
+
+// _inCAAAAwkJU : C++(CPT_InternalName name, LVecBase2i const &vec) ==> C(CPT_InternalName *, LVecBase2i const *)
+extern ShaderInput * ShaderInput$16$ShaderInput(CPT_InternalName *name, LVecBase2i const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$16$ShaderInput
+
+// _inCAAAAAq0I : C++(CPT_InternalName name, LVecBase3d const &vec, int priority) ==> C(CPT_InternalName *, LVecBase3d const *, int)
+extern ShaderInput * ShaderInput$17$ShaderInput(CPT_InternalName *name, LVecBase3d const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$17$ShaderInput
+
+// _inCAAAAh8B5 : C++(CPT_InternalName name, LVecBase3d const &vec) ==> C(CPT_InternalName *, LVecBase3d const *)
+extern ShaderInput * ShaderInput$18$ShaderInput(CPT_InternalName *name, LVecBase3d const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$18$ShaderInput
+
+// _inCAAAAqn1A : C++(CPT_InternalName name, LVecBase3f const &vec, int priority) ==> C(CPT_InternalName *, LVecBase3f const *, int)
+extern ShaderInput * ShaderInput$19$ShaderInput(CPT_InternalName *name, LVecBase3f const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$19$ShaderInput
+
+// _inCAAAAQ2Bx : C++(CPT_InternalName name, LVecBase3f const &vec) ==> C(CPT_InternalName *, LVecBase3f const *)
+extern ShaderInput * ShaderInput$20$ShaderInput(CPT_InternalName *name, LVecBase3f const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$20$ShaderInput
+
+// _inCAAAA901U : C++(CPT_InternalName name, LVecBase3i const &vec, int priority) ==> C(CPT_InternalName *, LVecBase3i const *, int)
+extern ShaderInput * ShaderInput$21$ShaderInput(CPT_InternalName *name, LVecBase3i const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$21$ShaderInput
+
+// _inCAAAAKnBF : C++(CPT_InternalName name, LVecBase3i const &vec) ==> C(CPT_InternalName *, LVecBase3i const *)
+extern ShaderInput * ShaderInput$22$ShaderInput(CPT_InternalName *name, LVecBase3i const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$22$ShaderInput
+
+// _inCAAAALqs5 : C++(CPT_InternalName name, LVecBase4d const &vec, int priority) ==> C(CPT_InternalName *, LVecBase4d const *, int)
+extern ShaderInput * ShaderInput$23$ShaderInput(CPT_InternalName *name, LVecBase4d const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$23$ShaderInput
+
+// _inCAAAA785p : C++(CPT_InternalName name, LVecBase4d const &vec) ==> C(CPT_InternalName *, LVecBase4d const *)
+extern ShaderInput * ShaderInput$24$ShaderInput(CPT_InternalName *name, LVecBase4d const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$24$ShaderInput
+
+// _inCAAAAdmtx : C++(CPT_InternalName name, LVecBase4f const &vec, int priority) ==> C(CPT_InternalName *, LVecBase4f const *, int)
+extern ShaderInput * ShaderInput$25$ShaderInput(CPT_InternalName *name, LVecBase4f const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$25$ShaderInput
+
+// _inCAAAAq25h : C++(CPT_InternalName name, LVecBase4f const &vec) ==> C(CPT_InternalName *, LVecBase4f const *)
+extern ShaderInput * ShaderInput$26$ShaderInput(CPT_InternalName *name, LVecBase4f const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$26$ShaderInput
+
+// _inCAAAAn0tF : C++(CPT_InternalName name, LVecBase4i const &vec, int priority) ==> C(CPT_InternalName *, LVecBase4i const *, int)
+extern ShaderInput * ShaderInput$27$ShaderInput(CPT_InternalName *name, LVecBase4i const *vec, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$27$ShaderInput
+
+// _inCAAAAdn51 : C++(CPT_InternalName name, LVecBase4i const &vec) ==> C(CPT_InternalName *, LVecBase4i const *)
+extern ShaderInput * ShaderInput$28$ShaderInput(CPT_InternalName *name, LVecBase4i const *vec);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$28$ShaderInput
+
+// _inCAAAAOXkD : C++(CPT_InternalName name, NodePath const &np, int priority) ==> C(CPT_InternalName *, NodePath const *, int)
+extern ShaderInput * ShaderInput$29$ShaderInput(CPT_InternalName *name, NodePath const *np, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$29$ShaderInput
+
+// _inCAAAADWjM : C++(CPT_InternalName name, NodePath const &np) ==> C(CPT_InternalName *, NodePath const *)
+extern ShaderInput * ShaderInput$30$ShaderInput(CPT_InternalName *name, NodePath const *np);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$30$ShaderInput
+
+// _inCAAAAA_YI : C++(CPT_InternalName name, PTA_LMatrix3d const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LMatrix3d const *, int)
+extern ShaderInput * ShaderInput$31$ShaderInput(CPT_InternalName *name, PTA_LMatrix3d const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$31$ShaderInput
+
+// _inCAAAATOWa : C++(CPT_InternalName name, PTA_LMatrix3d const &ptr) ==> C(CPT_InternalName *, PTA_LMatrix3d const *)
+extern ShaderInput * ShaderInput$32$ShaderInput(CPT_InternalName *name, PTA_LMatrix3d const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$32$ShaderInput
+
+// _inCAAAAD_fW : C++(CPT_InternalName name, PTA_LMatrix3f const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LMatrix3f const *, int)
+extern ShaderInput * ShaderInput$33$ShaderInput(CPT_InternalName *name, PTA_LMatrix3f const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$33$ShaderInput
+
+// _inCAAAASOfo : C++(CPT_InternalName name, PTA_LMatrix3f const &ptr) ==> C(CPT_InternalName *, PTA_LMatrix3f const *)
+extern ShaderInput * ShaderInput$34$ShaderInput(CPT_InternalName *name, PTA_LMatrix3f const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$34$ShaderInput
+
+// _inCAAAAAnmJ : C++(CPT_InternalName name, PTA_LMatrix4d const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LMatrix4d const *, int)
+extern ShaderInput * ShaderInput$35$ShaderInput(CPT_InternalName *name, PTA_LMatrix4d const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$35$ShaderInput
+
+// _inCAAAATHkb : C++(CPT_InternalName name, PTA_LMatrix4d const &ptr) ==> C(CPT_InternalName *, PTA_LMatrix4d const *)
+extern ShaderInput * ShaderInput$36$ShaderInput(CPT_InternalName *name, PTA_LMatrix4d const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$36$ShaderInput
+
+// _inCAAAADntX : C++(CPT_InternalName name, PTA_LMatrix4f const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LMatrix4f const *, int)
+extern ShaderInput * ShaderInput$37$ShaderInput(CPT_InternalName *name, PTA_LMatrix4f const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$37$ShaderInput
+
+// _inCAAAASHtp : C++(CPT_InternalName name, PTA_LMatrix4f const &ptr) ==> C(CPT_InternalName *, PTA_LMatrix4f const *)
+extern ShaderInput * ShaderInput$38$ShaderInput(CPT_InternalName *name, PTA_LMatrix4f const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$38$ShaderInput
+
+// _inCAAAAIHaj : C++(CPT_InternalName name, PTA_LVecBase2d const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase2d const *, int)
+extern ShaderInput * ShaderInput$39$ShaderInput(CPT_InternalName *name, PTA_LVecBase2d const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$39$ShaderInput
+
+// _inCAAAAVNci : C++(CPT_InternalName name, PTA_LVecBase2d const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase2d const *)
+extern ShaderInput * ShaderInput$40$ShaderInput(CPT_InternalName *name, PTA_LVecBase2d const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$40$ShaderInput
+
+// _inCAAAAxA6m : C++(CPT_InternalName name, PTA_LVecBase2f const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase2f const *, int)
+extern ShaderInput * ShaderInput$41$ShaderInput(CPT_InternalName *name, PTA_LVecBase2f const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$41$ShaderInput
+
+// _inCAAAAyN8l : C++(CPT_InternalName name, PTA_LVecBase2f const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase2f const *)
+extern ShaderInput * ShaderInput$42$ShaderInput(CPT_InternalName *name, PTA_LVecBase2f const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$42$ShaderInput
+
+// _inCAAAAuBKM : C++(CPT_InternalName name, PTA_LVecBase2i const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase2i const *, int)
+extern ShaderInput * ShaderInput$43$ShaderInput(CPT_InternalName *name, PTA_LVecBase2i const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$43$ShaderInput
+
+// _inCAAAA3MML : C++(CPT_InternalName name, PTA_LVecBase2i const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase2i const *)
+extern ShaderInput * ShaderInput$44$ShaderInput(CPT_InternalName *name, PTA_LVecBase2i const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$44$ShaderInput
+
+// _inCAAAAPndK : C++(CPT_InternalName name, PTA_LVecBase3d const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase3d const *, int)
+extern ShaderInput * ShaderInput$45$ShaderInput(CPT_InternalName *name, PTA_LVecBase3d const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$45$ShaderInput
+
+// _inCAAAAUtgJ : C++(CPT_InternalName name, PTA_LVecBase3d const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase3d const *)
+extern ShaderInput * ShaderInput$46$ShaderInput(CPT_InternalName *name, PTA_LVecBase3d const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$46$ShaderInput
+
+// _inCAAAAwg9N : C++(CPT_InternalName name, PTA_LVecBase3f const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase3f const *, int)
+extern ShaderInput * ShaderInput$47$ShaderInput(CPT_InternalName *name, PTA_LVecBase3f const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$47$ShaderInput
+
+// _inCAAAAttAN : C++(CPT_InternalName name, PTA_LVecBase3f const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase3f const *)
+extern ShaderInput * ShaderInput$48$ShaderInput(CPT_InternalName *name, PTA_LVecBase3f const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$48$ShaderInput
+
+// _inCAAAAuhNz : C++(CPT_InternalName name, PTA_LVecBase3i const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase3i const *, int)
+extern ShaderInput * ShaderInput$49$ShaderInput(CPT_InternalName *name, PTA_LVecBase3i const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$49$ShaderInput
+
+// _inCAAAA3sQy : C++(CPT_InternalName name, PTA_LVecBase3i const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase3i const *)
+extern ShaderInput * ShaderInput$50$ShaderInput(CPT_InternalName *name, PTA_LVecBase3i const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$50$ShaderInput
+
+// _inCAAAAPHhx : C++(CPT_InternalName name, PTA_LVecBase4d const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase4d const *, int)
+extern ShaderInput * ShaderInput$51$ShaderInput(CPT_InternalName *name, PTA_LVecBase4d const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$51$ShaderInput
+
+// _inCAAAAUNjw : C++(CPT_InternalName name, PTA_LVecBase4d const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase4d const *)
+extern ShaderInput * ShaderInput$52$ShaderInput(CPT_InternalName *name, PTA_LVecBase4d const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$52$ShaderInput
+
+// _inCAAAAwAB1 : C++(CPT_InternalName name, PTA_LVecBase4f const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase4f const *, int)
+extern ShaderInput * ShaderInput$53$ShaderInput(CPT_InternalName *name, PTA_LVecBase4f const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$53$ShaderInput
+
+// _inCAAAAtND0 : C++(CPT_InternalName name, PTA_LVecBase4f const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase4f const *)
+extern ShaderInput * ShaderInput$54$ShaderInput(CPT_InternalName *name, PTA_LVecBase4f const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$54$ShaderInput
+
+// _inCAAAAtBRa : C++(CPT_InternalName name, PTA_LVecBase4i const &ptr, int priority) ==> C(CPT_InternalName *, PTA_LVecBase4i const *, int)
+extern ShaderInput * ShaderInput$55$ShaderInput(CPT_InternalName *name, PTA_LVecBase4i const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$55$ShaderInput
+
+// _inCAAAA2MTZ : C++(CPT_InternalName name, PTA_LVecBase4i const &ptr) ==> C(CPT_InternalName *, PTA_LVecBase4i const *)
+extern ShaderInput * ShaderInput$56$ShaderInput(CPT_InternalName *name, PTA_LVecBase4i const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$56$ShaderInput
+
+// _inCAAAA9r0n : C++(CPT_InternalName name, PTA_double const &ptr, int priority) ==> C(CPT_InternalName *, PTA_double const *, int)
+extern ShaderInput * ShaderInput$57$ShaderInput(CPT_InternalName *name, PTA_double const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$57$ShaderInput
+
+// _inCAAAAUTBY : C++(CPT_InternalName name, PTA_double const &ptr) ==> C(CPT_InternalName *, PTA_double const *)
+extern ShaderInput * ShaderInput$58$ShaderInput(CPT_InternalName *name, PTA_double const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$58$ShaderInput
+
+// _inCAAAARcny : C++(CPT_InternalName name, PTA_float const &ptr, int priority) ==> C(CPT_InternalName *, PTA_float const *, int)
+extern ShaderInput * ShaderInput$59$ShaderInput(CPT_InternalName *name, PTA_float const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$59$ShaderInput
+
+// _inCAAAAt_IS : C++(CPT_InternalName name, PTA_float const &ptr) ==> C(CPT_InternalName *, PTA_float const *)
+extern ShaderInput * ShaderInput$60$ShaderInput(CPT_InternalName *name, PTA_float const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$60$ShaderInput
+
+// _inCAAAAAe29 : C++(CPT_InternalName name, PTA_int const &ptr, int priority) ==> C(CPT_InternalName *, PTA_int const *, int)
+extern ShaderInput * ShaderInput$61$ShaderInput(CPT_InternalName *name, PTA_int const *ptr, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$61$ShaderInput
+
+// _inCAAAAvhIY : C++(CPT_InternalName name, PTA_int const &ptr) ==> C(CPT_InternalName *, PTA_int const *)
+extern ShaderInput * ShaderInput$62$ShaderInput(CPT_InternalName *name, PTA_int const *ptr);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$62$ShaderInput
+
+// _inCAAAApkKH : C++(CPT_InternalName name, ParamValueBase *param, int priority) ==> C(CPT_InternalName *, ParamValueBase *, int)
+extern ShaderInput * ShaderInput$63$ShaderInput(CPT_InternalName *name, ParamValueBase *arg, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$63$ShaderInput
+
+// _inCAAAAvifS : C++(CPT_InternalName name, ParamValueBase *param) ==> C(CPT_InternalName *, ParamValueBase *)
+extern ShaderInput * ShaderInput$64$ShaderInput(CPT_InternalName *name, ParamValueBase *arg);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$64$ShaderInput
+
+// _inCAAAAfiMb : C++(CPT_InternalName name, ShaderBuffer *buf, int priority) ==> C(CPT_InternalName *, ShaderBuffer *, int)
+extern ShaderInput * ShaderInput$65$ShaderInput(CPT_InternalName *name, ShaderBuffer *buf, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$65$ShaderInput
+
+// _inCAAAAvxOa : C++(CPT_InternalName name, ShaderBuffer *buf) ==> C(CPT_InternalName *, ShaderBuffer *)
+extern ShaderInput * ShaderInput$66$ShaderInput(CPT_InternalName *name, ShaderBuffer *buf);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$66$ShaderInput
+
+// _inCAAAAt_9V : C++(CPT_InternalName name, Texture *tex, SamplerState const &sampler, int priority) ==> C(CPT_InternalName *, Texture *, SamplerState const *, int)
+extern ShaderInput * ShaderInput$67$ShaderInput(CPT_InternalName *name, Texture *tex, SamplerState const *sampler, int priority);
+
+// _inCAAAA5L3d : C++(CPT_InternalName name, Texture *tex, SamplerState const &sampler) ==> C(CPT_InternalName *, Texture *, SamplerState const *)
+extern ShaderInput * ShaderInput$68$ShaderInput(CPT_InternalName *name, Texture *tex, SamplerState const *sampler);
+
+// _inCAAAACjuN : C++(CPT_InternalName name, Texture *tex, bool read, bool write, int z, int n, int priority) ==> C(CPT_InternalName *, Texture *, bool, bool, int, int, int)
+extern ShaderInput * ShaderInput$69$ShaderInput(CPT_InternalName *name, Texture *tex, bool read, bool write, int z, int n, int priority);
+
+// _inCAAAAiQBo : C++(CPT_InternalName name, Texture *tex, bool read, bool write, int z, int n) ==> C(CPT_InternalName *, Texture *, bool, bool, int, int)
+extern ShaderInput * ShaderInput$70$ShaderInput(CPT_InternalName *name, Texture *tex, bool read, bool write, int z, int n);
+
+// _inCAAAATgKV : C++(CPT_InternalName name, Texture *tex, bool read, bool write, int z) ==> C(CPT_InternalName *, Texture *, bool, bool, int)
+extern ShaderInput * ShaderInput$71$ShaderInput(CPT_InternalName *name, Texture *tex, bool read, bool write, int z);
+
+// _inCAAAAI4wr : C++(CPT_InternalName name, Texture *tex, bool read, bool write) ==> C(CPT_InternalName *, Texture *, bool, bool)
+extern ShaderInput * ShaderInput$72$ShaderInput(CPT_InternalName *name, Texture *tex, bool read, bool write);
+
+// _inCAAAA5SAo : C++(CPT_InternalName name, Texture *tex, int priority) ==> C(CPT_InternalName *, Texture *, int)
+extern ShaderInput * ShaderInput$73$ShaderInput(CPT_InternalName *name, Texture *tex, int priority);
+// COLLISION : ShaderInput_C_ctor_p_spi ShaderInput$73$ShaderInput
+
+// _inCAAAAV_gH : C++(CPT_InternalName name, Texture *tex) ==> C(CPT_InternalName *, Texture *)
+extern ShaderInput * ShaderInput$74$ShaderInput(CPT_InternalName *name, Texture *tex);
+// COLLISION : ShaderInput_C_ctor_p_sp ShaderInput$74$ShaderInput
+
+// _inCAAAAZgEj : C++(CPT_InternalName name, int priority) ==> C(CPT_InternalName *, int)
+extern ShaderInput * ShaderInput$75$ShaderInput(CPT_InternalName *name, int priority);
+
+// _inCAAAAvlV1 : C++(CPT_InternalName name) ==> C(CPT_InternalName *)
+extern ShaderInput * ShaderInput$76$ShaderInput(CPT_InternalName *name);
+
+// _inCAAAAZ19K : C++(ShaderInput const &) ==> C(ShaderInput const *)
+extern ShaderInput * ShaderInput$77$ShaderInput(ShaderInput const *arg0);
+
+// _inCAAAA4AHZ : C++(std::size_t hash) ==> C(ShaderInput const *, std::size_t)
+extern std$_size_t ShaderInput$78$add_hash(ShaderInput const *self, std$_size_t hash);
+
+// _inCAAAA72k1 : C++() ==> C(ShaderInput const *)
+extern InternalName const * ShaderInput$79$get_name(ShaderInput const *self);
+
+// _inCAAAA2Nv1 : C++() ==> C(ShaderInput const *)
+extern int ShaderInput$80$get_value_type(ShaderInput const *self);
+
+// _inCAAAAvnas : C++() ==> C(ShaderInput const *)
+extern int ShaderInput$81$get_priority(ShaderInput const *self);
+
+// _inCAAAAXBST : C++() ==> C(ShaderInput const *)
+extern LVecBase4 const * ShaderInput$82$get_vector(ShaderInput const *self);
+
+// _inCAAAAYJVa : C++() ==> C(ShaderInput const *)
+extern Shader$_ShaderPtrData const * ShaderInput$83$get_ptr(ShaderInput const *self);
+
+// _inCAAAAnygk : C++() ==> C(ShaderInput const *)
+extern NodePath * ShaderInput$84$get_nodepath(ShaderInput const *self);
+
+// _inCAAAAB_Q3 : C++() ==> C(ShaderInput const *)
+extern Texture * ShaderInput$85$get_texture(ShaderInput const *self);
+
+// _inCAAAArcIe : C++() ==> C(ShaderInput const *)
+extern SamplerState const * ShaderInput$86$get_sampler(ShaderInput const *self);
+
+// _inCAAAA21Fz : C++() ==> C(ShaderInput const *)
+extern ParamValueBase * ShaderInput$87$get_param(ShaderInput const *self);
+
+// _inCAAAAv8VU : C++() ==> C(ShaderInput const *)
+extern TypedWritableReferenceCount * ShaderInput$88$get_value(ShaderInput const *self);
+
+// _inCAAAAN_ph : C++() ==> C()
+extern void ShaderInput$89$register_with_read_factory(void);
+
+
+// SimpleLruPage
+
+// _inCAAAAR3m1 : C++() ==> C(SimpleLruPage *)
+extern GeomVertexArrayData * SimpleLruPage$1$downcast_to_GeomVertexArrayData(SimpleLruPage *self);
+
 
 // TextEncoder
 
 // _inCAAAAtPjp : C++() ==> C(TextEncoder *)
 extern TextNode * TextEncoder$1$downcast_to_TextNode(TextEncoder *self);
+
+
+// TextFont
+
+// _inCAAAA2Y6t : C++() ==> C(TextFont *)
+extern TypedReferenceCount * TextFont$1$upcast_to_TypedReferenceCount(TextFont *self);
+
+// _inCAAAASvLG : C++() ==> C(TextFont *)
+extern Namable * TextFont$2$upcast_to_Namable(TextFont *self);
+
+// _inCAAAAcT7z : C++() ==> C(TextFont const *)
+extern char ** TextFont$3$make_copy(TextFont const *self);
+
+// _inCAAAA9LaW : C++() ==> C(TextFont const *)
+extern bool TextFont$4$is_valid(TextFont const *self);
+
+// _inCAAAAA_Bt : C++() ==> C(TextFont const *)
+extern PN_stdfloat TextFont$5$get_line_height(TextFont const *self);
+
+// _inCAAAAgzju : C++(PN_stdfloat line_height) ==> C(TextFont *, PN_stdfloat)
+extern void TextFont$6$set_line_height(TextFont *self, PN_stdfloat line_height);
+
+// _inCAAAA1YDr : C++() ==> C(TextFont const *)
+extern PN_stdfloat TextFont$7$get_space_advance(TextFont const *self);
+
+// _inCAAAAkUkK : C++(PN_stdfloat space_advance) ==> C(TextFont *, PN_stdfloat)
+extern void TextFont$8$set_space_advance(TextFont *self, PN_stdfloat space_advance);
+
+// _inCAAAAYGf5 : C++(int character) ==> C(TextFont *, int)
+extern char ** TextFont$9$get_glyph(TextFont *self, int character);
+
+// _inCAAAA6ofC : C++(int character, ConstPointerTo< TextGlyph > &glyph) ==> C(TextFont *, int, ConstPointerTo< TextGlyph > *)
+extern bool TextFont$10$get_glyph(TextFont *self, int character, char **glyph);
+
+// _inCAAAAHKFo : C++(int first, int second) ==> C(TextFont const *, int, int)
+extern PN_stdfloat TextFont$11$get_kerning(TextFont const *self, int first, int second);
+
+// _inCAAAAsubQ : C++(std::ostream &out, int indent_level) ==> C(TextFont const *, std::ostream *, int)
+extern void TextFont$12$write(TextFont const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAmMeH : C++() ==> C(TextFont const *)
+extern PN_stdfloat TextFont$13$get_total_poly_margin(TextFont const *self);
+
+// _inCAAAAJvat : C++() ==> C(TextFont *)
+extern TextGlyph * TextFont$14$get_invalid_glyph(TextFont *self);
+
+// _inCAAAAoxTQ : C++(std::string const &string) ==> C(char const *)
+extern TextFont$_RenderMode TextFont$15$string_render_mode(char const *string);
+
+// _inCAAAA_pT1 : C++() ==> C()
+extern int TextFont$16$get_class_type(void);
+
+// _inCAAAAjcyT : C++() ==> C()
+extern void TextFont$17$init_type(void);
+
+// _inCAAAA_1Wc : C++() ==> C(TextFont const *)
+extern int TextFont$18$get_type(TextFont const *self);
+
+// _inCAAAAUshR : C++() ==> C(TextFont *)
+extern int TextFont$19$force_init_type(TextFont *self);
 
 
 // TextNode
@@ -7495,10 +10424,10 @@ extern PN_stdfloat TextNode$90$calc_width(TextNode const *self, char const *line
 
 // _inCAAAAAkYO : C++(std::wstring const &line) ==> C(TextNode const *, wchar_t const *)
 extern PN_stdfloat TextNode$91$calc_width(TextNode const *self, wchar_t const *line);
+// COLLISION : TextNode_C_calc_width_f_ps TextNode$91$calc_width
 
 // _inCAAAAYwcF : C++(wchar_t character) ==> C(TextNode const *, wchar_t)
 extern PN_stdfloat TextNode$92$calc_width(TextNode const *self, wchar_t character);
-// COLLISION : TextNode_C_calc_width_f_pp TextNode$92$calc_width
 
 // _inCAAAAB1x6 : C++(wchar_t character) ==> C(TextNode const *, wchar_t)
 extern bool TextNode$93$has_exact_character(TextNode const *self, wchar_t character);
@@ -7666,6 +10595,933 @@ extern int TextNode$145$force_init_type(TextNode *self);
 extern TextNode * TextProperties$1$downcast_to_TextNode(TextProperties *self);
 
 
+// Texture
+
+// _inCAAAAYako : C++() ==> C(Texture *)
+extern TypedWritableReferenceCount * Texture$1$upcast_to_TypedWritableReferenceCount(Texture *self);
+
+// _inCAAAAOTYU : C++() ==> C(Texture *)
+extern Namable * Texture$2$upcast_to_Namable(Texture *self);
+
+// _inCAAAAvZj1 : C++(std::string const &name) ==> C(char const *)
+extern Texture * Texture$3$Texture(char const *name);
+
+// _inCAAAAN0nZ : C++() ==> C()
+extern Texture * Texture$4$Texture(void);
+
+// _inCAAAAdxyB : C++() ==> C(Texture const *)
+extern char ** Texture$5$make_copy(Texture const *self);
+
+// _inCAAAAadfr : C++() ==> C(Texture *)
+extern void Texture$6$clear(Texture *self);
+
+// _inCAAAAkdtv : C++(Texture::TextureType texture_type, int x_size, int y_size, int z_size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, Texture::TextureType, int, int, int, Texture::ComponentType, Texture::Format)
+extern void Texture$7$setup_texture(Texture *self, Texture$_TextureType texture_type, int x_size, int y_size, int z_size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAA3hn1 : C++() ==> C(Texture *)
+extern void Texture$8$setup_1d_texture(Texture *self);
+
+// _inCAAAAVMou : C++(int x_size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, Texture::ComponentType, Texture::Format)
+extern void Texture$9$setup_1d_texture(Texture *self, int x_size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAA_Wx1 : C++() ==> C(Texture *)
+extern void Texture$10$setup_2d_texture(Texture *self);
+
+// _inCAAAAHAEk : C++(int x_size, int y_size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, int, Texture::ComponentType, Texture::Format)
+extern void Texture$11$setup_2d_texture(Texture *self, int x_size, int y_size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAA31mJ : C++(int z_size) ==> C(Texture *, int)
+extern void Texture$12$setup_3d_texture(Texture *self, int z_size);
+
+// _inCAAAAnH71 : C++() ==> C(Texture *)
+extern void Texture$13$setup_3d_texture(Texture *self);
+
+// _inCAAAAlbzO : C++(int x_size, int y_size, int z_size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, int, int, Texture::ComponentType, Texture::Format)
+extern void Texture$14$setup_3d_texture(Texture *self, int x_size, int y_size, int z_size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAArJje : C++() ==> C(Texture *)
+extern void Texture$15$setup_cube_map(Texture *self);
+
+// _inCAAAAIwnH : C++(int size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, Texture::ComponentType, Texture::Format)
+extern void Texture$16$setup_cube_map(Texture *self, int size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAADjNf : C++(int z_size) ==> C(Texture *, int)
+extern void Texture$17$setup_2d_texture_array(Texture *self, int z_size);
+
+// _inCAAAAOrCy : C++() ==> C(Texture *)
+extern void Texture$18$setup_2d_texture_array(Texture *self);
+
+// _inCAAAA9eC1 : C++(int x_size, int y_size, int z_size, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, int, int, Texture::ComponentType, Texture::Format)
+extern void Texture$19$setup_2d_texture_array(Texture *self, int x_size, int y_size, int z_size, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAAz_Hn : C++(int num_cube_maps) ==> C(Texture *, int)
+extern void Texture$20$setup_cube_map_array(Texture *self, int num_cube_maps);
+
+// _inCAAAAqtoM : C++(int size, int num_cube_maps, Texture::ComponentType component_type, Texture::Format format) ==> C(Texture *, int, int, Texture::ComponentType, Texture::Format)
+extern void Texture$21$setup_cube_map_array(Texture *self, int size, int num_cube_maps, Texture$_ComponentType component_type, Texture$_Format format);
+
+// _inCAAAAsKbW : C++(int size, Texture::ComponentType component_type, Texture::Format format, GeomEnums::UsageHint usage) ==> C(Texture *, int, Texture::ComponentType, Texture::Format, GeomEnums::UsageHint)
+extern void Texture$22$setup_buffer_texture(Texture *self, int size, Texture$_ComponentType component_type, Texture$_Format format, GeomEnums$_UsageHint usage);
+
+// _inCAAAAAcPV : C++(int size) ==> C(Texture *, int)
+extern void Texture$23$generate_normalization_cube_map(Texture *self, int size);
+
+// _inCAAAA8Ql8 : C++() ==> C(Texture *)
+extern void Texture$24$generate_alpha_scale_map(Texture *self);
+
+// _inCAAAAeNUZ : C++() ==> C(Texture *)
+extern void Texture$25$clear_image(Texture *self);
+
+// _inCAAAARoSP : C++() ==> C(Texture const *)
+extern bool Texture$26$has_clear_color(Texture const *self);
+
+// _inCAAAAZzAa : C++() ==> C(Texture const *)
+extern LColor * Texture$27$get_clear_color(Texture const *self);
+
+// _inCAAAAp1F_ : C++(LColor const &color) ==> C(Texture *, LColor const *)
+extern void Texture$28$set_clear_color(Texture *self, LColor const *color);
+
+// _inCAAAAkh5K : C++() ==> C(Texture *)
+extern void Texture$29$clear_clear_color(Texture *self);
+
+// _inCAAAAj1I2 : C++() ==> C(Texture const *)
+extern vector_uchar Texture$30$get_clear_data(Texture const *self);
+
+// _inCAAAAK0KH : C++(Filename const &fullpath, Filename const &alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, LoaderOptions const &options) ==> C(Texture *, Filename const *, Filename const *, int, int, LoaderOptions const *)
+extern bool Texture$31$read(Texture *self, Filename const *fullpath, Filename const *alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, LoaderOptions const *options);
+
+// _inCAAAAoATv : C++(Filename const &fullpath, Filename const &alpha_fullpath, int primary_file_num_channels, int alpha_file_channel) ==> C(Texture *, Filename const *, Filename const *, int, int)
+extern bool Texture$32$read(Texture *self, Filename const *fullpath, Filename const *alpha_fullpath, int primary_file_num_channels, int alpha_file_channel);
+
+// _inCAAAAWYJ9 : C++(Filename const &fullpath, Filename const &alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps, BamCacheRecord *record, LoaderOptions const &options) ==> C(Texture *, Filename const *, Filename const *, int, int, int, int, bool, bool, BamCacheRecord *, LoaderOptions const *)
+extern bool Texture$33$read(Texture *self, Filename const *fullpath, Filename const *alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps, BamCacheRecord *record, LoaderOptions const *options);
+
+// _inCAAAAnxxV : C++(Filename const &fullpath, Filename const &alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps, BamCacheRecord *record) ==> C(Texture *, Filename const *, Filename const *, int, int, int, int, bool, bool, BamCacheRecord *)
+extern bool Texture$34$read(Texture *self, Filename const *fullpath, Filename const *alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps, BamCacheRecord *record);
+
+// _inCAAAAf347 : C++(Filename const &fullpath, Filename const &alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps) ==> C(Texture *, Filename const *, Filename const *, int, int, int, int, bool, bool)
+extern bool Texture$35$read(Texture *self, Filename const *fullpath, Filename const *alpha_fullpath, int primary_file_num_channels, int alpha_file_channel, int z, int n, bool read_pages, bool read_mipmaps);
+
+// _inCAAAAgNgF : C++(Filename const &fullpath, LoaderOptions const &options) ==> C(Texture *, Filename const *, LoaderOptions const *)
+extern bool Texture$36$read(Texture *self, Filename const *fullpath, LoaderOptions const *options);
+
+// _inCAAAA3IDU : C++(Filename const &fullpath) ==> C(Texture *, Filename const *)
+extern bool Texture$37$read(Texture *self, Filename const *fullpath);
+
+// _inCAAAAf1WO : C++(Filename const &fullpath, int z, int n, bool read_pages, bool read_mipmaps, LoaderOptions const &options) ==> C(Texture *, Filename const *, int, int, bool, bool, LoaderOptions const *)
+extern bool Texture$38$read(Texture *self, Filename const *fullpath, int z, int n, bool read_pages, bool read_mipmaps, LoaderOptions const *options);
+
+// _inCAAAA1czw : C++(Filename const &fullpath, int z, int n, bool read_pages, bool read_mipmaps) ==> C(Texture *, Filename const *, int, int, bool, bool)
+extern bool Texture$39$read(Texture *self, Filename const *fullpath, int z, int n, bool read_pages, bool read_mipmaps);
+
+// _inCAAAAHtFt : C++(Filename const &fullpath) ==> C(Texture *, Filename const *)
+extern bool Texture$40$write(Texture *self, Filename const *fullpath);
+
+// _inCAAAAyISG : C++(Filename const &fullpath, int z, int n, bool write_pages, bool write_mipmaps) ==> C(Texture *, Filename const *, int, int, bool, bool)
+extern bool Texture$41$write(Texture *self, Filename const *fullpath, int z, int n, bool write_pages, bool write_mipmaps);
+
+// _inCAAAAOcp4 : C++(std::ostream &out, int indent_level) ==> C(Texture const *, std::ostream *, int)
+extern void Texture$42$write(Texture const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAY7HF : C++(std::istream &in, std::string const &filename) ==> C(Texture *, std::istream *, char const *)
+extern bool Texture$43$read_txo(Texture *self, std$_istream *in, char const *filename);
+
+// _inCAAAAbYGl : C++(std::istream &in) ==> C(Texture *, std::istream *)
+extern bool Texture$44$read_txo(Texture *self, std$_istream *in);
+
+// _inCAAAAj6g6 : C++(std::istream &in, std::string const &filename) ==> C(std::istream *, char const *)
+extern char ** Texture$45$make_from_txo(std$_istream *in, char const *filename);
+
+// _inCAAAApiZ6 : C++(std::istream &in) ==> C(std::istream *)
+extern char ** Texture$46$make_from_txo(std$_istream *in);
+
+// _inCAAAAkzFf : C++(std::ostream &out, std::string const &filename) ==> C(Texture const *, std::ostream *, char const *)
+extern bool Texture$47$write_txo(Texture const *self, std$_ostream *out, char const *filename);
+
+// _inCAAAArfOE : C++(std::ostream &out) ==> C(Texture const *, std::ostream *)
+extern bool Texture$48$write_txo(Texture const *self, std$_ostream *out);
+
+// _inCAAAAXMjz : C++(std::istream &in, std::string const &filename, bool header_only) ==> C(Texture *, std::istream *, char const *, bool)
+extern bool Texture$49$read_dds(Texture *self, std$_istream *in, char const *filename, bool header_only);
+
+// _inCAAAAclhV : C++(std::istream &in, std::string const &filename) ==> C(Texture *, std::istream *, char const *)
+extern bool Texture$50$read_dds(Texture *self, std$_istream *in, char const *filename);
+
+// _inCAAAAfyf1 : C++(std::istream &in) ==> C(Texture *, std::istream *)
+extern bool Texture$51$read_dds(Texture *self, std$_istream *in);
+
+// _inCAAAANAbe : C++(std::istream &in, std::string const &filename, bool header_only) ==> C(Texture *, std::istream *, char const *, bool)
+extern bool Texture$52$read_ktx(Texture *self, std$_istream *in, char const *filename, bool header_only);
+
+// _inCAAAAPLYA : C++(std::istream &in, std::string const &filename) ==> C(Texture *, std::istream *, char const *)
+extern bool Texture$53$read_ktx(Texture *self, std$_istream *in, char const *filename);
+
+// _inCAAAAleXg : C++(std::istream &in) ==> C(Texture *, std::istream *)
+extern bool Texture$54$read_ktx(Texture *self, std$_istream *in);
+
+// _inCAAAA9q5b : C++(PNMImage const &pnmimage, LoaderOptions const &options) ==> C(Texture *, PNMImage const *, LoaderOptions const *)
+extern bool Texture$55$load(Texture *self, PNMImage const *pnmimage, LoaderOptions const *options);
+
+// _inCAAAABHdq : C++(PNMImage const &pnmimage) ==> C(Texture *, PNMImage const *)
+extern bool Texture$56$load(Texture *self, PNMImage const *pnmimage);
+
+// _inCAAAA5L4C : C++(PNMImage const &pnmimage, int z, int n, LoaderOptions const &options) ==> C(Texture *, PNMImage const *, int, int, LoaderOptions const *)
+extern bool Texture$57$load(Texture *self, PNMImage const *pnmimage, int z, int n, LoaderOptions const *options);
+
+// _inCAAAAQG98 : C++(PNMImage const &pnmimage, int z, int n) ==> C(Texture *, PNMImage const *, int, int)
+extern bool Texture$58$load(Texture *self, PNMImage const *pnmimage, int z, int n);
+
+// _inCAAAAu96Y : C++(PfmFile const &pfm, LoaderOptions const &options) ==> C(Texture *, PfmFile const *, LoaderOptions const *)
+extern bool Texture$59$load(Texture *self, PfmFile const *pfm, LoaderOptions const *options);
+// COLLISION : Texture_C_load_B_ppp Texture$59$load
+
+// _inCAAAAtQal : C++(PfmFile const &pfm) ==> C(Texture *, PfmFile const *)
+extern bool Texture$60$load(Texture *self, PfmFile const *pfm);
+// COLLISION : Texture_C_load_B_pp Texture$60$load
+
+// _inCAAAAIkGs : C++(PfmFile const &pfm, int z, int n, LoaderOptions const &options) ==> C(Texture *, PfmFile const *, int, int, LoaderOptions const *)
+extern bool Texture$61$load(Texture *self, PfmFile const *pfm, int z, int n, LoaderOptions const *options);
+// COLLISION : Texture_C_load_B_ppiip Texture$61$load
+
+// _inCAAAAQS_d : C++(PfmFile const &pfm, int z, int n) ==> C(Texture *, PfmFile const *, int, int)
+extern bool Texture$62$load(Texture *self, PfmFile const *pfm, int z, int n);
+// COLLISION : Texture_C_load_B_ppii Texture$62$load
+
+// _inCAAAAPCQl : C++(PNMImage const &pnmimage, int x, int y, int z, int n) ==> C(Texture *, PNMImage const *, int, int, int, int)
+extern bool Texture$63$load_sub_image(Texture *self, PNMImage const *pnmimage, int x, int y, int z, int n);
+
+// _inCAAAAGWD1 : C++(PNMImage const &pnmimage, int x, int y, int z) ==> C(Texture *, PNMImage const *, int, int, int)
+extern bool Texture$64$load_sub_image(Texture *self, PNMImage const *pnmimage, int x, int y, int z);
+
+// _inCAAAAJr78 : C++(PNMImage const &pnmimage, int x, int y) ==> C(Texture *, PNMImage const *, int, int)
+extern bool Texture$65$load_sub_image(Texture *self, PNMImage const *pnmimage, int x, int y);
+
+// _inCAAAAfuOO : C++(PNMImage &pnmimage) ==> C(Texture const *, PNMImage *)
+extern bool Texture$66$store(Texture const *self, PNMImage *pnmimage);
+
+// _inCAAAAGqUB : C++(PNMImage &pnmimage, int z, int n) ==> C(Texture const *, PNMImage *, int, int)
+extern bool Texture$67$store(Texture const *self, PNMImage *pnmimage, int z, int n);
+
+// _inCAAAAYUfX : C++(PfmFile &pfm) ==> C(Texture const *, PfmFile *)
+extern bool Texture$68$store(Texture const *self, PfmFile *pfm);
+// COLLISION : Texture_C_store_B_pp Texture$68$store
+
+// _inCAAAAMVCz : C++(PfmFile &pfm, int z, int n) ==> C(Texture const *, PfmFile *, int, int)
+extern bool Texture$69$store(Texture const *self, PfmFile *pfm, int z, int n);
+// COLLISION : Texture_C_store_B_ppii Texture$69$store
+
+// _inCAAAACVZW : C++() ==> C(Texture *)
+extern bool Texture$70$reload(Texture *self);
+
+// _inCAAAAJ8Qn : C++(InternalName const *suffix) ==> C(Texture const *, InternalName const *)
+extern Texture * Texture$71$load_related(Texture const *self, InternalName const *suffix);
+
+// _inCAAAAW7Cs : C++() ==> C(Texture const *)
+extern bool Texture$72$has_filename(Texture const *self);
+
+// _inCAAAAMiw2 : C++() ==> C(Texture const *)
+extern Filename const * Texture$73$get_filename(Texture const *self);
+
+// _inCAAAAxxu1 : C++(Filename const &filename) ==> C(Texture *, Filename const *)
+extern void Texture$74$set_filename(Texture *self, Filename const *filename);
+
+// _inCAAAA1EJs : C++() ==> C(Texture *)
+extern void Texture$75$clear_filename(Texture *self);
+
+// _inCAAAAc1WY : C++() ==> C(Texture const *)
+extern bool Texture$76$has_alpha_filename(Texture const *self);
+
+// _inCAAAABYEj : C++() ==> C(Texture const *)
+extern Filename const * Texture$77$get_alpha_filename(Texture const *self);
+
+// _inCAAAAm10_ : C++(Filename const &alpha_filename) ==> C(Texture *, Filename const *)
+extern void Texture$78$set_alpha_filename(Texture *self, Filename const *alpha_filename);
+
+// _inCAAAAniFu : C++() ==> C(Texture *)
+extern void Texture$79$clear_alpha_filename(Texture *self);
+
+// _inCAAAAestn : C++() ==> C(Texture const *)
+extern bool Texture$80$has_fullpath(Texture const *self);
+
+// _inCAAAAEHay : C++() ==> C(Texture const *)
+extern Filename const * Texture$81$get_fullpath(Texture const *self);
+
+// _inCAAAAwCYx : C++(Filename const &fullpath) ==> C(Texture *, Filename const *)
+extern void Texture$82$set_fullpath(Texture *self, Filename const *fullpath);
+
+// _inCAAAA_nbF : C++() ==> C(Texture *)
+extern void Texture$83$clear_fullpath(Texture *self);
+
+// _inCAAAAQ97B : C++() ==> C(Texture const *)
+extern bool Texture$84$has_alpha_fullpath(Texture const *self);
+
+// _inCAAAAKSqM : C++() ==> C(Texture const *)
+extern Filename const * Texture$85$get_alpha_fullpath(Texture const *self);
+
+// _inCAAAA66Zo : C++(Filename const &alpha_fullpath) ==> C(Texture *, Filename const *)
+extern void Texture$86$set_alpha_fullpath(Texture *self, Filename const *alpha_fullpath);
+
+// _inCAAAAQc0_ : C++() ==> C(Texture *)
+extern void Texture$87$clear_alpha_fullpath(Texture *self);
+
+// _inCAAAAp9VG : C++() ==> C(Texture const *)
+extern int Texture$88$get_x_size(Texture const *self);
+
+// _inCAAAAzob9 : C++(int x_size) ==> C(Texture *, int)
+extern void Texture$89$set_x_size(Texture *self, int x_size);
+
+// _inCAAAAA91J : C++() ==> C(Texture const *)
+extern int Texture$90$get_y_size(Texture const *self);
+
+// _inCAAAALp7A : C++(int y_size) ==> C(Texture *, int)
+extern void Texture$91$set_y_size(Texture *self, int y_size);
+
+// _inCAAAAf_VN : C++() ==> C(Texture const *)
+extern int Texture$92$get_z_size(Texture const *self);
+
+// _inCAAAAipbE : C++(int z_size) ==> C(Texture *, int)
+extern void Texture$93$set_z_size(Texture *self, int z_size);
+
+// _inCAAAA4jq1 : C++() ==> C(Texture const *)
+extern int Texture$94$get_num_views(Texture const *self);
+
+// _inCAAAAaw4x : C++(int num_views) ==> C(Texture *, int)
+extern void Texture$95$set_num_views(Texture *self, int num_views);
+
+// _inCAAAASk4O : C++() ==> C(Texture const *)
+extern int Texture$96$get_num_pages(Texture const *self);
+
+// _inCAAAAWv_P : C++() ==> C(Texture const *)
+extern int Texture$97$get_num_components(Texture const *self);
+
+// _inCAAAAqXBq : C++() ==> C(Texture const *)
+extern int Texture$98$get_component_width(Texture const *self);
+
+// _inCAAAAvw9T : C++() ==> C(Texture const *)
+extern Texture$_TextureType Texture$99$get_texture_type(Texture const *self);
+
+// _inCAAAAK_Mr : C++() ==> C(Texture const *)
+extern GeomEnums$_UsageHint Texture$100$get_usage_hint(Texture const *self);
+
+// _inCAAAAN7UC : C++() ==> C(Texture const *)
+extern Texture$_Format Texture$101$get_format(Texture const *self);
+
+// _inCAAAAtpDw : C++(Texture::Format format) ==> C(Texture *, Texture::Format)
+extern void Texture$102$set_format(Texture *self, Texture$_Format format);
+
+// _inCAAAArqBI : C++() ==> C(Texture const *)
+extern Texture$_ComponentType Texture$103$get_component_type(Texture const *self);
+
+// _inCAAAAQhrN : C++(Texture::ComponentType component_type) ==> C(Texture *, Texture::ComponentType)
+extern void Texture$104$set_component_type(Texture *self, Texture$_ComponentType component_type);
+
+// _inCAAAADAco : C++() ==> C(Texture const *)
+extern SamplerState$_WrapMode Texture$105$get_wrap_u(Texture const *self);
+
+// _inCAAAAkX83 : C++(Texture::WrapMode wrap) ==> C(Texture *, Texture::WrapMode)
+extern void Texture$106$set_wrap_u(Texture *self, Texture$_WrapMode wrap);
+
+// _inCAAAAVHcv : C++() ==> C(Texture const *)
+extern SamplerState$_WrapMode Texture$107$get_wrap_v(Texture const *self);
+
+// _inCAAAASp8_ : C++(Texture::WrapMode wrap) ==> C(Texture *, Texture::WrapMode)
+extern void Texture$108$set_wrap_v(Texture *self, Texture$_WrapMode wrap);
+
+// _inCAAAAnFc2 : C++() ==> C(Texture const *)
+extern SamplerState$_WrapMode Texture$109$get_wrap_w(Texture const *self);
+
+// _inCAAAABo8F : C++(Texture::WrapMode wrap) ==> C(Texture *, Texture::WrapMode)
+extern void Texture$110$set_wrap_w(Texture *self, Texture$_WrapMode wrap);
+
+// _inCAAAAmseL : C++() ==> C(Texture const *)
+extern SamplerState$_FilterType Texture$111$get_minfilter(Texture const *self);
+
+// _inCAAAA_kUZ : C++() ==> C(Texture const *)
+extern SamplerState$_FilterType Texture$112$get_effective_minfilter(Texture const *self);
+
+// _inCAAAAmEu7 : C++(Texture::FilterType filter) ==> C(Texture *, Texture::FilterType)
+extern void Texture$113$set_minfilter(Texture *self, Texture$_FilterType filter);
+
+// _inCAAAA8eYK : C++() ==> C(Texture const *)
+extern SamplerState$_FilterType Texture$114$get_magfilter(Texture const *self);
+
+// _inCAAAAGq5U : C++() ==> C(Texture const *)
+extern SamplerState$_FilterType Texture$115$get_effective_magfilter(Texture const *self);
+
+// _inCAAAA8Kn6 : C++(Texture::FilterType filter) ==> C(Texture *, Texture::FilterType)
+extern void Texture$116$set_magfilter(Texture *self, Texture$_FilterType filter);
+
+// _inCAAAARCMk : C++() ==> C(Texture const *)
+extern int Texture$117$get_anisotropic_degree(Texture const *self);
+
+// _inCAAAAYHP8 : C++() ==> C(Texture const *)
+extern int Texture$118$get_effective_anisotropic_degree(Texture const *self);
+
+// _inCAAAAGRw3 : C++(int anisotropic_degree) ==> C(Texture *, int)
+extern void Texture$119$set_anisotropic_degree(Texture *self, int anisotropic_degree);
+
+// _inCAAAArLZH : C++() ==> C(Texture const *)
+extern LColor * Texture$120$get_border_color(Texture const *self);
+
+// _inCAAAA_ISI : C++(LColor const &color) ==> C(Texture *, LColor const *)
+extern void Texture$121$set_border_color(Texture *self, LColor const *color);
+
+// _inCAAAAnJ0_ : C++() ==> C(Texture const *)
+extern bool Texture$122$has_compression(Texture const *self);
+
+// _inCAAAAekiK : C++() ==> C(Texture const *)
+extern Texture$_CompressionMode Texture$123$get_compression(Texture const *self);
+
+// _inCAAAAHB8q : C++(Texture::CompressionMode compression) ==> C(Texture *, Texture::CompressionMode)
+extern void Texture$124$set_compression(Texture *self, Texture$_CompressionMode compression);
+
+// _inCAAAAh_qK : C++() ==> C(Texture const *)
+extern bool Texture$125$get_render_to_texture(Texture const *self);
+
+// _inCAAAAGh2R : C++(bool render_to_texture) ==> C(Texture *, bool)
+extern void Texture$126$set_render_to_texture(Texture *self, bool render_to_texture);
+
+// _inCAAAARqDe : C++() ==> C(Texture const *)
+extern SamplerState const * Texture$127$get_default_sampler(Texture const *self);
+
+// _inCAAAA3foe : C++(SamplerState const &sampler) ==> C(Texture *, SamplerState const *)
+extern void Texture$128$set_default_sampler(Texture *self, SamplerState const *sampler);
+
+// _inCAAAAYXSi : C++() ==> C(Texture const *)
+extern bool Texture$129$uses_mipmaps(Texture const *self);
+
+// _inCAAAAr4ct : C++() ==> C(Texture const *)
+extern Texture$_QualityLevel Texture$130$get_quality_level(Texture const *self);
+
+// _inCAAAAycUh : C++() ==> C(Texture const *)
+extern Texture$_QualityLevel Texture$131$get_effective_quality_level(Texture const *self);
+
+// _inCAAAALupG : C++(Texture::QualityLevel quality_level) ==> C(Texture *, Texture::QualityLevel)
+extern void Texture$132$set_quality_level(Texture *self, Texture$_QualityLevel quality_level);
+
+// _inCAAAA9PeO : C++() ==> C(Texture const *)
+extern int Texture$133$get_expected_num_mipmap_levels(Texture const *self);
+
+// _inCAAAA_Vjv : C++(int n) ==> C(Texture const *, int)
+extern int Texture$134$get_expected_mipmap_x_size(Texture const *self, int n);
+
+// _inCAAAAAwmv : C++(int n) ==> C(Texture const *, int)
+extern int Texture$135$get_expected_mipmap_y_size(Texture const *self, int n);
+
+// _inCAAAAScov : C++(int n) ==> C(Texture const *, int)
+extern int Texture$136$get_expected_mipmap_z_size(Texture const *self, int n);
+
+// _inCAAAA6Oji : C++(int n) ==> C(Texture const *, int)
+extern int Texture$137$get_expected_mipmap_num_pages(Texture const *self, int n);
+
+// _inCAAAA6jZY : C++() ==> C(Texture const *)
+extern bool Texture$138$has_ram_image(Texture const *self);
+
+// _inCAAAAFOOW : C++() ==> C(Texture const *)
+extern bool Texture$139$has_uncompressed_ram_image(Texture const *self);
+
+// _inCAAAAbDJE : C++() ==> C(Texture const *)
+extern bool Texture$140$might_have_ram_image(Texture const *self);
+
+// _inCAAAAxRV8 : C++() ==> C(Texture const *)
+extern std$_size_t Texture$141$get_ram_image_size(Texture const *self);
+
+// _inCAAAAUCh5 : C++() ==> C(Texture const *)
+extern std$_size_t Texture$142$get_ram_view_size(Texture const *self);
+
+// _inCAAAAyOvS : C++() ==> C(Texture const *)
+extern std$_size_t Texture$143$get_ram_page_size(Texture const *self);
+
+// _inCAAAAR2lC : C++() ==> C(Texture const *)
+extern std$_size_t Texture$144$get_expected_ram_image_size(Texture const *self);
+
+// _inCAAAACoXN : C++() ==> C(Texture const *)
+extern std$_size_t Texture$145$get_expected_ram_page_size(Texture const *self);
+
+// _inCAAAAptvV : C++() ==> C(Texture *)
+extern CPTA_uchar * Texture$146$get_ram_image(Texture *self);
+
+// _inCAAAAEnmq : C++() ==> C(Texture const *)
+extern Texture$_CompressionMode Texture$147$get_ram_image_compression(Texture const *self);
+
+// _inCAAAAgWYd : C++() ==> C(Texture *)
+extern CPTA_uchar * Texture$148$get_uncompressed_ram_image(Texture *self);
+
+// _inCAAAAnaic : C++(std::string const &requested_format) ==> C(Texture *, char const *)
+extern CPTA_uchar * Texture$149$get_ram_image_as(Texture *self, char const *requested_format);
+
+// _inCAAAA3zLa : C++() ==> C(Texture *)
+extern PTA_uchar * Texture$150$modify_ram_image(Texture *self);
+
+// _inCAAAAODVV : C++() ==> C(Texture *)
+extern PTA_uchar * Texture$151$make_ram_image(Texture *self);
+
+// _inCAAAApFgH : C++() ==> C(Texture *)
+extern void Texture$152$clear_ram_image(Texture *self);
+
+// _inCAAAA_1DJ : C++(bool keep_ram_image) ==> C(Texture *, bool)
+extern void Texture$153$set_keep_ram_image(Texture *self, bool keep_ram_image);
+
+// _inCAAAAprTa : C++() ==> C(Texture const *)
+extern bool Texture$154$get_keep_ram_image(Texture const *self);
+
+// _inCAAAA8zCz : C++() ==> C(Texture const *)
+extern bool Texture$155$is_cacheable(Texture const *self);
+
+// _inCAAAA4X6Q : C++(Texture::CompressionMode compression, Texture::QualityLevel quality_level, GraphicsStateGuardianBase *gsg) ==> C(Texture *, Texture::CompressionMode, Texture::QualityLevel, GraphicsStateGuardianBase *)
+extern bool Texture$156$compress_ram_image(Texture *self, Texture$_CompressionMode compression, Texture$_QualityLevel quality_level, GraphicsStateGuardianBase *gsg);
+
+// _inCAAAAn3DR : C++(Texture::CompressionMode compression, Texture::QualityLevel quality_level) ==> C(Texture *, Texture::CompressionMode, Texture::QualityLevel)
+extern bool Texture$157$compress_ram_image(Texture *self, Texture$_CompressionMode compression, Texture$_QualityLevel quality_level);
+
+// _inCAAAA50a4 : C++(Texture::CompressionMode compression) ==> C(Texture *, Texture::CompressionMode)
+extern bool Texture$158$compress_ram_image(Texture *self, Texture$_CompressionMode compression);
+
+// _inCAAAAHzZo : C++() ==> C(Texture *)
+extern bool Texture$159$compress_ram_image(Texture *self);
+
+// _inCAAAArKga : C++() ==> C(Texture *)
+extern bool Texture$160$uncompress_ram_image(Texture *self);
+
+// _inCAAAAsZCn : C++() ==> C(Texture const *)
+extern int Texture$161$get_num_ram_mipmap_images(Texture const *self);
+
+// _inCAAAAPYfR : C++(int n) ==> C(Texture const *, int)
+extern bool Texture$162$has_ram_mipmap_image(Texture const *self, int n);
+
+// _inCAAAAUZqM : C++() ==> C(Texture const *)
+extern int Texture$163$get_num_loadable_ram_mipmap_images(Texture const *self);
+
+// _inCAAAAuUo_ : C++() ==> C(Texture const *)
+extern bool Texture$164$has_all_ram_mipmap_images(Texture const *self);
+
+// _inCAAAAIt9g : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$165$get_ram_mipmap_image_size(Texture const *self, int n);
+
+// _inCAAAAql85 : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$166$get_ram_mipmap_view_size(Texture const *self, int n);
+
+// _inCAAAArxQs : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$167$get_ram_mipmap_page_size(Texture const *self, int n);
+
+// _inCAAAA18J3 : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$168$get_expected_ram_mipmap_image_size(Texture const *self, int n);
+
+// _inCAAAAKTPS : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$169$get_expected_ram_mipmap_view_size(Texture const *self, int n);
+
+// _inCAAAAmvjI : C++(int n) ==> C(Texture const *, int)
+extern std$_size_t Texture$170$get_expected_ram_mipmap_page_size(Texture const *self, int n);
+
+// _inCAAAAnFOc : C++(int n) ==> C(Texture const *, int)
+extern CPTA_uchar * Texture$171$get_ram_mipmap_image(Texture const *self, int n);
+
+// _inCAAAAT52p : C++(int n) ==> C(Texture const *, int)
+extern void Texture$172$get_ram_mipmap_pointer(Texture const *self, int n);
+
+// _inCAAAAFscn : C++(int n) ==> C(Texture *, int)
+extern PTA_uchar * Texture$173$modify_ram_mipmap_image(Texture *self, int n);
+
+// _inCAAAA0yn2 : C++(int n) ==> C(Texture *, int)
+extern PTA_uchar * Texture$174$make_ram_mipmap_image(Texture *self, int n);
+
+// _inCAAAAolwL : C++(long long int pointer, int n, int page_size) ==> C(Texture *, long long int, int, int)
+extern void Texture$175$set_ram_mipmap_pointer_from_int(Texture *self, long long int pointer, int n, int page_size);
+
+// _inCAAAAOZTm : C++(int n, CPTA_uchar image, std::size_t page_size) ==> C(Texture *, int, CPTA_uchar *, std::size_t)
+extern void Texture$176$set_ram_mipmap_image(Texture *self, int n, CPTA_uchar *image, std$_size_t page_size);
+
+// _inCAAAAY4Mz : C++(int n, CPTA_uchar image) ==> C(Texture *, int, CPTA_uchar *)
+extern void Texture$177$set_ram_mipmap_image(Texture *self, int n, CPTA_uchar *image);
+
+// _inCAAAAYq5x : C++(int n) ==> C(Texture *, int)
+extern void Texture$178$clear_ram_mipmap_image(Texture *self, int n);
+
+// _inCAAAA_KKM : C++() ==> C(Texture *)
+extern void Texture$179$clear_ram_mipmap_images(Texture *self);
+
+// _inCAAAAvPAg : C++() ==> C(Texture *)
+extern void Texture$180$generate_ram_mipmap_images(Texture *self);
+
+// _inCAAAAjKHa : C++() ==> C(Texture const *)
+extern int Texture$181$get_simple_x_size(Texture const *self);
+
+// _inCAAAAzoaa : C++() ==> C(Texture const *)
+extern int Texture$182$get_simple_y_size(Texture const *self);
+
+// _inCAAAAF9NW : C++() ==> C(Texture const *)
+extern bool Texture$183$has_simple_ram_image(Texture const *self);
+
+// _inCAAAAHF_T : C++() ==> C(Texture const *)
+extern std$_size_t Texture$184$get_simple_ram_image_size(Texture const *self);
+
+// _inCAAAAtR6g : C++() ==> C(Texture const *)
+extern CPTA_uchar * Texture$185$get_simple_ram_image(Texture const *self);
+
+// _inCAAAAc_Iv : C++(CPTA_uchar image, int x_size, int y_size) ==> C(Texture *, CPTA_uchar *, int, int)
+extern void Texture$186$set_simple_ram_image(Texture *self, CPTA_uchar *image, int x_size, int y_size);
+
+// _inCAAAAnWcl : C++() ==> C(Texture *)
+extern PTA_uchar * Texture$187$modify_simple_ram_image(Texture *self);
+
+// _inCAAAAlEaN : C++(int x_size, int y_size) ==> C(Texture *, int, int)
+extern PTA_uchar * Texture$188$new_simple_ram_image(Texture *self, int x_size, int y_size);
+
+// _inCAAAAi9_G : C++() ==> C(Texture *)
+extern void Texture$189$generate_simple_ram_image(Texture *self);
+
+// _inCAAAA3521 : C++() ==> C(Texture *)
+extern void Texture$190$clear_simple_ram_image(Texture *self);
+
+// _inCAAAA0K12 : C++() ==> C(Texture *)
+extern char ** Texture$191$peek(Texture *self);
+
+// _inCAAAAhBtw : C++() ==> C(Texture const *)
+extern UpdateSeq * Texture$192$get_properties_modified(Texture const *self);
+
+// _inCAAAATeDG : C++() ==> C(Texture const *)
+extern UpdateSeq * Texture$193$get_image_modified(Texture const *self);
+
+// _inCAAAA12pR : C++() ==> C(Texture const *)
+extern UpdateSeq * Texture$194$get_simple_image_modified(Texture const *self);
+
+// _inCAAAA0fRE : C++() ==> C(Texture const *)
+extern bool Texture$195$has_auto_texture_scale(Texture const *self);
+
+// _inCAAAAu3_O : C++() ==> C(Texture const *)
+extern AutoTextureScale Texture$196$get_auto_texture_scale(Texture const *self);
+
+// _inCAAAA7xr7 : C++(AutoTextureScale scale) ==> C(Texture *, AutoTextureScale)
+extern void Texture$197$set_auto_texture_scale(Texture *self, AutoTextureScale scale);
+
+// _inCAAAALFHv : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture *, PreparedGraphicsObjects *)
+extern char ** Texture$198$prepare(Texture *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAgvjn : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture const *, PreparedGraphicsObjects *)
+extern bool Texture$199$is_prepared(Texture const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAUPgs : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture const *, PreparedGraphicsObjects *)
+extern bool Texture$200$was_image_modified(Texture const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAWC_V : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture const *, PreparedGraphicsObjects *)
+extern std$_size_t Texture$201$get_data_size_bytes(Texture const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAo8z_ : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture const *, PreparedGraphicsObjects *)
+extern bool Texture$202$get_active(Texture const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAUPUd : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture const *, PreparedGraphicsObjects *)
+extern bool Texture$203$get_resident(Texture const *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAv3AE : C++(PreparedGraphicsObjects *prepared_objects) ==> C(Texture *, PreparedGraphicsObjects *)
+extern bool Texture$204$release(Texture *self, PreparedGraphicsObjects *prepared_objects);
+
+// _inCAAAAH_Et : C++() ==> C(Texture *)
+extern int Texture$205$release_all(Texture *self);
+
+// _inCAAAAp5Zg : C++() ==> C(Texture const *)
+extern std$_size_t Texture$206$estimate_texture_memory(Texture const *self);
+
+// _inCAAAANCXD : C++(std::string const &key, TypedReferenceCount *aux_data) ==> C(Texture *, char const *, TypedReferenceCount *)
+extern void Texture$207$set_aux_data(Texture *self, char const *key, TypedReferenceCount *aux_data);
+
+// _inCAAAALe9O : C++(std::string const &key) ==> C(Texture *, char const *)
+extern void Texture$208$clear_aux_data(Texture *self, char const *key);
+
+// _inCAAAA97ht : C++(std::string const &key) ==> C(Texture const *, char const *)
+extern TypedReferenceCount * Texture$209$get_aux_data(Texture const *self, char const *key);
+
+// _inCAAAAesKC : C++(AutoTextureScale scale) ==> C(AutoTextureScale)
+extern void Texture$210$set_textures_power_2(AutoTextureScale scale);
+
+// _inCAAAAvjA4 : C++() ==> C()
+extern AutoTextureScale Texture$211$get_textures_power_2(void);
+
+// _inCAAAAHLSt : C++() ==> C()
+extern bool Texture$212$has_textures_power_2(void);
+
+// _inCAAAA6S4x : C++() ==> C(Texture const *)
+extern int Texture$213$get_pad_x_size(Texture const *self);
+
+// _inCAAAA_SGO : C++() ==> C(Texture const *)
+extern int Texture$214$get_pad_y_size(Texture const *self);
+
+// _inCAAAABSUq : C++() ==> C(Texture const *)
+extern int Texture$215$get_pad_z_size(Texture const *self);
+
+// _inCAAAApphB : C++() ==> C(Texture const *)
+extern LVecBase2 * Texture$216$get_tex_scale(Texture const *self);
+
+// _inCAAAANa2k : C++(int x, int y, int z) ==> C(Texture *, int, int, int)
+extern void Texture$217$set_pad_size(Texture *self, int x, int y, int z);
+
+// _inCAAAAI6hq : C++(int x, int y) ==> C(Texture *, int, int)
+extern void Texture$218$set_pad_size(Texture *self, int x, int y);
+
+// _inCAAAAzpXt : C++(int x) ==> C(Texture *, int)
+extern void Texture$219$set_pad_size(Texture *self, int x);
+
+// _inCAAAAsnEy : C++() ==> C(Texture *)
+extern void Texture$220$set_pad_size(Texture *self);
+
+// _inCAAAAP_Qd : C++(int x, int y, int z) ==> C(Texture *, int, int, int)
+extern void Texture$221$set_size_padded(Texture *self, int x, int y, int z);
+
+// _inCAAAAf7Uc : C++(int x, int y) ==> C(Texture *, int, int)
+extern void Texture$222$set_size_padded(Texture *self, int x, int y);
+
+// _inCAAAA0f17 : C++(int x) ==> C(Texture *, int)
+extern void Texture$223$set_size_padded(Texture *self, int x);
+
+// _inCAAAA5TOP : C++() ==> C(Texture *)
+extern void Texture$224$set_size_padded(Texture *self);
+
+// _inCAAAAhkHc : C++() ==> C(Texture const *)
+extern int Texture$225$get_orig_file_x_size(Texture const *self);
+
+// _inCAAAAdmHq : C++() ==> C(Texture const *)
+extern int Texture$226$get_orig_file_y_size(Texture const *self);
+
+// _inCAAAA5rH4 : C++() ==> C(Texture const *)
+extern int Texture$227$get_orig_file_z_size(Texture const *self);
+
+// _inCAAAApqd5 : C++(int x, int y, int z) ==> C(Texture *, int, int, int)
+extern void Texture$228$set_orig_file_size(Texture *self, int x, int y, int z);
+
+// _inCAAAAPjli : C++(int x, int y) ==> C(Texture *, int, int)
+extern void Texture$229$set_orig_file_size(Texture *self, int x, int y);
+
+// _inCAAAASycf : C++(bool flag) ==> C(Texture *, bool)
+extern void Texture$230$set_loaded_from_image(Texture *self, bool flag);
+
+// _inCAAAA2KhW : C++() ==> C(Texture *)
+extern void Texture$231$set_loaded_from_image(Texture *self);
+
+// _inCAAAALfRY : C++() ==> C(Texture const *)
+extern bool Texture$232$get_loaded_from_image(Texture const *self);
+
+// _inCAAAAdfq1 : C++(bool flag) ==> C(Texture *, bool)
+extern void Texture$233$set_loaded_from_txo(Texture *self, bool flag);
+
+// _inCAAAAh42H : C++() ==> C(Texture *)
+extern void Texture$234$set_loaded_from_txo(Texture *self);
+
+// _inCAAAAmAs_ : C++() ==> C(Texture const *)
+extern bool Texture$235$get_loaded_from_txo(Texture const *self);
+
+// _inCAAAA608G : C++() ==> C(Texture const *)
+extern bool Texture$236$get_match_framebuffer_format(Texture const *self);
+
+// _inCAAAAsRvh : C++(bool flag) ==> C(Texture *, bool)
+extern void Texture$237$set_match_framebuffer_format(Texture *self, bool flag);
+
+// _inCAAAAZVP_ : C++() ==> C(Texture const *)
+extern bool Texture$238$get_post_load_store_cache(Texture const *self);
+
+// _inCAAAAuxvY : C++(bool flag) ==> C(Texture *, bool)
+extern void Texture$239$set_post_load_store_cache(Texture *self, bool flag);
+
+// _inCAAAAufIe : C++(int view, PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg) ==> C(Texture *, int, PreparedGraphicsObjects *, GraphicsStateGuardianBase *)
+extern TextureContext * Texture$240$prepare_now(Texture *self, int view, PreparedGraphicsObjects *prepared_objects, GraphicsStateGuardianBase *gsg);
+
+// _inCAAAARUGo : C++(int value) ==> C(int)
+extern int Texture$241$up_to_power_2(int value);
+
+// _inCAAAAO34N : C++(int value) ==> C(int)
+extern int Texture$242$down_to_power_2(int value);
+
+// _inCAAAA2TNp : C++(PNMImage &pnmimage) ==> C(Texture *, PNMImage *)
+extern void Texture$243$consider_rescale(Texture *self, PNMImage *pnmimage);
+
+// _inCAAAA_Q1U : C++(PNMImage &pnmimage, std::string const &name, AutoTextureScale auto_texture_scale) ==> C(PNMImage *, char const *, AutoTextureScale)
+extern void Texture$244$consider_rescale(PNMImage *pnmimage, char const *name, AutoTextureScale auto_texture_scale);
+
+// _inCAAAAIFIr : C++(PNMImage &pnmimage, std::string const &name) ==> C(PNMImage *, char const *)
+extern void Texture$245$consider_rescale(PNMImage *pnmimage, char const *name);
+
+// _inCAAAAAcI4 : C++() ==> C(Texture *)
+extern bool Texture$246$rescale_texture(Texture *self);
+
+// _inCAAAAaQx8 : C++(Texture::TextureType tt) ==> C(Texture::TextureType)
+extern char const * Texture$247$format_texture_type(Texture$_TextureType tt);
+
+// _inCAAAAQtnY : C++(std::string const &str) ==> C(char const *)
+extern Texture$_TextureType Texture$248$string_texture_type(char const *str);
+
+// _inCAAAApkXc : C++(Texture::ComponentType ct) ==> C(Texture::ComponentType)
+extern char const * Texture$249$format_component_type(Texture$_ComponentType ct);
+
+// _inCAAAAczRb : C++(std::string const &str) ==> C(char const *)
+extern Texture$_ComponentType Texture$250$string_component_type(char const *str);
+
+// _inCAAAAs0zV : C++(Texture::Format f) ==> C(Texture::Format)
+extern char const * Texture$251$format_format(Texture$_Format f);
+
+// _inCAAAA8LJN : C++(std::string const &str) ==> C(char const *)
+extern Texture$_Format Texture$252$string_format(char const *str);
+
+// _inCAAAABL3k : C++(Texture::CompressionMode cm) ==> C(Texture::CompressionMode)
+extern char const * Texture$253$format_compression_mode(Texture$_CompressionMode cm);
+
+// _inCAAAAn7yd : C++(std::string const &str) ==> C(char const *)
+extern Texture$_CompressionMode Texture$254$string_compression_mode(char const *str);
+
+// _inCAAAAgZEo : C++(Texture::QualityLevel tql) ==> C(Texture::QualityLevel)
+extern char const * Texture$255$format_quality_level(Texture$_QualityLevel tql);
+
+// _inCAAAAXe0t : C++(std::string const &str) ==> C(char const *)
+extern Texture$_QualityLevel Texture$256$string_quality_level(char const *str);
+
+// _inCAAAAyrj5 : C++() ==> C(Texture *)
+extern void Texture$257$texture_uploaded(Texture *self);
+
+// _inCAAAAmY_V : C++() ==> C(Texture const *)
+extern bool Texture$258$has_cull_callback(Texture const *self);
+
+// _inCAAAAsWgm : C++(CullTraverser *trav, CullTraverserData const &data) ==> C(Texture const *, CullTraverser *, CullTraverserData const *)
+extern bool Texture$259$cull_callback(Texture const *self, CullTraverser *trav, CullTraverserData const *data);
+
+// _inCAAAAD2Xf : C++() ==> C()
+extern char ** Texture$260$make_texture(void);
+
+// _inCAAAA77XA : C++(Texture::ComponentType ctype) ==> C(Texture::ComponentType)
+extern bool Texture$261$is_unsigned(Texture$_ComponentType ctype);
+
+// _inCAAAAY73n : C++(Texture::CompressionMode compression) ==> C(Texture::CompressionMode)
+extern bool Texture$262$is_specific(Texture$_CompressionMode compression);
+
+// _inCAAAA2q9N : C++(Texture::Format format) ==> C(Texture::Format)
+extern bool Texture$263$has_alpha(Texture$_Format format);
+
+// _inCAAAAWZY9 : C++(Texture::Format format) ==> C(Texture::Format)
+extern bool Texture$264$has_binary_alpha(Texture$_Format format);
+
+// _inCAAAAiFIJ : C++(Texture::Format format) ==> C(Texture::Format)
+extern bool Texture$265$is_srgb(Texture$_Format format);
+
+// _inCAAAANy41 : C++(Filename const &filename) ==> C(Texture *, Filename const *)
+extern void Texture$266$ensure_loader_type(Texture *self, Filename const *filename);
+
+// _inCAAAAn2Wd : C++() ==> C()
+extern void Texture$267$register_with_read_factory(void);
+
+// _inCAAAArCg2 : C++(BamWriter *manager, Datagram &me) ==> C(Texture *, BamWriter *, Datagram *)
+extern void Texture$268$write_datagram(Texture *self, BamWriter *manager, Datagram *me);
+
+// _inCAAAAdmBR : C++(BamReader *manager) ==> C(Texture *, BamReader *)
+extern void Texture$269$finalize(Texture *self, BamReader *manager);
+
+// _inCAAAAoC2_ : C++() ==> C()
+extern int Texture$270$get_class_type(void);
+
+// _inCAAAAj_yY : C++() ==> C()
+extern void Texture$271$init_type(void);
+
+// _inCAAAA_VDx : C++() ==> C(Texture const *)
+extern int Texture$272$get_type(Texture const *self);
+
+// _inCAAAAH_tG : C++() ==> C(Texture *)
+extern int Texture$273$force_init_type(Texture *self);
+
+
+// TextureCollection
+
+// _inCAAAAsz_w : C++() ==> C()
+extern TextureCollection * TextureCollection$1$TextureCollection(void);
+
+// _inCAAAAG2Wq : C++(TextureCollection const &copy) ==> C(TextureCollection const *)
+extern TextureCollection * TextureCollection$2$TextureCollection(TextureCollection const *copy);
+
+// _inCAAAAqcTz : C++(Texture *texture) ==> C(TextureCollection *, Texture *)
+extern void TextureCollection$3$add_texture(TextureCollection *self, Texture *texture);
+
+// _inCAAAA1SuY : C++(Texture *texture) ==> C(TextureCollection *, Texture *)
+extern bool TextureCollection$4$remove_texture(TextureCollection *self, Texture *texture);
+
+// _inCAAAABW2_ : C++(TextureCollection const &other) ==> C(TextureCollection *, TextureCollection const *)
+extern void TextureCollection$5$add_textures_from(TextureCollection *self, TextureCollection const *other);
+
+// _inCAAAAubPS : C++(TextureCollection const &other) ==> C(TextureCollection *, TextureCollection const *)
+extern void TextureCollection$6$remove_textures_from(TextureCollection *self, TextureCollection const *other);
+
+// _inCAAAAJXB3 : C++() ==> C(TextureCollection *)
+extern void TextureCollection$7$remove_duplicate_textures(TextureCollection *self);
+
+// _inCAAAAeRIZ : C++(Texture *texture) ==> C(TextureCollection const *, Texture *)
+extern bool TextureCollection$8$has_texture(TextureCollection const *self, Texture *texture);
+
+// _inCAAAAf_8F : C++() ==> C(TextureCollection *)
+extern void TextureCollection$9$clear(TextureCollection *self);
+
+// _inCAAAAnBCu : C++(std::size_t num) ==> C(TextureCollection *, std::size_t)
+extern void TextureCollection$10$reserve(TextureCollection *self, std$_size_t num);
+
+// _inCAAAAMtiS : C++(std::string const &name) ==> C(TextureCollection const *, char const *)
+extern Texture * TextureCollection$11$find_texture(TextureCollection const *self, char const *name);
+
+// _inCAAAArq1E : C++() ==> C(TextureCollection const *)
+extern int TextureCollection$12$get_num_textures(TextureCollection const *self);
+
+// _inCAAAAXzkn : C++(int index) ==> C(TextureCollection const *, int)
+extern Texture * TextureCollection$13$get_texture(TextureCollection const *self, int index);
+
+// _inCAAAA7T26 : C++() ==> C(TextureCollection const *)
+extern int TextureCollection$14$size(TextureCollection const *self);
+
+// _inCAAAArzMd : C++(Texture *texture) ==> C(TextureCollection *, Texture *)
+extern void TextureCollection$15$append(TextureCollection *self, Texture *texture);
+
+// _inCAAAAwLXu : C++(TextureCollection const &other) ==> C(TextureCollection *, TextureCollection const *)
+extern void TextureCollection$16$extend(TextureCollection *self, TextureCollection const *other);
+
+// _inCAAAA3KJJ : C++(std::ostream &out) ==> C(TextureCollection const *, std::ostream *)
+extern void TextureCollection$17$output(TextureCollection const *self, std$_ostream *out);
+
+// _inCAAAA7qz6 : C++(std::ostream &out, int indent_level) ==> C(TextureCollection const *, std::ostream *, int)
+extern void TextureCollection$18$write(TextureCollection const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAAn5b : C++(std::ostream &out) ==> C(TextureCollection const *, std::ostream *)
+extern void TextureCollection$19$write(TextureCollection const *self, std$_ostream *out);
+
+
+// TexturePeeker
+
+// _inCAAAAgUUH : C++() ==> C(TexturePeeker const *)
+extern bool TexturePeeker$1$is_valid(TexturePeeker const *self);
+
+// _inCAAAAqJgl : C++() ==> C(TexturePeeker const *)
+extern int TexturePeeker$2$get_x_size(TexturePeeker const *self);
+
+// _inCAAAA3igF : C++() ==> C(TexturePeeker const *)
+extern int TexturePeeker$3$get_y_size(TexturePeeker const *self);
+
+// _inCAAAARHhl : C++() ==> C(TexturePeeker const *)
+extern int TexturePeeker$4$get_z_size(TexturePeeker const *self);
+
+// _inCAAAAKqcU : C++(int x, int y) ==> C(TexturePeeker const *, int, int)
+extern bool TexturePeeker$5$has_pixel(TexturePeeker const *self, int x, int y);
+
+// _inCAAAA9LV0 : C++(LColor &color, PN_stdfloat u, PN_stdfloat v) ==> C(TexturePeeker const *, LColor *, PN_stdfloat, PN_stdfloat)
+extern void TexturePeeker$6$lookup(TexturePeeker const *self, LColor *color, PN_stdfloat u, PN_stdfloat v);
+
+// _inCAAAAg92i : C++(LColor &color, PN_stdfloat u, PN_stdfloat v, PN_stdfloat w) ==> C(TexturePeeker const *, LColor *, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void TexturePeeker$7$lookup(TexturePeeker const *self, LColor *color, PN_stdfloat u, PN_stdfloat v, PN_stdfloat w);
+
+// _inCAAAAOsyP : C++(LColor &color, int x, int y) ==> C(TexturePeeker const *, LColor *, int, int)
+extern void TexturePeeker$8$fetch_pixel(TexturePeeker const *self, LColor *color, int x, int y);
+
+// _inCAAAAyKCY : C++(LColor &color, PN_stdfloat u, PN_stdfloat v) ==> C(TexturePeeker const *, LColor *, PN_stdfloat, PN_stdfloat)
+extern bool TexturePeeker$9$lookup_bilinear(TexturePeeker const *self, LColor *color, PN_stdfloat u, PN_stdfloat v);
+
+// _inCAAAAOp06 : C++(LColor &color, PN_stdfloat min_u, PN_stdfloat min_v, PN_stdfloat max_u, PN_stdfloat max_v) ==> C(TexturePeeker const *, LColor *, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void TexturePeeker$10$filter_rect(TexturePeeker const *self, LColor *color, PN_stdfloat min_u, PN_stdfloat min_v, PN_stdfloat max_u, PN_stdfloat max_v);
+
+// _inCAAAAySxM : C++(LColor &color, PN_stdfloat min_u, PN_stdfloat min_v, PN_stdfloat min_w, PN_stdfloat max_u, PN_stdfloat max_v, PN_stdfloat max_w) ==> C(TexturePeeker const *, LColor *, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat, PN_stdfloat)
+extern void TexturePeeker$11$filter_rect(TexturePeeker const *self, LColor *color, PN_stdfloat min_u, PN_stdfloat min_v, PN_stdfloat min_w, PN_stdfloat max_u, PN_stdfloat max_v, PN_stdfloat max_w);
+
+// _inCAAAA1_oB : C++(TexturePeeker const &) ==> C(TexturePeeker const *)
+extern TexturePeeker * TexturePeeker$12$TexturePeeker(TexturePeeker const *arg0);
+
+
 // Thread
 
 // _inCAAAAm7Dx : C++() ==> C(Thread *)
@@ -7783,6 +11639,408 @@ extern int Thread$37$get_type(Thread const *self);
 extern int Thread$38$force_init_type(Thread *self);
 
 
+// TouchInfo
+
+// _inCAAAAnoNZ : C++() ==> C()
+extern TouchInfo * TouchInfo$1$TouchInfo(void);
+
+// _inCAAAAmjKN : C++(TouchInfo const &) ==> C(TouchInfo const *)
+extern TouchInfo * TouchInfo$2$TouchInfo(TouchInfo const *arg0);
+
+// _inCAAAAcmlw : C++(int x) ==> C(TouchInfo *, int)
+extern void TouchInfo$3$set_x(TouchInfo *self, int x);
+
+// _inCAAAAUXvw : C++(int y) ==> C(TouchInfo *, int)
+extern void TouchInfo$4$set_y(TouchInfo *self, int y);
+
+// _inCAAAAD_Ht : C++(int id) ==> C(TouchInfo *, int)
+extern void TouchInfo$5$set_id(TouchInfo *self, int id);
+
+// _inCAAAAYV2g : C++(int flags) ==> C(TouchInfo *, int)
+extern void TouchInfo$6$set_flags(TouchInfo *self, int flags);
+
+// _inCAAAAPUp1 : C++() ==> C(TouchInfo *)
+extern int TouchInfo$7$get_x(TouchInfo *self);
+
+// _inCAAAAHDz1 : C++() ==> C(TouchInfo *)
+extern int TouchInfo$8$get_y(TouchInfo *self);
+
+// _inCAAAAA_Db : C++() ==> C(TouchInfo *)
+extern int TouchInfo$9$get_id(TouchInfo *self);
+
+// _inCAAAAMWv5 : C++() ==> C(TouchInfo *)
+extern int TouchInfo$10$get_flags(TouchInfo *self);
+
+
+// TransformState
+
+// _inCAAAAuklB : C++(TransformState const &other) ==> C(TransformState const *, TransformState const *)
+extern int TransformState$1$compare_to(TransformState const *self, TransformState const *other);
+
+// _inCAAAAM0Qo : C++(TransformState const &other, bool uniquify_matrix) ==> C(TransformState const *, TransformState const *, bool)
+extern int TransformState$2$compare_to(TransformState const *self, TransformState const *other, bool uniquify_matrix);
+
+// _inCAAAANPd4 : C++() ==> C(TransformState const *)
+extern std$_size_t TransformState$3$get_hash(TransformState const *self);
+
+// _inCAAAAoK5A : C++() ==> C()
+extern char ** TransformState$4$make_identity(void);
+
+// _inCAAAA0MDC : C++() ==> C()
+extern char ** TransformState$5$make_invalid(void);
+
+// _inCAAAAspxw : C++(LVecBase3 const &pos) ==> C(LVecBase3 const *)
+extern char ** TransformState$6$make_pos(LVecBase3 const *pos);
+
+// _inCAAAAU0GN : C++(LVecBase3 const &hpr) ==> C(LVecBase3 const *)
+extern char ** TransformState$7$make_hpr(LVecBase3 const *hpr);
+
+// _inCAAAAO9vn : C++(LQuaternion const &quat) ==> C(LQuaternion const *)
+extern char ** TransformState$8$make_quat(LQuaternion const *quat);
+
+// _inCAAAASFnT : C++(LVecBase3 const &pos, LVecBase3 const &hpr) ==> C(LVecBase3 const *, LVecBase3 const *)
+extern char ** TransformState$9$make_pos_hpr(LVecBase3 const *pos, LVecBase3 const *hpr);
+
+// _inCAAAALkAQ : C++(LVecBase3 const &scale) ==> C(LVecBase3 const *)
+extern char ** TransformState$10$make_scale(LVecBase3 const *scale);
+
+// _inCAAAAHzCk : C++(PN_stdfloat scale) ==> C(PN_stdfloat)
+extern char ** TransformState$11$make_scale(PN_stdfloat scale);
+
+// _inCAAAAvk6p : C++(LVecBase3 const &shear) ==> C(LVecBase3 const *)
+extern char ** TransformState$12$make_shear(LVecBase3 const *shear);
+
+// _inCAAAAhE16 : C++(LVecBase3 const &pos, LVecBase3 const &hpr, LVecBase3 const &scale) ==> C(LVecBase3 const *, LVecBase3 const *, LVecBase3 const *)
+extern char ** TransformState$13$make_pos_hpr_scale(LVecBase3 const *pos, LVecBase3 const *hpr, LVecBase3 const *scale);
+
+// _inCAAAAjedv : C++(LVecBase3 const &pos, LQuaternion const &quat, LVecBase3 const &scale) ==> C(LVecBase3 const *, LQuaternion const *, LVecBase3 const *)
+extern char ** TransformState$14$make_pos_quat_scale(LVecBase3 const *pos, LQuaternion const *quat, LVecBase3 const *scale);
+
+// _inCAAAA727i : C++(LVecBase3 const &pos, LVecBase3 const &hpr, LVecBase3 const &scale, LVecBase3 const &shear) ==> C(LVecBase3 const *, LVecBase3 const *, LVecBase3 const *, LVecBase3 const *)
+extern char ** TransformState$15$make_pos_hpr_scale_shear(LVecBase3 const *pos, LVecBase3 const *hpr, LVecBase3 const *scale, LVecBase3 const *shear);
+
+// _inCAAAAG_fD : C++(LVecBase3 const &pos, LQuaternion const &quat, LVecBase3 const &scale, LVecBase3 const &shear) ==> C(LVecBase3 const *, LQuaternion const *, LVecBase3 const *, LVecBase3 const *)
+extern char ** TransformState$16$make_pos_quat_scale_shear(LVecBase3 const *pos, LQuaternion const *quat, LVecBase3 const *scale, LVecBase3 const *shear);
+
+// _inCAAAAdJGa : C++(LMatrix4 const &mat) ==> C(LMatrix4 const *)
+extern char ** TransformState$17$make_mat(LMatrix4 const *mat);
+
+// _inCAAAAjEzP : C++(LVecBase2 const &pos) ==> C(LVecBase2 const *)
+extern char ** TransformState$18$make_pos2d(LVecBase2 const *pos);
+
+// _inCAAAANpgY : C++(PN_stdfloat rotate) ==> C(PN_stdfloat)
+extern char ** TransformState$19$make_rotate2d(PN_stdfloat rotate);
+
+// _inCAAAAN6wM : C++(LVecBase2 const &pos, PN_stdfloat rotate) ==> C(LVecBase2 const *, PN_stdfloat)
+extern char ** TransformState$20$make_pos_rotate2d(LVecBase2 const *pos, PN_stdfloat rotate);
+
+// _inCAAAA79W7 : C++(LVecBase2 const &scale) ==> C(LVecBase2 const *)
+extern char ** TransformState$21$make_scale2d(LVecBase2 const *scale);
+
+// _inCAAAAZUbG : C++(PN_stdfloat scale) ==> C(PN_stdfloat)
+extern char ** TransformState$22$make_scale2d(PN_stdfloat scale);
+
+// _inCAAAA91Ug : C++(PN_stdfloat shear) ==> C(PN_stdfloat)
+extern char ** TransformState$23$make_shear2d(PN_stdfloat shear);
+
+// _inCAAAAerDv : C++(LVecBase2 const &pos, PN_stdfloat rotate, LVecBase2 const &scale) ==> C(LVecBase2 const *, PN_stdfloat, LVecBase2 const *)
+extern char ** TransformState$24$make_pos_rotate_scale2d(LVecBase2 const *pos, PN_stdfloat rotate, LVecBase2 const *scale);
+
+// _inCAAAAG6ss : C++(LVecBase2 const &pos, PN_stdfloat rotate, LVecBase2 const &scale, PN_stdfloat shear) ==> C(LVecBase2 const *, PN_stdfloat, LVecBase2 const *, PN_stdfloat)
+extern char ** TransformState$25$make_pos_rotate_scale_shear2d(LVecBase2 const *pos, PN_stdfloat rotate, LVecBase2 const *scale, PN_stdfloat shear);
+
+// _inCAAAABBr2 : C++(LMatrix3 const &mat) ==> C(LMatrix3 const *)
+extern char ** TransformState$26$make_mat3(LMatrix3 const *mat);
+
+// _inCAAAA70HT : C++() ==> C(TransformState const *)
+extern bool TransformState$27$is_identity(TransformState const *self);
+
+// _inCAAAA5m5t : C++() ==> C(TransformState const *)
+extern bool TransformState$28$is_invalid(TransformState const *self);
+
+// _inCAAAA83Ub : C++() ==> C(TransformState const *)
+extern bool TransformState$29$is_singular(TransformState const *self);
+
+// _inCAAAAFbzh : C++() ==> C(TransformState const *)
+extern bool TransformState$30$is_2d(TransformState const *self);
+
+// _inCAAAA3N1T : C++() ==> C(TransformState const *)
+extern bool TransformState$31$has_components(TransformState const *self);
+
+// _inCAAAAoeA_ : C++() ==> C(TransformState const *)
+extern bool TransformState$32$components_given(TransformState const *self);
+
+// _inCAAAAePnm : C++() ==> C(TransformState const *)
+extern bool TransformState$33$hpr_given(TransformState const *self);
+
+// _inCAAAAfBB6 : C++() ==> C(TransformState const *)
+extern bool TransformState$34$quat_given(TransformState const *self);
+
+// _inCAAAAd7_k : C++() ==> C(TransformState const *)
+extern bool TransformState$35$has_pos(TransformState const *self);
+
+// _inCAAAAaR4z : C++() ==> C(TransformState const *)
+extern bool TransformState$36$has_hpr(TransformState const *self);
+
+// _inCAAAAbgn7 : C++() ==> C(TransformState const *)
+extern bool TransformState$37$has_quat(TransformState const *self);
+
+// _inCAAAAeXCQ : C++() ==> C(TransformState const *)
+extern bool TransformState$38$has_scale(TransformState const *self);
+
+// _inCAAAAtKCi : C++() ==> C(TransformState const *)
+extern bool TransformState$39$has_identity_scale(TransformState const *self);
+
+// _inCAAAACj8m : C++() ==> C(TransformState const *)
+extern bool TransformState$40$has_uniform_scale(TransformState const *self);
+
+// _inCAAAAQZ2I : C++() ==> C(TransformState const *)
+extern bool TransformState$41$has_shear(TransformState const *self);
+
+// _inCAAAAUk2V : C++() ==> C(TransformState const *)
+extern bool TransformState$42$has_nonzero_shear(TransformState const *self);
+
+// _inCAAAASx0T : C++() ==> C(TransformState const *)
+extern bool TransformState$43$has_mat(TransformState const *self);
+
+// _inCAAAA1Y_X : C++() ==> C(TransformState const *)
+extern LPoint3 const * TransformState$44$get_pos(TransformState const *self);
+
+// _inCAAAAyy3mom8N : C++() ==> C(TransformState const *)
+extern LVecBase3 const * TransformState$45$get_hpr(TransformState const *self);
+
+// _inCAAAAzDmu : C++() ==> C(TransformState const *)
+extern LQuaternion const * TransformState$46$get_quat(TransformState const *self);
+
+// _inCAAAATdVR : C++() ==> C(TransformState const *)
+extern LQuaternion const * TransformState$47$get_norm_quat(TransformState const *self);
+
+// _inCAAAAmyBD : C++() ==> C(TransformState const *)
+extern LVecBase3 const * TransformState$48$get_scale(TransformState const *self);
+
+// _inCAAAA6_8Z : C++() ==> C(TransformState const *)
+extern PN_stdfloat TransformState$49$get_uniform_scale(TransformState const *self);
+
+// _inCAAAAn_27 : C++() ==> C(TransformState const *)
+extern LVecBase3 const * TransformState$50$get_shear(TransformState const *self);
+
+// _inCAAAAKS0G : C++() ==> C(TransformState const *)
+extern LMatrix4 const * TransformState$51$get_mat(TransformState const *self);
+
+// _inCAAAAGSGD : C++() ==> C(TransformState const *)
+extern LVecBase2 * TransformState$52$get_pos2d(TransformState const *self);
+
+// _inCAAAAguij : C++() ==> C(TransformState const *)
+extern PN_stdfloat TransformState$53$get_rotate2d(TransformState const *self);
+
+// _inCAAAAJEJy : C++() ==> C(TransformState const *)
+extern LVecBase2 * TransformState$54$get_scale2d(TransformState const *self);
+
+// _inCAAAAay8q : C++() ==> C(TransformState const *)
+extern PN_stdfloat TransformState$55$get_shear2d(TransformState const *self);
+
+// _inCAAAAjHYM : C++() ==> C(TransformState const *)
+extern LMatrix3 * TransformState$56$get_mat3(TransformState const *self);
+
+// _inCAAAAXiIO : C++(LVecBase3 const &pos) ==> C(TransformState const *, LVecBase3 const *)
+extern char ** TransformState$57$set_pos(TransformState const *self, LVecBase3 const *pos);
+
+// _inCAAAAoUAd : C++(LVecBase3 const &hpr) ==> C(TransformState const *, LVecBase3 const *)
+extern char ** TransformState$58$set_hpr(TransformState const *self, LVecBase3 const *hpr);
+
+// _inCAAAAtT8X : C++(LQuaternion const &quat) ==> C(TransformState const *, LQuaternion const *)
+extern char ** TransformState$59$set_quat(TransformState const *self, LQuaternion const *quat);
+
+// _inCAAAAQvtT : C++(LVecBase3 const &scale) ==> C(TransformState const *, LVecBase3 const *)
+extern char ** TransformState$60$set_scale(TransformState const *self, LVecBase3 const *scale);
+
+// _inCAAAAdbhM : C++(LVecBase3 const &shear) ==> C(TransformState const *, LVecBase3 const *)
+extern char ** TransformState$61$set_shear(TransformState const *self, LVecBase3 const *shear);
+
+// _inCAAAAUnsT : C++(LVecBase2 const &pos) ==> C(TransformState const *, LVecBase2 const *)
+extern char ** TransformState$62$set_pos2d(TransformState const *self, LVecBase2 const *pos);
+
+// _inCAAAAhzEm : C++(PN_stdfloat rotate) ==> C(TransformState const *, PN_stdfloat)
+extern char ** TransformState$63$set_rotate2d(TransformState const *self, PN_stdfloat rotate);
+
+// _inCAAAA4cTu : C++(LVecBase2 const &scale) ==> C(TransformState const *, LVecBase2 const *)
+extern char ** TransformState$64$set_scale2d(TransformState const *self, LVecBase2 const *scale);
+
+// _inCAAAAY0wj : C++(PN_stdfloat shear) ==> C(TransformState const *, PN_stdfloat)
+extern char ** TransformState$65$set_shear2d(TransformState const *self, PN_stdfloat shear);
+
+// _inCAAAANCSV : C++(TransformState const *other) ==> C(TransformState const *, TransformState const *)
+extern char ** TransformState$66$compose(TransformState const *self, TransformState const *other);
+
+// _inCAAAA4b4F : C++(TransformState const *other) ==> C(TransformState const *, TransformState const *)
+extern char ** TransformState$67$invert_compose(TransformState const *self, TransformState const *other);
+
+// _inCAAAAQVGV : C++() ==> C(TransformState const *)
+extern char ** TransformState$68$get_inverse(TransformState const *self);
+
+// _inCAAAAnkWq : C++() ==> C(TransformState const *)
+extern char ** TransformState$69$get_unique(TransformState const *self);
+
+// _inCAAAA_HK4 : C++(int geom_rendering) ==> C(TransformState const *, int)
+extern int TransformState$70$get_geom_rendering(TransformState const *self, int geom_rendering);
+
+// _inCAAAAWr2Z : C++() ==> C(TransformState const *)
+extern void TransformState$71$cache_ref(TransformState const *self);
+
+// _inCAAAA6hq2 : C++() ==> C(TransformState const *)
+extern bool TransformState$72$cache_unref(TransformState const *self);
+
+// _inCAAAAvh_1 : C++() ==> C(TransformState const *)
+extern void TransformState$73$node_ref(TransformState const *self);
+
+// _inCAAAApm4c : C++() ==> C(TransformState const *)
+extern bool TransformState$74$node_unref(TransformState const *self);
+
+// _inCAAAAMO_Z : C++() ==> C(TransformState const *)
+extern std$_size_t TransformState$75$get_composition_cache_num_entries(TransformState const *self);
+
+// _inCAAAAeOXi : C++() ==> C(TransformState const *)
+extern std$_size_t TransformState$76$get_invert_composition_cache_num_entries(TransformState const *self);
+
+// _inCAAAAZ_rG : C++() ==> C(TransformState const *)
+extern std$_size_t TransformState$77$get_composition_cache_size(TransformState const *self);
+
+// _inCAAAAE6M5 : C++(std::size_t n) ==> C(TransformState const *, std::size_t)
+extern TransformState const * TransformState$78$get_composition_cache_source(TransformState const *self, std$_size_t n);
+
+// _inCAAAA_Ztx : C++(std::size_t n) ==> C(TransformState const *, std::size_t)
+extern TransformState const * TransformState$79$get_composition_cache_result(TransformState const *self, std$_size_t n);
+
+// _inCAAAA9hkw : C++() ==> C(TransformState const *)
+extern std$_size_t TransformState$80$get_invert_composition_cache_size(TransformState const *self);
+
+// _inCAAAA3eg2 : C++(std::size_t n) ==> C(TransformState const *, std::size_t)
+extern TransformState const * TransformState$81$get_invert_composition_cache_source(TransformState const *self, std$_size_t n);
+
+// _inCAAAAm40G : C++(std::size_t n) ==> C(TransformState const *, std::size_t)
+extern TransformState const * TransformState$82$get_invert_composition_cache_result(TransformState const *self, std$_size_t n);
+
+// _inCAAAAUvQD : C++() ==> C(TransformState const *)
+extern bool TransformState$83$validate_composition_cache(TransformState const *self);
+
+// _inCAAAAON0M : C++(std::ostream &out) ==> C(TransformState const *, std::ostream *)
+extern void TransformState$84$output(TransformState const *self, std$_ostream *out);
+
+// _inCAAAAqE1b : C++(std::ostream &out, int indent_level) ==> C(TransformState const *, std::ostream *, int)
+extern void TransformState$85$write(TransformState const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAyMJC : C++(std::ostream &out, int indent_level) ==> C(TransformState const *, std::ostream *, int)
+extern void TransformState$86$write_composition_cache(TransformState const *self, std$_ostream *out, int indent_level);
+
+// _inCAAAAft1r : C++() ==> C()
+extern int TransformState$87$get_num_states(void);
+
+// _inCAAAAfD2f : C++() ==> C()
+extern int TransformState$88$get_num_unused_states(void);
+
+// _inCAAAA8dXE : C++() ==> C()
+extern int TransformState$89$clear_cache(void);
+
+// _inCAAAAttHm : C++() ==> C()
+extern int TransformState$90$garbage_collect(void);
+
+// _inCAAAAclcc : C++(std::ostream &out) ==> C(std::ostream *)
+extern void TransformState$91$list_cycles(std$_ostream *out);
+
+// _inCAAAAyxoC : C++(std::ostream &out) ==> C(std::ostream *)
+extern void TransformState$92$list_states(std$_ostream *out);
+
+// _inCAAAAidJ2 : C++() ==> C()
+extern bool TransformState$93$validate_states(void);
+
+// _inCAAAAdVFj : C++() ==> C()
+extern void TransformState$94$init_states(void);
+
+// _inCAAAA4QS7 : C++() ==> C()
+extern void TransformState$95$flush_level(void);
+
+// _inCAAAAQHkh : C++() ==> C()
+extern void TransformState$96$register_with_read_factory(void);
+
+// _inCAAAAmhqV : C++(BamWriter *manager, Datagram &dg) ==> C(TransformState *, BamWriter *, Datagram *)
+extern void TransformState$97$write_datagram(TransformState *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAApgdI : C++(TypedWritableReferenceCount *old_ptr, BamReader *manager) ==> C(TypedWritableReferenceCount *, BamReader *)
+extern char ** TransformState$98$change_this(TypedWritableReferenceCount *old_ptr, BamReader *manager);
+
+// _inCAAAAOzaR : C++() ==> C()
+extern int TransformState$99$get_class_type(void);
+
+// _inCAAAALpcv : C++() ==> C()
+extern void TransformState$100$init_type(void);
+
+// _inCAAAAudJT : C++() ==> C(TransformState const *)
+extern int TransformState$101$get_type(TransformState const *self);
+
+// _inCAAAAb3sd : C++() ==> C(TransformState *)
+extern int TransformState$102$force_init_type(TransformState *self);
+
+
+// TransformTable
+
+// _inCAAAA9dPL : C++() ==> C()
+extern TransformTable * TransformTable$1$TransformTable(void);
+
+// _inCAAAATts5 : C++(TransformTable const &copy) ==> C(TransformTable const *)
+extern TransformTable * TransformTable$2$TransformTable(TransformTable const *copy);
+
+// _inCAAAAmQpE : C++() ==> C(TransformTable const *)
+extern bool TransformTable$3$is_registered(TransformTable const *self);
+
+// _inCAAAA8IXz : C++(TransformTable const *table) ==> C(TransformTable const *)
+extern char ** TransformTable$4$register_table(TransformTable const *table);
+
+// _inCAAAA5H42 : C++() ==> C(TransformTable const *)
+extern std$_size_t TransformTable$5$get_num_transforms(TransformTable const *self);
+
+// _inCAAAAR3RI : C++(std::size_t n) ==> C(TransformTable const *, std::size_t)
+extern VertexTransform const * TransformTable$6$get_transform(TransformTable const *self, std$_size_t n);
+
+// _inCAAAAaOQ4 : C++(Thread *current_thread) ==> C(TransformTable const *, Thread *)
+extern UpdateSeq * TransformTable$7$get_modified(TransformTable const *self, Thread *current_thread);
+
+// _inCAAAA3pN5 : C++() ==> C(TransformTable const *)
+extern UpdateSeq * TransformTable$8$get_modified(TransformTable const *self);
+
+// _inCAAAApkDY : C++(std::size_t n, VertexTransform const *transform) ==> C(TransformTable *, std::size_t, VertexTransform const *)
+extern void TransformTable$9$set_transform(TransformTable *self, std$_size_t n, VertexTransform const *transform);
+
+// _inCAAAAST_B : C++(std::size_t n, VertexTransform const *transform) ==> C(TransformTable *, std::size_t, VertexTransform const *)
+extern void TransformTable$10$insert_transform(TransformTable *self, std$_size_t n, VertexTransform const *transform);
+
+// _inCAAAAyVkr : C++(std::size_t n) ==> C(TransformTable *, std::size_t)
+extern void TransformTable$11$remove_transform(TransformTable *self, std$_size_t n);
+
+// _inCAAAAu_JV : C++(VertexTransform const *transform) ==> C(TransformTable *, VertexTransform const *)
+extern std$_size_t TransformTable$12$add_transform(TransformTable *self, VertexTransform const *transform);
+
+// _inCAAAAMneJ : C++(std::ostream &out) ==> C(TransformTable const *, std::ostream *)
+extern void TransformTable$13$write(TransformTable const *self, std$_ostream *out);
+
+// _inCAAAAkusp : C++() ==> C()
+extern void TransformTable$14$register_with_read_factory(void);
+
+// _inCAAAASDzd : C++(BamWriter *manager, Datagram &dg) ==> C(TransformTable *, BamWriter *, Datagram *)
+extern void TransformTable$15$write_datagram(TransformTable *self, BamWriter *manager, Datagram *dg);
+
+// _inCAAAAdFiZ : C++() ==> C()
+extern int TransformTable$16$get_class_type(void);
+
+// _inCAAAA2Ek3 : C++() ==> C()
+extern void TransformTable$17$init_type(void);
+
+// _inCAAAAhAQb : C++() ==> C(TransformTable const *)
+extern int TransformTable$18$get_type(TransformTable const *self);
+
+// _inCAAAAGv0l : C++() ==> C(TransformTable *)
+extern int TransformTable$19$force_init_type(TransformTable *self);
+
+
 // TypedObject
 
 // _inCAAAAr4rO : C++() ==> C(TypedObject *)
@@ -7822,8 +12080,17 @@ extern void TypedObject$11$init_type(void);
 
 // TypedReferenceCount
 
+// _inCAAAAi6BQ : C++() ==> C(TypedReferenceCount *)
+extern DisplayRegion * TypedReferenceCount$1$downcast_to_DisplayRegion(TypedReferenceCount *self);
+
+// _inCAAAA5b0G : C++() ==> C(TypedReferenceCount *)
+extern Loader * TypedReferenceCount$2$downcast_to_Loader(TypedReferenceCount *self);
+
+// _inCAAAAUGAk : C++() ==> C(TypedReferenceCount *)
+extern TextFont * TypedReferenceCount$3$downcast_to_TextFont(TypedReferenceCount *self);
+
 // _inCAAAAiO2P : C++() ==> C(TypedReferenceCount *)
-extern Thread * TypedReferenceCount$1$downcast_to_Thread(TypedReferenceCount *self);
+extern Thread * TypedReferenceCount$4$downcast_to_Thread(TypedReferenceCount *self);
 
 
 // TypedWritable
@@ -7882,8 +12149,53 @@ extern int TypedWritable$16$force_init_type(TypedWritable *self);
 // _inCAAAAV0o9 : C++() ==> C(TypedWritableReferenceCount *)
 extern PandaNode * TypedWritableReferenceCount$1$downcast_to_PandaNode(TypedWritableReferenceCount *self);
 
+// _inCAAAAt0mx : C++() ==> C(TypedWritableReferenceCount *)
+extern GeomVertexArrayFormat * TypedWritableReferenceCount$2$downcast_to_GeomVertexArrayFormat(TypedWritableReferenceCount *self);
+
 // _inCAAAA8_96 : C++() ==> C(TypedWritableReferenceCount *)
-extern GeomVertexFormat * TypedWritableReferenceCount$2$downcast_to_GeomVertexFormat(TypedWritableReferenceCount *self);
+extern GeomVertexFormat * TypedWritableReferenceCount$3$downcast_to_GeomVertexFormat(TypedWritableReferenceCount *self);
+
+// _inCAAAAc1xv : C++() ==> C(TypedWritableReferenceCount *)
+extern Texture * TypedWritableReferenceCount$4$downcast_to_Texture(TypedWritableReferenceCount *self);
+
+
+// UpdateSeq
+
+// _inCAAAAeAZ3 : C++() ==> C()
+extern UpdateSeq * UpdateSeq$1$UpdateSeq(void);
+
+// _inCAAAATpCm : C++(UpdateSeq const &copy) ==> C(UpdateSeq const *)
+extern UpdateSeq * UpdateSeq$2$UpdateSeq(UpdateSeq const *copy);
+
+// _inCAAAAXroR : C++() ==> C()
+extern UpdateSeq * UpdateSeq$3$initial(void);
+
+// _inCAAAAnK4u : C++() ==> C()
+extern UpdateSeq * UpdateSeq$4$old(void);
+
+// _inCAAAA9eRT : C++() ==> C()
+extern UpdateSeq * UpdateSeq$5$fresh(void);
+
+// _inCAAAA0_vY : C++() ==> C(UpdateSeq *)
+extern void UpdateSeq$6$clear(UpdateSeq *self);
+
+// _inCAAAAT1E2 : C++() ==> C(UpdateSeq const *)
+extern bool UpdateSeq$7$is_initial(UpdateSeq const *self);
+
+// _inCAAAALeqi : C++() ==> C(UpdateSeq const *)
+extern bool UpdateSeq$8$is_old(UpdateSeq const *self);
+
+// _inCAAAAWsUb : C++() ==> C(UpdateSeq const *)
+extern bool UpdateSeq$9$is_fresh(UpdateSeq const *self);
+
+// _inCAAAA6gLj : C++() ==> C(UpdateSeq const *)
+extern bool UpdateSeq$10$is_special(UpdateSeq const *self);
+
+// _inCAAAAZuR8 : C++() ==> C(UpdateSeq const *)
+extern AtomicAdjust$_Integer UpdateSeq$11$get_seq(UpdateSeq const *self);
+
+// _inCAAAAJLff : C++(std::ostream &out) ==> C(UpdateSeq const *, std::ostream *)
+extern void UpdateSeq$12$output(UpdateSeq const *self, std$_ostream *out);
 
 
 // WindowFramework
@@ -8043,5 +12355,309 @@ extern int WindowFramework$51$force_init_type(WindowFramework *self);
 
 // _inCAAAAp5TH : C++(WindowFramework const &) ==> C(WindowFramework const *)
 extern WindowFramework * WindowFramework$52$WindowFramework(WindowFramework const *arg0);
+
+
+// WindowHandle
+
+// _inCAAAAlE6b : C++(WindowHandle const &copy) ==> C(WindowHandle const *)
+extern WindowHandle * WindowHandle$1$WindowHandle(WindowHandle const *copy);
+
+// _inCAAAAsWhV : C++(WindowHandle::OSHandle *os_handle) ==> C(WindowHandle::OSHandle *)
+extern WindowHandle * WindowHandle$2$WindowHandle(WindowHandle$_OSHandle *os_handle);
+// COLLISION : WindowHandle_C_ctor_p_p WindowHandle$2$WindowHandle
+
+// _inCAAAALwuM : C++() ==> C(WindowHandle const *)
+extern WindowHandle$_OSHandle * WindowHandle$3$get_os_handle(WindowHandle const *self);
+
+// _inCAAAAklyc : C++(WindowHandle::OSHandle *os_handle) ==> C(WindowHandle *, WindowHandle::OSHandle *)
+extern void WindowHandle$4$set_os_handle(WindowHandle *self, WindowHandle$_OSHandle *os_handle);
+
+// _inCAAAABCmq : C++(unsigned int msg, int wparam, int lparam) ==> C(WindowHandle *, unsigned int, int, int)
+extern void WindowHandle$5$send_windows_message(WindowHandle *self, unsigned int msg, int warg, int larg);
+
+// _inCAAAAPIYS : C++() ==> C(WindowHandle const *)
+extern std$_size_t WindowHandle$6$get_int_handle(WindowHandle const *self);
+
+// _inCAAAApFpS : C++(std::ostream &out) ==> C(WindowHandle const *, std::ostream *)
+extern void WindowHandle$7$output(WindowHandle const *self, std$_ostream *out);
+
+// _inCAAAA_nFw : C++(WindowHandle *child) ==> C(WindowHandle *, WindowHandle *)
+extern void WindowHandle$8$attach_child(WindowHandle *self, WindowHandle *child);
+
+// _inCAAAAUb19 : C++(WindowHandle *child) ==> C(WindowHandle *, WindowHandle *)
+extern void WindowHandle$9$detach_child(WindowHandle *self, WindowHandle *child);
+
+// _inCAAAAkkU7 : C++(WindowHandle *child) ==> C(WindowHandle *, WindowHandle *)
+extern void WindowHandle$10$request_keyboard_focus(WindowHandle *self, WindowHandle *child);
+
+// _inCAAAAeTAI : C++(unsigned int msg, int wparam, int lparam) ==> C(WindowHandle *, unsigned int, int, int)
+extern void WindowHandle$11$receive_windows_message(WindowHandle *self, unsigned int msg, int warg, int larg);
+
+// _inCAAAA21y5 : C++() ==> C()
+extern int WindowHandle$12$get_class_type(void);
+
+// _inCAAAAFiur : C++() ==> C()
+extern void WindowHandle$13$init_type(void);
+
+// _inCAAAA_AOc : C++() ==> C(WindowHandle const *)
+extern int WindowHandle$14$get_type(WindowHandle const *self);
+
+// _inCAAAAvmjH : C++() ==> C(WindowHandle *)
+extern int WindowHandle$15$force_init_type(WindowHandle *self);
+
+
+// WindowProperties
+
+// _inCAAAAGNZU : C++() ==> C()
+extern WindowProperties * WindowProperties$1$WindowProperties(void);
+
+// _inCAAAAlceF : C++(WindowProperties const &copy) ==> C(WindowProperties const *)
+extern WindowProperties * WindowProperties$2$WindowProperties(WindowProperties const *copy);
+
+// _inCAAAAPD11 : C++() ==> C()
+extern WindowProperties * WindowProperties$3$get_config_properties(void);
+
+// _inCAAAA1hD1 : C++() ==> C()
+extern WindowProperties * WindowProperties$4$get_default(void);
+
+// _inCAAAANbiB : C++(WindowProperties const &default_properties) ==> C(WindowProperties const *)
+extern void WindowProperties$5$set_default(WindowProperties const *default_properties);
+
+// _inCAAAADZHK : C++() ==> C()
+extern void WindowProperties$6$clear_default(void);
+
+// _inCAAAA0txz : C++(LVecBase2i const &size) ==> C(LVecBase2i const *)
+extern WindowProperties * WindowProperties$7$size(LVecBase2i const *size);
+
+// _inCAAAA7Qam : C++(int x_size, int y_size) ==> C(int, int)
+extern WindowProperties * WindowProperties$8$size(int x_size, int y_size);
+
+// _inCAAAAIj6c : C++() ==> C(WindowProperties *)
+extern void WindowProperties$9$clear(WindowProperties *self);
+
+// _inCAAAA5Hm3 : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$10$is_any_specified(WindowProperties const *self);
+
+// _inCAAAAP616 : C++(LPoint2i const &origin) ==> C(WindowProperties *, LPoint2i const *)
+extern void WindowProperties$11$set_origin(WindowProperties *self, LPoint2i const *origin);
+
+// _inCAAAA_6s1 : C++(int x_origin, int y_origin) ==> C(WindowProperties *, int, int)
+extern void WindowProperties$12$set_origin(WindowProperties *self, int x_origin, int y_origin);
+
+// _inCAAAAOKyo : C++() ==> C(WindowProperties const *)
+extern LPoint2i const * WindowProperties$13$get_origin(WindowProperties const *self);
+
+// _inCAAAAmWEm : C++() ==> C(WindowProperties const *)
+extern int WindowProperties$14$get_x_origin(WindowProperties const *self);
+
+// _inCAAAAjWge : C++() ==> C(WindowProperties const *)
+extern int WindowProperties$15$get_y_origin(WindowProperties const *self);
+
+// _inCAAAAeNcv : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$16$has_origin(WindowProperties const *self);
+
+// _inCAAAAJusE : C++() ==> C(WindowProperties *)
+extern void WindowProperties$17$clear_origin(WindowProperties *self);
+
+// _inCAAAAyNWj : C++(LVector2i const &size) ==> C(WindowProperties *, LVector2i const *)
+extern void WindowProperties$18$set_size(WindowProperties *self, LVector2i const *size);
+
+// _inCAAAA7Ba1 : C++(int x_size, int y_size) ==> C(WindowProperties *, int, int)
+extern void WindowProperties$19$set_size(WindowProperties *self, int x_size, int y_size);
+
+// _inCAAAAA4UN : C++() ==> C(WindowProperties const *)
+extern LVector2i const * WindowProperties$20$get_size(WindowProperties const *self);
+
+// _inCAAAAVfNw : C++() ==> C(WindowProperties const *)
+extern int WindowProperties$21$get_x_size(WindowProperties const *self);
+
+// _inCAAAAQfpo : C++() ==> C(WindowProperties const *)
+extern int WindowProperties$22$get_y_size(WindowProperties const *self);
+
+// _inCAAAA04_T : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$23$has_size(WindowProperties const *self);
+
+// _inCAAAAChuY : C++() ==> C(WindowProperties *)
+extern void WindowProperties$24$clear_size(WindowProperties *self);
+
+// _inCAAAArK49 : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$25$has_mouse_mode(WindowProperties const *self);
+
+// _inCAAAAmSWG : C++(WindowProperties::MouseMode mode) ==> C(WindowProperties *, WindowProperties::MouseMode)
+extern void WindowProperties$26$set_mouse_mode(WindowProperties *self, WindowProperties$_MouseMode mode);
+
+// _inCAAAAjVO3 : C++() ==> C(WindowProperties const *)
+extern WindowProperties$_MouseMode WindowProperties$27$get_mouse_mode(WindowProperties const *self);
+
+// _inCAAAAmyf3 : C++() ==> C(WindowProperties *)
+extern void WindowProperties$28$clear_mouse_mode(WindowProperties *self);
+
+// _inCAAAAH1Rx : C++(std::string const &title) ==> C(WindowProperties *, char const *)
+extern void WindowProperties$29$set_title(WindowProperties *self, char const *title);
+
+// _inCAAAALpK6 : C++() ==> C(WindowProperties const *)
+extern char const * WindowProperties$30$get_title(WindowProperties const *self);
+
+// _inCAAAA4p0A : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$31$has_title(WindowProperties const *self);
+
+// _inCAAAA2KzX : C++() ==> C(WindowProperties *)
+extern void WindowProperties$32$clear_title(WindowProperties *self);
+
+// _inCAAAA1wGY : C++(bool undecorated) ==> C(WindowProperties *, bool)
+extern void WindowProperties$33$set_undecorated(WindowProperties *self, bool undecorated);
+
+// _inCAAAAJtRY : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$34$get_undecorated(WindowProperties const *self);
+
+// _inCAAAAds7e : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$35$has_undecorated(WindowProperties const *self);
+
+// _inCAAAA6EZL : C++() ==> C(WindowProperties *)
+extern void WindowProperties$36$clear_undecorated(WindowProperties *self);
+
+// _inCAAAAhxLw : C++(bool fixed_size) ==> C(WindowProperties *, bool)
+extern void WindowProperties$37$set_fixed_size(WindowProperties *self, bool fixed_size);
+
+// _inCAAAAi_y_ : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$38$get_fixed_size(WindowProperties const *self);
+
+// _inCAAAA7wcF : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$39$has_fixed_size(WindowProperties const *self);
+
+// _inCAAAAPwhp : C++() ==> C(WindowProperties *)
+extern void WindowProperties$40$clear_fixed_size(WindowProperties *self);
+
+// _inCAAAAq0Uu : C++(bool fullscreen) ==> C(WindowProperties *, bool)
+extern void WindowProperties$41$set_fullscreen(WindowProperties *self, bool fullscreen);
+
+// _inCAAAAtz98 : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$42$get_fullscreen(WindowProperties const *self);
+
+// _inCAAAAi3nD : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$43$has_fullscreen(WindowProperties const *self);
+
+// _inCAAAAwgpW : C++() ==> C(WindowProperties *)
+extern void WindowProperties$44$clear_fullscreen(WindowProperties *self);
+
+// _inCAAAApPA6 : C++(bool foreground) ==> C(WindowProperties *, bool)
+extern void WindowProperties$45$set_foreground(WindowProperties *self, bool foreground);
+
+// _inCAAAArFnI : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$46$get_foreground(WindowProperties const *self);
+
+// _inCAAAA7CRP : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$47$has_foreground(WindowProperties const *self);
+
+// _inCAAAANghP : C++() ==> C(WindowProperties *)
+extern void WindowProperties$48$clear_foreground(WindowProperties *self);
+
+// _inCAAAAJuBm : C++(bool minimized) ==> C(WindowProperties *, bool)
+extern void WindowProperties$49$set_minimized(WindowProperties *self, bool minimized);
+
+// _inCAAAAUuGt : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$50$get_minimized(WindowProperties const *self);
+
+// _inCAAAAgrwz : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$51$has_minimized(WindowProperties const *self);
+
+// _inCAAAANh8v : C++() ==> C(WindowProperties *)
+extern void WindowProperties$52$clear_minimized(WindowProperties *self);
+
+// _inCAAAADYtm : C++(bool raw_mice) ==> C(WindowProperties *, bool)
+extern void WindowProperties$53$set_raw_mice(WindowProperties *self, bool raw_mice);
+
+// _inCAAAAjiir : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$54$get_raw_mice(WindowProperties const *self);
+
+// _inCAAAATfNy : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$55$has_raw_mice(WindowProperties const *self);
+
+// _inCAAAAm_9h : C++() ==> C(WindowProperties *)
+extern void WindowProperties$56$clear_raw_mice(WindowProperties *self);
+
+// _inCAAAA0PHZ : C++(bool open) ==> C(WindowProperties *, bool)
+extern void WindowProperties$57$set_open(WindowProperties *self, bool open);
+
+// _inCAAAAnBqS : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$58$get_open(WindowProperties const *self);
+
+// _inCAAAA3AUZ : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$59$has_open(WindowProperties const *self);
+
+// _inCAAAAXQu6 : C++() ==> C(WindowProperties *)
+extern void WindowProperties$60$clear_open(WindowProperties *self);
+
+// _inCAAAAuag3 : C++(bool cursor_hidden) ==> C(WindowProperties *, bool)
+extern void WindowProperties$61$set_cursor_hidden(WindowProperties *self, bool cursor_hidden);
+
+// _inCAAAAILMV : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$62$get_cursor_hidden(WindowProperties const *self);
+
+// _inCAAAA0O2b : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$63$has_cursor_hidden(WindowProperties const *self);
+
+// _inCAAAAnQoK : C++() ==> C(WindowProperties *)
+extern void WindowProperties$64$clear_cursor_hidden(WindowProperties *self);
+
+// _inCAAAAvab1 : C++(Filename const &icon_filename) ==> C(WindowProperties *, Filename const *)
+extern void WindowProperties$65$set_icon_filename(WindowProperties *self, Filename const *icon_filename);
+
+// _inCAAAAaEsZ : C++() ==> C(WindowProperties const *)
+extern Filename const * WindowProperties$66$get_icon_filename(WindowProperties const *self);
+
+// _inCAAAAqEWg : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$67$has_icon_filename(WindowProperties const *self);
+
+// _inCAAAAOBF2 : C++() ==> C(WindowProperties *)
+extern void WindowProperties$68$clear_icon_filename(WindowProperties *self);
+
+// _inCAAAAFBsD : C++(Filename const &cursor_filename) ==> C(WindowProperties *, Filename const *)
+extern void WindowProperties$69$set_cursor_filename(WindowProperties *self, Filename const *cursor_filename);
+
+// _inCAAAAzq6A : C++() ==> C(WindowProperties const *)
+extern Filename const * WindowProperties$70$get_cursor_filename(WindowProperties const *self);
+
+// _inCAAAAjlkH : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$71$has_cursor_filename(WindowProperties const *self);
+
+// _inCAAAAImNb : C++() ==> C(WindowProperties *)
+extern void WindowProperties$72$clear_cursor_filename(WindowProperties *self);
+
+// _inCAAAAonGh : C++(WindowProperties::ZOrder z_order) ==> C(WindowProperties *, WindowProperties::ZOrder)
+extern void WindowProperties$73$set_z_order(WindowProperties *self, WindowProperties$_ZOrder z_order);
+
+// _inCAAAA_iJo : C++() ==> C(WindowProperties const *)
+extern WindowProperties$_ZOrder WindowProperties$74$get_z_order(WindowProperties const *self);
+
+// _inCAAAAuhzu : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$75$has_z_order(WindowProperties const *self);
+
+// _inCAAAALFwW : C++() ==> C(WindowProperties *)
+extern void WindowProperties$76$clear_z_order(WindowProperties *self);
+
+// _inCAAAAttFo : C++(WindowHandle *parent_window) ==> C(WindowProperties *, WindowHandle *)
+extern void WindowProperties$77$set_parent_window(WindowProperties *self, WindowHandle *parent_window);
+
+// _inCAAAAhe0o : C++() ==> C(WindowProperties *)
+extern void WindowProperties$78$set_parent_window(WindowProperties *self);
+
+// _inCAAAAH63T : C++(std::size_t parent) ==> C(WindowProperties *, std::size_t)
+extern void WindowProperties$79$set_parent_window(WindowProperties *self, std$_size_t parent);
+
+// _inCAAAA7fZY : C++() ==> C(WindowProperties const *)
+extern WindowHandle * WindowProperties$80$get_parent_window(WindowProperties const *self);
+
+// _inCAAAALSDf : C++() ==> C(WindowProperties const *)
+extern bool WindowProperties$81$has_parent_window(WindowProperties const *self);
+
+// _inCAAAAy5uH : C++() ==> C(WindowProperties *)
+extern void WindowProperties$82$clear_parent_window(WindowProperties *self);
+
+// _inCAAAAcUzF : C++(WindowProperties const &other) ==> C(WindowProperties *, WindowProperties const *)
+extern void WindowProperties$83$add_properties(WindowProperties *self, WindowProperties const *other);
+
+// _inCAAAA0R7E : C++(std::ostream &out) ==> C(WindowProperties const *, std::ostream *)
+extern void WindowProperties$84$output(WindowProperties const *self, std$_ostream *out);
 
 

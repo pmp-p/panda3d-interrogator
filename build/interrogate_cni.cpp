@@ -24,6 +24,8 @@
 #include "pandaSystem.h"
 #include "pandabase.h"
 #include <set>
+#include "texture.h"
+#include "texturePeeker.h"
 #include "threadPriority.h"
 
 
@@ -61,8 +63,8 @@ EXPORT_FUNC void Camera_C_set_active_v_pB(Camera *param0, bool param1);
 EXPORT_FUNC bool Camera_C_is_active_B_p(Camera const *param0);
 EXPORT_FUNC void Camera_C_set_scene_v_pp(Camera *param0, NodePath const *param1);
 EXPORT_FUNC NodePath const * Camera_C_get_scene_p_p(Camera const *param0);
-EXPORT_FUNC std::size_t Camera_C_get_num_display_regions_p_p(Camera const *param0);
-EXPORT_FUNC DisplayRegion * Camera_C_get_display_region_p_pp(Camera const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t Camera_C_get_num_display_regions_l_p(Camera const *param0);
+EXPORT_FUNC DisplayRegion * Camera_C_get_display_region_p_pl(Camera const *param0, std::size_t param1);
 EXPORT_FUNC void Camera_C_set_camera_mask_v_pp(Camera *param0, DrawMask *param1);
 EXPORT_FUNC DrawMask * Camera_C_get_camera_mask_p_p(Camera const *param0);
 EXPORT_FUNC void Camera_C_set_cull_center_v_pp(Camera *param0, NodePath const *param1);
@@ -115,12 +117,12 @@ EXPORT_FUNC bool ConfigPage_C_read_encrypted_prc_B_pps(ConfigPage *param0, std::
 EXPORT_FUNC ConfigDeclaration * ConfigPage_C_make_declaration_p_pps(ConfigPage *param0, ConfigVariableCore *param1, char const *param2);
 EXPORT_FUNC ConfigDeclaration * ConfigPage_C_make_declaration_p_pss(ConfigPage *param0, char const *param1, char const *param2);
 EXPORT_FUNC bool ConfigPage_C_delete_declaration_B_pp(ConfigPage *param0, ConfigDeclaration *param1);
-EXPORT_FUNC std::size_t ConfigPage_C_get_num_declarations_p_p(ConfigPage const *param0);
-EXPORT_FUNC ConfigDeclaration const * ConfigPage_C_get_declaration_p_pp(ConfigPage const *param0, std::size_t param1);
-EXPORT_FUNC ConfigDeclaration * ConfigPage_C_modify_declaration_p_pp(ConfigPage *param0, std::size_t param1);
-EXPORT_FUNC char const * ConfigPage_C_get_variable_name_s_pp(ConfigPage const *param0, std::size_t param1);
-EXPORT_FUNC char const * ConfigPage_C_get_string_value_s_pp(ConfigPage const *param0, std::size_t param1);
-EXPORT_FUNC bool ConfigPage_C_is_variable_used_B_pp(ConfigPage const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t ConfigPage_C_get_num_declarations_l_p(ConfigPage const *param0);
+EXPORT_FUNC ConfigDeclaration const * ConfigPage_C_get_declaration_p_pl(ConfigPage const *param0, std::size_t param1);
+EXPORT_FUNC ConfigDeclaration * ConfigPage_C_modify_declaration_p_pl(ConfigPage *param0, std::size_t param1);
+EXPORT_FUNC char const * ConfigPage_C_get_variable_name_s_pl(ConfigPage const *param0, std::size_t param1);
+EXPORT_FUNC char const * ConfigPage_C_get_string_value_s_pl(ConfigPage const *param0, std::size_t param1);
+EXPORT_FUNC bool ConfigPage_C_is_variable_used_B_pl(ConfigPage const *param0, std::size_t param1);
 EXPORT_FUNC void ConfigPage_C_output_v_pp(ConfigPage const *param0, std::ostream *param1);
 EXPORT_FUNC void ConfigPage_C_output_brief_signature_v_pp(ConfigPage const *param0, std::ostream *param1);
 EXPORT_FUNC void ConfigPage_C_write_v_pp(ConfigPage const *param0, std::ostream *param1);
@@ -130,7 +132,95 @@ EXPORT_FUNC void ConfigPage_C_write_v_pp(ConfigPage const *param0, std::ostream 
 
 EXPORT_FUNC Geom * CopyOnWriteObject_C_downcast_to_Geom_p_p(CopyOnWriteObject *param0);
 EXPORT_FUNC GeomPrimitive * CopyOnWriteObject_C_downcast_to_GeomPrimitive_p_p(CopyOnWriteObject *param0);
+EXPORT_FUNC GeomVertexArrayData * CopyOnWriteObject_C_downcast_to_GeomVertexArrayData_p_p(CopyOnWriteObject *param0);
 EXPORT_FUNC GeomVertexData * CopyOnWriteObject_C_downcast_to_GeomVertexData_p_p(CopyOnWriteObject *param0);
+
+
+// DisplayRegion
+
+EXPORT_FUNC TypedReferenceCount * DisplayRegion_C_upcast_to_TypedReferenceCount_p_p(DisplayRegion *param0);
+EXPORT_FUNC DrawableRegion * DisplayRegion_C_upcast_to_DrawableRegion_p_p(DisplayRegion *param0);
+EXPORT_FUNC void DisplayRegion_C_cleanup_v_p(DisplayRegion *param0);
+EXPORT_FUNC int DisplayRegion_C_get_num_regions_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_num_regions_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC LVecBase4 * DisplayRegion_C_get_dimensions_p_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC LVecBase4 * DisplayRegion_C_get_dimensions_p_p(DisplayRegion const *param0);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_left_f_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_left_f_p(DisplayRegion const *param0);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_right_f_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_right_f_p(DisplayRegion const *param0);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_bottom_f_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_bottom_f_p(DisplayRegion const *param0);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_top_f_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC PN_stdfloat DisplayRegion_C_get_top_f_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_dimensions_v_pp(DisplayRegion *param0, LVecBase4 const *param1);
+EXPORT_FUNC void DisplayRegion_C_set_dimensions_v_pffff(DisplayRegion *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4);
+EXPORT_FUNC void DisplayRegion_C_set_dimensions_v_pip(DisplayRegion *param0, int param1, LVecBase4 const *param2);
+EXPORT_FUNC void DisplayRegion_C_set_dimensions_v_piffff(DisplayRegion *param0, int param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5);
+EXPORT_FUNC GraphicsOutput * DisplayRegion_C_get_window_p_p(DisplayRegion const *param0);
+EXPORT_FUNC GraphicsPipe * DisplayRegion_C_get_pipe_p_p(DisplayRegion const *param0);
+EXPORT_FUNC bool DisplayRegion_C_is_stereo_B_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_camera_v_pp(DisplayRegion *param0, NodePath const *param1);
+EXPORT_FUNC NodePath * DisplayRegion_C_get_camera_p_pp(DisplayRegion const *param0, Thread *param1);
+EXPORT_FUNC NodePath * DisplayRegion_C_get_camera_p_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_active_v_pB(DisplayRegion *param0, bool param1);
+EXPORT_FUNC bool DisplayRegion_C_is_active_B_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_sort_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_sort_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_stereo_channel_v_pp(DisplayRegion *param0, Lens::StereoChannel param1);
+EXPORT_FUNC Lens::StereoChannel DisplayRegion_C_get_stereo_channel_p_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_tex_view_offset_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_tex_view_offset_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_incomplete_render_v_pB(DisplayRegion *param0, bool param1);
+EXPORT_FUNC bool DisplayRegion_C_get_incomplete_render_B_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_texture_reload_priority_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_texture_reload_priority_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_lens_index_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_lens_index_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_cull_traverser_v_pp(DisplayRegion *param0, CullTraverser *param1);
+EXPORT_FUNC CullTraverser * DisplayRegion_C_get_cull_traverser_p_p(DisplayRegion *param0);
+EXPORT_FUNC void DisplayRegion_C_set_cube_map_index_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC void DisplayRegion_C_set_target_tex_page_v_pi(DisplayRegion *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_target_tex_page_i_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_scissor_enabled_v_pB(DisplayRegion *param0, bool param1);
+EXPORT_FUNC bool DisplayRegion_C_get_scissor_enabled_B_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_cull_callback_v_pp(DisplayRegion *param0, CallbackObject *param1);
+EXPORT_FUNC void DisplayRegion_C_clear_cull_callback_v_p(DisplayRegion *param0);
+EXPORT_FUNC CallbackObject * DisplayRegion_C_get_cull_callback_p_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_draw_callback_v_pp(DisplayRegion *param0, CallbackObject *param1);
+EXPORT_FUNC void DisplayRegion_C_clear_draw_callback_v_p(DisplayRegion *param0);
+EXPORT_FUNC CallbackObject * DisplayRegion_C_get_draw_callback_p_p(DisplayRegion const *param0);
+EXPORT_FUNC int DisplayRegion_C_get_pixel_width_i_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_pixel_width_i_p(DisplayRegion const *param0);
+EXPORT_FUNC int DisplayRegion_C_get_pixel_height_i_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC int DisplayRegion_C_get_pixel_height_i_p(DisplayRegion const *param0);
+EXPORT_FUNC LVecBase2i * DisplayRegion_C_get_pixel_size_p_pi(DisplayRegion const *param0, int param1);
+EXPORT_FUNC LVecBase2i * DisplayRegion_C_get_pixel_size_p_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_output_v_pp(DisplayRegion const *param0, std::ostream *param1);
+EXPORT_FUNC Filename * DisplayRegion_C_make_screenshot_filename_p_s(char const *param0);
+EXPORT_FUNC Filename * DisplayRegion_C_make_screenshot_filename_p_v();
+EXPORT_FUNC Filename * DisplayRegion_C_save_screenshot_default_p_ps(DisplayRegion *param0, char const *param1);
+EXPORT_FUNC Filename * DisplayRegion_C_save_screenshot_default_p_p(DisplayRegion *param0);
+EXPORT_FUNC bool DisplayRegion_C_save_screenshot_B_pps(DisplayRegion *param0, Filename const *param1, char const *param2);
+EXPORT_FUNC bool DisplayRegion_C_save_screenshot_B_pp(DisplayRegion *param0, Filename const *param1);
+EXPORT_FUNC PointerTo< Texture > * DisplayRegion_C_get_screenshot_p_p(DisplayRegion *param0);
+EXPORT_FUNC bool DisplayRegion_C_get_screenshot_B_pp(DisplayRegion *param0, PNMImage *param1);
+EXPORT_FUNC PointerTo< PandaNode > * DisplayRegion_C_make_cull_result_graph_p_p(DisplayRegion *param0);
+EXPORT_FUNC void DisplayRegion_C_compute_pixels_v_p(DisplayRegion *param0);
+EXPORT_FUNC void DisplayRegion_C_compute_pixels_v_pii(DisplayRegion *param0, int param1, int param2);
+EXPORT_FUNC void DisplayRegion_C_compute_pixels_all_stages_v_p(DisplayRegion *param0);
+EXPORT_FUNC void DisplayRegion_C_compute_pixels_all_stages_v_pii(DisplayRegion *param0, int param1, int param2);
+EXPORT_FUNC bool DisplayRegion_C_supports_pixel_zoom_B_p(DisplayRegion const *param0);
+EXPORT_FUNC void DisplayRegion_C_set_cull_result_v_pppp(DisplayRegion *param0, PointerTo< CullResult > *param1, PointerTo< SceneSetup > *param2, Thread *param3);
+EXPORT_FUNC CullResult * DisplayRegion_C_get_cull_result_p_pp(DisplayRegion const *param0, Thread *param1);
+EXPORT_FUNC SceneSetup * DisplayRegion_C_get_scene_setup_p_pp(DisplayRegion const *param0, Thread *param1);
+EXPORT_FUNC PStatCollector * DisplayRegion_C_get_cull_region_pcollector_p_p(DisplayRegion *param0);
+EXPORT_FUNC PStatCollector * DisplayRegion_C_get_draw_region_pcollector_p_p(DisplayRegion *param0);
+EXPORT_FUNC char const * DisplayRegion_C_get_debug_name_s_p(DisplayRegion const *param0);
+EXPORT_FUNC int DisplayRegion_C_get_class_type_i_v();
+EXPORT_FUNC void DisplayRegion_C_init_type_v_v();
+EXPORT_FUNC int DisplayRegion_C_get_type_i_p(DisplayRegion const *param0);
+EXPORT_FUNC int DisplayRegion_C_force_init_type_i_p(DisplayRegion *param0);
 
 
 // DrawableRegion
@@ -163,6 +253,7 @@ EXPORT_FUNC bool DrawableRegion_C_supports_pixel_zoom_B_p(DrawableRegion const *
 EXPORT_FUNC int DrawableRegion_C_get_renderbuffer_type_i_i(int param0);
 EXPORT_FUNC int DrawableRegion_C_get_screenshot_buffer_type_i_p(DrawableRegion const *param0);
 EXPORT_FUNC int DrawableRegion_C_get_draw_buffer_type_i_p(DrawableRegion const *param0);
+EXPORT_FUNC DisplayRegion * DrawableRegion_C_downcast_to_DisplayRegion_p_p(DrawableRegion *param0);
 EXPORT_FUNC GraphicsOutput * DrawableRegion_C_downcast_to_GraphicsOutput_p_p(DrawableRegion *param0);
 
 
@@ -195,6 +286,23 @@ EXPORT_FUNC PandaFramework * Engine_C_get_framework_p_p(Engine const *param0);
 EXPORT_FUNC void Engine_C_set_framework_v_pp(Engine *param0, PandaFramework *param1);
 
 
+// EventHandler
+
+EXPORT_FUNC EventHandler * EventHandler_C_ctor_p_p(EventQueue *param0);
+EXPORT_FUNC AsyncFuture * EventHandler_C_get_future_p_ps(EventHandler *param0, char const *param1);
+EXPORT_FUNC void EventHandler_C_process_events_v_p(EventHandler *param0);
+EXPORT_FUNC void EventHandler_C_dispatch_event_v_pp(EventHandler *param0, Event const *param1);
+EXPORT_FUNC void EventHandler_C_write_v_pp(EventHandler const *param0, std::ostream *param1);
+EXPORT_FUNC EventHandler * EventHandler_C_get_global_event_handler_p_p(EventQueue *param0);
+EXPORT_FUNC EventHandler * EventHandler_C_get_global_event_handler_p_v();
+EXPORT_FUNC bool EventHandler_C_has_hook_B_ps(EventHandler const *param0, char const *param1);
+EXPORT_FUNC bool EventHandler_C_remove_hooks_B_ps(EventHandler *param0, char const *param1);
+EXPORT_FUNC void EventHandler_C_remove_all_hooks_v_p(EventHandler *param0);
+EXPORT_FUNC int EventHandler_C_get_class_type_i_v();
+EXPORT_FUNC void EventHandler_C_init_type_v_v();
+EXPORT_FUNC int EventHandler_C_force_init_type_i_p(EventHandler *param0);
+
+
 // Filename
 
 EXPORT_FUNC Filename * Filename_C_ctor_p_v();
@@ -203,7 +311,7 @@ EXPORT_FUNC Filename * Filename_C_ctor_p_p_1_p_p(Filename const *param0);
 EXPORT_FUNC Filename * Filename_C_ctor_p_pp(Filename const *param0, Filename const *param1);
 EXPORT_FUNC Filename * Filename_C_ctor_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_ctor_p_s_1_p_s(char const *param0);
-EXPORT_FUNC Filename * Filename_C_ctor_p_p_1_p_p_2_p_p(wchar_t const *param0);
+EXPORT_FUNC Filename * Filename_C_ctor_p_s_1_p_s_2_p_s(wchar_t const *param0);
 EXPORT_FUNC Filename * Filename_C_text_filename_p_p(Filename const *param0);
 EXPORT_FUNC Filename * Filename_C_text_filename_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_binary_filename_p_p(Filename const *param0);
@@ -213,8 +321,8 @@ EXPORT_FUNC Filename * Filename_C_executable_filename_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_pattern_filename_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_from_os_specific_p_sp(char const *param0, Filename::Type param1);
 EXPORT_FUNC Filename * Filename_C_from_os_specific_p_s(char const *param0);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_pp(wchar_t const *param0, Filename::Type param1);
-EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_p(wchar_t const *param0);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_sp(wchar_t const *param0, Filename::Type param1);
+EXPORT_FUNC Filename * Filename_C_from_os_specific_w_p_s(wchar_t const *param0);
 EXPORT_FUNC Filename * Filename_C_expand_from_p_sp(char const *param0, Filename::Type param1);
 EXPORT_FUNC Filename * Filename_C_expand_from_p_s(char const *param0);
 EXPORT_FUNC Filename * Filename_C_temporary_p_sssp(char const *param0, char const *param1, char const *param2, Filename::Type param3);
@@ -226,11 +334,11 @@ EXPORT_FUNC Filename const * Filename_C_get_user_appdata_directory_p_v();
 EXPORT_FUNC Filename const * Filename_C_get_common_appdata_directory_p_v();
 EXPORT_FUNC char const * Filename_C_c_str_s_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_empty_B_p(Filename const *param0);
-EXPORT_FUNC std::size_t Filename_C_length_p_p(Filename const *param0);
-EXPORT_FUNC char const * Filename_C_substr_s_pp(Filename const *param0, std::size_t param1);
-EXPORT_FUNC char const * Filename_C_substr_s_ppp(Filename const *param0, std::size_t param1, std::size_t param2);
+EXPORT_FUNC std::size_t Filename_C_length_l_p(Filename const *param0);
+EXPORT_FUNC char const * Filename_C_substr_s_pl(Filename const *param0, std::size_t param1);
+EXPORT_FUNC char const * Filename_C_substr_s_pll(Filename const *param0, std::size_t param1, std::size_t param2);
 EXPORT_FUNC char const * Filename_C_get_fullpath_s_p(Filename const *param0);
-EXPORT_FUNC wchar_t const * Filename_C_get_fullpath_w_p_p(Filename const *param0);
+EXPORT_FUNC wchar_t const * Filename_C_get_fullpath_w_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_get_dirname_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_get_basename_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_get_fullpath_wo_extension_s_p(Filename const *param0);
@@ -264,7 +372,7 @@ EXPORT_FUNC void Filename_C_make_absolute_v_pp(Filename *param0, Filename const 
 EXPORT_FUNC bool Filename_C_make_canonical_B_p(Filename *param0);
 EXPORT_FUNC bool Filename_C_make_true_case_B_p(Filename *param0);
 EXPORT_FUNC char const * Filename_C_to_os_specific_s_p(Filename const *param0);
-EXPORT_FUNC wchar_t const * Filename_C_to_os_specific_w_p_p(Filename const *param0);
+EXPORT_FUNC wchar_t const * Filename_C_to_os_specific_w_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_to_os_generic_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_to_os_short_name_s_p(Filename const *param0);
 EXPORT_FUNC char const * Filename_C_to_os_long_name_s_p(Filename const *param0);
@@ -278,7 +386,7 @@ EXPORT_FUNC int Filename_C_compare_timestamps_i_ppB(Filename const *param0, File
 EXPORT_FUNC int Filename_C_compare_timestamps_i_pp(Filename const *param0, Filename const *param1);
 EXPORT_FUNC time_t Filename_C_get_timestamp_p_p(Filename const *param0);
 EXPORT_FUNC time_t Filename_C_get_access_timestamp_p_p(Filename const *param0);
-EXPORT_FUNC std::streamsize Filename_C_get_file_size_p_p(Filename const *param0);
+EXPORT_FUNC std::streamsize Filename_C_get_file_size_l_p(Filename const *param0);
 EXPORT_FUNC bool Filename_C_resolve_filename_B_pps(Filename *param0, DSearchPath const *param1, char const *param2);
 EXPORT_FUNC bool Filename_C_resolve_filename_B_pp(Filename *param0, DSearchPath const *param1);
 EXPORT_FUNC bool Filename_C_make_relative_to_B_ppB(Filename *param0, Filename *param1, bool param2);
@@ -317,6 +425,102 @@ EXPORT_FUNC int Filename_C_get_class_type_i_v();
 EXPORT_FUNC void Filename_C_init_type_v_v();
 
 
+// Fog
+
+EXPORT_FUNC Fog * Fog_C_ctor_p_s(char const *param0);
+EXPORT_FUNC void Fog_C_xform_v_pp(Fog *param0, LMatrix4 const *param1);
+EXPORT_FUNC Fog::Mode Fog_C_get_mode_p_p(Fog const *param0);
+EXPORT_FUNC void Fog_C_set_mode_v_pp(Fog *param0, Fog::Mode param1);
+EXPORT_FUNC LColor const * Fog_C_get_color_p_p(Fog const *param0);
+EXPORT_FUNC void Fog_C_set_color_v_pp(Fog *param0, LColor const *param1);
+EXPORT_FUNC void Fog_C_set_color_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void Fog_C_set_linear_range_v_pff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2);
+EXPORT_FUNC LPoint3 const * Fog_C_get_linear_onset_point_p_p(Fog const *param0);
+EXPORT_FUNC void Fog_C_set_linear_onset_point_v_pp(Fog *param0, LPoint3 const *param1);
+EXPORT_FUNC void Fog_C_set_linear_onset_point_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC LPoint3 const * Fog_C_get_linear_opaque_point_p_p(Fog const *param0);
+EXPORT_FUNC void Fog_C_set_linear_opaque_point_v_pp(Fog *param0, LPoint3 const *param1);
+EXPORT_FUNC void Fog_C_set_linear_opaque_point_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void Fog_C_set_linear_fallback_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC PN_stdfloat Fog_C_get_exp_density_f_p(Fog const *param0);
+EXPORT_FUNC void Fog_C_set_exp_density_v_pf(Fog *param0, PN_stdfloat param1);
+EXPORT_FUNC void Fog_C_adjust_to_camera_v_pp(Fog *param0, TransformState const *param1);
+EXPORT_FUNC void Fog_C_register_with_read_factory_v_v();
+EXPORT_FUNC void Fog_C_write_datagram_v_ppp(Fog *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC int Fog_C_get_class_type_i_v();
+EXPORT_FUNC void Fog_C_init_type_v_v();
+EXPORT_FUNC int Fog_C_get_type_i_p(Fog const *param0);
+EXPORT_FUNC int Fog_C_force_init_type_i_p(Fog *param0);
+
+
+// FrameBufferProperties
+
+EXPORT_FUNC int FrameBufferProperties_C_get_depth_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_color_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_red_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_green_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_blue_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_alpha_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_stencil_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_accum_bits_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_aux_rgba_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_aux_hrgba_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_aux_float_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_multisamples_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_coverage_samples_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_back_buffers_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_indexed_color_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_rgb_color_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_stereo_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_force_hardware_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_force_software_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_srgb_color_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_float_color_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_get_float_depth_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC void FrameBufferProperties_C_set_depth_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_color_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_rgba_bits_v_piiii(FrameBufferProperties *param0, int param1, int param2, int param3, int param4);
+EXPORT_FUNC void FrameBufferProperties_C_set_red_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_green_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_blue_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_alpha_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_stencil_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_accum_bits_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_aux_rgba_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_aux_hrgba_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_aux_float_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_multisamples_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_coverage_samples_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_back_buffers_v_pi(FrameBufferProperties *param0, int param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_indexed_color_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_rgb_color_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_stereo_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_force_hardware_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_force_software_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_srgb_color_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_float_color_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_float_depth_v_pB(FrameBufferProperties *param0, bool param1);
+EXPORT_FUNC FrameBufferProperties * FrameBufferProperties_C_ctor_p_v();
+EXPORT_FUNC FrameBufferProperties * FrameBufferProperties_C_ctor_p_p(FrameBufferProperties const *param0);
+EXPORT_FUNC FrameBufferProperties const * FrameBufferProperties_C_get_default_p_v();
+EXPORT_FUNC void FrameBufferProperties_C_clear_v_p(FrameBufferProperties *param0);
+EXPORT_FUNC void FrameBufferProperties_C_set_all_specified_v_p(FrameBufferProperties *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_subsumes_B_pp(FrameBufferProperties const *param0, FrameBufferProperties const *param1);
+EXPORT_FUNC void FrameBufferProperties_C_add_properties_v_pp(FrameBufferProperties *param0, FrameBufferProperties const *param1);
+EXPORT_FUNC void FrameBufferProperties_C_output_v_pp(FrameBufferProperties const *param0, std::ostream *param1);
+EXPORT_FUNC void FrameBufferProperties_C_set_one_bit_per_channel_v_p(FrameBufferProperties *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_is_stereo_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_is_single_buffered_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_quality_i_pp(FrameBufferProperties const *param0, FrameBufferProperties const *param1);
+EXPORT_FUNC bool FrameBufferProperties_C_is_any_specified_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_is_basic_B_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_aux_mask_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC int FrameBufferProperties_C_get_buffer_mask_i_p(FrameBufferProperties const *param0);
+EXPORT_FUNC bool FrameBufferProperties_C_verify_hardware_software_B_pps(FrameBufferProperties const *param0, FrameBufferProperties const *param1, char const *param2);
+EXPORT_FUNC bool FrameBufferProperties_C_setup_color_texture_B_pp(FrameBufferProperties const *param0, Texture *param1);
+EXPORT_FUNC bool FrameBufferProperties_C_setup_depth_texture_B_pp(FrameBufferProperties const *param0, Texture *param1);
+
+
 // Geom
 
 EXPORT_FUNC CopyOnWriteObject * Geom_C_upcast_to_CopyOnWriteObject_p_p(Geom *param0);
@@ -337,13 +541,13 @@ EXPORT_FUNC int Geom_C_make_nonindexed_i_pB(Geom *param0, bool param1);
 EXPORT_FUNC ConstPointerTo< GeomVertexData > * Geom_C_get_animated_vertex_data_p_pBp(Geom const *param0, bool param1, Thread *param2);
 EXPORT_FUNC ConstPointerTo< GeomVertexData > * Geom_C_get_animated_vertex_data_p_pB(Geom const *param0, bool param1);
 EXPORT_FUNC bool Geom_C_is_empty_B_p(Geom const *param0);
-EXPORT_FUNC std::size_t Geom_C_get_num_primitives_p_p(Geom const *param0);
-EXPORT_FUNC ConstPointerTo< GeomPrimitive > * Geom_C_get_primitive_p_pp(Geom const *param0, std::size_t param1);
-EXPORT_FUNC PointerTo< GeomPrimitive > * Geom_C_modify_primitive_p_pp(Geom *param0, std::size_t param1);
-EXPORT_FUNC void Geom_C_set_primitive_v_ppp(Geom *param0, std::size_t param1, GeomPrimitive const *param2);
-EXPORT_FUNC void Geom_C_insert_primitive_v_ppp(Geom *param0, std::size_t param1, GeomPrimitive const *param2);
+EXPORT_FUNC std::size_t Geom_C_get_num_primitives_l_p(Geom const *param0);
+EXPORT_FUNC ConstPointerTo< GeomPrimitive > * Geom_C_get_primitive_p_pl(Geom const *param0, std::size_t param1);
+EXPORT_FUNC PointerTo< GeomPrimitive > * Geom_C_modify_primitive_p_pl(Geom *param0, std::size_t param1);
+EXPORT_FUNC void Geom_C_set_primitive_v_plp(Geom *param0, std::size_t param1, GeomPrimitive const *param2);
+EXPORT_FUNC void Geom_C_insert_primitive_v_plp(Geom *param0, std::size_t param1, GeomPrimitive const *param2);
 EXPORT_FUNC void Geom_C_add_primitive_v_pp(Geom *param0, GeomPrimitive const *param1);
-EXPORT_FUNC void Geom_C_remove_primitive_v_pp(Geom *param0, std::size_t param1);
+EXPORT_FUNC void Geom_C_remove_primitive_v_pl(Geom *param0, std::size_t param1);
 EXPORT_FUNC void Geom_C_clear_primitives_v_p(Geom *param0);
 EXPORT_FUNC PointerTo< Geom > * Geom_C_decompose_p_p(Geom const *param0);
 EXPORT_FUNC PointerTo< Geom > * Geom_C_doubleside_p_p(Geom const *param0);
@@ -407,6 +611,9 @@ EXPORT_FUNC GeomEnums * GeomEnums_C_ctor_p_v();
 EXPORT_FUNC GeomEnums * GeomEnums_C_ctor_p_p(GeomEnums const *param0);
 EXPORT_FUNC Geom * GeomEnums_C_downcast_to_Geom_p_p(GeomEnums *param0);
 EXPORT_FUNC GeomPrimitive * GeomEnums_C_downcast_to_GeomPrimitive_p_p(GeomEnums *param0);
+EXPORT_FUNC GeomVertexArrayData * GeomEnums_C_downcast_to_GeomVertexArrayData_p_p(GeomEnums *param0);
+EXPORT_FUNC GeomVertexArrayFormat * GeomEnums_C_downcast_to_GeomVertexArrayFormat_p_p(GeomEnums *param0);
+EXPORT_FUNC GeomVertexArrayDataHandle * GeomEnums_C_downcast_to_GeomVertexArrayDataHandle_p_p(GeomEnums *param0);
 EXPORT_FUNC GeomVertexData * GeomEnums_C_downcast_to_GeomVertexData_p_p(GeomEnums *param0);
 EXPORT_FUNC GeomVertexFormat * GeomEnums_C_downcast_to_GeomVertexFormat_p_p(GeomEnums *param0);
 
@@ -562,6 +769,171 @@ EXPORT_FUNC int GeomTriangles_C_get_type_i_p(GeomTriangles const *param0);
 EXPORT_FUNC int GeomTriangles_C_force_init_type_i_p(GeomTriangles *param0);
 
 
+// GeomVertexArrayData
+
+EXPORT_FUNC CopyOnWriteObject * GeomVertexArrayData_C_upcast_to_CopyOnWriteObject_p_p(GeomVertexArrayData *param0);
+EXPORT_FUNC SimpleLruPage * GeomVertexArrayData_C_upcast_to_SimpleLruPage_p_p(GeomVertexArrayData *param0);
+EXPORT_FUNC GeomEnums * GeomVertexArrayData_C_upcast_to_GeomEnums_p_p(GeomVertexArrayData *param0);
+EXPORT_FUNC GeomVertexArrayData * GeomVertexArrayData_C_ctor_p_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC GeomVertexArrayData * GeomVertexArrayData_C_ctor_p_pp(GeomVertexArrayFormat const *param0, GeomEnums::UsageHint param1);
+EXPORT_FUNC int GeomVertexArrayData_C_compare_to_i_pp(GeomVertexArrayData const *param0, GeomVertexArrayData const *param1);
+EXPORT_FUNC GeomVertexArrayFormat const * GeomVertexArrayData_C_get_array_format_p_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC GeomEnums::UsageHint GeomVertexArrayData_C_get_usage_hint_p_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC void GeomVertexArrayData_C_set_usage_hint_v_pp(GeomVertexArrayData *param0, GeomEnums::UsageHint param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_has_column_B_ps(GeomVertexArrayData const *param0, InternalName const *param1);
+EXPORT_FUNC int GeomVertexArrayData_C_get_num_rows_i_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC bool GeomVertexArrayData_C_set_num_rows_B_pi(GeomVertexArrayData *param0, int param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_unclean_set_num_rows_B_pi(GeomVertexArrayData *param0, int param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_reserve_num_rows_B_pi(GeomVertexArrayData *param0, int param1);
+EXPORT_FUNC void GeomVertexArrayData_C_clear_rows_v_p(GeomVertexArrayData *param0);
+EXPORT_FUNC std::size_t GeomVertexArrayData_C_get_data_size_bytes_l_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC UpdateSeq * GeomVertexArrayData_C_get_modified_p_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC void GeomVertexArrayData_C_output_v_pp(GeomVertexArrayData const *param0, std::ostream *param1);
+EXPORT_FUNC void GeomVertexArrayData_C_write_v_ppi(GeomVertexArrayData const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC void GeomVertexArrayData_C_write_v_pp(GeomVertexArrayData const *param0, std::ostream *param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_request_resident_B_pp(GeomVertexArrayData const *param0, Thread *param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_request_resident_B_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC ConstPointerTo< GeomVertexArrayDataHandle > * GeomVertexArrayData_C_get_handle_p_pp(GeomVertexArrayData const *param0, Thread *param1);
+EXPORT_FUNC ConstPointerTo< GeomVertexArrayDataHandle > * GeomVertexArrayData_C_get_handle_p_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC PointerTo< GeomVertexArrayDataHandle > * GeomVertexArrayData_C_modify_handle_p_pp(GeomVertexArrayData *param0, Thread *param1);
+EXPORT_FUNC PointerTo< GeomVertexArrayDataHandle > * GeomVertexArrayData_C_modify_handle_p_p(GeomVertexArrayData *param0);
+EXPORT_FUNC void GeomVertexArrayData_C_prepare_v_pp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool GeomVertexArrayData_C_is_prepared_B_pp(GeomVertexArrayData const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC VertexBufferContext * GeomVertexArrayData_C_prepare_now_p_ppp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2);
+EXPORT_FUNC bool GeomVertexArrayData_C_release_B_pp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC int GeomVertexArrayData_C_release_all_i_p(GeomVertexArrayData *param0);
+EXPORT_FUNC SimpleLru * GeomVertexArrayData_C_get_independent_lru_p_v();
+EXPORT_FUNC SimpleLru * GeomVertexArrayData_C_get_small_lru_p_v();
+EXPORT_FUNC void GeomVertexArrayData_C_lru_epoch_v_v();
+EXPORT_FUNC VertexDataBook * GeomVertexArrayData_C_get_book_p_v();
+EXPORT_FUNC void GeomVertexArrayData_C_evict_lru_v_p(GeomVertexArrayData *param0);
+EXPORT_FUNC void GeomVertexArrayData_C_register_with_read_factory_v_v();
+EXPORT_FUNC void GeomVertexArrayData_C_write_datagram_v_ppp(GeomVertexArrayData *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC PTA_uchar * GeomVertexArrayData_C_read_raw_data_p_ppp(GeomVertexArrayData *param0, BamReader *param1, DatagramIterator *param2);
+EXPORT_FUNC void GeomVertexArrayData_C_finalize_v_pp(GeomVertexArrayData *param0, BamReader *param1);
+EXPORT_FUNC int GeomVertexArrayData_C_get_class_type_i_v();
+EXPORT_FUNC void GeomVertexArrayData_C_init_type_v_v();
+EXPORT_FUNC int GeomVertexArrayData_C_get_type_i_p(GeomVertexArrayData const *param0);
+EXPORT_FUNC int GeomVertexArrayData_C_force_init_type_i_p(GeomVertexArrayData *param0);
+
+
+// GeomVertexArrayDataHandle
+
+EXPORT_FUNC ReferenceCount * GeomVertexArrayDataHandle_C_upcast_to_ReferenceCount_p_p(GeomVertexArrayDataHandle *param0);
+EXPORT_FUNC GeomEnums * GeomVertexArrayDataHandle_C_upcast_to_GeomEnums_p_p(GeomVertexArrayDataHandle *param0);
+EXPORT_FUNC Thread * GeomVertexArrayDataHandle_C_get_current_thread_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_get_read_pointer_v_pB(GeomVertexArrayDataHandle const *param0, bool param1);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_get_write_pointer_v_p(GeomVertexArrayDataHandle *param0);
+EXPORT_FUNC GeomVertexArrayData * GeomVertexArrayDataHandle_C_get_object_p_p(GeomVertexArrayDataHandle *param0);
+EXPORT_FUNC GeomVertexArrayData const * GeomVertexArrayDataHandle_C_get_object_p_p_1_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC GeomVertexArrayFormat const * GeomVertexArrayDataHandle_C_get_array_format_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC GeomEnums::UsageHint GeomVertexArrayDataHandle_C_get_usage_hint_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC int GeomVertexArrayDataHandle_C_get_num_rows_i_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC bool GeomVertexArrayDataHandle_C_set_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1);
+EXPORT_FUNC bool GeomVertexArrayDataHandle_C_unclean_set_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1);
+EXPORT_FUNC bool GeomVertexArrayDataHandle_C_reserve_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_clear_rows_v_p(GeomVertexArrayDataHandle *param0);
+EXPORT_FUNC std::size_t GeomVertexArrayDataHandle_C_get_data_size_bytes_l_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC UpdateSeq * GeomVertexArrayDataHandle_C_get_modified_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC bool GeomVertexArrayDataHandle_C_request_resident_B_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC VertexBufferContext * GeomVertexArrayDataHandle_C_prepare_now_p_ppp(GeomVertexArrayDataHandle const *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_copy_data_from_v_pp(GeomVertexArrayDataHandle *param0, GeomVertexArrayDataHandle const *param1);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_copy_subdata_from_v_pllpll(GeomVertexArrayDataHandle *param0, std::size_t param1, std::size_t param2, GeomVertexArrayDataHandle const *param3, std::size_t param4, std::size_t param5);
+EXPORT_FUNC vector_uchar GeomVertexArrayDataHandle_C_get_data_p_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_set_data_v_pp(GeomVertexArrayDataHandle *param0, vector_uchar param1);
+EXPORT_FUNC vector_uchar GeomVertexArrayDataHandle_C_get_subdata_p_pll(GeomVertexArrayDataHandle const *param0, std::size_t param1, std::size_t param2);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_set_subdata_v_pllp(GeomVertexArrayDataHandle *param0, std::size_t param1, std::size_t param2, vector_uchar param3);
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_mark_used_v_p(GeomVertexArrayDataHandle const *param0);
+EXPORT_FUNC int GeomVertexArrayDataHandle_C_get_class_type_i_v();
+EXPORT_FUNC void GeomVertexArrayDataHandle_C_init_type_v_v();
+
+
+// GeomVertexArrayFormat
+
+EXPORT_FUNC TypedWritableReferenceCount * GeomVertexArrayFormat_C_upcast_to_TypedWritableReferenceCount_p_p(GeomVertexArrayFormat *param0);
+EXPORT_FUNC GeomEnums * GeomVertexArrayFormat_C_upcast_to_GeomEnums_p_p(GeomVertexArrayFormat *param0);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_v();
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_sipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_sippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_sippsippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7, CPT_InternalName *param8, int param9, GeomEnums::NumericType param10, GeomEnums::Contents param11);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_sippsippsippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7, CPT_InternalName *param8, int param9, GeomEnums::NumericType param10, GeomEnums::Contents param11, CPT_InternalName *param12, int param13, GeomEnums::NumericType param14, GeomEnums::Contents param15);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexArrayFormat_C_ctor_p_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC bool GeomVertexArrayFormat_C_unref_B_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC bool GeomVertexArrayFormat_C_is_registered_B_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC ConstPointerTo< GeomVertexArrayFormat > * GeomVertexArrayFormat_C_register_format_p_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_stride_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_set_stride_v_pi(GeomVertexArrayFormat *param0, int param1);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_pad_to_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_set_pad_to_v_pi(GeomVertexArrayFormat *param0, int param1);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_divisor_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_set_divisor_v_pi(GeomVertexArrayFormat *param0, int param1);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_total_bytes_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC int GeomVertexArrayFormat_C_add_column_i_psippii(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4, int param5, int param6);
+EXPORT_FUNC int GeomVertexArrayFormat_C_add_column_i_psippi(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4, int param5);
+EXPORT_FUNC int GeomVertexArrayFormat_C_add_column_i_psipp(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4);
+EXPORT_FUNC int GeomVertexArrayFormat_C_add_column_i_pp(GeomVertexArrayFormat *param0, GeomVertexColumn const *param1);
+EXPORT_FUNC void GeomVertexArrayFormat_C_remove_column_v_ps(GeomVertexArrayFormat *param0, InternalName const *param1);
+EXPORT_FUNC void GeomVertexArrayFormat_C_clear_columns_v_p(GeomVertexArrayFormat *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_pack_columns_v_p(GeomVertexArrayFormat *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_align_columns_for_animation_v_p(GeomVertexArrayFormat *param0);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_num_columns_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC GeomVertexColumn const * GeomVertexArrayFormat_C_get_column_p_ps(GeomVertexArrayFormat const *param0, InternalName const *param1);
+EXPORT_FUNC GeomVertexColumn const * GeomVertexArrayFormat_C_get_column_p_pi(GeomVertexArrayFormat const *param0, int param1);
+EXPORT_FUNC GeomVertexColumn const * GeomVertexArrayFormat_C_get_column_p_pii(GeomVertexArrayFormat const *param0, int param1, int param2);
+EXPORT_FUNC bool GeomVertexArrayFormat_C_has_column_B_ps(GeomVertexArrayFormat const *param0, InternalName const *param1);
+EXPORT_FUNC bool GeomVertexArrayFormat_C_is_data_subset_of_B_pp(GeomVertexArrayFormat const *param0, GeomVertexArrayFormat const *param1);
+EXPORT_FUNC int GeomVertexArrayFormat_C_count_unused_space_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC void GeomVertexArrayFormat_C_output_v_pp(GeomVertexArrayFormat const *param0, std::ostream *param1);
+EXPORT_FUNC void GeomVertexArrayFormat_C_write_v_ppi(GeomVertexArrayFormat const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC void GeomVertexArrayFormat_C_write_v_pp(GeomVertexArrayFormat const *param0, std::ostream *param1);
+EXPORT_FUNC void GeomVertexArrayFormat_C_write_with_data_v_ppip(GeomVertexArrayFormat const *param0, std::ostream *param1, int param2, GeomVertexArrayData const *param3);
+EXPORT_FUNC char const * GeomVertexArrayFormat_C_get_format_string_s_pB(GeomVertexArrayFormat const *param0, bool param1);
+EXPORT_FUNC char const * GeomVertexArrayFormat_C_get_format_string_s_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC int GeomVertexArrayFormat_C_compare_to_i_pp(GeomVertexArrayFormat const *param0, GeomVertexArrayFormat const *param1);
+EXPORT_FUNC void GeomVertexArrayFormat_C_register_with_read_factory_v_v();
+EXPORT_FUNC void GeomVertexArrayFormat_C_write_datagram_v_ppp(GeomVertexArrayFormat *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC void GeomVertexArrayFormat_C_finalize_v_pp(GeomVertexArrayFormat *param0, BamReader *param1);
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_class_type_i_v();
+EXPORT_FUNC void GeomVertexArrayFormat_C_init_type_v_v();
+EXPORT_FUNC int GeomVertexArrayFormat_C_get_type_i_p(GeomVertexArrayFormat const *param0);
+EXPORT_FUNC int GeomVertexArrayFormat_C_force_init_type_i_p(GeomVertexArrayFormat *param0);
+
+
+// GeomVertexColumn
+
+EXPORT_FUNC GeomVertexColumn * GeomVertexColumn_C_ctor_p_sippiiii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5, int param6, int param7);
+EXPORT_FUNC GeomVertexColumn * GeomVertexColumn_C_ctor_p_sippiii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5, int param6);
+EXPORT_FUNC GeomVertexColumn * GeomVertexColumn_C_ctor_p_sippii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5);
+EXPORT_FUNC GeomVertexColumn * GeomVertexColumn_C_ctor_p_sippi(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4);
+EXPORT_FUNC GeomVertexColumn * GeomVertexColumn_C_ctor_p_p(GeomVertexColumn const *param0);
+EXPORT_FUNC InternalName const * GeomVertexColumn_C_get_name_s_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_num_components_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_num_values_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_num_elements_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC GeomEnums::NumericType GeomVertexColumn_C_get_numeric_type_p_p(GeomVertexColumn const *param0);
+EXPORT_FUNC GeomEnums::Contents GeomVertexColumn_C_get_contents_p_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_start_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_column_alignment_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_element_stride_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_component_bytes_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_get_total_bytes_i_p(GeomVertexColumn const *param0);
+EXPORT_FUNC bool GeomVertexColumn_C_has_homogeneous_coord_B_p(GeomVertexColumn const *param0);
+EXPORT_FUNC bool GeomVertexColumn_C_overlaps_with_B_pii(GeomVertexColumn const *param0, int param1, int param2);
+EXPORT_FUNC bool GeomVertexColumn_C_is_bytewise_equivalent_B_pp(GeomVertexColumn const *param0, GeomVertexColumn const *param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_name_v_pp(GeomVertexColumn *param0, InternalName *param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_num_components_v_pi(GeomVertexColumn *param0, int param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_numeric_type_v_pp(GeomVertexColumn *param0, GeomEnums::NumericType param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_contents_v_pp(GeomVertexColumn *param0, GeomEnums::Contents param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_start_v_pi(GeomVertexColumn *param0, int param1);
+EXPORT_FUNC void GeomVertexColumn_C_set_column_alignment_v_pi(GeomVertexColumn *param0, int param1);
+EXPORT_FUNC void GeomVertexColumn_C_output_v_pp(GeomVertexColumn const *param0, std::ostream *param1);
+EXPORT_FUNC bool GeomVertexColumn_C_is_packed_argb_B_p(GeomVertexColumn const *param0);
+EXPORT_FUNC bool GeomVertexColumn_C_is_uint8_rgba_B_p(GeomVertexColumn const *param0);
+EXPORT_FUNC int GeomVertexColumn_C_compare_to_i_pp(GeomVertexColumn const *param0, GeomVertexColumn const *param1);
+EXPORT_FUNC void GeomVertexColumn_C_write_datagram_v_ppp(GeomVertexColumn *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC void GeomVertexColumn_C_fillin_v_ppp(GeomVertexColumn *param0, DatagramIterator *param1, BamReader *param2);
+
+
 // GeomVertexData
 
 EXPORT_FUNC CopyOnWriteObject * GeomVertexData_C_upcast_to_CopyOnWriteObject_p_p(GeomVertexData *param0);
@@ -583,12 +955,12 @@ EXPORT_FUNC bool GeomVertexData_C_set_num_rows_B_pi(GeomVertexData *param0, int 
 EXPORT_FUNC bool GeomVertexData_C_unclean_set_num_rows_B_pi(GeomVertexData *param0, int param1);
 EXPORT_FUNC bool GeomVertexData_C_reserve_num_rows_B_pi(GeomVertexData *param0, int param1);
 EXPORT_FUNC void GeomVertexData_C_clear_rows_v_p(GeomVertexData *param0);
-EXPORT_FUNC std::size_t GeomVertexData_C_get_num_arrays_p_p(GeomVertexData const *param0);
-EXPORT_FUNC ConstPointerTo< GeomVertexArrayData > * GeomVertexData_C_get_array_p_pp(GeomVertexData const *param0, std::size_t param1);
-EXPORT_FUNC ConstPointerTo< GeomVertexArrayDataHandle > * GeomVertexData_C_get_array_handle_p_pp(GeomVertexData const *param0, std::size_t param1);
-EXPORT_FUNC PointerTo< GeomVertexArrayData > * GeomVertexData_C_modify_array_p_pp(GeomVertexData *param0, std::size_t param1);
-EXPORT_FUNC PointerTo< GeomVertexArrayDataHandle > * GeomVertexData_C_modify_array_handle_p_pp(GeomVertexData *param0, std::size_t param1);
-EXPORT_FUNC void GeomVertexData_C_set_array_v_ppp(GeomVertexData *param0, std::size_t param1, GeomVertexArrayData const *param2);
+EXPORT_FUNC std::size_t GeomVertexData_C_get_num_arrays_l_p(GeomVertexData const *param0);
+EXPORT_FUNC ConstPointerTo< GeomVertexArrayData > * GeomVertexData_C_get_array_p_pl(GeomVertexData const *param0, std::size_t param1);
+EXPORT_FUNC ConstPointerTo< GeomVertexArrayDataHandle > * GeomVertexData_C_get_array_handle_p_pl(GeomVertexData const *param0, std::size_t param1);
+EXPORT_FUNC PointerTo< GeomVertexArrayData > * GeomVertexData_C_modify_array_p_pl(GeomVertexData *param0, std::size_t param1);
+EXPORT_FUNC PointerTo< GeomVertexArrayDataHandle > * GeomVertexData_C_modify_array_handle_p_pl(GeomVertexData *param0, std::size_t param1);
+EXPORT_FUNC void GeomVertexData_C_set_array_v_plp(GeomVertexData *param0, std::size_t param1, GeomVertexArrayData const *param2);
 EXPORT_FUNC TransformTable const * GeomVertexData_C_get_transform_table_p_p(GeomVertexData const *param0);
 EXPORT_FUNC void GeomVertexData_C_set_transform_table_v_pp(GeomVertexData *param0, TransformTable const *param1);
 EXPORT_FUNC void GeomVertexData_C_clear_transform_table_v_p(GeomVertexData *param0);
@@ -658,37 +1030,37 @@ EXPORT_FUNC GeomVertexAnimationSpec const * GeomVertexFormat_C_get_animation_p_p
 EXPORT_FUNC void GeomVertexFormat_C_set_animation_v_pp(GeomVertexFormat *param0, GeomVertexAnimationSpec const *param1);
 EXPORT_FUNC ConstPointerTo< GeomVertexFormat > * GeomVertexFormat_C_get_post_animated_format_p_p(GeomVertexFormat const *param0);
 EXPORT_FUNC ConstPointerTo< GeomVertexFormat > * GeomVertexFormat_C_get_union_format_p_pp(GeomVertexFormat const *param0, GeomVertexFormat const *param1);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_arrays_p_p(GeomVertexFormat const *param0);
-EXPORT_FUNC GeomVertexArrayFormat const * GeomVertexFormat_C_get_array_p_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC GeomVertexArrayFormat * GeomVertexFormat_C_modify_array_p_pp(GeomVertexFormat *param0, std::size_t param1);
-EXPORT_FUNC void GeomVertexFormat_C_set_array_v_ppp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2);
-EXPORT_FUNC void GeomVertexFormat_C_remove_array_v_pp(GeomVertexFormat *param0, std::size_t param1);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_add_array_p_pp(GeomVertexFormat *param0, GeomVertexArrayFormat const *param1);
-EXPORT_FUNC void GeomVertexFormat_C_insert_array_v_ppp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_arrays_l_p(GeomVertexFormat const *param0);
+EXPORT_FUNC GeomVertexArrayFormat const * GeomVertexFormat_C_get_array_p_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC GeomVertexArrayFormat * GeomVertexFormat_C_modify_array_p_pl(GeomVertexFormat *param0, std::size_t param1);
+EXPORT_FUNC void GeomVertexFormat_C_set_array_v_plp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2);
+EXPORT_FUNC void GeomVertexFormat_C_remove_array_v_pl(GeomVertexFormat *param0, std::size_t param1);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_add_array_l_pp(GeomVertexFormat *param0, GeomVertexArrayFormat const *param1);
+EXPORT_FUNC void GeomVertexFormat_C_insert_array_v_plp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2);
 EXPORT_FUNC void GeomVertexFormat_C_clear_arrays_v_p(GeomVertexFormat *param0);
 EXPORT_FUNC void GeomVertexFormat_C_remove_empty_arrays_v_p(GeomVertexFormat *param0);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_columns_p_p(GeomVertexFormat const *param0);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_columns_l_p(GeomVertexFormat const *param0);
 EXPORT_FUNC int GeomVertexFormat_C_get_array_with_i_ps(GeomVertexFormat const *param0, InternalName const *param1);
-EXPORT_FUNC int GeomVertexFormat_C_get_array_with_i_pp(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC int GeomVertexFormat_C_get_array_with_i_pl(GeomVertexFormat const *param0, std::size_t param1);
 EXPORT_FUNC GeomVertexColumn const * GeomVertexFormat_C_get_column_p_ps(GeomVertexFormat const *param0, InternalName const *param1);
-EXPORT_FUNC GeomVertexColumn const * GeomVertexFormat_C_get_column_p_pp(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC GeomVertexColumn const * GeomVertexFormat_C_get_column_p_pl(GeomVertexFormat const *param0, std::size_t param1);
 EXPORT_FUNC bool GeomVertexFormat_C_has_column_B_ps(GeomVertexFormat const *param0, InternalName const *param1);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_column_name_s_pp(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_column_name_s_pl(GeomVertexFormat const *param0, std::size_t param1);
 EXPORT_FUNC void GeomVertexFormat_C_remove_column_v_psB(GeomVertexFormat *param0, InternalName const *param1, bool param2);
 EXPORT_FUNC void GeomVertexFormat_C_remove_column_v_ps(GeomVertexFormat *param0, InternalName const *param1);
 EXPORT_FUNC void GeomVertexFormat_C_pack_columns_v_p(GeomVertexFormat *param0);
 EXPORT_FUNC void GeomVertexFormat_C_align_columns_for_animation_v_p(GeomVertexFormat *param0);
 EXPORT_FUNC void GeomVertexFormat_C_maybe_align_columns_for_animation_v_p(GeomVertexFormat *param0);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_points_p_p(GeomVertexFormat const *param0);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_point_s_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_vectors_p_p(GeomVertexFormat const *param0);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_vector_s_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_texcoords_p_p(GeomVertexFormat const *param0);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_texcoord_s_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_morphs_p_p(GeomVertexFormat const *param0);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_slider_s_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_base_s_pp(GeomVertexFormat const *param0, std::size_t param1);
-EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_delta_s_pp(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_points_l_p(GeomVertexFormat const *param0);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_point_s_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_vectors_l_p(GeomVertexFormat const *param0);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_vector_s_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_texcoords_l_p(GeomVertexFormat const *param0);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_texcoord_s_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t GeomVertexFormat_C_get_num_morphs_l_p(GeomVertexFormat const *param0);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_slider_s_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_base_s_pl(GeomVertexFormat const *param0, std::size_t param1);
+EXPORT_FUNC InternalName const * GeomVertexFormat_C_get_morph_delta_s_pl(GeomVertexFormat const *param0, std::size_t param1);
 EXPORT_FUNC void GeomVertexFormat_C_output_v_pp(GeomVertexFormat const *param0, std::ostream *param1);
 EXPORT_FUNC void GeomVertexFormat_C_write_v_ppi(GeomVertexFormat const *param0, std::ostream *param1, int param2);
 EXPORT_FUNC void GeomVertexFormat_C_write_v_pp(GeomVertexFormat const *param0, std::ostream *param1);
@@ -738,7 +1110,7 @@ EXPORT_FUNC GeomVertexWriter * GeomVertexWriter_C_ctor_p_v();
 EXPORT_FUNC GeomVertexData * GeomVertexWriter_C_get_vertex_data_p_p(GeomVertexWriter const *param0);
 EXPORT_FUNC GeomVertexArrayData * GeomVertexWriter_C_get_array_data_p_p(GeomVertexWriter const *param0);
 EXPORT_FUNC GeomVertexArrayDataHandle * GeomVertexWriter_C_get_array_handle_p_p(GeomVertexWriter const *param0);
-EXPORT_FUNC std::size_t GeomVertexWriter_C_get_stride_p_p(GeomVertexWriter const *param0);
+EXPORT_FUNC std::size_t GeomVertexWriter_C_get_stride_l_p(GeomVertexWriter const *param0);
 EXPORT_FUNC Thread * GeomVertexWriter_C_get_current_thread_p_p(GeomVertexWriter const *param0);
 EXPORT_FUNC bool GeomVertexWriter_C_set_column_B_ps(GeomVertexWriter *param0, CPT_InternalName *param1);
 EXPORT_FUNC bool GeomVertexWriter_C_set_column_B_pi(GeomVertexWriter *param0, int param1);
@@ -822,6 +1194,45 @@ EXPORT_FUNC void GeomVertexWriter_C_add_data3i_v_piii(GeomVertexWriter *param0, 
 EXPORT_FUNC void GeomVertexWriter_C_add_data4i_v_pp(GeomVertexWriter *param0, LVecBase4i const *param1);
 EXPORT_FUNC void GeomVertexWriter_C_add_data4i_v_piiii(GeomVertexWriter *param0, int param1, int param2, int param3, int param4);
 EXPORT_FUNC void GeomVertexWriter_C_output_v_pp(GeomVertexWriter const *param0, std::ostream *param1);
+
+
+// GraphicsEngine
+
+EXPORT_FUNC GraphicsEngine * GraphicsEngine_C_ctor_p_p(Pipeline *param0);
+EXPORT_FUNC GraphicsEngine * GraphicsEngine_C_ctor_p_v();
+EXPORT_FUNC void GraphicsEngine_C_set_threading_model_v_pp(GraphicsEngine *param0, GraphicsThreadingModel const *param1);
+EXPORT_FUNC GraphicsThreadingModel * GraphicsEngine_C_get_threading_model_p_p(GraphicsEngine const *param0);
+EXPORT_FUNC ReMutex const * GraphicsEngine_C_get_render_lock_p_p(GraphicsEngine const *param0);
+EXPORT_FUNC void GraphicsEngine_C_set_auto_flip_v_pB(GraphicsEngine *param0, bool param1);
+EXPORT_FUNC bool GraphicsEngine_C_get_auto_flip_B_p(GraphicsEngine const *param0);
+EXPORT_FUNC void GraphicsEngine_C_set_portal_cull_v_pB(GraphicsEngine *param0, bool param1);
+EXPORT_FUNC bool GraphicsEngine_C_get_portal_cull_B_p(GraphicsEngine const *param0);
+EXPORT_FUNC void GraphicsEngine_C_set_default_loader_v_pp(GraphicsEngine *param0, Loader *param1);
+EXPORT_FUNC Loader * GraphicsEngine_C_get_default_loader_p_p(GraphicsEngine const *param0);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_output_p_ppsippipp(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6, GraphicsStateGuardian *param7, GraphicsOutput *param8);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_output_p_ppsippip(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6, GraphicsStateGuardian *param7);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_output_p_ppsippi(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_buffer_p_ppsiii(GraphicsEngine *param0, GraphicsOutput *param1, char const *param2, int param3, int param4, int param5);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_buffer_p_ppsiii_1_p_ppsiii(GraphicsEngine *param0, GraphicsStateGuardian *param1, char const *param2, int param3, int param4, int param5);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_make_parasite_p_ppsiii(GraphicsEngine *param0, GraphicsOutput *param1, char const *param2, int param3, int param4, int param5);
+EXPORT_FUNC bool GraphicsEngine_C_add_window_B_ppi(GraphicsEngine *param0, GraphicsOutput *param1, int param2);
+EXPORT_FUNC bool GraphicsEngine_C_remove_window_B_pp(GraphicsEngine *param0, GraphicsOutput *param1);
+EXPORT_FUNC void GraphicsEngine_C_remove_all_windows_v_p(GraphicsEngine *param0);
+EXPORT_FUNC void GraphicsEngine_C_reset_all_windows_v_pB(GraphicsEngine *param0, bool param1);
+EXPORT_FUNC bool GraphicsEngine_C_is_empty_B_p(GraphicsEngine const *param0);
+EXPORT_FUNC int GraphicsEngine_C_get_num_windows_i_p(GraphicsEngine const *param0);
+EXPORT_FUNC GraphicsOutput * GraphicsEngine_C_get_window_p_pi(GraphicsEngine const *param0, int param1);
+EXPORT_FUNC void GraphicsEngine_C_render_frame_v_p(GraphicsEngine *param0);
+EXPORT_FUNC void GraphicsEngine_C_open_windows_v_p(GraphicsEngine *param0);
+EXPORT_FUNC void GraphicsEngine_C_sync_frame_v_p(GraphicsEngine *param0);
+EXPORT_FUNC void GraphicsEngine_C_ready_flip_v_p(GraphicsEngine *param0);
+EXPORT_FUNC void GraphicsEngine_C_flip_frame_v_p(GraphicsEngine *param0);
+EXPORT_FUNC bool GraphicsEngine_C_extract_texture_data_B_ppp(GraphicsEngine *param0, Texture *param1, GraphicsStateGuardian *param2);
+EXPORT_FUNC void GraphicsEngine_C_dispatch_compute_v_pppp(GraphicsEngine *param0, LVecBase3i const *param1, ShaderAttrib const *param2, GraphicsStateGuardian *param3);
+EXPORT_FUNC GraphicsEngine * GraphicsEngine_C_get_global_ptr_p_v();
+EXPORT_FUNC void GraphicsEngine_C_texture_uploaded_v_pp(GraphicsEngine *param0, Texture *param1);
+EXPORT_FUNC PointerTo< Texture > * GraphicsEngine_C_do_get_screenshot_p_ppp(GraphicsEngine *param0, DisplayRegion *param1, GraphicsStateGuardian *param2);
+EXPORT_FUNC void GraphicsEngine_C_do_cull_v_pppp(CullHandler *param0, SceneSetup *param1, GraphicsStateGuardian *param2, Thread *param3);
 
 
 // GraphicsOutput
@@ -1045,6 +1456,170 @@ EXPORT_FUNC int InternalName_C_get_type_i_p(InternalName const *param0);
 EXPORT_FUNC int InternalName_C_force_init_type_i_p(InternalName *param0);
 
 
+// LPoint2f
+
+EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_v();
+EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_p(LPoint2f const *param0);
+EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_p_1_p_p(LVecBase2f const *param0);
+EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_f(float param0);
+EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_ff(float param0, float param1);
+EXPORT_FUNC LPoint2f const * LPoint2f_C_zero_p_v();
+EXPORT_FUNC LPoint2f const * LPoint2f_C_unit_x_p_v();
+EXPORT_FUNC LPoint2f const * LPoint2f_C_unit_y_p_v();
+EXPORT_FUNC LPoint2f * LPoint2f_C_normalized_p_p(LPoint2f const *param0);
+EXPORT_FUNC LPoint2f * LPoint2f_C_project_p_pp(LPoint2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC int LPoint2f_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint2f_C_init_type_v_v();
+
+
+// LPoint2i
+
+EXPORT_FUNC LPoint2i * LPoint2i_C_ctor_p_v();
+EXPORT_FUNC LPoint2i * LPoint2i_C_ctor_p_p(LPoint2i const *param0);
+EXPORT_FUNC LPoint2i * LPoint2i_C_ctor_p_p_1_p_p(LVecBase2i const *param0);
+EXPORT_FUNC LPoint2i * LPoint2i_C_ctor_p_i(int param0);
+EXPORT_FUNC LPoint2i * LPoint2i_C_ctor_p_ii(int param0, int param1);
+EXPORT_FUNC LPoint2i const * LPoint2i_C_zero_p_v();
+EXPORT_FUNC LPoint2i const * LPoint2i_C_unit_x_p_v();
+EXPORT_FUNC LPoint2i const * LPoint2i_C_unit_y_p_v();
+EXPORT_FUNC int LPoint2i_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint2i_C_init_type_v_v();
+
+
+// LPoint3f
+
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_v();
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_p(LPoint3f const *param0);
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_pf(LVecBase2f const *param0, float param1);
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_p_1_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_f(float param0);
+EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_fff(float param0, float param1, float param2);
+EXPORT_FUNC LPoint3f const * LPoint3f_C_zero_p_v();
+EXPORT_FUNC LPoint3f const * LPoint3f_C_unit_x_p_v();
+EXPORT_FUNC LPoint3f const * LPoint3f_C_unit_y_p_v();
+EXPORT_FUNC LPoint3f const * LPoint3f_C_unit_z_p_v();
+EXPORT_FUNC LPoint2f * LPoint3f_C_get_xy_p_p(LPoint3f const *param0);
+EXPORT_FUNC LPoint2f * LPoint3f_C_get_xz_p_p(LPoint3f const *param0);
+EXPORT_FUNC LPoint2f * LPoint3f_C_get_yz_p_p(LPoint3f const *param0);
+EXPORT_FUNC LPoint3f * LPoint3f_C_cross_p_pp(LPoint3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LPoint3f * LPoint3f_C_normalized_p_p(LPoint3f const *param0);
+EXPORT_FUNC LPoint3f * LPoint3f_C_project_p_pp(LPoint3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LPoint3f const * LPoint3f_C_origin_p_p(CoordinateSystem param0);
+EXPORT_FUNC LPoint3f const * LPoint3f_C_origin_p_v();
+EXPORT_FUNC LPoint3f * LPoint3f_C_rfu_p_fffp(float param0, float param1, float param2, CoordinateSystem param3);
+EXPORT_FUNC LPoint3f * LPoint3f_C_rfu_p_fff(float param0, float param1, float param2);
+EXPORT_FUNC int LPoint3f_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint3f_C_init_type_v_v();
+
+
+// LVecBase2f
+
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_ctor_p_v();
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_ctor_p_p(LVecBase2f const *param0);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_ctor_p_p_1_p_p(LVecBase2f::EVector2 const *param0);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_ctor_p_f(float param0);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_ctor_p_ff(float param0, float param1);
+EXPORT_FUNC LVecBase2f const * LVecBase2f_C_zero_p_v();
+EXPORT_FUNC LVecBase2f const * LVecBase2f_C_unit_x_p_v();
+EXPORT_FUNC LVecBase2f const * LVecBase2f_C_unit_y_p_v();
+EXPORT_FUNC int LVecBase2f_C_size_i_v();
+EXPORT_FUNC bool LVecBase2f_C_is_nan_B_p(LVecBase2f const *param0);
+EXPORT_FUNC float LVecBase2f_C_get_cell_f_pi(LVecBase2f const *param0, int param1);
+EXPORT_FUNC void LVecBase2f_C_set_cell_v_pif(LVecBase2f *param0, int param1, float param2);
+EXPORT_FUNC float LVecBase2f_C_get_x_f_p(LVecBase2f const *param0);
+EXPORT_FUNC float LVecBase2f_C_get_y_f_p(LVecBase2f const *param0);
+EXPORT_FUNC void LVecBase2f_C_set_x_v_pf(LVecBase2f *param0, float param1);
+EXPORT_FUNC void LVecBase2f_C_set_y_v_pf(LVecBase2f *param0, float param1);
+EXPORT_FUNC void LVecBase2f_C_add_to_cell_v_pif(LVecBase2f *param0, int param1, float param2);
+EXPORT_FUNC void LVecBase2f_C_add_x_v_pf(LVecBase2f *param0, float param1);
+EXPORT_FUNC void LVecBase2f_C_add_y_v_pf(LVecBase2f *param0, float param1);
+EXPORT_FUNC void LVecBase2f_C_get_data_v_p(LVecBase2f const *param0);
+EXPORT_FUNC int LVecBase2f_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase2f_C_begin_v_p(LVecBase2f *param0);
+EXPORT_FUNC void LVecBase2f_C_begin_v_p_1_v_p(LVecBase2f const *param0);
+EXPORT_FUNC void LVecBase2f_C_end_v_p(LVecBase2f *param0);
+EXPORT_FUNC void LVecBase2f_C_end_v_p_1_v_p(LVecBase2f const *param0);
+EXPORT_FUNC void LVecBase2f_C_fill_v_pf(LVecBase2f *param0, float param1);
+EXPORT_FUNC void LVecBase2f_C_set_v_pff(LVecBase2f *param0, float param1, float param2);
+EXPORT_FUNC float LVecBase2f_C_dot_f_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC float LVecBase2f_C_length_squared_f_p(LVecBase2f const *param0);
+EXPORT_FUNC float LVecBase2f_C_length_f_p(LVecBase2f const *param0);
+EXPORT_FUNC bool LVecBase2f_C_normalize_B_p(LVecBase2f *param0);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_normalized_p_p(LVecBase2f const *param0);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_project_p_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC int LVecBase2f_C_compare_to_i_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC int LVecBase2f_C_compare_to_i_ppf(LVecBase2f const *param0, LVecBase2f const *param1, float param2);
+EXPORT_FUNC std::size_t LVecBase2f_C_get_hash_l_p(LVecBase2f const *param0);
+EXPORT_FUNC std::size_t LVecBase2f_C_get_hash_l_pf(LVecBase2f const *param0, float param1);
+EXPORT_FUNC std::size_t LVecBase2f_C_add_hash_l_pl(LVecBase2f const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase2f_C_add_hash_l_plf(LVecBase2f const *param0, std::size_t param1, float param2);
+EXPORT_FUNC void LVecBase2f_C_generate_hash_v_pp(LVecBase2f const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase2f_C_generate_hash_v_ppf(LVecBase2f const *param0, ChecksumHashGenerator *param1, float param2);
+EXPORT_FUNC void LVecBase2f_C_componentwise_mult_v_pp(LVecBase2f *param0, LVecBase2f const *param1);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_fmax_p_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC LVecBase2f * LVecBase2f_C_fmin_p_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC bool LVecBase2f_C_almost_equal_B_pp(LVecBase2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC bool LVecBase2f_C_almost_equal_B_ppf(LVecBase2f const *param0, LVecBase2f const *param1, float param2);
+EXPORT_FUNC void LVecBase2f_C_output_v_pp(LVecBase2f const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase2f_C_write_datagram_fixed_v_pp(LVecBase2f const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2f_C_read_datagram_fixed_v_pp(LVecBase2f *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase2f_C_write_datagram_v_pp(LVecBase2f const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2f_C_read_datagram_v_pp(LVecBase2f *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase2f::EVector2 * LVecBase2f_C_get_v_p_p(LVecBase2f const *param0);
+EXPORT_FUNC int LVecBase2f_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase2f_C_init_type_v_v();
+
+
+// LVecBase2i
+
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_ctor_p_v();
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_ctor_p_p(LVecBase2i const *param0);
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_ctor_p_p_1_p_p(LVecBase2i::EVector2 const *param0);
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_ctor_p_i(int param0);
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_ctor_p_ii(int param0, int param1);
+EXPORT_FUNC LVecBase2i const * LVecBase2i_C_zero_p_v();
+EXPORT_FUNC LVecBase2i const * LVecBase2i_C_unit_x_p_v();
+EXPORT_FUNC LVecBase2i const * LVecBase2i_C_unit_y_p_v();
+EXPORT_FUNC int LVecBase2i_C_size_i_v();
+EXPORT_FUNC bool LVecBase2i_C_is_nan_B_p(LVecBase2i const *param0);
+EXPORT_FUNC int LVecBase2i_C_get_cell_i_pi(LVecBase2i const *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_set_cell_v_pii(LVecBase2i *param0, int param1, int param2);
+EXPORT_FUNC int LVecBase2i_C_get_x_i_p(LVecBase2i const *param0);
+EXPORT_FUNC int LVecBase2i_C_get_y_i_p(LVecBase2i const *param0);
+EXPORT_FUNC void LVecBase2i_C_set_x_v_pi(LVecBase2i *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_set_y_v_pi(LVecBase2i *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_add_to_cell_v_pii(LVecBase2i *param0, int param1, int param2);
+EXPORT_FUNC void LVecBase2i_C_add_x_v_pi(LVecBase2i *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_add_y_v_pi(LVecBase2i *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_get_data_v_p(LVecBase2i const *param0);
+EXPORT_FUNC int LVecBase2i_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase2i_C_begin_v_p(LVecBase2i *param0);
+EXPORT_FUNC void LVecBase2i_C_begin_v_p_1_v_p(LVecBase2i const *param0);
+EXPORT_FUNC void LVecBase2i_C_end_v_p(LVecBase2i *param0);
+EXPORT_FUNC void LVecBase2i_C_end_v_p_1_v_p(LVecBase2i const *param0);
+EXPORT_FUNC void LVecBase2i_C_fill_v_pi(LVecBase2i *param0, int param1);
+EXPORT_FUNC void LVecBase2i_C_set_v_pii(LVecBase2i *param0, int param1, int param2);
+EXPORT_FUNC int LVecBase2i_C_dot_i_pp(LVecBase2i const *param0, LVecBase2i const *param1);
+EXPORT_FUNC int LVecBase2i_C_length_squared_i_p(LVecBase2i const *param0);
+EXPORT_FUNC int LVecBase2i_C_compare_to_i_pp(LVecBase2i const *param0, LVecBase2i const *param1);
+EXPORT_FUNC std::size_t LVecBase2i_C_get_hash_l_p(LVecBase2i const *param0);
+EXPORT_FUNC std::size_t LVecBase2i_C_add_hash_l_pl(LVecBase2i const *param0, std::size_t param1);
+EXPORT_FUNC void LVecBase2i_C_generate_hash_v_pp(LVecBase2i const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase2i_C_componentwise_mult_v_pp(LVecBase2i *param0, LVecBase2i const *param1);
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_fmax_p_pp(LVecBase2i const *param0, LVecBase2i const *param1);
+EXPORT_FUNC LVecBase2i * LVecBase2i_C_fmin_p_pp(LVecBase2i const *param0, LVecBase2i const *param1);
+EXPORT_FUNC bool LVecBase2i_C_almost_equal_B_pp(LVecBase2i const *param0, LVecBase2i const *param1);
+EXPORT_FUNC bool LVecBase2i_C_almost_equal_B_ppi(LVecBase2i const *param0, LVecBase2i const *param1, int param2);
+EXPORT_FUNC void LVecBase2i_C_output_v_pp(LVecBase2i const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase2i_C_write_datagram_fixed_v_pp(LVecBase2i const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2i_C_read_datagram_fixed_v_pp(LVecBase2i *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase2i_C_write_datagram_v_pp(LVecBase2i const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2i_C_read_datagram_v_pp(LVecBase2i *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase2i::EVector2 * LVecBase2i_C_get_v_p_p(LVecBase2i const *param0);
+EXPORT_FUNC int LVecBase2i_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase2i_C_init_type_v_v();
+
+
 // LVecBase3f
 
 EXPORT_FUNC LVecBase3f * LVecBase3f_C_ctor_p_v();
@@ -1092,10 +1667,10 @@ EXPORT_FUNC LVecBase3f * LVecBase3f_C_cross_p_pp(LVecBase3f const *param0, LVecB
 EXPORT_FUNC LVecBase3f * LVecBase3f_C_get_standardized_hpr_p_p(LVecBase3f const *param0);
 EXPORT_FUNC int LVecBase3f_C_compare_to_i_pp(LVecBase3f const *param0, LVecBase3f const *param1);
 EXPORT_FUNC int LVecBase3f_C_compare_to_i_ppf(LVecBase3f const *param0, LVecBase3f const *param1, float param2);
-EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_p_p(LVecBase3f const *param0);
-EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_p_pf(LVecBase3f const *param0, float param1);
-EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_p_pp(LVecBase3f const *param0, std::size_t param1);
-EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_p_ppf(LVecBase3f const *param0, std::size_t param1, float param2);
+EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_l_p(LVecBase3f const *param0);
+EXPORT_FUNC std::size_t LVecBase3f_C_get_hash_l_pf(LVecBase3f const *param0, float param1);
+EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_l_pl(LVecBase3f const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase3f_C_add_hash_l_plf(LVecBase3f const *param0, std::size_t param1, float param2);
 EXPORT_FUNC void LVecBase3f_C_generate_hash_v_pp(LVecBase3f const *param0, ChecksumHashGenerator *param1);
 EXPORT_FUNC void LVecBase3f_C_generate_hash_v_ppf(LVecBase3f const *param0, ChecksumHashGenerator *param1, float param2);
 EXPORT_FUNC void LVecBase3f_C_componentwise_mult_v_pp(LVecBase3f *param0, LVecBase3f const *param1);
@@ -1155,8 +1730,8 @@ EXPORT_FUNC int LVecBase3i_C_dot_i_pp(LVecBase3i const *param0, LVecBase3i const
 EXPORT_FUNC int LVecBase3i_C_length_squared_i_p(LVecBase3i const *param0);
 EXPORT_FUNC LVecBase3i * LVecBase3i_C_cross_p_pp(LVecBase3i const *param0, LVecBase3i const *param1);
 EXPORT_FUNC int LVecBase3i_C_compare_to_i_pp(LVecBase3i const *param0, LVecBase3i const *param1);
-EXPORT_FUNC std::size_t LVecBase3i_C_get_hash_p_p(LVecBase3i const *param0);
-EXPORT_FUNC std::size_t LVecBase3i_C_add_hash_p_pp(LVecBase3i const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase3i_C_get_hash_l_p(LVecBase3i const *param0);
+EXPORT_FUNC std::size_t LVecBase3i_C_add_hash_l_pl(LVecBase3i const *param0, std::size_t param1);
 EXPORT_FUNC void LVecBase3i_C_generate_hash_v_pp(LVecBase3i const *param0, ChecksumHashGenerator *param1);
 EXPORT_FUNC void LVecBase3i_C_componentwise_mult_v_pp(LVecBase3i *param0, LVecBase3i const *param1);
 EXPORT_FUNC LVecBase3i * LVecBase3i_C_fmax_p_pp(LVecBase3i const *param0, LVecBase3i const *param1);
@@ -1225,10 +1800,10 @@ EXPORT_FUNC LVecBase4f * LVecBase4f_C_normalized_p_p(LVecBase4f const *param0);
 EXPORT_FUNC LVecBase4f * LVecBase4f_C_project_p_pp(LVecBase4f const *param0, LVecBase4f const *param1);
 EXPORT_FUNC int LVecBase4f_C_compare_to_i_pp(LVecBase4f const *param0, LVecBase4f const *param1);
 EXPORT_FUNC int LVecBase4f_C_compare_to_i_ppf(LVecBase4f const *param0, LVecBase4f const *param1, float param2);
-EXPORT_FUNC std::size_t LVecBase4f_C_get_hash_p_p(LVecBase4f const *param0);
-EXPORT_FUNC std::size_t LVecBase4f_C_get_hash_p_pf(LVecBase4f const *param0, float param1);
-EXPORT_FUNC std::size_t LVecBase4f_C_add_hash_p_pp(LVecBase4f const *param0, std::size_t param1);
-EXPORT_FUNC std::size_t LVecBase4f_C_add_hash_p_ppf(LVecBase4f const *param0, std::size_t param1, float param2);
+EXPORT_FUNC std::size_t LVecBase4f_C_get_hash_l_p(LVecBase4f const *param0);
+EXPORT_FUNC std::size_t LVecBase4f_C_get_hash_l_pf(LVecBase4f const *param0, float param1);
+EXPORT_FUNC std::size_t LVecBase4f_C_add_hash_l_pl(LVecBase4f const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase4f_C_add_hash_l_plf(LVecBase4f const *param0, std::size_t param1, float param2);
 EXPORT_FUNC void LVecBase4f_C_generate_hash_v_pp(LVecBase4f const *param0, ChecksumHashGenerator *param1);
 EXPORT_FUNC void LVecBase4f_C_generate_hash_v_ppf(LVecBase4f const *param0, ChecksumHashGenerator *param1, float param2);
 EXPORT_FUNC void LVecBase4f_C_componentwise_mult_v_pp(LVecBase4f *param0, LVecBase4f const *param1);
@@ -1292,8 +1867,8 @@ EXPORT_FUNC void LVecBase4i_C_set_v_piiii(LVecBase4i *param0, int param1, int pa
 EXPORT_FUNC int LVecBase4i_C_dot_i_pp(LVecBase4i const *param0, LVecBase4i const *param1);
 EXPORT_FUNC int LVecBase4i_C_length_squared_i_p(LVecBase4i const *param0);
 EXPORT_FUNC int LVecBase4i_C_compare_to_i_pp(LVecBase4i const *param0, LVecBase4i const *param1);
-EXPORT_FUNC std::size_t LVecBase4i_C_get_hash_p_p(LVecBase4i const *param0);
-EXPORT_FUNC std::size_t LVecBase4i_C_add_hash_p_pp(LVecBase4i const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase4i_C_get_hash_l_p(LVecBase4i const *param0);
+EXPORT_FUNC std::size_t LVecBase4i_C_add_hash_l_pl(LVecBase4i const *param0, std::size_t param1);
 EXPORT_FUNC void LVecBase4i_C_generate_hash_v_pp(LVecBase4i const *param0, ChecksumHashGenerator *param1);
 EXPORT_FUNC void LVecBase4i_C_componentwise_mult_v_pp(LVecBase4i *param0, LVecBase4i const *param1);
 EXPORT_FUNC LVecBase4i * LVecBase4i_C_fmax_p_pp(LVecBase4i const *param0, LVecBase4i const *param1);
@@ -1308,6 +1883,94 @@ EXPORT_FUNC void LVecBase4i_C_read_datagram_v_pp(LVecBase4i *param0, DatagramIte
 EXPORT_FUNC LVecBase4i::EVector4 * LVecBase4i_C_get_v_p_p(LVecBase4i const *param0);
 EXPORT_FUNC int LVecBase4i_C_get_class_type_i_v();
 EXPORT_FUNC void LVecBase4i_C_init_type_v_v();
+
+
+// Lens
+
+EXPORT_FUNC PointerTo< Lens > * Lens_C_make_copy_p_p(Lens const *param0);
+EXPORT_FUNC bool Lens_C_extrude_B_pppp(Lens const *param0, LPoint2 const *param1, LPoint3 *param2, LPoint3 *param3);
+EXPORT_FUNC bool Lens_C_extrude_B_pppp_1_B_pppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2, LPoint3 *param3);
+EXPORT_FUNC bool Lens_C_extrude_depth_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2);
+EXPORT_FUNC bool Lens_C_extrude_vec_B_ppp(Lens const *param0, LPoint2 const *param1, LVector3 *param2);
+EXPORT_FUNC bool Lens_C_extrude_vec_B_ppp_1_B_ppp(Lens const *param0, LPoint3 const *param1, LVector3 *param2);
+EXPORT_FUNC bool Lens_C_project_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint2 *param2);
+EXPORT_FUNC bool Lens_C_project_B_ppp_1_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2);
+EXPORT_FUNC void Lens_C_set_change_event_v_ps(Lens *param0, char const *param1);
+EXPORT_FUNC char const * Lens_C_get_change_event_s_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_coordinate_system_v_pp(Lens *param0, CoordinateSystem param1);
+EXPORT_FUNC CoordinateSystem Lens_C_get_coordinate_system_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_clear_v_p(Lens *param0);
+EXPORT_FUNC void Lens_C_set_film_size_v_pp(Lens *param0, LVecBase2 const *param1);
+EXPORT_FUNC void Lens_C_set_film_size_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC void Lens_C_set_film_size_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2);
+EXPORT_FUNC LVecBase2 const * Lens_C_get_film_size_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_film_offset_v_pp(Lens *param0, LVecBase2 const *param1);
+EXPORT_FUNC void Lens_C_set_film_offset_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2);
+EXPORT_FUNC LVector2 const * Lens_C_get_film_offset_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_focal_length_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_focal_length_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_min_fov_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC void Lens_C_set_fov_v_pp(Lens *param0, LVecBase2 const *param1);
+EXPORT_FUNC void Lens_C_set_fov_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC void Lens_C_set_fov_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2);
+EXPORT_FUNC LVecBase2 const * Lens_C_get_fov_p_p(Lens const *param0);
+EXPORT_FUNC PN_stdfloat Lens_C_get_hfov_f_p(Lens const *param0);
+EXPORT_FUNC PN_stdfloat Lens_C_get_vfov_f_p(Lens const *param0);
+EXPORT_FUNC PN_stdfloat Lens_C_get_min_fov_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_aspect_ratio_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_aspect_ratio_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_near_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_near_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_far_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_far_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_near_far_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2);
+EXPORT_FUNC PN_stdfloat Lens_C_get_default_near_f_v();
+EXPORT_FUNC PN_stdfloat Lens_C_get_default_far_f_v();
+EXPORT_FUNC void Lens_C_set_view_hpr_v_pp(Lens *param0, LVecBase3 const *param1);
+EXPORT_FUNC void Lens_C_set_view_hpr_v_pfff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC LVecBase3 const * Lens_C_get_view_hpr_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_view_vector_v_ppp(Lens *param0, LVector3 const *param1, LVector3 const *param2);
+EXPORT_FUNC void Lens_C_set_view_vector_v_pffffff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5, PN_stdfloat param6);
+EXPORT_FUNC LVector3 const * Lens_C_get_view_vector_p_p(Lens const *param0);
+EXPORT_FUNC LVector3 const * Lens_C_get_up_vector_p_p(Lens const *param0);
+EXPORT_FUNC LPoint3 * Lens_C_get_nodal_point_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_interocular_distance_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_interocular_distance_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_convergence_distance_v_pf(Lens *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat Lens_C_get_convergence_distance_f_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_set_view_mat_v_pp(Lens *param0, LMatrix4 const *param1);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_view_mat_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_clear_view_mat_v_p(Lens *param0);
+EXPORT_FUNC void Lens_C_set_keystone_v_pp(Lens *param0, LVecBase2 const *param1);
+EXPORT_FUNC LVecBase2 const * Lens_C_get_keystone_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_clear_keystone_v_p(Lens *param0);
+EXPORT_FUNC void Lens_C_set_custom_film_mat_v_pp(Lens *param0, LMatrix4 const *param1);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_custom_film_mat_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_clear_custom_film_mat_v_p(Lens *param0);
+EXPORT_FUNC void Lens_C_set_frustum_from_corners_v_pppppi(Lens *param0, LVecBase3 const *param1, LVecBase3 const *param2, LVecBase3 const *param3, LVecBase3 const *param4, int param5);
+EXPORT_FUNC void Lens_C_recompute_all_v_p(Lens *param0);
+EXPORT_FUNC bool Lens_C_is_linear_B_p(Lens const *param0);
+EXPORT_FUNC bool Lens_C_is_perspective_B_p(Lens const *param0);
+EXPORT_FUNC bool Lens_C_is_orthographic_B_p(Lens const *param0);
+EXPORT_FUNC PointerTo< Geom > * Lens_C_make_geometry_p_p(Lens *param0);
+EXPORT_FUNC PointerTo< BoundingVolume > * Lens_C_make_bounds_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_projection_mat_p_pp(Lens const *param0, Lens::StereoChannel param1);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_projection_mat_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_projection_mat_inv_p_pp(Lens const *param0, Lens::StereoChannel param1);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_projection_mat_inv_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_film_mat_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_film_mat_inv_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_lens_mat_p_p(Lens const *param0);
+EXPORT_FUNC LMatrix4 const * Lens_C_get_lens_mat_inv_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_output_v_pp(Lens const *param0, std::ostream *param1);
+EXPORT_FUNC void Lens_C_write_v_ppi(Lens const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC void Lens_C_write_v_pp(Lens const *param0, std::ostream *param1);
+EXPORT_FUNC UpdateSeq * Lens_C_get_last_change_p_p(Lens const *param0);
+EXPORT_FUNC void Lens_C_write_datagram_v_ppp(Lens *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC int Lens_C_get_type_i_p(Lens const *param0);
+EXPORT_FUNC int Lens_C_force_init_type_i_p(Lens *param0);
+EXPORT_FUNC int Lens_C_get_class_type_i_v();
+EXPORT_FUNC void Lens_C_init_type_v_v();
 
 
 // LensNode
@@ -1342,6 +2005,36 @@ EXPORT_FUNC int LensNode_C_force_init_type_i_p(LensNode *param0);
 EXPORT_FUNC PandaNode * LinkedListNode_C_downcast_to_PandaNode_p_p(LinkedListNode *param0);
 
 
+// Loader
+
+EXPORT_FUNC TypedReferenceCount * Loader_C_upcast_to_TypedReferenceCount_p_p(Loader *param0);
+EXPORT_FUNC Namable * Loader_C_upcast_to_Namable_p_p(Loader *param0);
+EXPORT_FUNC Loader * Loader_C_ctor_p_p(Loader const *param0);
+EXPORT_FUNC Loader * Loader_C_ctor_p_s(char const *param0);
+EXPORT_FUNC Loader * Loader_C_ctor_p_v();
+EXPORT_FUNC void Loader_C_set_task_manager_v_pp(Loader *param0, AsyncTaskManager *param1);
+EXPORT_FUNC AsyncTaskManager * Loader_C_get_task_manager_p_p(Loader const *param0);
+EXPORT_FUNC void Loader_C_set_task_chain_v_ps(Loader *param0, char const *param1);
+EXPORT_FUNC char const * Loader_C_get_task_chain_s_p(Loader const *param0);
+EXPORT_FUNC void Loader_C_stop_threads_v_p(Loader *param0);
+EXPORT_FUNC bool Loader_C_remove_B_pp(Loader *param0, AsyncTask *param1);
+EXPORT_FUNC PointerTo< PandaNode > * Loader_C_load_sync_p_ppp(Loader const *param0, Filename const *param1, LoaderOptions const *param2);
+EXPORT_FUNC PointerTo< PandaNode > * Loader_C_load_sync_p_pp(Loader const *param0, Filename const *param1);
+EXPORT_FUNC PointerTo< AsyncTask > * Loader_C_make_async_request_p_ppp(Loader *param0, Filename const *param1, LoaderOptions const *param2);
+EXPORT_FUNC PointerTo< AsyncTask > * Loader_C_make_async_request_p_pp(Loader *param0, Filename const *param1);
+EXPORT_FUNC void Loader_C_load_async_v_pp(Loader *param0, AsyncTask *param1);
+EXPORT_FUNC bool Loader_C_save_sync_B_pppp(Loader const *param0, Filename const *param1, LoaderOptions const *param2, PandaNode *param3);
+EXPORT_FUNC PointerTo< AsyncTask > * Loader_C_make_async_save_request_p_pppp(Loader *param0, Filename const *param1, LoaderOptions const *param2, PandaNode *param3);
+EXPORT_FUNC void Loader_C_save_async_v_pp(Loader *param0, AsyncTask *param1);
+EXPORT_FUNC PointerTo< PandaNode > * Loader_C_load_bam_stream_p_pp(Loader *param0, std::istream *param1);
+EXPORT_FUNC void Loader_C_output_v_pp(Loader const *param0, std::ostream *param1);
+EXPORT_FUNC Loader * Loader_C_get_global_ptr_p_v();
+EXPORT_FUNC int Loader_C_get_class_type_i_v();
+EXPORT_FUNC void Loader_C_init_type_v_v();
+EXPORT_FUNC int Loader_C_get_type_i_p(Loader const *param0);
+EXPORT_FUNC int Loader_C_force_init_type_i_p(Loader *param0);
+
+
 // MemoryBase
 
 EXPORT_FUNC MemoryBase * MemoryBase_C_ctor_p_v();
@@ -1353,7 +2046,21 @@ EXPORT_FUNC TypedObject * MemoryBase_C_downcast_to_TypedObject_p_p(MemoryBase *p
 // Namable
 
 EXPORT_FUNC PandaNode * Namable_C_downcast_to_PandaNode_p_p(Namable *param0);
+EXPORT_FUNC Loader * Namable_C_downcast_to_Loader_p_p(Namable *param0);
+EXPORT_FUNC TextFont * Namable_C_downcast_to_TextFont_p_p(Namable *param0);
+EXPORT_FUNC Texture * Namable_C_downcast_to_Texture_p_p(Namable *param0);
 EXPORT_FUNC Thread * Namable_C_downcast_to_Thread_p_p(Namable *param0);
+
+
+// NodeCachedReferenceCount
+
+EXPORT_FUNC int NodeCachedReferenceCount_C_get_node_ref_count_i_p(NodeCachedReferenceCount const *param0);
+EXPORT_FUNC void NodeCachedReferenceCount_C_node_ref_v_p(NodeCachedReferenceCount const *param0);
+EXPORT_FUNC bool NodeCachedReferenceCount_C_node_unref_B_p(NodeCachedReferenceCount const *param0);
+EXPORT_FUNC bool NodeCachedReferenceCount_C_test_ref_count_integrity_B_p(NodeCachedReferenceCount const *param0);
+EXPORT_FUNC int NodeCachedReferenceCount_C_get_referenced_bits_i_p(NodeCachedReferenceCount const *param0);
+EXPORT_FUNC int NodeCachedReferenceCount_C_get_class_type_i_v();
+EXPORT_FUNC void NodeCachedReferenceCount_C_init_type_v_v();
 
 
 // NodePath
@@ -1391,7 +2098,7 @@ EXPORT_FUNC NodePath * NodePath_C_get_top_p_pp(NodePath const *param0, Thread *p
 EXPORT_FUNC NodePath * NodePath_C_get_top_p_p(NodePath const *param0);
 EXPORT_FUNC PandaNode * NodePath_C_node_p_p(NodePath const *param0);
 EXPORT_FUNC int NodePath_C_get_key_i_p(NodePath const *param0);
-EXPORT_FUNC std::size_t NodePath_C_add_hash_p_pp(NodePath const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t NodePath_C_add_hash_l_pl(NodePath const *param0, std::size_t param1);
 EXPORT_FUNC bool NodePath_C_is_same_graph_B_ppp(NodePath const *param0, NodePath const *param1, Thread *param2);
 EXPORT_FUNC bool NodePath_C_is_same_graph_B_pp(NodePath const *param0, NodePath const *param1);
 EXPORT_FUNC bool NodePath_C_is_ancestor_of_B_ppp(NodePath const *param0, NodePath const *param1, Thread *param2);
@@ -1965,11 +2672,11 @@ EXPORT_FUNC void NodePath_C_set_logic_op_v_pp(NodePath *param0, LogicOpAttrib::O
 EXPORT_FUNC void NodePath_C_clear_logic_op_v_p(NodePath *param0);
 EXPORT_FUNC bool NodePath_C_has_logic_op_B_p(NodePath const *param0);
 EXPORT_FUNC LogicOpAttrib::Operation NodePath_C_get_logic_op_p_p(NodePath const *param0);
-EXPORT_FUNC void NodePath_C_set_antialias_v_ppi(NodePath *param0, unsigned short int param1, int param2);
-EXPORT_FUNC void NodePath_C_set_antialias_v_pp(NodePath *param0, unsigned short int param1);
+EXPORT_FUNC void NodePath_C_set_antialias_v_pHi(NodePath *param0, unsigned short int param1, int param2);
+EXPORT_FUNC void NodePath_C_set_antialias_v_pH(NodePath *param0, unsigned short int param1);
 EXPORT_FUNC void NodePath_C_clear_antialias_v_p(NodePath *param0);
 EXPORT_FUNC bool NodePath_C_has_antialias_B_p(NodePath const *param0);
-EXPORT_FUNC unsigned short int NodePath_C_get_antialias_p_p(NodePath const *param0);
+EXPORT_FUNC unsigned short int NodePath_C_get_antialias_H_p(NodePath const *param0);
 EXPORT_FUNC bool NodePath_C_has_audio_volume_B_p(NodePath const *param0);
 EXPORT_FUNC void NodePath_C_clear_audio_volume_v_p(NodePath *param0);
 EXPORT_FUNC void NodePath_C_set_audio_volume_v_pfi(NodePath *param0, PN_stdfloat param1, int param2);
@@ -2062,11 +2769,11 @@ EXPORT_FUNC void NodePathCollection_C_remove_paths_from_v_pp(NodePathCollection 
 EXPORT_FUNC void NodePathCollection_C_remove_duplicate_paths_v_p(NodePathCollection *param0);
 EXPORT_FUNC bool NodePathCollection_C_has_path_B_pp(NodePathCollection const *param0, NodePath const *param1);
 EXPORT_FUNC void NodePathCollection_C_clear_v_p(NodePathCollection *param0);
-EXPORT_FUNC void NodePathCollection_C_reserve_v_pp(NodePathCollection *param0, std::size_t param1);
+EXPORT_FUNC void NodePathCollection_C_reserve_v_pl(NodePathCollection *param0, std::size_t param1);
 EXPORT_FUNC bool NodePathCollection_C_is_empty_B_p(NodePathCollection const *param0);
 EXPORT_FUNC int NodePathCollection_C_get_num_paths_i_p(NodePathCollection const *param0);
 EXPORT_FUNC NodePath * NodePathCollection_C_get_path_p_pi(NodePathCollection const *param0, int param1);
-EXPORT_FUNC std::size_t NodePathCollection_C_size_p_p(NodePathCollection const *param0);
+EXPORT_FUNC std::size_t NodePathCollection_C_size_l_p(NodePathCollection const *param0);
 EXPORT_FUNC void NodePathCollection_C_append_v_pp(NodePathCollection *param0, NodePath const *param1);
 EXPORT_FUNC void NodePathCollection_C_extend_v_pp(NodePathCollection *param0, NodePathCollection const *param1);
 EXPORT_FUNC void NodePathCollection_C_ls_v_p(NodePathCollection const *param0);
@@ -2304,8 +3011,8 @@ EXPORT_FUNC bool PandaNode_C_has_tag_B_ps(PandaNode const *param0, char const *p
 EXPORT_FUNC void PandaNode_C_clear_tag_v_psp(PandaNode *param0, char const *param1, Thread *param2);
 EXPORT_FUNC void PandaNode_C_clear_tag_v_ps(PandaNode *param0, char const *param1);
 EXPORT_FUNC void PandaNode_C_get_tag_keys_v_pp(PandaNode const *param0, vector_string *param1);
-EXPORT_FUNC std::size_t PandaNode_C_get_num_tags_p_p(PandaNode const *param0);
-EXPORT_FUNC char const * PandaNode_C_get_tag_key_s_pp(PandaNode const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t PandaNode_C_get_num_tags_l_p(PandaNode const *param0);
+EXPORT_FUNC char const * PandaNode_C_get_tag_key_s_pl(PandaNode const *param0, std::size_t param1);
 EXPORT_FUNC bool PandaNode_C_has_tags_B_p(PandaNode const *param0);
 EXPORT_FUNC void PandaNode_C_copy_tags_v_pp(PandaNode *param0, PandaNode *param1);
 EXPORT_FUNC void PandaNode_C_list_tags_v_pps(PandaNode const *param0, std::ostream *param1, char const *param2);
@@ -2403,12 +3110,12 @@ EXPORT_FUNC char const * PandaSystem_C_get_build_date_s_v();
 EXPORT_FUNC char const * PandaSystem_C_get_git_commit_s_v();
 EXPORT_FUNC char const * PandaSystem_C_get_platform_s_v();
 EXPORT_FUNC bool PandaSystem_C_has_system_B_ps(PandaSystem const *param0, char const *param1);
-EXPORT_FUNC std::size_t PandaSystem_C_get_num_systems_p_p(PandaSystem const *param0);
-EXPORT_FUNC char const * PandaSystem_C_get_system_s_pp(PandaSystem const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t PandaSystem_C_get_num_systems_l_p(PandaSystem const *param0);
+EXPORT_FUNC char const * PandaSystem_C_get_system_s_pl(PandaSystem const *param0, std::size_t param1);
 EXPORT_FUNC char const * PandaSystem_C_get_system_tag_s_pss(PandaSystem const *param0, char const *param1, char const *param2);
 EXPORT_FUNC void PandaSystem_C_add_system_v_ps(PandaSystem *param0, char const *param1);
 EXPORT_FUNC void PandaSystem_C_set_system_tag_v_psss(PandaSystem *param0, char const *param1, char const *param2, char const *param3);
-EXPORT_FUNC bool PandaSystem_C_heap_trim_B_pp(PandaSystem *param0, std::size_t param1);
+EXPORT_FUNC bool PandaSystem_C_heap_trim_B_pl(PandaSystem *param0, std::size_t param1);
 EXPORT_FUNC void PandaSystem_C_output_v_pp(PandaSystem const *param0, std::ostream *param1);
 EXPORT_FUNC void PandaSystem_C_write_v_pp(PandaSystem const *param0, std::ostream *param1);
 EXPORT_FUNC PandaSystem * PandaSystem_C_get_global_ptr_p_v();
@@ -2432,11 +3139,300 @@ EXPORT_FUNC void ReferenceCount_C_weak_unref_v_p(ReferenceCount *param0);
 EXPORT_FUNC bool ReferenceCount_C_ref_if_nonzero_B_p(ReferenceCount const *param0);
 EXPORT_FUNC int ReferenceCount_C_get_class_type_i_v();
 EXPORT_FUNC void ReferenceCount_C_init_type_v_v();
+EXPORT_FUNC GeomVertexArrayDataHandle * ReferenceCount_C_downcast_to_GeomVertexArrayDataHandle_p_p(ReferenceCount *param0);
+
+
+// RenderEffect
+
+EXPORT_FUNC bool RenderEffect_C_safe_to_transform_B_p(RenderEffect const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * RenderEffect_C_prepare_flatten_transform_p_pp(RenderEffect const *param0, TransformState const *param1);
+EXPORT_FUNC bool RenderEffect_C_safe_to_combine_B_p(RenderEffect const *param0);
+EXPORT_FUNC ConstPointerTo< RenderEffect > * RenderEffect_C_xform_p_pp(RenderEffect const *param0, LMatrix4 const *param1);
+EXPORT_FUNC bool RenderEffect_C_has_cull_callback_B_p(RenderEffect const *param0);
+EXPORT_FUNC void RenderEffect_C_cull_callback_v_ppppp(RenderEffect const *param0, CullTraverser *param1, CullTraverserData *param2, ConstPointerTo< TransformState > *param3, ConstPointerTo< RenderState > *param4);
+EXPORT_FUNC bool RenderEffect_C_has_adjust_transform_B_p(RenderEffect const *param0);
+EXPORT_FUNC void RenderEffect_C_adjust_transform_v_pppp(RenderEffect const *param0, ConstPointerTo< TransformState > *param1, ConstPointerTo< TransformState > *param2, PandaNode const *param3);
+EXPORT_FUNC int RenderEffect_C_compare_to_i_pp(RenderEffect const *param0, RenderEffect const *param1);
+EXPORT_FUNC void RenderEffect_C_output_v_pp(RenderEffect const *param0, std::ostream *param1);
+EXPORT_FUNC void RenderEffect_C_write_v_ppi(RenderEffect const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC int RenderEffect_C_get_num_effects_i_v();
+EXPORT_FUNC void RenderEffect_C_list_effects_v_p(std::ostream *param0);
+EXPORT_FUNC bool RenderEffect_C_validate_effects_B_v();
+EXPORT_FUNC void RenderEffect_C_write_datagram_v_ppp(RenderEffect *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC TypedWritable * RenderEffect_C_change_this_p_pp(TypedWritable *param0, BamReader *param1);
+EXPORT_FUNC void RenderEffect_C_finalize_v_pp(RenderEffect *param0, BamReader *param1);
+EXPORT_FUNC int RenderEffect_C_get_class_type_i_v();
+EXPORT_FUNC void RenderEffect_C_init_type_v_v();
+EXPORT_FUNC int RenderEffect_C_get_type_i_p(RenderEffect const *param0);
+EXPORT_FUNC int RenderEffect_C_force_init_type_i_p(RenderEffect *param0);
+
+
+// RenderState
+
+EXPORT_FUNC int RenderState_C_compare_to_i_pp(RenderState const *param0, RenderState const *param1);
+EXPORT_FUNC int RenderState_C_compare_sort_i_pp(RenderState const *param0, RenderState const *param1);
+EXPORT_FUNC int RenderState_C_compare_mask_i_ppp(RenderState const *param0, RenderState const *param1, RenderState::SlotMask *param2);
+EXPORT_FUNC std::size_t RenderState_C_get_hash_l_p(RenderState const *param0);
+EXPORT_FUNC bool RenderState_C_is_empty_B_p(RenderState const *param0);
+EXPORT_FUNC bool RenderState_C_has_cull_callback_B_p(RenderState const *param0);
+EXPORT_FUNC bool RenderState_C_cull_callback_B_ppp(RenderState const *param0, CullTraverser *param1, CullTraverserData const *param2);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_empty_p_v();
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_pppppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, RenderAttrib const *param4, int param5);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_ppppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, RenderAttrib const *param4);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_ppppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, int param4);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_pppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_pppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, int param3);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_ppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_ppi(RenderAttrib const *param0, RenderAttrib const *param1, int param2);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_pp(RenderAttrib const *param0, RenderAttrib const *param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_pi(RenderAttrib const *param0, int param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_make_p_p(RenderAttrib const *param0);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_compose_p_pp(RenderState const *param0, RenderState const *param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_invert_compose_p_pp(RenderState const *param0, RenderState const *param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_add_attrib_p_ppi(RenderState const *param0, RenderAttrib const *param1, int param2);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_add_attrib_p_pp(RenderState const *param0, RenderAttrib const *param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_set_attrib_p_pp(RenderState const *param0, RenderAttrib const *param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_set_attrib_p_ppi(RenderState const *param0, RenderAttrib const *param1, int param2);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_remove_attrib_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_remove_attrib_p_pi_1_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_adjust_all_priorities_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC bool RenderState_C_has_attrib_B_pi(RenderState const *param0, int param1);
+EXPORT_FUNC bool RenderState_C_has_attrib_B_pi_1_B_pi(RenderState const *param0, int param1);
+EXPORT_FUNC RenderAttrib const * RenderState_C_get_attrib_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC RenderAttrib const * RenderState_C_get_attrib_p_pi_1_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC RenderAttrib const * RenderState_C_get_attrib_def_p_pi(RenderState const *param0, int param1);
+EXPORT_FUNC int RenderState_C_get_override_i_pi(RenderState const *param0, int param1);
+EXPORT_FUNC int RenderState_C_get_override_i_pi_1_i_pi(RenderState const *param0, int param1);
+EXPORT_FUNC ConstPointerTo< RenderState > * RenderState_C_get_unique_p_p(RenderState const *param0);
+EXPORT_FUNC void RenderState_C_cache_ref_v_p(RenderState const *param0);
+EXPORT_FUNC bool RenderState_C_cache_unref_B_p(RenderState const *param0);
+EXPORT_FUNC void RenderState_C_node_ref_v_p(RenderState const *param0);
+EXPORT_FUNC bool RenderState_C_node_unref_B_p(RenderState const *param0);
+EXPORT_FUNC std::size_t RenderState_C_get_composition_cache_num_entries_l_p(RenderState const *param0);
+EXPORT_FUNC std::size_t RenderState_C_get_invert_composition_cache_num_entries_l_p(RenderState const *param0);
+EXPORT_FUNC std::size_t RenderState_C_get_composition_cache_size_l_p(RenderState const *param0);
+EXPORT_FUNC RenderState const * RenderState_C_get_composition_cache_source_p_pl(RenderState const *param0, std::size_t param1);
+EXPORT_FUNC RenderState const * RenderState_C_get_composition_cache_result_p_pl(RenderState const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t RenderState_C_get_invert_composition_cache_size_l_p(RenderState const *param0);
+EXPORT_FUNC RenderState const * RenderState_C_get_invert_composition_cache_source_p_pl(RenderState const *param0, std::size_t param1);
+EXPORT_FUNC RenderState const * RenderState_C_get_invert_composition_cache_result_p_pl(RenderState const *param0, std::size_t param1);
+EXPORT_FUNC void RenderState_C_output_v_pp(RenderState const *param0, std::ostream *param1);
+EXPORT_FUNC void RenderState_C_write_v_ppi(RenderState const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC int RenderState_C_get_max_priority_i_v();
+EXPORT_FUNC int RenderState_C_get_num_states_i_v();
+EXPORT_FUNC int RenderState_C_get_num_unused_states_i_v();
+EXPORT_FUNC int RenderState_C_clear_cache_i_v();
+EXPORT_FUNC void RenderState_C_clear_munger_cache_v_v();
+EXPORT_FUNC int RenderState_C_garbage_collect_i_v();
+EXPORT_FUNC void RenderState_C_list_cycles_v_p(std::ostream *param0);
+EXPORT_FUNC void RenderState_C_list_states_v_p(std::ostream *param0);
+EXPORT_FUNC bool RenderState_C_validate_states_B_v();
+EXPORT_FUNC int RenderState_C_get_draw_order_i_p(RenderState const *param0);
+EXPORT_FUNC int RenderState_C_get_bin_index_i_p(RenderState const *param0);
+EXPORT_FUNC int RenderState_C_get_geom_rendering_i_pi(RenderState const *param0, int param1);
+EXPORT_FUNC void RenderState_C_bin_removed_v_i(int param0);
+EXPORT_FUNC void RenderState_C_flush_level_v_v();
+EXPORT_FUNC void RenderState_C_init_states_v_v();
+EXPORT_FUNC ConstPointerTo< RenderAttrib > const * RenderState_C_get_generated_shader_p_p(RenderState const *param0);
+EXPORT_FUNC UpdateSeq const * RenderState_C_get_generated_shader_seq_p_p(RenderState const *param0);
+EXPORT_FUNC void RenderState_C_register_with_read_factory_v_v();
+EXPORT_FUNC void RenderState_C_write_datagram_v_ppp(RenderState *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC TypedWritable * RenderState_C_change_this_p_pp(TypedWritable *param0, BamReader *param1);
+EXPORT_FUNC void RenderState_C_finalize_v_pp(RenderState *param0, BamReader *param1);
+EXPORT_FUNC int RenderState_C_get_class_type_i_v();
+EXPORT_FUNC void RenderState_C_init_type_v_v();
+EXPORT_FUNC int RenderState_C_get_type_i_p(RenderState const *param0);
+EXPORT_FUNC int RenderState_C_force_init_type_i_p(RenderState *param0);
+
+
+// Shader
+
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_pp(Filename const *param0, Shader::ShaderLanguage param1);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_p(Filename const *param0);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_pppppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3, Filename const *param4, Filename const *param5);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_ppppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3, Filename const *param4);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_pppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_p_ppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_psssss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3, char const *param4, char const *param5);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_pssss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3, char const *param4);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_psss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_pss(Shader::ShaderLanguage param0, char const *param1, char const *param2);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_sp(char const *param0, Shader::ShaderLanguage param1);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_p_s(char const *param0);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_load_compute_p_pp(Shader::ShaderLanguage param0, Filename const *param1);
+EXPORT_FUNC PointerTo< Shader > * Shader_C_make_compute_p_ps(Shader::ShaderLanguage param0, char const *param1);
+EXPORT_FUNC Filename * Shader_C_get_filename_p_pp(Shader const *param0, Shader::ShaderType param1);
+EXPORT_FUNC Filename * Shader_C_get_filename_p_p(Shader const *param0);
+EXPORT_FUNC void Shader_C_set_filename_v_ppp(Shader *param0, Shader::ShaderType param1, Filename const *param2);
+EXPORT_FUNC char const * Shader_C_get_text_s_pp(Shader const *param0, Shader::ShaderType param1);
+EXPORT_FUNC char const * Shader_C_get_text_s_p(Shader const *param0);
+EXPORT_FUNC bool Shader_C_get_error_flag_B_p(Shader const *param0);
+EXPORT_FUNC Shader::ShaderLanguage Shader_C_get_language_p_p(Shader const *param0);
+EXPORT_FUNC bool Shader_C_has_fullpath_B_p(Shader const *param0);
+EXPORT_FUNC Filename const * Shader_C_get_fullpath_p_p(Shader const *param0);
+EXPORT_FUNC bool Shader_C_get_cache_compiled_shader_B_p(Shader const *param0);
+EXPORT_FUNC void Shader_C_set_cache_compiled_shader_v_pB(Shader *param0, bool param1);
+EXPORT_FUNC PointerTo< AsyncFuture > * Shader_C_prepare_p_pp(Shader *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Shader_C_is_prepared_B_pp(Shader const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Shader_C_release_B_pp(Shader *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC int Shader_C_release_all_i_p(Shader *param0);
+EXPORT_FUNC ShaderContext * Shader_C_prepare_now_p_ppp(Shader *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2);
+EXPORT_FUNC void Shader_C_parse_init_v_p(Shader *param0);
+EXPORT_FUNC bool Shader_C_parse_eof_B_p(Shader *param0);
+EXPORT_FUNC void Shader_C_cp_report_error_v_pps(Shader *param0, Shader::ShaderArgInfo *param1, char const *param2);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_words_B_ppi(Shader *param0, Shader::ShaderArgInfo *param1, int param2);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_in_B_pp(Shader *param0, Shader::ShaderArgInfo *param1);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_ptr_B_pp(Shader *param0, Shader::ShaderArgInfo *param1);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_varying_B_pp(Shader *param0, Shader::ShaderArgInfo *param1);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_uniform_B_pp(Shader *param0, Shader::ShaderArgInfo *param1);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_float_B_ppii(Shader *param0, Shader::ShaderArgInfo *param1, int param2, int param3);
+EXPORT_FUNC bool Shader_C_cp_errchk_parameter_sampler_B_pp(Shader *param0, Shader::ShaderArgInfo *param1);
+EXPORT_FUNC int Shader_C_cp_dependency_i_pp(Shader *param0, Shader::ShaderMatInput param1);
+EXPORT_FUNC void Shader_C_cp_optimize_mat_spec_v_pp(Shader *param0, Shader::ShaderMatSpec *param1);
+EXPORT_FUNC void Shader_C_clear_parameters_v_p(Shader *param0);
+EXPORT_FUNC void Shader_C_set_compiled_v_pIsl(Shader *param0, unsigned int param1, char const *param2, std::size_t param3);
+EXPORT_FUNC void Shader_C_set_default_caps_v_p(Shader::ShaderCaps const *param0);
+EXPORT_FUNC pvector< Shader::ShaderPtrSpec > * Shader_C_get_ptr_spec_p_p(Shader const *param0);
+EXPORT_FUNC pvector< Shader::ShaderMatSpec > * Shader_C_get_mat_spec_p_p(Shader const *param0);
+EXPORT_FUNC pvector< Shader::ShaderTexSpec > * Shader_C_get_tex_spec_p_p(Shader const *param0);
+EXPORT_FUNC pvector< Shader::ShaderVarSpec > * Shader_C_get_var_spec_p_p(Shader const *param0);
+EXPORT_FUNC int Shader_C_get_mat_deps_i_p(Shader const *param0);
+EXPORT_FUNC void Shader_C_set_mat_deps_v_pi(Shader *param0, int param1);
+EXPORT_FUNC void Shader_C_set_error_flag_v_pB(Shader *param0, bool param1);
+EXPORT_FUNC Filename * Shader_C_get_filename_from_index_p_pip(Shader const *param0, int param1, Shader::ShaderType param2);
+EXPORT_FUNC void Shader_C_register_with_read_factory_v_v();
+EXPORT_FUNC void Shader_C_write_datagram_v_ppp(Shader *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC int Shader_C_get_class_type_i_v();
+EXPORT_FUNC void Shader_C_init_type_v_v();
+EXPORT_FUNC int Shader_C_get_type_i_p(Shader const *param0);
+EXPORT_FUNC int Shader_C_force_init_type_i_p(Shader *param0);
+EXPORT_FUNC Shader * Shader_C_ctor_p_p(Shader const *param0);
+
+
+// ShaderInput
+
+EXPORT_FUNC ShaderInput const * ShaderInput_C_get_blank_p_v();
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_v();
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi(CPT_InternalName *param0, LMatrix3d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp(CPT_InternalName *param0, LMatrix3d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi(CPT_InternalName *param0, LMatrix3f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp(CPT_InternalName *param0, LMatrix3f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi(CPT_InternalName *param0, LMatrix4d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp(CPT_InternalName *param0, LMatrix4d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi(CPT_InternalName *param0, LMatrix4f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp(CPT_InternalName *param0, LMatrix4f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi(CPT_InternalName *param0, LVecBase2d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp(CPT_InternalName *param0, LVecBase2d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi(CPT_InternalName *param0, LVecBase2f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp(CPT_InternalName *param0, LVecBase2f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi(CPT_InternalName *param0, LVecBase2i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp(CPT_InternalName *param0, LVecBase2i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi(CPT_InternalName *param0, LVecBase3d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp(CPT_InternalName *param0, LVecBase3d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi(CPT_InternalName *param0, LVecBase3f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp(CPT_InternalName *param0, LVecBase3f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi(CPT_InternalName *param0, LVecBase3i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp(CPT_InternalName *param0, LVecBase3i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi(CPT_InternalName *param0, LVecBase4d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp(CPT_InternalName *param0, LVecBase4d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi(CPT_InternalName *param0, LVecBase4f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp(CPT_InternalName *param0, LVecBase4f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi(CPT_InternalName *param0, LVecBase4i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp(CPT_InternalName *param0, LVecBase4i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi(CPT_InternalName *param0, NodePath const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp(CPT_InternalName *param0, NodePath const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi(CPT_InternalName *param0, PTA_LMatrix3d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp(CPT_InternalName *param0, PTA_LMatrix3d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi(CPT_InternalName *param0, PTA_LMatrix3f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp(CPT_InternalName *param0, PTA_LMatrix3f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi(CPT_InternalName *param0, PTA_LMatrix4d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp(CPT_InternalName *param0, PTA_LMatrix4d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi(CPT_InternalName *param0, PTA_LMatrix4f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp(CPT_InternalName *param0, PTA_LMatrix4f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi(CPT_InternalName *param0, PTA_LVecBase2d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp(CPT_InternalName *param0, PTA_LVecBase2d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi(CPT_InternalName *param0, PTA_LVecBase2f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp(CPT_InternalName *param0, PTA_LVecBase2f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi(CPT_InternalName *param0, PTA_LVecBase2i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp(CPT_InternalName *param0, PTA_LVecBase2i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi(CPT_InternalName *param0, PTA_LVecBase3d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp(CPT_InternalName *param0, PTA_LVecBase3d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi(CPT_InternalName *param0, PTA_LVecBase3f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp(CPT_InternalName *param0, PTA_LVecBase3f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi(CPT_InternalName *param0, PTA_LVecBase3i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp(CPT_InternalName *param0, PTA_LVecBase3i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi(CPT_InternalName *param0, PTA_LVecBase4d const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp(CPT_InternalName *param0, PTA_LVecBase4d const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi(CPT_InternalName *param0, PTA_LVecBase4f const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp(CPT_InternalName *param0, PTA_LVecBase4f const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi(CPT_InternalName *param0, PTA_LVecBase4i const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp(CPT_InternalName *param0, PTA_LVecBase4i const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi(CPT_InternalName *param0, PTA_double const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp(CPT_InternalName *param0, PTA_double const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi(CPT_InternalName *param0, PTA_float const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp(CPT_InternalName *param0, PTA_float const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi(CPT_InternalName *param0, PTA_int const *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp(CPT_InternalName *param0, PTA_int const *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi(CPT_InternalName *param0, ParamValueBase *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp(CPT_InternalName *param0, ParamValueBase *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi_31_p_spi(CPT_InternalName *param0, ShaderBuffer *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp_31_p_sp(CPT_InternalName *param0, ShaderBuffer *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sppi(CPT_InternalName *param0, Texture *param1, SamplerState const *param2, int param3);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spp(CPT_InternalName *param0, Texture *param1, SamplerState const *param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spBBiii(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4, int param5, int param6);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spBBii(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4, int param5);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spBBi(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spBB(CPT_InternalName *param0, Texture *param1, bool param2, bool param3);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi_31_p_spi_32_p_spi(CPT_InternalName *param0, Texture *param1, int param2);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp_31_p_sp_32_p_sp(CPT_InternalName *param0, Texture *param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_si(CPT_InternalName *param0, int param1);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_s(CPT_InternalName *param0);
+EXPORT_FUNC ShaderInput * ShaderInput_C_ctor_p_p(ShaderInput const *param0);
+EXPORT_FUNC std::size_t ShaderInput_C_add_hash_l_pl(ShaderInput const *param0, std::size_t param1);
+EXPORT_FUNC InternalName const * ShaderInput_C_get_name_s_p(ShaderInput const *param0);
+EXPORT_FUNC int ShaderInput_C_get_value_type_i_p(ShaderInput const *param0);
+EXPORT_FUNC int ShaderInput_C_get_priority_i_p(ShaderInput const *param0);
+EXPORT_FUNC LVecBase4 const * ShaderInput_C_get_vector_p_p(ShaderInput const *param0);
+EXPORT_FUNC Shader::ShaderPtrData const * ShaderInput_C_get_ptr_p_p(ShaderInput const *param0);
+EXPORT_FUNC NodePath * ShaderInput_C_get_nodepath_p_p(ShaderInput const *param0);
+EXPORT_FUNC Texture * ShaderInput_C_get_texture_p_p(ShaderInput const *param0);
+EXPORT_FUNC SamplerState const * ShaderInput_C_get_sampler_p_p(ShaderInput const *param0);
+EXPORT_FUNC ParamValueBase * ShaderInput_C_get_param_p_p(ShaderInput const *param0);
+EXPORT_FUNC TypedWritableReferenceCount * ShaderInput_C_get_value_p_p(ShaderInput const *param0);
+EXPORT_FUNC void ShaderInput_C_register_with_read_factory_v_v();
+
+
+// SimpleLruPage
+
+EXPORT_FUNC GeomVertexArrayData * SimpleLruPage_C_downcast_to_GeomVertexArrayData_p_p(SimpleLruPage *param0);
 
 
 // TextEncoder
 
 EXPORT_FUNC TextNode * TextEncoder_C_downcast_to_TextNode_p_p(TextEncoder *param0);
+
+
+// TextFont
+
+EXPORT_FUNC TypedReferenceCount * TextFont_C_upcast_to_TypedReferenceCount_p_p(TextFont *param0);
+EXPORT_FUNC Namable * TextFont_C_upcast_to_Namable_p_p(TextFont *param0);
+EXPORT_FUNC PointerTo< TextFont > * TextFont_C_make_copy_p_p(TextFont const *param0);
+EXPORT_FUNC bool TextFont_C_is_valid_B_p(TextFont const *param0);
+EXPORT_FUNC PN_stdfloat TextFont_C_get_line_height_f_p(TextFont const *param0);
+EXPORT_FUNC void TextFont_C_set_line_height_v_pf(TextFont *param0, PN_stdfloat param1);
+EXPORT_FUNC PN_stdfloat TextFont_C_get_space_advance_f_p(TextFont const *param0);
+EXPORT_FUNC void TextFont_C_set_space_advance_v_pf(TextFont *param0, PN_stdfloat param1);
+EXPORT_FUNC ConstPointerTo< TextGlyph > * TextFont_C_get_glyph_p_pi(TextFont *param0, int param1);
+EXPORT_FUNC bool TextFont_C_get_glyph_B_pip(TextFont *param0, int param1, ConstPointerTo< TextGlyph > *param2);
+EXPORT_FUNC PN_stdfloat TextFont_C_get_kerning_f_pii(TextFont const *param0, int param1, int param2);
+EXPORT_FUNC void TextFont_C_write_v_ppi(TextFont const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC PN_stdfloat TextFont_C_get_total_poly_margin_f_p(TextFont const *param0);
+EXPORT_FUNC TextGlyph * TextFont_C_get_invalid_glyph_p_p(TextFont *param0);
+EXPORT_FUNC TextFont::RenderMode TextFont_C_string_render_mode_p_s(char const *param0);
+EXPORT_FUNC int TextFont_C_get_class_type_i_v();
+EXPORT_FUNC void TextFont_C_init_type_v_v();
+EXPORT_FUNC int TextFont_C_get_type_i_p(TextFont const *param0);
+EXPORT_FUNC int TextFont_C_force_init_type_i_p(TextFont *param0);
 
 
 // TextNode
@@ -2531,12 +3527,12 @@ EXPORT_FUNC void TextNode_C_set_glyph_shift_v_pf(TextNode *param0, PN_stdfloat p
 EXPORT_FUNC void TextNode_C_clear_glyph_shift_v_p(TextNode *param0);
 EXPORT_FUNC char const * TextNode_C_get_wordwrapped_text_s_p(TextNode const *param0);
 EXPORT_FUNC PN_stdfloat TextNode_C_calc_width_f_ps(TextNode const *param0, char const *param1);
-EXPORT_FUNC PN_stdfloat TextNode_C_calc_width_f_pp(TextNode const *param0, wchar_t const *param1);
-EXPORT_FUNC PN_stdfloat TextNode_C_calc_width_f_pp_1_f_pp(TextNode const *param0, wchar_t param1);
+EXPORT_FUNC PN_stdfloat TextNode_C_calc_width_f_ps_1_f_ps(TextNode const *param0, wchar_t const *param1);
+EXPORT_FUNC PN_stdfloat TextNode_C_calc_width_f_pp(TextNode const *param0, wchar_t param1);
 EXPORT_FUNC bool TextNode_C_has_exact_character_B_pp(TextNode const *param0, wchar_t param1);
 EXPORT_FUNC bool TextNode_C_has_character_B_pp(TextNode const *param0, wchar_t param1);
 EXPORT_FUNC bool TextNode_C_is_whitespace_B_pp(TextNode const *param0, wchar_t param1);
-EXPORT_FUNC wchar_t const * TextNode_C_get_wordwrapped_wtext_p_p(TextNode const *param0);
+EXPORT_FUNC wchar_t const * TextNode_C_get_wordwrapped_wtext_s_p(TextNode const *param0);
 EXPORT_FUNC void TextNode_C_output_v_pp(TextNode const *param0, std::ostream *param1);
 EXPORT_FUNC void TextNode_C_write_v_ppi(TextNode const *param0, std::ostream *param1, int param2);
 EXPORT_FUNC void TextNode_C_write_v_pp(TextNode const *param0, std::ostream *param1);
@@ -2593,6 +3589,322 @@ EXPORT_FUNC int TextNode_C_force_init_type_i_p(TextNode *param0);
 EXPORT_FUNC TextNode * TextProperties_C_downcast_to_TextNode_p_p(TextProperties *param0);
 
 
+// Texture
+
+EXPORT_FUNC TypedWritableReferenceCount * Texture_C_upcast_to_TypedWritableReferenceCount_p_p(Texture *param0);
+EXPORT_FUNC Namable * Texture_C_upcast_to_Namable_p_p(Texture *param0);
+EXPORT_FUNC Texture * Texture_C_ctor_p_s(char const *param0);
+EXPORT_FUNC Texture * Texture_C_ctor_p_v();
+EXPORT_FUNC PointerTo< Texture > * Texture_C_make_copy_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_clear_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_texture_v_ppiiipp(Texture *param0, Texture::TextureType param1, int param2, int param3, int param4, Texture::ComponentType param5, Texture::Format param6);
+EXPORT_FUNC void Texture_C_setup_1d_texture_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_1d_texture_v_pipp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3);
+EXPORT_FUNC void Texture_C_setup_2d_texture_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_2d_texture_v_piipp(Texture *param0, int param1, int param2, Texture::ComponentType param3, Texture::Format param4);
+EXPORT_FUNC void Texture_C_setup_3d_texture_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_setup_3d_texture_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_3d_texture_v_piiipp(Texture *param0, int param1, int param2, int param3, Texture::ComponentType param4, Texture::Format param5);
+EXPORT_FUNC void Texture_C_setup_cube_map_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_cube_map_v_pipp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3);
+EXPORT_FUNC void Texture_C_setup_2d_texture_array_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_setup_2d_texture_array_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_setup_2d_texture_array_v_piiipp(Texture *param0, int param1, int param2, int param3, Texture::ComponentType param4, Texture::Format param5);
+EXPORT_FUNC void Texture_C_setup_cube_map_array_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_setup_cube_map_array_v_piipp(Texture *param0, int param1, int param2, Texture::ComponentType param3, Texture::Format param4);
+EXPORT_FUNC void Texture_C_setup_buffer_texture_v_pippp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3, GeomEnums::UsageHint param4);
+EXPORT_FUNC void Texture_C_generate_normalization_cube_map_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_generate_alpha_scale_map_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_clear_image_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_has_clear_color_B_p(Texture const *param0);
+EXPORT_FUNC LColor * Texture_C_get_clear_color_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_clear_color_v_pp(Texture *param0, LColor const *param1);
+EXPORT_FUNC void Texture_C_clear_clear_color_v_p(Texture *param0);
+EXPORT_FUNC vector_uchar Texture_C_get_clear_data_p_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_read_B_pppiip(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, LoaderOptions const *param5);
+EXPORT_FUNC bool Texture_C_read_B_pppii(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4);
+EXPORT_FUNC bool Texture_C_read_B_pppiiiiBBpp(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8, BamCacheRecord *param9, LoaderOptions const *param10);
+EXPORT_FUNC bool Texture_C_read_B_pppiiiiBBp(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8, BamCacheRecord *param9);
+EXPORT_FUNC bool Texture_C_read_B_pppiiiiBB(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8);
+EXPORT_FUNC bool Texture_C_read_B_ppp(Texture *param0, Filename const *param1, LoaderOptions const *param2);
+EXPORT_FUNC bool Texture_C_read_B_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC bool Texture_C_read_B_ppiiBBp(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5, LoaderOptions const *param6);
+EXPORT_FUNC bool Texture_C_read_B_ppiiBB(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5);
+EXPORT_FUNC bool Texture_C_write_B_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC bool Texture_C_write_B_ppiiBB(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5);
+EXPORT_FUNC void Texture_C_write_v_ppi(Texture const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC bool Texture_C_read_txo_B_pps(Texture *param0, std::istream *param1, char const *param2);
+EXPORT_FUNC bool Texture_C_read_txo_B_pp(Texture *param0, std::istream *param1);
+EXPORT_FUNC PointerTo< Texture > * Texture_C_make_from_txo_p_ps(std::istream *param0, char const *param1);
+EXPORT_FUNC PointerTo< Texture > * Texture_C_make_from_txo_p_p(std::istream *param0);
+EXPORT_FUNC bool Texture_C_write_txo_B_pps(Texture const *param0, std::ostream *param1, char const *param2);
+EXPORT_FUNC bool Texture_C_write_txo_B_pp(Texture const *param0, std::ostream *param1);
+EXPORT_FUNC bool Texture_C_read_dds_B_ppsB(Texture *param0, std::istream *param1, char const *param2, bool param3);
+EXPORT_FUNC bool Texture_C_read_dds_B_pps(Texture *param0, std::istream *param1, char const *param2);
+EXPORT_FUNC bool Texture_C_read_dds_B_pp(Texture *param0, std::istream *param1);
+EXPORT_FUNC bool Texture_C_read_ktx_B_ppsB(Texture *param0, std::istream *param1, char const *param2, bool param3);
+EXPORT_FUNC bool Texture_C_read_ktx_B_pps(Texture *param0, std::istream *param1, char const *param2);
+EXPORT_FUNC bool Texture_C_read_ktx_B_pp(Texture *param0, std::istream *param1);
+EXPORT_FUNC bool Texture_C_load_B_ppp(Texture *param0, PNMImage const *param1, LoaderOptions const *param2);
+EXPORT_FUNC bool Texture_C_load_B_pp(Texture *param0, PNMImage const *param1);
+EXPORT_FUNC bool Texture_C_load_B_ppiip(Texture *param0, PNMImage const *param1, int param2, int param3, LoaderOptions const *param4);
+EXPORT_FUNC bool Texture_C_load_B_ppii(Texture *param0, PNMImage const *param1, int param2, int param3);
+EXPORT_FUNC bool Texture_C_load_B_ppp_1_B_ppp(Texture *param0, PfmFile const *param1, LoaderOptions const *param2);
+EXPORT_FUNC bool Texture_C_load_B_pp_1_B_pp(Texture *param0, PfmFile const *param1);
+EXPORT_FUNC bool Texture_C_load_B_ppiip_1_B_ppiip(Texture *param0, PfmFile const *param1, int param2, int param3, LoaderOptions const *param4);
+EXPORT_FUNC bool Texture_C_load_B_ppii_1_B_ppii(Texture *param0, PfmFile const *param1, int param2, int param3);
+EXPORT_FUNC bool Texture_C_load_sub_image_B_ppiiii(Texture *param0, PNMImage const *param1, int param2, int param3, int param4, int param5);
+EXPORT_FUNC bool Texture_C_load_sub_image_B_ppiii(Texture *param0, PNMImage const *param1, int param2, int param3, int param4);
+EXPORT_FUNC bool Texture_C_load_sub_image_B_ppii(Texture *param0, PNMImage const *param1, int param2, int param3);
+EXPORT_FUNC bool Texture_C_store_B_pp(Texture const *param0, PNMImage *param1);
+EXPORT_FUNC bool Texture_C_store_B_ppii(Texture const *param0, PNMImage *param1, int param2, int param3);
+EXPORT_FUNC bool Texture_C_store_B_pp_1_B_pp(Texture const *param0, PfmFile *param1);
+EXPORT_FUNC bool Texture_C_store_B_ppii_1_B_ppii(Texture const *param0, PfmFile *param1, int param2, int param3);
+EXPORT_FUNC bool Texture_C_reload_B_p(Texture *param0);
+EXPORT_FUNC Texture * Texture_C_load_related_p_ps(Texture const *param0, InternalName const *param1);
+EXPORT_FUNC bool Texture_C_has_filename_B_p(Texture const *param0);
+EXPORT_FUNC Filename const * Texture_C_get_filename_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_filename_v_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC void Texture_C_clear_filename_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_has_alpha_filename_B_p(Texture const *param0);
+EXPORT_FUNC Filename const * Texture_C_get_alpha_filename_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_alpha_filename_v_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC void Texture_C_clear_alpha_filename_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_has_fullpath_B_p(Texture const *param0);
+EXPORT_FUNC Filename const * Texture_C_get_fullpath_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_fullpath_v_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC void Texture_C_clear_fullpath_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_has_alpha_fullpath_B_p(Texture const *param0);
+EXPORT_FUNC Filename const * Texture_C_get_alpha_fullpath_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_alpha_fullpath_v_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC void Texture_C_clear_alpha_fullpath_v_p(Texture *param0);
+EXPORT_FUNC int Texture_C_get_x_size_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_x_size_v_pi(Texture *param0, int param1);
+EXPORT_FUNC int Texture_C_get_y_size_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_y_size_v_pi(Texture *param0, int param1);
+EXPORT_FUNC int Texture_C_get_z_size_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_z_size_v_pi(Texture *param0, int param1);
+EXPORT_FUNC int Texture_C_get_num_views_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_num_views_v_pi(Texture *param0, int param1);
+EXPORT_FUNC int Texture_C_get_num_pages_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_num_components_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_component_width_i_p(Texture const *param0);
+EXPORT_FUNC Texture::TextureType Texture_C_get_texture_type_p_p(Texture const *param0);
+EXPORT_FUNC GeomEnums::UsageHint Texture_C_get_usage_hint_p_p(Texture const *param0);
+EXPORT_FUNC Texture::Format Texture_C_get_format_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_format_v_pp(Texture *param0, Texture::Format param1);
+EXPORT_FUNC Texture::ComponentType Texture_C_get_component_type_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_component_type_v_pp(Texture *param0, Texture::ComponentType param1);
+EXPORT_FUNC SamplerState::WrapMode Texture_C_get_wrap_u_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_wrap_u_v_pp(Texture *param0, Texture::WrapMode param1);
+EXPORT_FUNC SamplerState::WrapMode Texture_C_get_wrap_v_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_wrap_v_v_pp(Texture *param0, Texture::WrapMode param1);
+EXPORT_FUNC SamplerState::WrapMode Texture_C_get_wrap_w_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_wrap_w_v_pp(Texture *param0, Texture::WrapMode param1);
+EXPORT_FUNC SamplerState::FilterType Texture_C_get_minfilter_p_p(Texture const *param0);
+EXPORT_FUNC SamplerState::FilterType Texture_C_get_effective_minfilter_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_minfilter_v_pp(Texture *param0, Texture::FilterType param1);
+EXPORT_FUNC SamplerState::FilterType Texture_C_get_magfilter_p_p(Texture const *param0);
+EXPORT_FUNC SamplerState::FilterType Texture_C_get_effective_magfilter_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_magfilter_v_pp(Texture *param0, Texture::FilterType param1);
+EXPORT_FUNC int Texture_C_get_anisotropic_degree_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_effective_anisotropic_degree_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_anisotropic_degree_v_pi(Texture *param0, int param1);
+EXPORT_FUNC LColor * Texture_C_get_border_color_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_border_color_v_pp(Texture *param0, LColor const *param1);
+EXPORT_FUNC bool Texture_C_has_compression_B_p(Texture const *param0);
+EXPORT_FUNC Texture::CompressionMode Texture_C_get_compression_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_compression_v_pp(Texture *param0, Texture::CompressionMode param1);
+EXPORT_FUNC bool Texture_C_get_render_to_texture_B_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_render_to_texture_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC SamplerState const * Texture_C_get_default_sampler_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_default_sampler_v_pp(Texture *param0, SamplerState const *param1);
+EXPORT_FUNC bool Texture_C_uses_mipmaps_B_p(Texture const *param0);
+EXPORT_FUNC Texture::QualityLevel Texture_C_get_quality_level_p_p(Texture const *param0);
+EXPORT_FUNC Texture::QualityLevel Texture_C_get_effective_quality_level_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_quality_level_v_pp(Texture *param0, Texture::QualityLevel param1);
+EXPORT_FUNC int Texture_C_get_expected_num_mipmap_levels_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_expected_mipmap_x_size_i_pi(Texture const *param0, int param1);
+EXPORT_FUNC int Texture_C_get_expected_mipmap_y_size_i_pi(Texture const *param0, int param1);
+EXPORT_FUNC int Texture_C_get_expected_mipmap_z_size_i_pi(Texture const *param0, int param1);
+EXPORT_FUNC int Texture_C_get_expected_mipmap_num_pages_i_pi(Texture const *param0, int param1);
+EXPORT_FUNC bool Texture_C_has_ram_image_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_has_uncompressed_ram_image_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_might_have_ram_image_B_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_ram_image_size_l_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_ram_view_size_l_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_ram_page_size_l_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_expected_ram_image_size_l_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_expected_ram_page_size_l_p(Texture const *param0);
+EXPORT_FUNC CPTA_uchar * Texture_C_get_ram_image_p_p(Texture *param0);
+EXPORT_FUNC Texture::CompressionMode Texture_C_get_ram_image_compression_p_p(Texture const *param0);
+EXPORT_FUNC CPTA_uchar * Texture_C_get_uncompressed_ram_image_p_p(Texture *param0);
+EXPORT_FUNC CPTA_uchar * Texture_C_get_ram_image_as_p_ps(Texture *param0, char const *param1);
+EXPORT_FUNC PTA_uchar * Texture_C_modify_ram_image_p_p(Texture *param0);
+EXPORT_FUNC PTA_uchar * Texture_C_make_ram_image_p_p(Texture *param0);
+EXPORT_FUNC void Texture_C_clear_ram_image_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_set_keep_ram_image_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC bool Texture_C_get_keep_ram_image_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_is_cacheable_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_compress_ram_image_B_pppp(Texture *param0, Texture::CompressionMode param1, Texture::QualityLevel param2, GraphicsStateGuardianBase *param3);
+EXPORT_FUNC bool Texture_C_compress_ram_image_B_ppp(Texture *param0, Texture::CompressionMode param1, Texture::QualityLevel param2);
+EXPORT_FUNC bool Texture_C_compress_ram_image_B_pp(Texture *param0, Texture::CompressionMode param1);
+EXPORT_FUNC bool Texture_C_compress_ram_image_B_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_uncompress_ram_image_B_p(Texture *param0);
+EXPORT_FUNC int Texture_C_get_num_ram_mipmap_images_i_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_has_ram_mipmap_image_B_pi(Texture const *param0, int param1);
+EXPORT_FUNC int Texture_C_get_num_loadable_ram_mipmap_images_i_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_has_all_ram_mipmap_images_B_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_ram_mipmap_image_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC std::size_t Texture_C_get_ram_mipmap_view_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC std::size_t Texture_C_get_ram_mipmap_page_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC std::size_t Texture_C_get_expected_ram_mipmap_image_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC std::size_t Texture_C_get_expected_ram_mipmap_view_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC std::size_t Texture_C_get_expected_ram_mipmap_page_size_l_pi(Texture const *param0, int param1);
+EXPORT_FUNC CPTA_uchar * Texture_C_get_ram_mipmap_image_p_pi(Texture const *param0, int param1);
+EXPORT_FUNC void Texture_C_get_ram_mipmap_pointer_v_pi(Texture const *param0, int param1);
+EXPORT_FUNC PTA_uchar * Texture_C_modify_ram_mipmap_image_p_pi(Texture *param0, int param1);
+EXPORT_FUNC PTA_uchar * Texture_C_make_ram_mipmap_image_p_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_set_ram_mipmap_pointer_from_int_v_ppii(Texture *param0, long long int param1, int param2, int param3);
+EXPORT_FUNC void Texture_C_set_ram_mipmap_image_v_pipl(Texture *param0, int param1, CPTA_uchar *param2, std::size_t param3);
+EXPORT_FUNC void Texture_C_set_ram_mipmap_image_v_pip(Texture *param0, int param1, CPTA_uchar *param2);
+EXPORT_FUNC void Texture_C_clear_ram_mipmap_image_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_clear_ram_mipmap_images_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_generate_ram_mipmap_images_v_p(Texture *param0);
+EXPORT_FUNC int Texture_C_get_simple_x_size_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_simple_y_size_i_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_has_simple_ram_image_B_p(Texture const *param0);
+EXPORT_FUNC std::size_t Texture_C_get_simple_ram_image_size_l_p(Texture const *param0);
+EXPORT_FUNC CPTA_uchar * Texture_C_get_simple_ram_image_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_simple_ram_image_v_ppii(Texture *param0, CPTA_uchar *param1, int param2, int param3);
+EXPORT_FUNC PTA_uchar * Texture_C_modify_simple_ram_image_p_p(Texture *param0);
+EXPORT_FUNC PTA_uchar * Texture_C_new_simple_ram_image_p_pii(Texture *param0, int param1, int param2);
+EXPORT_FUNC void Texture_C_generate_simple_ram_image_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_clear_simple_ram_image_v_p(Texture *param0);
+EXPORT_FUNC PointerTo< TexturePeeker > * Texture_C_peek_p_p(Texture *param0);
+EXPORT_FUNC UpdateSeq * Texture_C_get_properties_modified_p_p(Texture const *param0);
+EXPORT_FUNC UpdateSeq * Texture_C_get_image_modified_p_p(Texture const *param0);
+EXPORT_FUNC UpdateSeq * Texture_C_get_simple_image_modified_p_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_has_auto_texture_scale_B_p(Texture const *param0);
+EXPORT_FUNC AutoTextureScale Texture_C_get_auto_texture_scale_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_auto_texture_scale_v_pp(Texture *param0, AutoTextureScale param1);
+EXPORT_FUNC PointerTo< AsyncFuture > * Texture_C_prepare_p_pp(Texture *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Texture_C_is_prepared_B_pp(Texture const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Texture_C_was_image_modified_B_pp(Texture const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC std::size_t Texture_C_get_data_size_bytes_l_pp(Texture const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Texture_C_get_active_B_pp(Texture const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Texture_C_get_resident_B_pp(Texture const *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC bool Texture_C_release_B_pp(Texture *param0, PreparedGraphicsObjects *param1);
+EXPORT_FUNC int Texture_C_release_all_i_p(Texture *param0);
+EXPORT_FUNC std::size_t Texture_C_estimate_texture_memory_l_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_aux_data_v_psp(Texture *param0, char const *param1, TypedReferenceCount *param2);
+EXPORT_FUNC void Texture_C_clear_aux_data_v_ps(Texture *param0, char const *param1);
+EXPORT_FUNC TypedReferenceCount * Texture_C_get_aux_data_p_ps(Texture const *param0, char const *param1);
+EXPORT_FUNC void Texture_C_set_textures_power_2_v_p(AutoTextureScale param0);
+EXPORT_FUNC AutoTextureScale Texture_C_get_textures_power_2_p_v();
+EXPORT_FUNC bool Texture_C_has_textures_power_2_B_v();
+EXPORT_FUNC int Texture_C_get_pad_x_size_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_pad_y_size_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_pad_z_size_i_p(Texture const *param0);
+EXPORT_FUNC LVecBase2 * Texture_C_get_tex_scale_p_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_pad_size_v_piii(Texture *param0, int param1, int param2, int param3);
+EXPORT_FUNC void Texture_C_set_pad_size_v_pii(Texture *param0, int param1, int param2);
+EXPORT_FUNC void Texture_C_set_pad_size_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_set_pad_size_v_p(Texture *param0);
+EXPORT_FUNC void Texture_C_set_size_padded_v_piii(Texture *param0, int param1, int param2, int param3);
+EXPORT_FUNC void Texture_C_set_size_padded_v_pii(Texture *param0, int param1, int param2);
+EXPORT_FUNC void Texture_C_set_size_padded_v_pi(Texture *param0, int param1);
+EXPORT_FUNC void Texture_C_set_size_padded_v_p(Texture *param0);
+EXPORT_FUNC int Texture_C_get_orig_file_x_size_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_orig_file_y_size_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_get_orig_file_z_size_i_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_orig_file_size_v_piii(Texture *param0, int param1, int param2, int param3);
+EXPORT_FUNC void Texture_C_set_orig_file_size_v_pii(Texture *param0, int param1, int param2);
+EXPORT_FUNC void Texture_C_set_loaded_from_image_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC void Texture_C_set_loaded_from_image_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_get_loaded_from_image_B_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_loaded_from_txo_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC void Texture_C_set_loaded_from_txo_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_get_loaded_from_txo_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_get_match_framebuffer_format_B_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_match_framebuffer_format_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC bool Texture_C_get_post_load_store_cache_B_p(Texture const *param0);
+EXPORT_FUNC void Texture_C_set_post_load_store_cache_v_pB(Texture *param0, bool param1);
+EXPORT_FUNC TextureContext * Texture_C_prepare_now_p_pipp(Texture *param0, int param1, PreparedGraphicsObjects *param2, GraphicsStateGuardianBase *param3);
+EXPORT_FUNC int Texture_C_up_to_power_2_i_i(int param0);
+EXPORT_FUNC int Texture_C_down_to_power_2_i_i(int param0);
+EXPORT_FUNC void Texture_C_consider_rescale_v_pp(Texture *param0, PNMImage *param1);
+EXPORT_FUNC void Texture_C_consider_rescale_v_psp(PNMImage *param0, char const *param1, AutoTextureScale param2);
+EXPORT_FUNC void Texture_C_consider_rescale_v_ps(PNMImage *param0, char const *param1);
+EXPORT_FUNC bool Texture_C_rescale_texture_B_p(Texture *param0);
+EXPORT_FUNC char const * Texture_C_format_texture_type_s_p(Texture::TextureType param0);
+EXPORT_FUNC Texture::TextureType Texture_C_string_texture_type_p_s(char const *param0);
+EXPORT_FUNC char const * Texture_C_format_component_type_s_p(Texture::ComponentType param0);
+EXPORT_FUNC Texture::ComponentType Texture_C_string_component_type_p_s(char const *param0);
+EXPORT_FUNC char const * Texture_C_format_format_s_p(Texture::Format param0);
+EXPORT_FUNC Texture::Format Texture_C_string_format_p_s(char const *param0);
+EXPORT_FUNC char const * Texture_C_format_compression_mode_s_p(Texture::CompressionMode param0);
+EXPORT_FUNC Texture::CompressionMode Texture_C_string_compression_mode_p_s(char const *param0);
+EXPORT_FUNC char const * Texture_C_format_quality_level_s_p(Texture::QualityLevel param0);
+EXPORT_FUNC Texture::QualityLevel Texture_C_string_quality_level_p_s(char const *param0);
+EXPORT_FUNC void Texture_C_texture_uploaded_v_p(Texture *param0);
+EXPORT_FUNC bool Texture_C_has_cull_callback_B_p(Texture const *param0);
+EXPORT_FUNC bool Texture_C_cull_callback_B_ppp(Texture const *param0, CullTraverser *param1, CullTraverserData const *param2);
+EXPORT_FUNC PointerTo< Texture > * Texture_C_make_texture_p_v();
+EXPORT_FUNC bool Texture_C_is_unsigned_B_p(Texture::ComponentType param0);
+EXPORT_FUNC bool Texture_C_is_specific_B_p(Texture::CompressionMode param0);
+EXPORT_FUNC bool Texture_C_has_alpha_B_p(Texture::Format param0);
+EXPORT_FUNC bool Texture_C_has_binary_alpha_B_p(Texture::Format param0);
+EXPORT_FUNC bool Texture_C_is_srgb_B_p(Texture::Format param0);
+EXPORT_FUNC void Texture_C_ensure_loader_type_v_pp(Texture *param0, Filename const *param1);
+EXPORT_FUNC void Texture_C_register_with_read_factory_v_v();
+EXPORT_FUNC void Texture_C_write_datagram_v_ppp(Texture *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC void Texture_C_finalize_v_pp(Texture *param0, BamReader *param1);
+EXPORT_FUNC int Texture_C_get_class_type_i_v();
+EXPORT_FUNC void Texture_C_init_type_v_v();
+EXPORT_FUNC int Texture_C_get_type_i_p(Texture const *param0);
+EXPORT_FUNC int Texture_C_force_init_type_i_p(Texture *param0);
+
+
+// TextureCollection
+
+EXPORT_FUNC TextureCollection * TextureCollection_C_ctor_p_v();
+EXPORT_FUNC TextureCollection * TextureCollection_C_ctor_p_p(TextureCollection const *param0);
+EXPORT_FUNC void TextureCollection_C_add_texture_v_pp(TextureCollection *param0, Texture *param1);
+EXPORT_FUNC bool TextureCollection_C_remove_texture_B_pp(TextureCollection *param0, Texture *param1);
+EXPORT_FUNC void TextureCollection_C_add_textures_from_v_pp(TextureCollection *param0, TextureCollection const *param1);
+EXPORT_FUNC void TextureCollection_C_remove_textures_from_v_pp(TextureCollection *param0, TextureCollection const *param1);
+EXPORT_FUNC void TextureCollection_C_remove_duplicate_textures_v_p(TextureCollection *param0);
+EXPORT_FUNC bool TextureCollection_C_has_texture_B_pp(TextureCollection const *param0, Texture *param1);
+EXPORT_FUNC void TextureCollection_C_clear_v_p(TextureCollection *param0);
+EXPORT_FUNC void TextureCollection_C_reserve_v_pl(TextureCollection *param0, std::size_t param1);
+EXPORT_FUNC Texture * TextureCollection_C_find_texture_p_ps(TextureCollection const *param0, char const *param1);
+EXPORT_FUNC int TextureCollection_C_get_num_textures_i_p(TextureCollection const *param0);
+EXPORT_FUNC Texture * TextureCollection_C_get_texture_p_pi(TextureCollection const *param0, int param1);
+EXPORT_FUNC int TextureCollection_C_size_i_p(TextureCollection const *param0);
+EXPORT_FUNC void TextureCollection_C_append_v_pp(TextureCollection *param0, Texture *param1);
+EXPORT_FUNC void TextureCollection_C_extend_v_pp(TextureCollection *param0, TextureCollection const *param1);
+EXPORT_FUNC void TextureCollection_C_output_v_pp(TextureCollection const *param0, std::ostream *param1);
+EXPORT_FUNC void TextureCollection_C_write_v_ppi(TextureCollection const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC void TextureCollection_C_write_v_pp(TextureCollection const *param0, std::ostream *param1);
+
+
+// TexturePeeker
+
+EXPORT_FUNC bool TexturePeeker_C_is_valid_B_p(TexturePeeker const *param0);
+EXPORT_FUNC int TexturePeeker_C_get_x_size_i_p(TexturePeeker const *param0);
+EXPORT_FUNC int TexturePeeker_C_get_y_size_i_p(TexturePeeker const *param0);
+EXPORT_FUNC int TexturePeeker_C_get_z_size_i_p(TexturePeeker const *param0);
+EXPORT_FUNC bool TexturePeeker_C_has_pixel_B_pii(TexturePeeker const *param0, int param1, int param2);
+EXPORT_FUNC void TexturePeeker_C_lookup_v_ppff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void TexturePeeker_C_lookup_v_ppfff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4);
+EXPORT_FUNC void TexturePeeker_C_fetch_pixel_v_ppii(TexturePeeker const *param0, LColor *param1, int param2, int param3);
+EXPORT_FUNC bool TexturePeeker_C_lookup_bilinear_B_ppff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3);
+EXPORT_FUNC void TexturePeeker_C_filter_rect_v_ppffff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5);
+EXPORT_FUNC void TexturePeeker_C_filter_rect_v_ppffffff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5, PN_stdfloat param6, PN_stdfloat param7);
+EXPORT_FUNC TexturePeeker * TexturePeeker_C_ctor_p_p(TexturePeeker const *param0);
+
+
 // Thread
 
 EXPORT_FUNC TypedReferenceCount * Thread_C_upcast_to_TypedReferenceCount_p_p(Thread *param0);
@@ -2635,6 +3947,149 @@ EXPORT_FUNC int Thread_C_get_type_i_p(Thread const *param0);
 EXPORT_FUNC int Thread_C_force_init_type_i_p(Thread *param0);
 
 
+// TouchInfo
+
+EXPORT_FUNC TouchInfo * TouchInfo_C_ctor_p_v();
+EXPORT_FUNC TouchInfo * TouchInfo_C_ctor_p_p(TouchInfo const *param0);
+EXPORT_FUNC void TouchInfo_C_set_x_v_pi(TouchInfo *param0, int param1);
+EXPORT_FUNC void TouchInfo_C_set_y_v_pi(TouchInfo *param0, int param1);
+EXPORT_FUNC void TouchInfo_C_set_id_v_pi(TouchInfo *param0, int param1);
+EXPORT_FUNC void TouchInfo_C_set_flags_v_pi(TouchInfo *param0, int param1);
+EXPORT_FUNC int TouchInfo_C_get_x_i_p(TouchInfo *param0);
+EXPORT_FUNC int TouchInfo_C_get_y_i_p(TouchInfo *param0);
+EXPORT_FUNC int TouchInfo_C_get_id_i_p(TouchInfo *param0);
+EXPORT_FUNC int TouchInfo_C_get_flags_i_p(TouchInfo *param0);
+
+
+// TransformState
+
+EXPORT_FUNC int TransformState_C_compare_to_i_pp(TransformState const *param0, TransformState const *param1);
+EXPORT_FUNC int TransformState_C_compare_to_i_ppB(TransformState const *param0, TransformState const *param1, bool param2);
+EXPORT_FUNC std::size_t TransformState_C_get_hash_l_p(TransformState const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_identity_p_v();
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_invalid_p_v();
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_p_p(LVecBase3 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_hpr_p_p(LVecBase3 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_quat_p_p(LQuaternion const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_hpr_p_pp(LVecBase3 const *param0, LVecBase3 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_scale_p_p(LVecBase3 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_scale_p_f(PN_stdfloat param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_shear_p_p(LVecBase3 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_hpr_scale_p_ppp(LVecBase3 const *param0, LVecBase3 const *param1, LVecBase3 const *param2);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_quat_scale_p_ppp(LVecBase3 const *param0, LQuaternion const *param1, LVecBase3 const *param2);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_hpr_scale_shear_p_pppp(LVecBase3 const *param0, LVecBase3 const *param1, LVecBase3 const *param2, LVecBase3 const *param3);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_quat_scale_shear_p_pppp(LVecBase3 const *param0, LQuaternion const *param1, LVecBase3 const *param2, LVecBase3 const *param3);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_mat_p_p(LMatrix4 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos2d_p_p(LVecBase2 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_rotate2d_p_f(PN_stdfloat param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_rotate2d_p_pf(LVecBase2 const *param0, PN_stdfloat param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_scale2d_p_p(LVecBase2 const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_scale2d_p_f(PN_stdfloat param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_shear2d_p_f(PN_stdfloat param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_rotate_scale2d_p_pfp(LVecBase2 const *param0, PN_stdfloat param1, LVecBase2 const *param2);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_pos_rotate_scale_shear2d_p_pfpf(LVecBase2 const *param0, PN_stdfloat param1, LVecBase2 const *param2, PN_stdfloat param3);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_make_mat3_p_p(LMatrix3 const *param0);
+EXPORT_FUNC bool TransformState_C_is_identity_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_is_invalid_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_is_singular_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_is_2d_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_components_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_components_given_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_hpr_given_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_quat_given_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_pos_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_hpr_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_quat_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_scale_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_identity_scale_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_uniform_scale_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_shear_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_nonzero_shear_B_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_has_mat_B_p(TransformState const *param0);
+EXPORT_FUNC LPoint3 const * TransformState_C_get_pos_p_p(TransformState const *param0);
+EXPORT_FUNC LVecBase3 const * TransformState_C_get_hpr_p_p(TransformState const *param0);
+EXPORT_FUNC LQuaternion const * TransformState_C_get_quat_p_p(TransformState const *param0);
+EXPORT_FUNC LQuaternion const * TransformState_C_get_norm_quat_p_p(TransformState const *param0);
+EXPORT_FUNC LVecBase3 const * TransformState_C_get_scale_p_p(TransformState const *param0);
+EXPORT_FUNC PN_stdfloat TransformState_C_get_uniform_scale_f_p(TransformState const *param0);
+EXPORT_FUNC LVecBase3 const * TransformState_C_get_shear_p_p(TransformState const *param0);
+EXPORT_FUNC LMatrix4 const * TransformState_C_get_mat_p_p(TransformState const *param0);
+EXPORT_FUNC LVecBase2 * TransformState_C_get_pos2d_p_p(TransformState const *param0);
+EXPORT_FUNC PN_stdfloat TransformState_C_get_rotate2d_f_p(TransformState const *param0);
+EXPORT_FUNC LVecBase2 * TransformState_C_get_scale2d_p_p(TransformState const *param0);
+EXPORT_FUNC PN_stdfloat TransformState_C_get_shear2d_f_p(TransformState const *param0);
+EXPORT_FUNC LMatrix3 * TransformState_C_get_mat3_p_p(TransformState const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_pos_p_pp(TransformState const *param0, LVecBase3 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_hpr_p_pp(TransformState const *param0, LVecBase3 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_quat_p_pp(TransformState const *param0, LQuaternion const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_scale_p_pp(TransformState const *param0, LVecBase3 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_shear_p_pp(TransformState const *param0, LVecBase3 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_pos2d_p_pp(TransformState const *param0, LVecBase2 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_rotate2d_p_pf(TransformState const *param0, PN_stdfloat param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_scale2d_p_pp(TransformState const *param0, LVecBase2 const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_set_shear2d_p_pf(TransformState const *param0, PN_stdfloat param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_compose_p_pp(TransformState const *param0, TransformState const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_invert_compose_p_pp(TransformState const *param0, TransformState const *param1);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_get_inverse_p_p(TransformState const *param0);
+EXPORT_FUNC ConstPointerTo< TransformState > * TransformState_C_get_unique_p_p(TransformState const *param0);
+EXPORT_FUNC int TransformState_C_get_geom_rendering_i_pi(TransformState const *param0, int param1);
+EXPORT_FUNC void TransformState_C_cache_ref_v_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_cache_unref_B_p(TransformState const *param0);
+EXPORT_FUNC void TransformState_C_node_ref_v_p(TransformState const *param0);
+EXPORT_FUNC bool TransformState_C_node_unref_B_p(TransformState const *param0);
+EXPORT_FUNC std::size_t TransformState_C_get_composition_cache_num_entries_l_p(TransformState const *param0);
+EXPORT_FUNC std::size_t TransformState_C_get_invert_composition_cache_num_entries_l_p(TransformState const *param0);
+EXPORT_FUNC std::size_t TransformState_C_get_composition_cache_size_l_p(TransformState const *param0);
+EXPORT_FUNC TransformState const * TransformState_C_get_composition_cache_source_p_pl(TransformState const *param0, std::size_t param1);
+EXPORT_FUNC TransformState const * TransformState_C_get_composition_cache_result_p_pl(TransformState const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t TransformState_C_get_invert_composition_cache_size_l_p(TransformState const *param0);
+EXPORT_FUNC TransformState const * TransformState_C_get_invert_composition_cache_source_p_pl(TransformState const *param0, std::size_t param1);
+EXPORT_FUNC TransformState const * TransformState_C_get_invert_composition_cache_result_p_pl(TransformState const *param0, std::size_t param1);
+EXPORT_FUNC bool TransformState_C_validate_composition_cache_B_p(TransformState const *param0);
+EXPORT_FUNC void TransformState_C_output_v_pp(TransformState const *param0, std::ostream *param1);
+EXPORT_FUNC void TransformState_C_write_v_ppi(TransformState const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC void TransformState_C_write_composition_cache_v_ppi(TransformState const *param0, std::ostream *param1, int param2);
+EXPORT_FUNC int TransformState_C_get_num_states_i_v();
+EXPORT_FUNC int TransformState_C_get_num_unused_states_i_v();
+EXPORT_FUNC int TransformState_C_clear_cache_i_v();
+EXPORT_FUNC int TransformState_C_garbage_collect_i_v();
+EXPORT_FUNC void TransformState_C_list_cycles_v_p(std::ostream *param0);
+EXPORT_FUNC void TransformState_C_list_states_v_p(std::ostream *param0);
+EXPORT_FUNC bool TransformState_C_validate_states_B_v();
+EXPORT_FUNC void TransformState_C_init_states_v_v();
+EXPORT_FUNC void TransformState_C_flush_level_v_v();
+EXPORT_FUNC void TransformState_C_register_with_read_factory_v_v();
+EXPORT_FUNC void TransformState_C_write_datagram_v_ppp(TransformState *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC PointerTo< TypedWritableReferenceCount > * TransformState_C_change_this_p_pp(TypedWritableReferenceCount *param0, BamReader *param1);
+EXPORT_FUNC int TransformState_C_get_class_type_i_v();
+EXPORT_FUNC void TransformState_C_init_type_v_v();
+EXPORT_FUNC int TransformState_C_get_type_i_p(TransformState const *param0);
+EXPORT_FUNC int TransformState_C_force_init_type_i_p(TransformState *param0);
+
+
+// TransformTable
+
+EXPORT_FUNC TransformTable * TransformTable_C_ctor_p_v();
+EXPORT_FUNC TransformTable * TransformTable_C_ctor_p_p(TransformTable const *param0);
+EXPORT_FUNC bool TransformTable_C_is_registered_B_p(TransformTable const *param0);
+EXPORT_FUNC ConstPointerTo< TransformTable > * TransformTable_C_register_table_p_p(TransformTable const *param0);
+EXPORT_FUNC std::size_t TransformTable_C_get_num_transforms_l_p(TransformTable const *param0);
+EXPORT_FUNC VertexTransform const * TransformTable_C_get_transform_p_pl(TransformTable const *param0, std::size_t param1);
+EXPORT_FUNC UpdateSeq * TransformTable_C_get_modified_p_pp(TransformTable const *param0, Thread *param1);
+EXPORT_FUNC UpdateSeq * TransformTable_C_get_modified_p_p(TransformTable const *param0);
+EXPORT_FUNC void TransformTable_C_set_transform_v_plp(TransformTable *param0, std::size_t param1, VertexTransform const *param2);
+EXPORT_FUNC void TransformTable_C_insert_transform_v_plp(TransformTable *param0, std::size_t param1, VertexTransform const *param2);
+EXPORT_FUNC void TransformTable_C_remove_transform_v_pl(TransformTable *param0, std::size_t param1);
+EXPORT_FUNC std::size_t TransformTable_C_add_transform_l_pp(TransformTable *param0, VertexTransform const *param1);
+EXPORT_FUNC void TransformTable_C_write_v_pp(TransformTable const *param0, std::ostream *param1);
+EXPORT_FUNC void TransformTable_C_register_with_read_factory_v_v();
+EXPORT_FUNC void TransformTable_C_write_datagram_v_ppp(TransformTable *param0, BamWriter *param1, Datagram *param2);
+EXPORT_FUNC int TransformTable_C_get_class_type_i_v();
+EXPORT_FUNC void TransformTable_C_init_type_v_v();
+EXPORT_FUNC int TransformTable_C_get_type_i_p(TransformTable const *param0);
+EXPORT_FUNC int TransformTable_C_force_init_type_i_p(TransformTable *param0);
+
+
 // TypedObject
 
 EXPORT_FUNC MemoryBase * TypedObject_C_upcast_to_MemoryBase_p_p(TypedObject *param0);
@@ -2652,6 +4107,9 @@ EXPORT_FUNC void TypedObject_C_init_type_v_v();
 
 // TypedReferenceCount
 
+EXPORT_FUNC DisplayRegion * TypedReferenceCount_C_downcast_to_DisplayRegion_p_p(TypedReferenceCount *param0);
+EXPORT_FUNC Loader * TypedReferenceCount_C_downcast_to_Loader_p_p(TypedReferenceCount *param0);
+EXPORT_FUNC TextFont * TypedReferenceCount_C_downcast_to_TextFont_p_p(TypedReferenceCount *param0);
 EXPORT_FUNC Thread * TypedReferenceCount_C_downcast_to_Thread_p_p(TypedReferenceCount *param0);
 
 
@@ -2678,7 +4136,25 @@ EXPORT_FUNC int TypedWritable_C_force_init_type_i_p(TypedWritable *param0);
 // TypedWritableReferenceCount
 
 EXPORT_FUNC PandaNode * TypedWritableReferenceCount_C_downcast_to_PandaNode_p_p(TypedWritableReferenceCount *param0);
+EXPORT_FUNC GeomVertexArrayFormat * TypedWritableReferenceCount_C_downcast_to_GeomVertexArrayFormat_p_p(TypedWritableReferenceCount *param0);
 EXPORT_FUNC GeomVertexFormat * TypedWritableReferenceCount_C_downcast_to_GeomVertexFormat_p_p(TypedWritableReferenceCount *param0);
+EXPORT_FUNC Texture * TypedWritableReferenceCount_C_downcast_to_Texture_p_p(TypedWritableReferenceCount *param0);
+
+
+// UpdateSeq
+
+EXPORT_FUNC UpdateSeq * UpdateSeq_C_ctor_p_v();
+EXPORT_FUNC UpdateSeq * UpdateSeq_C_ctor_p_p(UpdateSeq const *param0);
+EXPORT_FUNC UpdateSeq * UpdateSeq_C_initial_p_v();
+EXPORT_FUNC UpdateSeq * UpdateSeq_C_old_p_v();
+EXPORT_FUNC UpdateSeq * UpdateSeq_C_fresh_p_v();
+EXPORT_FUNC void UpdateSeq_C_clear_v_p(UpdateSeq *param0);
+EXPORT_FUNC bool UpdateSeq_C_is_initial_B_p(UpdateSeq const *param0);
+EXPORT_FUNC bool UpdateSeq_C_is_old_B_p(UpdateSeq const *param0);
+EXPORT_FUNC bool UpdateSeq_C_is_fresh_B_p(UpdateSeq const *param0);
+EXPORT_FUNC bool UpdateSeq_C_is_special_B_p(UpdateSeq const *param0);
+EXPORT_FUNC AtomicAdjust::Integer UpdateSeq_C_get_seq_p_p(UpdateSeq const *param0);
+EXPORT_FUNC void UpdateSeq_C_output_v_pp(UpdateSeq const *param0, std::ostream *param1);
 
 
 // WindowFramework
@@ -2735,6 +4211,113 @@ EXPORT_FUNC void WindowFramework_C_init_type_v_v();
 EXPORT_FUNC int WindowFramework_C_get_type_i_p(WindowFramework const *param0);
 EXPORT_FUNC int WindowFramework_C_force_init_type_i_p(WindowFramework *param0);
 EXPORT_FUNC WindowFramework * WindowFramework_C_ctor_p_p(WindowFramework const *param0);
+
+
+// WindowHandle
+
+EXPORT_FUNC WindowHandle * WindowHandle_C_ctor_p_p(WindowHandle const *param0);
+EXPORT_FUNC WindowHandle * WindowHandle_C_ctor_p_p_1_p_p(WindowHandle::OSHandle *param0);
+EXPORT_FUNC WindowHandle::OSHandle * WindowHandle_C_get_os_handle_p_p(WindowHandle const *param0);
+EXPORT_FUNC void WindowHandle_C_set_os_handle_v_pp(WindowHandle *param0, WindowHandle::OSHandle *param1);
+EXPORT_FUNC void WindowHandle_C_send_windows_message_v_pIii(WindowHandle *param0, unsigned int param1, int param2, int param3);
+EXPORT_FUNC std::size_t WindowHandle_C_get_int_handle_l_p(WindowHandle const *param0);
+EXPORT_FUNC void WindowHandle_C_output_v_pp(WindowHandle const *param0, std::ostream *param1);
+EXPORT_FUNC void WindowHandle_C_attach_child_v_pp(WindowHandle *param0, WindowHandle *param1);
+EXPORT_FUNC void WindowHandle_C_detach_child_v_pp(WindowHandle *param0, WindowHandle *param1);
+EXPORT_FUNC void WindowHandle_C_request_keyboard_focus_v_pp(WindowHandle *param0, WindowHandle *param1);
+EXPORT_FUNC void WindowHandle_C_receive_windows_message_v_pIii(WindowHandle *param0, unsigned int param1, int param2, int param3);
+EXPORT_FUNC int WindowHandle_C_get_class_type_i_v();
+EXPORT_FUNC void WindowHandle_C_init_type_v_v();
+EXPORT_FUNC int WindowHandle_C_get_type_i_p(WindowHandle const *param0);
+EXPORT_FUNC int WindowHandle_C_force_init_type_i_p(WindowHandle *param0);
+
+
+// WindowProperties
+
+EXPORT_FUNC WindowProperties * WindowProperties_C_ctor_p_v();
+EXPORT_FUNC WindowProperties * WindowProperties_C_ctor_p_p(WindowProperties const *param0);
+EXPORT_FUNC WindowProperties * WindowProperties_C_get_config_properties_p_v();
+EXPORT_FUNC WindowProperties * WindowProperties_C_get_default_p_v();
+EXPORT_FUNC void WindowProperties_C_set_default_v_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_default_v_v();
+EXPORT_FUNC WindowProperties * WindowProperties_C_size_p_p(LVecBase2i const *param0);
+EXPORT_FUNC WindowProperties * WindowProperties_C_size_p_ii(int param0, int param1);
+EXPORT_FUNC void WindowProperties_C_clear_v_p(WindowProperties *param0);
+EXPORT_FUNC bool WindowProperties_C_is_any_specified_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_set_origin_v_pp(WindowProperties *param0, LPoint2i const *param1);
+EXPORT_FUNC void WindowProperties_C_set_origin_v_pii(WindowProperties *param0, int param1, int param2);
+EXPORT_FUNC LPoint2i const * WindowProperties_C_get_origin_p_p(WindowProperties const *param0);
+EXPORT_FUNC int WindowProperties_C_get_x_origin_i_p(WindowProperties const *param0);
+EXPORT_FUNC int WindowProperties_C_get_y_origin_i_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_origin_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_origin_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_size_v_pp(WindowProperties *param0, LVector2i const *param1);
+EXPORT_FUNC void WindowProperties_C_set_size_v_pii(WindowProperties *param0, int param1, int param2);
+EXPORT_FUNC LVector2i const * WindowProperties_C_get_size_p_p(WindowProperties const *param0);
+EXPORT_FUNC int WindowProperties_C_get_x_size_i_p(WindowProperties const *param0);
+EXPORT_FUNC int WindowProperties_C_get_y_size_i_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_size_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_size_v_p(WindowProperties *param0);
+EXPORT_FUNC bool WindowProperties_C_has_mouse_mode_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_set_mouse_mode_v_pp(WindowProperties *param0, WindowProperties::MouseMode param1);
+EXPORT_FUNC WindowProperties::MouseMode WindowProperties_C_get_mouse_mode_p_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_mouse_mode_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_title_v_ps(WindowProperties *param0, char const *param1);
+EXPORT_FUNC char const * WindowProperties_C_get_title_s_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_title_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_title_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_undecorated_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_undecorated_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_undecorated_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_undecorated_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_fixed_size_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_fixed_size_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_fixed_size_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_fixed_size_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_fullscreen_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_fullscreen_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_fullscreen_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_fullscreen_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_foreground_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_foreground_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_foreground_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_foreground_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_minimized_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_minimized_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_minimized_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_minimized_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_raw_mice_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_raw_mice_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_raw_mice_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_raw_mice_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_open_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_open_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_open_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_open_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_cursor_hidden_v_pB(WindowProperties *param0, bool param1);
+EXPORT_FUNC bool WindowProperties_C_get_cursor_hidden_B_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_cursor_hidden_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_cursor_hidden_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_icon_filename_v_pp(WindowProperties *param0, Filename const *param1);
+EXPORT_FUNC Filename const * WindowProperties_C_get_icon_filename_p_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_icon_filename_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_icon_filename_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_cursor_filename_v_pp(WindowProperties *param0, Filename const *param1);
+EXPORT_FUNC Filename const * WindowProperties_C_get_cursor_filename_p_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_cursor_filename_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_cursor_filename_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_z_order_v_pp(WindowProperties *param0, WindowProperties::ZOrder param1);
+EXPORT_FUNC WindowProperties::ZOrder WindowProperties_C_get_z_order_p_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_z_order_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_z_order_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_parent_window_v_pp(WindowProperties *param0, WindowHandle *param1);
+EXPORT_FUNC void WindowProperties_C_set_parent_window_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_set_parent_window_v_pl(WindowProperties *param0, std::size_t param1);
+EXPORT_FUNC WindowHandle * WindowProperties_C_get_parent_window_p_p(WindowProperties const *param0);
+EXPORT_FUNC bool WindowProperties_C_has_parent_window_B_p(WindowProperties const *param0);
+EXPORT_FUNC void WindowProperties_C_clear_parent_window_v_p(WindowProperties *param0);
+EXPORT_FUNC void WindowProperties_C_add_properties_v_pp(WindowProperties *param0, WindowProperties const *param1);
+EXPORT_FUNC void WindowProperties_C_output_v_pp(WindowProperties const *param0, std::ostream *param1);
 
 
 // 
@@ -2849,13 +4432,13 @@ Camera_C_get_scene_p_p(Camera const *param0) {
 
 
 std::size_t
-Camera_C_get_num_display_regions_p_p(Camera const *param0) {
+Camera_C_get_num_display_regions_l_p(Camera const *param0) {
     return (*param0).get_num_display_regions();
 }
 
 
 DisplayRegion *
-Camera_C_get_display_region_p_pp(Camera const *param0, std::size_t param1) {
+Camera_C_get_display_region_p_pl(Camera const *param0, std::size_t param1) {
     return (*param0).get_display_region(param1);
 }
 
@@ -3152,39 +4735,39 @@ ConfigPage_C_delete_declaration_B_pp(ConfigPage *param0, ConfigDeclaration *para
 
 
 std::size_t
-ConfigPage_C_get_num_declarations_p_p(ConfigPage const *param0) {
+ConfigPage_C_get_num_declarations_l_p(ConfigPage const *param0) {
     return (*param0).get_num_declarations();
 }
 
 
 ConfigDeclaration const *
-ConfigPage_C_get_declaration_p_pp(ConfigPage const *param0, std::size_t param1) {
+ConfigPage_C_get_declaration_p_pl(ConfigPage const *param0, std::size_t param1) {
     return (*param0).get_declaration(param1);
 }
 
 
 ConfigDeclaration *
-ConfigPage_C_modify_declaration_p_pp(ConfigPage *param0, std::size_t param1) {
+ConfigPage_C_modify_declaration_p_pl(ConfigPage *param0, std::size_t param1) {
     return (*param0).modify_declaration(param1);
 }
 
 
 char const *
-ConfigPage_C_get_variable_name_s_pp(ConfigPage const *param0, std::size_t param1) {
+ConfigPage_C_get_variable_name_s_pl(ConfigPage const *param0, std::size_t param1) {
     static std::string string_holder = (*param0).get_variable_name(param1);
     return string_holder.c_str();
 }
 
 
 char const *
-ConfigPage_C_get_string_value_s_pp(ConfigPage const *param0, std::size_t param1) {
+ConfigPage_C_get_string_value_s_pl(ConfigPage const *param0, std::size_t param1) {
     static std::string string_holder = (*param0).get_string_value(param1);
     return string_holder.c_str();
 }
 
 
 bool
-ConfigPage_C_is_variable_used_B_pp(ConfigPage const *param0, std::size_t param1) {
+ConfigPage_C_is_variable_used_B_pl(ConfigPage const *param0, std::size_t param1) {
     return (*param0).is_variable_used(param1);
 }
 
@@ -3222,9 +4805,516 @@ CopyOnWriteObject_C_downcast_to_GeomPrimitive_p_p(CopyOnWriteObject *param0) {
 }
 
 
+GeomVertexArrayData *
+CopyOnWriteObject_C_downcast_to_GeomVertexArrayData_p_p(CopyOnWriteObject *param0) {
+    return (GeomVertexArrayData *)param0;
+}
+
+
 GeomVertexData *
 CopyOnWriteObject_C_downcast_to_GeomVertexData_p_p(CopyOnWriteObject *param0) {
     return (GeomVertexData *)param0;
+}
+
+
+// DisplayRegion
+
+
+TypedReferenceCount *
+DisplayRegion_C_upcast_to_TypedReferenceCount_p_p(DisplayRegion *param0) {
+    return (TypedReferenceCount *)param0;
+}
+
+
+DrawableRegion *
+DisplayRegion_C_upcast_to_DrawableRegion_p_p(DisplayRegion *param0) {
+    return (DrawableRegion *)param0;
+}
+
+
+void
+DisplayRegion_C_cleanup_v_p(DisplayRegion *param0) {
+    (*param0).cleanup();
+}
+
+
+int
+DisplayRegion_C_get_num_regions_i_p(DisplayRegion const *param0) {
+    return (*param0).get_num_regions();
+}
+
+
+void
+DisplayRegion_C_set_num_regions_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_num_regions(param1);
+}
+
+
+LVecBase4 *
+DisplayRegion_C_get_dimensions_p_pi(DisplayRegion const *param0, int param1) {
+    return new LVecBase4((*param0).get_dimensions(param1));
+}
+
+
+LVecBase4 *
+DisplayRegion_C_get_dimensions_p_p(DisplayRegion const *param0) {
+    return new LVecBase4((*param0).get_dimensions());
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_left_f_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_left(param1);
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_left_f_p(DisplayRegion const *param0) {
+    return (*param0).get_left();
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_right_f_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_right(param1);
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_right_f_p(DisplayRegion const *param0) {
+    return (*param0).get_right();
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_bottom_f_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_bottom(param1);
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_bottom_f_p(DisplayRegion const *param0) {
+    return (*param0).get_bottom();
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_top_f_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_top(param1);
+}
+
+
+PN_stdfloat
+DisplayRegion_C_get_top_f_p(DisplayRegion const *param0) {
+    return (*param0).get_top();
+}
+
+
+void
+DisplayRegion_C_set_dimensions_v_pp(DisplayRegion *param0, LVecBase4 const *param1) {
+    (*param0).set_dimensions(*param1);
+}
+
+
+void
+DisplayRegion_C_set_dimensions_v_pffff(DisplayRegion *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4) {
+    (*param0).set_dimensions(param1, param2, param3, param4);
+}
+
+
+void
+DisplayRegion_C_set_dimensions_v_pip(DisplayRegion *param0, int param1, LVecBase4 const *param2) {
+    (*param0).set_dimensions(param1, *param2);
+}
+
+
+void
+DisplayRegion_C_set_dimensions_v_piffff(DisplayRegion *param0, int param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5) {
+    (*param0).set_dimensions(param1, param2, param3, param4, param5);
+}
+
+
+GraphicsOutput *
+DisplayRegion_C_get_window_p_p(DisplayRegion const *param0) {
+    return (*param0).get_window();
+}
+
+
+GraphicsPipe *
+DisplayRegion_C_get_pipe_p_p(DisplayRegion const *param0) {
+    return (*param0).get_pipe();
+}
+
+
+bool
+DisplayRegion_C_is_stereo_B_p(DisplayRegion const *param0) {
+    return (*param0).is_stereo();
+}
+
+
+void
+DisplayRegion_C_set_camera_v_pp(DisplayRegion *param0, NodePath const *param1) {
+    (*param0).set_camera(*param1);
+}
+
+
+NodePath *
+DisplayRegion_C_get_camera_p_pp(DisplayRegion const *param0, Thread *param1) {
+    return new NodePath((*param0).get_camera(param1));
+}
+
+
+NodePath *
+DisplayRegion_C_get_camera_p_p(DisplayRegion const *param0) {
+    return new NodePath((*param0).get_camera());
+}
+
+
+void
+DisplayRegion_C_set_active_v_pB(DisplayRegion *param0, bool param1) {
+    (*param0).set_active(param1);
+}
+
+
+bool
+DisplayRegion_C_is_active_B_p(DisplayRegion const *param0) {
+    return (*param0).is_active();
+}
+
+
+void
+DisplayRegion_C_set_sort_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_sort(param1);
+}
+
+
+int
+DisplayRegion_C_get_sort_i_p(DisplayRegion const *param0) {
+    return (*param0).get_sort();
+}
+
+
+void
+DisplayRegion_C_set_stereo_channel_v_pp(DisplayRegion *param0, Lens::StereoChannel param1) {
+    (*param0).set_stereo_channel(param1);
+}
+
+
+Lens::StereoChannel
+DisplayRegion_C_get_stereo_channel_p_p(DisplayRegion const *param0) {
+    return (*param0).get_stereo_channel();
+}
+
+
+void
+DisplayRegion_C_set_tex_view_offset_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_tex_view_offset(param1);
+}
+
+
+int
+DisplayRegion_C_get_tex_view_offset_i_p(DisplayRegion const *param0) {
+    return (*param0).get_tex_view_offset();
+}
+
+
+void
+DisplayRegion_C_set_incomplete_render_v_pB(DisplayRegion *param0, bool param1) {
+    (*param0).set_incomplete_render(param1);
+}
+
+
+bool
+DisplayRegion_C_get_incomplete_render_B_p(DisplayRegion const *param0) {
+    return (*param0).get_incomplete_render();
+}
+
+
+void
+DisplayRegion_C_set_texture_reload_priority_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_texture_reload_priority(param1);
+}
+
+
+int
+DisplayRegion_C_get_texture_reload_priority_i_p(DisplayRegion const *param0) {
+    return (*param0).get_texture_reload_priority();
+}
+
+
+void
+DisplayRegion_C_set_lens_index_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_lens_index(param1);
+}
+
+
+int
+DisplayRegion_C_get_lens_index_i_p(DisplayRegion const *param0) {
+    return (*param0).get_lens_index();
+}
+
+
+void
+DisplayRegion_C_set_cull_traverser_v_pp(DisplayRegion *param0, CullTraverser *param1) {
+    (*param0).set_cull_traverser(param1);
+}
+
+
+CullTraverser *
+DisplayRegion_C_get_cull_traverser_p_p(DisplayRegion *param0) {
+    return (*param0).get_cull_traverser();
+}
+
+
+void
+DisplayRegion_C_set_cube_map_index_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_cube_map_index(param1);
+}
+
+
+void
+DisplayRegion_C_set_target_tex_page_v_pi(DisplayRegion *param0, int param1) {
+    (*param0).set_target_tex_page(param1);
+}
+
+
+int
+DisplayRegion_C_get_target_tex_page_i_p(DisplayRegion const *param0) {
+    return (*param0).get_target_tex_page();
+}
+
+
+void
+DisplayRegion_C_set_scissor_enabled_v_pB(DisplayRegion *param0, bool param1) {
+    (*param0).set_scissor_enabled(param1);
+}
+
+
+bool
+DisplayRegion_C_get_scissor_enabled_B_p(DisplayRegion const *param0) {
+    return (*param0).get_scissor_enabled();
+}
+
+
+void
+DisplayRegion_C_set_cull_callback_v_pp(DisplayRegion *param0, CallbackObject *param1) {
+    (*param0).set_cull_callback(param1);
+}
+
+
+void
+DisplayRegion_C_clear_cull_callback_v_p(DisplayRegion *param0) {
+    (*param0).clear_cull_callback();
+}
+
+
+CallbackObject *
+DisplayRegion_C_get_cull_callback_p_p(DisplayRegion const *param0) {
+    return (*param0).get_cull_callback();
+}
+
+
+void
+DisplayRegion_C_set_draw_callback_v_pp(DisplayRegion *param0, CallbackObject *param1) {
+    (*param0).set_draw_callback(param1);
+}
+
+
+void
+DisplayRegion_C_clear_draw_callback_v_p(DisplayRegion *param0) {
+    (*param0).clear_draw_callback();
+}
+
+
+CallbackObject *
+DisplayRegion_C_get_draw_callback_p_p(DisplayRegion const *param0) {
+    return (*param0).get_draw_callback();
+}
+
+
+int
+DisplayRegion_C_get_pixel_width_i_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_pixel_width(param1);
+}
+
+
+int
+DisplayRegion_C_get_pixel_width_i_p(DisplayRegion const *param0) {
+    return (*param0).get_pixel_width();
+}
+
+
+int
+DisplayRegion_C_get_pixel_height_i_pi(DisplayRegion const *param0, int param1) {
+    return (*param0).get_pixel_height(param1);
+}
+
+
+int
+DisplayRegion_C_get_pixel_height_i_p(DisplayRegion const *param0) {
+    return (*param0).get_pixel_height();
+}
+
+
+LVecBase2i *
+DisplayRegion_C_get_pixel_size_p_pi(DisplayRegion const *param0, int param1) {
+    return new LVecBase2i((*param0).get_pixel_size(param1));
+}
+
+
+LVecBase2i *
+DisplayRegion_C_get_pixel_size_p_p(DisplayRegion const *param0) {
+    return new LVecBase2i((*param0).get_pixel_size());
+}
+
+
+void
+DisplayRegion_C_output_v_pp(DisplayRegion const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+Filename *
+DisplayRegion_C_make_screenshot_filename_p_s(char const *param0) {
+    return new Filename(DisplayRegion::make_screenshot_filename(std::string(param0)));
+}
+
+
+Filename *
+DisplayRegion_C_make_screenshot_filename_p_v() {
+    return new Filename(DisplayRegion::make_screenshot_filename());
+}
+
+
+Filename *
+DisplayRegion_C_save_screenshot_default_p_ps(DisplayRegion *param0, char const *param1) {
+    return new Filename((*param0).save_screenshot_default(std::string(param1)));
+}
+
+
+Filename *
+DisplayRegion_C_save_screenshot_default_p_p(DisplayRegion *param0) {
+    return new Filename((*param0).save_screenshot_default());
+}
+
+
+bool
+DisplayRegion_C_save_screenshot_B_pps(DisplayRegion *param0, Filename const *param1, char const *param2) {
+    return (*param0).save_screenshot(*param1, std::string(param2));
+}
+
+
+bool
+DisplayRegion_C_save_screenshot_B_pp(DisplayRegion *param0, Filename const *param1) {
+    return (*param0).save_screenshot(*param1);
+}
+
+
+PointerTo< Texture > *
+DisplayRegion_C_get_screenshot_p_p(DisplayRegion *param0) {
+    return new PointerTo< Texture >((*param0).get_screenshot());
+}
+
+
+bool
+DisplayRegion_C_get_screenshot_B_pp(DisplayRegion *param0, PNMImage *param1) {
+    return (*param0).get_screenshot(*param1);
+}
+
+
+PointerTo< PandaNode > *
+DisplayRegion_C_make_cull_result_graph_p_p(DisplayRegion *param0) {
+    return new PointerTo< PandaNode >((*param0).make_cull_result_graph());
+}
+
+
+void
+DisplayRegion_C_compute_pixels_v_p(DisplayRegion *param0) {
+    (*param0).compute_pixels();
+}
+
+
+void
+DisplayRegion_C_compute_pixels_v_pii(DisplayRegion *param0, int param1, int param2) {
+    (*param0).compute_pixels(param1, param2);
+}
+
+
+void
+DisplayRegion_C_compute_pixels_all_stages_v_p(DisplayRegion *param0) {
+    (*param0).compute_pixels_all_stages();
+}
+
+
+void
+DisplayRegion_C_compute_pixels_all_stages_v_pii(DisplayRegion *param0, int param1, int param2) {
+    (*param0).compute_pixels_all_stages(param1, param2);
+}
+
+
+bool
+DisplayRegion_C_supports_pixel_zoom_B_p(DisplayRegion const *param0) {
+    return (*param0).supports_pixel_zoom();
+}
+
+
+void
+DisplayRegion_C_set_cull_result_v_pppp(DisplayRegion *param0, PointerTo< CullResult > *param1, PointerTo< SceneSetup > *param2, Thread *param3) {
+    (*param0).set_cull_result(*param1, *param2, param3);
+}
+
+
+CullResult *
+DisplayRegion_C_get_cull_result_p_pp(DisplayRegion const *param0, Thread *param1) {
+    return (*param0).get_cull_result(param1);
+}
+
+
+SceneSetup *
+DisplayRegion_C_get_scene_setup_p_pp(DisplayRegion const *param0, Thread *param1) {
+    return (*param0).get_scene_setup(param1);
+}
+
+
+PStatCollector *
+DisplayRegion_C_get_cull_region_pcollector_p_p(DisplayRegion *param0) {
+    return &((*param0).get_cull_region_pcollector());
+}
+
+
+PStatCollector *
+DisplayRegion_C_get_draw_region_pcollector_p_p(DisplayRegion *param0) {
+    return &((*param0).get_draw_region_pcollector());
+}
+
+
+char const *
+DisplayRegion_C_get_debug_name_s_p(DisplayRegion const *param0) {
+    return ((*param0).get_debug_name()).c_str();
+}
+
+
+int
+DisplayRegion_C_get_class_type_i_v() {
+    return (DisplayRegion::get_class_type()).get_index();
+}
+
+
+void
+DisplayRegion_C_init_type_v_v() {
+    DisplayRegion::init_type();
+}
+
+
+int
+DisplayRegion_C_get_type_i_p(DisplayRegion const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+DisplayRegion_C_force_init_type_i_p(DisplayRegion *param0) {
+    return ((*param0).force_init_type()).get_index();
 }
 
 
@@ -3399,6 +5489,12 @@ DrawableRegion_C_get_draw_buffer_type_i_p(DrawableRegion const *param0) {
 }
 
 
+DisplayRegion *
+DrawableRegion_C_downcast_to_DisplayRegion_p_p(DrawableRegion *param0) {
+    return (DisplayRegion *)param0;
+}
+
+
 GraphicsOutput *
 DrawableRegion_C_downcast_to_GraphicsOutput_p_p(DrawableRegion *param0) {
     return (GraphicsOutput *)param0;
@@ -3559,6 +5655,87 @@ Engine_C_set_framework_v_pp(Engine *param0, PandaFramework *param1) {
 }
 
 
+// EventHandler
+
+
+EventHandler *
+EventHandler_C_ctor_p_p(EventQueue *param0) {
+    return new EventHandler(param0);
+}
+
+
+AsyncFuture *
+EventHandler_C_get_future_p_ps(EventHandler *param0, char const *param1) {
+    return (*param0).get_future(std::string(param1));
+}
+
+
+void
+EventHandler_C_process_events_v_p(EventHandler *param0) {
+    (*param0).process_events();
+}
+
+
+void
+EventHandler_C_dispatch_event_v_pp(EventHandler *param0, Event const *param1) {
+    (*param0).dispatch_event(param1);
+}
+
+
+void
+EventHandler_C_write_v_pp(EventHandler const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+EventHandler *
+EventHandler_C_get_global_event_handler_p_p(EventQueue *param0) {
+    return EventHandler::get_global_event_handler(param0);
+}
+
+
+EventHandler *
+EventHandler_C_get_global_event_handler_p_v() {
+    return EventHandler::get_global_event_handler();
+}
+
+
+bool
+EventHandler_C_has_hook_B_ps(EventHandler const *param0, char const *param1) {
+    return (*param0).has_hook(std::string(param1));
+}
+
+
+bool
+EventHandler_C_remove_hooks_B_ps(EventHandler *param0, char const *param1) {
+    return (*param0).remove_hooks(std::string(param1));
+}
+
+
+void
+EventHandler_C_remove_all_hooks_v_p(EventHandler *param0) {
+    (*param0).remove_all_hooks();
+}
+
+
+int
+EventHandler_C_get_class_type_i_v() {
+    return (EventHandler::get_class_type()).get_index();
+}
+
+
+void
+EventHandler_C_init_type_v_v() {
+    EventHandler::init_type();
+}
+
+
+int
+EventHandler_C_force_init_type_i_p(EventHandler *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
 // Filename
 
 
@@ -3599,7 +5776,7 @@ Filename_C_ctor_p_s_1_p_s(char const *param0) {
 
 
 Filename *
-Filename_C_ctor_p_p_1_p_p_2_p_p(wchar_t const *param0) {
+Filename_C_ctor_p_s_1_p_s_2_p_s(wchar_t const *param0) {
     return new Filename(std::wstring(param0));
 }
 
@@ -3659,13 +5836,13 @@ Filename_C_from_os_specific_p_s(char const *param0) {
 
 
 Filename *
-Filename_C_from_os_specific_w_p_pp(wchar_t const *param0, Filename::Type param1) {
+Filename_C_from_os_specific_w_p_sp(wchar_t const *param0, Filename::Type param1) {
     return new Filename(Filename::from_os_specific_w(std::wstring(param0), param1));
 }
 
 
 Filename *
-Filename_C_from_os_specific_w_p_p(wchar_t const *param0) {
+Filename_C_from_os_specific_w_p_s(wchar_t const *param0) {
     return new Filename(Filename::from_os_specific_w(std::wstring(param0)));
 }
 
@@ -3737,20 +5914,20 @@ Filename_C_empty_B_p(Filename const *param0) {
 
 
 std::size_t
-Filename_C_length_p_p(Filename const *param0) {
+Filename_C_length_l_p(Filename const *param0) {
     return (*param0).length();
 }
 
 
 char const *
-Filename_C_substr_s_pp(Filename const *param0, std::size_t param1) {
+Filename_C_substr_s_pl(Filename const *param0, std::size_t param1) {
     static std::string string_holder = (*param0).substr(param1);
     return string_holder.c_str();
 }
 
 
 char const *
-Filename_C_substr_s_ppp(Filename const *param0, std::size_t param1, std::size_t param2) {
+Filename_C_substr_s_pll(Filename const *param0, std::size_t param1, std::size_t param2) {
     static std::string string_holder = (*param0).substr(param1, param2);
     return string_holder.c_str();
 }
@@ -3764,7 +5941,7 @@ Filename_C_get_fullpath_s_p(Filename const *param0) {
 
 
 wchar_t const *
-Filename_C_get_fullpath_w_p_p(Filename const *param0) {
+Filename_C_get_fullpath_w_s_p(Filename const *param0) {
     static std::wstring string_holder = (*param0).get_fullpath_w();
     return string_holder.c_str();
 }
@@ -3976,7 +6153,7 @@ Filename_C_to_os_specific_s_p(Filename const *param0) {
 
 
 wchar_t const *
-Filename_C_to_os_specific_w_p_p(Filename const *param0) {
+Filename_C_to_os_specific_w_s_p(Filename const *param0) {
     static std::wstring string_holder = (*param0).to_os_specific_w();
     return string_holder.c_str();
 }
@@ -4064,7 +6241,7 @@ Filename_C_get_access_timestamp_p_p(Filename const *param0) {
 
 
 std::streamsize
-Filename_C_get_file_size_p_p(Filename const *param0) {
+Filename_C_get_file_size_l_p(Filename const *param0) {
     return (*param0).get_file_size();
 }
 
@@ -4285,6 +6462,540 @@ Filename_C_init_type_v_v() {
 }
 
 
+// Fog
+
+
+Fog *
+Fog_C_ctor_p_s(char const *param0) {
+    return new Fog(std::string(param0));
+}
+
+
+void
+Fog_C_xform_v_pp(Fog *param0, LMatrix4 const *param1) {
+    (*param0).xform(*param1);
+}
+
+
+Fog::Mode
+Fog_C_get_mode_p_p(Fog const *param0) {
+    return (*param0).get_mode();
+}
+
+
+void
+Fog_C_set_mode_v_pp(Fog *param0, Fog::Mode param1) {
+    (*param0).set_mode(param1);
+}
+
+
+LColor const *
+Fog_C_get_color_p_p(Fog const *param0) {
+    return &((*param0).get_color());
+}
+
+
+void
+Fog_C_set_color_v_pp(Fog *param0, LColor const *param1) {
+    (*param0).set_color(*param1);
+}
+
+
+void
+Fog_C_set_color_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).set_color(param1, param2, param3);
+}
+
+
+void
+Fog_C_set_linear_range_v_pff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2) {
+    (*param0).set_linear_range(param1, param2);
+}
+
+
+LPoint3 const *
+Fog_C_get_linear_onset_point_p_p(Fog const *param0) {
+    return &((*param0).get_linear_onset_point());
+}
+
+
+void
+Fog_C_set_linear_onset_point_v_pp(Fog *param0, LPoint3 const *param1) {
+    (*param0).set_linear_onset_point(*param1);
+}
+
+
+void
+Fog_C_set_linear_onset_point_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).set_linear_onset_point(param1, param2, param3);
+}
+
+
+LPoint3 const *
+Fog_C_get_linear_opaque_point_p_p(Fog const *param0) {
+    return &((*param0).get_linear_opaque_point());
+}
+
+
+void
+Fog_C_set_linear_opaque_point_v_pp(Fog *param0, LPoint3 const *param1) {
+    (*param0).set_linear_opaque_point(*param1);
+}
+
+
+void
+Fog_C_set_linear_opaque_point_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).set_linear_opaque_point(param1, param2, param3);
+}
+
+
+void
+Fog_C_set_linear_fallback_v_pfff(Fog *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).set_linear_fallback(param1, param2, param3);
+}
+
+
+PN_stdfloat
+Fog_C_get_exp_density_f_p(Fog const *param0) {
+    return (*param0).get_exp_density();
+}
+
+
+void
+Fog_C_set_exp_density_v_pf(Fog *param0, PN_stdfloat param1) {
+    (*param0).set_exp_density(param1);
+}
+
+
+void
+Fog_C_adjust_to_camera_v_pp(Fog *param0, TransformState const *param1) {
+    (*param0).adjust_to_camera(param1);
+}
+
+
+void
+Fog_C_register_with_read_factory_v_v() {
+    Fog::register_with_read_factory();
+}
+
+
+void
+Fog_C_write_datagram_v_ppp(Fog *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+int
+Fog_C_get_class_type_i_v() {
+    return (Fog::get_class_type()).get_index();
+}
+
+
+void
+Fog_C_init_type_v_v() {
+    Fog::init_type();
+}
+
+
+int
+Fog_C_get_type_i_p(Fog const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+Fog_C_force_init_type_i_p(Fog *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// FrameBufferProperties
+
+
+int
+FrameBufferProperties_C_get_depth_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_depth_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_color_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_color_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_red_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_red_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_green_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_green_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_blue_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_blue_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_alpha_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_alpha_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_stencil_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_stencil_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_accum_bits_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_accum_bits();
+}
+
+
+int
+FrameBufferProperties_C_get_aux_rgba_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_aux_rgba();
+}
+
+
+int
+FrameBufferProperties_C_get_aux_hrgba_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_aux_hrgba();
+}
+
+
+int
+FrameBufferProperties_C_get_aux_float_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_aux_float();
+}
+
+
+int
+FrameBufferProperties_C_get_multisamples_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_multisamples();
+}
+
+
+int
+FrameBufferProperties_C_get_coverage_samples_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_coverage_samples();
+}
+
+
+int
+FrameBufferProperties_C_get_back_buffers_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_back_buffers();
+}
+
+
+bool
+FrameBufferProperties_C_get_indexed_color_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_indexed_color();
+}
+
+
+bool
+FrameBufferProperties_C_get_rgb_color_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_rgb_color();
+}
+
+
+bool
+FrameBufferProperties_C_get_stereo_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_stereo();
+}
+
+
+bool
+FrameBufferProperties_C_get_force_hardware_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_force_hardware();
+}
+
+
+bool
+FrameBufferProperties_C_get_force_software_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_force_software();
+}
+
+
+bool
+FrameBufferProperties_C_get_srgb_color_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_srgb_color();
+}
+
+
+bool
+FrameBufferProperties_C_get_float_color_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_float_color();
+}
+
+
+bool
+FrameBufferProperties_C_get_float_depth_B_p(FrameBufferProperties const *param0) {
+    return (*param0).get_float_depth();
+}
+
+
+void
+FrameBufferProperties_C_set_depth_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_depth_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_color_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_color_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_rgba_bits_v_piiii(FrameBufferProperties *param0, int param1, int param2, int param3, int param4) {
+    (*param0).set_rgba_bits(param1, param2, param3, param4);
+}
+
+
+void
+FrameBufferProperties_C_set_red_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_red_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_green_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_green_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_blue_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_blue_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_alpha_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_alpha_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_stencil_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_stencil_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_accum_bits_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_accum_bits(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_aux_rgba_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_aux_rgba(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_aux_hrgba_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_aux_hrgba(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_aux_float_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_aux_float(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_multisamples_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_multisamples(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_coverage_samples_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_coverage_samples(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_back_buffers_v_pi(FrameBufferProperties *param0, int param1) {
+    (*param0).set_back_buffers(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_indexed_color_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_indexed_color(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_rgb_color_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_rgb_color(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_stereo_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_stereo(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_force_hardware_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_force_hardware(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_force_software_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_force_software(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_srgb_color_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_srgb_color(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_float_color_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_float_color(param1);
+}
+
+
+void
+FrameBufferProperties_C_set_float_depth_v_pB(FrameBufferProperties *param0, bool param1) {
+    (*param0).set_float_depth(param1);
+}
+
+
+FrameBufferProperties *
+FrameBufferProperties_C_ctor_p_v() {
+    return new FrameBufferProperties();
+}
+
+
+FrameBufferProperties *
+FrameBufferProperties_C_ctor_p_p(FrameBufferProperties const *param0) {
+    return new FrameBufferProperties(*param0);
+}
+
+
+FrameBufferProperties const *
+FrameBufferProperties_C_get_default_p_v() {
+    return &(FrameBufferProperties::get_default());
+}
+
+
+void
+FrameBufferProperties_C_clear_v_p(FrameBufferProperties *param0) {
+    (*param0).clear();
+}
+
+
+void
+FrameBufferProperties_C_set_all_specified_v_p(FrameBufferProperties *param0) {
+    (*param0).set_all_specified();
+}
+
+
+bool
+FrameBufferProperties_C_subsumes_B_pp(FrameBufferProperties const *param0, FrameBufferProperties const *param1) {
+    return (*param0).subsumes(*param1);
+}
+
+
+void
+FrameBufferProperties_C_add_properties_v_pp(FrameBufferProperties *param0, FrameBufferProperties const *param1) {
+    (*param0).add_properties(*param1);
+}
+
+
+void
+FrameBufferProperties_C_output_v_pp(FrameBufferProperties const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+FrameBufferProperties_C_set_one_bit_per_channel_v_p(FrameBufferProperties *param0) {
+    (*param0).set_one_bit_per_channel();
+}
+
+
+bool
+FrameBufferProperties_C_is_stereo_B_p(FrameBufferProperties const *param0) {
+    return (*param0).is_stereo();
+}
+
+
+bool
+FrameBufferProperties_C_is_single_buffered_B_p(FrameBufferProperties const *param0) {
+    return (*param0).is_single_buffered();
+}
+
+
+int
+FrameBufferProperties_C_get_quality_i_pp(FrameBufferProperties const *param0, FrameBufferProperties const *param1) {
+    return (*param0).get_quality(*param1);
+}
+
+
+bool
+FrameBufferProperties_C_is_any_specified_B_p(FrameBufferProperties const *param0) {
+    return (*param0).is_any_specified();
+}
+
+
+bool
+FrameBufferProperties_C_is_basic_B_p(FrameBufferProperties const *param0) {
+    return (*param0).is_basic();
+}
+
+
+int
+FrameBufferProperties_C_get_aux_mask_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_aux_mask();
+}
+
+
+int
+FrameBufferProperties_C_get_buffer_mask_i_p(FrameBufferProperties const *param0) {
+    return (*param0).get_buffer_mask();
+}
+
+
+bool
+FrameBufferProperties_C_verify_hardware_software_B_pps(FrameBufferProperties const *param0, FrameBufferProperties const *param1, char const *param2) {
+    return (*param0).verify_hardware_software(*param1, std::string(param2));
+}
+
+
+bool
+FrameBufferProperties_C_setup_color_texture_B_pp(FrameBufferProperties const *param0, Texture *param1) {
+    return (*param0).setup_color_texture(param1);
+}
+
+
+bool
+FrameBufferProperties_C_setup_depth_texture_B_pp(FrameBufferProperties const *param0, Texture *param1) {
+    return (*param0).setup_depth_texture(param1);
+}
+
+
 // Geom
 
 
@@ -4397,31 +7108,31 @@ Geom_C_is_empty_B_p(Geom const *param0) {
 
 
 std::size_t
-Geom_C_get_num_primitives_p_p(Geom const *param0) {
+Geom_C_get_num_primitives_l_p(Geom const *param0) {
     return (*param0).get_num_primitives();
 }
 
 
 ConstPointerTo< GeomPrimitive > *
-Geom_C_get_primitive_p_pp(Geom const *param0, std::size_t param1) {
+Geom_C_get_primitive_p_pl(Geom const *param0, std::size_t param1) {
     return new ConstPointerTo< GeomPrimitive >((*param0).get_primitive(param1));
 }
 
 
 PointerTo< GeomPrimitive > *
-Geom_C_modify_primitive_p_pp(Geom *param0, std::size_t param1) {
+Geom_C_modify_primitive_p_pl(Geom *param0, std::size_t param1) {
     return new PointerTo< GeomPrimitive >((*param0).modify_primitive(param1));
 }
 
 
 void
-Geom_C_set_primitive_v_ppp(Geom *param0, std::size_t param1, GeomPrimitive const *param2) {
+Geom_C_set_primitive_v_plp(Geom *param0, std::size_t param1, GeomPrimitive const *param2) {
     (*param0).set_primitive(param1, param2);
 }
 
 
 void
-Geom_C_insert_primitive_v_ppp(Geom *param0, std::size_t param1, GeomPrimitive const *param2) {
+Geom_C_insert_primitive_v_plp(Geom *param0, std::size_t param1, GeomPrimitive const *param2) {
     (*param0).insert_primitive(param1, param2);
 }
 
@@ -4433,7 +7144,7 @@ Geom_C_add_primitive_v_pp(Geom *param0, GeomPrimitive const *param1) {
 
 
 void
-Geom_C_remove_primitive_v_pp(Geom *param0, std::size_t param1) {
+Geom_C_remove_primitive_v_pl(Geom *param0, std::size_t param1) {
     (*param0).remove_primitive(param1);
 }
 
@@ -4792,6 +7503,24 @@ GeomEnums_C_downcast_to_Geom_p_p(GeomEnums *param0) {
 GeomPrimitive *
 GeomEnums_C_downcast_to_GeomPrimitive_p_p(GeomEnums *param0) {
     return (GeomPrimitive *)param0;
+}
+
+
+GeomVertexArrayData *
+GeomEnums_C_downcast_to_GeomVertexArrayData_p_p(GeomEnums *param0) {
+    return (GeomVertexArrayData *)param0;
+}
+
+
+GeomVertexArrayFormat *
+GeomEnums_C_downcast_to_GeomVertexArrayFormat_p_p(GeomEnums *param0) {
+    return (GeomVertexArrayFormat *)param0;
+}
+
+
+GeomVertexArrayDataHandle *
+GeomEnums_C_downcast_to_GeomVertexArrayDataHandle_p_p(GeomEnums *param0) {
+    return (GeomVertexArrayDataHandle *)param0;
 }
 
 
@@ -5650,6 +8379,914 @@ GeomTriangles_C_force_init_type_i_p(GeomTriangles *param0) {
 }
 
 
+// GeomVertexArrayData
+
+
+CopyOnWriteObject *
+GeomVertexArrayData_C_upcast_to_CopyOnWriteObject_p_p(GeomVertexArrayData *param0) {
+    return (CopyOnWriteObject *)param0;
+}
+
+
+SimpleLruPage *
+GeomVertexArrayData_C_upcast_to_SimpleLruPage_p_p(GeomVertexArrayData *param0) {
+    return (SimpleLruPage *)param0;
+}
+
+
+GeomEnums *
+GeomVertexArrayData_C_upcast_to_GeomEnums_p_p(GeomVertexArrayData *param0) {
+    return (GeomEnums *)param0;
+}
+
+
+GeomVertexArrayData *
+GeomVertexArrayData_C_ctor_p_p(GeomVertexArrayData const *param0) {
+    return new GeomVertexArrayData(*param0);
+}
+
+
+GeomVertexArrayData *
+GeomVertexArrayData_C_ctor_p_pp(GeomVertexArrayFormat const *param0, GeomEnums::UsageHint param1) {
+    return new GeomVertexArrayData(param0, param1);
+}
+
+
+int
+GeomVertexArrayData_C_compare_to_i_pp(GeomVertexArrayData const *param0, GeomVertexArrayData const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+GeomVertexArrayFormat const *
+GeomVertexArrayData_C_get_array_format_p_p(GeomVertexArrayData const *param0) {
+    return (*param0).get_array_format();
+}
+
+
+GeomEnums::UsageHint
+GeomVertexArrayData_C_get_usage_hint_p_p(GeomVertexArrayData const *param0) {
+    return (*param0).get_usage_hint();
+}
+
+
+void
+GeomVertexArrayData_C_set_usage_hint_v_pp(GeomVertexArrayData *param0, GeomEnums::UsageHint param1) {
+    (*param0).set_usage_hint(param1);
+}
+
+
+bool
+GeomVertexArrayData_C_has_column_B_ps(GeomVertexArrayData const *param0, InternalName const *param1) {
+    return (*param0).has_column(param1);
+}
+
+
+int
+GeomVertexArrayData_C_get_num_rows_i_p(GeomVertexArrayData const *param0) {
+    return (*param0).get_num_rows();
+}
+
+
+bool
+GeomVertexArrayData_C_set_num_rows_B_pi(GeomVertexArrayData *param0, int param1) {
+    return (*param0).set_num_rows(param1);
+}
+
+
+bool
+GeomVertexArrayData_C_unclean_set_num_rows_B_pi(GeomVertexArrayData *param0, int param1) {
+    return (*param0).unclean_set_num_rows(param1);
+}
+
+
+bool
+GeomVertexArrayData_C_reserve_num_rows_B_pi(GeomVertexArrayData *param0, int param1) {
+    return (*param0).reserve_num_rows(param1);
+}
+
+
+void
+GeomVertexArrayData_C_clear_rows_v_p(GeomVertexArrayData *param0) {
+    (*param0).clear_rows();
+}
+
+
+std::size_t
+GeomVertexArrayData_C_get_data_size_bytes_l_p(GeomVertexArrayData const *param0) {
+    return (*param0).get_data_size_bytes();
+}
+
+
+UpdateSeq *
+GeomVertexArrayData_C_get_modified_p_p(GeomVertexArrayData const *param0) {
+    return new UpdateSeq((*param0).get_modified());
+}
+
+
+void
+GeomVertexArrayData_C_output_v_pp(GeomVertexArrayData const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+GeomVertexArrayData_C_write_v_ppi(GeomVertexArrayData const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+void
+GeomVertexArrayData_C_write_v_pp(GeomVertexArrayData const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+bool
+GeomVertexArrayData_C_request_resident_B_pp(GeomVertexArrayData const *param0, Thread *param1) {
+    return (*param0).request_resident(param1);
+}
+
+
+bool
+GeomVertexArrayData_C_request_resident_B_p(GeomVertexArrayData const *param0) {
+    return (*param0).request_resident();
+}
+
+
+ConstPointerTo< GeomVertexArrayDataHandle > *
+GeomVertexArrayData_C_get_handle_p_pp(GeomVertexArrayData const *param0, Thread *param1) {
+    return new ConstPointerTo< GeomVertexArrayDataHandle >((*param0).get_handle(param1));
+}
+
+
+ConstPointerTo< GeomVertexArrayDataHandle > *
+GeomVertexArrayData_C_get_handle_p_p(GeomVertexArrayData const *param0) {
+    return new ConstPointerTo< GeomVertexArrayDataHandle >((*param0).get_handle());
+}
+
+
+PointerTo< GeomVertexArrayDataHandle > *
+GeomVertexArrayData_C_modify_handle_p_pp(GeomVertexArrayData *param0, Thread *param1) {
+    return new PointerTo< GeomVertexArrayDataHandle >((*param0).modify_handle(param1));
+}
+
+
+PointerTo< GeomVertexArrayDataHandle > *
+GeomVertexArrayData_C_modify_handle_p_p(GeomVertexArrayData *param0) {
+    return new PointerTo< GeomVertexArrayDataHandle >((*param0).modify_handle());
+}
+
+
+void
+GeomVertexArrayData_C_prepare_v_pp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1) {
+    (*param0).prepare(param1);
+}
+
+
+bool
+GeomVertexArrayData_C_is_prepared_B_pp(GeomVertexArrayData const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).is_prepared(param1);
+}
+
+
+VertexBufferContext *
+GeomVertexArrayData_C_prepare_now_p_ppp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2) {
+    return (*param0).prepare_now(param1, param2);
+}
+
+
+bool
+GeomVertexArrayData_C_release_B_pp(GeomVertexArrayData *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).release(param1);
+}
+
+
+int
+GeomVertexArrayData_C_release_all_i_p(GeomVertexArrayData *param0) {
+    return (*param0).release_all();
+}
+
+
+SimpleLru *
+GeomVertexArrayData_C_get_independent_lru_p_v() {
+    return GeomVertexArrayData::get_independent_lru();
+}
+
+
+SimpleLru *
+GeomVertexArrayData_C_get_small_lru_p_v() {
+    return GeomVertexArrayData::get_small_lru();
+}
+
+
+void
+GeomVertexArrayData_C_lru_epoch_v_v() {
+    GeomVertexArrayData::lru_epoch();
+}
+
+
+VertexDataBook *
+GeomVertexArrayData_C_get_book_p_v() {
+    return &(GeomVertexArrayData::get_book());
+}
+
+
+void
+GeomVertexArrayData_C_evict_lru_v_p(GeomVertexArrayData *param0) {
+    (*param0).evict_lru();
+}
+
+
+void
+GeomVertexArrayData_C_register_with_read_factory_v_v() {
+    GeomVertexArrayData::register_with_read_factory();
+}
+
+
+void
+GeomVertexArrayData_C_write_datagram_v_ppp(GeomVertexArrayData *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+PTA_uchar *
+GeomVertexArrayData_C_read_raw_data_p_ppp(GeomVertexArrayData *param0, BamReader *param1, DatagramIterator *param2) {
+    return new PTA_uchar((*param0).read_raw_data(param1, *param2));
+}
+
+
+void
+GeomVertexArrayData_C_finalize_v_pp(GeomVertexArrayData *param0, BamReader *param1) {
+    (*param0).finalize(param1);
+}
+
+
+int
+GeomVertexArrayData_C_get_class_type_i_v() {
+    return (GeomVertexArrayData::get_class_type()).get_index();
+}
+
+
+void
+GeomVertexArrayData_C_init_type_v_v() {
+    GeomVertexArrayData::init_type();
+}
+
+
+int
+GeomVertexArrayData_C_get_type_i_p(GeomVertexArrayData const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+GeomVertexArrayData_C_force_init_type_i_p(GeomVertexArrayData *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// GeomVertexArrayDataHandle
+
+
+ReferenceCount *
+GeomVertexArrayDataHandle_C_upcast_to_ReferenceCount_p_p(GeomVertexArrayDataHandle *param0) {
+    return (ReferenceCount *)param0;
+}
+
+
+GeomEnums *
+GeomVertexArrayDataHandle_C_upcast_to_GeomEnums_p_p(GeomVertexArrayDataHandle *param0) {
+    return (GeomEnums *)param0;
+}
+
+
+Thread *
+GeomVertexArrayDataHandle_C_get_current_thread_p_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_current_thread();
+}
+
+
+void
+GeomVertexArrayDataHandle_C_get_read_pointer_v_pB(GeomVertexArrayDataHandle const *param0, bool param1) {
+    (*param0).get_read_pointer(param1);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_get_write_pointer_v_p(GeomVertexArrayDataHandle *param0) {
+    (*param0).get_write_pointer();
+}
+
+
+GeomVertexArrayData *
+GeomVertexArrayDataHandle_C_get_object_p_p(GeomVertexArrayDataHandle *param0) {
+    return (*param0).get_object();
+}
+
+
+GeomVertexArrayData const *
+GeomVertexArrayDataHandle_C_get_object_p_p_1_p_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_object();
+}
+
+
+GeomVertexArrayFormat const *
+GeomVertexArrayDataHandle_C_get_array_format_p_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_array_format();
+}
+
+
+GeomEnums::UsageHint
+GeomVertexArrayDataHandle_C_get_usage_hint_p_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_usage_hint();
+}
+
+
+int
+GeomVertexArrayDataHandle_C_get_num_rows_i_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_num_rows();
+}
+
+
+bool
+GeomVertexArrayDataHandle_C_set_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1) {
+    return (*param0).set_num_rows(param1);
+}
+
+
+bool
+GeomVertexArrayDataHandle_C_unclean_set_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1) {
+    return (*param0).unclean_set_num_rows(param1);
+}
+
+
+bool
+GeomVertexArrayDataHandle_C_reserve_num_rows_B_pi(GeomVertexArrayDataHandle *param0, int param1) {
+    return (*param0).reserve_num_rows(param1);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_clear_rows_v_p(GeomVertexArrayDataHandle *param0) {
+    (*param0).clear_rows();
+}
+
+
+std::size_t
+GeomVertexArrayDataHandle_C_get_data_size_bytes_l_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_data_size_bytes();
+}
+
+
+UpdateSeq *
+GeomVertexArrayDataHandle_C_get_modified_p_p(GeomVertexArrayDataHandle const *param0) {
+    return new UpdateSeq((*param0).get_modified());
+}
+
+
+bool
+GeomVertexArrayDataHandle_C_request_resident_B_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).request_resident();
+}
+
+
+VertexBufferContext *
+GeomVertexArrayDataHandle_C_prepare_now_p_ppp(GeomVertexArrayDataHandle const *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2) {
+    return (*param0).prepare_now(param1, param2);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_copy_data_from_v_pp(GeomVertexArrayDataHandle *param0, GeomVertexArrayDataHandle const *param1) {
+    (*param0).copy_data_from(param1);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_copy_subdata_from_v_pllpll(GeomVertexArrayDataHandle *param0, std::size_t param1, std::size_t param2, GeomVertexArrayDataHandle const *param3, std::size_t param4, std::size_t param5) {
+    (*param0).copy_subdata_from(param1, param2, param3, param4, param5);
+}
+
+
+vector_uchar
+GeomVertexArrayDataHandle_C_get_data_p_p(GeomVertexArrayDataHandle const *param0) {
+    return (*param0).get_data();
+}
+
+
+void
+GeomVertexArrayDataHandle_C_set_data_v_pp(GeomVertexArrayDataHandle *param0, vector_uchar param1) {
+    (*param0).set_data(param1);
+}
+
+
+vector_uchar
+GeomVertexArrayDataHandle_C_get_subdata_p_pll(GeomVertexArrayDataHandle const *param0, std::size_t param1, std::size_t param2) {
+    return (*param0).get_subdata(param1, param2);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_set_subdata_v_pllp(GeomVertexArrayDataHandle *param0, std::size_t param1, std::size_t param2, vector_uchar param3) {
+    (*param0).set_subdata(param1, param2, param3);
+}
+
+
+void
+GeomVertexArrayDataHandle_C_mark_used_v_p(GeomVertexArrayDataHandle const *param0) {
+    (*param0).mark_used();
+}
+
+
+int
+GeomVertexArrayDataHandle_C_get_class_type_i_v() {
+    return (GeomVertexArrayDataHandle::get_class_type()).get_index();
+}
+
+
+void
+GeomVertexArrayDataHandle_C_init_type_v_v() {
+    GeomVertexArrayDataHandle::init_type();
+}
+
+
+// GeomVertexArrayFormat
+
+
+TypedWritableReferenceCount *
+GeomVertexArrayFormat_C_upcast_to_TypedWritableReferenceCount_p_p(GeomVertexArrayFormat *param0) {
+    return (TypedWritableReferenceCount *)param0;
+}
+
+
+GeomEnums *
+GeomVertexArrayFormat_C_upcast_to_GeomEnums_p_p(GeomVertexArrayFormat *param0) {
+    return (GeomEnums *)param0;
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_v() {
+    return new GeomVertexArrayFormat();
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_sipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3) {
+    return new GeomVertexArrayFormat(*param0, param1, param2, param3);
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_sippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7) {
+    return new GeomVertexArrayFormat(*param0, param1, param2, param3, *param4, param5, param6, param7);
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_sippsippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7, CPT_InternalName *param8, int param9, GeomEnums::NumericType param10, GeomEnums::Contents param11) {
+    return new GeomVertexArrayFormat(*param0, param1, param2, param3, *param4, param5, param6, param7, *param8, param9, param10, param11);
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_sippsippsippsipp(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, CPT_InternalName *param4, int param5, GeomEnums::NumericType param6, GeomEnums::Contents param7, CPT_InternalName *param8, int param9, GeomEnums::NumericType param10, GeomEnums::Contents param11, CPT_InternalName *param12, int param13, GeomEnums::NumericType param14, GeomEnums::Contents param15) {
+    return new GeomVertexArrayFormat(*param0, param1, param2, param3, *param4, param5, param6, param7, *param8, param9, param10, param11, *param12, param13, param14, param15);
+}
+
+
+GeomVertexArrayFormat *
+GeomVertexArrayFormat_C_ctor_p_p(GeomVertexArrayFormat const *param0) {
+    return new GeomVertexArrayFormat(*param0);
+}
+
+
+bool
+GeomVertexArrayFormat_C_unref_B_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).unref();
+}
+
+
+bool
+GeomVertexArrayFormat_C_is_registered_B_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).is_registered();
+}
+
+
+ConstPointerTo< GeomVertexArrayFormat > *
+GeomVertexArrayFormat_C_register_format_p_p(GeomVertexArrayFormat const *param0) {
+    return new ConstPointerTo< GeomVertexArrayFormat >(GeomVertexArrayFormat::register_format(param0));
+}
+
+
+int
+GeomVertexArrayFormat_C_get_stride_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).get_stride();
+}
+
+
+void
+GeomVertexArrayFormat_C_set_stride_v_pi(GeomVertexArrayFormat *param0, int param1) {
+    (*param0).set_stride(param1);
+}
+
+
+int
+GeomVertexArrayFormat_C_get_pad_to_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).get_pad_to();
+}
+
+
+void
+GeomVertexArrayFormat_C_set_pad_to_v_pi(GeomVertexArrayFormat *param0, int param1) {
+    (*param0).set_pad_to(param1);
+}
+
+
+int
+GeomVertexArrayFormat_C_get_divisor_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).get_divisor();
+}
+
+
+void
+GeomVertexArrayFormat_C_set_divisor_v_pi(GeomVertexArrayFormat *param0, int param1) {
+    (*param0).set_divisor(param1);
+}
+
+
+int
+GeomVertexArrayFormat_C_get_total_bytes_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).get_total_bytes();
+}
+
+
+int
+GeomVertexArrayFormat_C_add_column_i_psippii(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4, int param5, int param6) {
+    return (*param0).add_column(*param1, param2, param3, param4, param5, param6);
+}
+
+
+int
+GeomVertexArrayFormat_C_add_column_i_psippi(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4, int param5) {
+    return (*param0).add_column(*param1, param2, param3, param4, param5);
+}
+
+
+int
+GeomVertexArrayFormat_C_add_column_i_psipp(GeomVertexArrayFormat *param0, CPT_InternalName *param1, int param2, GeomEnums::NumericType param3, GeomEnums::Contents param4) {
+    return (*param0).add_column(*param1, param2, param3, param4);
+}
+
+
+int
+GeomVertexArrayFormat_C_add_column_i_pp(GeomVertexArrayFormat *param0, GeomVertexColumn const *param1) {
+    return (*param0).add_column(*param1);
+}
+
+
+void
+GeomVertexArrayFormat_C_remove_column_v_ps(GeomVertexArrayFormat *param0, InternalName const *param1) {
+    (*param0).remove_column(param1);
+}
+
+
+void
+GeomVertexArrayFormat_C_clear_columns_v_p(GeomVertexArrayFormat *param0) {
+    (*param0).clear_columns();
+}
+
+
+void
+GeomVertexArrayFormat_C_pack_columns_v_p(GeomVertexArrayFormat *param0) {
+    (*param0).pack_columns();
+}
+
+
+void
+GeomVertexArrayFormat_C_align_columns_for_animation_v_p(GeomVertexArrayFormat *param0) {
+    (*param0).align_columns_for_animation();
+}
+
+
+int
+GeomVertexArrayFormat_C_get_num_columns_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).get_num_columns();
+}
+
+
+GeomVertexColumn const *
+GeomVertexArrayFormat_C_get_column_p_ps(GeomVertexArrayFormat const *param0, InternalName const *param1) {
+    return (*param0).get_column(param1);
+}
+
+
+GeomVertexColumn const *
+GeomVertexArrayFormat_C_get_column_p_pi(GeomVertexArrayFormat const *param0, int param1) {
+    return (*param0).get_column(param1);
+}
+
+
+GeomVertexColumn const *
+GeomVertexArrayFormat_C_get_column_p_pii(GeomVertexArrayFormat const *param0, int param1, int param2) {
+    return (*param0).get_column(param1, param2);
+}
+
+
+bool
+GeomVertexArrayFormat_C_has_column_B_ps(GeomVertexArrayFormat const *param0, InternalName const *param1) {
+    return (*param0).has_column(param1);
+}
+
+
+bool
+GeomVertexArrayFormat_C_is_data_subset_of_B_pp(GeomVertexArrayFormat const *param0, GeomVertexArrayFormat const *param1) {
+    return (*param0).is_data_subset_of(*param1);
+}
+
+
+int
+GeomVertexArrayFormat_C_count_unused_space_i_p(GeomVertexArrayFormat const *param0) {
+    return (*param0).count_unused_space();
+}
+
+
+void
+GeomVertexArrayFormat_C_output_v_pp(GeomVertexArrayFormat const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+GeomVertexArrayFormat_C_write_v_ppi(GeomVertexArrayFormat const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+void
+GeomVertexArrayFormat_C_write_v_pp(GeomVertexArrayFormat const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+void
+GeomVertexArrayFormat_C_write_with_data_v_ppip(GeomVertexArrayFormat const *param0, std::ostream *param1, int param2, GeomVertexArrayData const *param3) {
+    (*param0).write_with_data(*param1, param2, param3);
+}
+
+
+char const *
+GeomVertexArrayFormat_C_get_format_string_s_pB(GeomVertexArrayFormat const *param0, bool param1) {
+    static std::string string_holder = (*param0).get_format_string(param1);
+    return string_holder.c_str();
+}
+
+
+char const *
+GeomVertexArrayFormat_C_get_format_string_s_p(GeomVertexArrayFormat const *param0) {
+    static std::string string_holder = (*param0).get_format_string();
+    return string_holder.c_str();
+}
+
+
+int
+GeomVertexArrayFormat_C_compare_to_i_pp(GeomVertexArrayFormat const *param0, GeomVertexArrayFormat const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+void
+GeomVertexArrayFormat_C_register_with_read_factory_v_v() {
+    GeomVertexArrayFormat::register_with_read_factory();
+}
+
+
+void
+GeomVertexArrayFormat_C_write_datagram_v_ppp(GeomVertexArrayFormat *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+void
+GeomVertexArrayFormat_C_finalize_v_pp(GeomVertexArrayFormat *param0, BamReader *param1) {
+    (*param0).finalize(param1);
+}
+
+
+int
+GeomVertexArrayFormat_C_get_class_type_i_v() {
+    return (GeomVertexArrayFormat::get_class_type()).get_index();
+}
+
+
+void
+GeomVertexArrayFormat_C_init_type_v_v() {
+    GeomVertexArrayFormat::init_type();
+}
+
+
+int
+GeomVertexArrayFormat_C_get_type_i_p(GeomVertexArrayFormat const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+GeomVertexArrayFormat_C_force_init_type_i_p(GeomVertexArrayFormat *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// GeomVertexColumn
+
+
+GeomVertexColumn *
+GeomVertexColumn_C_ctor_p_sippiiii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5, int param6, int param7) {
+    return new GeomVertexColumn(*param0, param1, param2, param3, param4, param5, param6, param7);
+}
+
+
+GeomVertexColumn *
+GeomVertexColumn_C_ctor_p_sippiii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5, int param6) {
+    return new GeomVertexColumn(*param0, param1, param2, param3, param4, param5, param6);
+}
+
+
+GeomVertexColumn *
+GeomVertexColumn_C_ctor_p_sippii(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4, int param5) {
+    return new GeomVertexColumn(*param0, param1, param2, param3, param4, param5);
+}
+
+
+GeomVertexColumn *
+GeomVertexColumn_C_ctor_p_sippi(CPT_InternalName *param0, int param1, GeomEnums::NumericType param2, GeomEnums::Contents param3, int param4) {
+    return new GeomVertexColumn(*param0, param1, param2, param3, param4);
+}
+
+
+GeomVertexColumn *
+GeomVertexColumn_C_ctor_p_p(GeomVertexColumn const *param0) {
+    return new GeomVertexColumn(*param0);
+}
+
+
+InternalName const *
+GeomVertexColumn_C_get_name_s_p(GeomVertexColumn const *param0) {
+    return (*param0).get_name();
+}
+
+
+int
+GeomVertexColumn_C_get_num_components_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_num_components();
+}
+
+
+int
+GeomVertexColumn_C_get_num_values_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_num_values();
+}
+
+
+int
+GeomVertexColumn_C_get_num_elements_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_num_elements();
+}
+
+
+GeomEnums::NumericType
+GeomVertexColumn_C_get_numeric_type_p_p(GeomVertexColumn const *param0) {
+    return (*param0).get_numeric_type();
+}
+
+
+GeomEnums::Contents
+GeomVertexColumn_C_get_contents_p_p(GeomVertexColumn const *param0) {
+    return (*param0).get_contents();
+}
+
+
+int
+GeomVertexColumn_C_get_start_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_start();
+}
+
+
+int
+GeomVertexColumn_C_get_column_alignment_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_column_alignment();
+}
+
+
+int
+GeomVertexColumn_C_get_element_stride_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_element_stride();
+}
+
+
+int
+GeomVertexColumn_C_get_component_bytes_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_component_bytes();
+}
+
+
+int
+GeomVertexColumn_C_get_total_bytes_i_p(GeomVertexColumn const *param0) {
+    return (*param0).get_total_bytes();
+}
+
+
+bool
+GeomVertexColumn_C_has_homogeneous_coord_B_p(GeomVertexColumn const *param0) {
+    return (*param0).has_homogeneous_coord();
+}
+
+
+bool
+GeomVertexColumn_C_overlaps_with_B_pii(GeomVertexColumn const *param0, int param1, int param2) {
+    return (*param0).overlaps_with(param1, param2);
+}
+
+
+bool
+GeomVertexColumn_C_is_bytewise_equivalent_B_pp(GeomVertexColumn const *param0, GeomVertexColumn const *param1) {
+    return (*param0).is_bytewise_equivalent(*param1);
+}
+
+
+void
+GeomVertexColumn_C_set_name_v_pp(GeomVertexColumn *param0, InternalName *param1) {
+    (*param0).set_name(param1);
+}
+
+
+void
+GeomVertexColumn_C_set_num_components_v_pi(GeomVertexColumn *param0, int param1) {
+    (*param0).set_num_components(param1);
+}
+
+
+void
+GeomVertexColumn_C_set_numeric_type_v_pp(GeomVertexColumn *param0, GeomEnums::NumericType param1) {
+    (*param0).set_numeric_type(param1);
+}
+
+
+void
+GeomVertexColumn_C_set_contents_v_pp(GeomVertexColumn *param0, GeomEnums::Contents param1) {
+    (*param0).set_contents(param1);
+}
+
+
+void
+GeomVertexColumn_C_set_start_v_pi(GeomVertexColumn *param0, int param1) {
+    (*param0).set_start(param1);
+}
+
+
+void
+GeomVertexColumn_C_set_column_alignment_v_pi(GeomVertexColumn *param0, int param1) {
+    (*param0).set_column_alignment(param1);
+}
+
+
+void
+GeomVertexColumn_C_output_v_pp(GeomVertexColumn const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+bool
+GeomVertexColumn_C_is_packed_argb_B_p(GeomVertexColumn const *param0) {
+    return (*param0).is_packed_argb();
+}
+
+
+bool
+GeomVertexColumn_C_is_uint8_rgba_B_p(GeomVertexColumn const *param0) {
+    return (*param0).is_uint8_rgba();
+}
+
+
+int
+GeomVertexColumn_C_compare_to_i_pp(GeomVertexColumn const *param0, GeomVertexColumn const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+void
+GeomVertexColumn_C_write_datagram_v_ppp(GeomVertexColumn *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+void
+GeomVertexColumn_C_fillin_v_ppp(GeomVertexColumn *param0, DatagramIterator *param1, BamReader *param2) {
+    (*param0).fillin(*param1, param2);
+}
+
+
 // GeomVertexData
 
 
@@ -5768,37 +9405,37 @@ GeomVertexData_C_clear_rows_v_p(GeomVertexData *param0) {
 
 
 std::size_t
-GeomVertexData_C_get_num_arrays_p_p(GeomVertexData const *param0) {
+GeomVertexData_C_get_num_arrays_l_p(GeomVertexData const *param0) {
     return (*param0).get_num_arrays();
 }
 
 
 ConstPointerTo< GeomVertexArrayData > *
-GeomVertexData_C_get_array_p_pp(GeomVertexData const *param0, std::size_t param1) {
+GeomVertexData_C_get_array_p_pl(GeomVertexData const *param0, std::size_t param1) {
     return new ConstPointerTo< GeomVertexArrayData >((*param0).get_array(param1));
 }
 
 
 ConstPointerTo< GeomVertexArrayDataHandle > *
-GeomVertexData_C_get_array_handle_p_pp(GeomVertexData const *param0, std::size_t param1) {
+GeomVertexData_C_get_array_handle_p_pl(GeomVertexData const *param0, std::size_t param1) {
     return new ConstPointerTo< GeomVertexArrayDataHandle >((*param0).get_array_handle(param1));
 }
 
 
 PointerTo< GeomVertexArrayData > *
-GeomVertexData_C_modify_array_p_pp(GeomVertexData *param0, std::size_t param1) {
+GeomVertexData_C_modify_array_p_pl(GeomVertexData *param0, std::size_t param1) {
     return new PointerTo< GeomVertexArrayData >((*param0).modify_array(param1));
 }
 
 
 PointerTo< GeomVertexArrayDataHandle > *
-GeomVertexData_C_modify_array_handle_p_pp(GeomVertexData *param0, std::size_t param1) {
+GeomVertexData_C_modify_array_handle_p_pl(GeomVertexData *param0, std::size_t param1) {
     return new PointerTo< GeomVertexArrayDataHandle >((*param0).modify_array_handle(param1));
 }
 
 
 void
-GeomVertexData_C_set_array_v_ppp(GeomVertexData *param0, std::size_t param1, GeomVertexArrayData const *param2) {
+GeomVertexData_C_set_array_v_plp(GeomVertexData *param0, std::size_t param1, GeomVertexArrayData const *param2) {
     (*param0).set_array(param1, param2);
 }
 
@@ -6197,43 +9834,43 @@ GeomVertexFormat_C_get_union_format_p_pp(GeomVertexFormat const *param0, GeomVer
 
 
 std::size_t
-GeomVertexFormat_C_get_num_arrays_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_arrays_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_arrays();
 }
 
 
 GeomVertexArrayFormat const *
-GeomVertexFormat_C_get_array_p_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_array_p_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_array(param1);
 }
 
 
 GeomVertexArrayFormat *
-GeomVertexFormat_C_modify_array_p_pp(GeomVertexFormat *param0, std::size_t param1) {
+GeomVertexFormat_C_modify_array_p_pl(GeomVertexFormat *param0, std::size_t param1) {
     return (*param0).modify_array(param1);
 }
 
 
 void
-GeomVertexFormat_C_set_array_v_ppp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2) {
+GeomVertexFormat_C_set_array_v_plp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2) {
     (*param0).set_array(param1, param2);
 }
 
 
 void
-GeomVertexFormat_C_remove_array_v_pp(GeomVertexFormat *param0, std::size_t param1) {
+GeomVertexFormat_C_remove_array_v_pl(GeomVertexFormat *param0, std::size_t param1) {
     (*param0).remove_array(param1);
 }
 
 
 std::size_t
-GeomVertexFormat_C_add_array_p_pp(GeomVertexFormat *param0, GeomVertexArrayFormat const *param1) {
+GeomVertexFormat_C_add_array_l_pp(GeomVertexFormat *param0, GeomVertexArrayFormat const *param1) {
     return (*param0).add_array(param1);
 }
 
 
 void
-GeomVertexFormat_C_insert_array_v_ppp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2) {
+GeomVertexFormat_C_insert_array_v_plp(GeomVertexFormat *param0, std::size_t param1, GeomVertexArrayFormat const *param2) {
     (*param0).insert_array(param1, param2);
 }
 
@@ -6251,7 +9888,7 @@ GeomVertexFormat_C_remove_empty_arrays_v_p(GeomVertexFormat *param0) {
 
 
 std::size_t
-GeomVertexFormat_C_get_num_columns_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_columns_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_columns();
 }
 
@@ -6263,7 +9900,7 @@ GeomVertexFormat_C_get_array_with_i_ps(GeomVertexFormat const *param0, InternalN
 
 
 int
-GeomVertexFormat_C_get_array_with_i_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_array_with_i_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_array_with(param1);
 }
 
@@ -6275,7 +9912,7 @@ GeomVertexFormat_C_get_column_p_ps(GeomVertexFormat const *param0, InternalName 
 
 
 GeomVertexColumn const *
-GeomVertexFormat_C_get_column_p_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_column_p_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_column(param1);
 }
 
@@ -6287,7 +9924,7 @@ GeomVertexFormat_C_has_column_B_ps(GeomVertexFormat const *param0, InternalName 
 
 
 InternalName const *
-GeomVertexFormat_C_get_column_name_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_column_name_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_column_name(param1);
 }
 
@@ -6323,61 +9960,61 @@ GeomVertexFormat_C_maybe_align_columns_for_animation_v_p(GeomVertexFormat *param
 
 
 std::size_t
-GeomVertexFormat_C_get_num_points_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_points_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_points();
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_point_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_point_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_point(param1);
 }
 
 
 std::size_t
-GeomVertexFormat_C_get_num_vectors_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_vectors_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_vectors();
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_vector_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_vector_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_vector(param1);
 }
 
 
 std::size_t
-GeomVertexFormat_C_get_num_texcoords_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_texcoords_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_texcoords();
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_texcoord_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_texcoord_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_texcoord(param1);
 }
 
 
 std::size_t
-GeomVertexFormat_C_get_num_morphs_p_p(GeomVertexFormat const *param0) {
+GeomVertexFormat_C_get_num_morphs_l_p(GeomVertexFormat const *param0) {
     return (*param0).get_num_morphs();
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_morph_slider_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_morph_slider_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_morph_slider(param1);
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_morph_base_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_morph_base_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_morph_base(param1);
 }
 
 
 InternalName const *
-GeomVertexFormat_C_get_morph_delta_s_pp(GeomVertexFormat const *param0, std::size_t param1) {
+GeomVertexFormat_C_get_morph_delta_s_pl(GeomVertexFormat const *param0, std::size_t param1) {
     return (*param0).get_morph_delta(param1);
 }
 
@@ -6656,7 +10293,7 @@ GeomVertexWriter_C_get_array_handle_p_p(GeomVertexWriter const *param0) {
 
 
 std::size_t
-GeomVertexWriter_C_get_stride_p_p(GeomVertexWriter const *param0) {
+GeomVertexWriter_C_get_stride_l_p(GeomVertexWriter const *param0) {
     return (*param0).get_stride();
 }
 
@@ -7156,6 +10793,219 @@ GeomVertexWriter_C_add_data4i_v_piiii(GeomVertexWriter *param0, int param1, int 
 void
 GeomVertexWriter_C_output_v_pp(GeomVertexWriter const *param0, std::ostream *param1) {
     (*param0).output(*param1);
+}
+
+
+// GraphicsEngine
+
+
+GraphicsEngine *
+GraphicsEngine_C_ctor_p_p(Pipeline *param0) {
+    return new GraphicsEngine(param0);
+}
+
+
+GraphicsEngine *
+GraphicsEngine_C_ctor_p_v() {
+    return new GraphicsEngine();
+}
+
+
+void
+GraphicsEngine_C_set_threading_model_v_pp(GraphicsEngine *param0, GraphicsThreadingModel const *param1) {
+    (*param0).set_threading_model(*param1);
+}
+
+
+GraphicsThreadingModel *
+GraphicsEngine_C_get_threading_model_p_p(GraphicsEngine const *param0) {
+    return new GraphicsThreadingModel((*param0).get_threading_model());
+}
+
+
+ReMutex const *
+GraphicsEngine_C_get_render_lock_p_p(GraphicsEngine const *param0) {
+    return &((*param0).get_render_lock());
+}
+
+
+void
+GraphicsEngine_C_set_auto_flip_v_pB(GraphicsEngine *param0, bool param1) {
+    (*param0).set_auto_flip(param1);
+}
+
+
+bool
+GraphicsEngine_C_get_auto_flip_B_p(GraphicsEngine const *param0) {
+    return (*param0).get_auto_flip();
+}
+
+
+void
+GraphicsEngine_C_set_portal_cull_v_pB(GraphicsEngine *param0, bool param1) {
+    (*param0).set_portal_cull(param1);
+}
+
+
+bool
+GraphicsEngine_C_get_portal_cull_B_p(GraphicsEngine const *param0) {
+    return (*param0).get_portal_cull();
+}
+
+
+void
+GraphicsEngine_C_set_default_loader_v_pp(GraphicsEngine *param0, Loader *param1) {
+    (*param0).set_default_loader(param1);
+}
+
+
+Loader *
+GraphicsEngine_C_get_default_loader_p_p(GraphicsEngine const *param0) {
+    return (*param0).get_default_loader();
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_output_p_ppsippipp(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6, GraphicsStateGuardian *param7, GraphicsOutput *param8) {
+    return (*param0).make_output(param1, std::string(param2), param3, *param4, *param5, param6, param7, param8);
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_output_p_ppsippip(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6, GraphicsStateGuardian *param7) {
+    return (*param0).make_output(param1, std::string(param2), param3, *param4, *param5, param6, param7);
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_output_p_ppsippi(GraphicsEngine *param0, GraphicsPipe *param1, char const *param2, int param3, FrameBufferProperties const *param4, WindowProperties const *param5, int param6) {
+    return (*param0).make_output(param1, std::string(param2), param3, *param4, *param5, param6);
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_buffer_p_ppsiii(GraphicsEngine *param0, GraphicsOutput *param1, char const *param2, int param3, int param4, int param5) {
+    return (*param0).make_buffer(param1, std::string(param2), param3, param4, param5);
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_buffer_p_ppsiii_1_p_ppsiii(GraphicsEngine *param0, GraphicsStateGuardian *param1, char const *param2, int param3, int param4, int param5) {
+    return (*param0).make_buffer(param1, std::string(param2), param3, param4, param5);
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_make_parasite_p_ppsiii(GraphicsEngine *param0, GraphicsOutput *param1, char const *param2, int param3, int param4, int param5) {
+    return (*param0).make_parasite(param1, std::string(param2), param3, param4, param5);
+}
+
+
+bool
+GraphicsEngine_C_add_window_B_ppi(GraphicsEngine *param0, GraphicsOutput *param1, int param2) {
+    return (*param0).add_window(param1, param2);
+}
+
+
+bool
+GraphicsEngine_C_remove_window_B_pp(GraphicsEngine *param0, GraphicsOutput *param1) {
+    return (*param0).remove_window(param1);
+}
+
+
+void
+GraphicsEngine_C_remove_all_windows_v_p(GraphicsEngine *param0) {
+    (*param0).remove_all_windows();
+}
+
+
+void
+GraphicsEngine_C_reset_all_windows_v_pB(GraphicsEngine *param0, bool param1) {
+    (*param0).reset_all_windows(param1);
+}
+
+
+bool
+GraphicsEngine_C_is_empty_B_p(GraphicsEngine const *param0) {
+    return (*param0).is_empty();
+}
+
+
+int
+GraphicsEngine_C_get_num_windows_i_p(GraphicsEngine const *param0) {
+    return (*param0).get_num_windows();
+}
+
+
+GraphicsOutput *
+GraphicsEngine_C_get_window_p_pi(GraphicsEngine const *param0, int param1) {
+    return (*param0).get_window(param1);
+}
+
+
+void
+GraphicsEngine_C_render_frame_v_p(GraphicsEngine *param0) {
+    (*param0).render_frame();
+}
+
+
+void
+GraphicsEngine_C_open_windows_v_p(GraphicsEngine *param0) {
+    (*param0).open_windows();
+}
+
+
+void
+GraphicsEngine_C_sync_frame_v_p(GraphicsEngine *param0) {
+    (*param0).sync_frame();
+}
+
+
+void
+GraphicsEngine_C_ready_flip_v_p(GraphicsEngine *param0) {
+    (*param0).ready_flip();
+}
+
+
+void
+GraphicsEngine_C_flip_frame_v_p(GraphicsEngine *param0) {
+    (*param0).flip_frame();
+}
+
+
+bool
+GraphicsEngine_C_extract_texture_data_B_ppp(GraphicsEngine *param0, Texture *param1, GraphicsStateGuardian *param2) {
+    return (*param0).extract_texture_data(param1, param2);
+}
+
+
+void
+GraphicsEngine_C_dispatch_compute_v_pppp(GraphicsEngine *param0, LVecBase3i const *param1, ShaderAttrib const *param2, GraphicsStateGuardian *param3) {
+    (*param0).dispatch_compute(*param1, param2, param3);
+}
+
+
+GraphicsEngine *
+GraphicsEngine_C_get_global_ptr_p_v() {
+    return GraphicsEngine::get_global_ptr();
+}
+
+
+void
+GraphicsEngine_C_texture_uploaded_v_pp(GraphicsEngine *param0, Texture *param1) {
+    (*param0).texture_uploaded(param1);
+}
+
+
+PointerTo< Texture > *
+GraphicsEngine_C_do_get_screenshot_p_ppp(GraphicsEngine *param0, DisplayRegion *param1, GraphicsStateGuardian *param2) {
+    return new PointerTo< Texture >((*param0).do_get_screenshot(param1, param2));
+}
+
+
+void
+GraphicsEngine_C_do_cull_v_pppp(CullHandler *param0, SceneSetup *param1, GraphicsStateGuardian *param2, Thread *param3) {
+    GraphicsEngine::do_cull(param0, param1, param2, param3);
 }
 
 
@@ -8407,6 +12257,885 @@ InternalName_C_force_init_type_i_p(InternalName *param0) {
 }
 
 
+// LPoint2f
+
+
+LPoint2f *
+LPoint2f_C_ctor_p_v() {
+    return new LPoint2f();
+}
+
+
+LPoint2f *
+LPoint2f_C_ctor_p_p(LPoint2f const *param0) {
+    return new LPoint2f(*param0);
+}
+
+
+LPoint2f *
+LPoint2f_C_ctor_p_p_1_p_p(LVecBase2f const *param0) {
+    return new LPoint2f(*param0);
+}
+
+
+LPoint2f *
+LPoint2f_C_ctor_p_f(float param0) {
+    return new LPoint2f(param0);
+}
+
+
+LPoint2f *
+LPoint2f_C_ctor_p_ff(float param0, float param1) {
+    return new LPoint2f(param0, param1);
+}
+
+
+LPoint2f const *
+LPoint2f_C_zero_p_v() {
+    return &(LPoint2f::zero());
+}
+
+
+LPoint2f const *
+LPoint2f_C_unit_x_p_v() {
+    return &(LPoint2f::unit_x());
+}
+
+
+LPoint2f const *
+LPoint2f_C_unit_y_p_v() {
+    return &(LPoint2f::unit_y());
+}
+
+
+LPoint2f *
+LPoint2f_C_normalized_p_p(LPoint2f const *param0) {
+    return new LPoint2f((*param0).normalized());
+}
+
+
+LPoint2f *
+LPoint2f_C_project_p_pp(LPoint2f const *param0, LVecBase2f const *param1) {
+    return new LPoint2f((*param0).project(*param1));
+}
+
+
+int
+LPoint2f_C_get_class_type_i_v() {
+    return (LPoint2f::get_class_type()).get_index();
+}
+
+
+void
+LPoint2f_C_init_type_v_v() {
+    LPoint2f::init_type();
+}
+
+
+// LPoint2i
+
+
+LPoint2i *
+LPoint2i_C_ctor_p_v() {
+    return new LPoint2i();
+}
+
+
+LPoint2i *
+LPoint2i_C_ctor_p_p(LPoint2i const *param0) {
+    return new LPoint2i(*param0);
+}
+
+
+LPoint2i *
+LPoint2i_C_ctor_p_p_1_p_p(LVecBase2i const *param0) {
+    return new LPoint2i(*param0);
+}
+
+
+LPoint2i *
+LPoint2i_C_ctor_p_i(int param0) {
+    return new LPoint2i(param0);
+}
+
+
+LPoint2i *
+LPoint2i_C_ctor_p_ii(int param0, int param1) {
+    return new LPoint2i(param0, param1);
+}
+
+
+LPoint2i const *
+LPoint2i_C_zero_p_v() {
+    return &(LPoint2i::zero());
+}
+
+
+LPoint2i const *
+LPoint2i_C_unit_x_p_v() {
+    return &(LPoint2i::unit_x());
+}
+
+
+LPoint2i const *
+LPoint2i_C_unit_y_p_v() {
+    return &(LPoint2i::unit_y());
+}
+
+
+int
+LPoint2i_C_get_class_type_i_v() {
+    return (LPoint2i::get_class_type()).get_index();
+}
+
+
+void
+LPoint2i_C_init_type_v_v() {
+    LPoint2i::init_type();
+}
+
+
+// LPoint3f
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_v() {
+    return new LPoint3f();
+}
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_p(LPoint3f const *param0) {
+    return new LPoint3f(*param0);
+}
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_pf(LVecBase2f const *param0, float param1) {
+    return new LPoint3f(*param0, param1);
+}
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_p_1_p_p(LVecBase3f const *param0) {
+    return new LPoint3f(*param0);
+}
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_f(float param0) {
+    return new LPoint3f(param0);
+}
+
+
+LPoint3f *
+LPoint3f_C_ctor_p_fff(float param0, float param1, float param2) {
+    return new LPoint3f(param0, param1, param2);
+}
+
+
+LPoint3f const *
+LPoint3f_C_zero_p_v() {
+    return &(LPoint3f::zero());
+}
+
+
+LPoint3f const *
+LPoint3f_C_unit_x_p_v() {
+    return &(LPoint3f::unit_x());
+}
+
+
+LPoint3f const *
+LPoint3f_C_unit_y_p_v() {
+    return &(LPoint3f::unit_y());
+}
+
+
+LPoint3f const *
+LPoint3f_C_unit_z_p_v() {
+    return &(LPoint3f::unit_z());
+}
+
+
+LPoint2f *
+LPoint3f_C_get_xy_p_p(LPoint3f const *param0) {
+    return new LPoint2f((*param0).get_xy());
+}
+
+
+LPoint2f *
+LPoint3f_C_get_xz_p_p(LPoint3f const *param0) {
+    return new LPoint2f((*param0).get_xz());
+}
+
+
+LPoint2f *
+LPoint3f_C_get_yz_p_p(LPoint3f const *param0) {
+    return new LPoint2f((*param0).get_yz());
+}
+
+
+LPoint3f *
+LPoint3f_C_cross_p_pp(LPoint3f const *param0, LVecBase3f const *param1) {
+    return new LPoint3f((*param0).cross(*param1));
+}
+
+
+LPoint3f *
+LPoint3f_C_normalized_p_p(LPoint3f const *param0) {
+    return new LPoint3f((*param0).normalized());
+}
+
+
+LPoint3f *
+LPoint3f_C_project_p_pp(LPoint3f const *param0, LVecBase3f const *param1) {
+    return new LPoint3f((*param0).project(*param1));
+}
+
+
+LPoint3f const *
+LPoint3f_C_origin_p_p(CoordinateSystem param0) {
+    return &(LPoint3f::origin(param0));
+}
+
+
+LPoint3f const *
+LPoint3f_C_origin_p_v() {
+    return &(LPoint3f::origin());
+}
+
+
+LPoint3f *
+LPoint3f_C_rfu_p_fffp(float param0, float param1, float param2, CoordinateSystem param3) {
+    return new LPoint3f(LPoint3f::rfu(param0, param1, param2, param3));
+}
+
+
+LPoint3f *
+LPoint3f_C_rfu_p_fff(float param0, float param1, float param2) {
+    return new LPoint3f(LPoint3f::rfu(param0, param1, param2));
+}
+
+
+int
+LPoint3f_C_get_class_type_i_v() {
+    return (LPoint3f::get_class_type()).get_index();
+}
+
+
+void
+LPoint3f_C_init_type_v_v() {
+    LPoint3f::init_type();
+}
+
+
+// LVecBase2f
+
+
+LVecBase2f *
+LVecBase2f_C_ctor_p_v() {
+    return new LVecBase2f();
+}
+
+
+LVecBase2f *
+LVecBase2f_C_ctor_p_p(LVecBase2f const *param0) {
+    return new LVecBase2f(*param0);
+}
+
+
+LVecBase2f *
+LVecBase2f_C_ctor_p_p_1_p_p(LVecBase2f::EVector2 const *param0) {
+    return new LVecBase2f(*param0);
+}
+
+
+LVecBase2f *
+LVecBase2f_C_ctor_p_f(float param0) {
+    return new LVecBase2f(param0);
+}
+
+
+LVecBase2f *
+LVecBase2f_C_ctor_p_ff(float param0, float param1) {
+    return new LVecBase2f(param0, param1);
+}
+
+
+LVecBase2f const *
+LVecBase2f_C_zero_p_v() {
+    return &(LVecBase2f::zero());
+}
+
+
+LVecBase2f const *
+LVecBase2f_C_unit_x_p_v() {
+    return &(LVecBase2f::unit_x());
+}
+
+
+LVecBase2f const *
+LVecBase2f_C_unit_y_p_v() {
+    return &(LVecBase2f::unit_y());
+}
+
+
+int
+LVecBase2f_C_size_i_v() {
+    return LVecBase2f::size();
+}
+
+
+bool
+LVecBase2f_C_is_nan_B_p(LVecBase2f const *param0) {
+    return (*param0).is_nan();
+}
+
+
+float
+LVecBase2f_C_get_cell_f_pi(LVecBase2f const *param0, int param1) {
+    return (*param0).get_cell(param1);
+}
+
+
+void
+LVecBase2f_C_set_cell_v_pif(LVecBase2f *param0, int param1, float param2) {
+    (*param0).set_cell(param1, param2);
+}
+
+
+float
+LVecBase2f_C_get_x_f_p(LVecBase2f const *param0) {
+    return (*param0).get_x();
+}
+
+
+float
+LVecBase2f_C_get_y_f_p(LVecBase2f const *param0) {
+    return (*param0).get_y();
+}
+
+
+void
+LVecBase2f_C_set_x_v_pf(LVecBase2f *param0, float param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+LVecBase2f_C_set_y_v_pf(LVecBase2f *param0, float param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+LVecBase2f_C_add_to_cell_v_pif(LVecBase2f *param0, int param1, float param2) {
+    (*param0).add_to_cell(param1, param2);
+}
+
+
+void
+LVecBase2f_C_add_x_v_pf(LVecBase2f *param0, float param1) {
+    (*param0).add_x(param1);
+}
+
+
+void
+LVecBase2f_C_add_y_v_pf(LVecBase2f *param0, float param1) {
+    (*param0).add_y(param1);
+}
+
+
+void
+LVecBase2f_C_get_data_v_p(LVecBase2f const *param0) {
+    (*param0).get_data();
+}
+
+
+int
+LVecBase2f_C_get_num_components_i_v() {
+    return LVecBase2f::get_num_components();
+}
+
+
+void
+LVecBase2f_C_begin_v_p(LVecBase2f *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2f_C_begin_v_p_1_v_p(LVecBase2f const *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2f_C_end_v_p(LVecBase2f *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2f_C_end_v_p_1_v_p(LVecBase2f const *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2f_C_fill_v_pf(LVecBase2f *param0, float param1) {
+    (*param0).fill(param1);
+}
+
+
+void
+LVecBase2f_C_set_v_pff(LVecBase2f *param0, float param1, float param2) {
+    (*param0).set(param1, param2);
+}
+
+
+float
+LVecBase2f_C_dot_f_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return (*param0).dot(*param1);
+}
+
+
+float
+LVecBase2f_C_length_squared_f_p(LVecBase2f const *param0) {
+    return (*param0).length_squared();
+}
+
+
+float
+LVecBase2f_C_length_f_p(LVecBase2f const *param0) {
+    return (*param0).length();
+}
+
+
+bool
+LVecBase2f_C_normalize_B_p(LVecBase2f *param0) {
+    return (*param0).normalize();
+}
+
+
+LVecBase2f *
+LVecBase2f_C_normalized_p_p(LVecBase2f const *param0) {
+    return new LVecBase2f((*param0).normalized());
+}
+
+
+LVecBase2f *
+LVecBase2f_C_project_p_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return new LVecBase2f((*param0).project(*param1));
+}
+
+
+int
+LVecBase2f_C_compare_to_i_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+LVecBase2f_C_compare_to_i_ppf(LVecBase2f const *param0, LVecBase2f const *param1, float param2) {
+    return (*param0).compare_to(*param1, param2);
+}
+
+
+std::size_t
+LVecBase2f_C_get_hash_l_p(LVecBase2f const *param0) {
+    return (*param0).get_hash();
+}
+
+
+std::size_t
+LVecBase2f_C_get_hash_l_pf(LVecBase2f const *param0, float param1) {
+    return (*param0).get_hash(param1);
+}
+
+
+std::size_t
+LVecBase2f_C_add_hash_l_pl(LVecBase2f const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+std::size_t
+LVecBase2f_C_add_hash_l_plf(LVecBase2f const *param0, std::size_t param1, float param2) {
+    return (*param0).add_hash(param1, param2);
+}
+
+
+void
+LVecBase2f_C_generate_hash_v_pp(LVecBase2f const *param0, ChecksumHashGenerator *param1) {
+    (*param0).generate_hash(*param1);
+}
+
+
+void
+LVecBase2f_C_generate_hash_v_ppf(LVecBase2f const *param0, ChecksumHashGenerator *param1, float param2) {
+    (*param0).generate_hash(*param1, param2);
+}
+
+
+void
+LVecBase2f_C_componentwise_mult_v_pp(LVecBase2f *param0, LVecBase2f const *param1) {
+    (*param0).componentwise_mult(*param1);
+}
+
+
+LVecBase2f *
+LVecBase2f_C_fmax_p_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return new LVecBase2f((*param0).fmax(*param1));
+}
+
+
+LVecBase2f *
+LVecBase2f_C_fmin_p_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return new LVecBase2f((*param0).fmin(*param1));
+}
+
+
+bool
+LVecBase2f_C_almost_equal_B_pp(LVecBase2f const *param0, LVecBase2f const *param1) {
+    return (*param0).almost_equal(*param1);
+}
+
+
+bool
+LVecBase2f_C_almost_equal_B_ppf(LVecBase2f const *param0, LVecBase2f const *param1, float param2) {
+    return (*param0).almost_equal(*param1, param2);
+}
+
+
+void
+LVecBase2f_C_output_v_pp(LVecBase2f const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+LVecBase2f_C_write_datagram_fixed_v_pp(LVecBase2f const *param0, Datagram *param1) {
+    (*param0).write_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2f_C_read_datagram_fixed_v_pp(LVecBase2f *param0, DatagramIterator *param1) {
+    (*param0).read_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2f_C_write_datagram_v_pp(LVecBase2f const *param0, Datagram *param1) {
+    (*param0).write_datagram(*param1);
+}
+
+
+void
+LVecBase2f_C_read_datagram_v_pp(LVecBase2f *param0, DatagramIterator *param1) {
+    (*param0).read_datagram(*param1);
+}
+
+
+LVecBase2f::EVector2 *
+LVecBase2f_C_get_v_p_p(LVecBase2f const *param0) {
+    return new LVecBase2f::EVector2((param0)->_v);
+}
+
+
+int
+LVecBase2f_C_get_class_type_i_v() {
+    return (LVecBase2f::get_class_type()).get_index();
+}
+
+
+void
+LVecBase2f_C_init_type_v_v() {
+    LVecBase2f::init_type();
+}
+
+
+// LVecBase2i
+
+
+LVecBase2i *
+LVecBase2i_C_ctor_p_v() {
+    return new LVecBase2i();
+}
+
+
+LVecBase2i *
+LVecBase2i_C_ctor_p_p(LVecBase2i const *param0) {
+    return new LVecBase2i(*param0);
+}
+
+
+LVecBase2i *
+LVecBase2i_C_ctor_p_p_1_p_p(LVecBase2i::EVector2 const *param0) {
+    return new LVecBase2i(*param0);
+}
+
+
+LVecBase2i *
+LVecBase2i_C_ctor_p_i(int param0) {
+    return new LVecBase2i(param0);
+}
+
+
+LVecBase2i *
+LVecBase2i_C_ctor_p_ii(int param0, int param1) {
+    return new LVecBase2i(param0, param1);
+}
+
+
+LVecBase2i const *
+LVecBase2i_C_zero_p_v() {
+    return &(LVecBase2i::zero());
+}
+
+
+LVecBase2i const *
+LVecBase2i_C_unit_x_p_v() {
+    return &(LVecBase2i::unit_x());
+}
+
+
+LVecBase2i const *
+LVecBase2i_C_unit_y_p_v() {
+    return &(LVecBase2i::unit_y());
+}
+
+
+int
+LVecBase2i_C_size_i_v() {
+    return LVecBase2i::size();
+}
+
+
+bool
+LVecBase2i_C_is_nan_B_p(LVecBase2i const *param0) {
+    return (*param0).is_nan();
+}
+
+
+int
+LVecBase2i_C_get_cell_i_pi(LVecBase2i const *param0, int param1) {
+    return (*param0).get_cell(param1);
+}
+
+
+void
+LVecBase2i_C_set_cell_v_pii(LVecBase2i *param0, int param1, int param2) {
+    (*param0).set_cell(param1, param2);
+}
+
+
+int
+LVecBase2i_C_get_x_i_p(LVecBase2i const *param0) {
+    return (*param0).get_x();
+}
+
+
+int
+LVecBase2i_C_get_y_i_p(LVecBase2i const *param0) {
+    return (*param0).get_y();
+}
+
+
+void
+LVecBase2i_C_set_x_v_pi(LVecBase2i *param0, int param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+LVecBase2i_C_set_y_v_pi(LVecBase2i *param0, int param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+LVecBase2i_C_add_to_cell_v_pii(LVecBase2i *param0, int param1, int param2) {
+    (*param0).add_to_cell(param1, param2);
+}
+
+
+void
+LVecBase2i_C_add_x_v_pi(LVecBase2i *param0, int param1) {
+    (*param0).add_x(param1);
+}
+
+
+void
+LVecBase2i_C_add_y_v_pi(LVecBase2i *param0, int param1) {
+    (*param0).add_y(param1);
+}
+
+
+void
+LVecBase2i_C_get_data_v_p(LVecBase2i const *param0) {
+    (*param0).get_data();
+}
+
+
+int
+LVecBase2i_C_get_num_components_i_v() {
+    return LVecBase2i::get_num_components();
+}
+
+
+void
+LVecBase2i_C_begin_v_p(LVecBase2i *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2i_C_begin_v_p_1_v_p(LVecBase2i const *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2i_C_end_v_p(LVecBase2i *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2i_C_end_v_p_1_v_p(LVecBase2i const *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2i_C_fill_v_pi(LVecBase2i *param0, int param1) {
+    (*param0).fill(param1);
+}
+
+
+void
+LVecBase2i_C_set_v_pii(LVecBase2i *param0, int param1, int param2) {
+    (*param0).set(param1, param2);
+}
+
+
+int
+LVecBase2i_C_dot_i_pp(LVecBase2i const *param0, LVecBase2i const *param1) {
+    return (*param0).dot(*param1);
+}
+
+
+int
+LVecBase2i_C_length_squared_i_p(LVecBase2i const *param0) {
+    return (*param0).length_squared();
+}
+
+
+int
+LVecBase2i_C_compare_to_i_pp(LVecBase2i const *param0, LVecBase2i const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+std::size_t
+LVecBase2i_C_get_hash_l_p(LVecBase2i const *param0) {
+    return (*param0).get_hash();
+}
+
+
+std::size_t
+LVecBase2i_C_add_hash_l_pl(LVecBase2i const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+void
+LVecBase2i_C_generate_hash_v_pp(LVecBase2i const *param0, ChecksumHashGenerator *param1) {
+    (*param0).generate_hash(*param1);
+}
+
+
+void
+LVecBase2i_C_componentwise_mult_v_pp(LVecBase2i *param0, LVecBase2i const *param1) {
+    (*param0).componentwise_mult(*param1);
+}
+
+
+LVecBase2i *
+LVecBase2i_C_fmax_p_pp(LVecBase2i const *param0, LVecBase2i const *param1) {
+    return new LVecBase2i((*param0).fmax(*param1));
+}
+
+
+LVecBase2i *
+LVecBase2i_C_fmin_p_pp(LVecBase2i const *param0, LVecBase2i const *param1) {
+    return new LVecBase2i((*param0).fmin(*param1));
+}
+
+
+bool
+LVecBase2i_C_almost_equal_B_pp(LVecBase2i const *param0, LVecBase2i const *param1) {
+    return (*param0).almost_equal(*param1);
+}
+
+
+bool
+LVecBase2i_C_almost_equal_B_ppi(LVecBase2i const *param0, LVecBase2i const *param1, int param2) {
+    return (*param0).almost_equal(*param1, param2);
+}
+
+
+void
+LVecBase2i_C_output_v_pp(LVecBase2i const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+LVecBase2i_C_write_datagram_fixed_v_pp(LVecBase2i const *param0, Datagram *param1) {
+    (*param0).write_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2i_C_read_datagram_fixed_v_pp(LVecBase2i *param0, DatagramIterator *param1) {
+    (*param0).read_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2i_C_write_datagram_v_pp(LVecBase2i const *param0, Datagram *param1) {
+    (*param0).write_datagram(*param1);
+}
+
+
+void
+LVecBase2i_C_read_datagram_v_pp(LVecBase2i *param0, DatagramIterator *param1) {
+    (*param0).read_datagram(*param1);
+}
+
+
+LVecBase2i::EVector2 *
+LVecBase2i_C_get_v_p_p(LVecBase2i const *param0) {
+    return new LVecBase2i::EVector2((param0)->_v);
+}
+
+
+int
+LVecBase2i_C_get_class_type_i_v() {
+    return (LVecBase2i::get_class_type()).get_index();
+}
+
+
+void
+LVecBase2i_C_init_type_v_v() {
+    LVecBase2i::init_type();
+}
+
+
 // LVecBase3f
 
 
@@ -8681,25 +13410,25 @@ LVecBase3f_C_compare_to_i_ppf(LVecBase3f const *param0, LVecBase3f const *param1
 
 
 std::size_t
-LVecBase3f_C_get_hash_p_p(LVecBase3f const *param0) {
+LVecBase3f_C_get_hash_l_p(LVecBase3f const *param0) {
     return (*param0).get_hash();
 }
 
 
 std::size_t
-LVecBase3f_C_get_hash_p_pf(LVecBase3f const *param0, float param1) {
+LVecBase3f_C_get_hash_l_pf(LVecBase3f const *param0, float param1) {
     return (*param0).get_hash(param1);
 }
 
 
 std::size_t
-LVecBase3f_C_add_hash_p_pp(LVecBase3f const *param0, std::size_t param1) {
+LVecBase3f_C_add_hash_l_pl(LVecBase3f const *param0, std::size_t param1) {
     return (*param0).add_hash(param1);
 }
 
 
 std::size_t
-LVecBase3f_C_add_hash_p_ppf(LVecBase3f const *param0, std::size_t param1, float param2) {
+LVecBase3f_C_add_hash_l_plf(LVecBase3f const *param0, std::size_t param1, float param2) {
     return (*param0).add_hash(param1, param2);
 }
 
@@ -9038,13 +13767,13 @@ LVecBase3i_C_compare_to_i_pp(LVecBase3i const *param0, LVecBase3i const *param1)
 
 
 std::size_t
-LVecBase3i_C_get_hash_p_p(LVecBase3i const *param0) {
+LVecBase3i_C_get_hash_l_p(LVecBase3i const *param0) {
     return (*param0).get_hash();
 }
 
 
 std::size_t
-LVecBase3i_C_add_hash_p_pp(LVecBase3i const *param0, std::size_t param1) {
+LVecBase3i_C_add_hash_l_pl(LVecBase3i const *param0, std::size_t param1) {
     return (*param0).add_hash(param1);
 }
 
@@ -9437,25 +14166,25 @@ LVecBase4f_C_compare_to_i_ppf(LVecBase4f const *param0, LVecBase4f const *param1
 
 
 std::size_t
-LVecBase4f_C_get_hash_p_p(LVecBase4f const *param0) {
+LVecBase4f_C_get_hash_l_p(LVecBase4f const *param0) {
     return (*param0).get_hash();
 }
 
 
 std::size_t
-LVecBase4f_C_get_hash_p_pf(LVecBase4f const *param0, float param1) {
+LVecBase4f_C_get_hash_l_pf(LVecBase4f const *param0, float param1) {
     return (*param0).get_hash(param1);
 }
 
 
 std::size_t
-LVecBase4f_C_add_hash_p_pp(LVecBase4f const *param0, std::size_t param1) {
+LVecBase4f_C_add_hash_l_pl(LVecBase4f const *param0, std::size_t param1) {
     return (*param0).add_hash(param1);
 }
 
 
 std::size_t
-LVecBase4f_C_add_hash_p_ppf(LVecBase4f const *param0, std::size_t param1, float param2) {
+LVecBase4f_C_add_hash_l_plf(LVecBase4f const *param0, std::size_t param1, float param2) {
     return (*param0).add_hash(param1, param2);
 }
 
@@ -9818,13 +14547,13 @@ LVecBase4i_C_compare_to_i_pp(LVecBase4i const *param0, LVecBase4i const *param1)
 
 
 std::size_t
-LVecBase4i_C_get_hash_p_p(LVecBase4i const *param0) {
+LVecBase4i_C_get_hash_l_p(LVecBase4i const *param0) {
     return (*param0).get_hash();
 }
 
 
 std::size_t
-LVecBase4i_C_add_hash_p_pp(LVecBase4i const *param0, std::size_t param1) {
+LVecBase4i_C_add_hash_l_pl(LVecBase4i const *param0, std::size_t param1) {
     return (*param0).add_hash(param1);
 }
 
@@ -9910,6 +14639,513 @@ LVecBase4i_C_get_class_type_i_v() {
 void
 LVecBase4i_C_init_type_v_v() {
     LVecBase4i::init_type();
+}
+
+
+// Lens
+
+
+PointerTo< Lens > *
+Lens_C_make_copy_p_p(Lens const *param0) {
+    return new PointerTo< Lens >((*param0).make_copy());
+}
+
+
+bool
+Lens_C_extrude_B_pppp(Lens const *param0, LPoint2 const *param1, LPoint3 *param2, LPoint3 *param3) {
+    return (*param0).extrude(*param1, *param2, *param3);
+}
+
+
+bool
+Lens_C_extrude_B_pppp_1_B_pppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2, LPoint3 *param3) {
+    return (*param0).extrude(*param1, *param2, *param3);
+}
+
+
+bool
+Lens_C_extrude_depth_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2) {
+    return (*param0).extrude_depth(*param1, *param2);
+}
+
+
+bool
+Lens_C_extrude_vec_B_ppp(Lens const *param0, LPoint2 const *param1, LVector3 *param2) {
+    return (*param0).extrude_vec(*param1, *param2);
+}
+
+
+bool
+Lens_C_extrude_vec_B_ppp_1_B_ppp(Lens const *param0, LPoint3 const *param1, LVector3 *param2) {
+    return (*param0).extrude_vec(*param1, *param2);
+}
+
+
+bool
+Lens_C_project_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint2 *param2) {
+    return (*param0).project(*param1, *param2);
+}
+
+
+bool
+Lens_C_project_B_ppp_1_B_ppp(Lens const *param0, LPoint3 const *param1, LPoint3 *param2) {
+    return (*param0).project(*param1, *param2);
+}
+
+
+void
+Lens_C_set_change_event_v_ps(Lens *param0, char const *param1) {
+    (*param0).set_change_event(std::string(param1));
+}
+
+
+char const *
+Lens_C_get_change_event_s_p(Lens const *param0) {
+    return ((*param0).get_change_event()).c_str();
+}
+
+
+void
+Lens_C_set_coordinate_system_v_pp(Lens *param0, CoordinateSystem param1) {
+    (*param0).set_coordinate_system(param1);
+}
+
+
+CoordinateSystem
+Lens_C_get_coordinate_system_p_p(Lens const *param0) {
+    return (*param0).get_coordinate_system();
+}
+
+
+void
+Lens_C_clear_v_p(Lens *param0) {
+    (*param0).clear();
+}
+
+
+void
+Lens_C_set_film_size_v_pp(Lens *param0, LVecBase2 const *param1) {
+    (*param0).set_film_size(*param1);
+}
+
+
+void
+Lens_C_set_film_size_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_film_size(param1);
+}
+
+
+void
+Lens_C_set_film_size_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2) {
+    (*param0).set_film_size(param1, param2);
+}
+
+
+LVecBase2 const *
+Lens_C_get_film_size_p_p(Lens const *param0) {
+    return &((*param0).get_film_size());
+}
+
+
+void
+Lens_C_set_film_offset_v_pp(Lens *param0, LVecBase2 const *param1) {
+    (*param0).set_film_offset(*param1);
+}
+
+
+void
+Lens_C_set_film_offset_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2) {
+    (*param0).set_film_offset(param1, param2);
+}
+
+
+LVector2 const *
+Lens_C_get_film_offset_p_p(Lens const *param0) {
+    return &((*param0).get_film_offset());
+}
+
+
+void
+Lens_C_set_focal_length_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_focal_length(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_focal_length_f_p(Lens const *param0) {
+    return (*param0).get_focal_length();
+}
+
+
+void
+Lens_C_set_min_fov_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_min_fov(param1);
+}
+
+
+void
+Lens_C_set_fov_v_pp(Lens *param0, LVecBase2 const *param1) {
+    (*param0).set_fov(*param1);
+}
+
+
+void
+Lens_C_set_fov_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_fov(param1);
+}
+
+
+void
+Lens_C_set_fov_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2) {
+    (*param0).set_fov(param1, param2);
+}
+
+
+LVecBase2 const *
+Lens_C_get_fov_p_p(Lens const *param0) {
+    return &((*param0).get_fov());
+}
+
+
+PN_stdfloat
+Lens_C_get_hfov_f_p(Lens const *param0) {
+    return (*param0).get_hfov();
+}
+
+
+PN_stdfloat
+Lens_C_get_vfov_f_p(Lens const *param0) {
+    return (*param0).get_vfov();
+}
+
+
+PN_stdfloat
+Lens_C_get_min_fov_f_p(Lens const *param0) {
+    return (*param0).get_min_fov();
+}
+
+
+void
+Lens_C_set_aspect_ratio_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_aspect_ratio(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_aspect_ratio_f_p(Lens const *param0) {
+    return (*param0).get_aspect_ratio();
+}
+
+
+void
+Lens_C_set_near_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_near(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_near_f_p(Lens const *param0) {
+    return (*param0).get_near();
+}
+
+
+void
+Lens_C_set_far_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_far(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_far_f_p(Lens const *param0) {
+    return (*param0).get_far();
+}
+
+
+void
+Lens_C_set_near_far_v_pff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2) {
+    (*param0).set_near_far(param1, param2);
+}
+
+
+PN_stdfloat
+Lens_C_get_default_near_f_v() {
+    return Lens::get_default_near();
+}
+
+
+PN_stdfloat
+Lens_C_get_default_far_f_v() {
+    return Lens::get_default_far();
+}
+
+
+void
+Lens_C_set_view_hpr_v_pp(Lens *param0, LVecBase3 const *param1) {
+    (*param0).set_view_hpr(*param1);
+}
+
+
+void
+Lens_C_set_view_hpr_v_pfff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).set_view_hpr(param1, param2, param3);
+}
+
+
+LVecBase3 const *
+Lens_C_get_view_hpr_p_p(Lens const *param0) {
+    return &((*param0).get_view_hpr());
+}
+
+
+void
+Lens_C_set_view_vector_v_ppp(Lens *param0, LVector3 const *param1, LVector3 const *param2) {
+    (*param0).set_view_vector(*param1, *param2);
+}
+
+
+void
+Lens_C_set_view_vector_v_pffffff(Lens *param0, PN_stdfloat param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5, PN_stdfloat param6) {
+    (*param0).set_view_vector(param1, param2, param3, param4, param5, param6);
+}
+
+
+LVector3 const *
+Lens_C_get_view_vector_p_p(Lens const *param0) {
+    return &((*param0).get_view_vector());
+}
+
+
+LVector3 const *
+Lens_C_get_up_vector_p_p(Lens const *param0) {
+    return &((*param0).get_up_vector());
+}
+
+
+LPoint3 *
+Lens_C_get_nodal_point_p_p(Lens const *param0) {
+    return new LPoint3((*param0).get_nodal_point());
+}
+
+
+void
+Lens_C_set_interocular_distance_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_interocular_distance(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_interocular_distance_f_p(Lens const *param0) {
+    return (*param0).get_interocular_distance();
+}
+
+
+void
+Lens_C_set_convergence_distance_v_pf(Lens *param0, PN_stdfloat param1) {
+    (*param0).set_convergence_distance(param1);
+}
+
+
+PN_stdfloat
+Lens_C_get_convergence_distance_f_p(Lens const *param0) {
+    return (*param0).get_convergence_distance();
+}
+
+
+void
+Lens_C_set_view_mat_v_pp(Lens *param0, LMatrix4 const *param1) {
+    (*param0).set_view_mat(*param1);
+}
+
+
+LMatrix4 const *
+Lens_C_get_view_mat_p_p(Lens const *param0) {
+    return &((*param0).get_view_mat());
+}
+
+
+void
+Lens_C_clear_view_mat_v_p(Lens *param0) {
+    (*param0).clear_view_mat();
+}
+
+
+void
+Lens_C_set_keystone_v_pp(Lens *param0, LVecBase2 const *param1) {
+    (*param0).set_keystone(*param1);
+}
+
+
+LVecBase2 const *
+Lens_C_get_keystone_p_p(Lens const *param0) {
+    return &((*param0).get_keystone());
+}
+
+
+void
+Lens_C_clear_keystone_v_p(Lens *param0) {
+    (*param0).clear_keystone();
+}
+
+
+void
+Lens_C_set_custom_film_mat_v_pp(Lens *param0, LMatrix4 const *param1) {
+    (*param0).set_custom_film_mat(*param1);
+}
+
+
+LMatrix4 const *
+Lens_C_get_custom_film_mat_p_p(Lens const *param0) {
+    return &((*param0).get_custom_film_mat());
+}
+
+
+void
+Lens_C_clear_custom_film_mat_v_p(Lens *param0) {
+    (*param0).clear_custom_film_mat();
+}
+
+
+void
+Lens_C_set_frustum_from_corners_v_pppppi(Lens *param0, LVecBase3 const *param1, LVecBase3 const *param2, LVecBase3 const *param3, LVecBase3 const *param4, int param5) {
+    (*param0).set_frustum_from_corners(*param1, *param2, *param3, *param4, param5);
+}
+
+
+void
+Lens_C_recompute_all_v_p(Lens *param0) {
+    (*param0).recompute_all();
+}
+
+
+bool
+Lens_C_is_linear_B_p(Lens const *param0) {
+    return (*param0).is_linear();
+}
+
+
+bool
+Lens_C_is_perspective_B_p(Lens const *param0) {
+    return (*param0).is_perspective();
+}
+
+
+bool
+Lens_C_is_orthographic_B_p(Lens const *param0) {
+    return (*param0).is_orthographic();
+}
+
+
+PointerTo< Geom > *
+Lens_C_make_geometry_p_p(Lens *param0) {
+    return new PointerTo< Geom >((*param0).make_geometry());
+}
+
+
+PointerTo< BoundingVolume > *
+Lens_C_make_bounds_p_p(Lens const *param0) {
+    return new PointerTo< BoundingVolume >((*param0).make_bounds());
+}
+
+
+LMatrix4 const *
+Lens_C_get_projection_mat_p_pp(Lens const *param0, Lens::StereoChannel param1) {
+    return &((*param0).get_projection_mat(param1));
+}
+
+
+LMatrix4 const *
+Lens_C_get_projection_mat_p_p(Lens const *param0) {
+    return &((*param0).get_projection_mat());
+}
+
+
+LMatrix4 const *
+Lens_C_get_projection_mat_inv_p_pp(Lens const *param0, Lens::StereoChannel param1) {
+    return &((*param0).get_projection_mat_inv(param1));
+}
+
+
+LMatrix4 const *
+Lens_C_get_projection_mat_inv_p_p(Lens const *param0) {
+    return &((*param0).get_projection_mat_inv());
+}
+
+
+LMatrix4 const *
+Lens_C_get_film_mat_p_p(Lens const *param0) {
+    return &((*param0).get_film_mat());
+}
+
+
+LMatrix4 const *
+Lens_C_get_film_mat_inv_p_p(Lens const *param0) {
+    return &((*param0).get_film_mat_inv());
+}
+
+
+LMatrix4 const *
+Lens_C_get_lens_mat_p_p(Lens const *param0) {
+    return &((*param0).get_lens_mat());
+}
+
+
+LMatrix4 const *
+Lens_C_get_lens_mat_inv_p_p(Lens const *param0) {
+    return &((*param0).get_lens_mat_inv());
+}
+
+
+void
+Lens_C_output_v_pp(Lens const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+Lens_C_write_v_ppi(Lens const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+void
+Lens_C_write_v_pp(Lens const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+UpdateSeq *
+Lens_C_get_last_change_p_p(Lens const *param0) {
+    return new UpdateSeq((*param0).get_last_change());
+}
+
+
+void
+Lens_C_write_datagram_v_ppp(Lens *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+int
+Lens_C_get_type_i_p(Lens const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+Lens_C_force_init_type_i_p(Lens *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+int
+Lens_C_get_class_type_i_v() {
+    return (Lens::get_class_type()).get_index();
+}
+
+
+void
+Lens_C_init_type_v_v() {
+    Lens::init_type();
 }
 
 
@@ -10063,6 +15299,165 @@ LinkedListNode_C_downcast_to_PandaNode_p_p(LinkedListNode *param0) {
 }
 
 
+// Loader
+
+
+TypedReferenceCount *
+Loader_C_upcast_to_TypedReferenceCount_p_p(Loader *param0) {
+    return (TypedReferenceCount *)param0;
+}
+
+
+Namable *
+Loader_C_upcast_to_Namable_p_p(Loader *param0) {
+    return (Namable *)param0;
+}
+
+
+Loader *
+Loader_C_ctor_p_p(Loader const *param0) {
+    return new Loader(*param0);
+}
+
+
+Loader *
+Loader_C_ctor_p_s(char const *param0) {
+    return new Loader(std::string(param0));
+}
+
+
+Loader *
+Loader_C_ctor_p_v() {
+    return new Loader();
+}
+
+
+void
+Loader_C_set_task_manager_v_pp(Loader *param0, AsyncTaskManager *param1) {
+    (*param0).set_task_manager(param1);
+}
+
+
+AsyncTaskManager *
+Loader_C_get_task_manager_p_p(Loader const *param0) {
+    return (*param0).get_task_manager();
+}
+
+
+void
+Loader_C_set_task_chain_v_ps(Loader *param0, char const *param1) {
+    (*param0).set_task_chain(std::string(param1));
+}
+
+
+char const *
+Loader_C_get_task_chain_s_p(Loader const *param0) {
+    return ((*param0).get_task_chain()).c_str();
+}
+
+
+void
+Loader_C_stop_threads_v_p(Loader *param0) {
+    (*param0).stop_threads();
+}
+
+
+bool
+Loader_C_remove_B_pp(Loader *param0, AsyncTask *param1) {
+    return (*param0).remove(param1);
+}
+
+
+PointerTo< PandaNode > *
+Loader_C_load_sync_p_ppp(Loader const *param0, Filename const *param1, LoaderOptions const *param2) {
+    return new PointerTo< PandaNode >((*param0).load_sync(*param1, *param2));
+}
+
+
+PointerTo< PandaNode > *
+Loader_C_load_sync_p_pp(Loader const *param0, Filename const *param1) {
+    return new PointerTo< PandaNode >((*param0).load_sync(*param1));
+}
+
+
+PointerTo< AsyncTask > *
+Loader_C_make_async_request_p_ppp(Loader *param0, Filename const *param1, LoaderOptions const *param2) {
+    return new PointerTo< AsyncTask >((*param0).make_async_request(*param1, *param2));
+}
+
+
+PointerTo< AsyncTask > *
+Loader_C_make_async_request_p_pp(Loader *param0, Filename const *param1) {
+    return new PointerTo< AsyncTask >((*param0).make_async_request(*param1));
+}
+
+
+void
+Loader_C_load_async_v_pp(Loader *param0, AsyncTask *param1) {
+    (*param0).load_async(param1);
+}
+
+
+bool
+Loader_C_save_sync_B_pppp(Loader const *param0, Filename const *param1, LoaderOptions const *param2, PandaNode *param3) {
+    return (*param0).save_sync(*param1, *param2, param3);
+}
+
+
+PointerTo< AsyncTask > *
+Loader_C_make_async_save_request_p_pppp(Loader *param0, Filename const *param1, LoaderOptions const *param2, PandaNode *param3) {
+    return new PointerTo< AsyncTask >((*param0).make_async_save_request(*param1, *param2, param3));
+}
+
+
+void
+Loader_C_save_async_v_pp(Loader *param0, AsyncTask *param1) {
+    (*param0).save_async(param1);
+}
+
+
+PointerTo< PandaNode > *
+Loader_C_load_bam_stream_p_pp(Loader *param0, std::istream *param1) {
+    return new PointerTo< PandaNode >((*param0).load_bam_stream(*param1));
+}
+
+
+void
+Loader_C_output_v_pp(Loader const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+Loader *
+Loader_C_get_global_ptr_p_v() {
+    return Loader::get_global_ptr();
+}
+
+
+int
+Loader_C_get_class_type_i_v() {
+    return (Loader::get_class_type()).get_index();
+}
+
+
+void
+Loader_C_init_type_v_v() {
+    Loader::init_type();
+}
+
+
+int
+Loader_C_get_type_i_p(Loader const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+Loader_C_force_init_type_i_p(Loader *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
 // MemoryBase
 
 
@@ -10099,9 +15494,72 @@ Namable_C_downcast_to_PandaNode_p_p(Namable *param0) {
 }
 
 
+Loader *
+Namable_C_downcast_to_Loader_p_p(Namable *param0) {
+    return (Loader *)param0;
+}
+
+
+TextFont *
+Namable_C_downcast_to_TextFont_p_p(Namable *param0) {
+    return (TextFont *)param0;
+}
+
+
+Texture *
+Namable_C_downcast_to_Texture_p_p(Namable *param0) {
+    return (Texture *)param0;
+}
+
+
 Thread *
 Namable_C_downcast_to_Thread_p_p(Namable *param0) {
     return (Thread *)param0;
+}
+
+
+// NodeCachedReferenceCount
+
+
+int
+NodeCachedReferenceCount_C_get_node_ref_count_i_p(NodeCachedReferenceCount const *param0) {
+    return (*param0).get_node_ref_count();
+}
+
+
+void
+NodeCachedReferenceCount_C_node_ref_v_p(NodeCachedReferenceCount const *param0) {
+    (*param0).node_ref();
+}
+
+
+bool
+NodeCachedReferenceCount_C_node_unref_B_p(NodeCachedReferenceCount const *param0) {
+    return (*param0).node_unref();
+}
+
+
+bool
+NodeCachedReferenceCount_C_test_ref_count_integrity_B_p(NodeCachedReferenceCount const *param0) {
+    return (*param0).test_ref_count_integrity();
+}
+
+
+int
+NodeCachedReferenceCount_C_get_referenced_bits_i_p(NodeCachedReferenceCount const *param0) {
+    return (*param0).get_referenced_bits();
+}
+
+
+int
+NodeCachedReferenceCount_C_get_class_type_i_v() {
+    return (NodeCachedReferenceCount::get_class_type()).get_index();
+}
+
+
+void
+NodeCachedReferenceCount_C_init_type_v_v() {
+    NodeCachedReferenceCount::init_type();
 }
 
 
@@ -10307,7 +15765,7 @@ NodePath_C_get_key_i_p(NodePath const *param0) {
 
 
 std::size_t
-NodePath_C_add_hash_p_pp(NodePath const *param0, std::size_t param1) {
+NodePath_C_add_hash_l_pl(NodePath const *param0, std::size_t param1) {
     return (*param0).add_hash(param1);
 }
 
@@ -13752,13 +19210,13 @@ NodePath_C_get_logic_op_p_p(NodePath const *param0) {
 
 
 void
-NodePath_C_set_antialias_v_ppi(NodePath *param0, unsigned short int param1, int param2) {
+NodePath_C_set_antialias_v_pHi(NodePath *param0, unsigned short int param1, int param2) {
     (*param0).set_antialias(param1, param2);
 }
 
 
 void
-NodePath_C_set_antialias_v_pp(NodePath *param0, unsigned short int param1) {
+NodePath_C_set_antialias_v_pH(NodePath *param0, unsigned short int param1) {
     (*param0).set_antialias(param1);
 }
 
@@ -13776,7 +19234,7 @@ NodePath_C_has_antialias_B_p(NodePath const *param0) {
 
 
 unsigned short int
-NodePath_C_get_antialias_p_p(NodePath const *param0) {
+NodePath_C_get_antialias_H_p(NodePath const *param0) {
     return (*param0).get_antialias();
 }
 
@@ -14316,7 +19774,7 @@ NodePathCollection_C_clear_v_p(NodePathCollection *param0) {
 
 
 void
-NodePathCollection_C_reserve_v_pp(NodePathCollection *param0, std::size_t param1) {
+NodePathCollection_C_reserve_v_pl(NodePathCollection *param0, std::size_t param1) {
     (*param0).reserve(param1);
 }
 
@@ -14340,7 +19798,7 @@ NodePathCollection_C_get_path_p_pi(NodePathCollection const *param0, int param1)
 
 
 std::size_t
-NodePathCollection_C_size_p_p(NodePathCollection const *param0) {
+NodePathCollection_C_size_l_p(NodePathCollection const *param0) {
     return (*param0).size();
 }
 
@@ -15728,13 +21186,13 @@ PandaNode_C_get_tag_keys_v_pp(PandaNode const *param0, vector_string *param1) {
 
 
 std::size_t
-PandaNode_C_get_num_tags_p_p(PandaNode const *param0) {
+PandaNode_C_get_num_tags_l_p(PandaNode const *param0) {
     return (*param0).get_num_tags();
 }
 
 
 char const *
-PandaNode_C_get_tag_key_s_pp(PandaNode const *param0, std::size_t param1) {
+PandaNode_C_get_tag_key_s_pl(PandaNode const *param0, std::size_t param1) {
     static std::string string_holder = (*param0).get_tag_key(param1);
     return string_holder.c_str();
 }
@@ -16311,13 +21769,13 @@ PandaSystem_C_has_system_B_ps(PandaSystem const *param0, char const *param1) {
 
 
 std::size_t
-PandaSystem_C_get_num_systems_p_p(PandaSystem const *param0) {
+PandaSystem_C_get_num_systems_l_p(PandaSystem const *param0) {
     return (*param0).get_num_systems();
 }
 
 
 char const *
-PandaSystem_C_get_system_s_pp(PandaSystem const *param0, std::size_t param1) {
+PandaSystem_C_get_system_s_pl(PandaSystem const *param0, std::size_t param1) {
     static std::string string_holder = (*param0).get_system(param1);
     return string_holder.c_str();
 }
@@ -16343,7 +21801,7 @@ PandaSystem_C_set_system_tag_v_psss(PandaSystem *param0, char const *param1, cha
 
 
 bool
-PandaSystem_C_heap_trim_B_pp(PandaSystem *param0, std::size_t param1) {
+PandaSystem_C_heap_trim_B_pl(PandaSystem *param0, std::size_t param1) {
     return (*param0).heap_trim(param1);
 }
 
@@ -16465,12 +21923,1620 @@ ReferenceCount_C_init_type_v_v() {
 }
 
 
+GeomVertexArrayDataHandle *
+ReferenceCount_C_downcast_to_GeomVertexArrayDataHandle_p_p(ReferenceCount *param0) {
+    return (GeomVertexArrayDataHandle *)param0;
+}
+
+
+// RenderEffect
+
+
+bool
+RenderEffect_C_safe_to_transform_B_p(RenderEffect const *param0) {
+    return (*param0).safe_to_transform();
+}
+
+
+ConstPointerTo< TransformState > *
+RenderEffect_C_prepare_flatten_transform_p_pp(RenderEffect const *param0, TransformState const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).prepare_flatten_transform(param1));
+}
+
+
+bool
+RenderEffect_C_safe_to_combine_B_p(RenderEffect const *param0) {
+    return (*param0).safe_to_combine();
+}
+
+
+ConstPointerTo< RenderEffect > *
+RenderEffect_C_xform_p_pp(RenderEffect const *param0, LMatrix4 const *param1) {
+    return new ConstPointerTo< RenderEffect >((*param0).xform(*param1));
+}
+
+
+bool
+RenderEffect_C_has_cull_callback_B_p(RenderEffect const *param0) {
+    return (*param0).has_cull_callback();
+}
+
+
+void
+RenderEffect_C_cull_callback_v_ppppp(RenderEffect const *param0, CullTraverser *param1, CullTraverserData *param2, ConstPointerTo< TransformState > *param3, ConstPointerTo< RenderState > *param4) {
+    (*param0).cull_callback(param1, *param2, *param3, *param4);
+}
+
+
+bool
+RenderEffect_C_has_adjust_transform_B_p(RenderEffect const *param0) {
+    return (*param0).has_adjust_transform();
+}
+
+
+void
+RenderEffect_C_adjust_transform_v_pppp(RenderEffect const *param0, ConstPointerTo< TransformState > *param1, ConstPointerTo< TransformState > *param2, PandaNode const *param3) {
+    (*param0).adjust_transform(*param1, *param2, param3);
+}
+
+
+int
+RenderEffect_C_compare_to_i_pp(RenderEffect const *param0, RenderEffect const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+void
+RenderEffect_C_output_v_pp(RenderEffect const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+RenderEffect_C_write_v_ppi(RenderEffect const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+int
+RenderEffect_C_get_num_effects_i_v() {
+    return RenderEffect::get_num_effects();
+}
+
+
+void
+RenderEffect_C_list_effects_v_p(std::ostream *param0) {
+    RenderEffect::list_effects(*param0);
+}
+
+
+bool
+RenderEffect_C_validate_effects_B_v() {
+    return RenderEffect::validate_effects();
+}
+
+
+void
+RenderEffect_C_write_datagram_v_ppp(RenderEffect *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+TypedWritable *
+RenderEffect_C_change_this_p_pp(TypedWritable *param0, BamReader *param1) {
+    return RenderEffect::change_this(param0, param1);
+}
+
+
+void
+RenderEffect_C_finalize_v_pp(RenderEffect *param0, BamReader *param1) {
+    (*param0).finalize(param1);
+}
+
+
+int
+RenderEffect_C_get_class_type_i_v() {
+    return (RenderEffect::get_class_type()).get_index();
+}
+
+
+void
+RenderEffect_C_init_type_v_v() {
+    RenderEffect::init_type();
+}
+
+
+int
+RenderEffect_C_get_type_i_p(RenderEffect const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+RenderEffect_C_force_init_type_i_p(RenderEffect *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// RenderState
+
+
+int
+RenderState_C_compare_to_i_pp(RenderState const *param0, RenderState const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+RenderState_C_compare_sort_i_pp(RenderState const *param0, RenderState const *param1) {
+    return (*param0).compare_sort(*param1);
+}
+
+
+int
+RenderState_C_compare_mask_i_ppp(RenderState const *param0, RenderState const *param1, RenderState::SlotMask *param2) {
+    return (*param0).compare_mask(*param1, *param2);
+}
+
+
+std::size_t
+RenderState_C_get_hash_l_p(RenderState const *param0) {
+    return (*param0).get_hash();
+}
+
+
+bool
+RenderState_C_is_empty_B_p(RenderState const *param0) {
+    return (*param0).is_empty();
+}
+
+
+bool
+RenderState_C_has_cull_callback_B_p(RenderState const *param0) {
+    return (*param0).has_cull_callback();
+}
+
+
+bool
+RenderState_C_cull_callback_B_ppp(RenderState const *param0, CullTraverser *param1, CullTraverserData const *param2) {
+    return (*param0).cull_callback(param1, *param2);
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_empty_p_v() {
+    return new ConstPointerTo< RenderState >(RenderState::make_empty());
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_pppppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, RenderAttrib const *param4, int param5) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2, param3, param4, param5));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_ppppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, RenderAttrib const *param4) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2, param3, param4));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_ppppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3, int param4) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2, param3, param4));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_pppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, RenderAttrib const *param3) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2, param3));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_pppi(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2, int param3) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2, param3));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_ppp(RenderAttrib const *param0, RenderAttrib const *param1, RenderAttrib const *param2) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_ppi(RenderAttrib const *param0, RenderAttrib const *param1, int param2) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1, param2));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_pp(RenderAttrib const *param0, RenderAttrib const *param1) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_pi(RenderAttrib const *param0, int param1) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0, param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_make_p_p(RenderAttrib const *param0) {
+    return new ConstPointerTo< RenderState >(RenderState::make(param0));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_compose_p_pp(RenderState const *param0, RenderState const *param1) {
+    return new ConstPointerTo< RenderState >((*param0).compose(param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_invert_compose_p_pp(RenderState const *param0, RenderState const *param1) {
+    return new ConstPointerTo< RenderState >((*param0).invert_compose(param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_add_attrib_p_ppi(RenderState const *param0, RenderAttrib const *param1, int param2) {
+    return new ConstPointerTo< RenderState >((*param0).add_attrib(param1, param2));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_add_attrib_p_pp(RenderState const *param0, RenderAttrib const *param1) {
+    return new ConstPointerTo< RenderState >((*param0).add_attrib(param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_set_attrib_p_pp(RenderState const *param0, RenderAttrib const *param1) {
+    return new ConstPointerTo< RenderState >((*param0).set_attrib(param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_set_attrib_p_ppi(RenderState const *param0, RenderAttrib const *param1, int param2) {
+    return new ConstPointerTo< RenderState >((*param0).set_attrib(param1, param2));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_remove_attrib_p_pi(RenderState const *param0, int param1) {
+    return new ConstPointerTo< RenderState >((*param0).remove_attrib(TypeHandle::from_index(param1)));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_remove_attrib_p_pi_1_p_pi(RenderState const *param0, int param1) {
+    return new ConstPointerTo< RenderState >((*param0).remove_attrib(param1));
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_adjust_all_priorities_p_pi(RenderState const *param0, int param1) {
+    return new ConstPointerTo< RenderState >((*param0).adjust_all_priorities(param1));
+}
+
+
+bool
+RenderState_C_has_attrib_B_pi(RenderState const *param0, int param1) {
+    return (*param0).has_attrib(TypeHandle::from_index(param1));
+}
+
+
+bool
+RenderState_C_has_attrib_B_pi_1_B_pi(RenderState const *param0, int param1) {
+    return (*param0).has_attrib(param1);
+}
+
+
+RenderAttrib const *
+RenderState_C_get_attrib_p_pi(RenderState const *param0, int param1) {
+    return (*param0).get_attrib(TypeHandle::from_index(param1));
+}
+
+
+RenderAttrib const *
+RenderState_C_get_attrib_p_pi_1_p_pi(RenderState const *param0, int param1) {
+    return (*param0).get_attrib(param1);
+}
+
+
+RenderAttrib const *
+RenderState_C_get_attrib_def_p_pi(RenderState const *param0, int param1) {
+    return (*param0).get_attrib_def(param1);
+}
+
+
+int
+RenderState_C_get_override_i_pi(RenderState const *param0, int param1) {
+    return (*param0).get_override(TypeHandle::from_index(param1));
+}
+
+
+int
+RenderState_C_get_override_i_pi_1_i_pi(RenderState const *param0, int param1) {
+    return (*param0).get_override(param1);
+}
+
+
+ConstPointerTo< RenderState > *
+RenderState_C_get_unique_p_p(RenderState const *param0) {
+    return new ConstPointerTo< RenderState >((*param0).get_unique());
+}
+
+
+void
+RenderState_C_cache_ref_v_p(RenderState const *param0) {
+    (*param0).cache_ref();
+}
+
+
+bool
+RenderState_C_cache_unref_B_p(RenderState const *param0) {
+    return (*param0).cache_unref();
+}
+
+
+void
+RenderState_C_node_ref_v_p(RenderState const *param0) {
+    (*param0).node_ref();
+}
+
+
+bool
+RenderState_C_node_unref_B_p(RenderState const *param0) {
+    return (*param0).node_unref();
+}
+
+
+std::size_t
+RenderState_C_get_composition_cache_num_entries_l_p(RenderState const *param0) {
+    return (*param0).get_composition_cache_num_entries();
+}
+
+
+std::size_t
+RenderState_C_get_invert_composition_cache_num_entries_l_p(RenderState const *param0) {
+    return (*param0).get_invert_composition_cache_num_entries();
+}
+
+
+std::size_t
+RenderState_C_get_composition_cache_size_l_p(RenderState const *param0) {
+    return (*param0).get_composition_cache_size();
+}
+
+
+RenderState const *
+RenderState_C_get_composition_cache_source_p_pl(RenderState const *param0, std::size_t param1) {
+    return (*param0).get_composition_cache_source(param1);
+}
+
+
+RenderState const *
+RenderState_C_get_composition_cache_result_p_pl(RenderState const *param0, std::size_t param1) {
+    return (*param0).get_composition_cache_result(param1);
+}
+
+
+std::size_t
+RenderState_C_get_invert_composition_cache_size_l_p(RenderState const *param0) {
+    return (*param0).get_invert_composition_cache_size();
+}
+
+
+RenderState const *
+RenderState_C_get_invert_composition_cache_source_p_pl(RenderState const *param0, std::size_t param1) {
+    return (*param0).get_invert_composition_cache_source(param1);
+}
+
+
+RenderState const *
+RenderState_C_get_invert_composition_cache_result_p_pl(RenderState const *param0, std::size_t param1) {
+    return (*param0).get_invert_composition_cache_result(param1);
+}
+
+
+void
+RenderState_C_output_v_pp(RenderState const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+RenderState_C_write_v_ppi(RenderState const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+int
+RenderState_C_get_max_priority_i_v() {
+    return RenderState::get_max_priority();
+}
+
+
+int
+RenderState_C_get_num_states_i_v() {
+    return RenderState::get_num_states();
+}
+
+
+int
+RenderState_C_get_num_unused_states_i_v() {
+    return RenderState::get_num_unused_states();
+}
+
+
+int
+RenderState_C_clear_cache_i_v() {
+    return RenderState::clear_cache();
+}
+
+
+void
+RenderState_C_clear_munger_cache_v_v() {
+    RenderState::clear_munger_cache();
+}
+
+
+int
+RenderState_C_garbage_collect_i_v() {
+    return RenderState::garbage_collect();
+}
+
+
+void
+RenderState_C_list_cycles_v_p(std::ostream *param0) {
+    RenderState::list_cycles(*param0);
+}
+
+
+void
+RenderState_C_list_states_v_p(std::ostream *param0) {
+    RenderState::list_states(*param0);
+}
+
+
+bool
+RenderState_C_validate_states_B_v() {
+    return RenderState::validate_states();
+}
+
+
+int
+RenderState_C_get_draw_order_i_p(RenderState const *param0) {
+    return (*param0).get_draw_order();
+}
+
+
+int
+RenderState_C_get_bin_index_i_p(RenderState const *param0) {
+    return (*param0).get_bin_index();
+}
+
+
+int
+RenderState_C_get_geom_rendering_i_pi(RenderState const *param0, int param1) {
+    return (*param0).get_geom_rendering(param1);
+}
+
+
+void
+RenderState_C_bin_removed_v_i(int param0) {
+    RenderState::bin_removed(param0);
+}
+
+
+void
+RenderState_C_flush_level_v_v() {
+    RenderState::flush_level();
+}
+
+
+void
+RenderState_C_init_states_v_v() {
+    RenderState::init_states();
+}
+
+
+ConstPointerTo< RenderAttrib > const *
+RenderState_C_get_generated_shader_p_p(RenderState const *param0) {
+    return &((param0)->_generated_shader);
+}
+
+
+UpdateSeq const *
+RenderState_C_get_generated_shader_seq_p_p(RenderState const *param0) {
+    return &((param0)->_generated_shader_seq);
+}
+
+
+void
+RenderState_C_register_with_read_factory_v_v() {
+    RenderState::register_with_read_factory();
+}
+
+
+void
+RenderState_C_write_datagram_v_ppp(RenderState *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+TypedWritable *
+RenderState_C_change_this_p_pp(TypedWritable *param0, BamReader *param1) {
+    return RenderState::change_this(param0, param1);
+}
+
+
+void
+RenderState_C_finalize_v_pp(RenderState *param0, BamReader *param1) {
+    (*param0).finalize(param1);
+}
+
+
+int
+RenderState_C_get_class_type_i_v() {
+    return (RenderState::get_class_type()).get_index();
+}
+
+
+void
+RenderState_C_init_type_v_v() {
+    RenderState::init_type();
+}
+
+
+int
+RenderState_C_get_type_i_p(RenderState const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+RenderState_C_force_init_type_i_p(RenderState *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// Shader
+
+
+PointerTo< Shader > *
+Shader_C_load_p_pp(Filename const *param0, Shader::ShaderLanguage param1) {
+    return new PointerTo< Shader >(Shader::load(*param0, param1));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_p_p(Filename const *param0) {
+    return new PointerTo< Shader >(Shader::load(*param0));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_p_pppppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3, Filename const *param4, Filename const *param5) {
+    return new PointerTo< Shader >(Shader::load(param0, *param1, *param2, *param3, *param4, *param5));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_p_ppppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3, Filename const *param4) {
+    return new PointerTo< Shader >(Shader::load(param0, *param1, *param2, *param3, *param4));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_p_pppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2, Filename const *param3) {
+    return new PointerTo< Shader >(Shader::load(param0, *param1, *param2, *param3));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_p_ppp(Shader::ShaderLanguage param0, Filename const *param1, Filename const *param2) {
+    return new PointerTo< Shader >(Shader::load(param0, *param1, *param2));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_psssss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3, char const *param4, char const *param5) {
+    return new PointerTo< Shader >(Shader::make(param0, std::string(param1), std::string(param2), std::string(param3), std::string(param4), std::string(param5)));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_pssss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3, char const *param4) {
+    return new PointerTo< Shader >(Shader::make(param0, std::string(param1), std::string(param2), std::string(param3), std::string(param4)));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_psss(Shader::ShaderLanguage param0, char const *param1, char const *param2, char const *param3) {
+    return new PointerTo< Shader >(Shader::make(param0, std::string(param1), std::string(param2), std::string(param3)));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_pss(Shader::ShaderLanguage param0, char const *param1, char const *param2) {
+    return new PointerTo< Shader >(Shader::make(param0, std::string(param1), std::string(param2)));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_sp(char const *param0, Shader::ShaderLanguage param1) {
+    return new PointerTo< Shader >(Shader::make(std::string(param0), param1));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_p_s(char const *param0) {
+    return new PointerTo< Shader >(Shader::make(std::string(param0)));
+}
+
+
+PointerTo< Shader > *
+Shader_C_load_compute_p_pp(Shader::ShaderLanguage param0, Filename const *param1) {
+    return new PointerTo< Shader >(Shader::load_compute(param0, *param1));
+}
+
+
+PointerTo< Shader > *
+Shader_C_make_compute_p_ps(Shader::ShaderLanguage param0, char const *param1) {
+    return new PointerTo< Shader >(Shader::make_compute(param0, std::string(param1)));
+}
+
+
+Filename *
+Shader_C_get_filename_p_pp(Shader const *param0, Shader::ShaderType param1) {
+    return new Filename((*param0).get_filename(param1));
+}
+
+
+Filename *
+Shader_C_get_filename_p_p(Shader const *param0) {
+    return new Filename((*param0).get_filename());
+}
+
+
+void
+Shader_C_set_filename_v_ppp(Shader *param0, Shader::ShaderType param1, Filename const *param2) {
+    (*param0).set_filename(param1, *param2);
+}
+
+
+char const *
+Shader_C_get_text_s_pp(Shader const *param0, Shader::ShaderType param1) {
+    return ((*param0).get_text(param1)).c_str();
+}
+
+
+char const *
+Shader_C_get_text_s_p(Shader const *param0) {
+    return ((*param0).get_text()).c_str();
+}
+
+
+bool
+Shader_C_get_error_flag_B_p(Shader const *param0) {
+    return (*param0).get_error_flag();
+}
+
+
+Shader::ShaderLanguage
+Shader_C_get_language_p_p(Shader const *param0) {
+    return (*param0).get_language();
+}
+
+
+bool
+Shader_C_has_fullpath_B_p(Shader const *param0) {
+    return (*param0).has_fullpath();
+}
+
+
+Filename const *
+Shader_C_get_fullpath_p_p(Shader const *param0) {
+    return &((*param0).get_fullpath());
+}
+
+
+bool
+Shader_C_get_cache_compiled_shader_B_p(Shader const *param0) {
+    return (*param0).get_cache_compiled_shader();
+}
+
+
+void
+Shader_C_set_cache_compiled_shader_v_pB(Shader *param0, bool param1) {
+    (*param0).set_cache_compiled_shader(param1);
+}
+
+
+PointerTo< AsyncFuture > *
+Shader_C_prepare_p_pp(Shader *param0, PreparedGraphicsObjects *param1) {
+    return new PointerTo< AsyncFuture >((*param0).prepare(param1));
+}
+
+
+bool
+Shader_C_is_prepared_B_pp(Shader const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).is_prepared(param1);
+}
+
+
+bool
+Shader_C_release_B_pp(Shader *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).release(param1);
+}
+
+
+int
+Shader_C_release_all_i_p(Shader *param0) {
+    return (*param0).release_all();
+}
+
+
+ShaderContext *
+Shader_C_prepare_now_p_ppp(Shader *param0, PreparedGraphicsObjects *param1, GraphicsStateGuardianBase *param2) {
+    return (*param0).prepare_now(param1, param2);
+}
+
+
+void
+Shader_C_parse_init_v_p(Shader *param0) {
+    (*param0).parse_init();
+}
+
+
+bool
+Shader_C_parse_eof_B_p(Shader *param0) {
+    return (*param0).parse_eof();
+}
+
+
+void
+Shader_C_cp_report_error_v_pps(Shader *param0, Shader::ShaderArgInfo *param1, char const *param2) {
+    (*param0).cp_report_error(*param1, std::string(param2));
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_words_B_ppi(Shader *param0, Shader::ShaderArgInfo *param1, int param2) {
+    return (*param0).cp_errchk_parameter_words(*param1, param2);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_in_B_pp(Shader *param0, Shader::ShaderArgInfo *param1) {
+    return (*param0).cp_errchk_parameter_in(*param1);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_ptr_B_pp(Shader *param0, Shader::ShaderArgInfo *param1) {
+    return (*param0).cp_errchk_parameter_ptr(*param1);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_varying_B_pp(Shader *param0, Shader::ShaderArgInfo *param1) {
+    return (*param0).cp_errchk_parameter_varying(*param1);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_uniform_B_pp(Shader *param0, Shader::ShaderArgInfo *param1) {
+    return (*param0).cp_errchk_parameter_uniform(*param1);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_float_B_ppii(Shader *param0, Shader::ShaderArgInfo *param1, int param2, int param3) {
+    return (*param0).cp_errchk_parameter_float(*param1, param2, param3);
+}
+
+
+bool
+Shader_C_cp_errchk_parameter_sampler_B_pp(Shader *param0, Shader::ShaderArgInfo *param1) {
+    return (*param0).cp_errchk_parameter_sampler(*param1);
+}
+
+
+int
+Shader_C_cp_dependency_i_pp(Shader *param0, Shader::ShaderMatInput param1) {
+    return (*param0).cp_dependency(param1);
+}
+
+
+void
+Shader_C_cp_optimize_mat_spec_v_pp(Shader *param0, Shader::ShaderMatSpec *param1) {
+    (*param0).cp_optimize_mat_spec(*param1);
+}
+
+
+void
+Shader_C_clear_parameters_v_p(Shader *param0) {
+    (*param0).clear_parameters();
+}
+
+
+void
+Shader_C_set_compiled_v_pIsl(Shader *param0, unsigned int param1, char const *param2, std::size_t param3) {
+    (*param0).set_compiled(param1, param2, param3);
+}
+
+
+void
+Shader_C_set_default_caps_v_p(Shader::ShaderCaps const *param0) {
+    Shader::set_default_caps(*param0);
+}
+
+
+pvector< Shader::ShaderPtrSpec > *
+Shader_C_get_ptr_spec_p_p(Shader const *param0) {
+    return new pvector< Shader::ShaderPtrSpec >((param0)->_ptr_spec);
+}
+
+
+pvector< Shader::ShaderMatSpec > *
+Shader_C_get_mat_spec_p_p(Shader const *param0) {
+    return new pvector< Shader::ShaderMatSpec >((param0)->_mat_spec);
+}
+
+
+pvector< Shader::ShaderTexSpec > *
+Shader_C_get_tex_spec_p_p(Shader const *param0) {
+    return new pvector< Shader::ShaderTexSpec >((param0)->_tex_spec);
+}
+
+
+pvector< Shader::ShaderVarSpec > *
+Shader_C_get_var_spec_p_p(Shader const *param0) {
+    return new pvector< Shader::ShaderVarSpec >((param0)->_var_spec);
+}
+
+
+int
+Shader_C_get_mat_deps_i_p(Shader const *param0) {
+    return (param0)->_mat_deps;
+}
+
+
+void
+Shader_C_set_mat_deps_v_pi(Shader *param0, int param1) {
+    (param0)->_mat_deps = param1;
+}
+
+
+void
+Shader_C_set_error_flag_v_pB(Shader *param0, bool param1) {
+    (param0)->_error_flag = param1;
+}
+
+
+Filename *
+Shader_C_get_filename_from_index_p_pip(Shader const *param0, int param1, Shader::ShaderType param2) {
+    return new Filename((*param0).get_filename_from_index(param1, param2));
+}
+
+
+void
+Shader_C_register_with_read_factory_v_v() {
+    Shader::register_with_read_factory();
+}
+
+
+void
+Shader_C_write_datagram_v_ppp(Shader *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+int
+Shader_C_get_class_type_i_v() {
+    return (Shader::get_class_type()).get_index();
+}
+
+
+void
+Shader_C_init_type_v_v() {
+    Shader::init_type();
+}
+
+
+int
+Shader_C_get_type_i_p(Shader const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+Shader_C_force_init_type_i_p(Shader *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+Shader *
+Shader_C_ctor_p_p(Shader const *param0) {
+    return new Shader(*param0);
+}
+
+
+// ShaderInput
+
+
+ShaderInput const *
+ShaderInput_C_get_blank_p_v() {
+    return &(ShaderInput::get_blank());
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_v() {
+    return new ShaderInput();
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi(CPT_InternalName *param0, LMatrix3d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp(CPT_InternalName *param0, LMatrix3d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi(CPT_InternalName *param0, LMatrix3f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp(CPT_InternalName *param0, LMatrix3f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi(CPT_InternalName *param0, LMatrix4d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp(CPT_InternalName *param0, LMatrix4d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi(CPT_InternalName *param0, LMatrix4f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp(CPT_InternalName *param0, LMatrix4f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi(CPT_InternalName *param0, LVecBase2d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp(CPT_InternalName *param0, LVecBase2d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi(CPT_InternalName *param0, LVecBase2f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp(CPT_InternalName *param0, LVecBase2f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi(CPT_InternalName *param0, LVecBase2i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp(CPT_InternalName *param0, LVecBase2i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi(CPT_InternalName *param0, LVecBase3d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp(CPT_InternalName *param0, LVecBase3d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi(CPT_InternalName *param0, LVecBase3f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp(CPT_InternalName *param0, LVecBase3f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi(CPT_InternalName *param0, LVecBase3i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp(CPT_InternalName *param0, LVecBase3i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi(CPT_InternalName *param0, LVecBase4d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp(CPT_InternalName *param0, LVecBase4d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi(CPT_InternalName *param0, LVecBase4f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp(CPT_InternalName *param0, LVecBase4f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi(CPT_InternalName *param0, LVecBase4i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp(CPT_InternalName *param0, LVecBase4i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi(CPT_InternalName *param0, NodePath const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp(CPT_InternalName *param0, NodePath const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi(CPT_InternalName *param0, PTA_LMatrix3d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp(CPT_InternalName *param0, PTA_LMatrix3d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi(CPT_InternalName *param0, PTA_LMatrix3f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp(CPT_InternalName *param0, PTA_LMatrix3f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi(CPT_InternalName *param0, PTA_LMatrix4d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp(CPT_InternalName *param0, PTA_LMatrix4d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi(CPT_InternalName *param0, PTA_LMatrix4f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp(CPT_InternalName *param0, PTA_LMatrix4f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi(CPT_InternalName *param0, PTA_LVecBase2d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp(CPT_InternalName *param0, PTA_LVecBase2d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi(CPT_InternalName *param0, PTA_LVecBase2f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp(CPT_InternalName *param0, PTA_LVecBase2f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi(CPT_InternalName *param0, PTA_LVecBase2i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp(CPT_InternalName *param0, PTA_LVecBase2i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi(CPT_InternalName *param0, PTA_LVecBase3d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp(CPT_InternalName *param0, PTA_LVecBase3d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi(CPT_InternalName *param0, PTA_LVecBase3f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp(CPT_InternalName *param0, PTA_LVecBase3f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi(CPT_InternalName *param0, PTA_LVecBase3i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp(CPT_InternalName *param0, PTA_LVecBase3i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi(CPT_InternalName *param0, PTA_LVecBase4d const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp(CPT_InternalName *param0, PTA_LVecBase4d const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi(CPT_InternalName *param0, PTA_LVecBase4f const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp(CPT_InternalName *param0, PTA_LVecBase4f const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi(CPT_InternalName *param0, PTA_LVecBase4i const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp(CPT_InternalName *param0, PTA_LVecBase4i const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi(CPT_InternalName *param0, PTA_double const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp(CPT_InternalName *param0, PTA_double const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi(CPT_InternalName *param0, PTA_float const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp(CPT_InternalName *param0, PTA_float const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi(CPT_InternalName *param0, PTA_int const *param1, int param2) {
+    return new ShaderInput(*param0, *param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp(CPT_InternalName *param0, PTA_int const *param1) {
+    return new ShaderInput(*param0, *param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi(CPT_InternalName *param0, ParamValueBase *param1, int param2) {
+    return new ShaderInput(*param0, param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp(CPT_InternalName *param0, ParamValueBase *param1) {
+    return new ShaderInput(*param0, param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi_31_p_spi(CPT_InternalName *param0, ShaderBuffer *param1, int param2) {
+    return new ShaderInput(*param0, param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp_31_p_sp(CPT_InternalName *param0, ShaderBuffer *param1) {
+    return new ShaderInput(*param0, param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sppi(CPT_InternalName *param0, Texture *param1, SamplerState const *param2, int param3) {
+    return new ShaderInput(*param0, param1, *param2, param3);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spp(CPT_InternalName *param0, Texture *param1, SamplerState const *param2) {
+    return new ShaderInput(*param0, param1, *param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spBBiii(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4, int param5, int param6) {
+    return new ShaderInput(*param0, param1, param2, param3, param4, param5, param6);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spBBii(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4, int param5) {
+    return new ShaderInput(*param0, param1, param2, param3, param4, param5);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spBBi(CPT_InternalName *param0, Texture *param1, bool param2, bool param3, int param4) {
+    return new ShaderInput(*param0, param1, param2, param3, param4);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spBB(CPT_InternalName *param0, Texture *param1, bool param2, bool param3) {
+    return new ShaderInput(*param0, param1, param2, param3);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_spi_1_p_spi_2_p_spi_3_p_spi_4_p_spi_5_p_spi_6_p_spi_7_p_spi_8_p_spi_9_p_spi_10_p_spi_11_p_spi_12_p_spi_13_p_spi_14_p_spi_15_p_spi_16_p_spi_17_p_spi_18_p_spi_19_p_spi_20_p_spi_21_p_spi_22_p_spi_23_p_spi_24_p_spi_25_p_spi_26_p_spi_27_p_spi_28_p_spi_29_p_spi_30_p_spi_31_p_spi_32_p_spi(CPT_InternalName *param0, Texture *param1, int param2) {
+    return new ShaderInput(*param0, param1, param2);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_sp_1_p_sp_2_p_sp_3_p_sp_4_p_sp_5_p_sp_6_p_sp_7_p_sp_8_p_sp_9_p_sp_10_p_sp_11_p_sp_12_p_sp_13_p_sp_14_p_sp_15_p_sp_16_p_sp_17_p_sp_18_p_sp_19_p_sp_20_p_sp_21_p_sp_22_p_sp_23_p_sp_24_p_sp_25_p_sp_26_p_sp_27_p_sp_28_p_sp_29_p_sp_30_p_sp_31_p_sp_32_p_sp(CPT_InternalName *param0, Texture *param1) {
+    return new ShaderInput(*param0, param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_si(CPT_InternalName *param0, int param1) {
+    return new ShaderInput(*param0, param1);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_s(CPT_InternalName *param0) {
+    return new ShaderInput(*param0);
+}
+
+
+ShaderInput *
+ShaderInput_C_ctor_p_p(ShaderInput const *param0) {
+    return new ShaderInput(*param0);
+}
+
+
+std::size_t
+ShaderInput_C_add_hash_l_pl(ShaderInput const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+InternalName const *
+ShaderInput_C_get_name_s_p(ShaderInput const *param0) {
+    return (*param0).get_name();
+}
+
+
+int
+ShaderInput_C_get_value_type_i_p(ShaderInput const *param0) {
+    return (*param0).get_value_type();
+}
+
+
+int
+ShaderInput_C_get_priority_i_p(ShaderInput const *param0) {
+    return (*param0).get_priority();
+}
+
+
+LVecBase4 const *
+ShaderInput_C_get_vector_p_p(ShaderInput const *param0) {
+    return &((*param0).get_vector());
+}
+
+
+Shader::ShaderPtrData const *
+ShaderInput_C_get_ptr_p_p(ShaderInput const *param0) {
+    return &((*param0).get_ptr());
+}
+
+
+NodePath *
+ShaderInput_C_get_nodepath_p_p(ShaderInput const *param0) {
+    return new NodePath((*param0).get_nodepath());
+}
+
+
+Texture *
+ShaderInput_C_get_texture_p_p(ShaderInput const *param0) {
+    return (*param0).get_texture();
+}
+
+
+SamplerState const *
+ShaderInput_C_get_sampler_p_p(ShaderInput const *param0) {
+    return &((*param0).get_sampler());
+}
+
+
+ParamValueBase *
+ShaderInput_C_get_param_p_p(ShaderInput const *param0) {
+    return (*param0).get_param();
+}
+
+
+TypedWritableReferenceCount *
+ShaderInput_C_get_value_p_p(ShaderInput const *param0) {
+    return (*param0).get_value();
+}
+
+
+void
+ShaderInput_C_register_with_read_factory_v_v() {
+    ShaderInput::register_with_read_factory();
+}
+
+
+// SimpleLruPage
+
+
+GeomVertexArrayData *
+SimpleLruPage_C_downcast_to_GeomVertexArrayData_p_p(SimpleLruPage *param0) {
+    return (GeomVertexArrayData *)param0;
+}
+
+
 // TextEncoder
 
 
 TextNode *
 TextEncoder_C_downcast_to_TextNode_p_p(TextEncoder *param0) {
     return (TextNode *)param0;
+}
+
+
+// TextFont
+
+
+TypedReferenceCount *
+TextFont_C_upcast_to_TypedReferenceCount_p_p(TextFont *param0) {
+    return (TypedReferenceCount *)param0;
+}
+
+
+Namable *
+TextFont_C_upcast_to_Namable_p_p(TextFont *param0) {
+    return (Namable *)param0;
+}
+
+
+PointerTo< TextFont > *
+TextFont_C_make_copy_p_p(TextFont const *param0) {
+    return new PointerTo< TextFont >((*param0).make_copy());
+}
+
+
+bool
+TextFont_C_is_valid_B_p(TextFont const *param0) {
+    return (*param0).is_valid();
+}
+
+
+PN_stdfloat
+TextFont_C_get_line_height_f_p(TextFont const *param0) {
+    return (*param0).get_line_height();
+}
+
+
+void
+TextFont_C_set_line_height_v_pf(TextFont *param0, PN_stdfloat param1) {
+    (*param0).set_line_height(param1);
+}
+
+
+PN_stdfloat
+TextFont_C_get_space_advance_f_p(TextFont const *param0) {
+    return (*param0).get_space_advance();
+}
+
+
+void
+TextFont_C_set_space_advance_v_pf(TextFont *param0, PN_stdfloat param1) {
+    (*param0).set_space_advance(param1);
+}
+
+
+ConstPointerTo< TextGlyph > *
+TextFont_C_get_glyph_p_pi(TextFont *param0, int param1) {
+    return new ConstPointerTo< TextGlyph >((*param0).get_glyph(param1));
+}
+
+
+bool
+TextFont_C_get_glyph_B_pip(TextFont *param0, int param1, ConstPointerTo< TextGlyph > *param2) {
+    return (*param0).get_glyph(param1, *param2);
+}
+
+
+PN_stdfloat
+TextFont_C_get_kerning_f_pii(TextFont const *param0, int param1, int param2) {
+    return (*param0).get_kerning(param1, param2);
+}
+
+
+void
+TextFont_C_write_v_ppi(TextFont const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+PN_stdfloat
+TextFont_C_get_total_poly_margin_f_p(TextFont const *param0) {
+    return (*param0).get_total_poly_margin();
+}
+
+
+TextGlyph *
+TextFont_C_get_invalid_glyph_p_p(TextFont *param0) {
+    return (*param0).get_invalid_glyph();
+}
+
+
+TextFont::RenderMode
+TextFont_C_string_render_mode_p_s(char const *param0) {
+    return TextFont::string_render_mode(std::string(param0));
+}
+
+
+int
+TextFont_C_get_class_type_i_v() {
+    return (TextFont::get_class_type()).get_index();
+}
+
+
+void
+TextFont_C_init_type_v_v() {
+    TextFont::init_type();
+}
+
+
+int
+TextFont_C_get_type_i_p(TextFont const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+TextFont_C_force_init_type_i_p(TextFont *param0) {
+    return ((*param0).force_init_type()).get_index();
 }
 
 
@@ -17019,13 +24085,13 @@ TextNode_C_calc_width_f_ps(TextNode const *param0, char const *param1) {
 
 
 PN_stdfloat
-TextNode_C_calc_width_f_pp(TextNode const *param0, wchar_t const *param1) {
+TextNode_C_calc_width_f_ps_1_f_ps(TextNode const *param0, wchar_t const *param1) {
     return (*param0).calc_width(std::wstring(param1));
 }
 
 
 PN_stdfloat
-TextNode_C_calc_width_f_pp_1_f_pp(TextNode const *param0, wchar_t param1) {
+TextNode_C_calc_width_f_pp(TextNode const *param0, wchar_t param1) {
     return (*param0).calc_width(param1);
 }
 
@@ -17049,7 +24115,7 @@ TextNode_C_is_whitespace_B_pp(TextNode const *param0, wchar_t param1) {
 
 
 wchar_t const *
-TextNode_C_get_wordwrapped_wtext_p_p(TextNode const *param0) {
+TextNode_C_get_wordwrapped_wtext_s_p(TextNode const *param0) {
     static std::wstring string_holder = (*param0).get_wordwrapped_wtext();
     return string_holder.c_str();
 }
@@ -17358,6 +24424,1844 @@ TextProperties_C_downcast_to_TextNode_p_p(TextProperties *param0) {
 }
 
 
+// Texture
+
+
+TypedWritableReferenceCount *
+Texture_C_upcast_to_TypedWritableReferenceCount_p_p(Texture *param0) {
+    return (TypedWritableReferenceCount *)param0;
+}
+
+
+Namable *
+Texture_C_upcast_to_Namable_p_p(Texture *param0) {
+    return (Namable *)param0;
+}
+
+
+Texture *
+Texture_C_ctor_p_s(char const *param0) {
+    return new Texture(std::string(param0));
+}
+
+
+Texture *
+Texture_C_ctor_p_v() {
+    return new Texture();
+}
+
+
+PointerTo< Texture > *
+Texture_C_make_copy_p_p(Texture const *param0) {
+    return new PointerTo< Texture >((*param0).make_copy());
+}
+
+
+void
+Texture_C_clear_v_p(Texture *param0) {
+    (*param0).clear();
+}
+
+
+void
+Texture_C_setup_texture_v_ppiiipp(Texture *param0, Texture::TextureType param1, int param2, int param3, int param4, Texture::ComponentType param5, Texture::Format param6) {
+    (*param0).setup_texture(param1, param2, param3, param4, param5, param6);
+}
+
+
+void
+Texture_C_setup_1d_texture_v_p(Texture *param0) {
+    (*param0).setup_1d_texture();
+}
+
+
+void
+Texture_C_setup_1d_texture_v_pipp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3) {
+    (*param0).setup_1d_texture(param1, param2, param3);
+}
+
+
+void
+Texture_C_setup_2d_texture_v_p(Texture *param0) {
+    (*param0).setup_2d_texture();
+}
+
+
+void
+Texture_C_setup_2d_texture_v_piipp(Texture *param0, int param1, int param2, Texture::ComponentType param3, Texture::Format param4) {
+    (*param0).setup_2d_texture(param1, param2, param3, param4);
+}
+
+
+void
+Texture_C_setup_3d_texture_v_pi(Texture *param0, int param1) {
+    (*param0).setup_3d_texture(param1);
+}
+
+
+void
+Texture_C_setup_3d_texture_v_p(Texture *param0) {
+    (*param0).setup_3d_texture();
+}
+
+
+void
+Texture_C_setup_3d_texture_v_piiipp(Texture *param0, int param1, int param2, int param3, Texture::ComponentType param4, Texture::Format param5) {
+    (*param0).setup_3d_texture(param1, param2, param3, param4, param5);
+}
+
+
+void
+Texture_C_setup_cube_map_v_p(Texture *param0) {
+    (*param0).setup_cube_map();
+}
+
+
+void
+Texture_C_setup_cube_map_v_pipp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3) {
+    (*param0).setup_cube_map(param1, param2, param3);
+}
+
+
+void
+Texture_C_setup_2d_texture_array_v_pi(Texture *param0, int param1) {
+    (*param0).setup_2d_texture_array(param1);
+}
+
+
+void
+Texture_C_setup_2d_texture_array_v_p(Texture *param0) {
+    (*param0).setup_2d_texture_array();
+}
+
+
+void
+Texture_C_setup_2d_texture_array_v_piiipp(Texture *param0, int param1, int param2, int param3, Texture::ComponentType param4, Texture::Format param5) {
+    (*param0).setup_2d_texture_array(param1, param2, param3, param4, param5);
+}
+
+
+void
+Texture_C_setup_cube_map_array_v_pi(Texture *param0, int param1) {
+    (*param0).setup_cube_map_array(param1);
+}
+
+
+void
+Texture_C_setup_cube_map_array_v_piipp(Texture *param0, int param1, int param2, Texture::ComponentType param3, Texture::Format param4) {
+    (*param0).setup_cube_map_array(param1, param2, param3, param4);
+}
+
+
+void
+Texture_C_setup_buffer_texture_v_pippp(Texture *param0, int param1, Texture::ComponentType param2, Texture::Format param3, GeomEnums::UsageHint param4) {
+    (*param0).setup_buffer_texture(param1, param2, param3, param4);
+}
+
+
+void
+Texture_C_generate_normalization_cube_map_v_pi(Texture *param0, int param1) {
+    (*param0).generate_normalization_cube_map(param1);
+}
+
+
+void
+Texture_C_generate_alpha_scale_map_v_p(Texture *param0) {
+    (*param0).generate_alpha_scale_map();
+}
+
+
+void
+Texture_C_clear_image_v_p(Texture *param0) {
+    (*param0).clear_image();
+}
+
+
+bool
+Texture_C_has_clear_color_B_p(Texture const *param0) {
+    return (*param0).has_clear_color();
+}
+
+
+LColor *
+Texture_C_get_clear_color_p_p(Texture const *param0) {
+    return new LColor((*param0).get_clear_color());
+}
+
+
+void
+Texture_C_set_clear_color_v_pp(Texture *param0, LColor const *param1) {
+    (*param0).set_clear_color(*param1);
+}
+
+
+void
+Texture_C_clear_clear_color_v_p(Texture *param0) {
+    (*param0).clear_clear_color();
+}
+
+
+vector_uchar
+Texture_C_get_clear_data_p_p(Texture const *param0) {
+    return (*param0).get_clear_data();
+}
+
+
+bool
+Texture_C_read_B_pppiip(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, LoaderOptions const *param5) {
+    return (*param0).read(*param1, *param2, param3, param4, *param5);
+}
+
+
+bool
+Texture_C_read_B_pppii(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4) {
+    return (*param0).read(*param1, *param2, param3, param4);
+}
+
+
+bool
+Texture_C_read_B_pppiiiiBBpp(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8, BamCacheRecord *param9, LoaderOptions const *param10) {
+    return (*param0).read(*param1, *param2, param3, param4, param5, param6, param7, param8, param9, *param10);
+}
+
+
+bool
+Texture_C_read_B_pppiiiiBBp(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8, BamCacheRecord *param9) {
+    return (*param0).read(*param1, *param2, param3, param4, param5, param6, param7, param8, param9);
+}
+
+
+bool
+Texture_C_read_B_pppiiiiBB(Texture *param0, Filename const *param1, Filename const *param2, int param3, int param4, int param5, int param6, bool param7, bool param8) {
+    return (*param0).read(*param1, *param2, param3, param4, param5, param6, param7, param8);
+}
+
+
+bool
+Texture_C_read_B_ppp(Texture *param0, Filename const *param1, LoaderOptions const *param2) {
+    return (*param0).read(*param1, *param2);
+}
+
+
+bool
+Texture_C_read_B_pp(Texture *param0, Filename const *param1) {
+    return (*param0).read(*param1);
+}
+
+
+bool
+Texture_C_read_B_ppiiBBp(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5, LoaderOptions const *param6) {
+    return (*param0).read(*param1, param2, param3, param4, param5, *param6);
+}
+
+
+bool
+Texture_C_read_B_ppiiBB(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5) {
+    return (*param0).read(*param1, param2, param3, param4, param5);
+}
+
+
+bool
+Texture_C_write_B_pp(Texture *param0, Filename const *param1) {
+    return (*param0).write(*param1);
+}
+
+
+bool
+Texture_C_write_B_ppiiBB(Texture *param0, Filename const *param1, int param2, int param3, bool param4, bool param5) {
+    return (*param0).write(*param1, param2, param3, param4, param5);
+}
+
+
+void
+Texture_C_write_v_ppi(Texture const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+bool
+Texture_C_read_txo_B_pps(Texture *param0, std::istream *param1, char const *param2) {
+    return (*param0).read_txo(*param1, std::string(param2));
+}
+
+
+bool
+Texture_C_read_txo_B_pp(Texture *param0, std::istream *param1) {
+    return (*param0).read_txo(*param1);
+}
+
+
+PointerTo< Texture > *
+Texture_C_make_from_txo_p_ps(std::istream *param0, char const *param1) {
+    return new PointerTo< Texture >(Texture::make_from_txo(*param0, std::string(param1)));
+}
+
+
+PointerTo< Texture > *
+Texture_C_make_from_txo_p_p(std::istream *param0) {
+    return new PointerTo< Texture >(Texture::make_from_txo(*param0));
+}
+
+
+bool
+Texture_C_write_txo_B_pps(Texture const *param0, std::ostream *param1, char const *param2) {
+    return (*param0).write_txo(*param1, std::string(param2));
+}
+
+
+bool
+Texture_C_write_txo_B_pp(Texture const *param0, std::ostream *param1) {
+    return (*param0).write_txo(*param1);
+}
+
+
+bool
+Texture_C_read_dds_B_ppsB(Texture *param0, std::istream *param1, char const *param2, bool param3) {
+    return (*param0).read_dds(*param1, std::string(param2), param3);
+}
+
+
+bool
+Texture_C_read_dds_B_pps(Texture *param0, std::istream *param1, char const *param2) {
+    return (*param0).read_dds(*param1, std::string(param2));
+}
+
+
+bool
+Texture_C_read_dds_B_pp(Texture *param0, std::istream *param1) {
+    return (*param0).read_dds(*param1);
+}
+
+
+bool
+Texture_C_read_ktx_B_ppsB(Texture *param0, std::istream *param1, char const *param2, bool param3) {
+    return (*param0).read_ktx(*param1, std::string(param2), param3);
+}
+
+
+bool
+Texture_C_read_ktx_B_pps(Texture *param0, std::istream *param1, char const *param2) {
+    return (*param0).read_ktx(*param1, std::string(param2));
+}
+
+
+bool
+Texture_C_read_ktx_B_pp(Texture *param0, std::istream *param1) {
+    return (*param0).read_ktx(*param1);
+}
+
+
+bool
+Texture_C_load_B_ppp(Texture *param0, PNMImage const *param1, LoaderOptions const *param2) {
+    return (*param0).load(*param1, *param2);
+}
+
+
+bool
+Texture_C_load_B_pp(Texture *param0, PNMImage const *param1) {
+    return (*param0).load(*param1);
+}
+
+
+bool
+Texture_C_load_B_ppiip(Texture *param0, PNMImage const *param1, int param2, int param3, LoaderOptions const *param4) {
+    return (*param0).load(*param1, param2, param3, *param4);
+}
+
+
+bool
+Texture_C_load_B_ppii(Texture *param0, PNMImage const *param1, int param2, int param3) {
+    return (*param0).load(*param1, param2, param3);
+}
+
+
+bool
+Texture_C_load_B_ppp_1_B_ppp(Texture *param0, PfmFile const *param1, LoaderOptions const *param2) {
+    return (*param0).load(*param1, *param2);
+}
+
+
+bool
+Texture_C_load_B_pp_1_B_pp(Texture *param0, PfmFile const *param1) {
+    return (*param0).load(*param1);
+}
+
+
+bool
+Texture_C_load_B_ppiip_1_B_ppiip(Texture *param0, PfmFile const *param1, int param2, int param3, LoaderOptions const *param4) {
+    return (*param0).load(*param1, param2, param3, *param4);
+}
+
+
+bool
+Texture_C_load_B_ppii_1_B_ppii(Texture *param0, PfmFile const *param1, int param2, int param3) {
+    return (*param0).load(*param1, param2, param3);
+}
+
+
+bool
+Texture_C_load_sub_image_B_ppiiii(Texture *param0, PNMImage const *param1, int param2, int param3, int param4, int param5) {
+    return (*param0).load_sub_image(*param1, param2, param3, param4, param5);
+}
+
+
+bool
+Texture_C_load_sub_image_B_ppiii(Texture *param0, PNMImage const *param1, int param2, int param3, int param4) {
+    return (*param0).load_sub_image(*param1, param2, param3, param4);
+}
+
+
+bool
+Texture_C_load_sub_image_B_ppii(Texture *param0, PNMImage const *param1, int param2, int param3) {
+    return (*param0).load_sub_image(*param1, param2, param3);
+}
+
+
+bool
+Texture_C_store_B_pp(Texture const *param0, PNMImage *param1) {
+    return (*param0).store(*param1);
+}
+
+
+bool
+Texture_C_store_B_ppii(Texture const *param0, PNMImage *param1, int param2, int param3) {
+    return (*param0).store(*param1, param2, param3);
+}
+
+
+bool
+Texture_C_store_B_pp_1_B_pp(Texture const *param0, PfmFile *param1) {
+    return (*param0).store(*param1);
+}
+
+
+bool
+Texture_C_store_B_ppii_1_B_ppii(Texture const *param0, PfmFile *param1, int param2, int param3) {
+    return (*param0).store(*param1, param2, param3);
+}
+
+
+bool
+Texture_C_reload_B_p(Texture *param0) {
+    return (*param0).reload();
+}
+
+
+Texture *
+Texture_C_load_related_p_ps(Texture const *param0, InternalName const *param1) {
+    return (*param0).load_related(param1);
+}
+
+
+bool
+Texture_C_has_filename_B_p(Texture const *param0) {
+    return (*param0).has_filename();
+}
+
+
+Filename const *
+Texture_C_get_filename_p_p(Texture const *param0) {
+    return &((*param0).get_filename());
+}
+
+
+void
+Texture_C_set_filename_v_pp(Texture *param0, Filename const *param1) {
+    (*param0).set_filename(*param1);
+}
+
+
+void
+Texture_C_clear_filename_v_p(Texture *param0) {
+    (*param0).clear_filename();
+}
+
+
+bool
+Texture_C_has_alpha_filename_B_p(Texture const *param0) {
+    return (*param0).has_alpha_filename();
+}
+
+
+Filename const *
+Texture_C_get_alpha_filename_p_p(Texture const *param0) {
+    return &((*param0).get_alpha_filename());
+}
+
+
+void
+Texture_C_set_alpha_filename_v_pp(Texture *param0, Filename const *param1) {
+    (*param0).set_alpha_filename(*param1);
+}
+
+
+void
+Texture_C_clear_alpha_filename_v_p(Texture *param0) {
+    (*param0).clear_alpha_filename();
+}
+
+
+bool
+Texture_C_has_fullpath_B_p(Texture const *param0) {
+    return (*param0).has_fullpath();
+}
+
+
+Filename const *
+Texture_C_get_fullpath_p_p(Texture const *param0) {
+    return &((*param0).get_fullpath());
+}
+
+
+void
+Texture_C_set_fullpath_v_pp(Texture *param0, Filename const *param1) {
+    (*param0).set_fullpath(*param1);
+}
+
+
+void
+Texture_C_clear_fullpath_v_p(Texture *param0) {
+    (*param0).clear_fullpath();
+}
+
+
+bool
+Texture_C_has_alpha_fullpath_B_p(Texture const *param0) {
+    return (*param0).has_alpha_fullpath();
+}
+
+
+Filename const *
+Texture_C_get_alpha_fullpath_p_p(Texture const *param0) {
+    return &((*param0).get_alpha_fullpath());
+}
+
+
+void
+Texture_C_set_alpha_fullpath_v_pp(Texture *param0, Filename const *param1) {
+    (*param0).set_alpha_fullpath(*param1);
+}
+
+
+void
+Texture_C_clear_alpha_fullpath_v_p(Texture *param0) {
+    (*param0).clear_alpha_fullpath();
+}
+
+
+int
+Texture_C_get_x_size_i_p(Texture const *param0) {
+    return (*param0).get_x_size();
+}
+
+
+void
+Texture_C_set_x_size_v_pi(Texture *param0, int param1) {
+    (*param0).set_x_size(param1);
+}
+
+
+int
+Texture_C_get_y_size_i_p(Texture const *param0) {
+    return (*param0).get_y_size();
+}
+
+
+void
+Texture_C_set_y_size_v_pi(Texture *param0, int param1) {
+    (*param0).set_y_size(param1);
+}
+
+
+int
+Texture_C_get_z_size_i_p(Texture const *param0) {
+    return (*param0).get_z_size();
+}
+
+
+void
+Texture_C_set_z_size_v_pi(Texture *param0, int param1) {
+    (*param0).set_z_size(param1);
+}
+
+
+int
+Texture_C_get_num_views_i_p(Texture const *param0) {
+    return (*param0).get_num_views();
+}
+
+
+void
+Texture_C_set_num_views_v_pi(Texture *param0, int param1) {
+    (*param0).set_num_views(param1);
+}
+
+
+int
+Texture_C_get_num_pages_i_p(Texture const *param0) {
+    return (*param0).get_num_pages();
+}
+
+
+int
+Texture_C_get_num_components_i_p(Texture const *param0) {
+    return (*param0).get_num_components();
+}
+
+
+int
+Texture_C_get_component_width_i_p(Texture const *param0) {
+    return (*param0).get_component_width();
+}
+
+
+Texture::TextureType
+Texture_C_get_texture_type_p_p(Texture const *param0) {
+    return (*param0).get_texture_type();
+}
+
+
+GeomEnums::UsageHint
+Texture_C_get_usage_hint_p_p(Texture const *param0) {
+    return (*param0).get_usage_hint();
+}
+
+
+Texture::Format
+Texture_C_get_format_p_p(Texture const *param0) {
+    return (*param0).get_format();
+}
+
+
+void
+Texture_C_set_format_v_pp(Texture *param0, Texture::Format param1) {
+    (*param0).set_format(param1);
+}
+
+
+Texture::ComponentType
+Texture_C_get_component_type_p_p(Texture const *param0) {
+    return (*param0).get_component_type();
+}
+
+
+void
+Texture_C_set_component_type_v_pp(Texture *param0, Texture::ComponentType param1) {
+    (*param0).set_component_type(param1);
+}
+
+
+SamplerState::WrapMode
+Texture_C_get_wrap_u_p_p(Texture const *param0) {
+    return (*param0).get_wrap_u();
+}
+
+
+void
+Texture_C_set_wrap_u_v_pp(Texture *param0, Texture::WrapMode param1) {
+    (*param0).set_wrap_u(param1);
+}
+
+
+SamplerState::WrapMode
+Texture_C_get_wrap_v_p_p(Texture const *param0) {
+    return (*param0).get_wrap_v();
+}
+
+
+void
+Texture_C_set_wrap_v_v_pp(Texture *param0, Texture::WrapMode param1) {
+    (*param0).set_wrap_v(param1);
+}
+
+
+SamplerState::WrapMode
+Texture_C_get_wrap_w_p_p(Texture const *param0) {
+    return (*param0).get_wrap_w();
+}
+
+
+void
+Texture_C_set_wrap_w_v_pp(Texture *param0, Texture::WrapMode param1) {
+    (*param0).set_wrap_w(param1);
+}
+
+
+SamplerState::FilterType
+Texture_C_get_minfilter_p_p(Texture const *param0) {
+    return (*param0).get_minfilter();
+}
+
+
+SamplerState::FilterType
+Texture_C_get_effective_minfilter_p_p(Texture const *param0) {
+    return (*param0).get_effective_minfilter();
+}
+
+
+void
+Texture_C_set_minfilter_v_pp(Texture *param0, Texture::FilterType param1) {
+    (*param0).set_minfilter(param1);
+}
+
+
+SamplerState::FilterType
+Texture_C_get_magfilter_p_p(Texture const *param0) {
+    return (*param0).get_magfilter();
+}
+
+
+SamplerState::FilterType
+Texture_C_get_effective_magfilter_p_p(Texture const *param0) {
+    return (*param0).get_effective_magfilter();
+}
+
+
+void
+Texture_C_set_magfilter_v_pp(Texture *param0, Texture::FilterType param1) {
+    (*param0).set_magfilter(param1);
+}
+
+
+int
+Texture_C_get_anisotropic_degree_i_p(Texture const *param0) {
+    return (*param0).get_anisotropic_degree();
+}
+
+
+int
+Texture_C_get_effective_anisotropic_degree_i_p(Texture const *param0) {
+    return (*param0).get_effective_anisotropic_degree();
+}
+
+
+void
+Texture_C_set_anisotropic_degree_v_pi(Texture *param0, int param1) {
+    (*param0).set_anisotropic_degree(param1);
+}
+
+
+LColor *
+Texture_C_get_border_color_p_p(Texture const *param0) {
+    return new LColor((*param0).get_border_color());
+}
+
+
+void
+Texture_C_set_border_color_v_pp(Texture *param0, LColor const *param1) {
+    (*param0).set_border_color(*param1);
+}
+
+
+bool
+Texture_C_has_compression_B_p(Texture const *param0) {
+    return (*param0).has_compression();
+}
+
+
+Texture::CompressionMode
+Texture_C_get_compression_p_p(Texture const *param0) {
+    return (*param0).get_compression();
+}
+
+
+void
+Texture_C_set_compression_v_pp(Texture *param0, Texture::CompressionMode param1) {
+    (*param0).set_compression(param1);
+}
+
+
+bool
+Texture_C_get_render_to_texture_B_p(Texture const *param0) {
+    return (*param0).get_render_to_texture();
+}
+
+
+void
+Texture_C_set_render_to_texture_v_pB(Texture *param0, bool param1) {
+    (*param0).set_render_to_texture(param1);
+}
+
+
+SamplerState const *
+Texture_C_get_default_sampler_p_p(Texture const *param0) {
+    return &((*param0).get_default_sampler());
+}
+
+
+void
+Texture_C_set_default_sampler_v_pp(Texture *param0, SamplerState const *param1) {
+    (*param0).set_default_sampler(*param1);
+}
+
+
+bool
+Texture_C_uses_mipmaps_B_p(Texture const *param0) {
+    return (*param0).uses_mipmaps();
+}
+
+
+Texture::QualityLevel
+Texture_C_get_quality_level_p_p(Texture const *param0) {
+    return (*param0).get_quality_level();
+}
+
+
+Texture::QualityLevel
+Texture_C_get_effective_quality_level_p_p(Texture const *param0) {
+    return (*param0).get_effective_quality_level();
+}
+
+
+void
+Texture_C_set_quality_level_v_pp(Texture *param0, Texture::QualityLevel param1) {
+    (*param0).set_quality_level(param1);
+}
+
+
+int
+Texture_C_get_expected_num_mipmap_levels_i_p(Texture const *param0) {
+    return (*param0).get_expected_num_mipmap_levels();
+}
+
+
+int
+Texture_C_get_expected_mipmap_x_size_i_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_mipmap_x_size(param1);
+}
+
+
+int
+Texture_C_get_expected_mipmap_y_size_i_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_mipmap_y_size(param1);
+}
+
+
+int
+Texture_C_get_expected_mipmap_z_size_i_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_mipmap_z_size(param1);
+}
+
+
+int
+Texture_C_get_expected_mipmap_num_pages_i_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_mipmap_num_pages(param1);
+}
+
+
+bool
+Texture_C_has_ram_image_B_p(Texture const *param0) {
+    return (*param0).has_ram_image();
+}
+
+
+bool
+Texture_C_has_uncompressed_ram_image_B_p(Texture const *param0) {
+    return (*param0).has_uncompressed_ram_image();
+}
+
+
+bool
+Texture_C_might_have_ram_image_B_p(Texture const *param0) {
+    return (*param0).might_have_ram_image();
+}
+
+
+std::size_t
+Texture_C_get_ram_image_size_l_p(Texture const *param0) {
+    return (*param0).get_ram_image_size();
+}
+
+
+std::size_t
+Texture_C_get_ram_view_size_l_p(Texture const *param0) {
+    return (*param0).get_ram_view_size();
+}
+
+
+std::size_t
+Texture_C_get_ram_page_size_l_p(Texture const *param0) {
+    return (*param0).get_ram_page_size();
+}
+
+
+std::size_t
+Texture_C_get_expected_ram_image_size_l_p(Texture const *param0) {
+    return (*param0).get_expected_ram_image_size();
+}
+
+
+std::size_t
+Texture_C_get_expected_ram_page_size_l_p(Texture const *param0) {
+    return (*param0).get_expected_ram_page_size();
+}
+
+
+CPTA_uchar *
+Texture_C_get_ram_image_p_p(Texture *param0) {
+    return new CPTA_uchar((*param0).get_ram_image());
+}
+
+
+Texture::CompressionMode
+Texture_C_get_ram_image_compression_p_p(Texture const *param0) {
+    return (*param0).get_ram_image_compression();
+}
+
+
+CPTA_uchar *
+Texture_C_get_uncompressed_ram_image_p_p(Texture *param0) {
+    return new CPTA_uchar((*param0).get_uncompressed_ram_image());
+}
+
+
+CPTA_uchar *
+Texture_C_get_ram_image_as_p_ps(Texture *param0, char const *param1) {
+    return new CPTA_uchar((*param0).get_ram_image_as(std::string(param1)));
+}
+
+
+PTA_uchar *
+Texture_C_modify_ram_image_p_p(Texture *param0) {
+    return new PTA_uchar((*param0).modify_ram_image());
+}
+
+
+PTA_uchar *
+Texture_C_make_ram_image_p_p(Texture *param0) {
+    return new PTA_uchar((*param0).make_ram_image());
+}
+
+
+void
+Texture_C_clear_ram_image_v_p(Texture *param0) {
+    (*param0).clear_ram_image();
+}
+
+
+void
+Texture_C_set_keep_ram_image_v_pB(Texture *param0, bool param1) {
+    (*param0).set_keep_ram_image(param1);
+}
+
+
+bool
+Texture_C_get_keep_ram_image_B_p(Texture const *param0) {
+    return (*param0).get_keep_ram_image();
+}
+
+
+bool
+Texture_C_is_cacheable_B_p(Texture const *param0) {
+    return (*param0).is_cacheable();
+}
+
+
+bool
+Texture_C_compress_ram_image_B_pppp(Texture *param0, Texture::CompressionMode param1, Texture::QualityLevel param2, GraphicsStateGuardianBase *param3) {
+    return (*param0).compress_ram_image(param1, param2, param3);
+}
+
+
+bool
+Texture_C_compress_ram_image_B_ppp(Texture *param0, Texture::CompressionMode param1, Texture::QualityLevel param2) {
+    return (*param0).compress_ram_image(param1, param2);
+}
+
+
+bool
+Texture_C_compress_ram_image_B_pp(Texture *param0, Texture::CompressionMode param1) {
+    return (*param0).compress_ram_image(param1);
+}
+
+
+bool
+Texture_C_compress_ram_image_B_p(Texture *param0) {
+    return (*param0).compress_ram_image();
+}
+
+
+bool
+Texture_C_uncompress_ram_image_B_p(Texture *param0) {
+    return (*param0).uncompress_ram_image();
+}
+
+
+int
+Texture_C_get_num_ram_mipmap_images_i_p(Texture const *param0) {
+    return (*param0).get_num_ram_mipmap_images();
+}
+
+
+bool
+Texture_C_has_ram_mipmap_image_B_pi(Texture const *param0, int param1) {
+    return (*param0).has_ram_mipmap_image(param1);
+}
+
+
+int
+Texture_C_get_num_loadable_ram_mipmap_images_i_p(Texture const *param0) {
+    return (*param0).get_num_loadable_ram_mipmap_images();
+}
+
+
+bool
+Texture_C_has_all_ram_mipmap_images_B_p(Texture const *param0) {
+    return (*param0).has_all_ram_mipmap_images();
+}
+
+
+std::size_t
+Texture_C_get_ram_mipmap_image_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_ram_mipmap_image_size(param1);
+}
+
+
+std::size_t
+Texture_C_get_ram_mipmap_view_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_ram_mipmap_view_size(param1);
+}
+
+
+std::size_t
+Texture_C_get_ram_mipmap_page_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_ram_mipmap_page_size(param1);
+}
+
+
+std::size_t
+Texture_C_get_expected_ram_mipmap_image_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_ram_mipmap_image_size(param1);
+}
+
+
+std::size_t
+Texture_C_get_expected_ram_mipmap_view_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_ram_mipmap_view_size(param1);
+}
+
+
+std::size_t
+Texture_C_get_expected_ram_mipmap_page_size_l_pi(Texture const *param0, int param1) {
+    return (*param0).get_expected_ram_mipmap_page_size(param1);
+}
+
+
+CPTA_uchar *
+Texture_C_get_ram_mipmap_image_p_pi(Texture const *param0, int param1) {
+    return new CPTA_uchar((*param0).get_ram_mipmap_image(param1));
+}
+
+
+void
+Texture_C_get_ram_mipmap_pointer_v_pi(Texture const *param0, int param1) {
+    (*param0).get_ram_mipmap_pointer(param1);
+}
+
+
+PTA_uchar *
+Texture_C_modify_ram_mipmap_image_p_pi(Texture *param0, int param1) {
+    return new PTA_uchar((*param0).modify_ram_mipmap_image(param1));
+}
+
+
+PTA_uchar *
+Texture_C_make_ram_mipmap_image_p_pi(Texture *param0, int param1) {
+    return new PTA_uchar((*param0).make_ram_mipmap_image(param1));
+}
+
+
+void
+Texture_C_set_ram_mipmap_pointer_from_int_v_ppii(Texture *param0, long long int param1, int param2, int param3) {
+    (*param0).set_ram_mipmap_pointer_from_int(param1, param2, param3);
+}
+
+
+void
+Texture_C_set_ram_mipmap_image_v_pipl(Texture *param0, int param1, CPTA_uchar *param2, std::size_t param3) {
+    (*param0).set_ram_mipmap_image(param1, *param2, param3);
+}
+
+
+void
+Texture_C_set_ram_mipmap_image_v_pip(Texture *param0, int param1, CPTA_uchar *param2) {
+    (*param0).set_ram_mipmap_image(param1, *param2);
+}
+
+
+void
+Texture_C_clear_ram_mipmap_image_v_pi(Texture *param0, int param1) {
+    (*param0).clear_ram_mipmap_image(param1);
+}
+
+
+void
+Texture_C_clear_ram_mipmap_images_v_p(Texture *param0) {
+    (*param0).clear_ram_mipmap_images();
+}
+
+
+void
+Texture_C_generate_ram_mipmap_images_v_p(Texture *param0) {
+    (*param0).generate_ram_mipmap_images();
+}
+
+
+int
+Texture_C_get_simple_x_size_i_p(Texture const *param0) {
+    return (*param0).get_simple_x_size();
+}
+
+
+int
+Texture_C_get_simple_y_size_i_p(Texture const *param0) {
+    return (*param0).get_simple_y_size();
+}
+
+
+bool
+Texture_C_has_simple_ram_image_B_p(Texture const *param0) {
+    return (*param0).has_simple_ram_image();
+}
+
+
+std::size_t
+Texture_C_get_simple_ram_image_size_l_p(Texture const *param0) {
+    return (*param0).get_simple_ram_image_size();
+}
+
+
+CPTA_uchar *
+Texture_C_get_simple_ram_image_p_p(Texture const *param0) {
+    return new CPTA_uchar((*param0).get_simple_ram_image());
+}
+
+
+void
+Texture_C_set_simple_ram_image_v_ppii(Texture *param0, CPTA_uchar *param1, int param2, int param3) {
+    (*param0).set_simple_ram_image(*param1, param2, param3);
+}
+
+
+PTA_uchar *
+Texture_C_modify_simple_ram_image_p_p(Texture *param0) {
+    return new PTA_uchar((*param0).modify_simple_ram_image());
+}
+
+
+PTA_uchar *
+Texture_C_new_simple_ram_image_p_pii(Texture *param0, int param1, int param2) {
+    return new PTA_uchar((*param0).new_simple_ram_image(param1, param2));
+}
+
+
+void
+Texture_C_generate_simple_ram_image_v_p(Texture *param0) {
+    (*param0).generate_simple_ram_image();
+}
+
+
+void
+Texture_C_clear_simple_ram_image_v_p(Texture *param0) {
+    (*param0).clear_simple_ram_image();
+}
+
+
+PointerTo< TexturePeeker > *
+Texture_C_peek_p_p(Texture *param0) {
+    return new PointerTo< TexturePeeker >((*param0).peek());
+}
+
+
+UpdateSeq *
+Texture_C_get_properties_modified_p_p(Texture const *param0) {
+    return new UpdateSeq((*param0).get_properties_modified());
+}
+
+
+UpdateSeq *
+Texture_C_get_image_modified_p_p(Texture const *param0) {
+    return new UpdateSeq((*param0).get_image_modified());
+}
+
+
+UpdateSeq *
+Texture_C_get_simple_image_modified_p_p(Texture const *param0) {
+    return new UpdateSeq((*param0).get_simple_image_modified());
+}
+
+
+bool
+Texture_C_has_auto_texture_scale_B_p(Texture const *param0) {
+    return (*param0).has_auto_texture_scale();
+}
+
+
+AutoTextureScale
+Texture_C_get_auto_texture_scale_p_p(Texture const *param0) {
+    return (*param0).get_auto_texture_scale();
+}
+
+
+void
+Texture_C_set_auto_texture_scale_v_pp(Texture *param0, AutoTextureScale param1) {
+    (*param0).set_auto_texture_scale(param1);
+}
+
+
+PointerTo< AsyncFuture > *
+Texture_C_prepare_p_pp(Texture *param0, PreparedGraphicsObjects *param1) {
+    return new PointerTo< AsyncFuture >((*param0).prepare(param1));
+}
+
+
+bool
+Texture_C_is_prepared_B_pp(Texture const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).is_prepared(param1);
+}
+
+
+bool
+Texture_C_was_image_modified_B_pp(Texture const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).was_image_modified(param1);
+}
+
+
+std::size_t
+Texture_C_get_data_size_bytes_l_pp(Texture const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).get_data_size_bytes(param1);
+}
+
+
+bool
+Texture_C_get_active_B_pp(Texture const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).get_active(param1);
+}
+
+
+bool
+Texture_C_get_resident_B_pp(Texture const *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).get_resident(param1);
+}
+
+
+bool
+Texture_C_release_B_pp(Texture *param0, PreparedGraphicsObjects *param1) {
+    return (*param0).release(param1);
+}
+
+
+int
+Texture_C_release_all_i_p(Texture *param0) {
+    return (*param0).release_all();
+}
+
+
+std::size_t
+Texture_C_estimate_texture_memory_l_p(Texture const *param0) {
+    return (*param0).estimate_texture_memory();
+}
+
+
+void
+Texture_C_set_aux_data_v_psp(Texture *param0, char const *param1, TypedReferenceCount *param2) {
+    (*param0).set_aux_data(std::string(param1), param2);
+}
+
+
+void
+Texture_C_clear_aux_data_v_ps(Texture *param0, char const *param1) {
+    (*param0).clear_aux_data(std::string(param1));
+}
+
+
+TypedReferenceCount *
+Texture_C_get_aux_data_p_ps(Texture const *param0, char const *param1) {
+    return (*param0).get_aux_data(std::string(param1));
+}
+
+
+void
+Texture_C_set_textures_power_2_v_p(AutoTextureScale param0) {
+    Texture::set_textures_power_2(param0);
+}
+
+
+AutoTextureScale
+Texture_C_get_textures_power_2_p_v() {
+    return Texture::get_textures_power_2();
+}
+
+
+bool
+Texture_C_has_textures_power_2_B_v() {
+    return Texture::has_textures_power_2();
+}
+
+
+int
+Texture_C_get_pad_x_size_i_p(Texture const *param0) {
+    return (*param0).get_pad_x_size();
+}
+
+
+int
+Texture_C_get_pad_y_size_i_p(Texture const *param0) {
+    return (*param0).get_pad_y_size();
+}
+
+
+int
+Texture_C_get_pad_z_size_i_p(Texture const *param0) {
+    return (*param0).get_pad_z_size();
+}
+
+
+LVecBase2 *
+Texture_C_get_tex_scale_p_p(Texture const *param0) {
+    return new LVecBase2((*param0).get_tex_scale());
+}
+
+
+void
+Texture_C_set_pad_size_v_piii(Texture *param0, int param1, int param2, int param3) {
+    (*param0).set_pad_size(param1, param2, param3);
+}
+
+
+void
+Texture_C_set_pad_size_v_pii(Texture *param0, int param1, int param2) {
+    (*param0).set_pad_size(param1, param2);
+}
+
+
+void
+Texture_C_set_pad_size_v_pi(Texture *param0, int param1) {
+    (*param0).set_pad_size(param1);
+}
+
+
+void
+Texture_C_set_pad_size_v_p(Texture *param0) {
+    (*param0).set_pad_size();
+}
+
+
+void
+Texture_C_set_size_padded_v_piii(Texture *param0, int param1, int param2, int param3) {
+    (*param0).set_size_padded(param1, param2, param3);
+}
+
+
+void
+Texture_C_set_size_padded_v_pii(Texture *param0, int param1, int param2) {
+    (*param0).set_size_padded(param1, param2);
+}
+
+
+void
+Texture_C_set_size_padded_v_pi(Texture *param0, int param1) {
+    (*param0).set_size_padded(param1);
+}
+
+
+void
+Texture_C_set_size_padded_v_p(Texture *param0) {
+    (*param0).set_size_padded();
+}
+
+
+int
+Texture_C_get_orig_file_x_size_i_p(Texture const *param0) {
+    return (*param0).get_orig_file_x_size();
+}
+
+
+int
+Texture_C_get_orig_file_y_size_i_p(Texture const *param0) {
+    return (*param0).get_orig_file_y_size();
+}
+
+
+int
+Texture_C_get_orig_file_z_size_i_p(Texture const *param0) {
+    return (*param0).get_orig_file_z_size();
+}
+
+
+void
+Texture_C_set_orig_file_size_v_piii(Texture *param0, int param1, int param2, int param3) {
+    (*param0).set_orig_file_size(param1, param2, param3);
+}
+
+
+void
+Texture_C_set_orig_file_size_v_pii(Texture *param0, int param1, int param2) {
+    (*param0).set_orig_file_size(param1, param2);
+}
+
+
+void
+Texture_C_set_loaded_from_image_v_pB(Texture *param0, bool param1) {
+    (*param0).set_loaded_from_image(param1);
+}
+
+
+void
+Texture_C_set_loaded_from_image_v_p(Texture *param0) {
+    (*param0).set_loaded_from_image();
+}
+
+
+bool
+Texture_C_get_loaded_from_image_B_p(Texture const *param0) {
+    return (*param0).get_loaded_from_image();
+}
+
+
+void
+Texture_C_set_loaded_from_txo_v_pB(Texture *param0, bool param1) {
+    (*param0).set_loaded_from_txo(param1);
+}
+
+
+void
+Texture_C_set_loaded_from_txo_v_p(Texture *param0) {
+    (*param0).set_loaded_from_txo();
+}
+
+
+bool
+Texture_C_get_loaded_from_txo_B_p(Texture const *param0) {
+    return (*param0).get_loaded_from_txo();
+}
+
+
+bool
+Texture_C_get_match_framebuffer_format_B_p(Texture const *param0) {
+    return (*param0).get_match_framebuffer_format();
+}
+
+
+void
+Texture_C_set_match_framebuffer_format_v_pB(Texture *param0, bool param1) {
+    (*param0).set_match_framebuffer_format(param1);
+}
+
+
+bool
+Texture_C_get_post_load_store_cache_B_p(Texture const *param0) {
+    return (*param0).get_post_load_store_cache();
+}
+
+
+void
+Texture_C_set_post_load_store_cache_v_pB(Texture *param0, bool param1) {
+    (*param0).set_post_load_store_cache(param1);
+}
+
+
+TextureContext *
+Texture_C_prepare_now_p_pipp(Texture *param0, int param1, PreparedGraphicsObjects *param2, GraphicsStateGuardianBase *param3) {
+    return (*param0).prepare_now(param1, param2, param3);
+}
+
+
+int
+Texture_C_up_to_power_2_i_i(int param0) {
+    return Texture::up_to_power_2(param0);
+}
+
+
+int
+Texture_C_down_to_power_2_i_i(int param0) {
+    return Texture::down_to_power_2(param0);
+}
+
+
+void
+Texture_C_consider_rescale_v_pp(Texture *param0, PNMImage *param1) {
+    (*param0).consider_rescale(*param1);
+}
+
+
+void
+Texture_C_consider_rescale_v_psp(PNMImage *param0, char const *param1, AutoTextureScale param2) {
+    Texture::consider_rescale(*param0, std::string(param1), param2);
+}
+
+
+void
+Texture_C_consider_rescale_v_ps(PNMImage *param0, char const *param1) {
+    Texture::consider_rescale(*param0, std::string(param1));
+}
+
+
+bool
+Texture_C_rescale_texture_B_p(Texture *param0) {
+    return (*param0).rescale_texture();
+}
+
+
+char const *
+Texture_C_format_texture_type_s_p(Texture::TextureType param0) {
+    static std::string string_holder = Texture::format_texture_type(param0);
+    return string_holder.c_str();
+}
+
+
+Texture::TextureType
+Texture_C_string_texture_type_p_s(char const *param0) {
+    return Texture::string_texture_type(std::string(param0));
+}
+
+
+char const *
+Texture_C_format_component_type_s_p(Texture::ComponentType param0) {
+    static std::string string_holder = Texture::format_component_type(param0);
+    return string_holder.c_str();
+}
+
+
+Texture::ComponentType
+Texture_C_string_component_type_p_s(char const *param0) {
+    return Texture::string_component_type(std::string(param0));
+}
+
+
+char const *
+Texture_C_format_format_s_p(Texture::Format param0) {
+    static std::string string_holder = Texture::format_format(param0);
+    return string_holder.c_str();
+}
+
+
+Texture::Format
+Texture_C_string_format_p_s(char const *param0) {
+    return Texture::string_format(std::string(param0));
+}
+
+
+char const *
+Texture_C_format_compression_mode_s_p(Texture::CompressionMode param0) {
+    static std::string string_holder = Texture::format_compression_mode(param0);
+    return string_holder.c_str();
+}
+
+
+Texture::CompressionMode
+Texture_C_string_compression_mode_p_s(char const *param0) {
+    return Texture::string_compression_mode(std::string(param0));
+}
+
+
+char const *
+Texture_C_format_quality_level_s_p(Texture::QualityLevel param0) {
+    static std::string string_holder = Texture::format_quality_level(param0);
+    return string_holder.c_str();
+}
+
+
+Texture::QualityLevel
+Texture_C_string_quality_level_p_s(char const *param0) {
+    return Texture::string_quality_level(std::string(param0));
+}
+
+
+void
+Texture_C_texture_uploaded_v_p(Texture *param0) {
+    (*param0).texture_uploaded();
+}
+
+
+bool
+Texture_C_has_cull_callback_B_p(Texture const *param0) {
+    return (*param0).has_cull_callback();
+}
+
+
+bool
+Texture_C_cull_callback_B_ppp(Texture const *param0, CullTraverser *param1, CullTraverserData const *param2) {
+    return (*param0).cull_callback(param1, *param2);
+}
+
+
+PointerTo< Texture > *
+Texture_C_make_texture_p_v() {
+    return new PointerTo< Texture >(Texture::make_texture());
+}
+
+
+bool
+Texture_C_is_unsigned_B_p(Texture::ComponentType param0) {
+    return Texture::is_unsigned(param0);
+}
+
+
+bool
+Texture_C_is_specific_B_p(Texture::CompressionMode param0) {
+    return Texture::is_specific(param0);
+}
+
+
+bool
+Texture_C_has_alpha_B_p(Texture::Format param0) {
+    return Texture::has_alpha(param0);
+}
+
+
+bool
+Texture_C_has_binary_alpha_B_p(Texture::Format param0) {
+    return Texture::has_binary_alpha(param0);
+}
+
+
+bool
+Texture_C_is_srgb_B_p(Texture::Format param0) {
+    return Texture::is_srgb(param0);
+}
+
+
+void
+Texture_C_ensure_loader_type_v_pp(Texture *param0, Filename const *param1) {
+    (*param0).ensure_loader_type(*param1);
+}
+
+
+void
+Texture_C_register_with_read_factory_v_v() {
+    Texture::register_with_read_factory();
+}
+
+
+void
+Texture_C_write_datagram_v_ppp(Texture *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+void
+Texture_C_finalize_v_pp(Texture *param0, BamReader *param1) {
+    (*param0).finalize(param1);
+}
+
+
+int
+Texture_C_get_class_type_i_v() {
+    return (Texture::get_class_type()).get_index();
+}
+
+
+void
+Texture_C_init_type_v_v() {
+    Texture::init_type();
+}
+
+
+int
+Texture_C_get_type_i_p(Texture const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+Texture_C_force_init_type_i_p(Texture *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// TextureCollection
+
+
+TextureCollection *
+TextureCollection_C_ctor_p_v() {
+    return new TextureCollection();
+}
+
+
+TextureCollection *
+TextureCollection_C_ctor_p_p(TextureCollection const *param0) {
+    return new TextureCollection(*param0);
+}
+
+
+void
+TextureCollection_C_add_texture_v_pp(TextureCollection *param0, Texture *param1) {
+    (*param0).add_texture(param1);
+}
+
+
+bool
+TextureCollection_C_remove_texture_B_pp(TextureCollection *param0, Texture *param1) {
+    return (*param0).remove_texture(param1);
+}
+
+
+void
+TextureCollection_C_add_textures_from_v_pp(TextureCollection *param0, TextureCollection const *param1) {
+    (*param0).add_textures_from(*param1);
+}
+
+
+void
+TextureCollection_C_remove_textures_from_v_pp(TextureCollection *param0, TextureCollection const *param1) {
+    (*param0).remove_textures_from(*param1);
+}
+
+
+void
+TextureCollection_C_remove_duplicate_textures_v_p(TextureCollection *param0) {
+    (*param0).remove_duplicate_textures();
+}
+
+
+bool
+TextureCollection_C_has_texture_B_pp(TextureCollection const *param0, Texture *param1) {
+    return (*param0).has_texture(param1);
+}
+
+
+void
+TextureCollection_C_clear_v_p(TextureCollection *param0) {
+    (*param0).clear();
+}
+
+
+void
+TextureCollection_C_reserve_v_pl(TextureCollection *param0, std::size_t param1) {
+    (*param0).reserve(param1);
+}
+
+
+Texture *
+TextureCollection_C_find_texture_p_ps(TextureCollection const *param0, char const *param1) {
+    return (*param0).find_texture(std::string(param1));
+}
+
+
+int
+TextureCollection_C_get_num_textures_i_p(TextureCollection const *param0) {
+    return (*param0).get_num_textures();
+}
+
+
+Texture *
+TextureCollection_C_get_texture_p_pi(TextureCollection const *param0, int param1) {
+    return (*param0).get_texture(param1);
+}
+
+
+int
+TextureCollection_C_size_i_p(TextureCollection const *param0) {
+    return (*param0).size();
+}
+
+
+void
+TextureCollection_C_append_v_pp(TextureCollection *param0, Texture *param1) {
+    (*param0).append(param1);
+}
+
+
+void
+TextureCollection_C_extend_v_pp(TextureCollection *param0, TextureCollection const *param1) {
+    (*param0).extend(*param1);
+}
+
+
+void
+TextureCollection_C_output_v_pp(TextureCollection const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+TextureCollection_C_write_v_ppi(TextureCollection const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+void
+TextureCollection_C_write_v_pp(TextureCollection const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+// TexturePeeker
+
+
+bool
+TexturePeeker_C_is_valid_B_p(TexturePeeker const *param0) {
+    return (*param0).is_valid();
+}
+
+
+int
+TexturePeeker_C_get_x_size_i_p(TexturePeeker const *param0) {
+    return (*param0).get_x_size();
+}
+
+
+int
+TexturePeeker_C_get_y_size_i_p(TexturePeeker const *param0) {
+    return (*param0).get_y_size();
+}
+
+
+int
+TexturePeeker_C_get_z_size_i_p(TexturePeeker const *param0) {
+    return (*param0).get_z_size();
+}
+
+
+bool
+TexturePeeker_C_has_pixel_B_pii(TexturePeeker const *param0, int param1, int param2) {
+    return (*param0).has_pixel(param1, param2);
+}
+
+
+void
+TexturePeeker_C_lookup_v_ppff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3) {
+    (*param0).lookup(*param1, param2, param3);
+}
+
+
+void
+TexturePeeker_C_lookup_v_ppfff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4) {
+    (*param0).lookup(*param1, param2, param3, param4);
+}
+
+
+void
+TexturePeeker_C_fetch_pixel_v_ppii(TexturePeeker const *param0, LColor *param1, int param2, int param3) {
+    (*param0).fetch_pixel(*param1, param2, param3);
+}
+
+
+bool
+TexturePeeker_C_lookup_bilinear_B_ppff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3) {
+    return (*param0).lookup_bilinear(*param1, param2, param3);
+}
+
+
+void
+TexturePeeker_C_filter_rect_v_ppffff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5) {
+    (*param0).filter_rect(*param1, param2, param3, param4, param5);
+}
+
+
+void
+TexturePeeker_C_filter_rect_v_ppffffff(TexturePeeker const *param0, LColor *param1, PN_stdfloat param2, PN_stdfloat param3, PN_stdfloat param4, PN_stdfloat param5, PN_stdfloat param6, PN_stdfloat param7) {
+    (*param0).filter_rect(*param1, param2, param3, param4, param5, param6, param7);
+}
+
+
+TexturePeeker *
+TexturePeeker_C_ctor_p_p(TexturePeeker const *param0) {
+    return new TexturePeeker(*param0);
+}
+
+
 // Thread
 
 
@@ -17590,6 +26494,801 @@ Thread_C_force_init_type_i_p(Thread *param0) {
 }
 
 
+// TouchInfo
+
+
+TouchInfo *
+TouchInfo_C_ctor_p_v() {
+    return new TouchInfo();
+}
+
+
+TouchInfo *
+TouchInfo_C_ctor_p_p(TouchInfo const *param0) {
+    return new TouchInfo(*param0);
+}
+
+
+void
+TouchInfo_C_set_x_v_pi(TouchInfo *param0, int param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+TouchInfo_C_set_y_v_pi(TouchInfo *param0, int param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+TouchInfo_C_set_id_v_pi(TouchInfo *param0, int param1) {
+    (*param0).set_id(param1);
+}
+
+
+void
+TouchInfo_C_set_flags_v_pi(TouchInfo *param0, int param1) {
+    (*param0).set_flags(param1);
+}
+
+
+int
+TouchInfo_C_get_x_i_p(TouchInfo *param0) {
+    return (*param0).get_x();
+}
+
+
+int
+TouchInfo_C_get_y_i_p(TouchInfo *param0) {
+    return (*param0).get_y();
+}
+
+
+int
+TouchInfo_C_get_id_i_p(TouchInfo *param0) {
+    return (*param0).get_id();
+}
+
+
+int
+TouchInfo_C_get_flags_i_p(TouchInfo *param0) {
+    return (*param0).get_flags();
+}
+
+
+// TransformState
+
+
+int
+TransformState_C_compare_to_i_pp(TransformState const *param0, TransformState const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+TransformState_C_compare_to_i_ppB(TransformState const *param0, TransformState const *param1, bool param2) {
+    return (*param0).compare_to(*param1, param2);
+}
+
+
+std::size_t
+TransformState_C_get_hash_l_p(TransformState const *param0) {
+    return (*param0).get_hash();
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_identity_p_v() {
+    return new ConstPointerTo< TransformState >(TransformState::make_identity());
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_invalid_p_v() {
+    return new ConstPointerTo< TransformState >(TransformState::make_invalid());
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_p_p(LVecBase3 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_hpr_p_p(LVecBase3 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_hpr(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_quat_p_p(LQuaternion const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_quat(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_hpr_p_pp(LVecBase3 const *param0, LVecBase3 const *param1) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_hpr(*param0, *param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_scale_p_p(LVecBase3 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_scale(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_scale_p_f(PN_stdfloat param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_scale(param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_shear_p_p(LVecBase3 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_shear(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_hpr_scale_p_ppp(LVecBase3 const *param0, LVecBase3 const *param1, LVecBase3 const *param2) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_hpr_scale(*param0, *param1, *param2));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_quat_scale_p_ppp(LVecBase3 const *param0, LQuaternion const *param1, LVecBase3 const *param2) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_quat_scale(*param0, *param1, *param2));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_hpr_scale_shear_p_pppp(LVecBase3 const *param0, LVecBase3 const *param1, LVecBase3 const *param2, LVecBase3 const *param3) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_hpr_scale_shear(*param0, *param1, *param2, *param3));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_quat_scale_shear_p_pppp(LVecBase3 const *param0, LQuaternion const *param1, LVecBase3 const *param2, LVecBase3 const *param3) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_quat_scale_shear(*param0, *param1, *param2, *param3));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_mat_p_p(LMatrix4 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_mat(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos2d_p_p(LVecBase2 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos2d(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_rotate2d_p_f(PN_stdfloat param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_rotate2d(param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_rotate2d_p_pf(LVecBase2 const *param0, PN_stdfloat param1) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_rotate2d(*param0, param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_scale2d_p_p(LVecBase2 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_scale2d(*param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_scale2d_p_f(PN_stdfloat param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_scale2d(param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_shear2d_p_f(PN_stdfloat param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_shear2d(param0));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_rotate_scale2d_p_pfp(LVecBase2 const *param0, PN_stdfloat param1, LVecBase2 const *param2) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_rotate_scale2d(*param0, param1, *param2));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_pos_rotate_scale_shear2d_p_pfpf(LVecBase2 const *param0, PN_stdfloat param1, LVecBase2 const *param2, PN_stdfloat param3) {
+    return new ConstPointerTo< TransformState >(TransformState::make_pos_rotate_scale_shear2d(*param0, param1, *param2, param3));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_make_mat3_p_p(LMatrix3 const *param0) {
+    return new ConstPointerTo< TransformState >(TransformState::make_mat3(*param0));
+}
+
+
+bool
+TransformState_C_is_identity_B_p(TransformState const *param0) {
+    return (*param0).is_identity();
+}
+
+
+bool
+TransformState_C_is_invalid_B_p(TransformState const *param0) {
+    return (*param0).is_invalid();
+}
+
+
+bool
+TransformState_C_is_singular_B_p(TransformState const *param0) {
+    return (*param0).is_singular();
+}
+
+
+bool
+TransformState_C_is_2d_B_p(TransformState const *param0) {
+    return (*param0).is_2d();
+}
+
+
+bool
+TransformState_C_has_components_B_p(TransformState const *param0) {
+    return (*param0).has_components();
+}
+
+
+bool
+TransformState_C_components_given_B_p(TransformState const *param0) {
+    return (*param0).components_given();
+}
+
+
+bool
+TransformState_C_hpr_given_B_p(TransformState const *param0) {
+    return (*param0).hpr_given();
+}
+
+
+bool
+TransformState_C_quat_given_B_p(TransformState const *param0) {
+    return (*param0).quat_given();
+}
+
+
+bool
+TransformState_C_has_pos_B_p(TransformState const *param0) {
+    return (*param0).has_pos();
+}
+
+
+bool
+TransformState_C_has_hpr_B_p(TransformState const *param0) {
+    return (*param0).has_hpr();
+}
+
+
+bool
+TransformState_C_has_quat_B_p(TransformState const *param0) {
+    return (*param0).has_quat();
+}
+
+
+bool
+TransformState_C_has_scale_B_p(TransformState const *param0) {
+    return (*param0).has_scale();
+}
+
+
+bool
+TransformState_C_has_identity_scale_B_p(TransformState const *param0) {
+    return (*param0).has_identity_scale();
+}
+
+
+bool
+TransformState_C_has_uniform_scale_B_p(TransformState const *param0) {
+    return (*param0).has_uniform_scale();
+}
+
+
+bool
+TransformState_C_has_shear_B_p(TransformState const *param0) {
+    return (*param0).has_shear();
+}
+
+
+bool
+TransformState_C_has_nonzero_shear_B_p(TransformState const *param0) {
+    return (*param0).has_nonzero_shear();
+}
+
+
+bool
+TransformState_C_has_mat_B_p(TransformState const *param0) {
+    return (*param0).has_mat();
+}
+
+
+LPoint3 const *
+TransformState_C_get_pos_p_p(TransformState const *param0) {
+    return &((*param0).get_pos());
+}
+
+
+LVecBase3 const *
+TransformState_C_get_hpr_p_p(TransformState const *param0) {
+    return &((*param0).get_hpr());
+}
+
+
+LQuaternion const *
+TransformState_C_get_quat_p_p(TransformState const *param0) {
+    return &((*param0).get_quat());
+}
+
+
+LQuaternion const *
+TransformState_C_get_norm_quat_p_p(TransformState const *param0) {
+    return &((*param0).get_norm_quat());
+}
+
+
+LVecBase3 const *
+TransformState_C_get_scale_p_p(TransformState const *param0) {
+    return &((*param0).get_scale());
+}
+
+
+PN_stdfloat
+TransformState_C_get_uniform_scale_f_p(TransformState const *param0) {
+    return (*param0).get_uniform_scale();
+}
+
+
+LVecBase3 const *
+TransformState_C_get_shear_p_p(TransformState const *param0) {
+    return &((*param0).get_shear());
+}
+
+
+LMatrix4 const *
+TransformState_C_get_mat_p_p(TransformState const *param0) {
+    return &((*param0).get_mat());
+}
+
+
+LVecBase2 *
+TransformState_C_get_pos2d_p_p(TransformState const *param0) {
+    return new LVecBase2((*param0).get_pos2d());
+}
+
+
+PN_stdfloat
+TransformState_C_get_rotate2d_f_p(TransformState const *param0) {
+    return (*param0).get_rotate2d();
+}
+
+
+LVecBase2 *
+TransformState_C_get_scale2d_p_p(TransformState const *param0) {
+    return new LVecBase2((*param0).get_scale2d());
+}
+
+
+PN_stdfloat
+TransformState_C_get_shear2d_f_p(TransformState const *param0) {
+    return (*param0).get_shear2d();
+}
+
+
+LMatrix3 *
+TransformState_C_get_mat3_p_p(TransformState const *param0) {
+    return new LMatrix3((*param0).get_mat3());
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_pos_p_pp(TransformState const *param0, LVecBase3 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_pos(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_hpr_p_pp(TransformState const *param0, LVecBase3 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_hpr(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_quat_p_pp(TransformState const *param0, LQuaternion const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_quat(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_scale_p_pp(TransformState const *param0, LVecBase3 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_scale(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_shear_p_pp(TransformState const *param0, LVecBase3 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_shear(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_pos2d_p_pp(TransformState const *param0, LVecBase2 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_pos2d(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_rotate2d_p_pf(TransformState const *param0, PN_stdfloat param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_rotate2d(param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_scale2d_p_pp(TransformState const *param0, LVecBase2 const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_scale2d(*param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_set_shear2d_p_pf(TransformState const *param0, PN_stdfloat param1) {
+    return new ConstPointerTo< TransformState >((*param0).set_shear2d(param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_compose_p_pp(TransformState const *param0, TransformState const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).compose(param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_invert_compose_p_pp(TransformState const *param0, TransformState const *param1) {
+    return new ConstPointerTo< TransformState >((*param0).invert_compose(param1));
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_get_inverse_p_p(TransformState const *param0) {
+    return new ConstPointerTo< TransformState >((*param0).get_inverse());
+}
+
+
+ConstPointerTo< TransformState > *
+TransformState_C_get_unique_p_p(TransformState const *param0) {
+    return new ConstPointerTo< TransformState >((*param0).get_unique());
+}
+
+
+int
+TransformState_C_get_geom_rendering_i_pi(TransformState const *param0, int param1) {
+    return (*param0).get_geom_rendering(param1);
+}
+
+
+void
+TransformState_C_cache_ref_v_p(TransformState const *param0) {
+    (*param0).cache_ref();
+}
+
+
+bool
+TransformState_C_cache_unref_B_p(TransformState const *param0) {
+    return (*param0).cache_unref();
+}
+
+
+void
+TransformState_C_node_ref_v_p(TransformState const *param0) {
+    (*param0).node_ref();
+}
+
+
+bool
+TransformState_C_node_unref_B_p(TransformState const *param0) {
+    return (*param0).node_unref();
+}
+
+
+std::size_t
+TransformState_C_get_composition_cache_num_entries_l_p(TransformState const *param0) {
+    return (*param0).get_composition_cache_num_entries();
+}
+
+
+std::size_t
+TransformState_C_get_invert_composition_cache_num_entries_l_p(TransformState const *param0) {
+    return (*param0).get_invert_composition_cache_num_entries();
+}
+
+
+std::size_t
+TransformState_C_get_composition_cache_size_l_p(TransformState const *param0) {
+    return (*param0).get_composition_cache_size();
+}
+
+
+TransformState const *
+TransformState_C_get_composition_cache_source_p_pl(TransformState const *param0, std::size_t param1) {
+    return (*param0).get_composition_cache_source(param1);
+}
+
+
+TransformState const *
+TransformState_C_get_composition_cache_result_p_pl(TransformState const *param0, std::size_t param1) {
+    return (*param0).get_composition_cache_result(param1);
+}
+
+
+std::size_t
+TransformState_C_get_invert_composition_cache_size_l_p(TransformState const *param0) {
+    return (*param0).get_invert_composition_cache_size();
+}
+
+
+TransformState const *
+TransformState_C_get_invert_composition_cache_source_p_pl(TransformState const *param0, std::size_t param1) {
+    return (*param0).get_invert_composition_cache_source(param1);
+}
+
+
+TransformState const *
+TransformState_C_get_invert_composition_cache_result_p_pl(TransformState const *param0, std::size_t param1) {
+    return (*param0).get_invert_composition_cache_result(param1);
+}
+
+
+bool
+TransformState_C_validate_composition_cache_B_p(TransformState const *param0) {
+    return (*param0).validate_composition_cache();
+}
+
+
+void
+TransformState_C_output_v_pp(TransformState const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+TransformState_C_write_v_ppi(TransformState const *param0, std::ostream *param1, int param2) {
+    (*param0).write(*param1, param2);
+}
+
+
+void
+TransformState_C_write_composition_cache_v_ppi(TransformState const *param0, std::ostream *param1, int param2) {
+    (*param0).write_composition_cache(*param1, param2);
+}
+
+
+int
+TransformState_C_get_num_states_i_v() {
+    return TransformState::get_num_states();
+}
+
+
+int
+TransformState_C_get_num_unused_states_i_v() {
+    return TransformState::get_num_unused_states();
+}
+
+
+int
+TransformState_C_clear_cache_i_v() {
+    return TransformState::clear_cache();
+}
+
+
+int
+TransformState_C_garbage_collect_i_v() {
+    return TransformState::garbage_collect();
+}
+
+
+void
+TransformState_C_list_cycles_v_p(std::ostream *param0) {
+    TransformState::list_cycles(*param0);
+}
+
+
+void
+TransformState_C_list_states_v_p(std::ostream *param0) {
+    TransformState::list_states(*param0);
+}
+
+
+bool
+TransformState_C_validate_states_B_v() {
+    return TransformState::validate_states();
+}
+
+
+void
+TransformState_C_init_states_v_v() {
+    TransformState::init_states();
+}
+
+
+void
+TransformState_C_flush_level_v_v() {
+    TransformState::flush_level();
+}
+
+
+void
+TransformState_C_register_with_read_factory_v_v() {
+    TransformState::register_with_read_factory();
+}
+
+
+void
+TransformState_C_write_datagram_v_ppp(TransformState *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+PointerTo< TypedWritableReferenceCount > *
+TransformState_C_change_this_p_pp(TypedWritableReferenceCount *param0, BamReader *param1) {
+    return new PointerTo< TypedWritableReferenceCount >(TransformState::change_this(param0, param1));
+}
+
+
+int
+TransformState_C_get_class_type_i_v() {
+    return (TransformState::get_class_type()).get_index();
+}
+
+
+void
+TransformState_C_init_type_v_v() {
+    TransformState::init_type();
+}
+
+
+int
+TransformState_C_get_type_i_p(TransformState const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+TransformState_C_force_init_type_i_p(TransformState *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// TransformTable
+
+
+TransformTable *
+TransformTable_C_ctor_p_v() {
+    return new TransformTable();
+}
+
+
+TransformTable *
+TransformTable_C_ctor_p_p(TransformTable const *param0) {
+    return new TransformTable(*param0);
+}
+
+
+bool
+TransformTable_C_is_registered_B_p(TransformTable const *param0) {
+    return (*param0).is_registered();
+}
+
+
+ConstPointerTo< TransformTable > *
+TransformTable_C_register_table_p_p(TransformTable const *param0) {
+    return new ConstPointerTo< TransformTable >(TransformTable::register_table(param0));
+}
+
+
+std::size_t
+TransformTable_C_get_num_transforms_l_p(TransformTable const *param0) {
+    return (*param0).get_num_transforms();
+}
+
+
+VertexTransform const *
+TransformTable_C_get_transform_p_pl(TransformTable const *param0, std::size_t param1) {
+    return (*param0).get_transform(param1);
+}
+
+
+UpdateSeq *
+TransformTable_C_get_modified_p_pp(TransformTable const *param0, Thread *param1) {
+    return new UpdateSeq((*param0).get_modified(param1));
+}
+
+
+UpdateSeq *
+TransformTable_C_get_modified_p_p(TransformTable const *param0) {
+    return new UpdateSeq((*param0).get_modified());
+}
+
+
+void
+TransformTable_C_set_transform_v_plp(TransformTable *param0, std::size_t param1, VertexTransform const *param2) {
+    (*param0).set_transform(param1, param2);
+}
+
+
+void
+TransformTable_C_insert_transform_v_plp(TransformTable *param0, std::size_t param1, VertexTransform const *param2) {
+    (*param0).insert_transform(param1, param2);
+}
+
+
+void
+TransformTable_C_remove_transform_v_pl(TransformTable *param0, std::size_t param1) {
+    (*param0).remove_transform(param1);
+}
+
+
+std::size_t
+TransformTable_C_add_transform_l_pp(TransformTable *param0, VertexTransform const *param1) {
+    return (*param0).add_transform(param1);
+}
+
+
+void
+TransformTable_C_write_v_pp(TransformTable const *param0, std::ostream *param1) {
+    (*param0).write(*param1);
+}
+
+
+void
+TransformTable_C_register_with_read_factory_v_v() {
+    TransformTable::register_with_read_factory();
+}
+
+
+void
+TransformTable_C_write_datagram_v_ppp(TransformTable *param0, BamWriter *param1, Datagram *param2) {
+    (*param0).write_datagram(param1, *param2);
+}
+
+
+int
+TransformTable_C_get_class_type_i_v() {
+    return (TransformTable::get_class_type()).get_index();
+}
+
+
+void
+TransformTable_C_init_type_v_v() {
+    TransformTable::init_type();
+}
+
+
+int
+TransformTable_C_get_type_i_p(TransformTable const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+TransformTable_C_force_init_type_i_p(TransformTable *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
 // TypedObject
 
 
@@ -17660,6 +27359,24 @@ TypedObject_C_init_type_v_v() {
 
 
 // TypedReferenceCount
+
+
+DisplayRegion *
+TypedReferenceCount_C_downcast_to_DisplayRegion_p_p(TypedReferenceCount *param0) {
+    return (DisplayRegion *)param0;
+}
+
+
+Loader *
+TypedReferenceCount_C_downcast_to_Loader_p_p(TypedReferenceCount *param0) {
+    return (Loader *)param0;
+}
+
+
+TextFont *
+TypedReferenceCount_C_downcast_to_TextFont_p_p(TypedReferenceCount *param0) {
+    return (TextFont *)param0;
+}
 
 
 Thread *
@@ -17776,9 +27493,96 @@ TypedWritableReferenceCount_C_downcast_to_PandaNode_p_p(TypedWritableReferenceCo
 }
 
 
+GeomVertexArrayFormat *
+TypedWritableReferenceCount_C_downcast_to_GeomVertexArrayFormat_p_p(TypedWritableReferenceCount *param0) {
+    return (GeomVertexArrayFormat *)param0;
+}
+
+
 GeomVertexFormat *
 TypedWritableReferenceCount_C_downcast_to_GeomVertexFormat_p_p(TypedWritableReferenceCount *param0) {
     return (GeomVertexFormat *)param0;
+}
+
+
+Texture *
+TypedWritableReferenceCount_C_downcast_to_Texture_p_p(TypedWritableReferenceCount *param0) {
+    return (Texture *)param0;
+}
+
+
+// UpdateSeq
+
+
+UpdateSeq *
+UpdateSeq_C_ctor_p_v() {
+    return new UpdateSeq();
+}
+
+
+UpdateSeq *
+UpdateSeq_C_ctor_p_p(UpdateSeq const *param0) {
+    return new UpdateSeq(*param0);
+}
+
+
+UpdateSeq *
+UpdateSeq_C_initial_p_v() {
+    return new UpdateSeq(UpdateSeq::initial());
+}
+
+
+UpdateSeq *
+UpdateSeq_C_old_p_v() {
+    return new UpdateSeq(UpdateSeq::old());
+}
+
+
+UpdateSeq *
+UpdateSeq_C_fresh_p_v() {
+    return new UpdateSeq(UpdateSeq::fresh());
+}
+
+
+void
+UpdateSeq_C_clear_v_p(UpdateSeq *param0) {
+    (*param0).clear();
+}
+
+
+bool
+UpdateSeq_C_is_initial_B_p(UpdateSeq const *param0) {
+    return (*param0).is_initial();
+}
+
+
+bool
+UpdateSeq_C_is_old_B_p(UpdateSeq const *param0) {
+    return (*param0).is_old();
+}
+
+
+bool
+UpdateSeq_C_is_fresh_B_p(UpdateSeq const *param0) {
+    return (*param0).is_fresh();
+}
+
+
+bool
+UpdateSeq_C_is_special_B_p(UpdateSeq const *param0) {
+    return (*param0).is_special();
+}
+
+
+AtomicAdjust::Integer
+UpdateSeq_C_get_seq_p_p(UpdateSeq const *param0) {
+    return (*param0).get_seq();
+}
+
+
+void
+UpdateSeq_C_output_v_pp(UpdateSeq const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
 }
 
 
@@ -18094,5 +27898,605 @@ WindowFramework_C_force_init_type_i_p(WindowFramework *param0) {
 WindowFramework *
 WindowFramework_C_ctor_p_p(WindowFramework const *param0) {
     return new WindowFramework(*param0);
+}
+
+
+// WindowHandle
+
+
+WindowHandle *
+WindowHandle_C_ctor_p_p(WindowHandle const *param0) {
+    return new WindowHandle(*param0);
+}
+
+
+WindowHandle *
+WindowHandle_C_ctor_p_p_1_p_p(WindowHandle::OSHandle *param0) {
+    return new WindowHandle(param0);
+}
+
+
+WindowHandle::OSHandle *
+WindowHandle_C_get_os_handle_p_p(WindowHandle const *param0) {
+    return (*param0).get_os_handle();
+}
+
+
+void
+WindowHandle_C_set_os_handle_v_pp(WindowHandle *param0, WindowHandle::OSHandle *param1) {
+    (*param0).set_os_handle(param1);
+}
+
+
+void
+WindowHandle_C_send_windows_message_v_pIii(WindowHandle *param0, unsigned int param1, int param2, int param3) {
+    (*param0).send_windows_message(param1, param2, param3);
+}
+
+
+std::size_t
+WindowHandle_C_get_int_handle_l_p(WindowHandle const *param0) {
+    return (*param0).get_int_handle();
+}
+
+
+void
+WindowHandle_C_output_v_pp(WindowHandle const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+WindowHandle_C_attach_child_v_pp(WindowHandle *param0, WindowHandle *param1) {
+    (*param0).attach_child(param1);
+}
+
+
+void
+WindowHandle_C_detach_child_v_pp(WindowHandle *param0, WindowHandle *param1) {
+    (*param0).detach_child(param1);
+}
+
+
+void
+WindowHandle_C_request_keyboard_focus_v_pp(WindowHandle *param0, WindowHandle *param1) {
+    (*param0).request_keyboard_focus(param1);
+}
+
+
+void
+WindowHandle_C_receive_windows_message_v_pIii(WindowHandle *param0, unsigned int param1, int param2, int param3) {
+    (*param0).receive_windows_message(param1, param2, param3);
+}
+
+
+int
+WindowHandle_C_get_class_type_i_v() {
+    return (WindowHandle::get_class_type()).get_index();
+}
+
+
+void
+WindowHandle_C_init_type_v_v() {
+    WindowHandle::init_type();
+}
+
+
+int
+WindowHandle_C_get_type_i_p(WindowHandle const *param0) {
+    return ((*param0).get_type()).get_index();
+}
+
+
+int
+WindowHandle_C_force_init_type_i_p(WindowHandle *param0) {
+    return ((*param0).force_init_type()).get_index();
+}
+
+
+// WindowProperties
+
+
+WindowProperties *
+WindowProperties_C_ctor_p_v() {
+    return new WindowProperties();
+}
+
+
+WindowProperties *
+WindowProperties_C_ctor_p_p(WindowProperties const *param0) {
+    return new WindowProperties(*param0);
+}
+
+
+WindowProperties *
+WindowProperties_C_get_config_properties_p_v() {
+    return new WindowProperties(WindowProperties::get_config_properties());
+}
+
+
+WindowProperties *
+WindowProperties_C_get_default_p_v() {
+    return new WindowProperties(WindowProperties::get_default());
+}
+
+
+void
+WindowProperties_C_set_default_v_p(WindowProperties const *param0) {
+    WindowProperties::set_default(*param0);
+}
+
+
+void
+WindowProperties_C_clear_default_v_v() {
+    WindowProperties::clear_default();
+}
+
+
+WindowProperties *
+WindowProperties_C_size_p_p(LVecBase2i const *param0) {
+    return new WindowProperties(WindowProperties::size(*param0));
+}
+
+
+WindowProperties *
+WindowProperties_C_size_p_ii(int param0, int param1) {
+    return new WindowProperties(WindowProperties::size(param0, param1));
+}
+
+
+void
+WindowProperties_C_clear_v_p(WindowProperties *param0) {
+    (*param0).clear();
+}
+
+
+bool
+WindowProperties_C_is_any_specified_B_p(WindowProperties const *param0) {
+    return (*param0).is_any_specified();
+}
+
+
+void
+WindowProperties_C_set_origin_v_pp(WindowProperties *param0, LPoint2i const *param1) {
+    (*param0).set_origin(*param1);
+}
+
+
+void
+WindowProperties_C_set_origin_v_pii(WindowProperties *param0, int param1, int param2) {
+    (*param0).set_origin(param1, param2);
+}
+
+
+LPoint2i const *
+WindowProperties_C_get_origin_p_p(WindowProperties const *param0) {
+    return &((*param0).get_origin());
+}
+
+
+int
+WindowProperties_C_get_x_origin_i_p(WindowProperties const *param0) {
+    return (*param0).get_x_origin();
+}
+
+
+int
+WindowProperties_C_get_y_origin_i_p(WindowProperties const *param0) {
+    return (*param0).get_y_origin();
+}
+
+
+bool
+WindowProperties_C_has_origin_B_p(WindowProperties const *param0) {
+    return (*param0).has_origin();
+}
+
+
+void
+WindowProperties_C_clear_origin_v_p(WindowProperties *param0) {
+    (*param0).clear_origin();
+}
+
+
+void
+WindowProperties_C_set_size_v_pp(WindowProperties *param0, LVector2i const *param1) {
+    (*param0).set_size(*param1);
+}
+
+
+void
+WindowProperties_C_set_size_v_pii(WindowProperties *param0, int param1, int param2) {
+    (*param0).set_size(param1, param2);
+}
+
+
+LVector2i const *
+WindowProperties_C_get_size_p_p(WindowProperties const *param0) {
+    return &((*param0).get_size());
+}
+
+
+int
+WindowProperties_C_get_x_size_i_p(WindowProperties const *param0) {
+    return (*param0).get_x_size();
+}
+
+
+int
+WindowProperties_C_get_y_size_i_p(WindowProperties const *param0) {
+    return (*param0).get_y_size();
+}
+
+
+bool
+WindowProperties_C_has_size_B_p(WindowProperties const *param0) {
+    return (*param0).has_size();
+}
+
+
+void
+WindowProperties_C_clear_size_v_p(WindowProperties *param0) {
+    (*param0).clear_size();
+}
+
+
+bool
+WindowProperties_C_has_mouse_mode_B_p(WindowProperties const *param0) {
+    return (*param0).has_mouse_mode();
+}
+
+
+void
+WindowProperties_C_set_mouse_mode_v_pp(WindowProperties *param0, WindowProperties::MouseMode param1) {
+    (*param0).set_mouse_mode(param1);
+}
+
+
+WindowProperties::MouseMode
+WindowProperties_C_get_mouse_mode_p_p(WindowProperties const *param0) {
+    return (*param0).get_mouse_mode();
+}
+
+
+void
+WindowProperties_C_clear_mouse_mode_v_p(WindowProperties *param0) {
+    (*param0).clear_mouse_mode();
+}
+
+
+void
+WindowProperties_C_set_title_v_ps(WindowProperties *param0, char const *param1) {
+    (*param0).set_title(std::string(param1));
+}
+
+
+char const *
+WindowProperties_C_get_title_s_p(WindowProperties const *param0) {
+    return ((*param0).get_title()).c_str();
+}
+
+
+bool
+WindowProperties_C_has_title_B_p(WindowProperties const *param0) {
+    return (*param0).has_title();
+}
+
+
+void
+WindowProperties_C_clear_title_v_p(WindowProperties *param0) {
+    (*param0).clear_title();
+}
+
+
+void
+WindowProperties_C_set_undecorated_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_undecorated(param1);
+}
+
+
+bool
+WindowProperties_C_get_undecorated_B_p(WindowProperties const *param0) {
+    return (*param0).get_undecorated();
+}
+
+
+bool
+WindowProperties_C_has_undecorated_B_p(WindowProperties const *param0) {
+    return (*param0).has_undecorated();
+}
+
+
+void
+WindowProperties_C_clear_undecorated_v_p(WindowProperties *param0) {
+    (*param0).clear_undecorated();
+}
+
+
+void
+WindowProperties_C_set_fixed_size_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_fixed_size(param1);
+}
+
+
+bool
+WindowProperties_C_get_fixed_size_B_p(WindowProperties const *param0) {
+    return (*param0).get_fixed_size();
+}
+
+
+bool
+WindowProperties_C_has_fixed_size_B_p(WindowProperties const *param0) {
+    return (*param0).has_fixed_size();
+}
+
+
+void
+WindowProperties_C_clear_fixed_size_v_p(WindowProperties *param0) {
+    (*param0).clear_fixed_size();
+}
+
+
+void
+WindowProperties_C_set_fullscreen_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_fullscreen(param1);
+}
+
+
+bool
+WindowProperties_C_get_fullscreen_B_p(WindowProperties const *param0) {
+    return (*param0).get_fullscreen();
+}
+
+
+bool
+WindowProperties_C_has_fullscreen_B_p(WindowProperties const *param0) {
+    return (*param0).has_fullscreen();
+}
+
+
+void
+WindowProperties_C_clear_fullscreen_v_p(WindowProperties *param0) {
+    (*param0).clear_fullscreen();
+}
+
+
+void
+WindowProperties_C_set_foreground_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_foreground(param1);
+}
+
+
+bool
+WindowProperties_C_get_foreground_B_p(WindowProperties const *param0) {
+    return (*param0).get_foreground();
+}
+
+
+bool
+WindowProperties_C_has_foreground_B_p(WindowProperties const *param0) {
+    return (*param0).has_foreground();
+}
+
+
+void
+WindowProperties_C_clear_foreground_v_p(WindowProperties *param0) {
+    (*param0).clear_foreground();
+}
+
+
+void
+WindowProperties_C_set_minimized_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_minimized(param1);
+}
+
+
+bool
+WindowProperties_C_get_minimized_B_p(WindowProperties const *param0) {
+    return (*param0).get_minimized();
+}
+
+
+bool
+WindowProperties_C_has_minimized_B_p(WindowProperties const *param0) {
+    return (*param0).has_minimized();
+}
+
+
+void
+WindowProperties_C_clear_minimized_v_p(WindowProperties *param0) {
+    (*param0).clear_minimized();
+}
+
+
+void
+WindowProperties_C_set_raw_mice_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_raw_mice(param1);
+}
+
+
+bool
+WindowProperties_C_get_raw_mice_B_p(WindowProperties const *param0) {
+    return (*param0).get_raw_mice();
+}
+
+
+bool
+WindowProperties_C_has_raw_mice_B_p(WindowProperties const *param0) {
+    return (*param0).has_raw_mice();
+}
+
+
+void
+WindowProperties_C_clear_raw_mice_v_p(WindowProperties *param0) {
+    (*param0).clear_raw_mice();
+}
+
+
+void
+WindowProperties_C_set_open_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_open(param1);
+}
+
+
+bool
+WindowProperties_C_get_open_B_p(WindowProperties const *param0) {
+    return (*param0).get_open();
+}
+
+
+bool
+WindowProperties_C_has_open_B_p(WindowProperties const *param0) {
+    return (*param0).has_open();
+}
+
+
+void
+WindowProperties_C_clear_open_v_p(WindowProperties *param0) {
+    (*param0).clear_open();
+}
+
+
+void
+WindowProperties_C_set_cursor_hidden_v_pB(WindowProperties *param0, bool param1) {
+    (*param0).set_cursor_hidden(param1);
+}
+
+
+bool
+WindowProperties_C_get_cursor_hidden_B_p(WindowProperties const *param0) {
+    return (*param0).get_cursor_hidden();
+}
+
+
+bool
+WindowProperties_C_has_cursor_hidden_B_p(WindowProperties const *param0) {
+    return (*param0).has_cursor_hidden();
+}
+
+
+void
+WindowProperties_C_clear_cursor_hidden_v_p(WindowProperties *param0) {
+    (*param0).clear_cursor_hidden();
+}
+
+
+void
+WindowProperties_C_set_icon_filename_v_pp(WindowProperties *param0, Filename const *param1) {
+    (*param0).set_icon_filename(*param1);
+}
+
+
+Filename const *
+WindowProperties_C_get_icon_filename_p_p(WindowProperties const *param0) {
+    return &((*param0).get_icon_filename());
+}
+
+
+bool
+WindowProperties_C_has_icon_filename_B_p(WindowProperties const *param0) {
+    return (*param0).has_icon_filename();
+}
+
+
+void
+WindowProperties_C_clear_icon_filename_v_p(WindowProperties *param0) {
+    (*param0).clear_icon_filename();
+}
+
+
+void
+WindowProperties_C_set_cursor_filename_v_pp(WindowProperties *param0, Filename const *param1) {
+    (*param0).set_cursor_filename(*param1);
+}
+
+
+Filename const *
+WindowProperties_C_get_cursor_filename_p_p(WindowProperties const *param0) {
+    return &((*param0).get_cursor_filename());
+}
+
+
+bool
+WindowProperties_C_has_cursor_filename_B_p(WindowProperties const *param0) {
+    return (*param0).has_cursor_filename();
+}
+
+
+void
+WindowProperties_C_clear_cursor_filename_v_p(WindowProperties *param0) {
+    (*param0).clear_cursor_filename();
+}
+
+
+void
+WindowProperties_C_set_z_order_v_pp(WindowProperties *param0, WindowProperties::ZOrder param1) {
+    (*param0).set_z_order(param1);
+}
+
+
+WindowProperties::ZOrder
+WindowProperties_C_get_z_order_p_p(WindowProperties const *param0) {
+    return (*param0).get_z_order();
+}
+
+
+bool
+WindowProperties_C_has_z_order_B_p(WindowProperties const *param0) {
+    return (*param0).has_z_order();
+}
+
+
+void
+WindowProperties_C_clear_z_order_v_p(WindowProperties *param0) {
+    (*param0).clear_z_order();
+}
+
+
+void
+WindowProperties_C_set_parent_window_v_pp(WindowProperties *param0, WindowHandle *param1) {
+    (*param0).set_parent_window(param1);
+}
+
+
+void
+WindowProperties_C_set_parent_window_v_p(WindowProperties *param0) {
+    (*param0).set_parent_window();
+}
+
+
+void
+WindowProperties_C_set_parent_window_v_pl(WindowProperties *param0, std::size_t param1) {
+    (*param0).set_parent_window(param1);
+}
+
+
+WindowHandle *
+WindowProperties_C_get_parent_window_p_p(WindowProperties const *param0) {
+    return (*param0).get_parent_window();
+}
+
+
+bool
+WindowProperties_C_has_parent_window_B_p(WindowProperties const *param0) {
+    return (*param0).has_parent_window();
+}
+
+
+void
+WindowProperties_C_clear_parent_window_v_p(WindowProperties *param0) {
+    (*param0).clear_parent_window();
+}
+
+
+void
+WindowProperties_C_add_properties_v_pp(WindowProperties *param0, WindowProperties const *param1) {
+    (*param0).add_properties(*param1);
+}
+
+
+void
+WindowProperties_C_output_v_pp(WindowProperties const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
 }
 

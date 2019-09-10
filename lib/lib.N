@@ -1,22 +1,28 @@
 forcetype CachedTypedWritableReferenceCount
 forcetype Camera
 forcetype ConfigPage
+forcetype DrawMask
+forcetype EventHandler
 forcetype Filename
+forcetype Fog
+forcetype FrameBufferProperties
 forcetype Geom
 forcetype GeomEnums
 forcetype GeomNode
 forcetype GeomPoints
 forcetype GeomPrimitive
 forcetype GeomTriangles
+forcetype GeomContext
+forcetype GeomVertexArrayData
+forcetype GeomVertexArrayDataHandle
+forcetype GeomVertexColumn
 forcetype GeomVertexData
 forcetype GeomVertexFormat
+forcetype GeomVertexArrayFormat
 forcetype GeomVertexWriter
+forcetype Lens
 forcetype LensNode
-forcetype LQuaternion
-forcetype LVecBase3f
-forcetype LVecBase3i
-forcetype LVecBase4f
-forcetype LVecBase4i
+
 forcetype MemoryBase
 forcetype NodePath
 forcetype NodePathCollection
@@ -24,14 +30,73 @@ forcetype PandaFramework
 forcetype PandaNode
 forcetype PandaSystem
 forcetype ReferenceCount
+
+forcetype TextFont
+forcetype TextNode
+
+forcetype Texture
+forcetype TextureContext
+forcetype TextureCollection
+forcetype TexturePeeker
+
 forcetype Thread
+forcetype TransformTable
 forcetype TypedObject
 forcetype TypedWritable
+
+forcetype UpdateSeq
 forcetype WindowFramework
 forcetype InternalName
 
-forcetype TextNode
+
 forcetype DrawableRegion
 forcetype GraphicsWindow
 forcetype GraphicsOutput
+forcetype DisplayRegion
+
+
+forcetype Shader
+forcetype ShaderInput
+forcetype TouchInfo
+
+forcetype VertexBufferContext
+forcetype COnscreenText
+forcetype Loader
+forcetype LQuaternion
+
+forcetype LVecBase2f
+forcetype LVecBase2i
+
+forcetype LVecBase3
+forcetype LVecBase3i
+forcetype LVecBase3f
+forcetype LVecBase3i
+
+forcetype LVecBase4
+forcetype LVecBase4f
+forcetype LVecBase4i
+
+forcetype RenderEffect
+forcetype RenderState
+
+forcetype LPoint3f
+
+forcetype LPoint2
+forcetype LPoint2f
+forcetype LPoint2i
+
+forcetype LVector3
+
+
+forcetype LPoint3
+forcetype WindowProperties
+forcetype WindowHandle
+forcetype TransformState
+forcetype GraphicsEngine
+forcetype NodeCachedReferenceCount
+
+
+//?
+forcetype LColor
+
 

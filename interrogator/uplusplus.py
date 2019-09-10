@@ -36,7 +36,7 @@ IDX_CT = const(0)
 IDX_RET = const(1)
 IDX_ARGC = const(2)
 IDX_FFI = const(3)
-IDX_KW = const(4)
+IDX_SIG = const(4)
 
 
 def passthrough(**kw):
@@ -82,7 +82,7 @@ def call1(ancestor, cls, instance, attr, decl):
 
     if isinstance(rt, int):
         if TRACE:
-            print("   JIT-1",rt,c.decl[rt])
+            print("   JIT-1", rt, c.decl[rt])
         rt = c.decl[rt]
     else:
         if TRACE:
@@ -91,10 +91,10 @@ def call1(ancestor, cls, instance, attr, decl):
 
     # OPTIM
     # for TRACE
-    ffi = c.get('%s-ffi'%attr,None)
+    ffi = c.get('%s-ffi' % attr, None)
     if ffi is None:
         ffi = ancestor.c.lib.func(*decl[IDX_FFI])
-        c['%s-ffi'%attr] = ffi
+        c['%s-ffi' % attr] = ffi
 
     # no TRACE
     # ffi = ancestor.c.lib.func(*decl[IDX_FFI])
@@ -111,6 +111,7 @@ def call1(ancestor, cls, instance, attr, decl):
 
         if ct == 's':
             instance = None
+
         def jit(*argv, **kw):
             return wrap(ffi, rt, argv, kw, instance)
 
@@ -119,25 +120,22 @@ def call1(ancestor, cls, instance, attr, decl):
     # static call , hide instance if any
     if ct == 's':
         instance = None
+
         def jit1(*argv, **kw):
             argv, kw = cxx_stack(*argv, **kw)
             if TRACE:
                 print("   JIT-1-%s" % ct, argv, FFI_TRACK[id(ffi)])
             return rt(cptr=ffi(*argv))
+
     else:
         # check nullptr ?
         def jit1(*argv, **kw):
             if TRACE:
-                print("   JIT-1-this", argv)
+                print("   JIT-1-(this, *", argv,')')
             argv, kw = cxx_stack(instance, *argv, **kw)
             if TRACE:
-                print("   JIT-1a-this", argv)
-
-            argv, kw = cxx_stack(*argv, **kw)
-            if TRACE:
-                print("   JIT-1b-%s" % instance, argv, FFI_TRACK[id(ffi)])
+                print("   JIT-1", argv, FFI_TRACK[id(ffi)])
             return rt(cptr=ffi(*argv))
-
 
     FFI_TRACK[id(ffi)] = decl
     ancestor.c[attr] = jit1
@@ -156,15 +154,31 @@ def get_match(ancestor, cls, rt, ct, pl, argc):
     cando = []
     for proto in pl:
         if ct != proto[IDX_CT]:
+            if TRACE:
+                print("   calltype!=%s for" % ct, proto)
             continue
 
         if argc < proto[IDX_ARGC]:
+            if TRACE:
+                print("   argc<%d for" % argc, proto)
             break
+
         elif argc == proto[IDX_ARGC]:
             if TRACE:
-                print("   argc=%d for" %argc, proto)
+                print("   argc==%d for" % argc, proto)
             cando.append(proto)
     return cando
+
+def get_call_sig(argv):
+    sig=[]
+    for a in argv:
+        if isinstance(a,str):
+            sig.append('s')
+        if isinstance(a,int):
+            sig.append('p')
+        if isinstance(a,float):
+            sig.append('f')
+    return ''.join(sig)
 
 
 def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
@@ -173,53 +187,60 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
     sigkey = '{}-{}'.format(attr, argc)
     #
 
-    if DBG:
+    if TRACE:
         print('  JIT-x CACHING', sigkey, argc)
 
     cl = []
     for proto in get_match(ancestor, cls, rt, ct, pl, argc):
         ffi = ancestor.c.lib.func(*proto[IDX_FFI])
         FFI_TRACK[id(ffi)] = proto[IDX_FFI]
-        cl.append([ffi, proto[IDX_KW]])
+        cl.append([ffi, proto[IDX_SIG]])
 
     if not len(cl):
-        raise TypeError("%s->%s : no match for arguments count" % (ancestor.__name__, attr))
+        for p in pl:
+            print(p)#[IDX_FFI])
+        raise TypeError("%s->%s : no match for arguments count %d" % (ancestor.__name__, attr, argc))
 
     if len(cl) > 1:
+        #forbid caching
+
         print("\n  JIT-x ERROR N/I call sig dependant proto")
         print("  ========================================")
-        last=TRACE
-        TRACE=1
-        get_match(ancestor, cls, rt, ct, pl, argc)
-        TRACE=last
+        last = TRACE
+        TRACE = 1
         print()
-
-
-    cl = cl[-1][0]
-
-    if instance:
-        def jit_n(*argv, **kw):
-            if TRACE:
-                print("   JIT[%d]-%s" % (argc,ct), argv, FFI_TRACK[id(cl)])
-
-            argv, kw = cxx_stack(instance, *argv, **kw)
-            return rt(cptr=cl(*argv))
-
+        sigkey =  get_call_sig(argv)
+        for proto in get_match(ancestor, cls, rt, ct, pl, argc):
+            print("[%s]"%sigkey,proto[IDX_FFI][2],proto[IDX_SIG])
+        TRACE = last
     else:
-        def jit_n(*argv, **kw):
-            if TRACE:
-                print("   JIT[%d]-%s" % (argc, ct), argv, FFI_TRACK[id(cl)])
+        cl = cl[-1][0]
 
-            argv, kw = cxx_stack(*argv, **kw)
-            return rt(cptr=cl(*argv))
+        if instance:
+
+            def jit_n(*argv, **kw):
+                if TRACE:
+                    print("   JIT[%d]-d%s" % (argc, ct), argv, FFI_TRACK[id(cl)])
+
+                argv, kw = cxx_stack(instance, *argv, **kw)
+                return rt(cptr=cl(*argv))
+
+        else:
+
+            def jit_n(*argv, **kw):
+                if TRACE:
+                    print("   JIT[%d]-s%s" % (argc, ct), argv, FFI_TRACK[id(cl)])
+
+                argv, kw = cxx_stack(*argv, **kw)
+                return rt(cptr=cl(*argv))
 
 
-    ancestor.c[sigkey] = jit_n
+        ancestor.c[sigkey] = jit_n
 
-    # alias to parent so child can call directly next time
-    cls.c[sigkey] = jit_n
+        # alias to parent so child can call directly next time
+        cls.c[sigkey] = jit_n
 
-    return rt(cptr=jit_n(*argv,**kw))
+    return jit_n(*argv, **kw)
 
 
 
@@ -231,7 +252,12 @@ def jit_table(cls, instance, attr):
     if instance is None:
         mro.append(cls)
 
-    mro.extend(cls.c.bases)  # TODO: recurse ?
+    mro.extend(cls.__bases__)
+
+    for c in cls.__bases__:
+        for b in c.__bases__:  # TODO: recurse more ?
+            if not b in mro:
+                mro.append(b)
 
     if DBG:
         print("inspecting", mro)
@@ -250,7 +276,6 @@ def jit_table(cls, instance, attr):
             if TRACE:
                 print(" -> no match for %s->%s from %s" % (c.name, attr, cls.c.name))
             continue
-
 
         # reduce table to direct call if only 1 choice
         if len(call) == 1:
@@ -285,7 +310,6 @@ def jit_table(cls, instance, attr):
         # sort by positional args count to exit faster from table loop
         pl.sort(key=lambda x: x[IDX_ARGC])
 
-
         if ct == 's':
             instance = None
 
@@ -294,24 +318,26 @@ def jit_table(cls, instance, attr):
                 sigkey = '{}-{}'.format(attr, argc)
                 cl = cls.c.get(sigkey, None)
                 if cl:
-                    return cl(*argv,**kw)
-                if DBG:
+                    return cl(*argv, **kw)
+                if TRACE:
                     print("JIT-x INIT[%s-%d] %s->%s(%s) -> %s" % (ct, argc, ancestor, attr, instance, rt), argv, kw)
                 return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
+
         else:
+
             def jit_x(*argv, **kw):
-                argc = len(argv) + len(kw) # +1
+                argc = len(argv) + len(kw)  # +1
                 sigkey = '{}-{}'.format(attr, argc)
                 cl = instance.c.get(sigkey, None)
                 if cl:
-                    return cl(*argv,**kw)
-                if DBG:
-                    print("JIT-x INIT[%s-%d] %s->%s(%s) -> %s" % (ct,argc, ancestor, attr, instance, rt), argv, kw)
+                    return cl(*argv, **kw)
+                if TRACE:
+                    print("JIT-x INIT[%s-%d] %s->%s(%s) -> %s" % (ct, argc, ancestor, attr, instance, rt), argv, kw)
                 return callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw)
 
         return jit_x
 
-    raise Exception("%s->%s not found" % (mro, attr))
+    raise Exception("MRO%s->%s not found" % (mro, attr))
 
 
 class cstructs(dict):
@@ -319,6 +345,10 @@ class cstructs(dict):
     lib = None
 
     pool = []
+    ipool = []
+
+    # autoload ?
+    i = None
 
     decl = []
 
@@ -350,20 +380,20 @@ class cstructs(dict):
     def call(self, cls, attr, instance=None):
         global TRACE
         c = cls.c
-        try:
-            # how to get cross interpreter to match instances ?
-            hsum = '%s-%s' % (id(self), attr)
-            jit = self.get(hsum, None)
-            # OPTIM
-            if jit is None or TRACE:
+
+        # how to get cross interpreter to match instances ?
+        hsum = '%s-%s' % (id(self), attr)
+
+        jit = self.get(hsum, None)
+        # OPTIM
+        if jit is None or TRACE:
+            try:
                 jit = jit_table(cls, instance, attr)
-                c[hsum] = jit
-
-            return jit
-
-        except Exception as e:
-            sys.print_exception(e, sys.stdout)
-            raise Exception("%s->%s jit compilation failed" % (c.name, attr))
+            except Exception as e:
+                sys.print_exception(e, sys.stdout)
+                raise Exception("%s->%s jit compilation failed" % (c.name, attr))
+            c[hsum] = jit
+        return jit
 
         if instance:
             raise AttributeError("'{0}' C++ class has no method '{1}'".format(c.name, attr))
@@ -381,28 +411,30 @@ class cplusplus:
         c = self.__class__.c
         iref = kw.pop('iptr', None)
         cref = kw.pop('cptr', None)
+        if TRACE:
+            print("    __init__( %s iref=%s cref=%s)" %(c.name, iref, cref))
+
         if iref or cref:
             # extract pointer addr from source
             if (cref is not None) and (not isinstance(cref, int)):
-                print("ERROR cref is not a raw pointer but a ",cref)
-                iref=cref
+                print("ERROR cref is not a raw pointer but a ", cref)
+                iref = cref
 
             if isinstance(iref, cplusplus):
                 if iref.__class__ is not self.__class__:
-                    print("cannot do link %s on different type %s" % (iref.__class__,self.__class__) )
+                    print("cannot do link %s on different type %s" % (iref.__class__, self.__class__))
                 cref = c.ref[id(iref)]
 
             # add the cref to class handler for this instance
             c.ref[id(self)] = cref
-            REFC.setdefault(cref, 1)
+            r = REFC.setdefault(cref, 1)
             REFC[cref] += 1
-            if REFCOUNTED and isinstance(self, REFCOUNTED ):
-                if 1: #TRACE:
-                    print("   REF %s" % INCREF(cref), 'on',self)
+            # do ->ref() on C++ side on first use
+            if (r==1) and REFCOUNTED and isinstance(self, REFCOUNTED):
+                if 1:  # TRACE:
+                    print("   REF %s" % INCREF(cref), 'on', self)
                 else:
                     INCREF(cref)
-            if TRACE:
-                print("   ATTACH",iref,cref,'=>',self)
         else:
             GCBAD += 1
             ctor = jit_table(self.__class__, None, 'ctor')
@@ -484,7 +516,7 @@ def gc():
         while items:
             item = items.pop()
             print(c.factory, 'dangling ptr', item)
-            #c.ct.get('dtor', ['', '', noop])[2](item)
+            # c.ct.get('dtor', ['', '', noop])[2](item)
 
     # luckily we have the pointers left in cstructs of each classes
 

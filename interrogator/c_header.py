@@ -94,7 +94,7 @@ def c_header(H, source):
 #define PN_stdfloat float
 
 #define wchar_t char
-#define string char const
+//#define string char const
 
 #define std$_size_t unsigned int
 #define std$_streamsize int
@@ -219,9 +219,12 @@ def c_header(H, source):
 
 FFI_TYPE_MAP = {
     "pointer":"p",
+    "char-*" : "p",
     "void": "v",
     "char-const-*": "s",
+    "wchar_t-const-*" :  "s",
     "const-char-*": "s",
+    "char_t-const-*" :  "s",
     "int": "i",
     "long": "l",
     "enum": "i",
@@ -239,7 +242,9 @@ FFI_TYPE_MAP = {
     "char-unsigned": "B",
     "short": "h",
     "unsigned-short": "H",
+    "unsigned-short-int" : "H",
     "short-unsigned": "H",
+    "short-unsigned-int": "H",
     "unsigned-int": "I",
     "int-unsigned": "I",
     "unsigned-long": "L",
@@ -251,6 +256,10 @@ FFI_TYPE_MAP = {
     "InternalName-const-*":"s",
     'CPT_InternalName-*' : "s",
     "PN_stdfloat": "f",
+    "std$_size_t" : "l",
+    "std$_streamsize": "l",
+    "std$_wstring" : "s",
+    "std$_string" : "s",
 
 }
 
@@ -260,8 +269,9 @@ COLLISIONS = []
 
 def CNI(H, proto, rt, target, ffi_args, is_void):
 
-    rt = rt.strip().replace(' ','-')
-    #rt = rt.replace('-*','*')
+    rt = rt.strip().replace(' ','-').replace('**','*').strip()
+
+    proto['c_rt'] = rt
 
     rt = FFI_TYPE_MAP.get(rt,'p')
 

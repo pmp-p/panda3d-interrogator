@@ -25,6 +25,8 @@
 # https://github.com/pfalcon/awesome-micropython
 
 
+# raspi3 fib(34) => 34s    PC+2: 36s
+
 FFI_MARK = '_C_'
 CNI = 0
 
@@ -54,6 +56,10 @@ except:
 
 
 CODE = {}
+
+
+RT_UNSOLVED = []
+
 
 # fix micropython
 import builtins
@@ -199,8 +205,6 @@ def sort_inheritance(code, fwd):
 
             fwd.remove(child)
             fwd.insert(child_place, child)
-            # fwd[first] = ancestor
-            # fwd[child_place] = child
             changes += 1
 
         if not changes:
@@ -235,11 +239,15 @@ def build(TARGET):
         kw['file'] = OUT_FILE
         print(*argv, **kw)
 
-    def ret_cpp(ret, ffi_name):
+    def ret_cpp(ret, ffi_name, hint=''):
+        global RT_UNSOLVED
         pret = "'%s'" % ret
         if ret == 'p':
             if ffi_name in forward_decl:
                 pret = forward_decl.index(ffi_name)
+            elif not ffi_name in RT_UNSOLVED:
+                RT_UNSOLVED.append([ffi_name, hint])
+
         return pret, ffi_name
 
     def enums(cls, no_const, indent=0):
@@ -335,7 +343,7 @@ class {}({}):
                         continue
 
                     ret = proto['cni_rt']
-                    pret, cret = ret_cpp(ret, proto['rt'])
+                    pret, cret = ret_cpp(ret, proto['rt'], "%s : %s : %s" % (proto['cni_rt'], proto['c_rt'], proto['cpp_ref']))
 
                     args = proto['cni_args']
                     if CNI:
@@ -393,6 +401,13 @@ cxx.INCREF = Engine.inc_ref
 cxx.DECREF = Engine.dec_ref
 """
     )
+
+    if 0:
+        RT_UNSOLVED.sort()
+        for rt in RT_UNSOLVED:
+            print("407: WARNING unresolved forward types :", rt)
+    else:
+        print("410: WARNING unresolved forward types listing disabled")
 
     if TARGET == 'upanda3d':
         write(

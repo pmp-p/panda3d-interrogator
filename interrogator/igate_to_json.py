@@ -54,11 +54,22 @@ def igate_to_json(file_like):
             return_type = return_type.replace('&','')
             return_type = return_type.replace('*','')
             return_type = return_type.replace('virtual','')
+# TODO: move that in a user defined dict+func
             return_type = return_type.replace('InternalName ','')
             if return_type.find('>')>0:
                 return_type = return_type.split('< ',1)[-1]
                 return_type = return_type.rsplit(' >',1)[0]
             return_type = return_type.strip()
+# fmt : off
+            if len(return_type) and return_type[-1]!='f':
+                for rt in [
+                        'LPoint2','LPoint3',
+                        'LVector2','LVector3','LVector4',
+                        'LVecBase2','LVecBase3','LVecBase4',
+                    ]:
+                    return_type = return_type.replace(rt,'%sf'%rt)
+# fmt : on
+
         args = []
 
         for arg in tail.rsplit(')', 1)[0].split(', '):
@@ -69,7 +80,7 @@ def igate_to_json(file_like):
 
         disp = 0
 
-#        if cpp_def.count('set_scale('):
+#        if cpp_def.count('get_hash('):
 #            disp = 1
 
         if disp:
