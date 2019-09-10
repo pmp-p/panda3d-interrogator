@@ -484,7 +484,7 @@ def gc():
         while items:
             item = items.pop()
             print(c.factory, 'dangling ptr', item)
-            c.ct.get('dtor', ['', '', noop])[2](item)
+            #c.ct.get('dtor', ['', '', noop])[2](item)
 
     # luckily we have the pointers left in cstructs of each classes
 

@@ -4,6 +4,10 @@ from panda3d.interrogatedb import *
 
 DBG = 0
 
+ENUM_KEYS = {}
+
+undefined = object()
+
 
 def translateTypeName(name, mangle=True):
     # Equivalent to C++ classNameFromCppName
@@ -65,6 +69,7 @@ def translated_type_name(type, scoped=True):
 
 
 def process_enums(c, type, name, indent):
+    global ENUM_KEYS, undefined
     enums = {}
     enums[name] = []
     docstrings = []
@@ -78,7 +83,16 @@ def process_enums(c, type, name, indent):
 
         docstrings.append((key, docstring))
         value = interrogate_type_enum_value(type, i_value)
-        enums[name].append((key, value))
+        if not name:
+            print("ENUM ? : %s = %d" % (key,value) )
+        else:
+            enums[name].append((key, value))
+        ENUM_KEYS.setdefault(key,value)
+        if ENUM_KEYS[key] != value:
+            ENUM_KEYS[key]= undefined
+
+
+
 
     enums[name].sort(key=lambda x: x[0])
     if DBG:
@@ -157,6 +171,7 @@ def process_class(c, type, used_class):
 
 
 def process_in(fname, source):
+    global ENUM_KEYS
     used_class = []
 
     interrogate_request_database(fname)
@@ -174,6 +189,16 @@ def process_in(fname, source):
     for decl_class in source['classes'].keys():
         if decl_class in used_class:
             used_class.remove(decl_class)
+
+    to_del = []
+    for k, can_const in ENUM_KEYS.items():
+        if can_const is not undefined:
+            to_del.append(k)
+
+    while len(to_del):
+        ENUM_KEYS.pop(to_del.pop())
+
+    source['no_const'] = list( ENUM_KEYS.keys() )
 
     if len(used_class):
         print("\nmissing def in .N :")

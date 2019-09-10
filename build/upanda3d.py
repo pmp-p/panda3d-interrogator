@@ -8,16 +8,22 @@ import interrogator.uplusplus as cxx
 
 extern = cxx.cstructs.decl.append
 extern('ConfigPage') # 
+extern('DrawableRegion') # 
 extern('Engine') # 
 extern('Filename') # 
 extern('GeomEnums') # 
 extern('LVecBase3f') # 
+extern('LVecBase3i') # 
+extern('LVecBase4f') # 
+extern('LVecBase4i') # 
 extern('LinkedListNode') # 
 extern('MemoryBase') # 
 extern('NodePath') # 
 extern('NodePathCollection') # 
 extern('PandaFramework') # 
 extern('PandaSystem') # 
+extern('TextEncoder') # 
+extern('TextProperties') # 
 extern('GeomVertexWriter') # GeomEnums
 extern('Namable') # MemoryBase
 extern('ReferenceCount') # MemoryBase
@@ -29,6 +35,9 @@ extern('TypedWritableReferenceCount') # TypedWritable, ReferenceCount
 extern('GeomVertexFormat') # TypedWritableReferenceCount, GeomEnums
 extern('WindowFramework') # TypedWritableReferenceCount
 extern('InternalName') # TypedWritableReferenceCount
+extern('GraphicsOutputBase') # TypedWritableReferenceCount
+extern('GraphicsOutput') # GraphicsOutputBase, DrawableRegion
+extern('GraphicsWindow') # GraphicsOutput
 extern('CachedTypedWritableReferenceCount') # TypedWritableReferenceCount
 extern('CopyOnWriteObject') # CachedTypedWritableReferenceCount
 extern('GeomVertexData') # CopyOnWriteObject, GeomEnums
@@ -39,6 +48,7 @@ extern('PandaNode') # TypedWritableReferenceCount, Namable, LinkedListNode
 extern('LensNode') # PandaNode
 extern('Camera') # LensNode
 extern('GeomNode') # PandaNode
+extern('TextNode') # PandaNode, TextEncoder, TextProperties
 del extern
 
 # enum NotifySeverity
@@ -262,6 +272,143 @@ ConfigPage.c.link(ConfigPage)
 
 
 
+class DrawableRegion(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("DrawableRegion", "upanda3d", """libupanda3d_c.so""")
+
+    # enum RenderTexturePlane
+
+    RTP_COUNT = const(16)
+    RTP_aux_float_0 = const(11)
+    RTP_aux_float_1 = const(12)
+    RTP_aux_float_2 = const(13)
+    RTP_aux_float_3 = const(14)
+    RTP_aux_hrgba_0 = const(7)
+    RTP_aux_hrgba_1 = const(8)
+    RTP_aux_hrgba_2 = const(9)
+    RTP_aux_hrgba_3 = const(10)
+    RTP_aux_rgba_0 = const(3)
+    RTP_aux_rgba_1 = const(4)
+    RTP_aux_rgba_2 = const(5)
+    RTP_aux_rgba_3 = const(6)
+    RTP_color = const(2)
+    RTP_depth = const(15)
+    RTP_depth_stencil = const(1)
+    RTP_stencil = const(0)
+
+
+    # ctor/dtor
+
+    c.ct['ctor'] = [
+        ('s', 1, 0, ('p', 'DrawableRegion$1$DrawableRegion', ''), []),
+        ('s', 1, 1, ('p', 'DrawableRegion$2$DrawableRegion', 'p'), ['DrawableRegion const&']),
+    ]
+
+    # classmethod type calls
+
+    c.ct['get_renderbuffer_type'] = [
+        ('s', 'i', 1, ('i', 'DrawableRegion$26$get_renderbuffer_type', 'i'), ['int']),
+    ]
+
+    @classmethod
+    def get_renderbuffer_type(cls, *args,**kw):
+        return ( cls.c.get('get_renderbuffer_type', None) or cls.c.call(DrawableRegion, 'get_renderbuffer_type', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['copy_clear_settings'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$3$copy_clear_settings', 'pp'), ['DrawableRegion const&']),
+    ]
+    c.ct['disable_clears'] = [
+        ('d', 'v', 0, ('v', 'DrawableRegion$20$disable_clears', 'p'), []),
+    ]
+    c.ct['downcast_to_GraphicsOutput'] = [
+        ('d', 29, 0, ('p', 'DrawableRegion$29$downcast_to_GraphicsOutput', 'p'), []),
+    ]
+    c.ct['get_clear_active'] = [
+        ('d', 'B', 1, ('B', 'DrawableRegion$17$get_clear_active', 'pi'), ['int']),
+    ]
+    c.ct['get_clear_color'] = [
+        ('d', 'p', 0, ('p', 'DrawableRegion$11$get_clear_color', 'p'), []),
+    ]
+    c.ct['get_clear_color_active'] = [
+        ('d', 'B', 0, ('B', 'DrawableRegion$5$get_clear_color_active', 'p'), []),
+    ]
+    c.ct['get_clear_depth'] = [
+        ('d', 'f', 0, ('f', 'DrawableRegion$13$get_clear_depth', 'p'), []),
+    ]
+    c.ct['get_clear_depth_active'] = [
+        ('d', 'B', 0, ('B', 'DrawableRegion$7$get_clear_depth_active', 'p'), []),
+    ]
+    c.ct['get_clear_stencil'] = [
+        ('d', 'I', 0, ('I', 'DrawableRegion$15$get_clear_stencil', 'p'), []),
+    ]
+    c.ct['get_clear_stencil_active'] = [
+        ('d', 'B', 0, ('B', 'DrawableRegion$9$get_clear_stencil_active', 'p'), []),
+    ]
+    c.ct['get_clear_value'] = [
+        ('d', 'p', 1, ('p', 'DrawableRegion$19$get_clear_value', 'pi'), ['int']),
+    ]
+    c.ct['get_draw_buffer_type'] = [
+        ('d', 'i', 0, ('i', 'DrawableRegion$28$get_draw_buffer_type', 'p'), []),
+    ]
+    c.ct['get_pixel_factor'] = [
+        ('d', 'f', 0, ('f', 'DrawableRegion$24$get_pixel_factor', 'p'), []),
+    ]
+    c.ct['get_pixel_zoom'] = [
+        ('d', 'f', 0, ('f', 'DrawableRegion$23$get_pixel_zoom', 'p'), []),
+    ]
+    c.ct['get_screenshot_buffer_type'] = [
+        ('d', 'i', 0, ('i', 'DrawableRegion$27$get_screenshot_buffer_type', 'p'), []),
+    ]
+    c.ct['is_any_clear_active'] = [
+        ('d', 'B', 0, ('B', 'DrawableRegion$21$is_any_clear_active', 'p'), []),
+    ]
+    c.ct['set_clear_active'] = [
+        ('d', 'v', 2, ('v', 'DrawableRegion$16$set_clear_active', 'piB'), ['int', 'bool']),
+    ]
+    c.ct['set_clear_color'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$10$set_clear_color', 'pp'), ['LColor const&']),
+    ]
+    c.ct['set_clear_color_active'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$4$set_clear_color_active', 'pB'), ['bool']),
+    ]
+    c.ct['set_clear_depth'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$12$set_clear_depth', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_clear_depth_active'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$6$set_clear_depth_active', 'pB'), ['bool']),
+    ]
+    c.ct['set_clear_stencil'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$14$set_clear_stencil', 'pI'), ['unsigned int']),
+    ]
+    c.ct['set_clear_stencil_active'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$8$set_clear_stencil_active', 'pB'), ['bool']),
+    ]
+    c.ct['set_clear_value'] = [
+        ('d', 'v', 2, ('v', 'DrawableRegion$18$set_clear_value', 'pip'), ['int', 'LColor const&']),
+    ]
+    c.ct['set_pixel_zoom'] = [
+        ('d', 'v', 1, ('v', 'DrawableRegion$22$set_pixel_zoom', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['supports_pixel_zoom'] = [
+        ('d', 'B', 0, ('B', 'DrawableRegion$25$supports_pixel_zoom', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(DrawableRegion, attr, self)
+
+DrawableRegion.c.link(DrawableRegion)
+
+
+
 class Engine(cxx.cplusplus):
     __bases__ = tuple([])
     c = cxx.cstructs()
@@ -270,8 +417,8 @@ class Engine(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 1, 0, ('p', 'Engine$1$Engine', ''), []),
-        ('s', 1, 1, ('p', 'Engine$2$Engine', 'p'), ['Engine const&']),
+        ('s', 2, 0, ('p', 'Engine$1$Engine', ''), []),
+        ('s', 2, 1, ('p', 'Engine$2$Engine', 'p'), ['Engine const&']),
     ]
 
     # classmethod type calls
@@ -280,13 +427,17 @@ class Engine(cxx.cplusplus):
         ('s', 'i', 1, ('i', 'Engine$16$dec_ref', 'p'), ['ReferenceCount*']),
     ]
     c.ct['get_version_string'] = [
-        ('s', 's', 0, ('s', 'Engine$19$get_version_string', ''), []),
+        ('s', 's', 0, ('s', 'Engine$21$get_version_string', ''), []),
     ]
     c.ct['inc_ref'] = [
         ('s', 'i', 1, ('i', 'Engine$15$inc_ref', 'p'), ['ReferenceCount*']),
     ]
     c.ct['is_alive'] = [
         ('s', 'i', 0, ('i', 'Engine$5$is_alive', ''), []),
+    ]
+    c.ct['prc'] = [
+        ('s', 'v', 1, ('v', 'Engine$17$prc', 'p'), ['Filename const&']),
+        ('s', 'v', 2, ('v', 'Engine$18$prc', 'ss'), ['char const*', 'char const*']),
     ]
     c.ct['stop'] = [
         ('s', 'v', 0, ('v', 'Engine$4$stop', ''), []),
@@ -309,6 +460,10 @@ class Engine(cxx.cplusplus):
         return ( cls.c.get('is_alive', None) or cls.c.call(Engine, 'is_alive', None) )(*args,**kw)
 
     @classmethod
+    def prc(cls, *args,**kw):
+        return ( cls.c.get('prc', None) or cls.c.call(Engine, 'prc', None) )(*args,**kw)
+
+    @classmethod
     def stop(cls, *args,**kw):
         return ( cls.c.get('stop', None) or cls.c.call(Engine, 'stop', None) )(*args,**kw)
 
@@ -324,7 +479,7 @@ class Engine(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'Engine$14$attach', 'pp'), ['NodePath*']),
     ]
     c.ct['build'] = [
-        ('d', 'v', 0, ('v', 'Engine$17$build', 'p'), []),
+        ('d', 'v', 0, ('v', 'Engine$19$build', 'p'), []),
     ]
     c.ct['casetest'] = [
         ('d', 'i', 3, ('i', 'Engine$7$casetest', 'pisB'), ['int', 'std::string', 'bool']),
@@ -336,31 +491,31 @@ class Engine(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'Engine$3$dtor', 'p'), []),
     ]
     c.ct['get_framework'] = [
-        ('d', 9, 0, ('p', 'Engine$22$get_framework', 'p'), []),
+        ('d', 13, 0, ('p', 'Engine$24$get_framework', 'p'), []),
     ]
     c.ct['get_wframe'] = [
-        ('d', 20, 0, ('p', 'Engine$20$get_wframe', 'p'), []),
+        ('d', 26, 0, ('p', 'Engine$22$get_wframe', 'p'), []),
     ]
     c.ct['load_model'] = [
-        ('d', 7, 1, ('p', 'Engine$8$load_model', 'ps'), ['char const*']),
+        ('d', 11, 1, ('p', 'Engine$8$load_model', 'ps'), ['char const*']),
     ]
     c.ct['new_Cube'] = [
-        ('d', 7, 3, ('p', 'Engine$13$new_Cube', 'pfss'), ['float', 'char const*', 'char const*']),
+        ('d', 11, 3, ('p', 'Engine$13$new_Cube', 'pfss'), ['float', 'char const*', 'char const*']),
     ]
     c.ct['new_GeomTriangles'] = [
-        ('d', 26, 0, ('p', 'Engine$12$new_GeomTriangles', 'p'), []),
+        ('d', 35, 0, ('p', 'Engine$12$new_GeomTriangles', 'p'), []),
     ]
     c.ct['new_GeomVertexWriter'] = [
-        ('d', 11, 2, ('p', 'Engine$9$new_GeomVertexWriter', 'pps'), ['GeomVertexData*', 'char const*']),
+        ('d', 17, 2, ('p', 'Engine$9$new_GeomVertexWriter', 'pps'), ['GeomVertexData*', 'char const*']),
     ]
     c.ct['set_framework'] = [
-        ('d', 'v', 1, ('v', 'Engine$23$set_framework', 'pp'), ['PandaFramework*']),
+        ('d', 'v', 1, ('v', 'Engine$25$set_framework', 'pp'), ['PandaFramework*']),
     ]
     c.ct['set_wframe'] = [
-        ('d', 'v', 1, ('v', 'Engine$21$set_wframe', 'pp'), ['WindowFramework*']),
+        ('d', 'v', 1, ('v', 'Engine$23$set_wframe', 'pp'), ['WindowFramework*']),
     ]
     c.ct['step'] = [
-        ('d', 'v', 0, ('v', 'Engine$18$step', 'p'), []),
+        ('d', 'v', 0, ('v', 'Engine$20$step', 'p'), []),
     ]
 
 
@@ -399,74 +554,74 @@ class Filename(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 2, 0, ('p', 'Filename$1$Filename', ''), []),
-        ('s', 2, 1, ('p', 'Filename$2$Filename', 'p'), ['Filename&&']),
-        ('s', 2, 1, ('p', 'Filename$3$Filename', 'p'), ['Filename const&']),
-        ('s', 2, 2, ('p', 'Filename$4$Filename', 'pp'), ['Filename const&', 'Filename const&']),
-        ('s', 2, 1, ('p', 'Filename$5$Filename', 's'), ['char const*']),
-        ('s', 2, 1, ('p', 'Filename$6$Filename', 's'), ['std::string const&']),
-        ('s', 2, 1, ('p', 'Filename$7$Filename', 'p'), ['std::wstring const&']),
+        ('s', 3, 0, ('p', 'Filename$1$Filename', ''), []),
+        ('s', 3, 1, ('p', 'Filename$2$Filename', 'p'), ['Filename&&']),
+        ('s', 3, 1, ('p', 'Filename$3$Filename', 'p'), ['Filename const&']),
+        ('s', 3, 2, ('p', 'Filename$4$Filename', 'pp'), ['Filename const&', 'Filename const&']),
+        ('s', 3, 1, ('p', 'Filename$5$Filename', 's'), ['char const*']),
+        ('s', 3, 1, ('p', 'Filename$6$Filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$7$Filename', 'p'), ['std::wstring const&']),
     ]
 
     # classmethod type calls
 
     c.ct['binary_filename'] = [
-        ('s', 2, 1, ('p', 'Filename$10$binary_filename', 'p'), ['Filename const&']),
-        ('s', 2, 1, ('p', 'Filename$11$binary_filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$10$binary_filename', 'p'), ['Filename const&']),
+        ('s', 3, 1, ('p', 'Filename$11$binary_filename', 's'), ['std::string const&']),
     ]
     c.ct['dso_filename'] = [
-        ('s', 2, 1, ('p', 'Filename$12$dso_filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$12$dso_filename', 's'), ['std::string const&']),
     ]
     c.ct['executable_filename'] = [
-        ('s', 2, 1, ('p', 'Filename$13$executable_filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$13$executable_filename', 's'), ['std::string const&']),
     ]
     c.ct['expand_from'] = [
-        ('s', 2, 2, ('p', 'Filename$19$expand_from', 'sp'), ['std::string const&', 'Filename::Type']),
-        ('s', 2, 1, ('p', 'Filename$20$expand_from', 's'), ['std::string const&']),
+        ('s', 3, 2, ('p', 'Filename$19$expand_from', 'sp'), ['std::string const&', 'Filename::Type']),
+        ('s', 3, 1, ('p', 'Filename$20$expand_from', 's'), ['std::string const&']),
     ]
     c.ct['from_os_specific'] = [
-        ('s', 2, 2, ('p', 'Filename$15$from_os_specific', 'sp'), ['std::string const&', 'Filename::Type']),
-        ('s', 2, 1, ('p', 'Filename$16$from_os_specific', 's'), ['std::string const&']),
+        ('s', 3, 2, ('p', 'Filename$15$from_os_specific', 'sp'), ['std::string const&', 'Filename::Type']),
+        ('s', 3, 1, ('p', 'Filename$16$from_os_specific', 's'), ['std::string const&']),
     ]
     c.ct['from_os_specific_w'] = [
-        ('s', 2, 2, ('p', 'Filename$17$from_os_specific_w', 'pp'), ['std::wstring const&', 'Filename::Type']),
-        ('s', 2, 1, ('p', 'Filename$18$from_os_specific_w', 'p'), ['std::wstring const&']),
+        ('s', 3, 2, ('p', 'Filename$17$from_os_specific_w', 'pp'), ['std::wstring const&', 'Filename::Type']),
+        ('s', 3, 1, ('p', 'Filename$18$from_os_specific_w', 'p'), ['std::wstring const&']),
     ]
     c.ct['get_class_type'] = [
         ('s', 'i', 0, ('i', 'Filename$117$get_class_type', ''), []),
     ]
     c.ct['get_common_appdata_directory'] = [
-        ('s', 2, 0, ('p', 'Filename$27$get_common_appdata_directory', ''), []),
+        ('s', 3, 0, ('p', 'Filename$27$get_common_appdata_directory', ''), []),
     ]
     c.ct['get_filesystem_encoding'] = [
         ('s', 'p', 0, ('p', 'Filename$116$get_filesystem_encoding', ''), []),
     ]
     c.ct['get_home_directory'] = [
-        ('s', 2, 0, ('p', 'Filename$24$get_home_directory', ''), []),
+        ('s', 3, 0, ('p', 'Filename$24$get_home_directory', ''), []),
     ]
     c.ct['get_temp_directory'] = [
-        ('s', 2, 0, ('p', 'Filename$25$get_temp_directory', ''), []),
+        ('s', 3, 0, ('p', 'Filename$25$get_temp_directory', ''), []),
     ]
     c.ct['get_user_appdata_directory'] = [
-        ('s', 2, 0, ('p', 'Filename$26$get_user_appdata_directory', ''), []),
+        ('s', 3, 0, ('p', 'Filename$26$get_user_appdata_directory', ''), []),
     ]
     c.ct['init_type'] = [
         ('s', 'v', 0, ('v', 'Filename$118$init_type', ''), []),
     ]
     c.ct['pattern_filename'] = [
-        ('s', 2, 1, ('p', 'Filename$14$pattern_filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$14$pattern_filename', 's'), ['std::string const&']),
     ]
     c.ct['set_filesystem_encoding'] = [
         ('s', 'v', 1, ('v', 'Filename$115$set_filesystem_encoding', 'p'), ['TextEncoder::Encoding']),
     ]
     c.ct['temporary'] = [
-        ('s', 2, 4, ('p', 'Filename$21$temporary', 'sssp'), ['std::string const&', 'std::string const&', 'std::string const&', 'Filename::Type']),
-        ('s', 2, 3, ('p', 'Filename$22$temporary', 'sss'), ['std::string const&', 'std::string const&', 'std::string const&']),
-        ('s', 2, 2, ('p', 'Filename$23$temporary', 'ss'), ['std::string const&', 'std::string const&']),
+        ('s', 3, 4, ('p', 'Filename$21$temporary', 'sssp'), ['std::string const&', 'std::string const&', 'std::string const&', 'Filename::Type']),
+        ('s', 3, 3, ('p', 'Filename$22$temporary', 'sss'), ['std::string const&', 'std::string const&', 'std::string const&']),
+        ('s', 3, 2, ('p', 'Filename$23$temporary', 'ss'), ['std::string const&', 'std::string const&']),
     ]
     c.ct['text_filename'] = [
-        ('s', 2, 1, ('p', 'Filename$8$text_filename', 'p'), ['Filename const&']),
-        ('s', 2, 1, ('p', 'Filename$9$text_filename', 's'), ['std::string const&']),
+        ('s', 3, 1, ('p', 'Filename$8$text_filename', 'p'), ['Filename const&']),
+        ('s', 3, 1, ('p', 'Filename$9$text_filename', 's'), ['std::string const&']),
     ]
 
     @classmethod
@@ -590,7 +745,7 @@ class Filename(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'Filename$82$get_file_size', 'p'), []),
     ]
     c.ct['get_filename_index'] = [
-        ('d', 2, 1, ('p', 'Filename$56$get_filename_index', 'pi'), ['int']),
+        ('d', 3, 1, ('p', 'Filename$56$get_filename_index', 'pi'), ['int']),
     ]
     c.ct['get_fullpath'] = [
         ('d', 's', 0, ('s', 'Filename$33$get_fullpath', 'p'), []),
@@ -883,8 +1038,8 @@ class GeomEnums(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 3, 0, ('p', 'GeomEnums$1$GeomEnums', ''), []),
-        ('s', 3, 1, ('p', 'GeomEnums$2$GeomEnums', 'p'), ['GeomEnums const&']),
+        ('s', 4, 0, ('p', 'GeomEnums$1$GeomEnums', ''), []),
+        ('s', 4, 1, ('p', 'GeomEnums$2$GeomEnums', 'p'), ['GeomEnums const&']),
     ]
 
     # classmethod type calls
@@ -893,16 +1048,16 @@ class GeomEnums(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_Geom'] = [
-        ('d', 27, 0, ('p', 'GeomEnums$3$downcast_to_Geom', 'p'), []),
+        ('d', 36, 0, ('p', 'GeomEnums$3$downcast_to_Geom', 'p'), []),
     ]
     c.ct['downcast_to_GeomPrimitive'] = [
-        ('d', 25, 0, ('p', 'GeomEnums$4$downcast_to_GeomPrimitive', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomEnums$4$downcast_to_GeomPrimitive', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexData'] = [
-        ('d', 24, 0, ('p', 'GeomEnums$5$downcast_to_GeomVertexData', 'p'), []),
+        ('d', 33, 0, ('p', 'GeomEnums$5$downcast_to_GeomVertexData', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexFormat'] = [
-        ('d', 19, 0, ('p', 'GeomEnums$6$downcast_to_GeomVertexFormat', 'p'), []),
+        ('d', 25, 0, ('p', 'GeomEnums$6$downcast_to_GeomVertexFormat', 'p'), []),
     ]
 
 
@@ -925,19 +1080,17 @@ class LVecBase3f(cxx.cplusplus):
 
     # enum 
 
-    is_int = const(0)
-    num_components = const(3)
 
 
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 4, 0, ('p', 'LVecBase3f$1$LVecBase3f', ''), []),
-        ('s', 4, 2, ('p', 'LVecBase3f$2$LVecBase3f', 'pf'), ['LVecBase2f const&', 'float']),
-        ('s', 4, 1, ('p', 'LVecBase3f$3$LVecBase3f', 'p'), ['LVecBase3f const&']),
-        ('s', 4, 1, ('p', 'LVecBase3f$4$LVecBase3f', 'p'), ['LVecBase3f::EVector3 const&']),
-        ('s', 4, 1, ('p', 'LVecBase3f$5$LVecBase3f', 'f'), ['float']),
-        ('s', 4, 3, ('p', 'LVecBase3f$6$LVecBase3f', 'fff'), ['float', 'float', 'float']),
+        ('s', 5, 0, ('p', 'LVecBase3f$1$LVecBase3f', ''), []),
+        ('s', 5, 2, ('p', 'LVecBase3f$2$LVecBase3f', 'pf'), ['LVecBase2f const&', 'float']),
+        ('s', 5, 1, ('p', 'LVecBase3f$3$LVecBase3f', 'p'), ['LVecBase3f const&']),
+        ('s', 5, 1, ('p', 'LVecBase3f$4$LVecBase3f', 'p'), ['LVecBase3f::EVector3 const&']),
+        ('s', 5, 1, ('p', 'LVecBase3f$5$LVecBase3f', 'f'), ['float']),
+        ('s', 5, 3, ('p', 'LVecBase3f$6$LVecBase3f', 'fff'), ['float', 'float', 'float']),
     ]
 
     # classmethod type calls
@@ -955,16 +1108,16 @@ class LVecBase3f(cxx.cplusplus):
         ('s', 'i', 0, ('i', 'LVecBase3f$11$size', ''), []),
     ]
     c.ct['unit_x'] = [
-        ('s', 4, 0, ('p', 'LVecBase3f$8$unit_x', ''), []),
+        ('s', 5, 0, ('p', 'LVecBase3f$8$unit_x', ''), []),
     ]
     c.ct['unit_y'] = [
-        ('s', 4, 0, ('p', 'LVecBase3f$9$unit_y', ''), []),
+        ('s', 5, 0, ('p', 'LVecBase3f$9$unit_y', ''), []),
     ]
     c.ct['unit_z'] = [
-        ('s', 4, 0, ('p', 'LVecBase3f$10$unit_z', ''), []),
+        ('s', 5, 0, ('p', 'LVecBase3f$10$unit_z', ''), []),
     ]
     c.ct['zero'] = [
-        ('s', 4, 0, ('p', 'LVecBase3f$7$zero', ''), []),
+        ('s', 5, 0, ('p', 'LVecBase3f$7$zero', ''), []),
     ]
 
     @classmethod
@@ -1033,7 +1186,7 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'LVecBase3f$52$componentwise_mult', 'pp'), ['LVecBase3f const&']),
     ]
     c.ct['cross'] = [
-        ('d', 4, 1, ('p', 'LVecBase3f$42$cross', 'pp'), ['LVecBase3f const&']),
+        ('d', 5, 1, ('p', 'LVecBase3f$42$cross', 'pp'), ['LVecBase3f const&']),
     ]
     c.ct['cross_into'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f$55$cross_into', 'pp'), ['LVecBase3f const&']),
@@ -1049,10 +1202,10 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'LVecBase3f$34$fill', 'pf'), ['float']),
     ]
     c.ct['fmax'] = [
-        ('d', 4, 1, ('p', 'LVecBase3f$53$fmax', 'pp'), ['LVecBase3f const&']),
+        ('d', 5, 1, ('p', 'LVecBase3f$53$fmax', 'pp'), ['LVecBase3f const&']),
     ]
     c.ct['fmin'] = [
-        ('d', 4, 1, ('p', 'LVecBase3f$54$fmin', 'pp'), ['LVecBase3f const&']),
+        ('d', 5, 1, ('p', 'LVecBase3f$54$fmin', 'pp'), ['LVecBase3f const&']),
     ]
     c.ct['generate_hash'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f$50$generate_hash', 'pp'), ['ChecksumHashGenerator&']),
@@ -1069,7 +1222,7 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'LVecBase3f$47$get_hash', 'pf'), ['float']),
     ]
     c.ct['get_standardized_hpr'] = [
-        ('d', 4, 0, ('p', 'LVecBase3f$43$get_standardized_hpr', 'p'), []),
+        ('d', 5, 0, ('p', 'LVecBase3f$43$get_standardized_hpr', 'p'), []),
     ]
     c.ct['get_v'] = [
         ('d', 'p', 0, ('p', 'LVecBase3f$63$get_v', 'p'), []),
@@ -1105,13 +1258,13 @@ class LVecBase3f(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'LVecBase3f$39$normalize', 'p'), []),
     ]
     c.ct['normalized'] = [
-        ('d', 4, 0, ('p', 'LVecBase3f$40$normalized', 'p'), []),
+        ('d', 5, 0, ('p', 'LVecBase3f$40$normalized', 'p'), []),
     ]
     c.ct['output'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f$58$output', 'pp'), ['std::ostream&']),
     ]
     c.ct['project'] = [
-        ('d', 4, 1, ('p', 'LVecBase3f$41$project', 'pp'), ['LVecBase3f const&']),
+        ('d', 5, 1, ('p', 'LVecBase3f$41$project', 'pp'), ['LVecBase3f const&']),
     ]
     c.ct['read_datagram'] = [
         ('d', 'v', 1, ('v', 'LVecBase3f$62$read_datagram', 'pp'), ['DatagramIterator&']),
@@ -1154,6 +1307,687 @@ LVecBase3f.c.link(LVecBase3f)
 
 
 
+class LVecBase3i(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("LVecBase3i", "upanda3d", """libupanda3d_c.so""")
+
+    # enum 
+
+
+
+    # ctor/dtor
+
+    c.ct['ctor'] = [
+        ('s', 6, 0, ('p', 'LVecBase3i$1$LVecBase3i', ''), []),
+        ('s', 6, 2, ('p', 'LVecBase3i$2$LVecBase3i', 'pi'), ['LVecBase2i const&', 'int']),
+        ('s', 6, 1, ('p', 'LVecBase3i$3$LVecBase3i', 'p'), ['LVecBase3i const&']),
+        ('s', 6, 1, ('p', 'LVecBase3i$4$LVecBase3i', 'p'), ['LVecBase3i::EVector3 const&']),
+        ('s', 6, 1, ('p', 'LVecBase3i$5$LVecBase3i', 'i'), ['int']),
+        ('s', 6, 3, ('p', 'LVecBase3i$6$LVecBase3i', 'iii'), ['int', 'int', 'int']),
+    ]
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'LVecBase3i$55$get_class_type', ''), []),
+    ]
+    c.ct['get_num_components'] = [
+        ('s', 'i', 0, ('i', 'LVecBase3i$29$get_num_components', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'LVecBase3i$56$init_type', ''), []),
+    ]
+    c.ct['size'] = [
+        ('s', 'i', 0, ('i', 'LVecBase3i$11$size', ''), []),
+    ]
+    c.ct['unit_x'] = [
+        ('s', 6, 0, ('p', 'LVecBase3i$8$unit_x', ''), []),
+    ]
+    c.ct['unit_y'] = [
+        ('s', 6, 0, ('p', 'LVecBase3i$9$unit_y', ''), []),
+    ]
+    c.ct['unit_z'] = [
+        ('s', 6, 0, ('p', 'LVecBase3i$10$unit_z', ''), []),
+    ]
+    c.ct['zero'] = [
+        ('s', 6, 0, ('p', 'LVecBase3i$7$zero', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(LVecBase3i, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def get_num_components(cls, *args,**kw):
+        return ( cls.c.get('get_num_components', None) or cls.c.call(LVecBase3i, 'get_num_components', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(LVecBase3i, 'init_type', None) )(*args,**kw)
+
+    @classmethod
+    def size(cls, *args,**kw):
+        return ( cls.c.get('size', None) or cls.c.call(LVecBase3i, 'size', None) )(*args,**kw)
+
+    @classmethod
+    def unit_x(cls, *args,**kw):
+        return ( cls.c.get('unit_x', None) or cls.c.call(LVecBase3i, 'unit_x', None) )(*args,**kw)
+
+    @classmethod
+    def unit_y(cls, *args,**kw):
+        return ( cls.c.get('unit_y', None) or cls.c.call(LVecBase3i, 'unit_y', None) )(*args,**kw)
+
+    @classmethod
+    def unit_z(cls, *args,**kw):
+        return ( cls.c.get('unit_z', None) or cls.c.call(LVecBase3i, 'unit_z', None) )(*args,**kw)
+
+    @classmethod
+    def zero(cls, *args,**kw):
+        return ( cls.c.get('zero', None) or cls.c.call(LVecBase3i, 'zero', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['add_hash'] = [
+        ('d', 'p', 1, ('p', 'LVecBase3i$41$add_hash', 'pp'), ['std::size_t']),
+    ]
+    c.ct['add_to_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase3i$24$add_to_cell', 'pii'), ['int', 'int']),
+    ]
+    c.ct['add_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$25$add_x', 'pi'), ['int']),
+    ]
+    c.ct['add_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$26$add_y', 'pi'), ['int']),
+    ]
+    c.ct['add_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$27$add_z', 'pi'), ['int']),
+    ]
+    c.ct['almost_equal'] = [
+        ('d', 'B', 1, ('B', 'LVecBase3i$47$almost_equal', 'pp'), ['LVecBase3i const&']),
+        ('d', 'B', 2, ('B', 'LVecBase3i$48$almost_equal', 'ppi'), ['LVecBase3i const&', 'int']),
+    ]
+    c.ct['begin'] = [
+        ('d', 'v', 0, ('v', 'LVecBase3i$30$begin', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase3i$31$begin', 'p'), []),
+    ]
+    c.ct['compare_to'] = [
+        ('d', 'i', 1, ('i', 'LVecBase3i$39$compare_to', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['componentwise_mult'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$43$componentwise_mult', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['cross'] = [
+        ('d', 6, 1, ('p', 'LVecBase3i$38$cross', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['cross_into'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$46$cross_into', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['dot'] = [
+        ('d', 'i', 1, ('i', 'LVecBase3i$36$dot', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['end'] = [
+        ('d', 'v', 0, ('v', 'LVecBase3i$32$end', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase3i$33$end', 'p'), []),
+    ]
+    c.ct['fill'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$34$fill', 'pi'), ['int']),
+    ]
+    c.ct['fmax'] = [
+        ('d', 6, 1, ('p', 'LVecBase3i$44$fmax', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['fmin'] = [
+        ('d', 6, 1, ('p', 'LVecBase3i$45$fmin', 'pp'), ['LVecBase3i const&']),
+    ]
+    c.ct['generate_hash'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$42$generate_hash', 'pp'), ['ChecksumHashGenerator&']),
+    ]
+    c.ct['get_cell'] = [
+        ('d', 'i', 1, ('i', 'LVecBase3i$13$get_cell', 'pi'), ['int']),
+    ]
+    c.ct['get_data'] = [
+        ('d', 'v', 0, ('v', 'LVecBase3i$28$get_data', 'p'), []),
+    ]
+    c.ct['get_hash'] = [
+        ('d', 'p', 0, ('p', 'LVecBase3i$40$get_hash', 'p'), []),
+    ]
+    c.ct['get_v'] = [
+        ('d', 'p', 0, ('p', 'LVecBase3i$54$get_v', 'p'), []),
+    ]
+    c.ct['get_x'] = [
+        ('d', 'i', 0, ('i', 'LVecBase3i$14$get_x', 'p'), []),
+    ]
+    c.ct['get_xy'] = [
+        ('d', 'p', 0, ('p', 'LVecBase3i$21$get_xy', 'p'), []),
+    ]
+    c.ct['get_xz'] = [
+        ('d', 'p', 0, ('p', 'LVecBase3i$22$get_xz', 'p'), []),
+    ]
+    c.ct['get_y'] = [
+        ('d', 'i', 0, ('i', 'LVecBase3i$15$get_y', 'p'), []),
+    ]
+    c.ct['get_yz'] = [
+        ('d', 'p', 0, ('p', 'LVecBase3i$23$get_yz', 'p'), []),
+    ]
+    c.ct['get_z'] = [
+        ('d', 'i', 0, ('i', 'LVecBase3i$16$get_z', 'p'), []),
+    ]
+    c.ct['is_nan'] = [
+        ('d', 'B', 0, ('B', 'LVecBase3i$12$is_nan', 'p'), []),
+    ]
+    c.ct['length_squared'] = [
+        ('d', 'i', 0, ('i', 'LVecBase3i$37$length_squared', 'p'), []),
+    ]
+    c.ct['output'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$49$output', 'pp'), ['std::ostream&']),
+    ]
+    c.ct['read_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$53$read_datagram', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['read_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$51$read_datagram_fixed', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['set'] = [
+        ('d', 'v', 3, ('v', 'LVecBase3i$35$set', 'piii'), ['int', 'int', 'int']),
+    ]
+    c.ct['set_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase3i$17$set_cell', 'pii'), ['int', 'int']),
+    ]
+    c.ct['set_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$18$set_x', 'pi'), ['int']),
+    ]
+    c.ct['set_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$19$set_y', 'pi'), ['int']),
+    ]
+    c.ct['set_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$20$set_z', 'pi'), ['int']),
+    ]
+    c.ct['write_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$52$write_datagram', 'pp'), ['Datagram&']),
+    ]
+    c.ct['write_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase3i$50$write_datagram_fixed', 'pp'), ['Datagram&']),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(LVecBase3i, attr, self)
+
+LVecBase3i.c.link(LVecBase3i)
+
+
+
+class LVecBase4f(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("LVecBase4f", "upanda3d", """libupanda3d_c.so""")
+
+    # enum 
+
+
+
+    # ctor/dtor
+
+    c.ct['ctor'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$1$LVecBase4f', ''), []),
+        ('s', 7, 1, ('p', 'LVecBase4f$2$LVecBase4f', 'p'), ['LPoint3f const&']),
+        ('s', 7, 2, ('p', 'LVecBase4f$3$LVecBase4f', 'pf'), ['LVecBase3f const&', 'float']),
+        ('s', 7, 1, ('p', 'LVecBase4f$4$LVecBase4f', 'p'), ['LVecBase4f const&']),
+        ('s', 7, 1, ('p', 'LVecBase4f$5$LVecBase4f', 'p'), ['LVecBase4f::EVector4 const&']),
+        ('s', 7, 1, ('p', 'LVecBase4f$6$LVecBase4f', 'p'), ['LVector3f const&']),
+        ('s', 7, 1, ('p', 'LVecBase4f$7$LVecBase4f', 'p'), ['UnalignedLVecBase4f const&']),
+        ('s', 7, 1, ('p', 'LVecBase4f$8$LVecBase4f', 'f'), ['float']),
+        ('s', 7, 4, ('p', 'LVecBase4f$9$LVecBase4f', 'ffff'), ['float', 'float', 'float', 'float']),
+    ]
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4f$67$get_class_type', ''), []),
+    ]
+    c.ct['get_num_components'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4f$35$get_num_components', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'LVecBase4f$68$init_type', ''), []),
+    ]
+    c.ct['size'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4f$15$size', ''), []),
+    ]
+    c.ct['unit_w'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$14$unit_w', ''), []),
+    ]
+    c.ct['unit_x'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$11$unit_x', ''), []),
+    ]
+    c.ct['unit_y'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$12$unit_y', ''), []),
+    ]
+    c.ct['unit_z'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$13$unit_z', ''), []),
+    ]
+    c.ct['zero'] = [
+        ('s', 7, 0, ('p', 'LVecBase4f$10$zero', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(LVecBase4f, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def get_num_components(cls, *args,**kw):
+        return ( cls.c.get('get_num_components', None) or cls.c.call(LVecBase4f, 'get_num_components', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(LVecBase4f, 'init_type', None) )(*args,**kw)
+
+    @classmethod
+    def size(cls, *args,**kw):
+        return ( cls.c.get('size', None) or cls.c.call(LVecBase4f, 'size', None) )(*args,**kw)
+
+    @classmethod
+    def unit_w(cls, *args,**kw):
+        return ( cls.c.get('unit_w', None) or cls.c.call(LVecBase4f, 'unit_w', None) )(*args,**kw)
+
+    @classmethod
+    def unit_x(cls, *args,**kw):
+        return ( cls.c.get('unit_x', None) or cls.c.call(LVecBase4f, 'unit_x', None) )(*args,**kw)
+
+    @classmethod
+    def unit_y(cls, *args,**kw):
+        return ( cls.c.get('unit_y', None) or cls.c.call(LVecBase4f, 'unit_y', None) )(*args,**kw)
+
+    @classmethod
+    def unit_z(cls, *args,**kw):
+        return ( cls.c.get('unit_z', None) or cls.c.call(LVecBase4f, 'unit_z', None) )(*args,**kw)
+
+    @classmethod
+    def zero(cls, *args,**kw):
+        return ( cls.c.get('zero', None) or cls.c.call(LVecBase4f, 'zero', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['add_hash'] = [
+        ('d', 'p', 1, ('p', 'LVecBase4f$52$add_hash', 'pp'), ['std::size_t']),
+        ('d', 'p', 2, ('p', 'LVecBase4f$53$add_hash', 'ppf'), ['std::size_t', 'float']),
+    ]
+    c.ct['add_to_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase4f$29$add_to_cell', 'pif'), ['int', 'float']),
+    ]
+    c.ct['add_w'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$33$add_w', 'pf'), ['float']),
+    ]
+    c.ct['add_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$30$add_x', 'pf'), ['float']),
+    ]
+    c.ct['add_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$31$add_y', 'pf'), ['float']),
+    ]
+    c.ct['add_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$32$add_z', 'pf'), ['float']),
+    ]
+    c.ct['almost_equal'] = [
+        ('d', 'B', 1, ('B', 'LVecBase4f$59$almost_equal', 'pp'), ['LVecBase4f const&']),
+        ('d', 'B', 2, ('B', 'LVecBase4f$60$almost_equal', 'ppf'), ['LVecBase4f const&', 'float']),
+    ]
+    c.ct['begin'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4f$36$begin', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase4f$37$begin', 'p'), []),
+    ]
+    c.ct['compare_to'] = [
+        ('d', 'i', 1, ('i', 'LVecBase4f$48$compare_to', 'pp'), ['LVecBase4f const&']),
+        ('d', 'i', 2, ('i', 'LVecBase4f$49$compare_to', 'ppf'), ['LVecBase4f const&', 'float']),
+    ]
+    c.ct['componentwise_mult'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$56$componentwise_mult', 'pp'), ['LVecBase4f const&']),
+    ]
+    c.ct['dot'] = [
+        ('d', 'f', 1, ('f', 'LVecBase4f$42$dot', 'pp'), ['LVecBase4f const&']),
+    ]
+    c.ct['end'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4f$38$end', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase4f$39$end', 'p'), []),
+    ]
+    c.ct['fill'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$40$fill', 'pf'), ['float']),
+    ]
+    c.ct['fmax'] = [
+        ('d', 7, 1, ('p', 'LVecBase4f$57$fmax', 'pp'), ['LVecBase4f const&']),
+    ]
+    c.ct['fmin'] = [
+        ('d', 7, 1, ('p', 'LVecBase4f$58$fmin', 'pp'), ['LVecBase4f const&']),
+    ]
+    c.ct['generate_hash'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$54$generate_hash', 'pp'), ['ChecksumHashGenerator&']),
+        ('d', 'v', 2, ('v', 'LVecBase4f$55$generate_hash', 'ppf'), ['ChecksumHashGenerator&', 'float']),
+    ]
+    c.ct['get_cell'] = [
+        ('d', 'f', 1, ('f', 'LVecBase4f$17$get_cell', 'pi'), ['int']),
+    ]
+    c.ct['get_data'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4f$34$get_data', 'p'), []),
+    ]
+    c.ct['get_hash'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4f$50$get_hash', 'p'), []),
+        ('d', 'p', 1, ('p', 'LVecBase4f$51$get_hash', 'pf'), ['float']),
+    ]
+    c.ct['get_v'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4f$66$get_v', 'p'), []),
+    ]
+    c.ct['get_w'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$22$get_w', 'p'), []),
+    ]
+    c.ct['get_x'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$19$get_x', 'p'), []),
+    ]
+    c.ct['get_xy'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4f$24$get_xy', 'p'), []),
+    ]
+    c.ct['get_xyz'] = [
+        ('d', 5, 0, ('p', 'LVecBase4f$23$get_xyz', 'p'), []),
+    ]
+    c.ct['get_y'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$20$get_y', 'p'), []),
+    ]
+    c.ct['get_z'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$21$get_z', 'p'), []),
+    ]
+    c.ct['is_nan'] = [
+        ('d', 'B', 0, ('B', 'LVecBase4f$16$is_nan', 'p'), []),
+    ]
+    c.ct['length'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$44$length', 'p'), []),
+    ]
+    c.ct['length_squared'] = [
+        ('d', 'f', 0, ('f', 'LVecBase4f$43$length_squared', 'p'), []),
+    ]
+    c.ct['normalize'] = [
+        ('d', 'B', 0, ('B', 'LVecBase4f$45$normalize', 'p'), []),
+    ]
+    c.ct['normalized'] = [
+        ('d', 7, 0, ('p', 'LVecBase4f$46$normalized', 'p'), []),
+    ]
+    c.ct['output'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$61$output', 'pp'), ['std::ostream&']),
+    ]
+    c.ct['project'] = [
+        ('d', 7, 1, ('p', 'LVecBase4f$47$project', 'pp'), ['LVecBase4f const&']),
+    ]
+    c.ct['read_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$65$read_datagram', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['read_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$63$read_datagram_fixed', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['set'] = [
+        ('d', 'v', 4, ('v', 'LVecBase4f$41$set', 'pffff'), ['float', 'float', 'float', 'float']),
+    ]
+    c.ct['set_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase4f$18$set_cell', 'pif'), ['int', 'float']),
+    ]
+    c.ct['set_w'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$28$set_w', 'pf'), ['float']),
+    ]
+    c.ct['set_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$25$set_x', 'pf'), ['float']),
+    ]
+    c.ct['set_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$26$set_y', 'pf'), ['float']),
+    ]
+    c.ct['set_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$27$set_z', 'pf'), ['float']),
+    ]
+    c.ct['write_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$64$write_datagram', 'pp'), ['Datagram&']),
+    ]
+    c.ct['write_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4f$62$write_datagram_fixed', 'pp'), ['Datagram&']),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(LVecBase4f, attr, self)
+
+LVecBase4f.c.link(LVecBase4f)
+
+
+
+class LVecBase4i(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("LVecBase4i", "upanda3d", """libupanda3d_c.so""")
+
+    # enum 
+
+
+
+    # ctor/dtor
+
+    c.ct['ctor'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$1$LVecBase4i', ''), []),
+        ('s', 8, 1, ('p', 'LVecBase4i$2$LVecBase4i', 'p'), ['LPoint3i const&']),
+        ('s', 8, 2, ('p', 'LVecBase4i$3$LVecBase4i', 'pi'), ['LVecBase3i const&', 'int']),
+        ('s', 8, 1, ('p', 'LVecBase4i$4$LVecBase4i', 'p'), ['LVecBase4i const&']),
+        ('s', 8, 1, ('p', 'LVecBase4i$5$LVecBase4i', 'p'), ['LVecBase4i::EVector4 const&']),
+        ('s', 8, 1, ('p', 'LVecBase4i$6$LVecBase4i', 'p'), ['LVector3i const&']),
+        ('s', 8, 1, ('p', 'LVecBase4i$7$LVecBase4i', 'p'), ['UnalignedLVecBase4i const&']),
+        ('s', 8, 1, ('p', 'LVecBase4i$8$LVecBase4i', 'i'), ['int']),
+        ('s', 8, 4, ('p', 'LVecBase4i$9$LVecBase4i', 'iiii'), ['int', 'int', 'int', 'int']),
+    ]
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4i$59$get_class_type', ''), []),
+    ]
+    c.ct['get_num_components'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4i$35$get_num_components', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'LVecBase4i$60$init_type', ''), []),
+    ]
+    c.ct['size'] = [
+        ('s', 'i', 0, ('i', 'LVecBase4i$15$size', ''), []),
+    ]
+    c.ct['unit_w'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$14$unit_w', ''), []),
+    ]
+    c.ct['unit_x'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$11$unit_x', ''), []),
+    ]
+    c.ct['unit_y'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$12$unit_y', ''), []),
+    ]
+    c.ct['unit_z'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$13$unit_z', ''), []),
+    ]
+    c.ct['zero'] = [
+        ('s', 8, 0, ('p', 'LVecBase4i$10$zero', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(LVecBase4i, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def get_num_components(cls, *args,**kw):
+        return ( cls.c.get('get_num_components', None) or cls.c.call(LVecBase4i, 'get_num_components', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(LVecBase4i, 'init_type', None) )(*args,**kw)
+
+    @classmethod
+    def size(cls, *args,**kw):
+        return ( cls.c.get('size', None) or cls.c.call(LVecBase4i, 'size', None) )(*args,**kw)
+
+    @classmethod
+    def unit_w(cls, *args,**kw):
+        return ( cls.c.get('unit_w', None) or cls.c.call(LVecBase4i, 'unit_w', None) )(*args,**kw)
+
+    @classmethod
+    def unit_x(cls, *args,**kw):
+        return ( cls.c.get('unit_x', None) or cls.c.call(LVecBase4i, 'unit_x', None) )(*args,**kw)
+
+    @classmethod
+    def unit_y(cls, *args,**kw):
+        return ( cls.c.get('unit_y', None) or cls.c.call(LVecBase4i, 'unit_y', None) )(*args,**kw)
+
+    @classmethod
+    def unit_z(cls, *args,**kw):
+        return ( cls.c.get('unit_z', None) or cls.c.call(LVecBase4i, 'unit_z', None) )(*args,**kw)
+
+    @classmethod
+    def zero(cls, *args,**kw):
+        return ( cls.c.get('zero', None) or cls.c.call(LVecBase4i, 'zero', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['add_hash'] = [
+        ('d', 'p', 1, ('p', 'LVecBase4i$46$add_hash', 'pp'), ['std::size_t']),
+    ]
+    c.ct['add_to_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase4i$29$add_to_cell', 'pii'), ['int', 'int']),
+    ]
+    c.ct['add_w'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$33$add_w', 'pi'), ['int']),
+    ]
+    c.ct['add_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$30$add_x', 'pi'), ['int']),
+    ]
+    c.ct['add_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$31$add_y', 'pi'), ['int']),
+    ]
+    c.ct['add_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$32$add_z', 'pi'), ['int']),
+    ]
+    c.ct['almost_equal'] = [
+        ('d', 'B', 1, ('B', 'LVecBase4i$51$almost_equal', 'pp'), ['LVecBase4i const&']),
+        ('d', 'B', 2, ('B', 'LVecBase4i$52$almost_equal', 'ppi'), ['LVecBase4i const&', 'int']),
+    ]
+    c.ct['begin'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4i$36$begin', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase4i$37$begin', 'p'), []),
+    ]
+    c.ct['compare_to'] = [
+        ('d', 'i', 1, ('i', 'LVecBase4i$44$compare_to', 'pp'), ['LVecBase4i const&']),
+    ]
+    c.ct['componentwise_mult'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$48$componentwise_mult', 'pp'), ['LVecBase4i const&']),
+    ]
+    c.ct['dot'] = [
+        ('d', 'i', 1, ('i', 'LVecBase4i$42$dot', 'pp'), ['LVecBase4i const&']),
+    ]
+    c.ct['end'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4i$38$end', 'p'), []),
+        ('d', 'v', 0, ('v', 'LVecBase4i$39$end', 'p'), []),
+    ]
+    c.ct['fill'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$40$fill', 'pi'), ['int']),
+    ]
+    c.ct['fmax'] = [
+        ('d', 8, 1, ('p', 'LVecBase4i$49$fmax', 'pp'), ['LVecBase4i const&']),
+    ]
+    c.ct['fmin'] = [
+        ('d', 8, 1, ('p', 'LVecBase4i$50$fmin', 'pp'), ['LVecBase4i const&']),
+    ]
+    c.ct['generate_hash'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$47$generate_hash', 'pp'), ['ChecksumHashGenerator&']),
+    ]
+    c.ct['get_cell'] = [
+        ('d', 'i', 1, ('i', 'LVecBase4i$17$get_cell', 'pi'), ['int']),
+    ]
+    c.ct['get_data'] = [
+        ('d', 'v', 0, ('v', 'LVecBase4i$34$get_data', 'p'), []),
+    ]
+    c.ct['get_hash'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4i$45$get_hash', 'p'), []),
+    ]
+    c.ct['get_v'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4i$58$get_v', 'p'), []),
+    ]
+    c.ct['get_w'] = [
+        ('d', 'i', 0, ('i', 'LVecBase4i$22$get_w', 'p'), []),
+    ]
+    c.ct['get_x'] = [
+        ('d', 'i', 0, ('i', 'LVecBase4i$19$get_x', 'p'), []),
+    ]
+    c.ct['get_xy'] = [
+        ('d', 'p', 0, ('p', 'LVecBase4i$24$get_xy', 'p'), []),
+    ]
+    c.ct['get_xyz'] = [
+        ('d', 6, 0, ('p', 'LVecBase4i$23$get_xyz', 'p'), []),
+    ]
+    c.ct['get_y'] = [
+        ('d', 'i', 0, ('i', 'LVecBase4i$20$get_y', 'p'), []),
+    ]
+    c.ct['get_z'] = [
+        ('d', 'i', 0, ('i', 'LVecBase4i$21$get_z', 'p'), []),
+    ]
+    c.ct['is_nan'] = [
+        ('d', 'B', 0, ('B', 'LVecBase4i$16$is_nan', 'p'), []),
+    ]
+    c.ct['length_squared'] = [
+        ('d', 'i', 0, ('i', 'LVecBase4i$43$length_squared', 'p'), []),
+    ]
+    c.ct['output'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$53$output', 'pp'), ['std::ostream&']),
+    ]
+    c.ct['read_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$57$read_datagram', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['read_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$55$read_datagram_fixed', 'pp'), ['DatagramIterator&']),
+    ]
+    c.ct['set'] = [
+        ('d', 'v', 4, ('v', 'LVecBase4i$41$set', 'piiii'), ['int', 'int', 'int', 'int']),
+    ]
+    c.ct['set_cell'] = [
+        ('d', 'v', 2, ('v', 'LVecBase4i$18$set_cell', 'pii'), ['int', 'int']),
+    ]
+    c.ct['set_w'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$28$set_w', 'pi'), ['int']),
+    ]
+    c.ct['set_x'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$25$set_x', 'pi'), ['int']),
+    ]
+    c.ct['set_y'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$26$set_y', 'pi'), ['int']),
+    ]
+    c.ct['set_z'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$27$set_z', 'pi'), ['int']),
+    ]
+    c.ct['write_datagram'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$56$write_datagram', 'pp'), ['Datagram&']),
+    ]
+    c.ct['write_datagram_fixed'] = [
+        ('d', 'v', 1, ('v', 'LVecBase4i$54$write_datagram_fixed', 'pp'), ['Datagram&']),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(LVecBase4i, attr, self)
+
+LVecBase4i.c.link(LVecBase4i)
+
+
+
 class LinkedListNode(cxx.cplusplus):
     __bases__ = tuple([])
     c = cxx.cstructs()
@@ -1168,7 +2002,7 @@ class LinkedListNode(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 28, 0, ('p', 'LinkedListNode$1$downcast_to_PandaNode', 'p'), []),
+        ('d', 37, 0, ('p', 'LinkedListNode$1$downcast_to_PandaNode', 'p'), []),
     ]
 
 
@@ -1192,8 +2026,8 @@ class MemoryBase(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 6, 0, ('p', 'MemoryBase$1$MemoryBase', ''), []),
-        ('s', 6, 1, ('p', 'MemoryBase$2$MemoryBase', 'p'), ['MemoryBase const&']),
+        ('s', 10, 0, ('p', 'MemoryBase$1$MemoryBase', ''), []),
+        ('s', 10, 1, ('p', 'MemoryBase$2$MemoryBase', 'p'), ['MemoryBase const&']),
     ]
 
     # classmethod type calls
@@ -1202,10 +2036,10 @@ class MemoryBase(cxx.cplusplus):
     # instance method type calls
 
     c.ct['downcast_to_ReferenceCount'] = [
-        ('d', 13, 0, ('p', 'MemoryBase$3$downcast_to_ReferenceCount', 'p'), []),
+        ('d', 19, 0, ('p', 'MemoryBase$3$downcast_to_ReferenceCount', 'p'), []),
     ]
     c.ct['downcast_to_TypedObject'] = [
-        ('d', 14, 0, ('p', 'MemoryBase$4$downcast_to_TypedObject', 'p'), []),
+        ('d', 20, 0, ('p', 'MemoryBase$4$downcast_to_TypedObject', 'p'), []),
     ]
 
 
@@ -1237,29 +2071,29 @@ class NodePath(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 7, 0, ('p', 'NodePath$1$NodePath', ''), []),
-        ('s', 7, 1, ('p', 'NodePath$2$NodePath', 'p'), ['NodePath&&']),
-        ('s', 7, 1, ('p', 'NodePath$3$NodePath', 'p'), ['NodePath const&']),
-        ('s', 7, 3, ('p', 'NodePath$4$NodePath', 'ppp'), ['NodePath const&', 'PandaNode*', 'Thread*']),
-        ('s', 7, 2, ('p', 'NodePath$5$NodePath', 'pp'), ['NodePath const&', 'PandaNode*']),
-        ('s', 7, 2, ('p', 'NodePath$6$NodePath', 'pp'), ['PandaNode*', 'Thread*']),
-        ('s', 7, 1, ('p', 'NodePath$7$NodePath', 'p'), ['PandaNode*']),
-        ('s', 7, 2, ('p', 'NodePath$8$NodePath', 'sp'), ['std::string const&', 'Thread*']),
-        ('s', 7, 1, ('p', 'NodePath$9$NodePath', 's'), ['std::string const&']),
+        ('s', 11, 0, ('p', 'NodePath$1$NodePath', ''), []),
+        ('s', 11, 1, ('p', 'NodePath$2$NodePath', 'p'), ['NodePath&&']),
+        ('s', 11, 1, ('p', 'NodePath$3$NodePath', 'p'), ['NodePath const&']),
+        ('s', 11, 3, ('p', 'NodePath$4$NodePath', 'ppp'), ['NodePath const&', 'PandaNode*', 'Thread*']),
+        ('s', 11, 2, ('p', 'NodePath$5$NodePath', 'pp'), ['NodePath const&', 'PandaNode*']),
+        ('s', 11, 2, ('p', 'NodePath$6$NodePath', 'pp'), ['PandaNode*', 'Thread*']),
+        ('s', 11, 1, ('p', 'NodePath$7$NodePath', 'p'), ['PandaNode*']),
+        ('s', 11, 2, ('p', 'NodePath$8$NodePath', 'sp'), ['std::string const&', 'Thread*']),
+        ('s', 11, 1, ('p', 'NodePath$9$NodePath', 's'), ['std::string const&']),
     ]
 
     # classmethod type calls
 
     c.ct['any_path'] = [
-        ('s', 7, 2, ('p', 'NodePath$10$any_path', 'pp'), ['PandaNode*', 'Thread*']),
-        ('s', 7, 1, ('p', 'NodePath$11$any_path', 'p'), ['PandaNode*']),
+        ('s', 11, 2, ('p', 'NodePath$10$any_path', 'pp'), ['PandaNode*', 'Thread*']),
+        ('s', 11, 1, ('p', 'NodePath$11$any_path', 'p'), ['PandaNode*']),
     ]
     c.ct['decode_from_bam_stream'] = [
-        ('s', 7, 2, ('p', 'NodePath$686$decode_from_bam_stream', 'pp'), ['vector_uchar', 'BamReader*']),
-        ('s', 7, 1, ('p', 'NodePath$687$decode_from_bam_stream', 'p'), ['vector_uchar']),
+        ('s', 11, 2, ('p', 'NodePath$686$decode_from_bam_stream', 'pp'), ['vector_uchar', 'BamReader*']),
+        ('s', 11, 1, ('p', 'NodePath$687$decode_from_bam_stream', 'p'), ['vector_uchar']),
     ]
     c.ct['fail'] = [
-        ('s', 7, 0, ('p', 'NodePath$15$fail', ''), []),
+        ('s', 11, 0, ('p', 'NodePath$15$fail', ''), []),
     ]
     c.ct['get_class_type'] = [
         ('s', 'i', 0, ('i', 'NodePath$690$get_class_type', ''), []),
@@ -1271,10 +2105,10 @@ class NodePath(cxx.cplusplus):
         ('s', 'v', 0, ('v', 'NodePath$691$init_type', ''), []),
     ]
     c.ct['not_found'] = [
-        ('s', 7, 0, ('p', 'NodePath$13$not_found', ''), []),
+        ('s', 11, 0, ('p', 'NodePath$13$not_found', ''), []),
     ]
     c.ct['removed'] = [
-        ('s', 7, 0, ('p', 'NodePath$14$removed', ''), []),
+        ('s', 11, 0, ('p', 'NodePath$14$removed', ''), []),
     ]
     c.ct['set_max_search_depth'] = [
         ('s', 'v', 1, ('v', 'NodePath$16$set_max_search_depth', 'i'), ['int']),
@@ -1328,12 +2162,12 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'NodePath$668$apply_texture_colors', 'p'), []),
     ]
     c.ct['attach_new_node'] = [
-        ('d', 7, 3, ('p', 'NodePath$78$attach_new_node', 'ppip'), ['PandaNode*', 'int', 'Thread*']),
-        ('d', 7, 2, ('p', 'NodePath$79$attach_new_node', 'ppi'), ['PandaNode*', 'int']),
-        ('d', 7, 1, ('p', 'NodePath$80$attach_new_node', 'pp'), ['PandaNode*']),
-        ('d', 7, 3, ('p', 'NodePath$81$attach_new_node', 'psip'), ['std::string const&', 'int', 'Thread*']),
-        ('d', 7, 2, ('p', 'NodePath$82$attach_new_node', 'psi'), ['std::string const&', 'int']),
-        ('d', 7, 1, ('p', 'NodePath$83$attach_new_node', 'ps'), ['std::string const&']),
+        ('d', 11, 3, ('p', 'NodePath$78$attach_new_node', 'ppip'), ['PandaNode*', 'int', 'Thread*']),
+        ('d', 11, 2, ('p', 'NodePath$79$attach_new_node', 'ppi'), ['PandaNode*', 'int']),
+        ('d', 11, 1, ('p', 'NodePath$80$attach_new_node', 'pp'), ['PandaNode*']),
+        ('d', 11, 3, ('p', 'NodePath$81$attach_new_node', 'psip'), ['std::string const&', 'int', 'Thread*']),
+        ('d', 11, 2, ('p', 'NodePath$82$attach_new_node', 'psi'), ['std::string const&', 'int']),
+        ('d', 11, 1, ('p', 'NodePath$83$attach_new_node', 'ps'), ['std::string const&']),
     ]
     c.ct['calc_tight_bounds'] = [
         ('d', 'B', 4, ('B', 'NodePath$662$calc_tight_bounds', 'ppppp'), ['LPoint3&', 'LPoint3&', 'NodePath const&', 'Thread*']),
@@ -1466,9 +2300,9 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 4, ('v', 'NodePath$295$compose_color_scale', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
     ]
     c.ct['copy_to'] = [
-        ('d', 7, 3, ('p', 'NodePath$75$copy_to', 'ppip'), ['NodePath const&', 'int', 'Thread*']),
-        ('d', 7, 2, ('p', 'NodePath$76$copy_to', 'ppi'), ['NodePath const&', 'int']),
-        ('d', 7, 1, ('p', 'NodePath$77$copy_to', 'pp'), ['NodePath const&']),
+        ('d', 11, 3, ('p', 'NodePath$75$copy_to', 'ppip'), ['NodePath const&', 'int', 'Thread*']),
+        ('d', 11, 2, ('p', 'NodePath$76$copy_to', 'ppi'), ['NodePath const&', 'int']),
+        ('d', 11, 1, ('p', 'NodePath$77$copy_to', 'pp'), ['NodePath const&']),
     ]
     c.ct['count_num_descendants'] = [
         ('d', 'i', 0, ('i', 'NodePath$49$count_num_descendants', 'p'), []),
@@ -1495,17 +2329,17 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 2, ('v', 'NodePath$689$fillin', 'ppp'), ['DatagramIterator&', 'BamReader*']),
     ]
     c.ct['find'] = [
-        ('d', 7, 1, ('p', 'NodePath$56$find', 'ps'), ['std::string const&']),
+        ('d', 11, 1, ('p', 'NodePath$56$find', 'ps'), ['std::string const&']),
     ]
     c.ct['find_all_matches'] = [
-        ('d', 8, 1, ('p', 'NodePath$58$find_all_matches', 'ps'), ['std::string const&']),
+        ('d', 12, 1, ('p', 'NodePath$58$find_all_matches', 'ps'), ['std::string const&']),
     ]
     c.ct['find_all_materials'] = [
         ('d', 'p', 0, ('p', 'NodePath$523$find_all_materials', 'p'), []),
         ('d', 'p', 1, ('p', 'NodePath$524$find_all_materials', 'ps'), ['std::string const&']),
     ]
     c.ct['find_all_paths_to'] = [
-        ('d', 8, 1, ('p', 'NodePath$59$find_all_paths_to', 'pp'), ['PandaNode*']),
+        ('d', 12, 1, ('p', 'NodePath$59$find_all_paths_to', 'pp'), ['PandaNode*']),
     ]
     c.ct['find_all_texcoords'] = [
         ('d', 'p', 0, ('p', 'NodePath$511$find_all_texcoords', 'p'), []),
@@ -1528,10 +2362,10 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'NodePath$522$find_material', 'ps'), ['std::string const&']),
     ]
     c.ct['find_net_tag'] = [
-        ('d', 7, 1, ('p', 'NodePath$677$find_net_tag', 'ps'), ['std::string const&']),
+        ('d', 11, 1, ('p', 'NodePath$677$find_net_tag', 'ps'), ['std::string const&']),
     ]
     c.ct['find_path_to'] = [
-        ('d', 7, 1, ('p', 'NodePath$57$find_path_to', 'pp'), ['PandaNode*']),
+        ('d', 11, 1, ('p', 'NodePath$57$find_path_to', 'pp'), ['PandaNode*']),
     ]
     c.ct['find_texture'] = [
         ('d', 'p', 1, ('p', 'NodePath$513$find_texture', 'pp'), ['TextureStage*']),
@@ -1553,8 +2387,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'NodePath$660$force_recompute_bounds', 'p'), []),
     ]
     c.ct['get_ancestor'] = [
-        ('d', 7, 2, ('p', 'NodePath$25$get_ancestor', 'pip'), ['int', 'Thread*']),
-        ('d', 7, 1, ('p', 'NodePath$26$get_ancestor', 'pi'), ['int']),
+        ('d', 11, 2, ('p', 'NodePath$25$get_ancestor', 'pip'), ['int', 'Thread*']),
+        ('d', 11, 1, ('p', 'NodePath$26$get_ancestor', 'pi'), ['int']),
     ]
     c.ct['get_antialias'] = [
         ('d', 'p', 0, ('p', 'NodePath$612$get_antialias', 'p'), []),
@@ -1576,12 +2410,12 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath$659$get_bounds', 'p'), []),
     ]
     c.ct['get_child'] = [
-        ('d', 7, 2, ('p', 'NodePath$45$get_child', 'pip'), ['int', 'Thread*']),
-        ('d', 7, 1, ('p', 'NodePath$46$get_child', 'pi'), ['int']),
+        ('d', 11, 2, ('p', 'NodePath$45$get_child', 'pip'), ['int', 'Thread*']),
+        ('d', 11, 1, ('p', 'NodePath$46$get_child', 'pi'), ['int']),
     ]
     c.ct['get_children'] = [
-        ('d', 8, 1, ('p', 'NodePath$41$get_children', 'pp'), ['Thread*']),
-        ('d', 8, 0, ('p', 'NodePath$42$get_children', 'p'), []),
+        ('d', 12, 1, ('p', 'NodePath$41$get_children', 'pp'), ['Thread*']),
+        ('d', 12, 0, ('p', 'NodePath$42$get_children', 'p'), []),
     ]
     c.ct['get_collide_mask'] = [
         ('d', 'p', 0, ('p', 'NodePath$644$get_collide_mask', 'p'), []),
@@ -1593,8 +2427,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath$306$get_color_scale', 'p'), []),
     ]
     c.ct['get_common_ancestor'] = [
-        ('d', 7, 2, ('p', 'NodePath$39$get_common_ancestor', 'ppp'), ['NodePath const&', 'Thread*']),
-        ('d', 7, 1, ('p', 'NodePath$40$get_common_ancestor', 'pp'), ['NodePath const&']),
+        ('d', 11, 2, ('p', 'NodePath$39$get_common_ancestor', 'ppp'), ['NodePath const&', 'Thread*']),
+        ('d', 11, 1, ('p', 'NodePath$40$get_common_ancestor', 'pp'), ['NodePath const&']),
     ]
     c.ct['get_depth_offset'] = [
         ('d', 'i', 0, ('i', 'NodePath$577$get_depth_offset', 'p'), []),
@@ -1625,9 +2459,9 @@ class NodePath(cxx.cplusplus):
         ('d', 'f', 1, ('f', 'NodePath$184$get_h', 'pp'), ['NodePath const&']),
     ]
     c.ct['get_hidden_ancestor'] = [
-        ('d', 7, 2, ('p', 'NodePath$630$get_hidden_ancestor', 'ppp'), ['DrawMask', 'Thread*']),
-        ('d', 7, 1, ('p', 'NodePath$631$get_hidden_ancestor', 'pp'), ['DrawMask']),
-        ('d', 7, 0, ('p', 'NodePath$632$get_hidden_ancestor', 'p'), []),
+        ('d', 11, 2, ('p', 'NodePath$630$get_hidden_ancestor', 'ppp'), ['DrawMask', 'Thread*']),
+        ('d', 11, 1, ('p', 'NodePath$631$get_hidden_ancestor', 'pp'), ['DrawMask']),
+        ('d', 11, 0, ('p', 'NodePath$632$get_hidden_ancestor', 'p'), []),
     ]
     c.ct['get_hpr'] = [
         ('d', 'p', 0, ('p', 'NodePath$181$get_hpr', 'p'), []),
@@ -1671,8 +2505,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'NodePath$130$get_net_transform', 'p'), []),
     ]
     c.ct['get_node'] = [
-        ('d', 28, 2, ('p', 'NodePath$23$get_node', 'pip'), ['int', 'Thread*']),
-        ('d', 28, 1, ('p', 'NodePath$24$get_node', 'pi'), ['int']),
+        ('d', 37, 2, ('p', 'NodePath$23$get_node', 'pip'), ['int', 'Thread*']),
+        ('d', 37, 1, ('p', 'NodePath$24$get_node', 'pi'), ['int']),
     ]
     c.ct['get_num_children'] = [
         ('d', 'i', 1, ('i', 'NodePath$43$get_num_children', 'pp'), ['Thread*']),
@@ -1687,8 +2521,8 @@ class NodePath(cxx.cplusplus):
         ('d', 'f', 1, ('f', 'NodePath$186$get_p', 'pp'), ['NodePath const&']),
     ]
     c.ct['get_parent'] = [
-        ('d', 7, 1, ('p', 'NodePath$52$get_parent', 'pp'), ['Thread*']),
-        ('d', 7, 0, ('p', 'NodePath$53$get_parent', 'p'), []),
+        ('d', 11, 1, ('p', 'NodePath$52$get_parent', 'pp'), ['Thread*']),
+        ('d', 11, 0, ('p', 'NodePath$53$get_parent', 'p'), []),
     ]
     c.ct['get_pos'] = [
         ('d', 'p', 0, ('p', 'NodePath$161$get_pos', 'p'), []),
@@ -1770,12 +2604,12 @@ class NodePath(cxx.cplusplus):
         ('d', 'f', 0, ('f', 'NodePath$307$get_sr', 'p'), []),
     ]
     c.ct['get_stashed_ancestor'] = [
-        ('d', 7, 1, ('p', 'NodePath$642$get_stashed_ancestor', 'pp'), ['Thread*']),
-        ('d', 7, 0, ('p', 'NodePath$643$get_stashed_ancestor', 'p'), []),
+        ('d', 11, 1, ('p', 'NodePath$642$get_stashed_ancestor', 'pp'), ['Thread*']),
+        ('d', 11, 0, ('p', 'NodePath$643$get_stashed_ancestor', 'p'), []),
     ]
     c.ct['get_stashed_children'] = [
-        ('d', 8, 1, ('p', 'NodePath$47$get_stashed_children', 'pp'), ['Thread*']),
-        ('d', 8, 0, ('p', 'NodePath$48$get_stashed_children', 'p'), []),
+        ('d', 12, 1, ('p', 'NodePath$47$get_stashed_children', 'pp'), ['Thread*']),
+        ('d', 12, 0, ('p', 'NodePath$48$get_stashed_children', 'p'), []),
     ]
     c.ct['get_state'] = [
         ('d', 'p', 2, ('p', 'NodePath$95$get_state', 'ppp'), ['NodePath const&', 'Thread*']),
@@ -1817,10 +2651,10 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'NodePath$485$get_tex_pos', 'pp'), ['TextureStage*']),
     ]
     c.ct['get_tex_projector_from'] = [
-        ('d', 7, 1, ('p', 'NodePath$503$get_tex_projector_from', 'pp'), ['TextureStage*']),
+        ('d', 11, 1, ('p', 'NodePath$503$get_tex_projector_from', 'pp'), ['TextureStage*']),
     ]
     c.ct['get_tex_projector_to'] = [
-        ('d', 7, 1, ('p', 'NodePath$504$get_tex_projector_to', 'pp'), ['TextureStage*']),
+        ('d', 11, 1, ('p', 'NodePath$504$get_tex_projector_to', 'pp'), ['TextureStage*']),
     ]
     c.ct['get_tex_rotate'] = [
         ('d', 'f', 2, ('f', 'NodePath$472$get_tex_rotate', 'ppp'), ['NodePath const&', 'TextureStage*']),
@@ -1847,12 +2681,12 @@ class NodePath(cxx.cplusplus):
         ('d', 'p', 1, ('p', 'NodePath$372$get_texture_sampler', 'pp'), ['TextureStage*']),
     ]
     c.ct['get_top'] = [
-        ('d', 7, 1, ('p', 'NodePath$30$get_top', 'pp'), ['Thread*']),
-        ('d', 7, 0, ('p', 'NodePath$31$get_top', 'p'), []),
+        ('d', 11, 1, ('p', 'NodePath$30$get_top', 'pp'), ['Thread*']),
+        ('d', 11, 0, ('p', 'NodePath$31$get_top', 'p'), []),
     ]
     c.ct['get_top_node'] = [
-        ('d', 28, 1, ('p', 'NodePath$28$get_top_node', 'pp'), ['Thread*']),
-        ('d', 28, 0, ('p', 'NodePath$29$get_top_node', 'p'), []),
+        ('d', 37, 1, ('p', 'NodePath$28$get_top_node', 'pp'), ['Thread*']),
+        ('d', 37, 0, ('p', 'NodePath$29$get_top_node', 'p'), []),
     ]
     c.ct['get_transform'] = [
         ('d', 'p', 2, ('p', 'NodePath$117$get_transform', 'ppp'), ['NodePath const&', 'Thread*']),
@@ -2008,14 +2842,14 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'NodePath$657$hide_bounds', 'p'), []),
     ]
     c.ct['instance_to'] = [
-        ('d', 7, 3, ('p', 'NodePath$69$instance_to', 'ppip'), ['NodePath const&', 'int', 'Thread*']),
-        ('d', 7, 2, ('p', 'NodePath$70$instance_to', 'ppi'), ['NodePath const&', 'int']),
-        ('d', 7, 1, ('p', 'NodePath$71$instance_to', 'pp'), ['NodePath const&']),
+        ('d', 11, 3, ('p', 'NodePath$69$instance_to', 'ppip'), ['NodePath const&', 'int', 'Thread*']),
+        ('d', 11, 2, ('p', 'NodePath$70$instance_to', 'ppi'), ['NodePath const&', 'int']),
+        ('d', 11, 1, ('p', 'NodePath$71$instance_to', 'pp'), ['NodePath const&']),
     ]
     c.ct['instance_under_node'] = [
-        ('d', 7, 4, ('p', 'NodePath$72$instance_under_node', 'ppsip'), ['NodePath const&', 'std::string const&', 'int', 'Thread*']),
-        ('d', 7, 3, ('p', 'NodePath$73$instance_under_node', 'ppsi'), ['NodePath const&', 'std::string const&', 'int']),
-        ('d', 7, 2, ('p', 'NodePath$74$instance_under_node', 'pps'), ['NodePath const&', 'std::string const&']),
+        ('d', 11, 4, ('p', 'NodePath$72$instance_under_node', 'ppsip'), ['NodePath const&', 'std::string const&', 'int', 'Thread*']),
+        ('d', 11, 3, ('p', 'NodePath$73$instance_under_node', 'ppsi'), ['NodePath const&', 'std::string const&', 'int']),
+        ('d', 11, 2, ('p', 'NodePath$74$instance_under_node', 'pps'), ['NodePath const&', 'std::string const&']),
     ]
     c.ct['is_ancestor_of'] = [
         ('d', 'B', 2, ('B', 'NodePath$37$is_ancestor_of', 'ppp'), ['NodePath const&', 'Thread*']),
@@ -2057,7 +2891,7 @@ class NodePath(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'NodePath$91$ls', 'pp'), ['std::ostream&']),
     ]
     c.ct['node'] = [
-        ('d', 28, 0, ('p', 'NodePath$32$node', 'p'), []),
+        ('d', 37, 0, ('p', 'NodePath$32$node', 'p'), []),
     ]
     c.ct['output'] = [
         ('d', 'v', 1, ('v', 'NodePath$88$output', 'pp'), ['std::ostream&']),
@@ -2663,8 +3497,8 @@ class NodePathCollection(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 8, 0, ('p', 'NodePathCollection$1$NodePathCollection', ''), []),
-        ('s', 8, 1, ('p', 'NodePathCollection$2$NodePathCollection', 'p'), ['NodePathCollection const&']),
+        ('s', 12, 0, ('p', 'NodePathCollection$1$NodePathCollection', ''), []),
+        ('s', 12, 1, ('p', 'NodePathCollection$2$NodePathCollection', 'p'), ['NodePathCollection const&']),
     ]
 
     # classmethod type calls
@@ -2701,7 +3535,7 @@ class NodePathCollection(cxx.cplusplus):
         ('d', 'v', 1, ('v', 'NodePathCollection$16$extend', 'pp'), ['NodePathCollection const&']),
     ]
     c.ct['find_all_matches'] = [
-        ('d', 8, 1, ('p', 'NodePathCollection$20$find_all_matches', 'ps'), ['std::string const&']),
+        ('d', 12, 1, ('p', 'NodePathCollection$20$find_all_matches', 'ps'), ['std::string const&']),
     ]
     c.ct['get_collide_mask'] = [
         ('d', 'p', 0, ('p', 'NodePathCollection$28$get_collide_mask', 'p'), []),
@@ -2710,7 +3544,7 @@ class NodePathCollection(cxx.cplusplus):
         ('d', 'i', 0, ('i', 'NodePathCollection$12$get_num_paths', 'p'), []),
     ]
     c.ct['get_path'] = [
-        ('d', 7, 1, ('p', 'NodePathCollection$13$get_path', 'pi'), ['int']),
+        ('d', 11, 1, ('p', 'NodePathCollection$13$get_path', 'pi'), ['int']),
     ]
     c.ct['has_path'] = [
         ('d', 'B', 1, ('B', 'NodePathCollection$8$has_path', 'pp'), ['NodePath const&']),
@@ -2820,8 +3654,8 @@ class PandaFramework(cxx.cplusplus):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 9, 0, ('p', 'PandaFramework$1$PandaFramework', ''), []),
-        ('s', 9, 1, ('p', 'PandaFramework$2$PandaFramework', 'p'), ['PandaFramework const&']),
+        ('s', 13, 0, ('p', 'PandaFramework$1$PandaFramework', ''), []),
+        ('s', 13, 1, ('p', 'PandaFramework$2$PandaFramework', 'p'), ['PandaFramework const&']),
     ]
 
     # classmethod type calls
@@ -2876,7 +3710,7 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'PandaFramework$42$get_background_type', 'p'), []),
     ]
     c.ct['get_data_root'] = [
-        ('d', 7, 0, ('p', 'PandaFramework$7$get_data_root', 'p'), []),
+        ('d', 11, 0, ('p', 'PandaFramework$7$get_data_root', 'p'), []),
     ]
     c.ct['get_default_pipe'] = [
         ('d', 'p', 0, ('p', 'PandaFramework$5$get_default_pipe', 'p'), []),
@@ -2891,16 +3725,16 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'p', 0, ('p', 'PandaFramework$6$get_graphics_engine', 'p'), []),
     ]
     c.ct['get_highlight'] = [
-        ('d', 7, 0, ('p', 'PandaFramework$48$get_highlight', 'p'), []),
+        ('d', 11, 0, ('p', 'PandaFramework$48$get_highlight', 'p'), []),
     ]
     c.ct['get_lighting'] = [
         ('d', 'B', 0, ('B', 'PandaFramework$40$get_lighting', 'p'), []),
     ]
     c.ct['get_models'] = [
-        ('d', 7, 0, ('p', 'PandaFramework$28$get_models', 'p'), []),
+        ('d', 11, 0, ('p', 'PandaFramework$28$get_models', 'p'), []),
     ]
     c.ct['get_mouse'] = [
-        ('d', 7, 1, ('p', 'PandaFramework$10$get_mouse', 'pp'), ['GraphicsOutput*']),
+        ('d', 11, 1, ('p', 'PandaFramework$10$get_mouse', 'pp'), ['GraphicsOutput*']),
     ]
     c.ct['get_num_windows'] = [
         ('d', 'i', 0, ('i', 'PandaFramework$20$get_num_windows', 'p'), []),
@@ -2921,7 +3755,7 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'B', 0, ('B', 'PandaFramework$39$get_two_sided', 'p'), []),
     ]
     c.ct['get_window'] = [
-        ('d', 20, 1, ('p', 'PandaFramework$21$get_window', 'pi'), ['int']),
+        ('d', 26, 1, ('p', 'PandaFramework$21$get_window', 'pi'), ['int']),
     ]
     c.ct['get_wireframe'] = [
         ('d', 'B', 0, ('B', 'PandaFramework$37$get_wireframe', 'p'), []),
@@ -2936,12 +3770,12 @@ class PandaFramework(cxx.cplusplus):
         ('d', 'v', 0, ('v', 'PandaFramework$3$open_framework', 'p'), []),
     ]
     c.ct['open_window'] = [
-        ('d', 20, 0, ('p', 'PandaFramework$14$open_window', 'p'), []),
-        ('d', 20, 2, ('p', 'PandaFramework$15$open_window', 'ppp'), ['GraphicsPipe*', 'GraphicsStateGuardian*']),
-        ('d', 20, 1, ('p', 'PandaFramework$16$open_window', 'pp'), ['GraphicsPipe*']),
-        ('d', 20, 4, ('p', 'PandaFramework$17$open_window', 'ppipp'), ['WindowProperties const&', 'int', 'GraphicsPipe*', 'GraphicsStateGuardian*']),
-        ('d', 20, 3, ('p', 'PandaFramework$18$open_window', 'ppip'), ['WindowProperties const&', 'int', 'GraphicsPipe*']),
-        ('d', 20, 2, ('p', 'PandaFramework$19$open_window', 'ppi'), ['WindowProperties const&', 'int']),
+        ('d', 26, 0, ('p', 'PandaFramework$14$open_window', 'p'), []),
+        ('d', 26, 2, ('p', 'PandaFramework$15$open_window', 'ppp'), ['GraphicsPipe*', 'GraphicsStateGuardian*']),
+        ('d', 26, 1, ('p', 'PandaFramework$16$open_window', 'pp'), ['GraphicsPipe*']),
+        ('d', 26, 4, ('p', 'PandaFramework$17$open_window', 'ppipp'), ['WindowProperties const&', 'int', 'GraphicsPipe*', 'GraphicsStateGuardian*']),
+        ('d', 26, 3, ('p', 'PandaFramework$18$open_window', 'ppip'), ['WindowProperties const&', 'int', 'GraphicsPipe*']),
+        ('d', 26, 2, ('p', 'PandaFramework$19$open_window', 'ppi'), ['WindowProperties const&', 'int']),
     ]
     c.ct['remove_mouse'] = [
         ('d', 'v', 1, ('v', 'PandaFramework$11$remove_mouse', 'pp'), ['GraphicsOutput const*']),
@@ -3022,7 +3856,7 @@ class PandaSystem(cxx.cplusplus):
         ('s', 's', 0, ('s', 'PandaSystem$13$get_git_commit', ''), []),
     ]
     c.ct['get_global_ptr'] = [
-        ('s', 10, 0, ('p', 'PandaSystem$24$get_global_ptr', ''), []),
+        ('s', 14, 0, ('p', 'PandaSystem$24$get_global_ptr', ''), []),
     ]
     c.ct['get_major_version'] = [
         ('s', 'i', 0, ('i', 'PandaSystem$5$get_major_version', ''), []),
@@ -3169,6 +4003,90 @@ PandaSystem.c.link(PandaSystem)
 
 
 
+class TextEncoder(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("TextEncoder", "upanda3d", """libupanda3d_c.so""")
+
+    # enum Encoding
+
+    E_iso8859 = const(0)
+    E_unicode = const(2)
+    E_utf16be = const(2)
+    E_utf8 = const(1)
+
+
+    # ctor/dtor
+
+
+    # classmethod type calls
+
+
+    # instance method type calls
+
+    c.ct['downcast_to_TextNode'] = [
+        ('d', 41, 0, ('p', 'TextEncoder$1$downcast_to_TextNode', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(TextEncoder, attr, self)
+
+TextEncoder.c.link(TextEncoder)
+
+
+
+class TextProperties(cxx.cplusplus):
+    __bases__ = tuple([])
+    c = cxx.cstructs()
+    c.register("TextProperties", "upanda3d", """libupanda3d_c.so""")
+
+    # enum Alignment
+
+    A_boxed_center = const(5)
+    A_boxed_left = const(3)
+    A_boxed_right = const(4)
+    A_center = const(2)
+    A_left = const(0)
+    A_right = const(1)
+
+
+    # enum Direction
+
+    D_ltr = const(0)
+    D_rtl = const(1)
+
+
+    # ctor/dtor
+
+
+    # classmethod type calls
+
+
+    # instance method type calls
+
+    c.ct['downcast_to_TextNode'] = [
+        ('d', 41, 0, ('p', 'TextProperties$1$downcast_to_TextNode', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(TextProperties, attr, self)
+
+TextProperties.c.link(TextProperties)
+
+
+
 class GeomVertexWriter(GeomEnums):
     __bases__ = tuple([GeomEnums])
     c = cxx.cstructs()
@@ -3177,18 +4095,18 @@ class GeomVertexWriter(GeomEnums):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 11, 2, ('p', 'GeomVertexWriter$1$GeomVertexWriter', 'pp'), ['GeomVertexArrayData*', 'Thread*']),
-        ('s', 11, 1, ('p', 'GeomVertexWriter$2$GeomVertexWriter', 'p'), ['GeomVertexArrayData*']),
-        ('s', 11, 3, ('p', 'GeomVertexWriter$3$GeomVertexWriter', 'pip'), ['GeomVertexArrayData*', 'int', 'Thread*']),
-        ('s', 11, 2, ('p', 'GeomVertexWriter$4$GeomVertexWriter', 'pi'), ['GeomVertexArrayData*', 'int']),
-        ('s', 11, 3, ('p', 'GeomVertexWriter$5$GeomVertexWriter', 'psp'), ['GeomVertexData*', 'CPT_InternalName', 'Thread*']),
-        ('s', 11, 2, ('p', 'GeomVertexWriter$6$GeomVertexWriter', 'ps'), ['GeomVertexData*', 'CPT_InternalName']),
-        ('s', 11, 2, ('p', 'GeomVertexWriter$7$GeomVertexWriter', 'pp'), ['GeomVertexData*', 'Thread*']),
-        ('s', 11, 1, ('p', 'GeomVertexWriter$8$GeomVertexWriter', 'p'), ['GeomVertexData*']),
-        ('s', 11, 2, ('p', 'GeomVertexWriter$9$GeomVertexWriter', 'ps'), ['GeomVertexDataPipelineWriter*', 'InternalName const*']),
-        ('s', 11, 1, ('p', 'GeomVertexWriter$10$GeomVertexWriter', 'p'), ['GeomVertexWriter const&']),
-        ('s', 11, 1, ('p', 'GeomVertexWriter$11$GeomVertexWriter', 'p'), ['Thread*']),
-        ('s', 11, 0, ('p', 'GeomVertexWriter$12$GeomVertexWriter', ''), []),
+        ('s', 17, 2, ('p', 'GeomVertexWriter$1$GeomVertexWriter', 'pp'), ['GeomVertexArrayData*', 'Thread*']),
+        ('s', 17, 1, ('p', 'GeomVertexWriter$2$GeomVertexWriter', 'p'), ['GeomVertexArrayData*']),
+        ('s', 17, 3, ('p', 'GeomVertexWriter$3$GeomVertexWriter', 'pip'), ['GeomVertexArrayData*', 'int', 'Thread*']),
+        ('s', 17, 2, ('p', 'GeomVertexWriter$4$GeomVertexWriter', 'pi'), ['GeomVertexArrayData*', 'int']),
+        ('s', 17, 3, ('p', 'GeomVertexWriter$5$GeomVertexWriter', 'psp'), ['GeomVertexData*', 'CPT_InternalName', 'Thread*']),
+        ('s', 17, 2, ('p', 'GeomVertexWriter$6$GeomVertexWriter', 'ps'), ['GeomVertexData*', 'CPT_InternalName']),
+        ('s', 17, 2, ('p', 'GeomVertexWriter$7$GeomVertexWriter', 'pp'), ['GeomVertexData*', 'Thread*']),
+        ('s', 17, 1, ('p', 'GeomVertexWriter$8$GeomVertexWriter', 'p'), ['GeomVertexData*']),
+        ('s', 17, 2, ('p', 'GeomVertexWriter$9$GeomVertexWriter', 'ps'), ['GeomVertexDataPipelineWriter*', 'InternalName const*']),
+        ('s', 17, 1, ('p', 'GeomVertexWriter$10$GeomVertexWriter', 'p'), ['GeomVertexWriter const&']),
+        ('s', 17, 1, ('p', 'GeomVertexWriter$11$GeomVertexWriter', 'p'), ['Thread*']),
+        ('s', 17, 0, ('p', 'GeomVertexWriter$12$GeomVertexWriter', ''), []),
     ]
 
     # classmethod type calls
@@ -3290,7 +4208,7 @@ class GeomVertexWriter(GeomEnums):
         ('d', 'p', 0, ('p', 'GeomVertexWriter$25$get_column', 'p'), []),
     ]
     c.ct['get_current_thread'] = [
-        ('d', 17, 0, ('p', 'GeomVertexWriter$17$get_current_thread', 'p'), []),
+        ('d', 23, 0, ('p', 'GeomVertexWriter$17$get_current_thread', 'p'), []),
     ]
     c.ct['get_start_row'] = [
         ('d', 'i', 0, ('i', 'GeomVertexWriter$28$get_start_row', 'p'), []),
@@ -3299,7 +4217,7 @@ class GeomVertexWriter(GeomEnums):
         ('d', 'p', 0, ('p', 'GeomVertexWriter$16$get_stride', 'p'), []),
     ]
     c.ct['get_vertex_data'] = [
-        ('d', 24, 0, ('p', 'GeomVertexWriter$13$get_vertex_data', 'p'), []),
+        ('d', 33, 0, ('p', 'GeomVertexWriter$13$get_vertex_data', 'p'), []),
     ]
     c.ct['get_write_row'] = [
         ('d', 'i', 0, ('i', 'GeomVertexWriter$29$get_write_row', 'p'), []),
@@ -3433,10 +4351,10 @@ class Namable(MemoryBase):
     # instance method type calls
 
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 28, 0, ('p', 'Namable$1$downcast_to_PandaNode', 'p'), []),
+        ('d', 37, 0, ('p', 'Namable$1$downcast_to_PandaNode', 'p'), []),
     ]
     c.ct['downcast_to_Thread'] = [
-        ('d', 17, 0, ('p', 'Namable$2$downcast_to_Thread', 'p'), []),
+        ('d', 23, 0, ('p', 'Namable$2$downcast_to_Thread', 'p'), []),
     ]
 
 
@@ -3507,7 +4425,7 @@ class ReferenceCount(MemoryBase):
         ('d', 'B', 0, ('B', 'ReferenceCount$4$unref', 'p'), []),
     ]
     c.ct['upcast_to_MemoryBase'] = [
-        ('d', 6, 0, ('p', 'ReferenceCount$1$upcast_to_MemoryBase', 'p'), []),
+        ('d', 10, 0, ('p', 'ReferenceCount$1$upcast_to_MemoryBase', 'p'), []),
     ]
     c.ct['weak_ref'] = [
         ('d', 'p', 0, ('p', 'ReferenceCount$10$weak_ref', 'p'), []),
@@ -3557,8 +4475,8 @@ class TypedObject(MemoryBase):
     # instance method type calls
 
     c.ct['as_typed_object'] = [
-        ('d', 14, 0, ('p', 'TypedObject$8$as_typed_object', 'p'), []),
-        ('d', 14, 0, ('p', 'TypedObject$9$as_typed_object', 'p'), []),
+        ('d', 20, 0, ('p', 'TypedObject$8$as_typed_object', 'p'), []),
+        ('d', 20, 0, ('p', 'TypedObject$9$as_typed_object', 'p'), []),
     ]
     c.ct['force_init_type'] = [
         ('d', 'i', 0, ('i', 'TypedObject$7$force_init_type', 'p'), []),
@@ -3579,7 +4497,7 @@ class TypedObject(MemoryBase):
         ('d', 'B', 1, ('B', 'TypedObject$4$is_of_type', 'pi'), ['TypeHandle']),
     ]
     c.ct['upcast_to_MemoryBase'] = [
-        ('d', 6, 0, ('p', 'TypedObject$1$upcast_to_MemoryBase', 'p'), []),
+        ('d', 10, 0, ('p', 'TypedObject$1$upcast_to_MemoryBase', 'p'), []),
     ]
 
 
@@ -3603,8 +4521,8 @@ class TypedWritable(TypedObject):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 15, 0, ('p', 'TypedWritable$1$TypedWritable', ''), []),
-        ('s', 15, 1, ('p', 'TypedWritable$2$TypedWritable', 'p'), ['TypedWritable const&']),
+        ('s', 21, 0, ('p', 'TypedWritable$1$TypedWritable', ''), []),
+        ('s', 21, 1, ('p', 'TypedWritable$2$TypedWritable', 'p'), ['TypedWritable const&']),
     ]
 
     # classmethod type calls
@@ -3627,7 +4545,7 @@ class TypedWritable(TypedObject):
     # instance method type calls
 
     c.ct['as_reference_count'] = [
-        ('d', 13, 0, ('p', 'TypedWritable$8$as_reference_count', 'p'), []),
+        ('d', 19, 0, ('p', 'TypedWritable$8$as_reference_count', 'p'), []),
     ]
     c.ct['encode_to_bam_stream'] = [
         ('d', 'p', 0, ('p', 'TypedWritable$11$encode_to_bam_stream', 'p'), []),
@@ -3686,7 +4604,7 @@ class TypedReferenceCount(TypedObject, ReferenceCount):
     # instance method type calls
 
     c.ct['downcast_to_Thread'] = [
-        ('d', 17, 0, ('p', 'TypedReferenceCount$1$downcast_to_Thread', 'p'), []),
+        ('d', 23, 0, ('p', 'TypedReferenceCount$1$downcast_to_Thread', 'p'), []),
     ]
 
 
@@ -3713,7 +4631,7 @@ class Thread(TypedReferenceCount, Namable):
     # classmethod type calls
 
     c.ct['bind_thread'] = [
-        ('s', 17, 2, ('p', 'Thread$3$bind_thread', 'ss'), ['std::string const&', 'std::string const&']),
+        ('s', 23, 2, ('p', 'Thread$3$bind_thread', 'ss'), ['std::string const&', 'std::string const&']),
     ]
     c.ct['consider_yield'] = [
         ('s', 'v', 0, ('v', 'Thread$20$consider_yield', ''), []),
@@ -3728,13 +4646,13 @@ class Thread(TypedReferenceCount, Namable):
         ('s', 'i', 0, ('i', 'Thread$14$get_current_pipeline_stage', ''), []),
     ]
     c.ct['get_current_thread'] = [
-        ('s', 17, 0, ('p', 'Thread$13$get_current_thread', ''), []),
+        ('s', 23, 0, ('p', 'Thread$13$get_current_thread', ''), []),
     ]
     c.ct['get_external_thread'] = [
-        ('s', 17, 0, ('p', 'Thread$12$get_external_thread', ''), []),
+        ('s', 23, 0, ('p', 'Thread$12$get_external_thread', ''), []),
     ]
     c.ct['get_main_thread'] = [
-        ('s', 17, 0, ('p', 'Thread$11$get_main_thread', ''), []),
+        ('s', 23, 0, ('p', 'Thread$11$get_main_thread', ''), []),
     ]
     c.ct['init_type'] = [
         ('s', 'v', 0, ('v', 'Thread$36$init_type', ''), []),
@@ -3824,7 +4742,7 @@ class Thread(TypedReferenceCount, Namable):
         ('d', 'i', 0, ('i', 'Thread$38$force_init_type', 'p'), []),
     ]
     c.ct['get_current_task'] = [
-        ('d', 16, 0, ('p', 'Thread$29$get_current_task', 'p'), []),
+        ('d', 22, 0, ('p', 'Thread$29$get_current_task', 'p'), []),
     ]
     c.ct['get_pipeline_stage'] = [
         ('d', 'i', 0, ('i', 'Thread$8$get_pipeline_stage', 'p'), []),
@@ -3884,10 +4802,10 @@ class Thread(TypedReferenceCount, Namable):
         ('d', 'B', 2, ('B', 'Thread$26$start', 'ppB'), ['ThreadPriority', 'bool']),
     ]
     c.ct['upcast_to_Namable'] = [
-        ('d', 12, 0, ('p', 'Thread$2$upcast_to_Namable', 'p'), []),
+        ('d', 18, 0, ('p', 'Thread$2$upcast_to_Namable', 'p'), []),
     ]
     c.ct['upcast_to_TypedReferenceCount'] = [
-        ('d', 16, 0, ('p', 'Thread$1$upcast_to_TypedReferenceCount', 'p'), []),
+        ('d', 22, 0, ('p', 'Thread$1$upcast_to_TypedReferenceCount', 'p'), []),
     ]
 
 
@@ -3917,10 +4835,10 @@ class TypedWritableReferenceCount(TypedWritable, ReferenceCount):
     # instance method type calls
 
     c.ct['downcast_to_GeomVertexFormat'] = [
-        ('d', 19, 0, ('p', 'TypedWritableReferenceCount$2$downcast_to_GeomVertexFormat', 'p'), []),
+        ('d', 25, 0, ('p', 'TypedWritableReferenceCount$2$downcast_to_GeomVertexFormat', 'p'), []),
     ]
     c.ct['downcast_to_PandaNode'] = [
-        ('d', 28, 0, ('p', 'TypedWritableReferenceCount$1$downcast_to_PandaNode', 'p'), []),
+        ('d', 37, 0, ('p', 'TypedWritableReferenceCount$1$downcast_to_PandaNode', 'p'), []),
     ]
 
 
@@ -3944,9 +4862,9 @@ class GeomVertexFormat(TypedWritableReferenceCount, GeomEnums):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$3$GeomVertexFormat', ''), []),
-        ('s', 19, 1, ('p', 'GeomVertexFormat$4$GeomVertexFormat', 'p'), ['GeomVertexArrayFormat const*']),
-        ('s', 19, 1, ('p', 'GeomVertexFormat$5$GeomVertexFormat', 'p'), ['GeomVertexFormat const&']),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$3$GeomVertexFormat', ''), []),
+        ('s', 25, 1, ('p', 'GeomVertexFormat$4$GeomVertexFormat', 'p'), ['GeomVertexArrayFormat const*']),
+        ('s', 25, 1, ('p', 'GeomVertexFormat$5$GeomVertexFormat', 'p'), ['GeomVertexFormat const&']),
     ]
 
     # classmethod type calls
@@ -3955,50 +4873,50 @@ class GeomVertexFormat(TypedWritableReferenceCount, GeomEnums):
         ('s', 'i', 0, ('i', 'GeomVertexFormat$71$get_class_type', ''), []),
     ]
     c.ct['get_empty'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$49$get_empty', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$49$get_empty', ''), []),
     ]
     c.ct['get_v3'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$50$get_v3', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$50$get_v3', ''), []),
     ]
     c.ct['get_v3c4'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$58$get_v3c4', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$58$get_v3c4', ''), []),
     ]
     c.ct['get_v3c4t2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$59$get_v3c4t2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$59$get_v3c4t2', ''), []),
     ]
     c.ct['get_v3cp'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$54$get_v3cp', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$54$get_v3cp', ''), []),
     ]
     c.ct['get_v3cpt2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$55$get_v3cpt2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$55$get_v3cpt2', ''), []),
     ]
     c.ct['get_v3n3'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$51$get_v3n3', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$51$get_v3n3', ''), []),
     ]
     c.ct['get_v3n3c4'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$60$get_v3n3c4', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$60$get_v3n3c4', ''), []),
     ]
     c.ct['get_v3n3c4t2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$61$get_v3n3c4t2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$61$get_v3n3c4t2', ''), []),
     ]
     c.ct['get_v3n3cp'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$56$get_v3n3cp', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$56$get_v3n3cp', ''), []),
     ]
     c.ct['get_v3n3cpt2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$57$get_v3n3cpt2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$57$get_v3n3cpt2', ''), []),
     ]
     c.ct['get_v3n3t2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$53$get_v3n3t2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$53$get_v3n3t2', ''), []),
     ]
     c.ct['get_v3t2'] = [
-        ('s', 19, 0, ('p', 'GeomVertexFormat$52$get_v3t2', ''), []),
+        ('s', 25, 0, ('p', 'GeomVertexFormat$52$get_v3t2', ''), []),
     ]
     c.ct['init_type'] = [
         ('s', 'v', 0, ('v', 'GeomVertexFormat$72$init_type', ''), []),
     ]
     c.ct['register_format'] = [
-        ('s', 19, 1, ('p', 'GeomVertexFormat$8$register_format', 'p'), ['GeomVertexArrayFormat const*']),
-        ('s', 19, 1, ('p', 'GeomVertexFormat$9$register_format', 'p'), ['GeomVertexFormat const*']),
+        ('s', 25, 1, ('p', 'GeomVertexFormat$8$register_format', 'p'), ['GeomVertexArrayFormat const*']),
+        ('s', 25, 1, ('p', 'GeomVertexFormat$9$register_format', 'p'), ['GeomVertexFormat const*']),
     ]
     c.ct['register_with_read_factory'] = [
         ('s', 'v', 0, ('v', 'GeomVertexFormat$69$register_with_read_factory', ''), []),
@@ -4149,7 +5067,7 @@ class GeomVertexFormat(TypedWritableReferenceCount, GeomEnums):
         ('d', 's', 1, ('s', 'GeomVertexFormat$36$get_point', 'pp'), ['std::size_t']),
     ]
     c.ct['get_post_animated_format'] = [
-        ('d', 19, 0, ('p', 'GeomVertexFormat$12$get_post_animated_format', 'p'), []),
+        ('d', 25, 0, ('p', 'GeomVertexFormat$12$get_post_animated_format', 'p'), []),
     ]
     c.ct['get_texcoord'] = [
         ('d', 's', 1, ('s', 'GeomVertexFormat$40$get_texcoord', 'pp'), ['std::size_t']),
@@ -4158,7 +5076,7 @@ class GeomVertexFormat(TypedWritableReferenceCount, GeomEnums):
         ('d', 'i', 0, ('i', 'GeomVertexFormat$73$get_type', 'p'), []),
     ]
     c.ct['get_union_format'] = [
-        ('d', 19, 1, ('p', 'GeomVertexFormat$13$get_union_format', 'pp'), ['GeomVertexFormat const*']),
+        ('d', 25, 1, ('p', 'GeomVertexFormat$13$get_union_format', 'pp'), ['GeomVertexFormat const*']),
     ]
     c.ct['get_vector'] = [
         ('d', 's', 1, ('s', 'GeomVertexFormat$38$get_vector', 'pp'), ['std::size_t']),
@@ -4210,10 +5128,10 @@ class GeomVertexFormat(TypedWritableReferenceCount, GeomEnums):
         ('d', 'B', 0, ('B', 'GeomVertexFormat$6$unref', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 3, 0, ('p', 'GeomVertexFormat$2$upcast_to_GeomEnums', 'p'), []),
+        ('d', 4, 0, ('p', 'GeomVertexFormat$2$upcast_to_GeomEnums', 'p'), []),
     ]
     c.ct['upcast_to_TypedWritableReferenceCount'] = [
-        ('d', 18, 0, ('p', 'GeomVertexFormat$1$upcast_to_TypedWritableReferenceCount', 'p'), []),
+        ('d', 24, 0, ('p', 'GeomVertexFormat$1$upcast_to_TypedWritableReferenceCount', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomVertexFormat$46$write', 'ppi'), ['std::ostream&', 'int']),
@@ -4264,7 +5182,7 @@ class WindowFramework(TypedWritableReferenceCount):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 20, 1, ('p', 'WindowFramework$52$WindowFramework', 'p'), ['WindowFramework const&']),
+        ('s', 26, 1, ('p', 'WindowFramework$52$WindowFramework', 'p'), ['WindowFramework const&']),
     ]
 
     # classmethod type calls
@@ -4309,19 +5227,19 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'B', 0, ('B', 'WindowFramework$26$get_anim_controls', 'p'), []),
     ]
     c.ct['get_aspect_2d'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$11$get_aspect_2d', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$11$get_aspect_2d', 'p'), []),
     ]
     c.ct['get_background_type'] = [
         ('d', 'p', 0, ('p', 'WindowFramework$45$get_background_type', 'p'), []),
     ]
     c.ct['get_button_thrower'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$14$get_button_thrower', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$14$get_button_thrower', 'p'), []),
     ]
     c.ct['get_camera'] = [
-        ('d', 30, 1, ('p', 'WindowFramework$6$get_camera', 'pi'), ['int']),
+        ('d', 39, 1, ('p', 'WindowFramework$6$get_camera', 'pi'), ['int']),
     ]
     c.ct['get_camera_group'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$4$get_camera_group', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$4$get_camera_group', 'p'), []),
     ]
     c.ct['get_display_region_2d'] = [
         ('d', 'p', 0, ('p', 'WindowFramework$7$get_display_region_2d', 'p'), []),
@@ -4330,16 +5248,16 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'p', 0, ('p', 'WindowFramework$8$get_display_region_3d', 'p'), []),
     ]
     c.ct['get_graphics_output'] = [
-        ('d', 'p', 0, ('p', 'WindowFramework$3$get_graphics_output', 'p'), []),
+        ('d', 29, 0, ('p', 'WindowFramework$3$get_graphics_output', 'p'), []),
     ]
     c.ct['get_graphics_window'] = [
-        ('d', 'p', 0, ('p', 'WindowFramework$2$get_graphics_window', 'p'), []),
+        ('d', 30, 0, ('p', 'WindowFramework$2$get_graphics_window', 'p'), []),
     ]
     c.ct['get_lighting'] = [
         ('d', 'B', 0, ('B', 'WindowFramework$43$get_lighting', 'p'), []),
     ]
     c.ct['get_mouse'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$13$get_mouse', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$13$get_mouse', 'p'), []),
     ]
     c.ct['get_num_cameras'] = [
         ('d', 'i', 0, ('i', 'WindowFramework$5$get_num_cameras', 'p'), []),
@@ -4348,19 +5266,19 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'B', 0, ('B', 'WindowFramework$42$get_one_sided_reverse', 'p'), []),
     ]
     c.ct['get_panda_framework'] = [
-        ('d', 9, 0, ('p', 'WindowFramework$1$get_panda_framework', 'p'), []),
+        ('d', 13, 0, ('p', 'WindowFramework$1$get_panda_framework', 'p'), []),
     ]
     c.ct['get_perpixel'] = [
         ('d', 'B', 0, ('B', 'WindowFramework$44$get_perpixel', 'p'), []),
     ]
     c.ct['get_pixel_2d'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$12$get_pixel_2d', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$12$get_pixel_2d', 'p'), []),
     ]
     c.ct['get_render'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$9$get_render', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$9$get_render', 'p'), []),
     ]
     c.ct['get_render_2d'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$10$get_render_2d', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$10$get_render_2d', 'p'), []),
     ]
     c.ct['get_texture'] = [
         ('d', 'B', 0, ('B', 'WindowFramework$40$get_texture', 'p'), []),
@@ -4378,10 +5296,10 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'B', 0, ('B', 'WindowFramework$39$get_wireframe_filled', 'p'), []),
     ]
     c.ct['load_default_model'] = [
-        ('d', 7, 1, ('p', 'WindowFramework$20$load_default_model', 'pp'), ['NodePath const&']),
+        ('d', 11, 1, ('p', 'WindowFramework$20$load_default_model', 'pp'), ['NodePath const&']),
     ]
     c.ct['load_model'] = [
-        ('d', 7, 2, ('p', 'WindowFramework$19$load_model', 'ppp'), ['NodePath const&', 'Filename']),
+        ('d', 11, 2, ('p', 'WindowFramework$19$load_model', 'ppp'), ['NodePath const&', 'Filename']),
     ]
     c.ct['load_models'] = [
         ('d', 'B', 2, ('B', 'WindowFramework$18$load_models', 'ppp'), ['NodePath const&', 'pvector< Filename > const&']),
@@ -4391,7 +5309,7 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'v', 0, ('v', 'WindowFramework$22$loop_animations', 'p'), []),
     ]
     c.ct['make_camera'] = [
-        ('d', 7, 0, ('p', 'WindowFramework$47$make_camera', 'p'), []),
+        ('d', 11, 0, ('p', 'WindowFramework$47$make_camera', 'p'), []),
     ]
     c.ct['next_anim_control'] = [
         ('d', 'v', 0, ('v', 'WindowFramework$24$next_anim_control', 'p'), []),
@@ -4425,8 +5343,8 @@ class WindowFramework(TypedWritableReferenceCount):
         ('d', 'v', 0, ('v', 'WindowFramework$16$setup_trackball', 'p'), []),
     ]
     c.ct['split_window'] = [
-        ('d', 20, 1, ('p', 'WindowFramework$28$split_window', 'pp'), ['WindowFramework::SplitType']),
-        ('d', 20, 0, ('p', 'WindowFramework$29$split_window', 'p'), []),
+        ('d', 26, 1, ('p', 'WindowFramework$28$split_window', 'pp'), ['WindowFramework::SplitType']),
+        ('d', 26, 0, ('p', 'WindowFramework$29$split_window', 'p'), []),
     ]
     c.ct['stagger_animations'] = [
         ('d', 'v', 0, ('v', 'WindowFramework$23$stagger_animations', 'p'), []),
@@ -4673,7 +5591,7 @@ class InternalName(TypedWritableReferenceCount):
         ('d', 's', 1, ('s', 'InternalName$11$get_net_basename', 'si'), ['int']),
     ]
     c.ct['get_parent'] = [
-        ('d', 21, 0, ('p', 'InternalName$4$get_parent', 'p'), []),
+        ('d', 27, 0, ('p', 'InternalName$4$get_parent', 'p'), []),
     ]
     c.ct['get_top'] = [
         ('d', 's', 0, ('s', 'InternalName$10$get_top', 'p'), []),
@@ -4701,6 +5619,572 @@ class InternalName(TypedWritableReferenceCount):
         return self.c.get(attr,None) or  self.c.call(InternalName, attr, self)
 
 InternalName.c.link(InternalName)
+
+
+
+class GraphicsOutputBase(TypedWritableReferenceCount):
+    __bases__ = tuple([TypedWritableReferenceCount])
+    c = cxx.cstructs()
+    c.register("GraphicsOutputBase", "upanda3d", """libupanda3d_c.so""")
+
+    # ctor/dtor
+
+
+    # classmethod type calls
+
+
+    # instance method type calls
+
+    c.ct['downcast_to_GraphicsOutput'] = [
+        ('d', 29, 0, ('p', 'GraphicsOutputBase$1$downcast_to_GraphicsOutput', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(GraphicsOutputBase, attr, self)
+
+GraphicsOutputBase.c.link(GraphicsOutputBase)
+
+
+
+class GraphicsOutput(GraphicsOutputBase, DrawableRegion):
+    __bases__ = tuple([GraphicsOutputBase, DrawableRegion])
+    c = cxx.cstructs()
+    c.register("GraphicsOutput", "upanda3d", """libupanda3d_c.so""")
+
+    # enum RenderTextureMode
+
+    RTM_bind_layered = const(6)
+    RTM_bind_or_copy = const(1)
+    RTM_copy_ram = const(3)
+    RTM_copy_texture = const(2)
+    RTM_none = const(0)
+    RTM_triggered_copy_ram = const(5)
+    RTM_triggered_copy_texture = const(4)
+
+
+    # enum FrameMode
+
+    FM_parasite = const(1)
+    FM_refresh = const(2)
+    FM_render = const(0)
+
+
+    # ctor/dtor
+
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'GraphicsOutput$118$get_class_type', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'GraphicsOutput$119$init_type', ''), []),
+    ]
+    c.ct['make_screenshot_filename'] = [
+        ('s', 3, 1, ('p', 'GraphicsOutput$86$make_screenshot_filename', 's'), ['std::string const&']),
+        ('s', 3, 0, ('p', 'GraphicsOutput$87$make_screenshot_filename', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(GraphicsOutput, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(GraphicsOutput, 'init_type', None) )(*args,**kw)
+
+    @classmethod
+    def make_screenshot_filename(cls, *args,**kw):
+        return ( cls.c.get('make_screenshot_filename', None) or cls.c.call(GraphicsOutput, 'make_screenshot_filename', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['add_render_texture'] = [
+        ('d', 'v', 3, ('v', 'GraphicsOutput$16$add_render_texture', 'pppp'), ['Texture*', 'GraphicsOutput::RenderTextureMode', 'DrawableRegion::RenderTexturePlane']),
+        ('d', 'v', 2, ('v', 'GraphicsOutput$17$add_render_texture', 'ppp'), ['Texture*', 'GraphicsOutput::RenderTextureMode']),
+    ]
+    c.ct['begin_flip'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$111$begin_flip', 'p'), []),
+    ]
+    c.ct['begin_frame'] = [
+        ('d', 'B', 2, ('B', 'GraphicsOutput$107$begin_frame', 'ppp'), ['GraphicsOutput::FrameMode', 'Thread*']),
+    ]
+    c.ct['change_scenes'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$109$change_scenes', 'pp'), ['DisplayRegionPipelineReader*']),
+    ]
+    c.ct['clear'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$106$clear', 'pp'), ['Thread*']),
+    ]
+    c.ct['clear_child_sort'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$58$clear_child_sort', 'p'), []),
+    ]
+    c.ct['clear_delete_flag'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$53$clear_delete_flag', 'p'), []),
+    ]
+    c.ct['clear_pipe'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$104$clear_pipe', 'p'), []),
+    ]
+    c.ct['clear_render_textures'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$15$clear_render_textures', 'p'), []),
+    ]
+    c.ct['count_textures'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$7$count_textures', 'p'), []),
+    ]
+    c.ct['end_flip'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$113$end_flip', 'p'), []),
+    ]
+    c.ct['end_frame'] = [
+        ('d', 'v', 2, ('v', 'GraphicsOutput$108$end_frame', 'ppp'), ['GraphicsOutput::FrameMode', 'Thread*']),
+    ]
+    c.ct['flip_ready'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$98$flip_ready', 'p'), []),
+    ]
+    c.ct['force_init_type'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$121$force_init_type', 'p'), []),
+    ]
+    c.ct['get_active_display_region'] = [
+        ('d', 'p', 1, ('p', 'GraphicsOutput$77$get_active_display_region', 'pi'), ['int']),
+    ]
+    c.ct['get_child_sort'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$59$get_child_sort', 'p'), []),
+    ]
+    c.ct['get_clear_window_pcollector'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$117$get_clear_window_pcollector', 'p'), []),
+    ]
+    c.ct['get_cull_window_pcollector'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$115$get_cull_window_pcollector', 'p'), []),
+    ]
+    c.ct['get_delete_flag'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$54$get_delete_flag', 'p'), []),
+    ]
+    c.ct['get_display_region'] = [
+        ('d', 'p', 1, ('p', 'GraphicsOutput$75$get_display_region', 'pi'), ['int']),
+    ]
+    c.ct['get_draw_window_pcollector'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$116$get_draw_window_pcollector', 'p'), []),
+    ]
+    c.ct['get_engine'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$5$get_engine', 'p'), []),
+    ]
+    c.ct['get_fb_properties'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$51$get_fb_properties', 'p'), []),
+    ]
+    c.ct['get_fb_size'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$22$get_fb_size', 'p'), []),
+    ]
+    c.ct['get_fb_x_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$23$get_fb_x_size', 'p'), []),
+    ]
+    c.ct['get_fb_y_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$24$get_fb_y_size', 'p'), []),
+    ]
+    c.ct['get_gsg'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$3$get_gsg', 'p'), []),
+    ]
+    c.ct['get_host'] = [
+        ('d', 29, 0, ('p', 'GraphicsOutput$99$get_host', 'p'), []),
+    ]
+    c.ct['get_inverted'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$39$get_inverted', 'p'), []),
+    ]
+    c.ct['get_left_eye_color_mask'] = [
+        ('d', 'I', 0, ('I', 'GraphicsOutput$44$get_left_eye_color_mask', 'p'), []),
+    ]
+    c.ct['get_name'] = [
+        ('d', 's', 0, ('s', 'GraphicsOutput$6$get_name', 'p'), []),
+    ]
+    c.ct['get_num_active_display_regions'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$76$get_num_active_display_regions', 'p'), []),
+    ]
+    c.ct['get_num_display_regions'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$74$get_num_display_regions', 'p'), []),
+    ]
+    c.ct['get_one_shot'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$37$get_one_shot', 'p'), []),
+    ]
+    c.ct['get_overlay_display_region'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$72$get_overlay_display_region', 'p'), []),
+    ]
+    c.ct['get_pipe'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$4$get_pipe', 'p'), []),
+    ]
+    c.ct['get_red_blue_stereo'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$43$get_red_blue_stereo', 'p'), []),
+    ]
+    c.ct['get_right_eye_color_mask'] = [
+        ('d', 'I', 0, ('I', 'GraphicsOutput$45$get_right_eye_color_mask', 'p'), []),
+    ]
+    c.ct['get_rtm_mode'] = [
+        ('d', 'p', 1, ('p', 'GraphicsOutput$13$get_rtm_mode', 'pi'), ['int']),
+        ('d', 'p', 0, ('p', 'GraphicsOutput$14$get_rtm_mode', 'p'), []),
+    ]
+    c.ct['get_sbs_left_dimensions'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$49$get_sbs_left_dimensions', 'p'), []),
+    ]
+    c.ct['get_sbs_left_size'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$25$get_sbs_left_size', 'p'), []),
+    ]
+    c.ct['get_sbs_left_x_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$26$get_sbs_left_x_size', 'p'), []),
+    ]
+    c.ct['get_sbs_left_y_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$27$get_sbs_left_y_size', 'p'), []),
+    ]
+    c.ct['get_sbs_right_dimensions'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$50$get_sbs_right_dimensions', 'p'), []),
+    ]
+    c.ct['get_sbs_right_size'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$28$get_sbs_right_size', 'p'), []),
+    ]
+    c.ct['get_sbs_right_x_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$29$get_sbs_right_x_size', 'p'), []),
+    ]
+    c.ct['get_sbs_right_y_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$30$get_sbs_right_y_size', 'p'), []),
+    ]
+    c.ct['get_screenshot'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$92$get_screenshot', 'p'), []),
+        ('d', 'B', 1, ('B', 'GraphicsOutput$93$get_screenshot', 'pp'), ['PNMImage&']),
+    ]
+    c.ct['get_side_by_side_stereo'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$48$get_side_by_side_stereo', 'p'), []),
+    ]
+    c.ct['get_size'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$19$get_size', 'p'), []),
+    ]
+    c.ct['get_sort'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$56$get_sort', 'p'), []),
+    ]
+    c.ct['get_supports_render_texture'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$97$get_supports_render_texture', 'p'), []),
+    ]
+    c.ct['get_swap_eyes'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$41$get_swap_eyes', 'p'), []),
+    ]
+    c.ct['get_texture'] = [
+        ('d', 'p', 1, ('p', 'GraphicsOutput$9$get_texture', 'pi'), ['int']),
+        ('d', 'p', 0, ('p', 'GraphicsOutput$10$get_texture', 'p'), []),
+    ]
+    c.ct['get_texture_card'] = [
+        ('d', 11, 0, ('p', 'GraphicsOutput$94$get_texture_card', 'p'), []),
+    ]
+    c.ct['get_texture_plane'] = [
+        ('d', 'p', 1, ('p', 'GraphicsOutput$11$get_texture_plane', 'pi'), ['int']),
+        ('d', 'p', 0, ('p', 'GraphicsOutput$12$get_texture_plane', 'p'), []),
+    ]
+    c.ct['get_type'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$120$get_type', 'p'), []),
+    ]
+    c.ct['get_x_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$20$get_x_size', 'p'), []),
+    ]
+    c.ct['get_y_size'] = [
+        ('d', 'i', 0, ('i', 'GraphicsOutput$21$get_y_size', 'p'), []),
+    ]
+    c.ct['has_size'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$31$has_size', 'p'), []),
+    ]
+    c.ct['has_texture'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$8$has_texture', 'p'), []),
+    ]
+    c.ct['is_active'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$35$is_active', 'p'), []),
+    ]
+    c.ct['is_nonzero_size'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$33$is_nonzero_size', 'p'), []),
+    ]
+    c.ct['is_stereo'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$52$is_stereo', 'p'), []),
+    ]
+    c.ct['is_valid'] = [
+        ('d', 'B', 0, ('B', 'GraphicsOutput$32$is_valid', 'p'), []),
+    ]
+    c.ct['make_cube_map'] = [
+        ('d', 29, 6, ('p', 'GraphicsOutput$82$make_cube_map', 'psippBp'), ['std::string const&', 'int', 'NodePath&', 'DrawMask', 'bool', 'FrameBufferProperties*']),
+        ('d', 29, 5, ('p', 'GraphicsOutput$83$make_cube_map', 'psippB'), ['std::string const&', 'int', 'NodePath&', 'DrawMask', 'bool']),
+        ('d', 29, 4, ('p', 'GraphicsOutput$84$make_cube_map', 'psipp'), ['std::string const&', 'int', 'NodePath&', 'DrawMask']),
+        ('d', 29, 3, ('p', 'GraphicsOutput$85$make_cube_map', 'psip'), ['std::string const&', 'int', 'NodePath&']),
+    ]
+    c.ct['make_display_region'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$61$make_display_region', 'p'), []),
+        ('d', 'p', 1, ('p', 'GraphicsOutput$62$make_display_region', 'pp'), ['LVecBase4 const&']),
+        ('d', 'p', 4, ('p', 'GraphicsOutput$63$make_display_region', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['make_mono_display_region'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$64$make_mono_display_region', 'p'), []),
+        ('d', 'p', 1, ('p', 'GraphicsOutput$65$make_mono_display_region', 'pp'), ['LVecBase4 const&']),
+        ('d', 'p', 4, ('p', 'GraphicsOutput$66$make_mono_display_region', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['make_stereo_display_region'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$67$make_stereo_display_region', 'p'), []),
+        ('d', 'p', 1, ('p', 'GraphicsOutput$68$make_stereo_display_region', 'pp'), ['LVecBase4 const&']),
+        ('d', 'p', 4, ('p', 'GraphicsOutput$69$make_stereo_display_region', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['make_texture_buffer'] = [
+        ('d', 29, 6, ('p', 'GraphicsOutput$78$make_texture_buffer', 'psiipBp'), ['std::string const&', 'int', 'int', 'Texture*', 'bool', 'FrameBufferProperties*']),
+        ('d', 29, 5, ('p', 'GraphicsOutput$79$make_texture_buffer', 'psiipB'), ['std::string const&', 'int', 'int', 'Texture*', 'bool']),
+        ('d', 29, 4, ('p', 'GraphicsOutput$80$make_texture_buffer', 'psiip'), ['std::string const&', 'int', 'int', 'Texture*']),
+        ('d', 29, 3, ('p', 'GraphicsOutput$81$make_texture_buffer', 'psii'), ['std::string const&', 'int', 'int']),
+    ]
+    c.ct['process_events'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$114$process_events', 'p'), []),
+    ]
+    c.ct['ready_flip'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$112$ready_flip', 'p'), []),
+    ]
+    c.ct['remove_all_display_regions'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$71$remove_all_display_regions', 'p'), []),
+    ]
+    c.ct['remove_display_region'] = [
+        ('d', 'B', 1, ('B', 'GraphicsOutput$70$remove_display_region', 'pp'), ['DisplayRegion*']),
+    ]
+    c.ct['request_close'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$101$request_close', 'p'), []),
+    ]
+    c.ct['request_open'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$100$request_open', 'p'), []),
+    ]
+    c.ct['reset_window'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$103$reset_window', 'pB'), ['bool']),
+    ]
+    c.ct['save_screenshot'] = [
+        ('d', 'B', 2, ('B', 'GraphicsOutput$90$save_screenshot', 'pps'), ['Filename const&', 'std::string const&']),
+        ('d', 'B', 1, ('B', 'GraphicsOutput$91$save_screenshot', 'pp'), ['Filename const&']),
+    ]
+    c.ct['save_screenshot_default'] = [
+        ('d', 3, 1, ('p', 'GraphicsOutput$88$save_screenshot_default', 'ps'), ['std::string const&']),
+        ('d', 3, 0, ('p', 'GraphicsOutput$89$save_screenshot_default', 'p'), []),
+    ]
+    c.ct['select_target_tex_page'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$110$select_target_tex_page', 'pi'), ['int']),
+    ]
+    c.ct['set_active'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$34$set_active', 'pB'), ['bool']),
+    ]
+    c.ct['set_child_sort'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$57$set_child_sort', 'pi'), ['int']),
+    ]
+    c.ct['set_close_now'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$102$set_close_now', 'p'), []),
+    ]
+    c.ct['set_inverted'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$38$set_inverted', 'pB'), ['bool']),
+    ]
+    c.ct['set_one_shot'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$36$set_one_shot', 'pB'), ['bool']),
+    ]
+    c.ct['set_overlay_display_region'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$73$set_overlay_display_region', 'pp'), ['DisplayRegion*']),
+    ]
+    c.ct['set_red_blue_stereo'] = [
+        ('d', 'v', 3, ('v', 'GraphicsOutput$42$set_red_blue_stereo', 'pBII'), ['bool', 'unsigned int', 'unsigned int']),
+    ]
+    c.ct['set_side_by_side_stereo'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$46$set_side_by_side_stereo', 'pB'), ['bool']),
+        ('d', 'v', 3, ('v', 'GraphicsOutput$47$set_side_by_side_stereo', 'pBpp'), ['bool', 'LVecBase4 const&', 'LVecBase4 const&']),
+    ]
+    c.ct['set_size_and_recalc'] = [
+        ('d', 'v', 2, ('v', 'GraphicsOutput$105$set_size_and_recalc', 'pii'), ['int', 'int']),
+    ]
+    c.ct['set_sort'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$55$set_sort', 'pi'), ['int']),
+    ]
+    c.ct['set_swap_eyes'] = [
+        ('d', 'v', 1, ('v', 'GraphicsOutput$40$set_swap_eyes', 'pB'), ['bool']),
+    ]
+    c.ct['setup_render_texture'] = [
+        ('d', 'v', 3, ('v', 'GraphicsOutput$18$setup_render_texture', 'ppBB'), ['Texture*', 'bool', 'bool']),
+    ]
+    c.ct['share_depth_buffer'] = [
+        ('d', 'B', 1, ('B', 'GraphicsOutput$95$share_depth_buffer', 'pp'), ['GraphicsOutput*']),
+    ]
+    c.ct['trigger_copy'] = [
+        ('d', 'p', 0, ('p', 'GraphicsOutput$60$trigger_copy', 'p'), []),
+    ]
+    c.ct['unshare_depth_buffer'] = [
+        ('d', 'v', 0, ('v', 'GraphicsOutput$96$unshare_depth_buffer', 'p'), []),
+    ]
+    c.ct['upcast_to_DrawableRegion'] = [
+        ('d', 1, 0, ('p', 'GraphicsOutput$2$upcast_to_DrawableRegion', 'p'), []),
+    ]
+    c.ct['upcast_to_GraphicsOutputBase'] = [
+        ('d', 28, 0, ('p', 'GraphicsOutput$1$upcast_to_GraphicsOutputBase', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(GraphicsOutput, attr, self)
+
+GraphicsOutput.c.link(GraphicsOutput)
+
+
+
+class GraphicsWindow(GraphicsOutput):
+    __bases__ = tuple([GraphicsOutput])
+    c = cxx.cstructs()
+    c.register("GraphicsWindow", "upanda3d", """libupanda3d_c.so""")
+
+    # ctor/dtor
+
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'GraphicsWindow$38$get_class_type', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'GraphicsWindow$39$init_type', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(GraphicsWindow, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(GraphicsWindow, 'init_type', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['add_window_proc'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$26$add_window_proc', 'pp'), ['GraphicsWindowProc const*']),
+    ]
+    c.ct['clear_rejected_properties'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$3$clear_rejected_properties', 'p'), []),
+    ]
+    c.ct['clear_window_procs'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$28$clear_window_procs', 'p'), []),
+    ]
+    c.ct['close_ime'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$25$close_ime', 'p'), []),
+    ]
+    c.ct['disable_pointer_events'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$22$disable_pointer_events', 'pi'), ['int']),
+    ]
+    c.ct['enable_pointer_events'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$21$enable_pointer_events', 'pi'), ['int']),
+    ]
+    c.ct['force_init_type'] = [
+        ('d', 'i', 0, ('i', 'GraphicsWindow$41$force_init_type', 'p'), []),
+    ]
+    c.ct['get_close_request_event'] = [
+        ('d', 's', 0, ('s', 'GraphicsWindow$11$get_close_request_event', 'p'), []),
+    ]
+    c.ct['get_input_device'] = [
+        ('d', 'p', 1, ('p', 'GraphicsWindow$16$get_input_device', 'pi'), ['int']),
+    ]
+    c.ct['get_input_device_name'] = [
+        ('d', 's', 1, ('s', 'GraphicsWindow$17$get_input_device_name', 'pi'), ['int']),
+    ]
+    c.ct['get_keyboard_map'] = [
+        ('d', 'p', 0, ('p', 'GraphicsWindow$20$get_keyboard_map', 'p'), []),
+    ]
+    c.ct['get_num_input_devices'] = [
+        ('d', 'i', 0, ('i', 'GraphicsWindow$15$get_num_input_devices', 'p'), []),
+    ]
+    c.ct['get_num_touches'] = [
+        ('d', 'i', 0, ('i', 'GraphicsWindow$31$get_num_touches', 'p'), []),
+    ]
+    c.ct['get_pointer'] = [
+        ('d', 'p', 1, ('p', 'GraphicsWindow$23$get_pointer', 'pi'), ['int']),
+    ]
+    c.ct['get_properties'] = [
+        ('d', 'p', 0, ('p', 'GraphicsWindow$1$get_properties', 'p'), []),
+    ]
+    c.ct['get_rejected_properties'] = [
+        ('d', 'p', 0, ('p', 'GraphicsWindow$4$get_rejected_properties', 'p'), []),
+    ]
+    c.ct['get_requested_properties'] = [
+        ('d', 'p', 0, ('p', 'GraphicsWindow$2$get_requested_properties', 'p'), []),
+    ]
+    c.ct['get_touch_info'] = [
+        ('d', 'p', 1, ('p', 'GraphicsWindow$32$get_touch_info', 'pi'), ['int']),
+    ]
+    c.ct['get_type'] = [
+        ('d', 'i', 0, ('i', 'GraphicsWindow$40$get_type', 'p'), []),
+    ]
+    c.ct['get_unexposed_draw'] = [
+        ('d', 'B', 0, ('B', 'GraphicsWindow$13$get_unexposed_draw', 'p'), []),
+    ]
+    c.ct['get_window_event'] = [
+        ('d', 's', 0, ('s', 'GraphicsWindow$9$get_window_event', 'p'), []),
+    ]
+    c.ct['get_window_handle'] = [
+        ('d', 'p', 0, ('p', 'GraphicsWindow$14$get_window_handle', 'p'), []),
+    ]
+    c.ct['has_keyboard'] = [
+        ('d', 'B', 1, ('B', 'GraphicsWindow$19$has_keyboard', 'pi'), ['int']),
+    ]
+    c.ct['has_pointer'] = [
+        ('d', 'B', 1, ('B', 'GraphicsWindow$18$has_pointer', 'pi'), ['int']),
+    ]
+    c.ct['is_closed'] = [
+        ('d', 'B', 0, ('B', 'GraphicsWindow$6$is_closed', 'p'), []),
+    ]
+    c.ct['is_fullscreen'] = [
+        ('d', 'B', 0, ('B', 'GraphicsWindow$7$is_fullscreen', 'p'), []),
+    ]
+    c.ct['is_touch_event'] = [
+        ('d', 'B', 1, ('B', 'GraphicsWindow$30$is_touch_event', 'pp'), ['GraphicsWindowProcCallbackData*']),
+    ]
+    c.ct['move_pointer'] = [
+        ('d', 'B', 3, ('B', 'GraphicsWindow$24$move_pointer', 'piii'), ['int', 'int', 'int']),
+    ]
+    c.ct['process_events'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$36$process_events', 'p'), []),
+    ]
+    c.ct['remove_window_proc'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$27$remove_window_proc', 'pp'), ['GraphicsWindowProc const*']),
+    ]
+    c.ct['request_close'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$34$request_close', 'p'), []),
+    ]
+    c.ct['request_open'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$33$request_open', 'p'), []),
+    ]
+    c.ct['request_properties'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$5$request_properties', 'pp'), ['WindowProperties const&']),
+    ]
+    c.ct['set_close_now'] = [
+        ('d', 'v', 0, ('v', 'GraphicsWindow$35$set_close_now', 'p'), []),
+    ]
+    c.ct['set_close_request_event'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$10$set_close_request_event', 'ps'), ['std::string const&']),
+    ]
+    c.ct['set_properties_now'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$37$set_properties_now', 'pp'), ['WindowProperties&']),
+    ]
+    c.ct['set_unexposed_draw'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$12$set_unexposed_draw', 'pB'), ['bool']),
+    ]
+    c.ct['set_window_event'] = [
+        ('d', 'v', 1, ('v', 'GraphicsWindow$8$set_window_event', 'ps'), ['std::string const&']),
+    ]
+    c.ct['supports_window_procs'] = [
+        ('d', 'B', 0, ('B', 'GraphicsWindow$29$supports_window_procs', 'p'), []),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(GraphicsWindow, attr, self)
+
+GraphicsWindow.c.link(GraphicsWindow)
 
 
 
@@ -4774,13 +6258,13 @@ class CopyOnWriteObject(CachedTypedWritableReferenceCount):
     # instance method type calls
 
     c.ct['downcast_to_Geom'] = [
-        ('d', 27, 0, ('p', 'CopyOnWriteObject$1$downcast_to_Geom', 'p'), []),
+        ('d', 36, 0, ('p', 'CopyOnWriteObject$1$downcast_to_Geom', 'p'), []),
     ]
     c.ct['downcast_to_GeomPrimitive'] = [
-        ('d', 25, 0, ('p', 'CopyOnWriteObject$2$downcast_to_GeomPrimitive', 'p'), []),
+        ('d', 34, 0, ('p', 'CopyOnWriteObject$2$downcast_to_GeomPrimitive', 'p'), []),
     ]
     c.ct['downcast_to_GeomVertexData'] = [
-        ('d', 24, 0, ('p', 'CopyOnWriteObject$3$downcast_to_GeomVertexData', 'p'), []),
+        ('d', 33, 0, ('p', 'CopyOnWriteObject$3$downcast_to_GeomVertexData', 'p'), []),
     ]
 
 
@@ -4804,9 +6288,9 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 24, 1, ('p', 'GeomVertexData$3$GeomVertexData', 'p'), ['GeomVertexData const&']),
-        ('s', 24, 2, ('p', 'GeomVertexData$4$GeomVertexData', 'pp'), ['GeomVertexData const&', 'GeomVertexFormat const*']),
-        ('s', 24, 3, ('p', 'GeomVertexData$5$GeomVertexData', 'spp'), ['std::string const&', 'GeomVertexFormat const*', 'GeomEnums::UsageHint']),
+        ('s', 33, 1, ('p', 'GeomVertexData$3$GeomVertexData', 'p'), ['GeomVertexData const&']),
+        ('s', 33, 2, ('p', 'GeomVertexData$4$GeomVertexData', 'pp'), ['GeomVertexData const&', 'GeomVertexFormat const*']),
+        ('s', 33, 3, ('p', 'GeomVertexData$5$GeomVertexData', 'spp'), ['std::string const&', 'GeomVertexFormat const*', 'GeomEnums::UsageHint']),
     ]
 
     # classmethod type calls
@@ -4899,7 +6383,7 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
     # instance method type calls
 
     c.ct['animate_vertices'] = [
-        ('d', 24, 2, ('p', 'GeomVertexData$49$animate_vertices', 'pBp'), ['bool', 'Thread*']),
+        ('d', 33, 2, ('p', 'GeomVertexData$49$animate_vertices', 'pBp'), ['bool', 'Thread*']),
     ]
     c.ct['clear_animated_vertices'] = [
         ('d', 'v', 0, ('v', 'GeomVertexData$50$clear_animated_vertices', 'p'), []),
@@ -4926,7 +6410,7 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
         ('d', 'i', 1, ('i', 'GeomVertexData$6$compare_to', 'pp'), ['GeomVertexData const&']),
     ]
     c.ct['convert_to'] = [
-        ('d', 24, 1, ('p', 'GeomVertexData$43$convert_to', 'pp'), ['GeomVertexFormat const*']),
+        ('d', 33, 1, ('p', 'GeomVertexData$43$convert_to', 'pp'), ['GeomVertexFormat const*']),
     ]
     c.ct['copy_from'] = [
         ('d', 'v', 3, ('v', 'GeomVertexData$40$copy_from', 'ppBp'), ['GeomVertexData const*', 'bool', 'Thread*']),
@@ -4951,7 +6435,7 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
         ('d', 'p', 1, ('p', 'GeomVertexData$22$get_array_handle', 'pp'), ['std::size_t']),
     ]
     c.ct['get_format'] = [
-        ('d', 19, 0, ('p', 'GeomVertexData$11$get_format', 'p'), []),
+        ('d', 25, 0, ('p', 'GeomVertexData$11$get_format', 'p'), []),
     ]
     c.ct['get_modified'] = [
         ('d', 'p', 1, ('p', 'GeomVertexData$37$get_modified', 'pp'), ['Thread*']),
@@ -5000,7 +6484,7 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 1, ('v', 'GeomVertexData$55$output', 'pp'), ['std::ostream&']),
     ]
     c.ct['replace_column'] = [
-        ('d', 24, 4, ('p', 'GeomVertexData$54$replace_column', 'ppipp'), ['InternalName*', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
+        ('d', 33, 4, ('p', 'GeomVertexData$54$replace_column', 'ppipp'), ['InternalName*', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
     ]
     c.ct['request_resident'] = [
         ('d', 'B', 0, ('B', 'GeomVertexData$39$request_resident', 'p'), []),
@@ -5012,18 +6496,18 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 1, ('B', 'GeomVertexData$18$reserve_num_rows', 'pi'), ['int']),
     ]
     c.ct['reverse_normals'] = [
-        ('d', 24, 0, ('p', 'GeomVertexData$48$reverse_normals', 'p'), []),
+        ('d', 33, 0, ('p', 'GeomVertexData$48$reverse_normals', 'p'), []),
     ]
     c.ct['scale_color'] = [
-        ('d', 24, 1, ('p', 'GeomVertexData$44$scale_color', 'pp'), ['LVecBase4 const&']),
-        ('d', 24, 4, ('p', 'GeomVertexData$45$scale_color', 'ppipp'), ['LVecBase4 const&', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
+        ('d', 33, 1, ('p', 'GeomVertexData$44$scale_color', 'pp'), ['LVecBase4 const&']),
+        ('d', 33, 4, ('p', 'GeomVertexData$45$scale_color', 'ppipp'), ['LVecBase4 const&', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
     ]
     c.ct['set_array'] = [
         ('d', 'v', 2, ('v', 'GeomVertexData$25$set_array', 'ppp'), ['std::size_t', 'GeomVertexArrayData const*']),
     ]
     c.ct['set_color'] = [
-        ('d', 24, 1, ('p', 'GeomVertexData$46$set_color', 'pp'), ['LColor const&']),
-        ('d', 24, 4, ('p', 'GeomVertexData$47$set_color', 'ppipp'), ['LColor const&', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
+        ('d', 33, 1, ('p', 'GeomVertexData$46$set_color', 'pp'), ['LColor const&']),
+        ('d', 33, 4, ('p', 'GeomVertexData$47$set_color', 'ppipp'), ['LColor const&', 'int', 'GeomEnums::NumericType', 'GeomEnums::Contents']),
     ]
     c.ct['set_format'] = [
         ('d', 'v', 1, ('v', 'GeomVertexData$12$set_format', 'pp'), ['GeomVertexFormat const*']),
@@ -5058,10 +6542,10 @@ class GeomVertexData(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 1, ('B', 'GeomVertexData$17$unclean_set_num_rows', 'pi'), ['int']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 23, 0, ('p', 'GeomVertexData$1$upcast_to_CopyOnWriteObject', 'p'), []),
+        ('d', 32, 0, ('p', 'GeomVertexData$1$upcast_to_CopyOnWriteObject', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 3, 0, ('p', 'GeomVertexData$2$upcast_to_GeomEnums', 'p'), []),
+        ('d', 4, 0, ('p', 'GeomVertexData$2$upcast_to_GeomEnums', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomVertexData$56$write', 'ppi'), ['std::ostream&', 'int']),
@@ -5147,10 +6631,10 @@ class GeomPrimitive(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 0, ('B', 'GeomPrimitive$24$close_primitive', 'p'), []),
     ]
     c.ct['decompose'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$42$decompose', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$42$decompose', 'p'), []),
     ]
     c.ct['doubleside'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$44$doubleside', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$44$doubleside', 'p'), []),
     ]
     c.ct['draw'] = [
         ('d', 'B', 3, ('B', 'GeomPrimitive$88$draw', 'pppB'), ['GraphicsStateGuardianBase*', 'GeomPrimitivePipelineReader const*', 'bool']),
@@ -5274,10 +6758,10 @@ class GeomPrimitive(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 1, ('B', 'GeomPrimitive$81$is_prepared', 'pp'), ['PreparedGraphicsObjects*']),
     ]
     c.ct['make_adjacency'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$50$make_adjacency', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$50$make_adjacency', 'p'), []),
     ]
     c.ct['make_copy'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$3$make_copy', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$3$make_copy', 'p'), []),
     ]
     c.ct['make_index_data'] = [
         ('d', 'p', 0, ('p', 'GeomPrimitive$87$make_index_data', 'p'), []),
@@ -5286,19 +6770,19 @@ class GeomPrimitive(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 0, ('v', 'GeomPrimitive$30$make_indexed', 'p'), []),
     ]
     c.ct['make_lines'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$48$make_lines', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$48$make_lines', 'p'), []),
     ]
     c.ct['make_nonindexed'] = [
         ('d', 'v', 2, ('v', 'GeomPrimitive$28$make_nonindexed', 'ppp'), ['GeomVertexData*', 'GeomVertexData const*']),
     ]
     c.ct['make_patches'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$49$make_patches', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$49$make_patches', 'p'), []),
     ]
     c.ct['make_points'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$47$make_points', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$47$make_points', 'p'), []),
     ]
     c.ct['match_shade_model'] = [
-        ('d', 25, 1, ('p', 'GeomPrimitive$46$match_shade_model', 'pp'), ['GeomEnums::ShadeModel']),
+        ('d', 34, 1, ('p', 'GeomPrimitive$46$match_shade_model', 'pp'), ['GeomEnums::ShadeModel']),
     ]
     c.ct['modify_ends'] = [
         ('d', 'p', 0, ('p', 'GeomPrimitive$71$modify_ends', 'p'), []),
@@ -5340,10 +6824,10 @@ class GeomPrimitive(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 1, ('v', 'GeomPrimitive$23$reserve_num_vertices', 'pi'), ['int']),
     ]
     c.ct['reverse'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$45$reverse', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$45$reverse', 'p'), []),
     ]
     c.ct['rotate'] = [
-        ('d', 25, 0, ('p', 'GeomPrimitive$43$rotate', 'p'), []),
+        ('d', 34, 0, ('p', 'GeomPrimitive$43$rotate', 'p'), []),
     ]
     c.ct['set_ends'] = [
         ('d', 'v', 1, ('v', 'GeomPrimitive$72$set_ends', 'pp'), ['PTA_int']),
@@ -5368,10 +6852,10 @@ class GeomPrimitive(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 1, ('v', 'GeomPrimitive$66$set_vertices', 'pp'), ['GeomVertexArrayData const*']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 23, 0, ('p', 'GeomPrimitive$1$upcast_to_CopyOnWriteObject', 'p'), []),
+        ('d', 32, 0, ('p', 'GeomPrimitive$1$upcast_to_CopyOnWriteObject', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 3, 0, ('p', 'GeomPrimitive$2$upcast_to_GeomEnums', 'p'), []),
+        ('d', 4, 0, ('p', 'GeomPrimitive$2$upcast_to_GeomEnums', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'GeomPrimitive$59$write', 'ppi'), ['std::ostream&', 'int']),
@@ -5401,8 +6885,8 @@ class GeomTriangles(GeomPrimitive):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 26, 1, ('p', 'GeomTriangles$1$GeomTriangles', 'p'), ['GeomEnums::UsageHint']),
-        ('s', 26, 1, ('p', 'GeomTriangles$2$GeomTriangles', 'p'), ['GeomTriangles const&']),
+        ('s', 35, 1, ('p', 'GeomTriangles$1$GeomTriangles', 'p'), ['GeomEnums::UsageHint']),
+        ('s', 35, 1, ('p', 'GeomTriangles$2$GeomTriangles', 'p'), ['GeomTriangles const&']),
     ]
 
     # classmethod type calls
@@ -5462,7 +6946,7 @@ class Geom(CopyOnWriteObject, GeomEnums):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 27, 1, ('p', 'Geom$3$Geom', 'p'), ['GeomVertexData const*']),
+        ('s', 36, 1, ('p', 'Geom$3$Geom', 'p'), ['GeomVertexData const*']),
     ]
 
     # classmethod type calls
@@ -5521,13 +7005,13 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 1, ('B', 'Geom$45$copy_primitives_from', 'pp'), ['Geom const*']),
     ]
     c.ct['decompose'] = [
-        ('d', 27, 0, ('p', 'Geom$27$decompose', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$27$decompose', 'p'), []),
     ]
     c.ct['decompose_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$36$decompose_in_place', 'p'), []),
     ]
     c.ct['doubleside'] = [
-        ('d', 27, 0, ('p', 'Geom$28$doubleside', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$28$doubleside', 'p'), []),
     ]
     c.ct['doubleside_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$37$doubleside_in_place', 'p'), []),
@@ -5542,8 +7026,8 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'i', 0, ('i', 'Geom$80$force_init_type', 'p'), []),
     ]
     c.ct['get_animated_vertex_data'] = [
-        ('d', 24, 2, ('p', 'Geom$16$get_animated_vertex_data', 'pBp'), ['bool', 'Thread*']),
-        ('d', 24, 1, ('p', 'Geom$17$get_animated_vertex_data', 'pB'), ['bool']),
+        ('d', 33, 2, ('p', 'Geom$16$get_animated_vertex_data', 'pBp'), ['bool', 'Thread*']),
+        ('d', 33, 1, ('p', 'Geom$17$get_animated_vertex_data', 'pB'), ['bool']),
     ]
     c.ct['get_bounds'] = [
         ('d', 'p', 1, ('p', 'Geom$53$get_bounds', 'pp'), ['Thread*']),
@@ -5570,7 +7054,7 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'p', 0, ('p', 'Geom$19$get_num_primitives', 'p'), []),
     ]
     c.ct['get_primitive'] = [
-        ('d', 25, 1, ('p', 'Geom$20$get_primitive', 'pp'), ['std::size_t']),
+        ('d', 34, 1, ('p', 'Geom$20$get_primitive', 'pp'), ['std::size_t']),
     ]
     c.ct['get_primitive_type'] = [
         ('d', 'p', 0, ('p', 'Geom$5$get_primitive_type', 'p'), []),
@@ -5585,8 +7069,8 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'p', 0, ('p', 'Geom$8$get_usage_hint', 'p'), []),
     ]
     c.ct['get_vertex_data'] = [
-        ('d', 24, 1, ('p', 'Geom$10$get_vertex_data', 'pp'), ['Thread*']),
-        ('d', 24, 0, ('p', 'Geom$11$get_vertex_data', 'p'), []),
+        ('d', 33, 1, ('p', 'Geom$10$get_vertex_data', 'pp'), ['Thread*']),
+        ('d', 33, 0, ('p', 'Geom$11$get_vertex_data', 'p'), []),
     ]
     c.ct['insert_primitive'] = [
         ('d', 'v', 2, ('v', 'Geom$23$insert_primitive', 'ppp'), ['std::size_t', 'GeomPrimitive const*']),
@@ -5598,16 +7082,16 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 1, ('B', 'Geom$68$is_prepared', 'pp'), ['PreparedGraphicsObjects*']),
     ]
     c.ct['make_adjacency'] = [
-        ('d', 27, 0, ('p', 'Geom$35$make_adjacency', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$35$make_adjacency', 'p'), []),
     ]
     c.ct['make_adjacency_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$44$make_adjacency_in_place', 'p'), []),
     ]
     c.ct['make_copy'] = [
-        ('d', 27, 0, ('p', 'Geom$4$make_copy', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$4$make_copy', 'p'), []),
     ]
     c.ct['make_lines'] = [
-        ('d', 27, 0, ('p', 'Geom$33$make_lines', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$33$make_lines', 'p'), []),
     ]
     c.ct['make_lines_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$42$make_lines_in_place', 'p'), []),
@@ -5616,13 +7100,13 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'i', 1, ('i', 'Geom$15$make_nonindexed', 'pB'), ['bool']),
     ]
     c.ct['make_patches'] = [
-        ('d', 27, 0, ('p', 'Geom$34$make_patches', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$34$make_patches', 'p'), []),
     ]
     c.ct['make_patches_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$43$make_patches_in_place', 'p'), []),
     ]
     c.ct['make_points'] = [
-        ('d', 27, 0, ('p', 'Geom$32$make_points', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$32$make_points', 'p'), []),
     ]
     c.ct['make_points_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$41$make_points_in_place', 'p'), []),
@@ -5631,10 +7115,10 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 0, ('v', 'Geom$57$mark_bounds_stale', 'p'), []),
     ]
     c.ct['modify_primitive'] = [
-        ('d', 25, 1, ('p', 'Geom$21$modify_primitive', 'pp'), ['std::size_t']),
+        ('d', 34, 1, ('p', 'Geom$21$modify_primitive', 'pp'), ['std::size_t']),
     ]
     c.ct['modify_vertex_data'] = [
-        ('d', 24, 0, ('p', 'Geom$12$modify_vertex_data', 'p'), []),
+        ('d', 33, 0, ('p', 'Geom$12$modify_vertex_data', 'p'), []),
     ]
     c.ct['offset_vertices'] = [
         ('d', 'v', 2, ('v', 'Geom$14$offset_vertices', 'ppi'), ['GeomVertexData const*', 'int']),
@@ -5661,13 +7145,13 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'B', 0, ('B', 'Geom$49$request_resident', 'p'), []),
     ]
     c.ct['reverse'] = [
-        ('d', 27, 0, ('p', 'Geom$29$reverse', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$29$reverse', 'p'), []),
     ]
     c.ct['reverse_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$38$reverse_in_place', 'p'), []),
     ]
     c.ct['rotate'] = [
-        ('d', 27, 0, ('p', 'Geom$30$rotate', 'p'), []),
+        ('d', 36, 0, ('p', 'Geom$30$rotate', 'p'), []),
     ]
     c.ct['rotate_in_place'] = [
         ('d', 'v', 0, ('v', 'Geom$39$rotate_in_place', 'p'), []),
@@ -5691,16 +7175,16 @@ class Geom(CopyOnWriteObject, GeomEnums):
         ('d', 'v', 1, ('v', 'Geom$50$transform_vertices', 'pp'), ['LMatrix4 const&']),
     ]
     c.ct['unify'] = [
-        ('d', 27, 2, ('p', 'Geom$31$unify', 'piB'), ['int', 'bool']),
+        ('d', 36, 2, ('p', 'Geom$31$unify', 'piB'), ['int', 'bool']),
     ]
     c.ct['unify_in_place'] = [
         ('d', 'v', 2, ('v', 'Geom$40$unify_in_place', 'piB'), ['int', 'bool']),
     ]
     c.ct['upcast_to_CopyOnWriteObject'] = [
-        ('d', 23, 0, ('p', 'Geom$1$upcast_to_CopyOnWriteObject', 'p'), []),
+        ('d', 32, 0, ('p', 'Geom$1$upcast_to_CopyOnWriteObject', 'p'), []),
     ]
     c.ct['upcast_to_GeomEnums'] = [
-        ('d', 3, 0, ('p', 'Geom$2$upcast_to_GeomEnums', 'p'), []),
+        ('d', 4, 0, ('p', 'Geom$2$upcast_to_GeomEnums', 'p'), []),
     ]
     c.ct['write'] = [
         ('d', 'v', 2, ('v', 'Geom$63$write', 'ppi'), ['std::ostream&', 'int']),
@@ -5750,14 +7234,14 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 28, 1, ('p', 'PandaNode$4$PandaNode', 's'), ['std::string const&']),
+        ('s', 37, 1, ('p', 'PandaNode$4$PandaNode', 's'), ['std::string const&']),
     ]
 
     # classmethod type calls
 
     c.ct['decode_from_bam_stream'] = [
-        ('s', 28, 2, ('p', 'PandaNode$193$decode_from_bam_stream', 'pp'), ['vector_uchar', 'BamReader*']),
-        ('s', 28, 1, ('p', 'PandaNode$194$decode_from_bam_stream', 'p'), ['vector_uchar']),
+        ('s', 37, 2, ('p', 'PandaNode$193$decode_from_bam_stream', 'pp'), ['vector_uchar', 'BamReader*']),
+        ('s', 37, 1, ('p', 'PandaNode$194$decode_from_bam_stream', 'p'), ['vector_uchar']),
     ]
     c.ct['get_all_camera_mask'] = [
         ('s', 'p', 0, ('p', 'PandaNode$142$get_all_camera_mask', ''), []),
@@ -5861,7 +7345,7 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'v', 1, ('v', 'PandaNode$140$clear_unexpected_change', 'pI'), ['unsigned int']),
     ]
     c.ct['combine_with'] = [
-        ('d', 28, 1, ('p', 'PandaNode$5$combine_with', 'pp'), ['PandaNode*']),
+        ('d', 37, 1, ('p', 'PandaNode$5$combine_with', 'pp'), ['PandaNode*']),
     ]
     c.ct['compare_tags'] = [
         ('d', 'i', 1, ('i', 'PandaNode$135$compare_tags', 'pp'), ['PandaNode const*']),
@@ -5874,8 +7358,8 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'v', 1, ('v', 'PandaNode$80$copy_children', 'pp'), ['PandaNode*']),
     ]
     c.ct['copy_subgraph'] = [
-        ('d', 28, 1, ('p', 'PandaNode$26$copy_subgraph', 'pp'), ['Thread*']),
-        ('d', 28, 0, ('p', 'PandaNode$27$copy_subgraph', 'p'), []),
+        ('d', 37, 1, ('p', 'PandaNode$26$copy_subgraph', 'pp'), ['Thread*']),
+        ('d', 37, 0, ('p', 'PandaNode$27$copy_subgraph', 'p'), []),
     ]
     c.ct['copy_tags'] = [
         ('d', 'v', 1, ('v', 'PandaNode$132$copy_tags', 'pp'), ['PandaNode*']),
@@ -5886,8 +7370,11 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
     c.ct['cull_callback'] = [
         ('d', 'B', 2, ('B', 'PandaNode$17$cull_callback', 'ppp'), ['CullTraverser*', 'CullTraverserData&']),
     ]
+    c.ct['downcast_to_TextNode'] = [
+        ('d', 41, 0, ('p', 'PandaNode$208$downcast_to_TextNode', 'p'), []),
+    ]
     c.ct['dupe_for_flatten'] = [
-        ('d', 28, 0, ('p', 'PandaNode$6$dupe_for_flatten', 'p'), []),
+        ('d', 37, 0, ('p', 'PandaNode$6$dupe_for_flatten', 'p'), []),
     ]
     c.ct['find_child'] = [
         ('d', 'i', 2, ('i', 'PandaNode$40$find_child', 'ppp'), ['PandaNode*', 'Thread*']),
@@ -5918,8 +7405,8 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'p', 0, ('p', 'PandaNode$164$get_bounds_type', 'p'), []),
     ]
     c.ct['get_child'] = [
-        ('d', 28, 2, ('p', 'PandaNode$36$get_child', 'pip'), ['int', 'Thread*']),
-        ('d', 28, 1, ('p', 'PandaNode$37$get_child', 'pi'), ['int']),
+        ('d', 37, 2, ('p', 'PandaNode$36$get_child', 'pip'), ['int', 'Thread*']),
+        ('d', 37, 1, ('p', 'PandaNode$37$get_child', 'pi'), ['int']),
     ]
     c.ct['get_child_sort'] = [
         ('d', 'i', 2, ('i', 'PandaNode$38$get_child_sort', 'pip'), ['int', 'Thread*']),
@@ -6000,8 +7487,8 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'p', 0, ('p', 'PandaNode$156$get_off_clip_planes', 'p'), []),
     ]
     c.ct['get_parent'] = [
-        ('d', 28, 2, ('p', 'PandaNode$30$get_parent', 'pip'), ['int', 'Thread*']),
-        ('d', 28, 1, ('p', 'PandaNode$31$get_parent', 'pi'), ['int']),
+        ('d', 37, 2, ('p', 'PandaNode$30$get_parent', 'pip'), ['int', 'Thread*']),
+        ('d', 37, 1, ('p', 'PandaNode$31$get_parent', 'pi'), ['int']),
     ]
     c.ct['get_parents'] = [
         ('d', 'p', 1, ('p', 'PandaNode$198$get_parents', 'pp'), ['Thread*']),
@@ -6014,8 +7501,8 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
     c.ct['get_stashed'] = [
         ('d', 'p', 1, ('p', 'PandaNode$62$get_stashed', 'pp'), ['Thread*']),
         ('d', 'p', 0, ('p', 'PandaNode$63$get_stashed', 'p'), []),
-        ('d', 28, 2, ('p', 'PandaNode$64$get_stashed', 'pip'), ['int', 'Thread*']),
-        ('d', 28, 1, ('p', 'PandaNode$65$get_stashed', 'pi'), ['int']),
+        ('d', 37, 2, ('p', 'PandaNode$64$get_stashed', 'pip'), ['int', 'Thread*']),
+        ('d', 37, 1, ('p', 'PandaNode$65$get_stashed', 'pi'), ['int']),
     ]
     c.ct['get_stashed_sort'] = [
         ('d', 'i', 2, ('i', 'PandaNode$66$get_stashed_sort', 'pip'), ['int', 'Thread*']),
@@ -6113,7 +7600,7 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'v', 2, ('v', 'PandaNode$162$ls', 'ppi'), ['std::ostream&', 'int']),
     ]
     c.ct['make_copy'] = [
-        ('d', 28, 0, ('p', 'PandaNode$25$make_copy', 'p'), []),
+        ('d', 37, 0, ('p', 'PandaNode$25$make_copy', 'p'), []),
     ]
     c.ct['mark_bounds_stale'] = [
         ('d', 'v', 1, ('v', 'PandaNode$178$mark_bounds_stale', 'pp'), ['Thread*']),
@@ -6243,13 +7730,13 @@ class PandaNode(TypedWritableReferenceCount, Namable, LinkedListNode):
         ('d', 'v', 1, ('v', 'PandaNode$59$unstash_child', 'pi'), ['int']),
     ]
     c.ct['upcast_to_LinkedListNode'] = [
-        ('d', 5, 0, ('p', 'PandaNode$3$upcast_to_LinkedListNode', 'p'), []),
+        ('d', 9, 0, ('p', 'PandaNode$3$upcast_to_LinkedListNode', 'p'), []),
     ]
     c.ct['upcast_to_Namable'] = [
-        ('d', 12, 0, ('p', 'PandaNode$2$upcast_to_Namable', 'p'), []),
+        ('d', 18, 0, ('p', 'PandaNode$2$upcast_to_Namable', 'p'), []),
     ]
     c.ct['upcast_to_TypedWritableReferenceCount'] = [
-        ('d', 18, 0, ('p', 'PandaNode$1$upcast_to_TypedWritableReferenceCount', 'p'), []),
+        ('d', 24, 0, ('p', 'PandaNode$1$upcast_to_TypedWritableReferenceCount', 'p'), []),
     ]
     c.ct['update_bam_nested'] = [
         ('d', 'v', 1, ('v', 'PandaNode$202$update_bam_nested', 'pp'), ['BamWriter*']),
@@ -6288,8 +7775,8 @@ class LensNode(PandaNode):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 29, 2, ('p', 'LensNode$1$LensNode', 'sp'), ['std::string const&', 'Lens*']),
-        ('s', 29, 1, ('p', 'LensNode$2$LensNode', 's'), ['std::string const&']),
+        ('s', 38, 2, ('p', 'LensNode$1$LensNode', 'sp'), ['std::string const&', 'Lens*']),
+        ('s', 38, 1, ('p', 'LensNode$2$LensNode', 's'), ['std::string const&']),
     ]
 
     # classmethod type calls
@@ -6386,9 +7873,9 @@ class Camera(LensNode):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 30, 1, ('p', 'Camera$1$Camera', 'p'), ['Camera const&']),
-        ('s', 30, 2, ('p', 'Camera$2$Camera', 'sp'), ['std::string const&', 'Lens*']),
-        ('s', 30, 1, ('p', 'Camera$3$Camera', 's'), ['std::string const&']),
+        ('s', 39, 1, ('p', 'Camera$1$Camera', 'p'), ['Camera const&']),
+        ('s', 39, 2, ('p', 'Camera$2$Camera', 'sp'), ['std::string const&', 'Lens*']),
+        ('s', 39, 1, ('p', 'Camera$3$Camera', 's'), ['std::string const&']),
     ]
 
     # classmethod type calls
@@ -6443,7 +7930,7 @@ class Camera(LensNode):
         ('d', 'p', 0, ('p', 'Camera$18$get_cull_bounds', 'p'), []),
     ]
     c.ct['get_cull_center'] = [
-        ('d', 7, 0, ('p', 'Camera$16$get_cull_center', 'p'), []),
+        ('d', 11, 0, ('p', 'Camera$16$get_cull_center', 'p'), []),
     ]
     c.ct['get_display_region'] = [
         ('d', 'p', 1, ('p', 'Camera$12$get_display_region', 'pp'), ['std::size_t']),
@@ -6452,7 +7939,7 @@ class Camera(LensNode):
         ('d', 'p', 0, ('p', 'Camera$22$get_initial_state', 'p'), []),
     ]
     c.ct['get_lod_center'] = [
-        ('d', 7, 0, ('p', 'Camera$20$get_lod_center', 'p'), []),
+        ('d', 11, 0, ('p', 'Camera$20$get_lod_center', 'p'), []),
     ]
     c.ct['get_lod_scale'] = [
         ('d', 'f', 0, ('f', 'Camera$26$get_lod_scale', 'p'), []),
@@ -6461,7 +7948,7 @@ class Camera(LensNode):
         ('d', 'p', 0, ('p', 'Camera$11$get_num_display_regions', 'p'), []),
     ]
     c.ct['get_scene'] = [
-        ('d', 7, 0, ('p', 'Camera$10$get_scene', 'p'), []),
+        ('d', 11, 0, ('p', 'Camera$10$get_scene', 'p'), []),
     ]
     c.ct['get_tag_state'] = [
         ('d', 'p', 1, ('p', 'Camera$31$get_tag_state', 'ps'), ['std::string const&']),
@@ -6482,7 +7969,7 @@ class Camera(LensNode):
         ('d', 'v', 1, ('v', 'Camera$35$list_aux_scene_data', 'pp'), ['std::ostream&']),
     ]
     c.ct['make_copy'] = [
-        ('d', 28, 0, ('p', 'Camera$4$make_copy', 'p'), []),
+        ('d', 37, 0, ('p', 'Camera$4$make_copy', 'p'), []),
     ]
     c.ct['safe_to_flatten'] = [
         ('d', 'B', 0, ('B', 'Camera$5$safe_to_flatten', 'p'), []),
@@ -6548,7 +8035,7 @@ class GeomNode(PandaNode):
     # ctor/dtor
 
     c.ct['ctor'] = [
-        ('s', 31, 1, ('p', 'GeomNode$1$GeomNode', 's'), ['std::string const&']),
+        ('s', 40, 1, ('p', 'GeomNode$1$GeomNode', 's'), ['std::string const&']),
     ]
 
     # classmethod type calls
@@ -6613,7 +8100,7 @@ class GeomNode(PandaNode):
         ('d', 'i', 0, ('i', 'GeomNode$37$force_init_type', 'p'), []),
     ]
     c.ct['get_geom'] = [
-        ('d', 27, 1, ('p', 'GeomNode$12$get_geom', 'pi'), ['int']),
+        ('d', 36, 1, ('p', 'GeomNode$12$get_geom', 'pi'), ['int']),
     ]
     c.ct['get_geom_state'] = [
         ('d', 'p', 1, ('p', 'GeomNode$14$get_geom_state', 'pi'), ['int']),
@@ -6635,7 +8122,7 @@ class GeomNode(PandaNode):
         ('d', 'B', 0, ('B', 'GeomNode$4$is_renderable', 'p'), []),
     ]
     c.ct['modify_geom'] = [
-        ('d', 27, 1, ('p', 'GeomNode$13$modify_geom', 'pi'), ['int']),
+        ('d', 36, 1, ('p', 'GeomNode$13$modify_geom', 'pi'), ['int']),
     ]
     c.ct['r_prepare_scene'] = [
         ('d', 'v', 4, ('v', 'GeomNode$8$r_prepare_scene', 'ppppp'), ['GraphicsStateGuardianBase*', 'RenderState const*', 'GeomTransformer&', 'Thread*']),
@@ -6687,6 +8174,467 @@ class GeomNode(PandaNode):
         return self.c.get(attr,None) or  self.c.call(GeomNode, attr, self)
 
 GeomNode.c.link(GeomNode)
+
+
+
+class TextNode(PandaNode, TextEncoder, TextProperties):
+    __bases__ = tuple([PandaNode, TextEncoder, TextProperties])
+    c = cxx.cstructs()
+    c.register("TextNode", "upanda3d", """libupanda3d_c.so""")
+
+    # enum FlattenFlags
+
+    FF_dynamic_merge = const(8)
+    FF_light = const(1)
+    FF_medium = const(2)
+    FF_none = const(0)
+    FF_strong = const(4)
+
+
+    # ctor/dtor
+
+    c.ct['ctor'] = [
+        ('s', 41, 1, ('p', 'TextNode$4$TextNode', 's'), ['std::string const&']),
+        ('s', 41, 2, ('p', 'TextNode$5$TextNode', 'sp'), ['std::string const&', 'TextProperties const&']),
+    ]
+
+    # classmethod type calls
+
+    c.ct['get_class_type'] = [
+        ('s', 'i', 0, ('i', 'TextNode$142$get_class_type', ''), []),
+    ]
+    c.ct['init_type'] = [
+        ('s', 'v', 0, ('v', 'TextNode$143$init_type', ''), []),
+    ]
+
+    @classmethod
+    def get_class_type(cls, *args,**kw):
+        return ( cls.c.get('get_class_type', None) or cls.c.call(TextNode, 'get_class_type', None) )(*args,**kw)
+
+    @classmethod
+    def init_type(cls, *args,**kw):
+        return ( cls.c.get('init_type', None) or cls.c.call(TextNode, 'init_type', None) )(*args,**kw)
+
+    # instance method type calls
+
+    c.ct['apply_attribs_to_vertices'] = [
+        ('d', 'v', 3, ('v', 'TextNode$138$apply_attribs_to_vertices', 'ppip'), ['AccumulatedAttribs const&', 'int', 'GeomTransformer&']),
+    ]
+    c.ct['calc_width'] = [
+        ('d', 'f', 1, ('f', 'TextNode$90$calc_width', 'ps'), ['std::string const&']),
+        ('d', 'f', 1, ('f', 'TextNode$91$calc_width', 'pp'), ['std::wstring const&']),
+        ('d', 'f', 1, ('f', 'TextNode$92$calc_width', 'pp'), ['wchar_t']),
+    ]
+    c.ct['clear_align'] = [
+        ('d', 'v', 0, ('v', 'TextNode$65$clear_align', 'p'), []),
+    ]
+    c.ct['clear_bin'] = [
+        ('d', 'v', 0, ('v', 'TextNode$80$clear_bin', 'p'), []),
+    ]
+    c.ct['clear_card'] = [
+        ('d', 'v', 0, ('v', 'TextNode$41$clear_card', 'p'), []),
+    ]
+    c.ct['clear_card_border'] = [
+        ('d', 'v', 0, ('v', 'TextNode$16$clear_card_border', 'p'), []),
+    ]
+    c.ct['clear_card_texture'] = [
+        ('d', 'v', 0, ('v', 'TextNode$24$clear_card_texture', 'p'), []),
+    ]
+    c.ct['clear_draw_order'] = [
+        ('d', 'v', 0, ('v', 'TextNode$82$clear_draw_order', 'p'), []),
+    ]
+    c.ct['clear_font'] = [
+        ('d', 'v', 0, ('v', 'TextNode$57$clear_font', 'p'), []),
+    ]
+    c.ct['clear_frame'] = [
+        ('d', 'v', 0, ('v', 'TextNode$29$clear_frame', 'p'), []),
+    ]
+    c.ct['clear_glyph_scale'] = [
+        ('d', 'v', 0, ('v', 'TextNode$86$clear_glyph_scale', 'p'), []),
+    ]
+    c.ct['clear_glyph_shift'] = [
+        ('d', 'v', 0, ('v', 'TextNode$88$clear_glyph_shift', 'p'), []),
+    ]
+    c.ct['clear_indent'] = [
+        ('d', 'v', 0, ('v', 'TextNode$67$clear_indent', 'p'), []),
+    ]
+    c.ct['clear_max_rows'] = [
+        ('d', 'v', 0, ('v', 'TextNode$8$clear_max_rows', 'p'), []),
+    ]
+    c.ct['clear_shadow'] = [
+        ('d', 'v', 0, ('v', 'TextNode$78$clear_shadow', 'p'), []),
+    ]
+    c.ct['clear_shadow_color'] = [
+        ('d', 'v', 0, ('v', 'TextNode$75$clear_shadow_color', 'p'), []),
+    ]
+    c.ct['clear_slant'] = [
+        ('d', 'v', 0, ('v', 'TextNode$63$clear_slant', 'p'), []),
+    ]
+    c.ct['clear_small_caps'] = [
+        ('d', 'v', 0, ('v', 'TextNode$59$clear_small_caps', 'p'), []),
+    ]
+    c.ct['clear_small_caps_scale'] = [
+        ('d', 'v', 0, ('v', 'TextNode$61$clear_small_caps_scale', 'p'), []),
+    ]
+    c.ct['clear_tab_width'] = [
+        ('d', 'v', 0, ('v', 'TextNode$84$clear_tab_width', 'p'), []),
+    ]
+    c.ct['clear_text_color'] = [
+        ('d', 'v', 0, ('v', 'TextNode$72$clear_text_color', 'p'), []),
+    ]
+    c.ct['clear_wordwrap'] = [
+        ('d', 'v', 0, ('v', 'TextNode$69$clear_wordwrap', 'p'), []),
+    ]
+    c.ct['cull_callback'] = [
+        ('d', 'B', 2, ('B', 'TextNode$139$cull_callback', 'ppp'), ['CullTraverser*', 'CullTraverserData&']),
+    ]
+    c.ct['force_init_type'] = [
+        ('d', 'i', 0, ('i', 'TextNode$145$force_init_type', 'p'), []),
+    ]
+    c.ct['force_update'] = [
+        ('d', 'v', 0, ('v', 'TextNode$111$force_update', 'p'), []),
+    ]
+    c.ct['generate'] = [
+        ('d', 37, 0, ('p', 'TextNode$109$generate', 'p'), []),
+    ]
+    c.ct['get_align'] = [
+        ('d', 'p', 0, ('p', 'TextNode$121$get_align', 'p'), []),
+    ]
+    c.ct['get_bin'] = [
+        ('d', 's', 0, ('s', 'TextNode$129$get_bin', 'p'), []),
+    ]
+    c.ct['get_bottom'] = [
+        ('d', 'f', 0, ('f', 'TextNode$102$get_bottom', 'p'), []),
+    ]
+    c.ct['get_card_actual'] = [
+        ('d', 'p', 0, ('p', 'TextNode$46$get_card_actual', 'p'), []),
+    ]
+    c.ct['get_card_as_set'] = [
+        ('d', 'p', 0, ('p', 'TextNode$45$get_card_as_set', 'p'), []),
+    ]
+    c.ct['get_card_border_size'] = [
+        ('d', 'f', 0, ('f', 'TextNode$17$get_card_border_size', 'p'), []),
+    ]
+    c.ct['get_card_border_uv_portion'] = [
+        ('d', 'f', 0, ('f', 'TextNode$18$get_card_border_uv_portion', 'p'), []),
+    ]
+    c.ct['get_card_color'] = [
+        ('d', 'p', 0, ('p', 'TextNode$22$get_card_color', 'p'), []),
+    ]
+    c.ct['get_card_decal'] = [
+        ('d', 'B', 0, ('B', 'TextNode$43$get_card_decal', 'p'), []),
+    ]
+    c.ct['get_card_texture'] = [
+        ('d', 'p', 0, ('p', 'TextNode$26$get_card_texture', 'p'), []),
+    ]
+    c.ct['get_card_transformed'] = [
+        ('d', 'p', 0, ('p', 'TextNode$47$get_card_transformed', 'p'), []),
+    ]
+    c.ct['get_coordinate_system'] = [
+        ('d', 'p', 0, ('p', 'TextNode$51$get_coordinate_system', 'p'), []),
+    ]
+    c.ct['get_draw_order'] = [
+        ('d', 'i', 0, ('i', 'TextNode$130$get_draw_order', 'p'), []),
+    ]
+    c.ct['get_flatten_flags'] = [
+        ('d', 'i', 0, ('i', 'TextNode$55$get_flatten_flags', 'p'), []),
+    ]
+    c.ct['get_font'] = [
+        ('d', 'p', 0, ('p', 'TextNode$113$get_font', 'p'), []),
+    ]
+    c.ct['get_frame_actual'] = [
+        ('d', 'p', 0, ('p', 'TextNode$33$get_frame_actual', 'p'), []),
+    ]
+    c.ct['get_frame_as_set'] = [
+        ('d', 'p', 0, ('p', 'TextNode$32$get_frame_as_set', 'p'), []),
+    ]
+    c.ct['get_frame_color'] = [
+        ('d', 'p', 0, ('p', 'TextNode$14$get_frame_color', 'p'), []),
+    ]
+    c.ct['get_frame_corners'] = [
+        ('d', 'B', 0, ('B', 'TextNode$37$get_frame_corners', 'p'), []),
+    ]
+    c.ct['get_frame_line_width'] = [
+        ('d', 'f', 0, ('f', 'TextNode$35$get_frame_line_width', 'p'), []),
+    ]
+    c.ct['get_glyph_scale'] = [
+        ('d', 'f', 0, ('f', 'TextNode$132$get_glyph_scale', 'p'), []),
+    ]
+    c.ct['get_glyph_shift'] = [
+        ('d', 'f', 0, ('f', 'TextNode$133$get_glyph_shift', 'p'), []),
+    ]
+    c.ct['get_height'] = [
+        ('d', 'f', 0, ('f', 'TextNode$104$get_height', 'p'), []),
+    ]
+    c.ct['get_indent'] = [
+        ('d', 'f', 0, ('f', 'TextNode$122$get_indent', 'p'), []),
+    ]
+    c.ct['get_internal_geom'] = [
+        ('d', 37, 0, ('p', 'TextNode$112$get_internal_geom', 'p'), []),
+    ]
+    c.ct['get_left'] = [
+        ('d', 'f', 0, ('f', 'TextNode$100$get_left', 'p'), []),
+    ]
+    c.ct['get_line_height'] = [
+        ('d', 'f', 0, ('f', 'TextNode$6$get_line_height', 'p'), []),
+    ]
+    c.ct['get_lower_right_3d'] = [
+        ('d', 'p', 0, ('p', 'TextNode$107$get_lower_right_3d', 'p'), []),
+    ]
+    c.ct['get_max_rows'] = [
+        ('d', 'i', 0, ('i', 'TextNode$10$get_max_rows', 'p'), []),
+    ]
+    c.ct['get_num_rows'] = [
+        ('d', 'i', 0, ('i', 'TextNode$108$get_num_rows', 'p'), []),
+    ]
+    c.ct['get_preserve_trailing_whitespace'] = [
+        ('d', 'B', 0, ('B', 'TextNode$124$get_preserve_trailing_whitespace', 'p'), []),
+    ]
+    c.ct['get_right'] = [
+        ('d', 'f', 0, ('f', 'TextNode$101$get_right', 'p'), []),
+    ]
+    c.ct['get_shadow'] = [
+        ('d', 'p', 0, ('p', 'TextNode$128$get_shadow', 'p'), []),
+    ]
+    c.ct['get_shadow_color'] = [
+        ('d', 'p', 0, ('p', 'TextNode$127$get_shadow_color', 'p'), []),
+    ]
+    c.ct['get_slant'] = [
+        ('d', 'f', 0, ('f', 'TextNode$116$get_slant', 'p'), []),
+    ]
+    c.ct['get_small_caps'] = [
+        ('d', 'B', 0, ('B', 'TextNode$114$get_small_caps', 'p'), []),
+    ]
+    c.ct['get_small_caps_scale'] = [
+        ('d', 'f', 0, ('f', 'TextNode$115$get_small_caps_scale', 'p'), []),
+    ]
+    c.ct['get_tab_width'] = [
+        ('d', 'f', 0, ('f', 'TextNode$131$get_tab_width', 'p'), []),
+    ]
+    c.ct['get_text_color'] = [
+        ('d', 'p', 0, ('p', 'TextNode$126$get_text_color', 'p'), []),
+    ]
+    c.ct['get_text_scale'] = [
+        ('d', 'f', 0, ('f', 'TextNode$134$get_text_scale', 'p'), []),
+    ]
+    c.ct['get_top'] = [
+        ('d', 'f', 0, ('f', 'TextNode$103$get_top', 'p'), []),
+    ]
+    c.ct['get_transform'] = [
+        ('d', 'p', 0, ('p', 'TextNode$49$get_transform', 'p'), []),
+    ]
+    c.ct['get_type'] = [
+        ('d', 'i', 0, ('i', 'TextNode$144$get_type', 'p'), []),
+    ]
+    c.ct['get_underscore'] = [
+        ('d', 'B', 0, ('B', 'TextNode$117$get_underscore', 'p'), []),
+    ]
+    c.ct['get_underscore_height'] = [
+        ('d', 'f', 0, ('f', 'TextNode$119$get_underscore_height', 'p'), []),
+    ]
+    c.ct['get_unsafe_to_apply_attribs'] = [
+        ('d', 'i', 0, ('i', 'TextNode$137$get_unsafe_to_apply_attribs', 'p'), []),
+    ]
+    c.ct['get_upper_left_3d'] = [
+        ('d', 'p', 0, ('p', 'TextNode$106$get_upper_left_3d', 'p'), []),
+    ]
+    c.ct['get_usage_hint'] = [
+        ('d', 'p', 0, ('p', 'TextNode$53$get_usage_hint', 'p'), []),
+    ]
+    c.ct['get_width'] = [
+        ('d', 'f', 0, ('f', 'TextNode$105$get_width', 'p'), []),
+    ]
+    c.ct['get_wordwrap'] = [
+        ('d', 'f', 0, ('f', 'TextNode$123$get_wordwrap', 'p'), []),
+    ]
+    c.ct['get_wordwrapped_text'] = [
+        ('d', 's', 0, ('s', 'TextNode$89$get_wordwrapped_text', 'p'), []),
+    ]
+    c.ct['get_wordwrapped_wtext'] = [
+        ('d', 'p', 0, ('p', 'TextNode$96$get_wordwrapped_wtext', 'p'), []),
+    ]
+    c.ct['has_card'] = [
+        ('d', 'B', 0, ('B', 'TextNode$42$has_card', 'p'), []),
+    ]
+    c.ct['has_card_border'] = [
+        ('d', 'B', 0, ('B', 'TextNode$19$has_card_border', 'p'), []),
+    ]
+    c.ct['has_card_texture'] = [
+        ('d', 'B', 0, ('B', 'TextNode$25$has_card_texture', 'p'), []),
+    ]
+    c.ct['has_character'] = [
+        ('d', 'B', 1, ('B', 'TextNode$94$has_character', 'pp'), ['wchar_t']),
+    ]
+    c.ct['has_exact_character'] = [
+        ('d', 'B', 1, ('B', 'TextNode$93$has_exact_character', 'pp'), ['wchar_t']),
+    ]
+    c.ct['has_frame'] = [
+        ('d', 'B', 0, ('B', 'TextNode$30$has_frame', 'p'), []),
+    ]
+    c.ct['has_max_rows'] = [
+        ('d', 'B', 0, ('B', 'TextNode$9$has_max_rows', 'p'), []),
+    ]
+    c.ct['has_overflow'] = [
+        ('d', 'B', 0, ('B', 'TextNode$11$has_overflow', 'p'), []),
+    ]
+    c.ct['is_card_as_margin'] = [
+        ('d', 'B', 0, ('B', 'TextNode$44$is_card_as_margin', 'p'), []),
+    ]
+    c.ct['is_frame_as_margin'] = [
+        ('d', 'B', 0, ('B', 'TextNode$31$is_frame_as_margin', 'p'), []),
+    ]
+    c.ct['is_renderable'] = [
+        ('d', 'B', 0, ('B', 'TextNode$140$is_renderable', 'p'), []),
+    ]
+    c.ct['is_whitespace'] = [
+        ('d', 'B', 1, ('B', 'TextNode$95$is_whitespace', 'pp'), ['wchar_t']),
+    ]
+    c.ct['output'] = [
+        ('d', 'v', 1, ('v', 'TextNode$97$output', 'pp'), ['std::ostream&']),
+    ]
+    c.ct['r_prepare_scene'] = [
+        ('d', 'v', 4, ('v', 'TextNode$141$r_prepare_scene', 'ppppp'), ['GraphicsStateGuardianBase*', 'RenderState const*', 'GeomTransformer&', 'Thread*']),
+    ]
+    c.ct['set_align'] = [
+        ('d', 'v', 1, ('v', 'TextNode$64$set_align', 'pp'), ['TextProperties::Alignment']),
+    ]
+    c.ct['set_bin'] = [
+        ('d', 'v', 1, ('v', 'TextNode$79$set_bin', 'ps'), ['std::string const&']),
+    ]
+    c.ct['set_card_actual'] = [
+        ('d', 'v', 4, ('v', 'TextNode$39$set_card_actual', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_card_as_margin'] = [
+        ('d', 'v', 4, ('v', 'TextNode$38$set_card_as_margin', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_card_border'] = [
+        ('d', 'v', 2, ('v', 'TextNode$15$set_card_border', 'pff'), ['PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_card_color'] = [
+        ('d', 'v', 1, ('v', 'TextNode$20$set_card_color', 'pp'), ['LColor const&']),
+        ('d', 'v', 4, ('v', 'TextNode$21$set_card_color', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_card_decal'] = [
+        ('d', 'v', 1, ('v', 'TextNode$40$set_card_decal', 'pB'), ['bool']),
+    ]
+    c.ct['set_card_texture'] = [
+        ('d', 'v', 1, ('v', 'TextNode$23$set_card_texture', 'pp'), ['Texture*']),
+    ]
+    c.ct['set_coordinate_system'] = [
+        ('d', 'v', 1, ('v', 'TextNode$50$set_coordinate_system', 'pp'), ['CoordinateSystem']),
+    ]
+    c.ct['set_draw_order'] = [
+        ('d', 'i', 1, ('i', 'TextNode$81$set_draw_order', 'pi'), ['int']),
+    ]
+    c.ct['set_flatten_flags'] = [
+        ('d', 'v', 1, ('v', 'TextNode$54$set_flatten_flags', 'pi'), ['int']),
+    ]
+    c.ct['set_font'] = [
+        ('d', 'v', 1, ('v', 'TextNode$56$set_font', 'pp'), ['TextFont*']),
+    ]
+    c.ct['set_frame_actual'] = [
+        ('d', 'v', 4, ('v', 'TextNode$28$set_frame_actual', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_frame_as_margin'] = [
+        ('d', 'v', 4, ('v', 'TextNode$27$set_frame_as_margin', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_frame_color'] = [
+        ('d', 'v', 1, ('v', 'TextNode$12$set_frame_color', 'pp'), ['LColor const&']),
+        ('d', 'v', 4, ('v', 'TextNode$13$set_frame_color', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_frame_corners'] = [
+        ('d', 'v', 1, ('v', 'TextNode$36$set_frame_corners', 'pB'), ['bool']),
+    ]
+    c.ct['set_frame_line_width'] = [
+        ('d', 'v', 1, ('v', 'TextNode$34$set_frame_line_width', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_glyph_scale'] = [
+        ('d', 'v', 1, ('v', 'TextNode$85$set_glyph_scale', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_glyph_shift'] = [
+        ('d', 'v', 1, ('v', 'TextNode$87$set_glyph_shift', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_indent'] = [
+        ('d', 'v', 1, ('v', 'TextNode$66$set_indent', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_max_rows'] = [
+        ('d', 'v', 1, ('v', 'TextNode$7$set_max_rows', 'pi'), ['int']),
+    ]
+    c.ct['set_preserve_trailing_whitespace'] = [
+        ('d', 'v', 1, ('v', 'TextNode$125$set_preserve_trailing_whitespace', 'pB'), ['bool']),
+    ]
+    c.ct['set_shadow'] = [
+        ('d', 'v', 1, ('v', 'TextNode$76$set_shadow', 'pp'), ['LVecBase2 const&']),
+        ('d', 'v', 2, ('v', 'TextNode$77$set_shadow', 'pff'), ['PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_shadow_color'] = [
+        ('d', 'v', 1, ('v', 'TextNode$73$set_shadow_color', 'pp'), ['LColor const&']),
+        ('d', 'v', 4, ('v', 'TextNode$74$set_shadow_color', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_slant'] = [
+        ('d', 'v', 1, ('v', 'TextNode$62$set_slant', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_small_caps'] = [
+        ('d', 'v', 1, ('v', 'TextNode$58$set_small_caps', 'pB'), ['bool']),
+    ]
+    c.ct['set_small_caps_scale'] = [
+        ('d', 'v', 1, ('v', 'TextNode$60$set_small_caps_scale', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_tab_width'] = [
+        ('d', 'v', 1, ('v', 'TextNode$83$set_tab_width', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_text_color'] = [
+        ('d', 'v', 1, ('v', 'TextNode$70$set_text_color', 'pp'), ['LColor const&']),
+        ('d', 'v', 4, ('v', 'TextNode$71$set_text_color', 'pffff'), ['PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat', 'PN_stdfloat']),
+    ]
+    c.ct['set_text_scale'] = [
+        ('d', 'v', 1, ('v', 'TextNode$135$set_text_scale', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_transform'] = [
+        ('d', 'v', 1, ('v', 'TextNode$48$set_transform', 'pp'), ['LMatrix4 const&']),
+    ]
+    c.ct['set_underscore'] = [
+        ('d', 'v', 1, ('v', 'TextNode$118$set_underscore', 'pB'), ['bool']),
+    ]
+    c.ct['set_underscore_height'] = [
+        ('d', 'v', 1, ('v', 'TextNode$120$set_underscore_height', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['set_usage_hint'] = [
+        ('d', 'v', 1, ('v', 'TextNode$52$set_usage_hint', 'pp'), ['GeomEnums::UsageHint']),
+    ]
+    c.ct['set_wordwrap'] = [
+        ('d', 'v', 1, ('v', 'TextNode$68$set_wordwrap', 'pf'), ['PN_stdfloat']),
+    ]
+    c.ct['text_changed'] = [
+        ('d', 'v', 0, ('v', 'TextNode$136$text_changed', 'p'), []),
+    ]
+    c.ct['upcast_to_PandaNode'] = [
+        ('d', 37, 0, ('p', 'TextNode$1$upcast_to_PandaNode', 'p'), []),
+    ]
+    c.ct['upcast_to_TextEncoder'] = [
+        ('d', 15, 0, ('p', 'TextNode$2$upcast_to_TextEncoder', 'p'), []),
+    ]
+    c.ct['upcast_to_TextProperties'] = [
+        ('d', 16, 0, ('p', 'TextNode$3$upcast_to_TextProperties', 'p'), []),
+    ]
+    c.ct['update'] = [
+        ('d', 'v', 0, ('v', 'TextNode$110$update', 'p'), []),
+    ]
+    c.ct['write'] = [
+        ('d', 'v', 2, ('v', 'TextNode$98$write', 'ppi'), ['std::ostream&', 'int']),
+        ('d', 'v', 1, ('v', 'TextNode$99$write', 'pp'), ['std::ostream&']),
+    ]
+
+
+    # c++ instance methods
+
+    def __del__(self):
+        self.c.destroy(self)
+
+    def __getattr__(self, attr):
+        return self.c.get(attr,None) or  self.c.call(TextNode, attr, self)
+
+TextNode.c.link(TextNode)
 
 
 
@@ -6763,8 +8711,16 @@ if __name__ == '__main__':
         print("deleting copy")
         del C
 
-    print("--- test3 with refcounting ----")
-    test()
+    #print("--- test3 with refcounting ----")
+    #test()
+
+    if len(sys.argv) and sys.argv[-1].endswith('.py'):
+        code = compile( open( sys.argv[-1], 'r').read(), sys.argv[-1] , 'exec' )
+        exec( code, globals() , globals() )
+
+
+
+
     del test
     gc.collect()
     gc.collect()

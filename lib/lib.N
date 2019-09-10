@@ -14,7 +14,9 @@ forcetype GeomVertexWriter
 forcetype LensNode
 forcetype LQuaternion
 forcetype LVecBase3f
-forcetype LVecBase3f::EVector3
+forcetype LVecBase3i
+forcetype LVecBase4f
+forcetype LVecBase4i
 forcetype MemoryBase
 forcetype NodePath
 forcetype NodePathCollection
@@ -27,4 +29,9 @@ forcetype TypedObject
 forcetype TypedWritable
 forcetype WindowFramework
 forcetype InternalName
+
+forcetype TextNode
+forcetype DrawableRegion
+forcetype GraphicsWindow
+forcetype GraphicsOutput
 

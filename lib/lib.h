@@ -8,6 +8,7 @@
 
 #include "pandaFramework.h"
 #include "pandaSystem.h"
+#include "load_prc_file.h"
 
 //NotifyCategoryDecl(lib, EXPCL_LIB, EXPTP_LIB);
 
@@ -82,10 +83,8 @@ class EXPORT_CLASS Engine
         static int inc_ref(ReferenceCount * rc);
         static int dec_ref(ReferenceCount * rc);
 
-/*
-        void op_pos(NodePath *np, LVecBase3f *v3f);
-        void op_scale(NodePath *np, LVecBase3f *v3f);
-*/
+        static void prc(const Filename &filename) ;
+        static void prc(str name, str data);
 
         void build();
 
@@ -96,7 +95,6 @@ class EXPORT_CLASS Engine
 
         static void call_exit(const Event* event, void* data);
 
-        //PT(WindowFramework) wframe;
         WindowFramework * wframe;
 
         FRAMEWORK * framework;

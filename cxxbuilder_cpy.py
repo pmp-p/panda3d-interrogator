@@ -148,7 +148,8 @@ def dlopen(lib):
         forward_decl.extend(lot)
 
     print(forward_decl)
-
+    forward_decl = sort_inheritance(code, forward_decl)
+    forward_decl = sort_inheritance(code, forward_decl)
     code['forward_decl'] = sort_inheritance(code, forward_decl)
 
     return code
@@ -162,37 +163,50 @@ def sort_inheritance(code, fwd):
 
     cls = code['classes']
 
-    first = 0
+    ancestor = ''
+    initial = 0
+
     for cn in fwd:
         if len(bases(cn)):
             break
-        first += 1
+        initial += 1
 
-    unsorted = True
-    slot = ''
+    first = initial
 
-    while first < len(fwd):
-        tosort = fwd[first]
+    while True:
+        changes = 0
+
+        child = fwd[first]
         parents = bases(fwd[first])
-        while parents:
-            for i in range(first):
-                if fwd[i] in parents:
-                    parents.remove(fwd[i])
-            else:
-                if len(parents):
-                    unsorted = True
-                    slot = parents.pop(0)
-                    print(tosort, 'wrong position vs', slot)
-                    break
-        else:
+
+        for i in range(first):
+            ancestor = fwd[i]
+            if ancestor in parents:
+                parents.remove(ancestor)
+
+        if len(parents):
+            print(child, 'is before', parents)
+
+            ancestor = parents.pop(0)
+
+            try:
+                child_place = fwd.index(ancestor)
+            except:
+                print("\n\n", ancestor, 'not found, please forcetype and rebuild\n\n')
+                for e in fwd:
+                    print('  ', e)
+                raise SystemExit
+
+            fwd.remove(child)
+            fwd.insert(child_place, child)
+            changes += 1
+
+        if not changes:
             first += 1
-
-        if unsorted:
-            good = fwd.index(slot)
-            fwd.insert(good + 1, tosort)
-            fwd.pop(first)
-            unsorted = False
-
+            if first == len(fwd):
+                break
+        else:
+            first = initial
     return fwd
 
 
@@ -226,7 +240,7 @@ def build(TARGET):
                 pret = forward_decl.index(ffi_name)
         return pret, ffi_name
 
-    def enums(cls, indent=0):
+    def enums(cls, no_const, indent=0):
         for enum_name, enums in cls['enums'].items():
             write(
                 f"""{"    "*indent}# enum {enum_name}
@@ -234,7 +248,10 @@ def build(TARGET):
             )
 
             for enum in enums:
-                write(f"""{"    "*indent}{enum[0]} = const({enum[1]})""")
+                if enum[0] in no_const:
+                    write(f"""{"    "*indent}{enum[0]} = {enum[1]}""")
+                else:
+                    write(f"""{"    "*indent}{enum[0]} = const({enum[1]})""")
 
             write("\n")
 
@@ -269,7 +286,7 @@ extern = cxx.cstructs.decl.append"""
     write("del extern\n")
 
     if has_main_enum:
-        enums(classes[''], indent=0)
+        enums(classes[''], CODE['no_const'], indent=0)
 
     indent = 1
 
@@ -286,7 +303,7 @@ class {cn}({ancestor}):
     c.register("{cn}", "{TARGET}", """{lib}""")
 '''
         )
-        enums(classes[cn], indent=1)
+        enums(classes[cn], CODE['no_const'], indent=1)
         # write("# ============== ENUM OFF ====================")
 
         def dump(cls, ct, ctor=0):
@@ -445,8 +462,16 @@ if __name__ == '__main__':
         print("deleting copy")
         del C
 
-    print("--- test3 with refcounting ----")
-    test()
+    #print("--- test3 with refcounting ----")
+    #test()
+
+    if len(sys.argv) and sys.argv[-1].endswith('.py'):
+        code = compile( open( sys.argv[-1], 'r').read(), sys.argv[-1] , 'exec' )
+        exec( code, globals() , globals() )
+
+
+
+
     del test
     gc.collect()
     gc.collect()

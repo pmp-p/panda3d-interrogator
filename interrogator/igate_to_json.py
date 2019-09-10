@@ -69,8 +69,8 @@ def igate_to_json(file_like):
 
         disp = 0
 
-        if cpp_def.count('set_scale('):
-            disp = 1
+#        if cpp_def.count('set_scale('):
+#            disp = 1
 
         if disp:
             print("ARGS :", args)

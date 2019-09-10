@@ -61,6 +61,18 @@ Engine::close_primitive(GeomTriangles *pri) {
     cout << "->close_primitive(end)" << endl;
 }
 
+void
+Engine::prc(const Filename &filename) {
+//    return
+ load_prc_file(filename);
+}
+
+void
+Engine::prc(str name, str data) {
+//    return
+ load_prc_file_data(name,data);
+}
+
 
 Engine::Engine() {
     cout << "->Constructor\n";
@@ -86,23 +98,16 @@ Engine::build() {
 	// setup Panda3d
 	this->framework->open_framework(g_argc, (char **&)g_argv);
 
-//	WindowFramework *window = this->framework->open_window();
-//	PT(WindowFramework) window_framework = window;
     wframe = this->framework->open_window();
     wframe->ref();
 
-
-
-	//if(window_framework == NULL) {
     if(wframe == NULL) {
 		nout << "ERROR: could not open the WindowFramework." << endl;
         emscripten_force_exit(0);
 		return ; // error
 	}
 
-
     // Escape quits
-    // wframe=    window_framework;
     wframe->enable_keyboard();
     wframe->get_panda_framework()->define_key("escape", "escapeQuits", call_exit, NULL);
 }
