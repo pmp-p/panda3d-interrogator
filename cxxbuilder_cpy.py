@@ -161,6 +161,8 @@ def dlopen(lib):
     return code
 
 
+# sort all the classes in order to use python class hierarchy and isinstance can work normally
+
 def sort_inheritance(code, fwd):
     def bases(cn):
         return list(cls[cn]['bases'])
@@ -402,7 +404,7 @@ cxx.DECREF = Engine.dec_ref
 """
     )
 
-    if 0:
+    if 1:
         RT_UNSOLVED.sort()
         for rt in RT_UNSOLVED:
             print("407: WARNING unresolved forward types :", rt)

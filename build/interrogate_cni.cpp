@@ -1456,6 +1456,22 @@ EXPORT_FUNC int InternalName_C_get_type_i_p(InternalName const *param0);
 EXPORT_FUNC int InternalName_C_force_init_type_i_p(InternalName *param0);
 
 
+// LPoint2d
+
+EXPORT_FUNC LPoint2d * LPoint2d_C_ctor_p_v();
+EXPORT_FUNC LPoint2d * LPoint2d_C_ctor_p_p(LPoint2d const *param0);
+EXPORT_FUNC LPoint2d * LPoint2d_C_ctor_p_p_1_p_p(LVecBase2d const *param0);
+EXPORT_FUNC LPoint2d * LPoint2d_C_ctor_p_d(double param0);
+EXPORT_FUNC LPoint2d * LPoint2d_C_ctor_p_dd(double param0, double param1);
+EXPORT_FUNC LPoint2d const * LPoint2d_C_zero_p_v();
+EXPORT_FUNC LPoint2d const * LPoint2d_C_unit_x_p_v();
+EXPORT_FUNC LPoint2d const * LPoint2d_C_unit_y_p_v();
+EXPORT_FUNC LPoint2d * LPoint2d_C_normalized_p_p(LPoint2d const *param0);
+EXPORT_FUNC LPoint2d * LPoint2d_C_project_p_pp(LPoint2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC int LPoint2d_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint2d_C_init_type_v_v();
+
+
 // LPoint2f
 
 EXPORT_FUNC LPoint2f * LPoint2f_C_ctor_p_v();
@@ -1486,6 +1502,32 @@ EXPORT_FUNC int LPoint2i_C_get_class_type_i_v();
 EXPORT_FUNC void LPoint2i_C_init_type_v_v();
 
 
+// LPoint3d
+
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_v();
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_p(LPoint3d const *param0);
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_pd(LVecBase2d const *param0, double param1);
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_p_1_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_d(double param0);
+EXPORT_FUNC LPoint3d * LPoint3d_C_ctor_p_ddd(double param0, double param1, double param2);
+EXPORT_FUNC LPoint3d const * LPoint3d_C_zero_p_v();
+EXPORT_FUNC LPoint3d const * LPoint3d_C_unit_x_p_v();
+EXPORT_FUNC LPoint3d const * LPoint3d_C_unit_y_p_v();
+EXPORT_FUNC LPoint3d const * LPoint3d_C_unit_z_p_v();
+EXPORT_FUNC LPoint2d * LPoint3d_C_get_xy_p_p(LPoint3d const *param0);
+EXPORT_FUNC LPoint2d * LPoint3d_C_get_xz_p_p(LPoint3d const *param0);
+EXPORT_FUNC LPoint2d * LPoint3d_C_get_yz_p_p(LPoint3d const *param0);
+EXPORT_FUNC LPoint3d * LPoint3d_C_cross_p_pp(LPoint3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LPoint3d * LPoint3d_C_normalized_p_p(LPoint3d const *param0);
+EXPORT_FUNC LPoint3d * LPoint3d_C_project_p_pp(LPoint3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LPoint3d const * LPoint3d_C_origin_p_p(CoordinateSystem param0);
+EXPORT_FUNC LPoint3d const * LPoint3d_C_origin_p_v();
+EXPORT_FUNC LPoint3d * LPoint3d_C_rfu_p_dddp(double param0, double param1, double param2, CoordinateSystem param3);
+EXPORT_FUNC LPoint3d * LPoint3d_C_rfu_p_ddd(double param0, double param1, double param2);
+EXPORT_FUNC int LPoint3d_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint3d_C_init_type_v_v();
+
+
 // LPoint3f
 
 EXPORT_FUNC LPoint3f * LPoint3f_C_ctor_p_v();
@@ -1510,6 +1552,149 @@ EXPORT_FUNC LPoint3f * LPoint3f_C_rfu_p_fffp(float param0, float param1, float p
 EXPORT_FUNC LPoint3f * LPoint3f_C_rfu_p_fff(float param0, float param1, float param2);
 EXPORT_FUNC int LPoint3f_C_get_class_type_i_v();
 EXPORT_FUNC void LPoint3f_C_init_type_v_v();
+
+
+// LPoint3i
+
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_v();
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_p(LPoint3i const *param0);
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_pi(LVecBase2i const *param0, int param1);
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_p_1_p_p(LVecBase3i const *param0);
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_i(int param0);
+EXPORT_FUNC LPoint3i * LPoint3i_C_ctor_p_iii(int param0, int param1, int param2);
+EXPORT_FUNC LPoint3i const * LPoint3i_C_zero_p_v();
+EXPORT_FUNC LPoint3i const * LPoint3i_C_unit_x_p_v();
+EXPORT_FUNC LPoint3i const * LPoint3i_C_unit_y_p_v();
+EXPORT_FUNC LPoint3i const * LPoint3i_C_unit_z_p_v();
+EXPORT_FUNC LPoint2i * LPoint3i_C_get_xy_p_p(LPoint3i const *param0);
+EXPORT_FUNC LPoint2i * LPoint3i_C_get_xz_p_p(LPoint3i const *param0);
+EXPORT_FUNC LPoint2i * LPoint3i_C_get_yz_p_p(LPoint3i const *param0);
+EXPORT_FUNC LPoint3i * LPoint3i_C_cross_p_pp(LPoint3i const *param0, LVecBase3i const *param1);
+EXPORT_FUNC LPoint3i const * LPoint3i_C_origin_p_p(CoordinateSystem param0);
+EXPORT_FUNC LPoint3i const * LPoint3i_C_origin_p_v();
+EXPORT_FUNC LPoint3i * LPoint3i_C_rfu_p_iiip(int param0, int param1, int param2, CoordinateSystem param3);
+EXPORT_FUNC LPoint3i * LPoint3i_C_rfu_p_iii(int param0, int param1, int param2);
+EXPORT_FUNC int LPoint3i_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint3i_C_init_type_v_v();
+
+
+// LPoint4d
+
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_v();
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_p(LPoint4d const *param0);
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_pd(LVecBase3d const *param0, double param1);
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_p_1_p_p(LVecBase4d const *param0);
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_d(double param0);
+EXPORT_FUNC LPoint4d * LPoint4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3);
+EXPORT_FUNC LPoint4d const * LPoint4d_C_zero_p_v();
+EXPORT_FUNC LPoint4d const * LPoint4d_C_unit_x_p_v();
+EXPORT_FUNC LPoint4d const * LPoint4d_C_unit_y_p_v();
+EXPORT_FUNC LPoint4d const * LPoint4d_C_unit_z_p_v();
+EXPORT_FUNC LPoint4d const * LPoint4d_C_unit_w_p_v();
+EXPORT_FUNC LPoint3d * LPoint4d_C_get_xyz_p_p(LPoint4d const *param0);
+EXPORT_FUNC LPoint2d * LPoint4d_C_get_xy_p_p(LPoint4d const *param0);
+EXPORT_FUNC LPoint4d * LPoint4d_C_normalized_p_p(LPoint4d const *param0);
+EXPORT_FUNC LPoint4d * LPoint4d_C_project_p_pp(LPoint4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC int LPoint4d_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint4d_C_init_type_v_v();
+
+
+// LPoint4f
+
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_v();
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_p(LPoint4f const *param0);
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_pf(LVecBase3f const *param0, float param1);
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_p_1_p_p(LVecBase4f const *param0);
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_f(float param0);
+EXPORT_FUNC LPoint4f * LPoint4f_C_ctor_p_ffff(float param0, float param1, float param2, float param3);
+EXPORT_FUNC LPoint4f const * LPoint4f_C_zero_p_v();
+EXPORT_FUNC LPoint4f const * LPoint4f_C_unit_x_p_v();
+EXPORT_FUNC LPoint4f const * LPoint4f_C_unit_y_p_v();
+EXPORT_FUNC LPoint4f const * LPoint4f_C_unit_z_p_v();
+EXPORT_FUNC LPoint4f const * LPoint4f_C_unit_w_p_v();
+EXPORT_FUNC LPoint3f * LPoint4f_C_get_xyz_p_p(LPoint4f const *param0);
+EXPORT_FUNC LPoint2f * LPoint4f_C_get_xy_p_p(LPoint4f const *param0);
+EXPORT_FUNC LPoint4f * LPoint4f_C_normalized_p_p(LPoint4f const *param0);
+EXPORT_FUNC LPoint4f * LPoint4f_C_project_p_pp(LPoint4f const *param0, LVecBase4f const *param1);
+EXPORT_FUNC int LPoint4f_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint4f_C_init_type_v_v();
+
+
+// LPoint4i
+
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_v();
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_p(LPoint4i const *param0);
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_pi(LVecBase3i const *param0, int param1);
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_p_1_p_p(LVecBase4i const *param0);
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_i(int param0);
+EXPORT_FUNC LPoint4i * LPoint4i_C_ctor_p_iiii(int param0, int param1, int param2, int param3);
+EXPORT_FUNC LPoint4i const * LPoint4i_C_zero_p_v();
+EXPORT_FUNC LPoint4i const * LPoint4i_C_unit_x_p_v();
+EXPORT_FUNC LPoint4i const * LPoint4i_C_unit_y_p_v();
+EXPORT_FUNC LPoint4i const * LPoint4i_C_unit_z_p_v();
+EXPORT_FUNC LPoint4i const * LPoint4i_C_unit_w_p_v();
+EXPORT_FUNC LPoint3i * LPoint4i_C_get_xyz_p_p(LPoint4i const *param0);
+EXPORT_FUNC LPoint2i * LPoint4i_C_get_xy_p_p(LPoint4i const *param0);
+EXPORT_FUNC int LPoint4i_C_get_class_type_i_v();
+EXPORT_FUNC void LPoint4i_C_init_type_v_v();
+
+
+// LVecBase2d
+
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_ctor_p_v();
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_ctor_p_p(LVecBase2d const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_ctor_p_p_1_p_p(LVecBase2d::EVector2 const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_ctor_p_dd(double param0, double param1);
+EXPORT_FUNC LVecBase2d const * LVecBase2d_C_zero_p_v();
+EXPORT_FUNC LVecBase2d const * LVecBase2d_C_unit_x_p_v();
+EXPORT_FUNC LVecBase2d const * LVecBase2d_C_unit_y_p_v();
+EXPORT_FUNC int LVecBase2d_C_size_i_v();
+EXPORT_FUNC bool LVecBase2d_C_is_nan_B_p(LVecBase2d const *param0);
+EXPORT_FUNC double LVecBase2d_C_get_cell_d_pi(LVecBase2d const *param0, int param1);
+EXPORT_FUNC void LVecBase2d_C_set_cell_v_pid(LVecBase2d *param0, int param1, double param2);
+EXPORT_FUNC double LVecBase2d_C_get_x_d_p(LVecBase2d const *param0);
+EXPORT_FUNC double LVecBase2d_C_get_y_d_p(LVecBase2d const *param0);
+EXPORT_FUNC void LVecBase2d_C_set_x_v_pd(LVecBase2d *param0, double param1);
+EXPORT_FUNC void LVecBase2d_C_set_y_v_pd(LVecBase2d *param0, double param1);
+EXPORT_FUNC void LVecBase2d_C_add_to_cell_v_pid(LVecBase2d *param0, int param1, double param2);
+EXPORT_FUNC void LVecBase2d_C_add_x_v_pd(LVecBase2d *param0, double param1);
+EXPORT_FUNC void LVecBase2d_C_add_y_v_pd(LVecBase2d *param0, double param1);
+EXPORT_FUNC void LVecBase2d_C_get_data_v_p(LVecBase2d const *param0);
+EXPORT_FUNC int LVecBase2d_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase2d_C_begin_v_p(LVecBase2d *param0);
+EXPORT_FUNC void LVecBase2d_C_begin_v_p_1_v_p(LVecBase2d const *param0);
+EXPORT_FUNC void LVecBase2d_C_end_v_p(LVecBase2d *param0);
+EXPORT_FUNC void LVecBase2d_C_end_v_p_1_v_p(LVecBase2d const *param0);
+EXPORT_FUNC void LVecBase2d_C_fill_v_pd(LVecBase2d *param0, double param1);
+EXPORT_FUNC void LVecBase2d_C_set_v_pdd(LVecBase2d *param0, double param1, double param2);
+EXPORT_FUNC double LVecBase2d_C_dot_d_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC double LVecBase2d_C_length_squared_d_p(LVecBase2d const *param0);
+EXPORT_FUNC double LVecBase2d_C_length_d_p(LVecBase2d const *param0);
+EXPORT_FUNC bool LVecBase2d_C_normalize_B_p(LVecBase2d *param0);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_normalized_p_p(LVecBase2d const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_project_p_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC int LVecBase2d_C_compare_to_i_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC int LVecBase2d_C_compare_to_i_ppd(LVecBase2d const *param0, LVecBase2d const *param1, double param2);
+EXPORT_FUNC std::size_t LVecBase2d_C_get_hash_l_p(LVecBase2d const *param0);
+EXPORT_FUNC std::size_t LVecBase2d_C_get_hash_l_pd(LVecBase2d const *param0, double param1);
+EXPORT_FUNC std::size_t LVecBase2d_C_add_hash_l_pl(LVecBase2d const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase2d_C_add_hash_l_pld(LVecBase2d const *param0, std::size_t param1, double param2);
+EXPORT_FUNC void LVecBase2d_C_generate_hash_v_pp(LVecBase2d const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase2d_C_generate_hash_v_ppd(LVecBase2d const *param0, ChecksumHashGenerator *param1, double param2);
+EXPORT_FUNC void LVecBase2d_C_componentwise_mult_v_pp(LVecBase2d *param0, LVecBase2d const *param1);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_fmax_p_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC LVecBase2d * LVecBase2d_C_fmin_p_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC bool LVecBase2d_C_almost_equal_B_pp(LVecBase2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC bool LVecBase2d_C_almost_equal_B_ppd(LVecBase2d const *param0, LVecBase2d const *param1, double param2);
+EXPORT_FUNC void LVecBase2d_C_output_v_pp(LVecBase2d const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase2d_C_write_datagram_fixed_v_pp(LVecBase2d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2d_C_read_datagram_fixed_v_pp(LVecBase2d *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase2d_C_write_datagram_v_pp(LVecBase2d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase2d_C_read_datagram_v_pp(LVecBase2d *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase2d::EVector2 * LVecBase2d_C_get_v_p_p(LVecBase2d const *param0);
+EXPORT_FUNC int LVecBase2d_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase2d_C_init_type_v_v();
 
 
 // LVecBase2f
@@ -1618,6 +1803,75 @@ EXPORT_FUNC void LVecBase2i_C_read_datagram_v_pp(LVecBase2i *param0, DatagramIte
 EXPORT_FUNC LVecBase2i::EVector2 * LVecBase2i_C_get_v_p_p(LVecBase2i const *param0);
 EXPORT_FUNC int LVecBase2i_C_get_class_type_i_v();
 EXPORT_FUNC void LVecBase2i_C_init_type_v_v();
+
+
+// LVecBase3d
+
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_v();
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_pd(LVecBase2d const *param0, double param1);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_p_1_p_p(LVecBase3d::EVector3 const *param0);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_ctor_p_ddd(double param0, double param1, double param2);
+EXPORT_FUNC LVecBase3d const * LVecBase3d_C_zero_p_v();
+EXPORT_FUNC LVecBase3d const * LVecBase3d_C_unit_x_p_v();
+EXPORT_FUNC LVecBase3d const * LVecBase3d_C_unit_y_p_v();
+EXPORT_FUNC LVecBase3d const * LVecBase3d_C_unit_z_p_v();
+EXPORT_FUNC int LVecBase3d_C_size_i_v();
+EXPORT_FUNC bool LVecBase3d_C_is_nan_B_p(LVecBase3d const *param0);
+EXPORT_FUNC double LVecBase3d_C_get_cell_d_pi(LVecBase3d const *param0, int param1);
+EXPORT_FUNC double LVecBase3d_C_get_x_d_p(LVecBase3d const *param0);
+EXPORT_FUNC double LVecBase3d_C_get_y_d_p(LVecBase3d const *param0);
+EXPORT_FUNC double LVecBase3d_C_get_z_d_p(LVecBase3d const *param0);
+EXPORT_FUNC void LVecBase3d_C_set_cell_v_pid(LVecBase3d *param0, int param1, double param2);
+EXPORT_FUNC void LVecBase3d_C_set_x_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_set_y_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_set_z_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC LVecBase2d * LVecBase3d_C_get_xy_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase3d_C_get_xz_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase3d_C_get_yz_p_p(LVecBase3d const *param0);
+EXPORT_FUNC void LVecBase3d_C_add_to_cell_v_pid(LVecBase3d *param0, int param1, double param2);
+EXPORT_FUNC void LVecBase3d_C_add_x_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_add_y_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_add_z_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_get_data_v_p(LVecBase3d const *param0);
+EXPORT_FUNC int LVecBase3d_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase3d_C_begin_v_p(LVecBase3d *param0);
+EXPORT_FUNC void LVecBase3d_C_begin_v_p_1_v_p(LVecBase3d const *param0);
+EXPORT_FUNC void LVecBase3d_C_end_v_p(LVecBase3d *param0);
+EXPORT_FUNC void LVecBase3d_C_end_v_p_1_v_p(LVecBase3d const *param0);
+EXPORT_FUNC void LVecBase3d_C_fill_v_pd(LVecBase3d *param0, double param1);
+EXPORT_FUNC void LVecBase3d_C_set_v_pddd(LVecBase3d *param0, double param1, double param2, double param3);
+EXPORT_FUNC double LVecBase3d_C_dot_d_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC double LVecBase3d_C_length_squared_d_p(LVecBase3d const *param0);
+EXPORT_FUNC double LVecBase3d_C_length_d_p(LVecBase3d const *param0);
+EXPORT_FUNC bool LVecBase3d_C_normalize_B_p(LVecBase3d *param0);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_normalized_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_project_p_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_cross_p_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_get_standardized_hpr_p_p(LVecBase3d const *param0);
+EXPORT_FUNC int LVecBase3d_C_compare_to_i_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC int LVecBase3d_C_compare_to_i_ppd(LVecBase3d const *param0, LVecBase3d const *param1, double param2);
+EXPORT_FUNC std::size_t LVecBase3d_C_get_hash_l_p(LVecBase3d const *param0);
+EXPORT_FUNC std::size_t LVecBase3d_C_get_hash_l_pd(LVecBase3d const *param0, double param1);
+EXPORT_FUNC std::size_t LVecBase3d_C_add_hash_l_pl(LVecBase3d const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase3d_C_add_hash_l_pld(LVecBase3d const *param0, std::size_t param1, double param2);
+EXPORT_FUNC void LVecBase3d_C_generate_hash_v_pp(LVecBase3d const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase3d_C_generate_hash_v_ppd(LVecBase3d const *param0, ChecksumHashGenerator *param1, double param2);
+EXPORT_FUNC void LVecBase3d_C_componentwise_mult_v_pp(LVecBase3d *param0, LVecBase3d const *param1);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_fmax_p_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LVecBase3d * LVecBase3d_C_fmin_p_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC void LVecBase3d_C_cross_into_v_pp(LVecBase3d *param0, LVecBase3d const *param1);
+EXPORT_FUNC bool LVecBase3d_C_almost_equal_B_pp(LVecBase3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC bool LVecBase3d_C_almost_equal_B_ppd(LVecBase3d const *param0, LVecBase3d const *param1, double param2);
+EXPORT_FUNC void LVecBase3d_C_output_v_pp(LVecBase3d const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase3d_C_write_datagram_fixed_v_pp(LVecBase3d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase3d_C_read_datagram_fixed_v_pp(LVecBase3d *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase3d_C_write_datagram_v_pp(LVecBase3d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase3d_C_read_datagram_v_pp(LVecBase3d *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase3d::EVector3 * LVecBase3d_C_get_v_p_p(LVecBase3d const *param0);
+EXPORT_FUNC int LVecBase3d_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase3d_C_init_type_v_v();
 
 
 // LVecBase3f
@@ -1747,6 +2001,78 @@ EXPORT_FUNC void LVecBase3i_C_read_datagram_v_pp(LVecBase3i *param0, DatagramIte
 EXPORT_FUNC LVecBase3i::EVector3 * LVecBase3i_C_get_v_p_p(LVecBase3i const *param0);
 EXPORT_FUNC int LVecBase3i_C_get_class_type_i_v();
 EXPORT_FUNC void LVecBase3i_C_init_type_v_v();
+
+
+// LVecBase4d
+
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_v();
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_p(LPoint3d const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_pd(LVecBase3d const *param0, double param1);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_p_1_p_p(LVecBase4d const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_p_1_p_p_2_p_p(LVecBase4d::EVector4 const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_p_1_p_p_2_p_p_3_p_p(LVector3d const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_p_1_p_p_2_p_p_3_p_p_4_p_p(UnalignedLVecBase4d const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3);
+EXPORT_FUNC LVecBase4d const * LVecBase4d_C_zero_p_v();
+EXPORT_FUNC LVecBase4d const * LVecBase4d_C_unit_x_p_v();
+EXPORT_FUNC LVecBase4d const * LVecBase4d_C_unit_y_p_v();
+EXPORT_FUNC LVecBase4d const * LVecBase4d_C_unit_z_p_v();
+EXPORT_FUNC LVecBase4d const * LVecBase4d_C_unit_w_p_v();
+EXPORT_FUNC int LVecBase4d_C_size_i_v();
+EXPORT_FUNC bool LVecBase4d_C_is_nan_B_p(LVecBase4d const *param0);
+EXPORT_FUNC double LVecBase4d_C_get_cell_d_pi(LVecBase4d const *param0, int param1);
+EXPORT_FUNC void LVecBase4d_C_set_cell_v_pid(LVecBase4d *param0, int param1, double param2);
+EXPORT_FUNC double LVecBase4d_C_get_x_d_p(LVecBase4d const *param0);
+EXPORT_FUNC double LVecBase4d_C_get_y_d_p(LVecBase4d const *param0);
+EXPORT_FUNC double LVecBase4d_C_get_z_d_p(LVecBase4d const *param0);
+EXPORT_FUNC double LVecBase4d_C_get_w_d_p(LVecBase4d const *param0);
+EXPORT_FUNC LVecBase3d * LVecBase4d_C_get_xyz_p_p(LVecBase4d const *param0);
+EXPORT_FUNC LVecBase2d * LVecBase4d_C_get_xy_p_p(LVecBase4d const *param0);
+EXPORT_FUNC void LVecBase4d_C_set_x_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_set_y_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_set_z_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_set_w_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_add_to_cell_v_pid(LVecBase4d *param0, int param1, double param2);
+EXPORT_FUNC void LVecBase4d_C_add_x_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_add_y_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_add_z_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_add_w_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_get_data_v_p(LVecBase4d const *param0);
+EXPORT_FUNC int LVecBase4d_C_get_num_components_i_v();
+EXPORT_FUNC void LVecBase4d_C_begin_v_p(LVecBase4d *param0);
+EXPORT_FUNC void LVecBase4d_C_begin_v_p_1_v_p(LVecBase4d const *param0);
+EXPORT_FUNC void LVecBase4d_C_end_v_p(LVecBase4d *param0);
+EXPORT_FUNC void LVecBase4d_C_end_v_p_1_v_p(LVecBase4d const *param0);
+EXPORT_FUNC void LVecBase4d_C_fill_v_pd(LVecBase4d *param0, double param1);
+EXPORT_FUNC void LVecBase4d_C_set_v_pdddd(LVecBase4d *param0, double param1, double param2, double param3, double param4);
+EXPORT_FUNC double LVecBase4d_C_dot_d_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC double LVecBase4d_C_length_squared_d_p(LVecBase4d const *param0);
+EXPORT_FUNC double LVecBase4d_C_length_d_p(LVecBase4d const *param0);
+EXPORT_FUNC bool LVecBase4d_C_normalize_B_p(LVecBase4d *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_normalized_p_p(LVecBase4d const *param0);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_project_p_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC int LVecBase4d_C_compare_to_i_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC int LVecBase4d_C_compare_to_i_ppd(LVecBase4d const *param0, LVecBase4d const *param1, double param2);
+EXPORT_FUNC std::size_t LVecBase4d_C_get_hash_l_p(LVecBase4d const *param0);
+EXPORT_FUNC std::size_t LVecBase4d_C_get_hash_l_pd(LVecBase4d const *param0, double param1);
+EXPORT_FUNC std::size_t LVecBase4d_C_add_hash_l_pl(LVecBase4d const *param0, std::size_t param1);
+EXPORT_FUNC std::size_t LVecBase4d_C_add_hash_l_pld(LVecBase4d const *param0, std::size_t param1, double param2);
+EXPORT_FUNC void LVecBase4d_C_generate_hash_v_pp(LVecBase4d const *param0, ChecksumHashGenerator *param1);
+EXPORT_FUNC void LVecBase4d_C_generate_hash_v_ppd(LVecBase4d const *param0, ChecksumHashGenerator *param1, double param2);
+EXPORT_FUNC void LVecBase4d_C_componentwise_mult_v_pp(LVecBase4d *param0, LVecBase4d const *param1);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_fmax_p_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC LVecBase4d * LVecBase4d_C_fmin_p_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC bool LVecBase4d_C_almost_equal_B_pp(LVecBase4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC bool LVecBase4d_C_almost_equal_B_ppd(LVecBase4d const *param0, LVecBase4d const *param1, double param2);
+EXPORT_FUNC void LVecBase4d_C_output_v_pp(LVecBase4d const *param0, std::ostream *param1);
+EXPORT_FUNC void LVecBase4d_C_write_datagram_fixed_v_pp(LVecBase4d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase4d_C_read_datagram_fixed_v_pp(LVecBase4d *param0, DatagramIterator *param1);
+EXPORT_FUNC void LVecBase4d_C_write_datagram_v_pp(LVecBase4d const *param0, Datagram *param1);
+EXPORT_FUNC void LVecBase4d_C_read_datagram_v_pp(LVecBase4d *param0, DatagramIterator *param1);
+EXPORT_FUNC LVecBase4d::EVector4 * LVecBase4d_C_get_v_p_p(LVecBase4d const *param0);
+EXPORT_FUNC int LVecBase4d_C_get_class_type_i_v();
+EXPORT_FUNC void LVecBase4d_C_init_type_v_v();
 
 
 // LVecBase4f
@@ -1883,6 +2209,235 @@ EXPORT_FUNC void LVecBase4i_C_read_datagram_v_pp(LVecBase4i *param0, DatagramIte
 EXPORT_FUNC LVecBase4i::EVector4 * LVecBase4i_C_get_v_p_p(LVecBase4i const *param0);
 EXPORT_FUNC int LVecBase4i_C_get_class_type_i_v();
 EXPORT_FUNC void LVecBase4i_C_init_type_v_v();
+
+
+// LVector2d
+
+EXPORT_FUNC LVector2d * LVector2d_C_ctor_p_v();
+EXPORT_FUNC LVector2d * LVector2d_C_ctor_p_p(LVecBase2d const *param0);
+EXPORT_FUNC LVector2d * LVector2d_C_ctor_p_p_1_p_p(LVector2d const *param0);
+EXPORT_FUNC LVector2d * LVector2d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVector2d * LVector2d_C_ctor_p_dd(double param0, double param1);
+EXPORT_FUNC LVector2d const * LVector2d_C_zero_p_v();
+EXPORT_FUNC LVector2d const * LVector2d_C_unit_x_p_v();
+EXPORT_FUNC LVector2d const * LVector2d_C_unit_y_p_v();
+EXPORT_FUNC LVector2d * LVector2d_C_normalized_p_p(LVector2d const *param0);
+EXPORT_FUNC LVector2d * LVector2d_C_project_p_pp(LVector2d const *param0, LVecBase2d const *param1);
+EXPORT_FUNC double LVector2d_C_signed_angle_rad_d_pp(LVector2d const *param0, LVector2d const *param1);
+EXPORT_FUNC double LVector2d_C_signed_angle_deg_d_pp(LVector2d const *param0, LVector2d const *param1);
+EXPORT_FUNC int LVector2d_C_get_class_type_i_v();
+EXPORT_FUNC void LVector2d_C_init_type_v_v();
+
+
+// LVector2f
+
+EXPORT_FUNC LVector2f * LVector2f_C_ctor_p_v();
+EXPORT_FUNC LVector2f * LVector2f_C_ctor_p_p(LVecBase2f const *param0);
+EXPORT_FUNC LVector2f * LVector2f_C_ctor_p_p_1_p_p(LVector2f const *param0);
+EXPORT_FUNC LVector2f * LVector2f_C_ctor_p_f(float param0);
+EXPORT_FUNC LVector2f * LVector2f_C_ctor_p_ff(float param0, float param1);
+EXPORT_FUNC LVector2f const * LVector2f_C_zero_p_v();
+EXPORT_FUNC LVector2f const * LVector2f_C_unit_x_p_v();
+EXPORT_FUNC LVector2f const * LVector2f_C_unit_y_p_v();
+EXPORT_FUNC LVector2f * LVector2f_C_normalized_p_p(LVector2f const *param0);
+EXPORT_FUNC LVector2f * LVector2f_C_project_p_pp(LVector2f const *param0, LVecBase2f const *param1);
+EXPORT_FUNC float LVector2f_C_signed_angle_rad_f_pp(LVector2f const *param0, LVector2f const *param1);
+EXPORT_FUNC float LVector2f_C_signed_angle_deg_f_pp(LVector2f const *param0, LVector2f const *param1);
+EXPORT_FUNC int LVector2f_C_get_class_type_i_v();
+EXPORT_FUNC void LVector2f_C_init_type_v_v();
+
+
+// LVector2i
+
+EXPORT_FUNC LVector2i * LVector2i_C_ctor_p_v();
+EXPORT_FUNC LVector2i * LVector2i_C_ctor_p_p(LVecBase2i const *param0);
+EXPORT_FUNC LVector2i * LVector2i_C_ctor_p_p_1_p_p(LVector2i const *param0);
+EXPORT_FUNC LVector2i * LVector2i_C_ctor_p_i(int param0);
+EXPORT_FUNC LVector2i * LVector2i_C_ctor_p_ii(int param0, int param1);
+EXPORT_FUNC LVector2i const * LVector2i_C_zero_p_v();
+EXPORT_FUNC LVector2i const * LVector2i_C_unit_x_p_v();
+EXPORT_FUNC LVector2i const * LVector2i_C_unit_y_p_v();
+EXPORT_FUNC int LVector2i_C_get_class_type_i_v();
+EXPORT_FUNC void LVector2i_C_init_type_v_v();
+
+
+// LVector3d
+
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_pd(LVecBase2d const *param0, double param1);
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_p(LVecBase3d const *param0);
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_p_1_p_p(LVector3d const *param0);
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVector3d * LVector3d_C_ctor_p_ddd(double param0, double param1, double param2);
+EXPORT_FUNC LVector3d const * LVector3d_C_zero_p_v();
+EXPORT_FUNC LVector3d const * LVector3d_C_unit_x_p_v();
+EXPORT_FUNC LVector3d const * LVector3d_C_unit_y_p_v();
+EXPORT_FUNC LVector3d const * LVector3d_C_unit_z_p_v();
+EXPORT_FUNC LVector2d * LVector3d_C_get_xy_p_p(LVector3d const *param0);
+EXPORT_FUNC LVector2d * LVector3d_C_get_xz_p_p(LVector3d const *param0);
+EXPORT_FUNC LVector2d * LVector3d_C_get_yz_p_p(LVector3d const *param0);
+EXPORT_FUNC LVector3d * LVector3d_C_cross_p_pp(LVector3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC LVector3d * LVector3d_C_normalized_p_p(LVector3d const *param0);
+EXPORT_FUNC LVector3d * LVector3d_C_project_p_pp(LVector3d const *param0, LVecBase3d const *param1);
+EXPORT_FUNC double LVector3d_C_angle_rad_d_pp(LVector3d const *param0, LVector3d const *param1);
+EXPORT_FUNC double LVector3d_C_angle_deg_d_pp(LVector3d const *param0, LVector3d const *param1);
+EXPORT_FUNC double LVector3d_C_signed_angle_rad_d_ppp(LVector3d const *param0, LVector3d const *param1, LVector3d const *param2);
+EXPORT_FUNC double LVector3d_C_signed_angle_deg_d_ppp(LVector3d const *param0, LVector3d const *param1, LVector3d const *param2);
+EXPORT_FUNC double LVector3d_C_relative_angle_rad_d_pp(LVector3d const *param0, LVector3d const *param1);
+EXPORT_FUNC double LVector3d_C_relative_angle_deg_d_pp(LVector3d const *param0, LVector3d const *param1);
+EXPORT_FUNC LVector3d * LVector3d_C_up_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_up_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_right_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_right_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_forward_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_forward_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_down_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_down_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_left_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_left_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_back_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3d * LVector3d_C_back_p_v();
+EXPORT_FUNC LVector3d * LVector3d_C_rfu_p_dddp(double param0, double param1, double param2, CoordinateSystem param3);
+EXPORT_FUNC LVector3d * LVector3d_C_rfu_p_ddd(double param0, double param1, double param2);
+EXPORT_FUNC int LVector3d_C_get_class_type_i_v();
+EXPORT_FUNC void LVector3d_C_init_type_v_v();
+
+
+// LVector3f
+
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_pf(LVecBase2f const *param0, float param1);
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_p(LVecBase3f const *param0);
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_p_1_p_p(LVector3f const *param0);
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_f(float param0);
+EXPORT_FUNC LVector3f * LVector3f_C_ctor_p_fff(float param0, float param1, float param2);
+EXPORT_FUNC LVector3f const * LVector3f_C_zero_p_v();
+EXPORT_FUNC LVector3f const * LVector3f_C_unit_x_p_v();
+EXPORT_FUNC LVector3f const * LVector3f_C_unit_y_p_v();
+EXPORT_FUNC LVector3f const * LVector3f_C_unit_z_p_v();
+EXPORT_FUNC LVector2f * LVector3f_C_get_xy_p_p(LVector3f const *param0);
+EXPORT_FUNC LVector2f * LVector3f_C_get_xz_p_p(LVector3f const *param0);
+EXPORT_FUNC LVector2f * LVector3f_C_get_yz_p_p(LVector3f const *param0);
+EXPORT_FUNC LVector3f * LVector3f_C_cross_p_pp(LVector3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC LVector3f * LVector3f_C_normalized_p_p(LVector3f const *param0);
+EXPORT_FUNC LVector3f * LVector3f_C_project_p_pp(LVector3f const *param0, LVecBase3f const *param1);
+EXPORT_FUNC float LVector3f_C_angle_rad_f_pp(LVector3f const *param0, LVector3f const *param1);
+EXPORT_FUNC float LVector3f_C_angle_deg_f_pp(LVector3f const *param0, LVector3f const *param1);
+EXPORT_FUNC float LVector3f_C_signed_angle_rad_f_ppp(LVector3f const *param0, LVector3f const *param1, LVector3f const *param2);
+EXPORT_FUNC float LVector3f_C_signed_angle_deg_f_ppp(LVector3f const *param0, LVector3f const *param1, LVector3f const *param2);
+EXPORT_FUNC float LVector3f_C_relative_angle_rad_f_pp(LVector3f const *param0, LVector3f const *param1);
+EXPORT_FUNC float LVector3f_C_relative_angle_deg_f_pp(LVector3f const *param0, LVector3f const *param1);
+EXPORT_FUNC LVector3f * LVector3f_C_up_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_up_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_right_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_right_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_forward_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_forward_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_down_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_down_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_left_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_left_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_back_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3f * LVector3f_C_back_p_v();
+EXPORT_FUNC LVector3f * LVector3f_C_rfu_p_fffp(float param0, float param1, float param2, CoordinateSystem param3);
+EXPORT_FUNC LVector3f * LVector3f_C_rfu_p_fff(float param0, float param1, float param2);
+EXPORT_FUNC int LVector3f_C_get_class_type_i_v();
+EXPORT_FUNC void LVector3f_C_init_type_v_v();
+
+
+// LVector3i
+
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_pi(LVecBase2i const *param0, int param1);
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_p(LVecBase3i const *param0);
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_p_1_p_p(LVector3i const *param0);
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_i(int param0);
+EXPORT_FUNC LVector3i * LVector3i_C_ctor_p_iii(int param0, int param1, int param2);
+EXPORT_FUNC LVector3i const * LVector3i_C_zero_p_v();
+EXPORT_FUNC LVector3i const * LVector3i_C_unit_x_p_v();
+EXPORT_FUNC LVector3i const * LVector3i_C_unit_y_p_v();
+EXPORT_FUNC LVector3i const * LVector3i_C_unit_z_p_v();
+EXPORT_FUNC LVector2i * LVector3i_C_get_xy_p_p(LVector3i const *param0);
+EXPORT_FUNC LVector2i * LVector3i_C_get_xz_p_p(LVector3i const *param0);
+EXPORT_FUNC LVector2i * LVector3i_C_get_yz_p_p(LVector3i const *param0);
+EXPORT_FUNC LVector3i * LVector3i_C_cross_p_pp(LVector3i const *param0, LVecBase3i const *param1);
+EXPORT_FUNC LVector3i * LVector3i_C_up_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_up_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_right_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_right_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_forward_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_forward_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_down_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_down_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_left_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_left_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_back_p_p(CoordinateSystem param0);
+EXPORT_FUNC LVector3i * LVector3i_C_back_p_v();
+EXPORT_FUNC LVector3i * LVector3i_C_rfu_p_iiip(int param0, int param1, int param2, CoordinateSystem param3);
+EXPORT_FUNC LVector3i * LVector3i_C_rfu_p_iii(int param0, int param1, int param2);
+EXPORT_FUNC int LVector3i_C_get_class_type_i_v();
+EXPORT_FUNC void LVector3i_C_init_type_v_v();
+
+
+// LVector4d
+
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_v();
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_pd(LVecBase3d const *param0, double param1);
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_p(LVecBase4d const *param0);
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_p_1_p_p(LVector4d const *param0);
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_d(double param0);
+EXPORT_FUNC LVector4d * LVector4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3);
+EXPORT_FUNC LVector4d const * LVector4d_C_zero_p_v();
+EXPORT_FUNC LVector4d const * LVector4d_C_unit_x_p_v();
+EXPORT_FUNC LVector4d const * LVector4d_C_unit_y_p_v();
+EXPORT_FUNC LVector4d const * LVector4d_C_unit_z_p_v();
+EXPORT_FUNC LVector4d const * LVector4d_C_unit_w_p_v();
+EXPORT_FUNC LVector3d * LVector4d_C_get_xyz_p_p(LVector4d const *param0);
+EXPORT_FUNC LVector2d * LVector4d_C_get_xy_p_p(LVector4d const *param0);
+EXPORT_FUNC LVector4d * LVector4d_C_normalized_p_p(LVector4d const *param0);
+EXPORT_FUNC LVector4d * LVector4d_C_project_p_pp(LVector4d const *param0, LVecBase4d const *param1);
+EXPORT_FUNC int LVector4d_C_get_class_type_i_v();
+EXPORT_FUNC void LVector4d_C_init_type_v_v();
+
+
+// LVector4f
+
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_v();
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_pf(LVecBase3f const *param0, float param1);
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_p(LVecBase4f const *param0);
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_p_1_p_p(LVector4f const *param0);
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_f(float param0);
+EXPORT_FUNC LVector4f * LVector4f_C_ctor_p_ffff(float param0, float param1, float param2, float param3);
+EXPORT_FUNC LVector4f const * LVector4f_C_zero_p_v();
+EXPORT_FUNC LVector4f const * LVector4f_C_unit_x_p_v();
+EXPORT_FUNC LVector4f const * LVector4f_C_unit_y_p_v();
+EXPORT_FUNC LVector4f const * LVector4f_C_unit_z_p_v();
+EXPORT_FUNC LVector4f const * LVector4f_C_unit_w_p_v();
+EXPORT_FUNC LVector3f * LVector4f_C_get_xyz_p_p(LVector4f const *param0);
+EXPORT_FUNC LVector2f * LVector4f_C_get_xy_p_p(LVector4f const *param0);
+EXPORT_FUNC LVector4f * LVector4f_C_normalized_p_p(LVector4f const *param0);
+EXPORT_FUNC LVector4f * LVector4f_C_project_p_pp(LVector4f const *param0, LVecBase4f const *param1);
+EXPORT_FUNC int LVector4f_C_get_class_type_i_v();
+EXPORT_FUNC void LVector4f_C_init_type_v_v();
+
+
+// LVector4i
+
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_v();
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_pi(LVecBase3i const *param0, int param1);
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_p(LVecBase4i const *param0);
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_p_1_p_p(LVector4i const *param0);
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_i(int param0);
+EXPORT_FUNC LVector4i * LVector4i_C_ctor_p_iiii(int param0, int param1, int param2, int param3);
+EXPORT_FUNC LVector4i const * LVector4i_C_zero_p_v();
+EXPORT_FUNC LVector4i const * LVector4i_C_unit_x_p_v();
+EXPORT_FUNC LVector4i const * LVector4i_C_unit_y_p_v();
+EXPORT_FUNC LVector4i const * LVector4i_C_unit_z_p_v();
+EXPORT_FUNC LVector4i const * LVector4i_C_unit_w_p_v();
+EXPORT_FUNC LVector3i * LVector4i_C_get_xyz_p_p(LVector4i const *param0);
+EXPORT_FUNC LVector2i * LVector4i_C_get_xy_p_p(LVector4i const *param0);
+EXPORT_FUNC int LVector4i_C_get_class_type_i_v();
+EXPORT_FUNC void LVector4i_C_init_type_v_v();
 
 
 // Lens
@@ -12257,6 +12812,81 @@ InternalName_C_force_init_type_i_p(InternalName *param0) {
 }
 
 
+// LPoint2d
+
+
+LPoint2d *
+LPoint2d_C_ctor_p_v() {
+    return new LPoint2d();
+}
+
+
+LPoint2d *
+LPoint2d_C_ctor_p_p(LPoint2d const *param0) {
+    return new LPoint2d(*param0);
+}
+
+
+LPoint2d *
+LPoint2d_C_ctor_p_p_1_p_p(LVecBase2d const *param0) {
+    return new LPoint2d(*param0);
+}
+
+
+LPoint2d *
+LPoint2d_C_ctor_p_d(double param0) {
+    return new LPoint2d(param0);
+}
+
+
+LPoint2d *
+LPoint2d_C_ctor_p_dd(double param0, double param1) {
+    return new LPoint2d(param0, param1);
+}
+
+
+LPoint2d const *
+LPoint2d_C_zero_p_v() {
+    return &(LPoint2d::zero());
+}
+
+
+LPoint2d const *
+LPoint2d_C_unit_x_p_v() {
+    return &(LPoint2d::unit_x());
+}
+
+
+LPoint2d const *
+LPoint2d_C_unit_y_p_v() {
+    return &(LPoint2d::unit_y());
+}
+
+
+LPoint2d *
+LPoint2d_C_normalized_p_p(LPoint2d const *param0) {
+    return new LPoint2d((*param0).normalized());
+}
+
+
+LPoint2d *
+LPoint2d_C_project_p_pp(LPoint2d const *param0, LVecBase2d const *param1) {
+    return new LPoint2d((*param0).project(*param1));
+}
+
+
+int
+LPoint2d_C_get_class_type_i_v() {
+    return (LPoint2d::get_class_type()).get_index();
+}
+
+
+void
+LPoint2d_C_init_type_v_v() {
+    LPoint2d::init_type();
+}
+
+
 // LPoint2f
 
 
@@ -12395,6 +13025,141 @@ LPoint2i_C_init_type_v_v() {
 }
 
 
+// LPoint3d
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_v() {
+    return new LPoint3d();
+}
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_p(LPoint3d const *param0) {
+    return new LPoint3d(*param0);
+}
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_pd(LVecBase2d const *param0, double param1) {
+    return new LPoint3d(*param0, param1);
+}
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_p_1_p_p(LVecBase3d const *param0) {
+    return new LPoint3d(*param0);
+}
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_d(double param0) {
+    return new LPoint3d(param0);
+}
+
+
+LPoint3d *
+LPoint3d_C_ctor_p_ddd(double param0, double param1, double param2) {
+    return new LPoint3d(param0, param1, param2);
+}
+
+
+LPoint3d const *
+LPoint3d_C_zero_p_v() {
+    return &(LPoint3d::zero());
+}
+
+
+LPoint3d const *
+LPoint3d_C_unit_x_p_v() {
+    return &(LPoint3d::unit_x());
+}
+
+
+LPoint3d const *
+LPoint3d_C_unit_y_p_v() {
+    return &(LPoint3d::unit_y());
+}
+
+
+LPoint3d const *
+LPoint3d_C_unit_z_p_v() {
+    return &(LPoint3d::unit_z());
+}
+
+
+LPoint2d *
+LPoint3d_C_get_xy_p_p(LPoint3d const *param0) {
+    return new LPoint2d((*param0).get_xy());
+}
+
+
+LPoint2d *
+LPoint3d_C_get_xz_p_p(LPoint3d const *param0) {
+    return new LPoint2d((*param0).get_xz());
+}
+
+
+LPoint2d *
+LPoint3d_C_get_yz_p_p(LPoint3d const *param0) {
+    return new LPoint2d((*param0).get_yz());
+}
+
+
+LPoint3d *
+LPoint3d_C_cross_p_pp(LPoint3d const *param0, LVecBase3d const *param1) {
+    return new LPoint3d((*param0).cross(*param1));
+}
+
+
+LPoint3d *
+LPoint3d_C_normalized_p_p(LPoint3d const *param0) {
+    return new LPoint3d((*param0).normalized());
+}
+
+
+LPoint3d *
+LPoint3d_C_project_p_pp(LPoint3d const *param0, LVecBase3d const *param1) {
+    return new LPoint3d((*param0).project(*param1));
+}
+
+
+LPoint3d const *
+LPoint3d_C_origin_p_p(CoordinateSystem param0) {
+    return &(LPoint3d::origin(param0));
+}
+
+
+LPoint3d const *
+LPoint3d_C_origin_p_v() {
+    return &(LPoint3d::origin());
+}
+
+
+LPoint3d *
+LPoint3d_C_rfu_p_dddp(double param0, double param1, double param2, CoordinateSystem param3) {
+    return new LPoint3d(LPoint3d::rfu(param0, param1, param2, param3));
+}
+
+
+LPoint3d *
+LPoint3d_C_rfu_p_ddd(double param0, double param1, double param2) {
+    return new LPoint3d(LPoint3d::rfu(param0, param1, param2));
+}
+
+
+int
+LPoint3d_C_get_class_type_i_v() {
+    return (LPoint3d::get_class_type()).get_index();
+}
+
+
+void
+LPoint3d_C_init_type_v_v() {
+    LPoint3d::init_type();
+}
+
+
 // LPoint3f
 
 
@@ -12527,6 +13292,759 @@ LPoint3f_C_get_class_type_i_v() {
 void
 LPoint3f_C_init_type_v_v() {
     LPoint3f::init_type();
+}
+
+
+// LPoint3i
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_v() {
+    return new LPoint3i();
+}
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_p(LPoint3i const *param0) {
+    return new LPoint3i(*param0);
+}
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_pi(LVecBase2i const *param0, int param1) {
+    return new LPoint3i(*param0, param1);
+}
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_p_1_p_p(LVecBase3i const *param0) {
+    return new LPoint3i(*param0);
+}
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_i(int param0) {
+    return new LPoint3i(param0);
+}
+
+
+LPoint3i *
+LPoint3i_C_ctor_p_iii(int param0, int param1, int param2) {
+    return new LPoint3i(param0, param1, param2);
+}
+
+
+LPoint3i const *
+LPoint3i_C_zero_p_v() {
+    return &(LPoint3i::zero());
+}
+
+
+LPoint3i const *
+LPoint3i_C_unit_x_p_v() {
+    return &(LPoint3i::unit_x());
+}
+
+
+LPoint3i const *
+LPoint3i_C_unit_y_p_v() {
+    return &(LPoint3i::unit_y());
+}
+
+
+LPoint3i const *
+LPoint3i_C_unit_z_p_v() {
+    return &(LPoint3i::unit_z());
+}
+
+
+LPoint2i *
+LPoint3i_C_get_xy_p_p(LPoint3i const *param0) {
+    return new LPoint2i((*param0).get_xy());
+}
+
+
+LPoint2i *
+LPoint3i_C_get_xz_p_p(LPoint3i const *param0) {
+    return new LPoint2i((*param0).get_xz());
+}
+
+
+LPoint2i *
+LPoint3i_C_get_yz_p_p(LPoint3i const *param0) {
+    return new LPoint2i((*param0).get_yz());
+}
+
+
+LPoint3i *
+LPoint3i_C_cross_p_pp(LPoint3i const *param0, LVecBase3i const *param1) {
+    return new LPoint3i((*param0).cross(*param1));
+}
+
+
+LPoint3i const *
+LPoint3i_C_origin_p_p(CoordinateSystem param0) {
+    return &(LPoint3i::origin(param0));
+}
+
+
+LPoint3i const *
+LPoint3i_C_origin_p_v() {
+    return &(LPoint3i::origin());
+}
+
+
+LPoint3i *
+LPoint3i_C_rfu_p_iiip(int param0, int param1, int param2, CoordinateSystem param3) {
+    return new LPoint3i(LPoint3i::rfu(param0, param1, param2, param3));
+}
+
+
+LPoint3i *
+LPoint3i_C_rfu_p_iii(int param0, int param1, int param2) {
+    return new LPoint3i(LPoint3i::rfu(param0, param1, param2));
+}
+
+
+int
+LPoint3i_C_get_class_type_i_v() {
+    return (LPoint3i::get_class_type()).get_index();
+}
+
+
+void
+LPoint3i_C_init_type_v_v() {
+    LPoint3i::init_type();
+}
+
+
+// LPoint4d
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_v() {
+    return new LPoint4d();
+}
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_p(LPoint4d const *param0) {
+    return new LPoint4d(*param0);
+}
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_pd(LVecBase3d const *param0, double param1) {
+    return new LPoint4d(*param0, param1);
+}
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_p_1_p_p(LVecBase4d const *param0) {
+    return new LPoint4d(*param0);
+}
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_d(double param0) {
+    return new LPoint4d(param0);
+}
+
+
+LPoint4d *
+LPoint4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3) {
+    return new LPoint4d(param0, param1, param2, param3);
+}
+
+
+LPoint4d const *
+LPoint4d_C_zero_p_v() {
+    return &(LPoint4d::zero());
+}
+
+
+LPoint4d const *
+LPoint4d_C_unit_x_p_v() {
+    return &(LPoint4d::unit_x());
+}
+
+
+LPoint4d const *
+LPoint4d_C_unit_y_p_v() {
+    return &(LPoint4d::unit_y());
+}
+
+
+LPoint4d const *
+LPoint4d_C_unit_z_p_v() {
+    return &(LPoint4d::unit_z());
+}
+
+
+LPoint4d const *
+LPoint4d_C_unit_w_p_v() {
+    return &(LPoint4d::unit_w());
+}
+
+
+LPoint3d *
+LPoint4d_C_get_xyz_p_p(LPoint4d const *param0) {
+    return new LPoint3d((*param0).get_xyz());
+}
+
+
+LPoint2d *
+LPoint4d_C_get_xy_p_p(LPoint4d const *param0) {
+    return new LPoint2d((*param0).get_xy());
+}
+
+
+LPoint4d *
+LPoint4d_C_normalized_p_p(LPoint4d const *param0) {
+    return new LPoint4d((*param0).normalized());
+}
+
+
+LPoint4d *
+LPoint4d_C_project_p_pp(LPoint4d const *param0, LVecBase4d const *param1) {
+    return new LPoint4d((*param0).project(*param1));
+}
+
+
+int
+LPoint4d_C_get_class_type_i_v() {
+    return (LPoint4d::get_class_type()).get_index();
+}
+
+
+void
+LPoint4d_C_init_type_v_v() {
+    LPoint4d::init_type();
+}
+
+
+// LPoint4f
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_v() {
+    return new LPoint4f();
+}
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_p(LPoint4f const *param0) {
+    return new LPoint4f(*param0);
+}
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_pf(LVecBase3f const *param0, float param1) {
+    return new LPoint4f(*param0, param1);
+}
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_p_1_p_p(LVecBase4f const *param0) {
+    return new LPoint4f(*param0);
+}
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_f(float param0) {
+    return new LPoint4f(param0);
+}
+
+
+LPoint4f *
+LPoint4f_C_ctor_p_ffff(float param0, float param1, float param2, float param3) {
+    return new LPoint4f(param0, param1, param2, param3);
+}
+
+
+LPoint4f const *
+LPoint4f_C_zero_p_v() {
+    return &(LPoint4f::zero());
+}
+
+
+LPoint4f const *
+LPoint4f_C_unit_x_p_v() {
+    return &(LPoint4f::unit_x());
+}
+
+
+LPoint4f const *
+LPoint4f_C_unit_y_p_v() {
+    return &(LPoint4f::unit_y());
+}
+
+
+LPoint4f const *
+LPoint4f_C_unit_z_p_v() {
+    return &(LPoint4f::unit_z());
+}
+
+
+LPoint4f const *
+LPoint4f_C_unit_w_p_v() {
+    return &(LPoint4f::unit_w());
+}
+
+
+LPoint3f *
+LPoint4f_C_get_xyz_p_p(LPoint4f const *param0) {
+    return new LPoint3f((*param0).get_xyz());
+}
+
+
+LPoint2f *
+LPoint4f_C_get_xy_p_p(LPoint4f const *param0) {
+    return new LPoint2f((*param0).get_xy());
+}
+
+
+LPoint4f *
+LPoint4f_C_normalized_p_p(LPoint4f const *param0) {
+    return new LPoint4f((*param0).normalized());
+}
+
+
+LPoint4f *
+LPoint4f_C_project_p_pp(LPoint4f const *param0, LVecBase4f const *param1) {
+    return new LPoint4f((*param0).project(*param1));
+}
+
+
+int
+LPoint4f_C_get_class_type_i_v() {
+    return (LPoint4f::get_class_type()).get_index();
+}
+
+
+void
+LPoint4f_C_init_type_v_v() {
+    LPoint4f::init_type();
+}
+
+
+// LPoint4i
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_v() {
+    return new LPoint4i();
+}
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_p(LPoint4i const *param0) {
+    return new LPoint4i(*param0);
+}
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_pi(LVecBase3i const *param0, int param1) {
+    return new LPoint4i(*param0, param1);
+}
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_p_1_p_p(LVecBase4i const *param0) {
+    return new LPoint4i(*param0);
+}
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_i(int param0) {
+    return new LPoint4i(param0);
+}
+
+
+LPoint4i *
+LPoint4i_C_ctor_p_iiii(int param0, int param1, int param2, int param3) {
+    return new LPoint4i(param0, param1, param2, param3);
+}
+
+
+LPoint4i const *
+LPoint4i_C_zero_p_v() {
+    return &(LPoint4i::zero());
+}
+
+
+LPoint4i const *
+LPoint4i_C_unit_x_p_v() {
+    return &(LPoint4i::unit_x());
+}
+
+
+LPoint4i const *
+LPoint4i_C_unit_y_p_v() {
+    return &(LPoint4i::unit_y());
+}
+
+
+LPoint4i const *
+LPoint4i_C_unit_z_p_v() {
+    return &(LPoint4i::unit_z());
+}
+
+
+LPoint4i const *
+LPoint4i_C_unit_w_p_v() {
+    return &(LPoint4i::unit_w());
+}
+
+
+LPoint3i *
+LPoint4i_C_get_xyz_p_p(LPoint4i const *param0) {
+    return new LPoint3i((*param0).get_xyz());
+}
+
+
+LPoint2i *
+LPoint4i_C_get_xy_p_p(LPoint4i const *param0) {
+    return new LPoint2i((*param0).get_xy());
+}
+
+
+int
+LPoint4i_C_get_class_type_i_v() {
+    return (LPoint4i::get_class_type()).get_index();
+}
+
+
+void
+LPoint4i_C_init_type_v_v() {
+    LPoint4i::init_type();
+}
+
+
+// LVecBase2d
+
+
+LVecBase2d *
+LVecBase2d_C_ctor_p_v() {
+    return new LVecBase2d();
+}
+
+
+LVecBase2d *
+LVecBase2d_C_ctor_p_p(LVecBase2d const *param0) {
+    return new LVecBase2d(*param0);
+}
+
+
+LVecBase2d *
+LVecBase2d_C_ctor_p_p_1_p_p(LVecBase2d::EVector2 const *param0) {
+    return new LVecBase2d(*param0);
+}
+
+
+LVecBase2d *
+LVecBase2d_C_ctor_p_d(double param0) {
+    return new LVecBase2d(param0);
+}
+
+
+LVecBase2d *
+LVecBase2d_C_ctor_p_dd(double param0, double param1) {
+    return new LVecBase2d(param0, param1);
+}
+
+
+LVecBase2d const *
+LVecBase2d_C_zero_p_v() {
+    return &(LVecBase2d::zero());
+}
+
+
+LVecBase2d const *
+LVecBase2d_C_unit_x_p_v() {
+    return &(LVecBase2d::unit_x());
+}
+
+
+LVecBase2d const *
+LVecBase2d_C_unit_y_p_v() {
+    return &(LVecBase2d::unit_y());
+}
+
+
+int
+LVecBase2d_C_size_i_v() {
+    return LVecBase2d::size();
+}
+
+
+bool
+LVecBase2d_C_is_nan_B_p(LVecBase2d const *param0) {
+    return (*param0).is_nan();
+}
+
+
+double
+LVecBase2d_C_get_cell_d_pi(LVecBase2d const *param0, int param1) {
+    return (*param0).get_cell(param1);
+}
+
+
+void
+LVecBase2d_C_set_cell_v_pid(LVecBase2d *param0, int param1, double param2) {
+    (*param0).set_cell(param1, param2);
+}
+
+
+double
+LVecBase2d_C_get_x_d_p(LVecBase2d const *param0) {
+    return (*param0).get_x();
+}
+
+
+double
+LVecBase2d_C_get_y_d_p(LVecBase2d const *param0) {
+    return (*param0).get_y();
+}
+
+
+void
+LVecBase2d_C_set_x_v_pd(LVecBase2d *param0, double param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+LVecBase2d_C_set_y_v_pd(LVecBase2d *param0, double param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+LVecBase2d_C_add_to_cell_v_pid(LVecBase2d *param0, int param1, double param2) {
+    (*param0).add_to_cell(param1, param2);
+}
+
+
+void
+LVecBase2d_C_add_x_v_pd(LVecBase2d *param0, double param1) {
+    (*param0).add_x(param1);
+}
+
+
+void
+LVecBase2d_C_add_y_v_pd(LVecBase2d *param0, double param1) {
+    (*param0).add_y(param1);
+}
+
+
+void
+LVecBase2d_C_get_data_v_p(LVecBase2d const *param0) {
+    (*param0).get_data();
+}
+
+
+int
+LVecBase2d_C_get_num_components_i_v() {
+    return LVecBase2d::get_num_components();
+}
+
+
+void
+LVecBase2d_C_begin_v_p(LVecBase2d *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2d_C_begin_v_p_1_v_p(LVecBase2d const *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase2d_C_end_v_p(LVecBase2d *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2d_C_end_v_p_1_v_p(LVecBase2d const *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase2d_C_fill_v_pd(LVecBase2d *param0, double param1) {
+    (*param0).fill(param1);
+}
+
+
+void
+LVecBase2d_C_set_v_pdd(LVecBase2d *param0, double param1, double param2) {
+    (*param0).set(param1, param2);
+}
+
+
+double
+LVecBase2d_C_dot_d_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return (*param0).dot(*param1);
+}
+
+
+double
+LVecBase2d_C_length_squared_d_p(LVecBase2d const *param0) {
+    return (*param0).length_squared();
+}
+
+
+double
+LVecBase2d_C_length_d_p(LVecBase2d const *param0) {
+    return (*param0).length();
+}
+
+
+bool
+LVecBase2d_C_normalize_B_p(LVecBase2d *param0) {
+    return (*param0).normalize();
+}
+
+
+LVecBase2d *
+LVecBase2d_C_normalized_p_p(LVecBase2d const *param0) {
+    return new LVecBase2d((*param0).normalized());
+}
+
+
+LVecBase2d *
+LVecBase2d_C_project_p_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return new LVecBase2d((*param0).project(*param1));
+}
+
+
+int
+LVecBase2d_C_compare_to_i_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+LVecBase2d_C_compare_to_i_ppd(LVecBase2d const *param0, LVecBase2d const *param1, double param2) {
+    return (*param0).compare_to(*param1, param2);
+}
+
+
+std::size_t
+LVecBase2d_C_get_hash_l_p(LVecBase2d const *param0) {
+    return (*param0).get_hash();
+}
+
+
+std::size_t
+LVecBase2d_C_get_hash_l_pd(LVecBase2d const *param0, double param1) {
+    return (*param0).get_hash(param1);
+}
+
+
+std::size_t
+LVecBase2d_C_add_hash_l_pl(LVecBase2d const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+std::size_t
+LVecBase2d_C_add_hash_l_pld(LVecBase2d const *param0, std::size_t param1, double param2) {
+    return (*param0).add_hash(param1, param2);
+}
+
+
+void
+LVecBase2d_C_generate_hash_v_pp(LVecBase2d const *param0, ChecksumHashGenerator *param1) {
+    (*param0).generate_hash(*param1);
+}
+
+
+void
+LVecBase2d_C_generate_hash_v_ppd(LVecBase2d const *param0, ChecksumHashGenerator *param1, double param2) {
+    (*param0).generate_hash(*param1, param2);
+}
+
+
+void
+LVecBase2d_C_componentwise_mult_v_pp(LVecBase2d *param0, LVecBase2d const *param1) {
+    (*param0).componentwise_mult(*param1);
+}
+
+
+LVecBase2d *
+LVecBase2d_C_fmax_p_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return new LVecBase2d((*param0).fmax(*param1));
+}
+
+
+LVecBase2d *
+LVecBase2d_C_fmin_p_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return new LVecBase2d((*param0).fmin(*param1));
+}
+
+
+bool
+LVecBase2d_C_almost_equal_B_pp(LVecBase2d const *param0, LVecBase2d const *param1) {
+    return (*param0).almost_equal(*param1);
+}
+
+
+bool
+LVecBase2d_C_almost_equal_B_ppd(LVecBase2d const *param0, LVecBase2d const *param1, double param2) {
+    return (*param0).almost_equal(*param1, param2);
+}
+
+
+void
+LVecBase2d_C_output_v_pp(LVecBase2d const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+LVecBase2d_C_write_datagram_fixed_v_pp(LVecBase2d const *param0, Datagram *param1) {
+    (*param0).write_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2d_C_read_datagram_fixed_v_pp(LVecBase2d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase2d_C_write_datagram_v_pp(LVecBase2d const *param0, Datagram *param1) {
+    (*param0).write_datagram(*param1);
+}
+
+
+void
+LVecBase2d_C_read_datagram_v_pp(LVecBase2d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram(*param1);
+}
+
+
+LVecBase2d::EVector2 *
+LVecBase2d_C_get_v_p_p(LVecBase2d const *param0) {
+    return new LVecBase2d::EVector2((param0)->_v);
+}
+
+
+int
+LVecBase2d_C_get_class_type_i_v() {
+    return (LVecBase2d::get_class_type()).get_index();
+}
+
+
+void
+LVecBase2d_C_init_type_v_v() {
+    LVecBase2d::init_type();
 }
 
 
@@ -13133,6 +14651,399 @@ LVecBase2i_C_get_class_type_i_v() {
 void
 LVecBase2i_C_init_type_v_v() {
     LVecBase2i::init_type();
+}
+
+
+// LVecBase3d
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_v() {
+    return new LVecBase3d();
+}
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_pd(LVecBase2d const *param0, double param1) {
+    return new LVecBase3d(*param0, param1);
+}
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_p(LVecBase3d const *param0) {
+    return new LVecBase3d(*param0);
+}
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_p_1_p_p(LVecBase3d::EVector3 const *param0) {
+    return new LVecBase3d(*param0);
+}
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_d(double param0) {
+    return new LVecBase3d(param0);
+}
+
+
+LVecBase3d *
+LVecBase3d_C_ctor_p_ddd(double param0, double param1, double param2) {
+    return new LVecBase3d(param0, param1, param2);
+}
+
+
+LVecBase3d const *
+LVecBase3d_C_zero_p_v() {
+    return &(LVecBase3d::zero());
+}
+
+
+LVecBase3d const *
+LVecBase3d_C_unit_x_p_v() {
+    return &(LVecBase3d::unit_x());
+}
+
+
+LVecBase3d const *
+LVecBase3d_C_unit_y_p_v() {
+    return &(LVecBase3d::unit_y());
+}
+
+
+LVecBase3d const *
+LVecBase3d_C_unit_z_p_v() {
+    return &(LVecBase3d::unit_z());
+}
+
+
+int
+LVecBase3d_C_size_i_v() {
+    return LVecBase3d::size();
+}
+
+
+bool
+LVecBase3d_C_is_nan_B_p(LVecBase3d const *param0) {
+    return (*param0).is_nan();
+}
+
+
+double
+LVecBase3d_C_get_cell_d_pi(LVecBase3d const *param0, int param1) {
+    return (*param0).get_cell(param1);
+}
+
+
+double
+LVecBase3d_C_get_x_d_p(LVecBase3d const *param0) {
+    return (*param0).get_x();
+}
+
+
+double
+LVecBase3d_C_get_y_d_p(LVecBase3d const *param0) {
+    return (*param0).get_y();
+}
+
+
+double
+LVecBase3d_C_get_z_d_p(LVecBase3d const *param0) {
+    return (*param0).get_z();
+}
+
+
+void
+LVecBase3d_C_set_cell_v_pid(LVecBase3d *param0, int param1, double param2) {
+    (*param0).set_cell(param1, param2);
+}
+
+
+void
+LVecBase3d_C_set_x_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+LVecBase3d_C_set_y_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+LVecBase3d_C_set_z_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).set_z(param1);
+}
+
+
+LVecBase2d *
+LVecBase3d_C_get_xy_p_p(LVecBase3d const *param0) {
+    return new LVecBase2d((*param0).get_xy());
+}
+
+
+LVecBase2d *
+LVecBase3d_C_get_xz_p_p(LVecBase3d const *param0) {
+    return new LVecBase2d((*param0).get_xz());
+}
+
+
+LVecBase2d *
+LVecBase3d_C_get_yz_p_p(LVecBase3d const *param0) {
+    return new LVecBase2d((*param0).get_yz());
+}
+
+
+void
+LVecBase3d_C_add_to_cell_v_pid(LVecBase3d *param0, int param1, double param2) {
+    (*param0).add_to_cell(param1, param2);
+}
+
+
+void
+LVecBase3d_C_add_x_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).add_x(param1);
+}
+
+
+void
+LVecBase3d_C_add_y_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).add_y(param1);
+}
+
+
+void
+LVecBase3d_C_add_z_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).add_z(param1);
+}
+
+
+void
+LVecBase3d_C_get_data_v_p(LVecBase3d const *param0) {
+    (*param0).get_data();
+}
+
+
+int
+LVecBase3d_C_get_num_components_i_v() {
+    return LVecBase3d::get_num_components();
+}
+
+
+void
+LVecBase3d_C_begin_v_p(LVecBase3d *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase3d_C_begin_v_p_1_v_p(LVecBase3d const *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase3d_C_end_v_p(LVecBase3d *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase3d_C_end_v_p_1_v_p(LVecBase3d const *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase3d_C_fill_v_pd(LVecBase3d *param0, double param1) {
+    (*param0).fill(param1);
+}
+
+
+void
+LVecBase3d_C_set_v_pddd(LVecBase3d *param0, double param1, double param2, double param3) {
+    (*param0).set(param1, param2, param3);
+}
+
+
+double
+LVecBase3d_C_dot_d_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return (*param0).dot(*param1);
+}
+
+
+double
+LVecBase3d_C_length_squared_d_p(LVecBase3d const *param0) {
+    return (*param0).length_squared();
+}
+
+
+double
+LVecBase3d_C_length_d_p(LVecBase3d const *param0) {
+    return (*param0).length();
+}
+
+
+bool
+LVecBase3d_C_normalize_B_p(LVecBase3d *param0) {
+    return (*param0).normalize();
+}
+
+
+LVecBase3d *
+LVecBase3d_C_normalized_p_p(LVecBase3d const *param0) {
+    return new LVecBase3d((*param0).normalized());
+}
+
+
+LVecBase3d *
+LVecBase3d_C_project_p_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return new LVecBase3d((*param0).project(*param1));
+}
+
+
+LVecBase3d *
+LVecBase3d_C_cross_p_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return new LVecBase3d((*param0).cross(*param1));
+}
+
+
+LVecBase3d *
+LVecBase3d_C_get_standardized_hpr_p_p(LVecBase3d const *param0) {
+    return new LVecBase3d((*param0).get_standardized_hpr());
+}
+
+
+int
+LVecBase3d_C_compare_to_i_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+LVecBase3d_C_compare_to_i_ppd(LVecBase3d const *param0, LVecBase3d const *param1, double param2) {
+    return (*param0).compare_to(*param1, param2);
+}
+
+
+std::size_t
+LVecBase3d_C_get_hash_l_p(LVecBase3d const *param0) {
+    return (*param0).get_hash();
+}
+
+
+std::size_t
+LVecBase3d_C_get_hash_l_pd(LVecBase3d const *param0, double param1) {
+    return (*param0).get_hash(param1);
+}
+
+
+std::size_t
+LVecBase3d_C_add_hash_l_pl(LVecBase3d const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+std::size_t
+LVecBase3d_C_add_hash_l_pld(LVecBase3d const *param0, std::size_t param1, double param2) {
+    return (*param0).add_hash(param1, param2);
+}
+
+
+void
+LVecBase3d_C_generate_hash_v_pp(LVecBase3d const *param0, ChecksumHashGenerator *param1) {
+    (*param0).generate_hash(*param1);
+}
+
+
+void
+LVecBase3d_C_generate_hash_v_ppd(LVecBase3d const *param0, ChecksumHashGenerator *param1, double param2) {
+    (*param0).generate_hash(*param1, param2);
+}
+
+
+void
+LVecBase3d_C_componentwise_mult_v_pp(LVecBase3d *param0, LVecBase3d const *param1) {
+    (*param0).componentwise_mult(*param1);
+}
+
+
+LVecBase3d *
+LVecBase3d_C_fmax_p_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return new LVecBase3d((*param0).fmax(*param1));
+}
+
+
+LVecBase3d *
+LVecBase3d_C_fmin_p_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return new LVecBase3d((*param0).fmin(*param1));
+}
+
+
+void
+LVecBase3d_C_cross_into_v_pp(LVecBase3d *param0, LVecBase3d const *param1) {
+    (*param0).cross_into(*param1);
+}
+
+
+bool
+LVecBase3d_C_almost_equal_B_pp(LVecBase3d const *param0, LVecBase3d const *param1) {
+    return (*param0).almost_equal(*param1);
+}
+
+
+bool
+LVecBase3d_C_almost_equal_B_ppd(LVecBase3d const *param0, LVecBase3d const *param1, double param2) {
+    return (*param0).almost_equal(*param1, param2);
+}
+
+
+void
+LVecBase3d_C_output_v_pp(LVecBase3d const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+LVecBase3d_C_write_datagram_fixed_v_pp(LVecBase3d const *param0, Datagram *param1) {
+    (*param0).write_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase3d_C_read_datagram_fixed_v_pp(LVecBase3d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase3d_C_write_datagram_v_pp(LVecBase3d const *param0, Datagram *param1) {
+    (*param0).write_datagram(*param1);
+}
+
+
+void
+LVecBase3d_C_read_datagram_v_pp(LVecBase3d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram(*param1);
+}
+
+
+LVecBase3d::EVector3 *
+LVecBase3d_C_get_v_p_p(LVecBase3d const *param0) {
+    return new LVecBase3d::EVector3((param0)->_v);
+}
+
+
+int
+LVecBase3d_C_get_class_type_i_v() {
+    return (LVecBase3d::get_class_type()).get_index();
+}
+
+
+void
+LVecBase3d_C_init_type_v_v() {
+    LVecBase3d::init_type();
 }
 
 
@@ -13865,6 +15776,417 @@ LVecBase3i_C_get_class_type_i_v() {
 void
 LVecBase3i_C_init_type_v_v() {
     LVecBase3i::init_type();
+}
+
+
+// LVecBase4d
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_v() {
+    return new LVecBase4d();
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_p(LPoint3d const *param0) {
+    return new LVecBase4d(*param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_pd(LVecBase3d const *param0, double param1) {
+    return new LVecBase4d(*param0, param1);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_p_1_p_p(LVecBase4d const *param0) {
+    return new LVecBase4d(*param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_p_1_p_p_2_p_p(LVecBase4d::EVector4 const *param0) {
+    return new LVecBase4d(*param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_p_1_p_p_2_p_p_3_p_p(LVector3d const *param0) {
+    return new LVecBase4d(*param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_p_1_p_p_2_p_p_3_p_p_4_p_p(UnalignedLVecBase4d const *param0) {
+    return new LVecBase4d(*param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_d(double param0) {
+    return new LVecBase4d(param0);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3) {
+    return new LVecBase4d(param0, param1, param2, param3);
+}
+
+
+LVecBase4d const *
+LVecBase4d_C_zero_p_v() {
+    return &(LVecBase4d::zero());
+}
+
+
+LVecBase4d const *
+LVecBase4d_C_unit_x_p_v() {
+    return &(LVecBase4d::unit_x());
+}
+
+
+LVecBase4d const *
+LVecBase4d_C_unit_y_p_v() {
+    return &(LVecBase4d::unit_y());
+}
+
+
+LVecBase4d const *
+LVecBase4d_C_unit_z_p_v() {
+    return &(LVecBase4d::unit_z());
+}
+
+
+LVecBase4d const *
+LVecBase4d_C_unit_w_p_v() {
+    return &(LVecBase4d::unit_w());
+}
+
+
+int
+LVecBase4d_C_size_i_v() {
+    return LVecBase4d::size();
+}
+
+
+bool
+LVecBase4d_C_is_nan_B_p(LVecBase4d const *param0) {
+    return (*param0).is_nan();
+}
+
+
+double
+LVecBase4d_C_get_cell_d_pi(LVecBase4d const *param0, int param1) {
+    return (*param0).get_cell(param1);
+}
+
+
+void
+LVecBase4d_C_set_cell_v_pid(LVecBase4d *param0, int param1, double param2) {
+    (*param0).set_cell(param1, param2);
+}
+
+
+double
+LVecBase4d_C_get_x_d_p(LVecBase4d const *param0) {
+    return (*param0).get_x();
+}
+
+
+double
+LVecBase4d_C_get_y_d_p(LVecBase4d const *param0) {
+    return (*param0).get_y();
+}
+
+
+double
+LVecBase4d_C_get_z_d_p(LVecBase4d const *param0) {
+    return (*param0).get_z();
+}
+
+
+double
+LVecBase4d_C_get_w_d_p(LVecBase4d const *param0) {
+    return (*param0).get_w();
+}
+
+
+LVecBase3d *
+LVecBase4d_C_get_xyz_p_p(LVecBase4d const *param0) {
+    return new LVecBase3d((*param0).get_xyz());
+}
+
+
+LVecBase2d *
+LVecBase4d_C_get_xy_p_p(LVecBase4d const *param0) {
+    return new LVecBase2d((*param0).get_xy());
+}
+
+
+void
+LVecBase4d_C_set_x_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).set_x(param1);
+}
+
+
+void
+LVecBase4d_C_set_y_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).set_y(param1);
+}
+
+
+void
+LVecBase4d_C_set_z_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).set_z(param1);
+}
+
+
+void
+LVecBase4d_C_set_w_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).set_w(param1);
+}
+
+
+void
+LVecBase4d_C_add_to_cell_v_pid(LVecBase4d *param0, int param1, double param2) {
+    (*param0).add_to_cell(param1, param2);
+}
+
+
+void
+LVecBase4d_C_add_x_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).add_x(param1);
+}
+
+
+void
+LVecBase4d_C_add_y_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).add_y(param1);
+}
+
+
+void
+LVecBase4d_C_add_z_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).add_z(param1);
+}
+
+
+void
+LVecBase4d_C_add_w_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).add_w(param1);
+}
+
+
+void
+LVecBase4d_C_get_data_v_p(LVecBase4d const *param0) {
+    (*param0).get_data();
+}
+
+
+int
+LVecBase4d_C_get_num_components_i_v() {
+    return LVecBase4d::get_num_components();
+}
+
+
+void
+LVecBase4d_C_begin_v_p(LVecBase4d *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase4d_C_begin_v_p_1_v_p(LVecBase4d const *param0) {
+    (*param0).begin();
+}
+
+
+void
+LVecBase4d_C_end_v_p(LVecBase4d *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase4d_C_end_v_p_1_v_p(LVecBase4d const *param0) {
+    (*param0).end();
+}
+
+
+void
+LVecBase4d_C_fill_v_pd(LVecBase4d *param0, double param1) {
+    (*param0).fill(param1);
+}
+
+
+void
+LVecBase4d_C_set_v_pdddd(LVecBase4d *param0, double param1, double param2, double param3, double param4) {
+    (*param0).set(param1, param2, param3, param4);
+}
+
+
+double
+LVecBase4d_C_dot_d_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return (*param0).dot(*param1);
+}
+
+
+double
+LVecBase4d_C_length_squared_d_p(LVecBase4d const *param0) {
+    return (*param0).length_squared();
+}
+
+
+double
+LVecBase4d_C_length_d_p(LVecBase4d const *param0) {
+    return (*param0).length();
+}
+
+
+bool
+LVecBase4d_C_normalize_B_p(LVecBase4d *param0) {
+    return (*param0).normalize();
+}
+
+
+LVecBase4d *
+LVecBase4d_C_normalized_p_p(LVecBase4d const *param0) {
+    return new LVecBase4d((*param0).normalized());
+}
+
+
+LVecBase4d *
+LVecBase4d_C_project_p_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return new LVecBase4d((*param0).project(*param1));
+}
+
+
+int
+LVecBase4d_C_compare_to_i_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return (*param0).compare_to(*param1);
+}
+
+
+int
+LVecBase4d_C_compare_to_i_ppd(LVecBase4d const *param0, LVecBase4d const *param1, double param2) {
+    return (*param0).compare_to(*param1, param2);
+}
+
+
+std::size_t
+LVecBase4d_C_get_hash_l_p(LVecBase4d const *param0) {
+    return (*param0).get_hash();
+}
+
+
+std::size_t
+LVecBase4d_C_get_hash_l_pd(LVecBase4d const *param0, double param1) {
+    return (*param0).get_hash(param1);
+}
+
+
+std::size_t
+LVecBase4d_C_add_hash_l_pl(LVecBase4d const *param0, std::size_t param1) {
+    return (*param0).add_hash(param1);
+}
+
+
+std::size_t
+LVecBase4d_C_add_hash_l_pld(LVecBase4d const *param0, std::size_t param1, double param2) {
+    return (*param0).add_hash(param1, param2);
+}
+
+
+void
+LVecBase4d_C_generate_hash_v_pp(LVecBase4d const *param0, ChecksumHashGenerator *param1) {
+    (*param0).generate_hash(*param1);
+}
+
+
+void
+LVecBase4d_C_generate_hash_v_ppd(LVecBase4d const *param0, ChecksumHashGenerator *param1, double param2) {
+    (*param0).generate_hash(*param1, param2);
+}
+
+
+void
+LVecBase4d_C_componentwise_mult_v_pp(LVecBase4d *param0, LVecBase4d const *param1) {
+    (*param0).componentwise_mult(*param1);
+}
+
+
+LVecBase4d *
+LVecBase4d_C_fmax_p_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return new LVecBase4d((*param0).fmax(*param1));
+}
+
+
+LVecBase4d *
+LVecBase4d_C_fmin_p_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return new LVecBase4d((*param0).fmin(*param1));
+}
+
+
+bool
+LVecBase4d_C_almost_equal_B_pp(LVecBase4d const *param0, LVecBase4d const *param1) {
+    return (*param0).almost_equal(*param1);
+}
+
+
+bool
+LVecBase4d_C_almost_equal_B_ppd(LVecBase4d const *param0, LVecBase4d const *param1, double param2) {
+    return (*param0).almost_equal(*param1, param2);
+}
+
+
+void
+LVecBase4d_C_output_v_pp(LVecBase4d const *param0, std::ostream *param1) {
+    (*param0).output(*param1);
+}
+
+
+void
+LVecBase4d_C_write_datagram_fixed_v_pp(LVecBase4d const *param0, Datagram *param1) {
+    (*param0).write_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase4d_C_read_datagram_fixed_v_pp(LVecBase4d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram_fixed(*param1);
+}
+
+
+void
+LVecBase4d_C_write_datagram_v_pp(LVecBase4d const *param0, Datagram *param1) {
+    (*param0).write_datagram(*param1);
+}
+
+
+void
+LVecBase4d_C_read_datagram_v_pp(LVecBase4d *param0, DatagramIterator *param1) {
+    (*param0).read_datagram(*param1);
+}
+
+
+LVecBase4d::EVector4 *
+LVecBase4d_C_get_v_p_p(LVecBase4d const *param0) {
+    return new LVecBase4d::EVector4((param0)->_v);
+}
+
+
+int
+LVecBase4d_C_get_class_type_i_v() {
+    return (LVecBase4d::get_class_type()).get_index();
+}
+
+
+void
+LVecBase4d_C_init_type_v_v() {
+    LVecBase4d::init_type();
 }
 
 
@@ -14639,6 +16961,1191 @@ LVecBase4i_C_get_class_type_i_v() {
 void
 LVecBase4i_C_init_type_v_v() {
     LVecBase4i::init_type();
+}
+
+
+// LVector2d
+
+
+LVector2d *
+LVector2d_C_ctor_p_v() {
+    return new LVector2d();
+}
+
+
+LVector2d *
+LVector2d_C_ctor_p_p(LVecBase2d const *param0) {
+    return new LVector2d(*param0);
+}
+
+
+LVector2d *
+LVector2d_C_ctor_p_p_1_p_p(LVector2d const *param0) {
+    return new LVector2d(*param0);
+}
+
+
+LVector2d *
+LVector2d_C_ctor_p_d(double param0) {
+    return new LVector2d(param0);
+}
+
+
+LVector2d *
+LVector2d_C_ctor_p_dd(double param0, double param1) {
+    return new LVector2d(param0, param1);
+}
+
+
+LVector2d const *
+LVector2d_C_zero_p_v() {
+    return &(LVector2d::zero());
+}
+
+
+LVector2d const *
+LVector2d_C_unit_x_p_v() {
+    return &(LVector2d::unit_x());
+}
+
+
+LVector2d const *
+LVector2d_C_unit_y_p_v() {
+    return &(LVector2d::unit_y());
+}
+
+
+LVector2d *
+LVector2d_C_normalized_p_p(LVector2d const *param0) {
+    return new LVector2d((*param0).normalized());
+}
+
+
+LVector2d *
+LVector2d_C_project_p_pp(LVector2d const *param0, LVecBase2d const *param1) {
+    return new LVector2d((*param0).project(*param1));
+}
+
+
+double
+LVector2d_C_signed_angle_rad_d_pp(LVector2d const *param0, LVector2d const *param1) {
+    return (*param0).signed_angle_rad(*param1);
+}
+
+
+double
+LVector2d_C_signed_angle_deg_d_pp(LVector2d const *param0, LVector2d const *param1) {
+    return (*param0).signed_angle_deg(*param1);
+}
+
+
+int
+LVector2d_C_get_class_type_i_v() {
+    return (LVector2d::get_class_type()).get_index();
+}
+
+
+void
+LVector2d_C_init_type_v_v() {
+    LVector2d::init_type();
+}
+
+
+// LVector2f
+
+
+LVector2f *
+LVector2f_C_ctor_p_v() {
+    return new LVector2f();
+}
+
+
+LVector2f *
+LVector2f_C_ctor_p_p(LVecBase2f const *param0) {
+    return new LVector2f(*param0);
+}
+
+
+LVector2f *
+LVector2f_C_ctor_p_p_1_p_p(LVector2f const *param0) {
+    return new LVector2f(*param0);
+}
+
+
+LVector2f *
+LVector2f_C_ctor_p_f(float param0) {
+    return new LVector2f(param0);
+}
+
+
+LVector2f *
+LVector2f_C_ctor_p_ff(float param0, float param1) {
+    return new LVector2f(param0, param1);
+}
+
+
+LVector2f const *
+LVector2f_C_zero_p_v() {
+    return &(LVector2f::zero());
+}
+
+
+LVector2f const *
+LVector2f_C_unit_x_p_v() {
+    return &(LVector2f::unit_x());
+}
+
+
+LVector2f const *
+LVector2f_C_unit_y_p_v() {
+    return &(LVector2f::unit_y());
+}
+
+
+LVector2f *
+LVector2f_C_normalized_p_p(LVector2f const *param0) {
+    return new LVector2f((*param0).normalized());
+}
+
+
+LVector2f *
+LVector2f_C_project_p_pp(LVector2f const *param0, LVecBase2f const *param1) {
+    return new LVector2f((*param0).project(*param1));
+}
+
+
+float
+LVector2f_C_signed_angle_rad_f_pp(LVector2f const *param0, LVector2f const *param1) {
+    return (*param0).signed_angle_rad(*param1);
+}
+
+
+float
+LVector2f_C_signed_angle_deg_f_pp(LVector2f const *param0, LVector2f const *param1) {
+    return (*param0).signed_angle_deg(*param1);
+}
+
+
+int
+LVector2f_C_get_class_type_i_v() {
+    return (LVector2f::get_class_type()).get_index();
+}
+
+
+void
+LVector2f_C_init_type_v_v() {
+    LVector2f::init_type();
+}
+
+
+// LVector2i
+
+
+LVector2i *
+LVector2i_C_ctor_p_v() {
+    return new LVector2i();
+}
+
+
+LVector2i *
+LVector2i_C_ctor_p_p(LVecBase2i const *param0) {
+    return new LVector2i(*param0);
+}
+
+
+LVector2i *
+LVector2i_C_ctor_p_p_1_p_p(LVector2i const *param0) {
+    return new LVector2i(*param0);
+}
+
+
+LVector2i *
+LVector2i_C_ctor_p_i(int param0) {
+    return new LVector2i(param0);
+}
+
+
+LVector2i *
+LVector2i_C_ctor_p_ii(int param0, int param1) {
+    return new LVector2i(param0, param1);
+}
+
+
+LVector2i const *
+LVector2i_C_zero_p_v() {
+    return &(LVector2i::zero());
+}
+
+
+LVector2i const *
+LVector2i_C_unit_x_p_v() {
+    return &(LVector2i::unit_x());
+}
+
+
+LVector2i const *
+LVector2i_C_unit_y_p_v() {
+    return &(LVector2i::unit_y());
+}
+
+
+int
+LVector2i_C_get_class_type_i_v() {
+    return (LVector2i::get_class_type()).get_index();
+}
+
+
+void
+LVector2i_C_init_type_v_v() {
+    LVector2i::init_type();
+}
+
+
+// LVector3d
+
+
+LVector3d *
+LVector3d_C_ctor_p_v() {
+    return new LVector3d();
+}
+
+
+LVector3d *
+LVector3d_C_ctor_p_pd(LVecBase2d const *param0, double param1) {
+    return new LVector3d(*param0, param1);
+}
+
+
+LVector3d *
+LVector3d_C_ctor_p_p(LVecBase3d const *param0) {
+    return new LVector3d(*param0);
+}
+
+
+LVector3d *
+LVector3d_C_ctor_p_p_1_p_p(LVector3d const *param0) {
+    return new LVector3d(*param0);
+}
+
+
+LVector3d *
+LVector3d_C_ctor_p_d(double param0) {
+    return new LVector3d(param0);
+}
+
+
+LVector3d *
+LVector3d_C_ctor_p_ddd(double param0, double param1, double param2) {
+    return new LVector3d(param0, param1, param2);
+}
+
+
+LVector3d const *
+LVector3d_C_zero_p_v() {
+    return &(LVector3d::zero());
+}
+
+
+LVector3d const *
+LVector3d_C_unit_x_p_v() {
+    return &(LVector3d::unit_x());
+}
+
+
+LVector3d const *
+LVector3d_C_unit_y_p_v() {
+    return &(LVector3d::unit_y());
+}
+
+
+LVector3d const *
+LVector3d_C_unit_z_p_v() {
+    return &(LVector3d::unit_z());
+}
+
+
+LVector2d *
+LVector3d_C_get_xy_p_p(LVector3d const *param0) {
+    return new LVector2d((*param0).get_xy());
+}
+
+
+LVector2d *
+LVector3d_C_get_xz_p_p(LVector3d const *param0) {
+    return new LVector2d((*param0).get_xz());
+}
+
+
+LVector2d *
+LVector3d_C_get_yz_p_p(LVector3d const *param0) {
+    return new LVector2d((*param0).get_yz());
+}
+
+
+LVector3d *
+LVector3d_C_cross_p_pp(LVector3d const *param0, LVecBase3d const *param1) {
+    return new LVector3d((*param0).cross(*param1));
+}
+
+
+LVector3d *
+LVector3d_C_normalized_p_p(LVector3d const *param0) {
+    return new LVector3d((*param0).normalized());
+}
+
+
+LVector3d *
+LVector3d_C_project_p_pp(LVector3d const *param0, LVecBase3d const *param1) {
+    return new LVector3d((*param0).project(*param1));
+}
+
+
+double
+LVector3d_C_angle_rad_d_pp(LVector3d const *param0, LVector3d const *param1) {
+    return (*param0).angle_rad(*param1);
+}
+
+
+double
+LVector3d_C_angle_deg_d_pp(LVector3d const *param0, LVector3d const *param1) {
+    return (*param0).angle_deg(*param1);
+}
+
+
+double
+LVector3d_C_signed_angle_rad_d_ppp(LVector3d const *param0, LVector3d const *param1, LVector3d const *param2) {
+    return (*param0).signed_angle_rad(*param1, *param2);
+}
+
+
+double
+LVector3d_C_signed_angle_deg_d_ppp(LVector3d const *param0, LVector3d const *param1, LVector3d const *param2) {
+    return (*param0).signed_angle_deg(*param1, *param2);
+}
+
+
+double
+LVector3d_C_relative_angle_rad_d_pp(LVector3d const *param0, LVector3d const *param1) {
+    return (*param0).relative_angle_rad(*param1);
+}
+
+
+double
+LVector3d_C_relative_angle_deg_d_pp(LVector3d const *param0, LVector3d const *param1) {
+    return (*param0).relative_angle_deg(*param1);
+}
+
+
+LVector3d *
+LVector3d_C_up_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::up(param0));
+}
+
+
+LVector3d *
+LVector3d_C_up_p_v() {
+    return new LVector3d(LVector3d::up());
+}
+
+
+LVector3d *
+LVector3d_C_right_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::right(param0));
+}
+
+
+LVector3d *
+LVector3d_C_right_p_v() {
+    return new LVector3d(LVector3d::right());
+}
+
+
+LVector3d *
+LVector3d_C_forward_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::forward(param0));
+}
+
+
+LVector3d *
+LVector3d_C_forward_p_v() {
+    return new LVector3d(LVector3d::forward());
+}
+
+
+LVector3d *
+LVector3d_C_down_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::down(param0));
+}
+
+
+LVector3d *
+LVector3d_C_down_p_v() {
+    return new LVector3d(LVector3d::down());
+}
+
+
+LVector3d *
+LVector3d_C_left_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::left(param0));
+}
+
+
+LVector3d *
+LVector3d_C_left_p_v() {
+    return new LVector3d(LVector3d::left());
+}
+
+
+LVector3d *
+LVector3d_C_back_p_p(CoordinateSystem param0) {
+    return new LVector3d(LVector3d::back(param0));
+}
+
+
+LVector3d *
+LVector3d_C_back_p_v() {
+    return new LVector3d(LVector3d::back());
+}
+
+
+LVector3d *
+LVector3d_C_rfu_p_dddp(double param0, double param1, double param2, CoordinateSystem param3) {
+    return new LVector3d(LVector3d::rfu(param0, param1, param2, param3));
+}
+
+
+LVector3d *
+LVector3d_C_rfu_p_ddd(double param0, double param1, double param2) {
+    return new LVector3d(LVector3d::rfu(param0, param1, param2));
+}
+
+
+int
+LVector3d_C_get_class_type_i_v() {
+    return (LVector3d::get_class_type()).get_index();
+}
+
+
+void
+LVector3d_C_init_type_v_v() {
+    LVector3d::init_type();
+}
+
+
+// LVector3f
+
+
+LVector3f *
+LVector3f_C_ctor_p_v() {
+    return new LVector3f();
+}
+
+
+LVector3f *
+LVector3f_C_ctor_p_pf(LVecBase2f const *param0, float param1) {
+    return new LVector3f(*param0, param1);
+}
+
+
+LVector3f *
+LVector3f_C_ctor_p_p(LVecBase3f const *param0) {
+    return new LVector3f(*param0);
+}
+
+
+LVector3f *
+LVector3f_C_ctor_p_p_1_p_p(LVector3f const *param0) {
+    return new LVector3f(*param0);
+}
+
+
+LVector3f *
+LVector3f_C_ctor_p_f(float param0) {
+    return new LVector3f(param0);
+}
+
+
+LVector3f *
+LVector3f_C_ctor_p_fff(float param0, float param1, float param2) {
+    return new LVector3f(param0, param1, param2);
+}
+
+
+LVector3f const *
+LVector3f_C_zero_p_v() {
+    return &(LVector3f::zero());
+}
+
+
+LVector3f const *
+LVector3f_C_unit_x_p_v() {
+    return &(LVector3f::unit_x());
+}
+
+
+LVector3f const *
+LVector3f_C_unit_y_p_v() {
+    return &(LVector3f::unit_y());
+}
+
+
+LVector3f const *
+LVector3f_C_unit_z_p_v() {
+    return &(LVector3f::unit_z());
+}
+
+
+LVector2f *
+LVector3f_C_get_xy_p_p(LVector3f const *param0) {
+    return new LVector2f((*param0).get_xy());
+}
+
+
+LVector2f *
+LVector3f_C_get_xz_p_p(LVector3f const *param0) {
+    return new LVector2f((*param0).get_xz());
+}
+
+
+LVector2f *
+LVector3f_C_get_yz_p_p(LVector3f const *param0) {
+    return new LVector2f((*param0).get_yz());
+}
+
+
+LVector3f *
+LVector3f_C_cross_p_pp(LVector3f const *param0, LVecBase3f const *param1) {
+    return new LVector3f((*param0).cross(*param1));
+}
+
+
+LVector3f *
+LVector3f_C_normalized_p_p(LVector3f const *param0) {
+    return new LVector3f((*param0).normalized());
+}
+
+
+LVector3f *
+LVector3f_C_project_p_pp(LVector3f const *param0, LVecBase3f const *param1) {
+    return new LVector3f((*param0).project(*param1));
+}
+
+
+float
+LVector3f_C_angle_rad_f_pp(LVector3f const *param0, LVector3f const *param1) {
+    return (*param0).angle_rad(*param1);
+}
+
+
+float
+LVector3f_C_angle_deg_f_pp(LVector3f const *param0, LVector3f const *param1) {
+    return (*param0).angle_deg(*param1);
+}
+
+
+float
+LVector3f_C_signed_angle_rad_f_ppp(LVector3f const *param0, LVector3f const *param1, LVector3f const *param2) {
+    return (*param0).signed_angle_rad(*param1, *param2);
+}
+
+
+float
+LVector3f_C_signed_angle_deg_f_ppp(LVector3f const *param0, LVector3f const *param1, LVector3f const *param2) {
+    return (*param0).signed_angle_deg(*param1, *param2);
+}
+
+
+float
+LVector3f_C_relative_angle_rad_f_pp(LVector3f const *param0, LVector3f const *param1) {
+    return (*param0).relative_angle_rad(*param1);
+}
+
+
+float
+LVector3f_C_relative_angle_deg_f_pp(LVector3f const *param0, LVector3f const *param1) {
+    return (*param0).relative_angle_deg(*param1);
+}
+
+
+LVector3f *
+LVector3f_C_up_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::up(param0));
+}
+
+
+LVector3f *
+LVector3f_C_up_p_v() {
+    return new LVector3f(LVector3f::up());
+}
+
+
+LVector3f *
+LVector3f_C_right_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::right(param0));
+}
+
+
+LVector3f *
+LVector3f_C_right_p_v() {
+    return new LVector3f(LVector3f::right());
+}
+
+
+LVector3f *
+LVector3f_C_forward_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::forward(param0));
+}
+
+
+LVector3f *
+LVector3f_C_forward_p_v() {
+    return new LVector3f(LVector3f::forward());
+}
+
+
+LVector3f *
+LVector3f_C_down_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::down(param0));
+}
+
+
+LVector3f *
+LVector3f_C_down_p_v() {
+    return new LVector3f(LVector3f::down());
+}
+
+
+LVector3f *
+LVector3f_C_left_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::left(param0));
+}
+
+
+LVector3f *
+LVector3f_C_left_p_v() {
+    return new LVector3f(LVector3f::left());
+}
+
+
+LVector3f *
+LVector3f_C_back_p_p(CoordinateSystem param0) {
+    return new LVector3f(LVector3f::back(param0));
+}
+
+
+LVector3f *
+LVector3f_C_back_p_v() {
+    return new LVector3f(LVector3f::back());
+}
+
+
+LVector3f *
+LVector3f_C_rfu_p_fffp(float param0, float param1, float param2, CoordinateSystem param3) {
+    return new LVector3f(LVector3f::rfu(param0, param1, param2, param3));
+}
+
+
+LVector3f *
+LVector3f_C_rfu_p_fff(float param0, float param1, float param2) {
+    return new LVector3f(LVector3f::rfu(param0, param1, param2));
+}
+
+
+int
+LVector3f_C_get_class_type_i_v() {
+    return (LVector3f::get_class_type()).get_index();
+}
+
+
+void
+LVector3f_C_init_type_v_v() {
+    LVector3f::init_type();
+}
+
+
+// LVector3i
+
+
+LVector3i *
+LVector3i_C_ctor_p_v() {
+    return new LVector3i();
+}
+
+
+LVector3i *
+LVector3i_C_ctor_p_pi(LVecBase2i const *param0, int param1) {
+    return new LVector3i(*param0, param1);
+}
+
+
+LVector3i *
+LVector3i_C_ctor_p_p(LVecBase3i const *param0) {
+    return new LVector3i(*param0);
+}
+
+
+LVector3i *
+LVector3i_C_ctor_p_p_1_p_p(LVector3i const *param0) {
+    return new LVector3i(*param0);
+}
+
+
+LVector3i *
+LVector3i_C_ctor_p_i(int param0) {
+    return new LVector3i(param0);
+}
+
+
+LVector3i *
+LVector3i_C_ctor_p_iii(int param0, int param1, int param2) {
+    return new LVector3i(param0, param1, param2);
+}
+
+
+LVector3i const *
+LVector3i_C_zero_p_v() {
+    return &(LVector3i::zero());
+}
+
+
+LVector3i const *
+LVector3i_C_unit_x_p_v() {
+    return &(LVector3i::unit_x());
+}
+
+
+LVector3i const *
+LVector3i_C_unit_y_p_v() {
+    return &(LVector3i::unit_y());
+}
+
+
+LVector3i const *
+LVector3i_C_unit_z_p_v() {
+    return &(LVector3i::unit_z());
+}
+
+
+LVector2i *
+LVector3i_C_get_xy_p_p(LVector3i const *param0) {
+    return new LVector2i((*param0).get_xy());
+}
+
+
+LVector2i *
+LVector3i_C_get_xz_p_p(LVector3i const *param0) {
+    return new LVector2i((*param0).get_xz());
+}
+
+
+LVector2i *
+LVector3i_C_get_yz_p_p(LVector3i const *param0) {
+    return new LVector2i((*param0).get_yz());
+}
+
+
+LVector3i *
+LVector3i_C_cross_p_pp(LVector3i const *param0, LVecBase3i const *param1) {
+    return new LVector3i((*param0).cross(*param1));
+}
+
+
+LVector3i *
+LVector3i_C_up_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::up(param0));
+}
+
+
+LVector3i *
+LVector3i_C_up_p_v() {
+    return new LVector3i(LVector3i::up());
+}
+
+
+LVector3i *
+LVector3i_C_right_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::right(param0));
+}
+
+
+LVector3i *
+LVector3i_C_right_p_v() {
+    return new LVector3i(LVector3i::right());
+}
+
+
+LVector3i *
+LVector3i_C_forward_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::forward(param0));
+}
+
+
+LVector3i *
+LVector3i_C_forward_p_v() {
+    return new LVector3i(LVector3i::forward());
+}
+
+
+LVector3i *
+LVector3i_C_down_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::down(param0));
+}
+
+
+LVector3i *
+LVector3i_C_down_p_v() {
+    return new LVector3i(LVector3i::down());
+}
+
+
+LVector3i *
+LVector3i_C_left_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::left(param0));
+}
+
+
+LVector3i *
+LVector3i_C_left_p_v() {
+    return new LVector3i(LVector3i::left());
+}
+
+
+LVector3i *
+LVector3i_C_back_p_p(CoordinateSystem param0) {
+    return new LVector3i(LVector3i::back(param0));
+}
+
+
+LVector3i *
+LVector3i_C_back_p_v() {
+    return new LVector3i(LVector3i::back());
+}
+
+
+LVector3i *
+LVector3i_C_rfu_p_iiip(int param0, int param1, int param2, CoordinateSystem param3) {
+    return new LVector3i(LVector3i::rfu(param0, param1, param2, param3));
+}
+
+
+LVector3i *
+LVector3i_C_rfu_p_iii(int param0, int param1, int param2) {
+    return new LVector3i(LVector3i::rfu(param0, param1, param2));
+}
+
+
+int
+LVector3i_C_get_class_type_i_v() {
+    return (LVector3i::get_class_type()).get_index();
+}
+
+
+void
+LVector3i_C_init_type_v_v() {
+    LVector3i::init_type();
+}
+
+
+// LVector4d
+
+
+LVector4d *
+LVector4d_C_ctor_p_v() {
+    return new LVector4d();
+}
+
+
+LVector4d *
+LVector4d_C_ctor_p_pd(LVecBase3d const *param0, double param1) {
+    return new LVector4d(*param0, param1);
+}
+
+
+LVector4d *
+LVector4d_C_ctor_p_p(LVecBase4d const *param0) {
+    return new LVector4d(*param0);
+}
+
+
+LVector4d *
+LVector4d_C_ctor_p_p_1_p_p(LVector4d const *param0) {
+    return new LVector4d(*param0);
+}
+
+
+LVector4d *
+LVector4d_C_ctor_p_d(double param0) {
+    return new LVector4d(param0);
+}
+
+
+LVector4d *
+LVector4d_C_ctor_p_dddd(double param0, double param1, double param2, double param3) {
+    return new LVector4d(param0, param1, param2, param3);
+}
+
+
+LVector4d const *
+LVector4d_C_zero_p_v() {
+    return &(LVector4d::zero());
+}
+
+
+LVector4d const *
+LVector4d_C_unit_x_p_v() {
+    return &(LVector4d::unit_x());
+}
+
+
+LVector4d const *
+LVector4d_C_unit_y_p_v() {
+    return &(LVector4d::unit_y());
+}
+
+
+LVector4d const *
+LVector4d_C_unit_z_p_v() {
+    return &(LVector4d::unit_z());
+}
+
+
+LVector4d const *
+LVector4d_C_unit_w_p_v() {
+    return &(LVector4d::unit_w());
+}
+
+
+LVector3d *
+LVector4d_C_get_xyz_p_p(LVector4d const *param0) {
+    return new LVector3d((*param0).get_xyz());
+}
+
+
+LVector2d *
+LVector4d_C_get_xy_p_p(LVector4d const *param0) {
+    return new LVector2d((*param0).get_xy());
+}
+
+
+LVector4d *
+LVector4d_C_normalized_p_p(LVector4d const *param0) {
+    return new LVector4d((*param0).normalized());
+}
+
+
+LVector4d *
+LVector4d_C_project_p_pp(LVector4d const *param0, LVecBase4d const *param1) {
+    return new LVector4d((*param0).project(*param1));
+}
+
+
+int
+LVector4d_C_get_class_type_i_v() {
+    return (LVector4d::get_class_type()).get_index();
+}
+
+
+void
+LVector4d_C_init_type_v_v() {
+    LVector4d::init_type();
+}
+
+
+// LVector4f
+
+
+LVector4f *
+LVector4f_C_ctor_p_v() {
+    return new LVector4f();
+}
+
+
+LVector4f *
+LVector4f_C_ctor_p_pf(LVecBase3f const *param0, float param1) {
+    return new LVector4f(*param0, param1);
+}
+
+
+LVector4f *
+LVector4f_C_ctor_p_p(LVecBase4f const *param0) {
+    return new LVector4f(*param0);
+}
+
+
+LVector4f *
+LVector4f_C_ctor_p_p_1_p_p(LVector4f const *param0) {
+    return new LVector4f(*param0);
+}
+
+
+LVector4f *
+LVector4f_C_ctor_p_f(float param0) {
+    return new LVector4f(param0);
+}
+
+
+LVector4f *
+LVector4f_C_ctor_p_ffff(float param0, float param1, float param2, float param3) {
+    return new LVector4f(param0, param1, param2, param3);
+}
+
+
+LVector4f const *
+LVector4f_C_zero_p_v() {
+    return &(LVector4f::zero());
+}
+
+
+LVector4f const *
+LVector4f_C_unit_x_p_v() {
+    return &(LVector4f::unit_x());
+}
+
+
+LVector4f const *
+LVector4f_C_unit_y_p_v() {
+    return &(LVector4f::unit_y());
+}
+
+
+LVector4f const *
+LVector4f_C_unit_z_p_v() {
+    return &(LVector4f::unit_z());
+}
+
+
+LVector4f const *
+LVector4f_C_unit_w_p_v() {
+    return &(LVector4f::unit_w());
+}
+
+
+LVector3f *
+LVector4f_C_get_xyz_p_p(LVector4f const *param0) {
+    return new LVector3f((*param0).get_xyz());
+}
+
+
+LVector2f *
+LVector4f_C_get_xy_p_p(LVector4f const *param0) {
+    return new LVector2f((*param0).get_xy());
+}
+
+
+LVector4f *
+LVector4f_C_normalized_p_p(LVector4f const *param0) {
+    return new LVector4f((*param0).normalized());
+}
+
+
+LVector4f *
+LVector4f_C_project_p_pp(LVector4f const *param0, LVecBase4f const *param1) {
+    return new LVector4f((*param0).project(*param1));
+}
+
+
+int
+LVector4f_C_get_class_type_i_v() {
+    return (LVector4f::get_class_type()).get_index();
+}
+
+
+void
+LVector4f_C_init_type_v_v() {
+    LVector4f::init_type();
+}
+
+
+// LVector4i
+
+
+LVector4i *
+LVector4i_C_ctor_p_v() {
+    return new LVector4i();
+}
+
+
+LVector4i *
+LVector4i_C_ctor_p_pi(LVecBase3i const *param0, int param1) {
+    return new LVector4i(*param0, param1);
+}
+
+
+LVector4i *
+LVector4i_C_ctor_p_p(LVecBase4i const *param0) {
+    return new LVector4i(*param0);
+}
+
+
+LVector4i *
+LVector4i_C_ctor_p_p_1_p_p(LVector4i const *param0) {
+    return new LVector4i(*param0);
+}
+
+
+LVector4i *
+LVector4i_C_ctor_p_i(int param0) {
+    return new LVector4i(param0);
+}
+
+
+LVector4i *
+LVector4i_C_ctor_p_iiii(int param0, int param1, int param2, int param3) {
+    return new LVector4i(param0, param1, param2, param3);
+}
+
+
+LVector4i const *
+LVector4i_C_zero_p_v() {
+    return &(LVector4i::zero());
+}
+
+
+LVector4i const *
+LVector4i_C_unit_x_p_v() {
+    return &(LVector4i::unit_x());
+}
+
+
+LVector4i const *
+LVector4i_C_unit_y_p_v() {
+    return &(LVector4i::unit_y());
+}
+
+
+LVector4i const *
+LVector4i_C_unit_z_p_v() {
+    return &(LVector4i::unit_z());
+}
+
+
+LVector4i const *
+LVector4i_C_unit_w_p_v() {
+    return &(LVector4i::unit_w());
+}
+
+
+LVector3i *
+LVector4i_C_get_xyz_p_p(LVector4i const *param0) {
+    return new LVector3i((*param0).get_xyz());
+}
+
+
+LVector2i *
+LVector4i_C_get_xy_p_p(LVector4i const *param0) {
+    return new LVector2i((*param0).get_xy());
+}
+
+
+int
+LVector4i_C_get_class_type_i_v() {
+    return (LVector4i::get_class_type()).get_index();
+}
+
+
+void
+LVector4i_C_init_type_v_v() {
+    LVector4i::init_type();
 }
 
 

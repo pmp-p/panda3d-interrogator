@@ -1,5 +1,6 @@
 forcetype CachedTypedWritableReferenceCount
 forcetype Camera
+forcetype CollisionTraverser
 forcetype ConfigPage
 forcetype DrawMask
 forcetype EventHandler
@@ -64,31 +65,45 @@ forcetype COnscreenText
 forcetype Loader
 forcetype LQuaternion
 
-forcetype LVecBase2f
-forcetype LVecBase2i
-
-forcetype LVecBase3
-forcetype LVecBase3i
-forcetype LVecBase3f
-forcetype LVecBase3i
-
-forcetype LVecBase4
-forcetype LVecBase4f
-forcetype LVecBase4i
-
 forcetype RenderEffect
 forcetype RenderState
 
-forcetype LPoint3f
+forcetype LVecBase2d
+forcetype LVecBase2f
+forcetype LVecBase2i
 
-forcetype LPoint2
+forcetype LVecBase3d
+forcetype LVecBase3f
+forcetype LVecBase3i
+
+forcetype LVecBase4d
+forcetype LVecBase4f
+forcetype LVecBase4i
+
+forcetype LPoint2d
 forcetype LPoint2f
 forcetype LPoint2i
 
-forcetype LVector3
+forcetype LPoint3d
+forcetype LPoint3f
+forcetype LPoint3i
 
+forcetype LPoint4d
+forcetype LPoint4f
+forcetype LPoint4i
 
-forcetype LPoint3
+forcetype LVector2d
+forcetype LVector2f
+forcetype LVector2i
+
+forcetype LVector3d
+forcetype LVector3f
+forcetype LVector3i
+
+forcetype LVector4d
+forcetype LVector4f
+forcetype LVector4i
+
 forcetype WindowProperties
 forcetype WindowHandle
 forcetype TransformState
@@ -96,7 +111,5 @@ forcetype GraphicsEngine
 forcetype NodeCachedReferenceCount
 
 
-//?
-forcetype LColor
 
 

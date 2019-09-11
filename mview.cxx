@@ -98,17 +98,17 @@ Engine::dec_ref(ReferenceCount * rc) {
 void
 Engine::build() {
     cout << "->build()\n";
-	// setup Panda3d
-	this->framework->open_framework(g_argc, (char **&)g_argv);
+    // setup Panda3d
+    this->framework->open_framework(g_argc, (char **&)g_argv);
 
     wframe = this->framework->open_window();
     wframe->ref();
 
     if(wframe == NULL) {
-		nout << "ERROR: could not open the WindowFramework." << endl;
+        nout << "ERROR: could not open the WindowFramework." << endl;
         emscripten_force_exit(0);
-		return ; // error
-	}
+        return ; // error
+    }
 
     // Escape quits
     wframe->enable_keyboard();
@@ -118,13 +118,13 @@ Engine::build() {
 
 void
 Engine::step() {
-	Thread *current_thread = Thread::get_current_thread();
+    Thread *current_thread = Thread::get_current_thread();
 
-	if (!this->framework->do_frame(current_thread)) {
-	    // quit Panda3d
+    if (!this->framework->do_frame(current_thread)) {
+        // quit Panda3d
         cout << "->step : render error" << endl;
         this->stop();
-	}
+    }
 }
 
 int
@@ -178,7 +178,7 @@ Engine::dtor(){
     this->framework->close_framework();
     delete this;
     alive = 0;
-	emscripten_force_exit(0);
+    emscripten_force_exit(0);
 }
 
 Engine::~Engine() {
@@ -263,33 +263,33 @@ main_loop_or_step(){
     static Engine *engine = new Engine();
 
 
-	if (!em_steps++) {
-		cout << "You are likely to be eaten by a grue. step " << em_steps << "/2" << endl;
+    if (!em_steps++) {
+        cout << "You are likely to be eaten by a grue. step " << em_steps << "/2" << endl;
     }
 
 
-	if (em_steps==1) {
+    if (em_steps==1) {
 
 
-		// We now have everything we need. Make an instance of the class and start
-		// 3D rendering
+        // We now have everything we need. Make an instance of the class and start
+        // 3D rendering
 
         engine->build();
 
 /*
-		NodePath mdl = ewin->load_model(efram->get_models(), "boris.bam");
+        NodePath mdl = ewin->load_model(efram->get_models(), "boris.bam");
 */
         NodePath * mdl = engine->load_model("boris.bam");
         engine->attach(mdl);
-		//mdl->reparent_to(ewin->get_render());
-		mdl->set_scale(3,3,3);
-		mdl->set_pos(0, 42, 0);
+        //mdl->reparent_to(ewin->get_render());
+        mdl->set_scale(3,3,3);
+        mdl->set_pos(0, 42, 0);
 
         engine->attach( engine->new_Cube(1.0,"cm","data") );
 
         cout << "sizeof(LVecBase3f) = " << sizeof(LVecBase3f) << endl;
-		return;
-	}
+        return;
+    }
 
     if (em_steps>MAX_em_steps) {
         emscripten_loop_run=0;
@@ -303,17 +303,17 @@ main_loop_or_step(){
         return;
     }
 
-	if (em_steps>1) {
+    if (em_steps>1) {
         engine->step();
-	}
+    }
 }
 
 
 int main(int argc, char *argv[]) {
 
-	cout << "dlhandle=" << dlopen("/lib/libpanda3d.js", RTLD_NOW | RTLD_GLOBAL) << endl;
-	g_argc = argc;
-	g_argv = (void*)argv;
+    cout << "dlhandle=" << dlopen("/lib/libpanda3d.js", RTLD_NOW | RTLD_GLOBAL) << endl;
+    g_argc = argc;
+    g_argv = (void*)argv;
 
     cout << "Geom::UH_static = " << int(Geom::UH_static) << endl;
 

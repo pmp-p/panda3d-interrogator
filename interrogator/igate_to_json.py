@@ -67,7 +67,7 @@ def igate_to_json(file_like):
                         'LVector2','LVector3','LVector4',
                         'LVecBase2','LVecBase3','LVecBase4',
                     ]:
-                    return_type = return_type.replace(rt,'%sf'%rt)
+                    return_type = return_type.replace(rt,'%sd'%rt)
 # fmt : on
 
         args = []

@@ -117,37 +117,50 @@
 #define LMatrix4d char
 #define LMatrix4f char
 #define LPoint2 char
+#define LPoint2d char
 #define LPoint2f char
 #define LPoint2i char
 #define LPoint3 char
+#define LPoint3d char
 #define LPoint3f char
 #define LPoint3i char
+#define LPoint4d char
+#define LPoint4f char
+#define LPoint4i char
 #define LQuaternion char
 #define LTexCoord3 char
 #define LVecBase2 char
 #define LVecBase2d char
+#define LVecBase2d$_EVector2 char
 #define LVecBase2f char
 #define LVecBase2f$_EVector2 char
 #define LVecBase2i char
 #define LVecBase2i$_EVector2 char
 #define LVecBase3 char
 #define LVecBase3d char
+#define LVecBase3d$_EVector3 char
 #define LVecBase3f char
 #define LVecBase3f$_EVector3 char
 #define LVecBase3i char
 #define LVecBase3i$_EVector3 char
 #define LVecBase4 char
 #define LVecBase4d char
+#define LVecBase4d$_EVector4 char
 #define LVecBase4f char
 #define LVecBase4f$_EVector4 char
 #define LVecBase4i char
 #define LVecBase4i$_EVector4 char
 #define LVector2 char
+#define LVector2d char
 #define LVector2f char
 #define LVector2i char
 #define LVector3 char
+#define LVector3d char
 #define LVector3f char
 #define LVector3i char
+#define LVector4d char
+#define LVector4f char
+#define LVector4i char
 #define Lens char
 #define Lens$_StereoChannel char
 #define LensNode char
@@ -265,6 +278,7 @@
 #define TypedReferenceCount char
 #define TypedWritable char
 #define TypedWritableReferenceCount char
+#define UnalignedLVecBase4d char
 #define UnalignedLVecBase4f char
 #define UnalignedLVecBase4i char
 #define UpdateSeq char
@@ -4309,6 +4323,46 @@ extern int InternalName$41$get_type(InternalName const *self);
 extern int InternalName$42$force_init_type(InternalName *self);
 
 
+// LPoint2d
+
+// _inCAAAAtKnR : C++() ==> C()
+extern LPoint2d * LPoint2d$1$LPoint2d(void);
+
+// _inCAAAAJNdF : C++(LPoint2d const &) ==> C(LPoint2d const *)
+extern LPoint2d * LPoint2d$2$LPoint2d(LPoint2d const *arg0);
+
+// _inCAAAAkCZP : C++(LVecBase2d const &copy) ==> C(LVecBase2d const *)
+extern LPoint2d * LPoint2d$3$LPoint2d(LVecBase2d const *copy);
+// COLLISION : LPoint2d_C_ctor_p_p LPoint2d$3$LPoint2d
+
+// _inCAAAA38Ro : C++(double fill_value) ==> C(double)
+extern LPoint2d * LPoint2d$4$LPoint2d(double fill_value);
+
+// _inCAAAAVLaV : C++(double x, double y) ==> C(double, double)
+extern LPoint2d * LPoint2d$5$LPoint2d(double x, double y);
+
+// _inCAAAArnmp : C++() ==> C()
+extern LPoint2d const * LPoint2d$6$zero(void);
+
+// _inCAAAAAGP2 : C++() ==> C()
+extern LPoint2d const * LPoint2d$7$unit_x(void);
+
+// _inCAAAAYRZ2 : C++() ==> C()
+extern LPoint2d const * LPoint2d$8$unit_y(void);
+
+// _inCAAAAdqyw : C++() ==> C(LPoint2d const *)
+extern LPoint2d * LPoint2d$9$normalized(LPoint2d const *self);
+
+// _inCAAAAi_k4 : C++(LVecBase2d const &onto) ==> C(LPoint2d const *, LVecBase2d const *)
+extern LPoint2d * LPoint2d$10$project(LPoint2d const *self, LVecBase2d const *onto);
+
+// _inCAAAAmtGF : C++() ==> C()
+extern int LPoint2d$11$get_class_type(void);
+
+// _inCAAAA1Skj : C++() ==> C()
+extern void LPoint2d$12$init_type(void);
+
+
 // LPoint2f
 
 // _inCAAAAzKKY : C++() ==> C()
@@ -4383,6 +4437,76 @@ extern int LPoint2i$9$get_class_type(void);
 extern void LPoint2i$10$init_type(void);
 
 
+// LPoint3d
+
+// _inCAAAAt3tX : C++() ==> C()
+extern LPoint3d * LPoint3d$1$LPoint3d(void);
+
+// _inCAAAApSLM : C++(LPoint3d const &) ==> C(LPoint3d const *)
+extern LPoint3d * LPoint3d$2$LPoint3d(LPoint3d const *arg0);
+
+// _inCAAAA9DSo : C++(LVecBase2d const &copy, double z) ==> C(LVecBase2d const *, double)
+extern LPoint3d * LPoint3d$3$LPoint3d(LVecBase2d const *copy, double z);
+
+// _inCAAAASkXG : C++(LVecBase3d const &copy) ==> C(LVecBase3d const *)
+extern LPoint3d * LPoint3d$4$LPoint3d(LVecBase3d const *copy);
+// COLLISION : LPoint3d_C_ctor_p_p LPoint3d$4$LPoint3d
+
+// _inCAAAA3ZYu : C++(double fill_value) ==> C(double)
+extern LPoint3d * LPoint3d$5$LPoint3d(double fill_value);
+
+// _inCAAAAk1qU : C++(double x, double y, double z) ==> C(double, double, double)
+extern LPoint3d * LPoint3d$6$LPoint3d(double x, double y, double z);
+
+// _inCAAAAru0q : C++() ==> C()
+extern LPoint3d const * LPoint3d$7$zero(void);
+
+// _inCAAAAAPd3 : C++() ==> C()
+extern LPoint3d const * LPoint3d$8$unit_x(void);
+
+// _inCAAAAYen3 : C++() ==> C()
+extern LPoint3d const * LPoint3d$9$unit_y(void);
+
+// _inCAAAAQpw3 : C++() ==> C()
+extern LPoint3d const * LPoint3d$10$unit_z(void);
+
+// _inCAAAAOilp : C++() ==> C(LPoint3d const *)
+extern LPoint2d * LPoint3d$11$get_xy(LPoint3d const *self);
+
+// _inCAAAAWTvp : C++() ==> C(LPoint3d const *)
+extern LPoint2d * LPoint3d$12$get_xz(LPoint3d const *self);
+
+// _inCAAAAIHvZ : C++() ==> C(LPoint3d const *)
+extern LPoint2d * LPoint3d$13$get_yz(LPoint3d const *self);
+
+// _inCAAAAwvhl : C++(LVecBase3d const &other) ==> C(LPoint3d const *, LVecBase3d const *)
+extern LPoint3d * LPoint3d$14$cross(LPoint3d const *self, LVecBase3d const *other);
+
+// _inCAAAAdTAy : C++() ==> C(LPoint3d const *)
+extern LPoint3d * LPoint3d$15$normalized(LPoint3d const *self);
+
+// _inCAAAAjmUN : C++(LVecBase3d const &onto) ==> C(LPoint3d const *, LVecBase3d const *)
+extern LPoint3d * LPoint3d$16$project(LPoint3d const *self, LVecBase3d const *onto);
+
+// _inCAAAAXRr5 : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LPoint3d const * LPoint3d$17$origin(CoordinateSystem cs);
+
+// _inCAAAAN1zx : C++() ==> C()
+extern LPoint3d const * LPoint3d$18$origin(void);
+
+// _inCAAAAx8Y0 : C++(double right, double fwd, double up, CoordinateSystem cs) ==> C(double, double, double, CoordinateSystem)
+extern LPoint3d * LPoint3d$19$rfu(double right, double fwd, double up, CoordinateSystem cs);
+
+// _inCAAAAs_qG : C++(double right, double fwd, double up) ==> C(double, double, double)
+extern LPoint3d * LPoint3d$20$rfu(double right, double fwd, double up);
+
+// _inCAAAAmkUG : C++() ==> C()
+extern int LPoint3d$21$get_class_type(void);
+
+// _inCAAAA1byk : C++() ==> C()
+extern void LPoint3d$22$init_type(void);
+
+
 // LPoint3f
 
 // _inCAAAAz3Qe : C++() ==> C()
@@ -4451,6 +4575,397 @@ extern int LPoint3f$21$get_class_type(void);
 
 // _inCAAAA0b7y : C++() ==> C()
 extern void LPoint3f$22$init_type(void);
+
+
+// LPoint3i
+
+// _inCAAAA8XFo : C++() ==> C()
+extern LPoint3i * LPoint3i$1$LPoint3i(void);
+
+// _inCAAAAZBL_ : C++(LPoint3i const &) ==> C(LPoint3i const *)
+extern LPoint3i * LPoint3i$2$LPoint3i(LPoint3i const *arg0);
+
+// _inCAAAApsqB : C++(LVecBase2i const &copy, int z) ==> C(LVecBase2i const *, int)
+extern LPoint3i * LPoint3i$3$LPoint3i(LVecBase2i const *copy, int z);
+
+// _inCAAAApsvi : C++(LVecBase3i const &copy) ==> C(LVecBase3i const *)
+extern LPoint3i * LPoint3i$4$LPoint3i(LVecBase3i const *copy);
+// COLLISION : LPoint3i_C_ctor_p_p LPoint3i$4$LPoint3i
+
+// _inCAAAAX_xA : C++(int fill_value) ==> C(int)
+extern LPoint3i * LPoint3i$5$LPoint3i(int fill_value);
+
+// _inCAAAATdST : C++(int x, int y, int z) ==> C(int, int, int)
+extern LPoint3i * LPoint3i$6$LPoint3i(int x, int y, int z);
+
+// _inCAAAAkOFu : C++() ==> C()
+extern LPoint3i const * LPoint3i$7$zero(void);
+
+// _inCAAAADvu6 : C++() ==> C()
+extern LPoint3i const * LPoint3i$8$unit_x(void);
+
+// _inCAAAAb_46 : C++() ==> C()
+extern LPoint3i const * LPoint3i$9$unit_y(void);
+
+// _inCAAAATJC7 : C++() ==> C()
+extern LPoint3i const * LPoint3i$10$unit_z(void);
+
+// _inCAAAAzC3s : C++() ==> C(LPoint3i const *)
+extern LPoint2i * LPoint3i$11$get_xy(LPoint3i const *self);
+
+// _inCAAAArzAt : C++() ==> C(LPoint3i const *)
+extern LPoint2i * LPoint3i$12$get_xz(LPoint3i const *self);
+
+// _inCAAAANnAd : C++() ==> C(LPoint3i const *)
+extern LPoint2i * LPoint3i$13$get_yz(LPoint3i const *self);
+
+// _inCAAAAV42r : C++(LVecBase3i const &other) ==> C(LPoint3i const *, LVecBase3i const *)
+extern LPoint3i * LPoint3i$14$cross(LPoint3i const *self, LVecBase3i const *other);
+
+// _inCAAAAUx98 : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LPoint3i const * LPoint3i$15$origin(CoordinateSystem cs);
+
+// _inCAAAAOVE1 : C++() ==> C()
+extern LPoint3i const * LPoint3i$16$origin(void);
+
+// _inCAAAAShPP : C++(int right, int fwd, int up, CoordinateSystem cs) ==> C(int, int, int, CoordinateSystem)
+extern LPoint3i * LPoint3i$17$rfu(int right, int fwd, int up, CoordinateSystem cs);
+
+// _inCAAAArQFh : C++(int right, int fwd, int up) ==> C(int, int, int)
+extern LPoint3i * LPoint3i$18$rfu(int right, int fwd, int up);
+
+// _inCAAAApElJ : C++() ==> C()
+extern int LPoint3i$19$get_class_type(void);
+
+// _inCAAAAy7Fo : C++() ==> C()
+extern void LPoint3i$20$init_type(void);
+
+
+// LPoint4d
+
+// _inCAAAAtU0d : C++() ==> C()
+extern LPoint4d * LPoint4d$1$LPoint4d(void);
+
+// _inCAAAAJ44S : C++(LPoint4d const &) ==> C(LPoint4d const *)
+extern LPoint4d * LPoint4d$2$LPoint4d(LPoint4d const *arg0);
+
+// _inCAAAAzkRf : C++(LVecBase3d const &copy, double w) ==> C(LVecBase3d const *, double)
+extern LPoint4d * LPoint4d$3$LPoint4d(LVecBase3d const *copy, double w);
+
+// _inCAAAAJZW9 : C++(LVecBase4d const &copy) ==> C(LVecBase4d const *)
+extern LPoint4d * LPoint4d$4$LPoint4d(LVecBase4d const *copy);
+// COLLISION : LPoint4d_C_ctor_p_p LPoint4d$4$LPoint4d
+
+// _inCAAAA36e0 : C++(double fill_value) ==> C(double)
+extern LPoint4d * LPoint4d$5$LPoint4d(double fill_value);
+
+// _inCAAAACpeG : C++(double x, double y, double z, double w) ==> C(double, double, double, double)
+extern LPoint4d * LPoint4d$6$LPoint4d(double x, double y, double z, double w);
+
+// _inCAAAAr1Cs : C++() ==> C()
+extern LPoint4d const * LPoint4d$7$zero(void);
+
+// _inCAAAAA0r4 : C++() ==> C()
+extern LPoint4d const * LPoint4d$8$unit_x(void);
+
+// _inCAAAAYH14 : C++() ==> C()
+extern LPoint4d const * LPoint4d$9$unit_y(void);
+
+// _inCAAAAQW_4 : C++() ==> C()
+extern LPoint4d const * LPoint4d$10$unit_z(void);
+
+// _inCAAAAIlh4 : C++() ==> C()
+extern LPoint4d const * LPoint4d$11$unit_w(void);
+
+// _inCAAAAnoZd : C++() ==> C(LPoint4d const *)
+extern LPoint3d * LPoint4d$12$get_xyz(LPoint4d const *self);
+
+// _inCAAAAO5zq : C++() ==> C(LPoint4d const *)
+extern LPoint2d * LPoint4d$13$get_xy(LPoint4d const *self);
+
+// _inCAAAAdcOz : C++() ==> C(LPoint4d const *)
+extern LPoint4d * LPoint4d$14$normalized(LPoint4d const *self);
+
+// _inCAAAAjtEi : C++(LVecBase4d const &onto) ==> C(LPoint4d const *, LVecBase4d const *)
+extern LPoint4d * LPoint4d$15$project(LPoint4d const *self, LVecBase4d const *onto);
+
+// _inCAAAAmbiH : C++() ==> C()
+extern int LPoint4d$16$get_class_type(void);
+
+// _inCAAAA1gAm : C++() ==> C()
+extern void LPoint4d$17$init_type(void);
+
+
+// LPoint4f
+
+// _inCAAAAzUXk : C++() ==> C()
+extern LPoint4f * LPoint4f$1$LPoint4f(void);
+
+// _inCAAAACYfA : C++(LPoint4f const &) ==> C(LPoint4f const *)
+extern LPoint4f * LPoint4f$2$LPoint4f(LPoint4f const *arg0);
+
+// _inCAAAA9aCs : C++(LVecBase3f const &copy, float w) ==> C(LVecBase3f const *, float)
+extern LPoint4f * LPoint4f$3$LPoint4f(LVecBase3f const *copy, float w);
+
+// _inCAAAASD57 : C++(LVecBase4f const &copy) ==> C(LVecBase4f const *)
+extern LPoint4f * LPoint4f$4$LPoint4f(LVecBase4f const *copy);
+// COLLISION : LPoint4f_C_ctor_p_p LPoint4f$4$LPoint4f
+
+// _inCAAAACj8c : C++(float fill_value) ==> C(float)
+extern LPoint4f * LPoint4f$5$LPoint4f(float fill_value);
+
+// _inCAAAAzr8M : C++(float x, float y, float z, float w) ==> C(float, float, float, float)
+extern LPoint4f * LPoint4f$6$LPoint4f(float x, float y, float z, float w);
+
+// _inCAAAAq1J6 : C++() ==> C()
+extern LPoint4f const * LPoint4f$7$zero(void);
+
+// _inCAAAAC0yG : C++() ==> C()
+extern LPoint4f const * LPoint4f$8$unit_x(void);
+
+// _inCAAAAaH8G : C++() ==> C()
+extern LPoint4f const * LPoint4f$9$unit_y(void);
+
+// _inCAAAASWGH : C++() ==> C()
+extern LPoint4f const * LPoint4f$10$unit_z(void);
+
+// _inCAAAAKloG : C++() ==> C()
+extern LPoint4f const * LPoint4f$11$unit_w(void);
+
+// _inCAAAAkogr : C++() ==> C(LPoint4f const *)
+extern LPoint3f * LPoint4f$12$get_xyz(LPoint4f const *self);
+
+// _inCAAAAx564 : C++() ==> C(LPoint4f const *)
+extern LPoint2f * LPoint4f$13$get_xy(LPoint4f const *self);
+
+// _inCAAAATcVB : C++() ==> C(LPoint4f const *)
+extern LPoint4f * LPoint4f$14$normalized(LPoint4f const *self);
+
+// _inCAAAAIt7R : C++(LVecBase4f const &onto) ==> C(LPoint4f const *, LVecBase4f const *)
+extern LPoint4f * LPoint4f$15$project(LPoint4f const *self, LVecBase4f const *onto);
+
+// _inCAAAAnbpV : C++() ==> C()
+extern int LPoint4f$16$get_class_type(void);
+
+// _inCAAAA0gJ0 : C++() ==> C()
+extern void LPoint4f$17$init_type(void);
+
+
+// LPoint4i
+
+// _inCAAAA80Lu : C++() ==> C()
+extern LPoint4i * LPoint4i$1$LPoint4i(void);
+
+// _inCAAAA4r4E : C++(LPoint4i const &) ==> C(LPoint4i const *)
+extern LPoint4i * LPoint4i$2$LPoint4i(LPoint4i const *arg0);
+
+// _inCAAAAwJp4 : C++(LVecBase3i const &copy, int w) ==> C(LVecBase3i const *, int)
+extern LPoint4i * LPoint4i$3$LPoint4i(LVecBase3i const *copy, int w);
+
+// _inCAAAAnRtZ : C++(LVecBase4i const &copy) ==> C(LVecBase4i const *)
+extern LPoint4i * LPoint4i$4$LPoint4i(LVecBase4i const *copy);
+// COLLISION : LPoint4i_C_ctor_p_p LPoint4i$4$LPoint4i
+
+// _inCAAAAXc4G : C++(int fill_value) ==> C(int)
+extern LPoint4i * LPoint4i$5$LPoint4i(int fill_value);
+
+// _inCAAAAl_bH : C++(int x, int y, int z, int w) ==> C(int, int, int, int)
+extern LPoint4i * LPoint4i$6$LPoint4i(int x, int y, int z, int w);
+
+// _inCAAAAkVTv : C++() ==> C()
+extern LPoint4i const * LPoint4i$7$zero(void);
+
+// _inCAAAADU97 : C++() ==> C()
+extern LPoint4i const * LPoint4i$8$unit_x(void);
+
+// _inCAAAAbnG8 : C++() ==> C()
+extern LPoint4i const * LPoint4i$9$unit_y(void);
+
+// _inCAAAAT2Q8 : C++() ==> C()
+extern LPoint4i const * LPoint4i$10$unit_z(void);
+
+// _inCAAAALFz7 : C++() ==> C()
+extern LPoint4i const * LPoint4i$11$unit_w(void);
+
+// _inCAAAAiIqg : C++() ==> C(LPoint4i const *)
+extern LPoint3i * LPoint4i$12$get_xyz(LPoint4i const *self);
+
+// _inCAAAAzZFu : C++() ==> C(LPoint4i const *)
+extern LPoint2i * LPoint4i$13$get_xy(LPoint4i const *self);
+
+// _inCAAAAp70K : C++() ==> C()
+extern int LPoint4i$14$get_class_type(void);
+
+// _inCAAAAyASp : C++() ==> C()
+extern void LPoint4i$15$init_type(void);
+
+
+// LVecBase2d
+
+// _inCAAAAGdnQ : C++() ==> C()
+extern LVecBase2d * LVecBase2d$1$LVecBase2d(void);
+
+// _inCAAAACUdE : C++(LVecBase2d const &) ==> C(LVecBase2d const *)
+extern LVecBase2d * LVecBase2d$2$LVecBase2d(LVecBase2d const *arg0);
+
+// _inCAAAA_8nX : C++(LVecBase2d::EVector2 const &v) ==> C(LVecBase2d::EVector2 const *)
+extern LVecBase2d * LVecBase2d$3$LVecBase2d(LVecBase2d$_EVector2 const *v);
+// COLLISION : LVecBase2d_C_ctor_p_p LVecBase2d$3$LVecBase2d
+
+// _inCAAAAi9B6 : C++(double fill_value) ==> C(double)
+extern LVecBase2d * LVecBase2d$4$LVecBase2d(double fill_value);
+
+// _inCAAAACY0M : C++(double x, double y) ==> C(double, double)
+extern LVecBase2d * LVecBase2d$5$LVecBase2d(double x, double y);
+
+// _inCAAAAxrvf : C++() ==> C()
+extern LVecBase2d const * LVecBase2d$6$zero(void);
+
+// _inCAAAA52lD : C++() ==> C()
+extern LVecBase2d const * LVecBase2d$7$unit_x(void);
+
+// _inCAAAA72zf : C++() ==> C()
+extern LVecBase2d const * LVecBase2d$8$unit_y(void);
+
+// _inCAAAAP1fJ : C++() ==> C()
+extern int LVecBase2d$9$size(void);
+
+// _inCAAAAmuWQ : C++() ==> C(LVecBase2d const *)
+extern bool LVecBase2d$10$is_nan(LVecBase2d const *self);
+
+// _inCAAAAUrv1 : C++(int i) ==> C(LVecBase2d const *, int)
+extern double LVecBase2d$11$get_cell(LVecBase2d const *self, int i);
+
+// _inCAAAA3_g8 : C++(int i, double value) ==> C(LVecBase2d *, int, double)
+extern void LVecBase2d$12$set_cell(LVecBase2d *self, int i, double value);
+
+// _inCAAAAQsPh : C++() ==> C(LVecBase2d const *)
+extern double LVecBase2d$13$get_x(LVecBase2d const *self);
+
+// _inCAAAAQIIm : C++() ==> C(LVecBase2d const *)
+extern double LVecBase2d$14$get_y(LVecBase2d const *self);
+
+// _inCAAAAKZlY : C++(double value) ==> C(LVecBase2d *, double)
+extern void LVecBase2d$15$set_x(LVecBase2d *self, double value);
+
+// _inCAAAAK9dd : C++(double value) ==> C(LVecBase2d *, double)
+extern void LVecBase2d$16$set_y(LVecBase2d *self, double value);
+
+// _inCAAAA0P6a : C++(int i, double value) ==> C(LVecBase2d *, int, double)
+extern void LVecBase2d$17$add_to_cell(LVecBase2d *self, int i, double value);
+
+// _inCAAAArQCX : C++(double value) ==> C(LVecBase2d *, double)
+extern void LVecBase2d$18$add_x(LVecBase2d *self, double value);
+
+// _inCAAAAr06b : C++(double value) ==> C(LVecBase2d *, double)
+extern void LVecBase2d$19$add_y(LVecBase2d *self, double value);
+
+// _inCAAAAu9TU : C++() ==> C(LVecBase2d const *)
+extern void LVecBase2d$20$get_data(LVecBase2d const *self);
+
+// _inCAAAAkVkl : C++() ==> C()
+extern int LVecBase2d$21$get_num_components(void);
+
+// _inCAAAAbbqU : C++() ==> C(LVecBase2d *)
+extern void LVecBase2d$22$begin(LVecBase2d *self);
+
+// _inCAAAAeeU7 : C++() ==> C(LVecBase2d const *)
+extern void LVecBase2d$23$begin(LVecBase2d const *self);
+// COLLISION : LVecBase2d_C_begin_v_p LVecBase2d$23$begin
+
+// _inCAAAA1d_r : C++() ==> C(LVecBase2d *)
+extern void LVecBase2d$24$end(LVecBase2d *self);
+
+// _inCAAAAneLg : C++() ==> C(LVecBase2d const *)
+extern void LVecBase2d$25$end(LVecBase2d const *self);
+// COLLISION : LVecBase2d_C_end_v_p LVecBase2d$25$end
+
+// _inCAAAAsasc : C++(double fill_value) ==> C(LVecBase2d *, double)
+extern void LVecBase2d$26$fill(LVecBase2d *self, double fill_value);
+
+// _inCAAAAbAy_ : C++(double x, double y) ==> C(LVecBase2d *, double, double)
+extern void LVecBase2d$27$set(LVecBase2d *self, double x, double y);
+
+// _inCAAAAcCJC : C++(LVecBase2d const &other) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern double LVecBase2d$28$dot(LVecBase2d const *self, LVecBase2d const *other);
+
+// _inCAAAAqI8r : C++() ==> C(LVecBase2d const *)
+extern double LVecBase2d$29$length_squared(LVecBase2d const *self);
+
+// _inCAAAAMHIM : C++() ==> C(LVecBase2d const *)
+extern double LVecBase2d$30$length(LVecBase2d const *self);
+
+// _inCAAAAZAih : C++() ==> C(LVecBase2d *)
+extern bool LVecBase2d$31$normalize(LVecBase2d *self);
+
+// _inCAAAAJWS_ : C++() ==> C(LVecBase2d const *)
+extern LVecBase2d * LVecBase2d$32$normalized(LVecBase2d const *self);
+
+// _inCAAAAmCxs : C++(LVecBase2d const &onto) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern LVecBase2d * LVecBase2d$33$project(LVecBase2d const *self, LVecBase2d const *onto);
+
+// _inCAAAAcKgs : C++(LVecBase2d const &other) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern int LVecBase2d$34$compare_to(LVecBase2d const *self, LVecBase2d const *other);
+
+// _inCAAAAe1W3 : C++(LVecBase2d const &other, double threshold) ==> C(LVecBase2d const *, LVecBase2d const *, double)
+extern int LVecBase2d$35$compare_to(LVecBase2d const *self, LVecBase2d const *other, double threshold);
+
+// _inCAAAAF_5A : C++() ==> C(LVecBase2d const *)
+extern std$_size_t LVecBase2d$36$get_hash(LVecBase2d const *self);
+
+// _inCAAAA1_3f : C++(double threshold) ==> C(LVecBase2d const *, double)
+extern std$_size_t LVecBase2d$37$get_hash(LVecBase2d const *self, double threshold);
+
+// _inCAAAAvnO3 : C++(std::size_t hash) ==> C(LVecBase2d const *, std::size_t)
+extern std$_size_t LVecBase2d$38$add_hash(LVecBase2d const *self, std$_size_t hash);
+
+// _inCAAAAxLlP : C++(std::size_t hash, double threshold) ==> C(LVecBase2d const *, std::size_t, double)
+extern std$_size_t LVecBase2d$39$add_hash(LVecBase2d const *self, std$_size_t hash, double threshold);
+
+// _inCAAAAC65R : C++(ChecksumHashGenerator &hashgen) ==> C(LVecBase2d const *, ChecksumHashGenerator *)
+extern void LVecBase2d$40$generate_hash(LVecBase2d const *self, ChecksumHashGenerator *hashgen);
+
+// _inCAAAA1h_1 : C++(ChecksumHashGenerator &hashgen, double threshold) ==> C(LVecBase2d const *, ChecksumHashGenerator *, double)
+extern void LVecBase2d$41$generate_hash(LVecBase2d const *self, ChecksumHashGenerator *hashgen, double threshold);
+
+// _inCAAAAqaaN : C++(LVecBase2d const &other) ==> C(LVecBase2d *, LVecBase2d const *)
+extern void LVecBase2d$42$componentwise_mult(LVecBase2d *self, LVecBase2d const *other);
+
+// _inCAAAA48dK : C++(LVecBase2d const &other) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern LVecBase2d * LVecBase2d$43$fmax(LVecBase2d const *self, LVecBase2d const *other);
+
+// _inCAAAAWI9I : C++(LVecBase2d const &other) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern LVecBase2d * LVecBase2d$44$fmin(LVecBase2d const *self, LVecBase2d const *other);
+
+// _inCAAAAnTK9 : C++(LVecBase2d const &other) ==> C(LVecBase2d const *, LVecBase2d const *)
+extern bool LVecBase2d$45$almost_equal(LVecBase2d const *self, LVecBase2d const *other);
+
+// _inCAAAA_OqN : C++(LVecBase2d const &other, double threshold) ==> C(LVecBase2d const *, LVecBase2d const *, double)
+extern bool LVecBase2d$46$almost_equal(LVecBase2d const *self, LVecBase2d const *other, double threshold);
+
+// _inCAAAA15IH : C++(std::ostream &out) ==> C(LVecBase2d const *, std::ostream *)
+extern void LVecBase2d$47$output(LVecBase2d const *self, std$_ostream *out);
+
+// _inCAAAAvThE : C++(Datagram &destination) ==> C(LVecBase2d const *, Datagram *)
+extern void LVecBase2d$48$write_datagram_fixed(LVecBase2d const *self, Datagram *destination);
+
+// _inCAAAAvkCB : C++(DatagramIterator &source) ==> C(LVecBase2d *, DatagramIterator *)
+extern void LVecBase2d$49$read_datagram_fixed(LVecBase2d *self, DatagramIterator *source);
+
+// _inCAAAAYKaB : C++(Datagram &destination) ==> C(LVecBase2d const *, Datagram *)
+extern void LVecBase2d$50$write_datagram(LVecBase2d const *self, Datagram *destination);
+
+// _inCAAAAYCdT : C++(DatagramIterator &source) ==> C(LVecBase2d *, DatagramIterator *)
+extern void LVecBase2d$51$read_datagram(LVecBase2d *self, DatagramIterator *source);
+
+// _inCAAAAQUfX : C++() ==> C(LVecBase2d const *)
+extern LVecBase2d$_EVector2 * LVecBase2d$52$get_v(LVecBase2d const *self);
+
+// _inCAAAAvAPQ : C++() ==> C()
+extern int LVecBase2d$53$get_class_type(void);
+
+// _inCAAAAoLaw : C++() ==> C()
+extern void LVecBase2d$54$init_type(void);
 
 
 // LVecBase2f
@@ -4763,6 +5278,207 @@ extern int LVecBase2i$45$get_class_type(void);
 
 // _inCAAAAKrbI : C++() ==> C()
 extern void LVecBase2i$46$init_type(void);
+
+
+// LVecBase3d
+
+// _inCAAAAjiry : C++() ==> C()
+extern LVecBase3d * LVecBase3d$1$LVecBase3d(void);
+
+// _inCAAAAOLqf : C++(LVecBase2d const &copy, double z) ==> C(LVecBase2d const *, double)
+extern LVecBase3d * LVecBase3d$2$LVecBase3d(LVecBase2d const *copy, double z);
+
+// _inCAAAAuakN : C++(LVecBase3d const &) ==> C(LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$3$LVecBase3d(LVecBase3d const *arg0);
+
+// _inCAAAAN8un : C++(LVecBase3d::EVector3 const &v) ==> C(LVecBase3d::EVector3 const *)
+extern LVecBase3d * LVecBase3d$4$LVecBase3d(LVecBase3d$_EVector3 const *v);
+// COLLISION : LVecBase3d_C_ctor_p_p LVecBase3d$4$LVecBase3d
+
+// _inCAAAA_fFc : C++(double fill_value) ==> C(double)
+extern LVecBase3d * LVecBase3d$5$LVecBase3d(double fill_value);
+
+// _inCAAAApccq : C++(double x, double y, double z) ==> C(double, double, double)
+extern LVecBase3d * LVecBase3d$6$LVecBase3d(double x, double y, double z);
+
+// _inCAAAAtrfB : C++() ==> C()
+extern LVecBase3d const * LVecBase3d$7$zero(void);
+
+// _inCAAAAExVl : C++() ==> C()
+extern LVecBase3d const * LVecBase3d$8$unit_x(void);
+
+// _inCAAAAHxjB : C++() ==> C()
+extern LVecBase3d const * LVecBase3d$9$unit_y(void);
+
+// _inCAAAABxxd : C++() ==> C()
+extern LVecBase3d const * LVecBase3d$10$unit_z(void);
+
+// _inCAAAA61Pr : C++() ==> C()
+extern int LVecBase3d$11$size(void);
+
+// _inCAAAA7uGy : C++() ==> C(LVecBase3d const *)
+extern bool LVecBase3d$12$is_nan(LVecBase3d const *self);
+
+// _inCAAAAgqfX : C++(int i) ==> C(LVecBase3d const *, int)
+extern double LVecBase3d$13$get_cell(LVecBase3d const *self, int i);
+
+// _inCAAAA8t_C : C++() ==> C(LVecBase3d const *)
+extern double LVecBase3d$14$get_x(LVecBase3d const *self);
+
+// _inCAAAA8J4H : C++() ==> C(LVecBase3d const *)
+extern double LVecBase3d$15$get_y(LVecBase3d const *self);
+
+// _inCAAAA8lwM : C++() ==> C(LVecBase3d const *)
+extern double LVecBase3d$16$get_z(LVecBase3d const *self);
+
+// _inCAAAAj_Qe : C++(int i, double value) ==> C(LVecBase3d *, int, double)
+extern void LVecBase3d$17$set_cell(LVecBase3d *self, int i, double value);
+
+// _inCAAAAfZV6 : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$18$set_x(LVecBase3d *self, double value);
+
+// _inCAAAAf9N_ : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$19$set_y(LVecBase3d *self, double value);
+
+// _inCAAAAeBGE : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$20$set_z(LVecBase3d *self, double value);
+
+// _inCAAAAwlZ5 : C++() ==> C(LVecBase3d const *)
+extern LVecBase2d * LVecBase3d$21$get_xy(LVecBase3d const *self);
+
+// _inCAAAA1lnV : C++() ==> C(LVecBase3d const *)
+extern LVecBase2d * LVecBase3d$22$get_xz(LVecBase3d const *self);
+
+// _inCAAAA1Jfa : C++() ==> C(LVecBase3d const *)
+extern LVecBase2d * LVecBase3d$23$get_yz(LVecBase3d const *self);
+
+// _inCAAAALMq8 : C++(int i, double value) ==> C(LVecBase3d *, int, double)
+extern void LVecBase3d$24$add_to_cell(LVecBase3d *self, int i, double value);
+
+// _inCAAAA0Qy4 : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$25$add_x(LVecBase3d *self, double value);
+
+// _inCAAAA00q9 : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$26$add_y(LVecBase3d *self, double value);
+
+// _inCAAAA3YjC : C++(double value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$27$add_z(LVecBase3d *self, double value);
+
+// _inCAAAAd9D2 : C++() ==> C(LVecBase3d const *)
+extern void LVecBase3d$28$get_data(LVecBase3d const *self);
+
+// _inCAAAAQVUH : C++() ==> C()
+extern int LVecBase3d$29$get_num_components(void);
+
+// _inCAAAAMba2 : C++() ==> C(LVecBase3d *)
+extern void LVecBase3d$30$begin(LVecBase3d *self);
+
+// _inCAAAAyeEd : C++() ==> C(LVecBase3d const *)
+extern void LVecBase3d$31$begin(LVecBase3d const *self);
+// COLLISION : LVecBase3d_C_begin_v_p LVecBase3d$31$begin
+
+// _inCAAAAZSvN : C++() ==> C(LVecBase3d *)
+extern void LVecBase3d$32$end(LVecBase3d *self);
+
+// _inCAAAA7e7B : C++() ==> C(LVecBase3d const *)
+extern void LVecBase3d$33$end(LVecBase3d const *self);
+// COLLISION : LVecBase3d_C_end_v_p LVecBase3d$33$end
+
+// _inCAAAAxac_ : C++(double fill_value) ==> C(LVecBase3d *, double)
+extern void LVecBase3d$34$fill(LVecBase3d *self, double fill_value);
+
+// _inCAAAAL816 : C++(double x, double y, double z) ==> C(LVecBase3d *, double, double, double)
+extern void LVecBase3d$35$set(LVecBase3d *self, double x, double y, double z);
+
+// _inCAAAA4N6j : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern double LVecBase3d$36$dot(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAAGIsN : C++() ==> C(LVecBase3d const *)
+extern double LVecBase3d$37$length_squared(LVecBase3d const *self);
+
+// _inCAAAA5E4t : C++() ==> C(LVecBase3d const *)
+extern double LVecBase3d$38$length(LVecBase3d const *self);
+
+// _inCAAAAtBSD : C++() ==> C(LVecBase3d *)
+extern bool LVecBase3d$39$normalize(LVecBase3d *self);
+
+// _inCAAAA9XCg : C++() ==> C(LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$40$normalized(LVecBase3d const *self);
+
+// _inCAAAAa8hq : C++(LVecBase3d const &onto) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$41$project(LVecBase3d const *self, LVecBase3d const *onto);
+
+// _inCAAAAvmLU : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$42$cross(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAAwK45 : C++() ==> C(LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$43$get_standardized_hpr(LVecBase3d const *self);
+
+// _inCAAAAAqT1 : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern int LVecBase3d$44$compare_to(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAADVKA : C++(LVecBase3d const &other, double threshold) ==> C(LVecBase3d const *, LVecBase3d const *, double)
+extern int LVecBase3d$45$compare_to(LVecBase3d const *self, LVecBase3d const *other, double threshold);
+
+// _inCAAAAQ_pi : C++() ==> C(LVecBase3d const *)
+extern std$_size_t LVecBase3d$46$get_hash(LVecBase3d const *self);
+
+// _inCAAAABwnB : C++(double threshold) ==> C(LVecBase3d const *, double)
+extern std$_size_t LVecBase3d$47$get_hash(LVecBase3d const *self, double threshold);
+
+// _inCAAAADn_Y : C++(std::size_t hash) ==> C(LVecBase3d const *, std::size_t)
+extern std$_size_t LVecBase3d$48$add_hash(LVecBase3d const *self, std$_size_t hash);
+
+// _inCAAAAeLVx : C++(std::size_t hash, double threshold) ==> C(LVecBase3d const *, std::size_t, double)
+extern std$_size_t LVecBase3d$49$add_hash(LVecBase3d const *self, std$_size_t hash, double threshold);
+
+// _inCAAAA_lpz : C++(ChecksumHashGenerator &hashgen) ==> C(LVecBase3d const *, ChecksumHashGenerator *)
+extern void LVecBase3d$50$generate_hash(LVecBase3d const *self, ChecksumHashGenerator *hashgen);
+
+// _inCAAAAhhvX : C++(ChecksumHashGenerator &hashgen, double threshold) ==> C(LVecBase3d const *, ChecksumHashGenerator *, double)
+extern void LVecBase3d$51$generate_hash(LVecBase3d const *self, ChecksumHashGenerator *hashgen, double threshold);
+
+// _inCAAAAFpUv : C++(LVecBase3d const &other) ==> C(LVecBase3d *, LVecBase3d const *)
+extern void LVecBase3d$52$componentwise_mult(LVecBase3d *self, LVecBase3d const *other);
+
+// _inCAAAAN40s : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$53$fmax(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAAjFUr : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern LVecBase3d * LVecBase3d$54$fmin(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAAmWqm : C++(LVecBase3d const &other) ==> C(LVecBase3d *, LVecBase3d const *)
+extern void LVecBase3d$55$cross_into(LVecBase3d *self, LVecBase3d const *other);
+
+// _inCAAAAgl6W : C++(LVecBase3d const &other) ==> C(LVecBase3d const *, LVecBase3d const *)
+extern bool LVecBase3d$56$almost_equal(LVecBase3d const *self, LVecBase3d const *other);
+
+// _inCAAAA6Cbn : C++(LVecBase3d const &other, double threshold) ==> C(LVecBase3d const *, LVecBase3d const *, double)
+extern bool LVecBase3d$57$almost_equal(LVecBase3d const *self, LVecBase3d const *other, double threshold);
+
+// _inCAAAAq54o : C++(std::ostream &out) ==> C(LVecBase3d const *, std::ostream *)
+extern void LVecBase3d$58$output(LVecBase3d const *self, std$_ostream *out);
+
+// _inCAAAA8TRm : C++(Datagram &destination) ==> C(LVecBase3d const *, Datagram *)
+extern void LVecBase3d$59$write_datagram_fixed(LVecBase3d const *self, Datagram *destination);
+
+// _inCAAAA4kyi : C++(DatagramIterator &source) ==> C(LVecBase3d *, DatagramIterator *)
+extern void LVecBase3d$60$read_datagram_fixed(LVecBase3d *self, DatagramIterator *source);
+
+// _inCAAAAPKKj : C++(Datagram &destination) ==> C(LVecBase3d const *, Datagram *)
+extern void LVecBase3d$61$write_datagram(LVecBase3d const *self, Datagram *destination);
+
+// _inCAAAAkPM1 : C++(DatagramIterator &source) ==> C(LVecBase3d *, DatagramIterator *)
+extern void LVecBase3d$62$read_datagram(LVecBase3d *self, DatagramIterator *source);
+
+// _inCAAAA_VP5 : C++() ==> C(LVecBase3d const *)
+extern LVecBase3d$_EVector3 * LVecBase3d$63$get_v(LVecBase3d const *self);
+
+// _inCAAAAyA_x : C++() ==> C()
+extern int LVecBase3d$64$get_class_type(void);
+
+// _inCAAAAULKS : C++() ==> C()
+extern void LVecBase3d$65$init_type(void);
 
 
 // LVecBase3f
@@ -5138,6 +5854,219 @@ extern int LVecBase3i$55$get_class_type(void);
 
 // _inCAAAAZrLq : C++() ==> C()
 extern void LVecBase3i$56$init_type(void);
+
+
+// LVecBase4d
+
+// _inCAAAAfAuU : C++() ==> C()
+extern LVecBase4d * LVecBase4d$1$LVecBase4d(void);
+
+// _inCAAAAwq_z : C++(LPoint3d const &point) ==> C(LPoint3d const *)
+extern LVecBase4d * LVecBase4d$2$LVecBase4d(LPoint3d const *point);
+
+// _inCAAAAqJxo : C++(LVecBase3d const &copy, double w) ==> C(LVecBase3d const *, double)
+extern LVecBase4d * LVecBase4d$3$LVecBase4d(LVecBase3d const *copy, double w);
+
+// _inCAAAAKfrW : C++(LVecBase4d const &) ==> C(LVecBase4d const *)
+extern LVecBase4d * LVecBase4d$4$LVecBase4d(LVecBase4d const *arg0);
+// COLLISION : LVecBase4d_C_ctor_p_p LVecBase4d$4$LVecBase4d
+
+// _inCAAAAb013 : C++(LVecBase4d::EVector4 const &v) ==> C(LVecBase4d::EVector4 const *)
+extern LVecBase4d * LVecBase4d$5$LVecBase4d(LVecBase4d$_EVector4 const *v);
+// COLLISION : LVecBase4d_C_ctor_p_p LVecBase4d$5$LVecBase4d
+
+// _inCAAAAm8pA : C++(LVector3d const &vector) ==> C(LVector3d const *)
+extern LVecBase4d * LVecBase4d$6$LVecBase4d(LVector3d const *vector);
+// COLLISION : LVecBase4d_C_ctor_p_p LVecBase4d$6$LVecBase4d
+
+// _inCAAAA6Q3P : C++(UnalignedLVecBase4d const &copy) ==> C(UnalignedLVecBase4d const *)
+extern LVecBase4d * LVecBase4d$7$LVecBase4d(UnalignedLVecBase4d const *copy);
+// COLLISION : LVecBase4d_C_ctor_p_p LVecBase4d$7$LVecBase4d
+
+// _inCAAAA5BJ_ : C++(double fill_value) ==> C(double)
+extern LVecBase4d * LVecBase4d$8$LVecBase4d(double fill_value);
+
+// _inCAAAAGENf : C++(double x, double y, double z, double w) ==> C(double, double, double, double)
+extern LVecBase4d * LVecBase4d$9$LVecBase4d(double x, double y, double z, double w);
+
+// _inCAAAAYrPj : C++() ==> C()
+extern LVecBase4d const * LVecBase4d$10$zero(void);
+
+// _inCAAAAQxFH : C++() ==> C()
+extern LVecBase4d const * LVecBase4d$11$unit_x(void);
+
+// _inCAAAASxTj : C++() ==> C()
+extern LVecBase4d const * LVecBase4d$12$unit_y(void);
+
+// _inCAAAAsxh_ : C++() ==> C()
+extern LVecBase4d const * LVecBase4d$13$unit_z(void);
+
+// _inCAAAAVx3q : C++() ==> C()
+extern LVecBase4d const * LVecBase4d$14$unit_w(void);
+
+// _inCAAAAWK_M : C++() ==> C()
+extern int LVecBase4d$15$size(void);
+
+// _inCAAAAPu2T : C++() ==> C(LVecBase4d const *)
+extern bool LVecBase4d$16$is_nan(LVecBase4d const *self);
+
+// _inCAAAA_qP5 : C++(int i) ==> C(LVecBase4d const *, int)
+extern double LVecBase4d$17$get_cell(LVecBase4d const *self, int i);
+
+// _inCAAAAf_AA : C++(int i, double value) ==> C(LVecBase4d *, int, double)
+extern void LVecBase4d$18$set_cell(LVecBase4d *self, int i, double value);
+
+// _inCAAAArtvk : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$19$get_x(LVecBase4d const *self);
+
+// _inCAAAArJop : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$20$get_y(LVecBase4d const *self);
+
+// _inCAAAArlgu : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$21$get_z(LVecBase4d const *self);
+
+// _inCAAAArx3f : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$22$get_w(LVecBase4d const *self);
+
+// _inCAAAALN9u : C++() ==> C(LVecBase4d const *)
+extern LVecBase3d * LVecBase4d$23$get_xyz(LVecBase4d const *self);
+
+// _inCAAAAEmJb : C++() ==> C(LVecBase4d const *)
+extern LVecBase2d * LVecBase4d$24$get_xy(LVecBase4d const *self);
+
+// _inCAAAAjGFc : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$25$set_x(LVecBase4d *self, double value);
+
+// _inCAAAAji9g : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$26$set_y(LVecBase4d *self, double value);
+
+// _inCAAAAje2l : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$27$set_z(LVecBase4d *self, double value);
+
+// _inCAAAAjqMX : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$28$set_w(LVecBase4d *self, double value);
+
+// _inCAAAAfMae : C++(int i, double value) ==> C(LVecBase4d *, int, double)
+extern void LVecBase4d$29$add_to_cell(LVecBase4d *self, int i, double value);
+
+// _inCAAAAARia : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$30$add_x(LVecBase4d *self, double value);
+
+// _inCAAAAA1af : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$31$add_y(LVecBase4d *self, double value);
+
+// _inCAAAAAZTk : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$32$add_z(LVecBase4d *self, double value);
+
+// _inCAAAAANqV : C++(double value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$33$add_w(LVecBase4d *self, double value);
+
+// _inCAAAAx8zX : C++() ==> C(LVecBase4d const *)
+extern void LVecBase4d$34$get_data(LVecBase4d const *self);
+
+// _inCAAAAPVEp : C++() ==> C()
+extern int LVecBase4d$35$get_num_components(void);
+
+// _inCAAAAgbKY : C++() ==> C(LVecBase4d *)
+extern void LVecBase4d$36$begin(LVecBase4d *self);
+
+// _inCAAAAhe0_ : C++() ==> C(LVecBase4d const *)
+extern void LVecBase4d$37$begin(LVecBase4d const *self);
+// COLLISION : LVecBase4d_C_begin_v_p LVecBase4d$37$begin
+
+// _inCAAAAKSfv : C++() ==> C(LVecBase4d *)
+extern void LVecBase4d$38$end(LVecBase4d *self);
+
+// _inCAAAAMRrj : C++() ==> C(LVecBase4d const *)
+extern void LVecBase4d$39$end(LVecBase4d const *self);
+// COLLISION : LVecBase4d_C_end_v_p LVecBase4d$39$end
+
+// _inCAAAAFbMg : C++(double fill_value) ==> C(LVecBase4d *, double)
+extern void LVecBase4d$40$fill(LVecBase4d *self, double fill_value);
+
+// _inCAAAAdT7O : C++(double x, double y, double z, double w) ==> C(LVecBase4d *, double, double, double, double)
+extern void LVecBase4d$41$set(LVecBase4d *self, double x, double y, double z, double w);
+
+// _inCAAAAVfrF : C++(LVecBase4d const &other) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern double LVecBase4d$42$dot(LVecBase4d const *self, LVecBase4d const *other);
+
+// _inCAAAATIcv : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$43$length_squared(LVecBase4d const *self);
+
+// _inCAAAAVEoP : C++() ==> C(LVecBase4d const *)
+extern double LVecBase4d$44$length(LVecBase4d const *self);
+
+// _inCAAAAwBCl : C++() ==> C(LVecBase4d *)
+extern bool LVecBase4d$45$normalize(LVecBase4d *self);
+
+// _inCAAAAhXyB : C++() ==> C(LVecBase4d const *)
+extern LVecBase4d * LVecBase4d$46$normalized(LVecBase4d const *self);
+
+// _inCAAAAO3Ro : C++(LVecBase4d const &onto) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern LVecBase4d * LVecBase4d$47$project(LVecBase4d const *self, LVecBase4d const *onto);
+
+// _inCAAAA0LH_ : C++(LVecBase4d const &other) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern int LVecBase4d$48$compare_to(LVecBase4d const *self, LVecBase4d const *other);
+
+// _inCAAAA319I : C++(LVecBase4d const &other, double threshold) ==> C(LVecBase4d const *, LVecBase4d const *, double)
+extern int LVecBase4d$49$compare_to(LVecBase4d const *self, LVecBase4d const *other, double threshold);
+
+// _inCAAAA8_ZE : C++() ==> C(LVecBase4d const *)
+extern std$_size_t LVecBase4d$50$get_hash(LVecBase4d const *self);
+
+// _inCAAAASwXj : C++(double threshold) ==> C(LVecBase4d const *, double)
+extern std$_size_t LVecBase4d$51$get_hash(LVecBase4d const *self, double threshold);
+
+// _inCAAAA0gu6 : C++(std::size_t hash) ==> C(LVecBase4d const *, std::size_t)
+extern std$_size_t LVecBase4d$52$add_hash(LVecBase4d const *self, std$_size_t hash);
+
+// _inCAAAAKLFT : C++(std::size_t hash, double threshold) ==> C(LVecBase4d const *, std::size_t, double)
+extern std$_size_t LVecBase4d$53$add_hash(LVecBase4d const *self, std$_size_t hash, double threshold);
+
+// _inCAAAArlZV : C++(ChecksumHashGenerator &hashgen) ==> C(LVecBase4d const *, ChecksumHashGenerator *)
+extern void LVecBase4d$54$generate_hash(LVecBase4d const *self, ChecksumHashGenerator *hashgen);
+
+// _inCAAAAMhf5 : C++(ChecksumHashGenerator &hashgen, double threshold) ==> C(LVecBase4d const *, ChecksumHashGenerator *, double)
+extern void LVecBase4d$55$generate_hash(LVecBase4d const *self, ChecksumHashGenerator *hashgen, double threshold);
+
+// _inCAAAAh_OR : C++(LVecBase4d const &other) ==> C(LVecBase4d *, LVecBase4d const *)
+extern void LVecBase4d$56$componentwise_mult(LVecBase4d *self, LVecBase4d const *other);
+
+// _inCAAAAR1LP : C++(LVecBase4d const &other) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern LVecBase4d * LVecBase4d$57$fmax(LVecBase4d const *self, LVecBase4d const *other);
+
+// _inCAAAA_BrN : C++(LVecBase4d const &other) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern LVecBase4d * LVecBase4d$58$fmin(LVecBase4d const *self, LVecBase4d const *other);
+
+// _inCAAAAcoqw : C++(LVecBase4d const &other) ==> C(LVecBase4d const *, LVecBase4d const *)
+extern bool LVecBase4d$59$almost_equal(LVecBase4d const *self, LVecBase4d const *other);
+
+// _inCAAAA9ILB : C++(LVecBase4d const &other, double threshold) ==> C(LVecBase4d const *, LVecBase4d const *, double)
+extern bool LVecBase4d$60$almost_equal(LVecBase4d const *self, LVecBase4d const *other, double threshold);
+
+// _inCAAAAe5oK : C++(std::ostream &out) ==> C(LVecBase4d const *, std::ostream *)
+extern void LVecBase4d$61$output(LVecBase4d const *self, std$_ostream *out);
+
+// _inCAAAAQsBI : C++(Datagram &destination) ==> C(LVecBase4d const *, Datagram *)
+extern void LVecBase4d$62$write_datagram_fixed(LVecBase4d const *self, Datagram *destination);
+
+// _inCAAAAUkiE : C++(DatagramIterator &source) ==> C(LVecBase4d *, DatagramIterator *)
+extern void LVecBase4d$63$read_datagram_fixed(LVecBase4d *self, DatagramIterator *source);
+
+// _inCAAAAjJ6E : C++(Datagram &destination) ==> C(LVecBase4d const *, Datagram *)
+extern void LVecBase4d$64$write_datagram(LVecBase4d const *self, Datagram *destination);
+
+// _inCAAAA4P8W : C++(DatagramIterator &source) ==> C(LVecBase4d *, DatagramIterator *)
+extern void LVecBase4d$65$read_datagram(LVecBase4d *self, DatagramIterator *source);
+
+// _inCAAAArV_a : C++() ==> C(LVecBase4d const *)
+extern LVecBase4d$_EVector4 * LVecBase4d$66$get_v(LVecBase4d const *self);
+
+// _inCAAAAGAvT : C++() ==> C()
+extern int LVecBase4d$67$get_class_type(void);
+
+// _inCAAAABL6z : C++() ==> C()
+extern void LVecBase4d$68$init_type(void);
 
 
 // LVecBase4f
@@ -5540,6 +6469,621 @@ extern int LVecBase4i$59$get_class_type(void);
 
 // _inCAAAA1r7L : C++() ==> C()
 extern void LVecBase4i$60$init_type(void);
+
+
+// LVector2d
+
+// _inCAAAAwcd5 : C++() ==> C()
+extern LVector2d * LVector2d$1$LVector2d(void);
+
+// _inCAAAAqdIZ : C++(LVecBase2d const &copy) ==> C(LVecBase2d const *)
+extern LVector2d * LVector2d$2$LVector2d(LVecBase2d const *copy);
+
+// _inCAAAAOxv8 : C++(LVector2d const &) ==> C(LVector2d const *)
+extern LVector2d * LVector2d$3$LVector2d(LVector2d const *arg0);
+// COLLISION : LVector2d_C_ctor_p_p LVector2d$3$LVector2d
+
+// _inCAAAAeGDk : C++(double fill_value) ==> C(double)
+extern LVector2d * LVector2d$4$LVector2d(double fill_value);
+
+// _inCAAAAAy7S : C++(double x, double y) ==> C(double, double)
+extern LVector2d * LVector2d$5$LVector2d(double x, double y);
+
+// _inCAAAA0FN9 : C++() ==> C()
+extern LVector2d const * LVector2d$6$zero(void);
+
+// _inCAAAApXVS : C++() ==> C()
+extern LVector2d const * LVector2d$7$unit_x(void);
+
+// _inCAAAAp7OX : C++() ==> C()
+extern LVector2d const * LVector2d$8$unit_y(void);
+
+// _inCAAAASGJk : C++() ==> C(LVector2d const *)
+extern LVector2d * LVector2d$9$normalized(LVector2d const *self);
+
+// _inCAAAAYmkd : C++(LVecBase2d const &onto) ==> C(LVector2d const *, LVecBase2d const *)
+extern LVector2d * LVector2d$10$project(LVector2d const *self, LVecBase2d const *onto);
+
+// _inCAAAAH_RS : C++(LVector2d const &other) ==> C(LVector2d const *, LVector2d const *)
+extern double LVector2d$11$signed_angle_rad(LVector2d const *self, LVector2d const *other);
+
+// _inCAAAAoZBP : C++(LVector2d const &other) ==> C(LVector2d const *, LVector2d const *)
+extern double LVector2d$12$signed_angle_deg(LVector2d const *self, LVector2d const *other);
+
+// _inCAAAA4Zsu : C++() ==> C()
+extern int LVector2d$13$get_class_type(void);
+
+// _inCAAAAc6u9 : C++() ==> C()
+extern void LVector2d$14$init_type(void);
+
+
+// LVector2f
+
+// _inCAAAAQv_8 : C++() ==> C()
+extern LVector2f * LVector2f$1$LVector2f(void);
+
+// _inCAAAA_wFf : C++(LVecBase2f const &copy) ==> C(LVecBase2f const *)
+extern LVector2f * LVector2f$2$LVector2f(LVecBase2f const *copy);
+
+// _inCAAAA76VA : C++(LVector2f const &) ==> C(LVector2f const *)
+extern LVector2f * LVector2f$3$LVector2f(LVector2f const *arg0);
+// COLLISION : LVector2f_C_ctor_p_p LVector2f$3$LVector2f
+
+// _inCAAAAtvIb : C++(float fill_value) ==> C(float)
+extern LVector2f * LVector2f$4$LVector2f(float fill_value);
+
+// _inCAAAAOs00 : C++(float x, float y) ==> C(float, float)
+extern LVector2f * LVector2f$5$LVector2f(float x, float y);
+
+// _inCAAAAMCtA : C++() ==> C()
+extern LVector2f const * LVector2f$6$zero(void);
+
+// _inCAAAAyI1V : C++() ==> C()
+extern LVector2f const * LVector2f$7$unit_x(void);
+
+// _inCAAAAykua : C++() ==> C()
+extern LVector2f const * LVector2f$8$unit_y(void);
+
+// _inCAAAA7Gpn : C++() ==> C(LVector2f const *)
+extern LVector2f * LVector2f$9$normalized(LVector2f const *self);
+
+// _inCAAAApiFZ : C++(LVecBase2f const &onto) ==> C(LVector2f const *, LVecBase2f const *)
+extern LVector2f * LVector2f$10$project(LVector2f const *self, LVecBase2f const *onto);
+
+// _inCAAAAe9_x : C++(LVector2f const &other) ==> C(LVector2f const *, LVector2f const *)
+extern float LVector2f$11$signed_angle_rad(LVector2f const *self, LVector2f const *other);
+
+// _inCAAAA_avu : C++(LVector2f const &other) ==> C(LVector2f const *, LVector2f const *)
+extern float LVector2f$12$signed_angle_deg(LVector2f const *self, LVector2f const *other);
+
+// _inCAAAAhYMy : C++() ==> C()
+extern int LVector2f$13$get_class_type(void);
+
+// _inCAAAA06OB : C++() ==> C()
+extern void LVector2f$14$init_type(void);
+
+
+// LVector2i
+
+// _inCAAAABXQC : C++() ==> C()
+extern LVector2i * LVector2i$1$LVector2i(void);
+
+// _inCAAAAF0Bo : C++(LVecBase2i const &copy) ==> C(LVecBase2i const *)
+extern LVector2i * LVector2i$2$LVector2i(LVecBase2i const *copy);
+
+// _inCAAAAIwuF : C++(LVector2i const &) ==> C(LVector2i const *)
+extern LVector2i * LVector2i$3$LVector2i(LVector2i const *arg0);
+// COLLISION : LVector2i_C_ctor_p_p LVector2i$3$LVector2i
+
+// _inCAAAAk5GM : C++(int fill_value) ==> C(int)
+extern LVector2i * LVector2i$4$LVector2i(int fill_value);
+
+// _inCAAAAVk_T : C++(int x, int y) ==> C(int, int)
+extern LVector2i * LVector2i$5$LVector2i(int x, int y);
+
+// _inCAAAAWD9l : C++() ==> C()
+extern LVector2i const * LVector2i$6$zero(void);
+
+// _inCAAAAIIF7 : C++() ==> C()
+extern LVector2i const * LVector2i$7$unit_x(void);
+
+// _inCAAAAIk__ : C++() ==> C()
+extern LVector2i const * LVector2i$8$unit_y(void);
+
+// _inCAAAAmfcX : C++() ==> C()
+extern int LVector2i$9$get_class_type(void);
+
+// _inCAAAA_7em : C++() ==> C()
+extern void LVector2i$10$init_type(void);
+
+
+// LVector3d
+
+// _inCAAAADyhn : C++() ==> C()
+extern LVector3d * LVector3d$1$LVector3d(void);
+
+// _inCAAAA_LFS : C++(LVecBase2d const &copy, double z) ==> C(LVecBase2d const *, double)
+extern LVector3d * LVector3d$2$LVector3d(LVecBase2d const *copy, double z);
+
+// _inCAAAAvfOH : C++(LVecBase3d const &copy) ==> C(LVecBase3d const *)
+extern LVector3d * LVector3d$3$LVector3d(LVecBase3d const *copy);
+
+// _inCAAAAGbzG : C++(LVector3d const &) ==> C(LVector3d const *)
+extern LVector3d * LVector3d$4$LVector3d(LVector3d const *arg0);
+// COLLISION : LVector3d_C_ctor_p_p LVector3d$4$LVector3d
+
+// _inCAAAAvhGS : C++(double fill_value) ==> C(double)
+extern LVector3d * LVector3d$5$LVector3d(double fill_value);
+
+// _inCAAAA_Wm1 : C++(double x, double y, double z) ==> C(double, double, double)
+extern LVector3d * LVector3d$6$LVector3d(double x, double y, double z);
+
+// _inCAAAA3lRk : C++() ==> C()
+extern LVector3d const * LVector3d$7$zero(void);
+
+// _inCAAAAp3Z5 : C++() ==> C()
+extern LVector3d const * LVector3d$8$unit_x(void);
+
+// _inCAAAApbR_ : C++() ==> C()
+extern LVector3d const * LVector3d$9$unit_y(void);
+
+// _inCAAAAo_KD : C++() ==> C()
+extern LVector3d const * LVector3d$10$unit_z(void);
+
+// _inCAAAAUj_9 : C++() ==> C(LVector3d const *)
+extern LVector2d * LVector3d$11$get_xy(LVector3d const *self);
+
+// _inCAAAAVP4C : C++() ==> C(LVector3d const *)
+extern LVector2d * LVector3d$12$get_xz(LVector3d const *self);
+
+// _inCAAAAt_BD : C++() ==> C(LVector3d const *)
+extern LVector2d * LVector3d$13$get_yz(LVector3d const *self);
+
+// _inCAAAAPzz8 : C++(LVecBase3d const &other) ==> C(LVector3d const *, LVecBase3d const *)
+extern LVector3d * LVector3d$14$cross(LVector3d const *self, LVecBase3d const *other);
+
+// _inCAAAARmML : C++() ==> C(LVector3d const *)
+extern LVector3d * LVector3d$15$normalized(LVector3d const *self);
+
+// _inCAAAAiGg1 : C++(LVecBase3d const &onto) ==> C(LVector3d const *, LVecBase3d const *)
+extern LVector3d * LVector3d$16$project(LVector3d const *self, LVecBase3d const *onto);
+
+// _inCAAAA_6Zy : C++(LVector3d const &other) ==> C(LVector3d const *, LVector3d const *)
+extern double LVector3d$17$angle_rad(LVector3d const *self, LVector3d const *other);
+
+// _inCAAAAlnWj : C++(LVector3d const &other) ==> C(LVector3d const *, LVector3d const *)
+extern double LVector3d$18$angle_deg(LVector3d const *self, LVector3d const *other);
+
+// _inCAAAAI_w4 : C++(LVector3d const &other, LVector3d const &ref) ==> C(LVector3d const *, LVector3d const *, LVector3d const *)
+extern double LVector3d$19$signed_angle_rad(LVector3d const *self, LVector3d const *other, LVector3d const *ref);
+
+// _inCAAAAlWg1 : C++(LVector3d const &other, LVector3d const &ref) ==> C(LVector3d const *, LVector3d const *, LVector3d const *)
+extern double LVector3d$20$signed_angle_deg(LVector3d const *self, LVector3d const *other, LVector3d const *ref);
+
+// _inCAAAAl1PE : C++(LVector3d const &other) ==> C(LVector3d const *, LVector3d const *)
+extern double LVector3d$21$relative_angle_rad(LVector3d const *self, LVector3d const *other);
+
+// _inCAAAAZkXK : C++(LVector3d const &other) ==> C(LVector3d const *, LVector3d const *)
+extern double LVector3d$22$relative_angle_deg(LVector3d const *self, LVector3d const *other);
+
+// _inCAAAA8N5k : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$23$up(CoordinateSystem cs);
+
+// _inCAAAAI8sB : C++() ==> C()
+extern LVector3d * LVector3d$24$up(void);
+
+// _inCAAAAQtOm : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$25$right(CoordinateSystem cs);
+
+// _inCAAAAxMXe : C++() ==> C()
+extern LVector3d * LVector3d$26$right(void);
+
+// _inCAAAA8FXy : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$27$forward(CoordinateSystem cs);
+
+// _inCAAAAPT7r : C++() ==> C()
+extern LVector3d * LVector3d$28$forward(void);
+
+// _inCAAAAgtYb : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$29$down(CoordinateSystem cs);
+
+// _inCAAAAKBKd : C++() ==> C()
+extern LVector3d * LVector3d$30$down(void);
+
+// _inCAAAA2UWG : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$31$left(CoordinateSystem cs);
+
+// _inCAAAAcxJI : C++() ==> C()
+extern LVector3d * LVector3d$32$left(void);
+
+// _inCAAAAWP96 : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3d * LVector3d$33$back(CoordinateSystem cs);
+
+// _inCAAAAMyv8 : C++() ==> C()
+extern LVector3d * LVector3d$34$back(void);
+
+// _inCAAAAuPAa : C++(double right, double fwd, double up, CoordinateSystem cs) ==> C(double, double, double, CoordinateSystem)
+extern LVector3d * LVector3d$35$rfu(double right, double fwd, double up, CoordinateSystem cs);
+
+// _inCAAAAnVMh : C++(double right, double fwd, double up) ==> C(double, double, double)
+extern LVector3d * LVector3d$36$rfu(double right, double fwd, double up);
+
+// _inCAAAAH5wV : C++() ==> C()
+extern int LVector3d$37$get_class_type(void);
+
+// _inCAAAAdayk : C++() ==> C()
+extern void LVector3d$38$init_type(void);
+
+
+// LVector3f
+
+// _inCAAAAhACr : C++() ==> C()
+extern LVector3f * LVector3f$1$LVector3f(void);
+
+// _inCAAAAMjgA : C++(LVecBase2f const &copy, float z) ==> C(LVecBase2f const *, float)
+extern LVector3f * LVector3f$2$LVector3f(LVecBase2f const *copy, float z);
+
+// _inCAAAAZ8LN : C++(LVecBase3f const &copy) ==> C(LVecBase3f const *)
+extern LVector3f * LVector3f$3$LVector3f(LVecBase3f const *copy);
+
+// _inCAAAACTZK : C++(LVector3f const &) ==> C(LVector3f const *)
+extern LVector3f * LVector3f$4$LVector3f(LVector3f const *arg0);
+// COLLISION : LVector3f_C_ctor_p_p LVector3f$4$LVector3f
+
+// _inCAAAA6OMJ : C++(float fill_value) ==> C(float)
+extern LVector3f * LVector3f$5$LVector3f(float fill_value);
+
+// _inCAAAAhp6I : C++(float x, float y, float z) ==> C(float, float, float)
+extern LVector3f * LVector3f$6$LVector3f(float x, float y, float z);
+
+// _inCAAAAMixn : C++() ==> C()
+extern LVector3f const * LVector3f$7$zero(void);
+
+// _inCAAAAyo58 : C++() ==> C()
+extern LVector3f const * LVector3f$8$unit_x(void);
+
+// _inCAAAAxExB : C++() ==> C()
+extern LVector3f const * LVector3f$9$unit_y(void);
+
+// _inCAAAAxgqG : C++() ==> C()
+extern LVector3f const * LVector3f$10$unit_z(void);
+
+// _inCAAAA8jfB : C++() ==> C(LVector3f const *)
+extern LVector2f * LVector3f$11$get_xy(LVector3f const *self);
+
+// _inCAAAA8PYG : C++() ==> C(LVector3f const *)
+extern LVector2f * LVector3f$12$get_xz(LVector3f const *self);
+
+// _inCAAAAE_hG : C++() ==> C(LVector3f const *)
+extern LVector2f * LVector3f$13$get_yz(LVector3f const *self);
+
+// _inCAAAAXSXn : C++(LVecBase3f const &other) ==> C(LVector3f const *, LVecBase3f const *)
+extern LVector3f * LVector3f$14$cross(LVector3f const *self, LVecBase3f const *other);
+
+// _inCAAAA6msO : C++() ==> C(LVector3f const *)
+extern LVector3f * LVector3f$15$normalized(LVector3f const *self);
+
+// _inCAAAAzCBx : C++(LVecBase3f const &onto) ==> C(LVector3f const *, LVecBase3f const *)
+extern LVector3f * LVector3f$16$project(LVector3f const *self, LVecBase3f const *onto);
+
+// _inCAAAAi1_1 : C++(LVector3f const &other) ==> C(LVector3f const *, LVector3f const *)
+extern float LVector3f$17$angle_rad(LVector3f const *self, LVector3f const *other);
+
+// _inCAAAASe7m : C++(LVector3f const &other) ==> C(LVector3f const *, LVector3f const *)
+extern float LVector3f$18$angle_deg(LVector3f const *self, LVector3f const *other);
+
+// _inCAAAAqxe0 : C++(LVector3f const &other, LVector3f const &ref) ==> C(LVector3f const *, LVector3f const *, LVector3f const *)
+extern float LVector3f$19$signed_angle_rad(LVector3f const *self, LVector3f const *other, LVector3f const *ref);
+
+// _inCAAAADYOx : C++(LVector3f const &other, LVector3f const &ref) ==> C(LVector3f const *, LVector3f const *, LVector3f const *)
+extern float LVector3f$20$signed_angle_deg(LVector3f const *self, LVector3f const *other, LVector3f const *ref);
+
+// _inCAAAA_dvn : C++(LVector3f const &other) ==> C(LVector3f const *, LVector3f const *)
+extern float LVector3f$21$relative_angle_rad(LVector3f const *self, LVector3f const *other);
+
+// _inCAAAAzM2t : C++(LVector3f const &other) ==> C(LVector3f const *, LVector3f const *)
+extern float LVector3f$22$relative_angle_deg(LVector3f const *self, LVector3f const *other);
+
+// _inCAAAAlOZo : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$23$up(CoordinateSystem cs);
+
+// _inCAAAAz_MF : C++() ==> C()
+extern LVector3f * LVector3f$24$up(void);
+
+// _inCAAAA3sup : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$25$right(CoordinateSystem cs);
+
+// _inCAAAAYM3h : C++() ==> C()
+extern LVector3f * LVector3f$26$right(void);
+
+// _inCAAAAn621 : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$27$forward(CoordinateSystem cs);
+
+// _inCAAAAoQbv : C++() ==> C()
+extern LVector3f * LVector3f$28$forward(void);
+
+// _inCAAAA5s4e : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$29$down(CoordinateSystem cs);
+
+// _inCAAAAjBqg : C++() ==> C()
+extern LVector3f * LVector3f$30$down(void);
+
+// _inCAAAAvT2J : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$31$left(CoordinateSystem cs);
+
+// _inCAAAA1_pL : C++() ==> C()
+extern LVector3f * LVector3f$32$left(void);
+
+// _inCAAAAxPd_ : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3f * LVector3f$33$back(CoordinateSystem cs);
+
+// _inCAAAAUzPA : C++() ==> C()
+extern LVector3f * LVector3f$34$back(void);
+
+// _inCAAAAhSqR : C++(float right, float fwd, float up, CoordinateSystem cs) ==> C(float, float, float, CoordinateSystem)
+extern LVector3f * LVector3f$35$rfu(float right, float fwd, float up, CoordinateSystem cs);
+
+// _inCAAAAUW9c : C++(float right, float fwd, float up) ==> C(float, float, float)
+extern LVector3f * LVector3f$36$rfu(float right, float fwd, float up);
+
+// _inCAAAAg4QZ : C++() ==> C()
+extern int LVector3f$37$get_class_type(void);
+
+// _inCAAAA0aSo : C++() ==> C()
+extern void LVector3f$38$init_type(void);
+
+
+// LVector3i
+
+// _inCAAAA30Tw : C++() ==> C()
+extern LVector3i * LVector3i$1$LVector3i(void);
+
+// _inCAAAAEcgh : C++(LVecBase2i const &copy, int z) ==> C(LVecBase2i const *, int)
+extern LVector3i * LVector3i$2$LVector3i(LVecBase2i const *copy, int z);
+
+// _inCAAAACHGW : C++(LVecBase3i const &copy) ==> C(LVecBase3i const *)
+extern LVector3i * LVector3i$3$LVector3i(LVecBase3i const *copy);
+
+// _inCAAAAxJxP : C++(LVector3i const &) ==> C(LVector3i const *)
+extern LVector3i * LVector3i$4$LVector3i(LVector3i const *arg0);
+// COLLISION : LVector3i_C_ctor_p_p LVector3i$4$LVector3i
+
+// _inCAAAAyYJ6 : C++(int fill_value) ==> C(int)
+extern LVector3i * LVector3i$5$LVector3i(int fill_value);
+
+// _inCAAAAd32R : C++(int x, int y, int z) ==> C(int, int, int)
+extern LVector3i * LVector3i$6$LVector3i(int x, int y, int z);
+
+// _inCAAAARjBN : C++() ==> C()
+extern LVector3i const * LVector3i$7$zero(void);
+
+// _inCAAAAPoJi : C++() ==> C()
+extern LVector3i const * LVector3i$8$unit_x(void);
+
+// _inCAAAAPEBn : C++() ==> C()
+extern LVector3i const * LVector3i$9$unit_y(void);
+
+// _inCAAAAPg6r : C++() ==> C()
+extern LVector3i const * LVector3i$10$unit_z(void);
+
+// _inCAAAA6kvm : C++() ==> C(LVector3i const *)
+extern LVector2i * LVector3i$11$get_xy(LVector3i const *self);
+
+// _inCAAAA6Ior : C++() ==> C(LVector3i const *)
+extern LVector2i * LVector3i$12$get_xz(LVector3i const *self);
+
+// _inCAAAAC4xr : C++() ==> C(LVector3i const *)
+extern LVector2i * LVector3i$13$get_yz(LVector3i const *self);
+
+// _inCAAAATBMH : C++(LVecBase3i const &other) ==> C(LVector3i const *, LVecBase3i const *)
+extern LVector3i * LVector3i$14$cross(LVector3i const *self, LVecBase3i const *other);
+
+// _inCAAAAePpN : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$15$up(CoordinateSystem cs);
+
+// _inCAAAAp_cq : C++() ==> C()
+extern LVector3i * LVector3i$16$up(void);
+
+// _inCAAAAyr_O : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$17$right(CoordinateSystem cs);
+
+// _inCAAAAfNHH : C++() ==> C()
+extern LVector3i * LVector3i$18$right(void);
+
+// _inCAAAAi7Gb : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$19$forward(CoordinateSystem cs);
+
+// _inCAAAAtRrU : C++() ==> C()
+extern LVector3i * LVector3i$20$forward(void);
+
+// _inCAAAACjIE : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$21$down(CoordinateSystem cs);
+
+// _inCAAAAkG6F : C++() ==> C()
+extern LVector3i * LVector3i$22$down(void);
+
+// _inCAAAAVTGv : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$23$left(CoordinateSystem cs);
+
+// _inCAAAAz_5w : C++() ==> C()
+extern LVector3i * LVector3i$24$left(void);
+
+// _inCAAAA0Otj : C++(CoordinateSystem cs) ==> C(CoordinateSystem)
+extern LVector3i * LVector3i$25$back(CoordinateSystem cs);
+
+// _inCAAAAqzfl : C++() ==> C()
+extern LVector3i * LVector3i$26$back(void);
+
+// _inCAAAA9XC0 : C++(int right, int fwd, int up, CoordinateSystem cs) ==> C(int, int, int, CoordinateSystem)
+extern LVector3i * LVector3i$27$rfu(int right, int fwd, int up, CoordinateSystem cs);
+
+// _inCAAAAS9Qt : C++(int right, int fwd, int up) ==> C(int, int, int)
+extern LVector3i * LVector3i$28$rfu(int right, int fwd, int up);
+
+// _inCAAAAm_g_ : C++() ==> C()
+extern int LVector3i$29$get_class_type(void);
+
+// _inCAAAA_biN : C++() ==> C()
+extern void LVector3i$30$init_type(void);
+
+
+// LVector4d
+
+// _inCAAAASTkV : C++() ==> C()
+extern LVector4d * LVector4d$1$LVector4d(void);
+
+// _inCAAAAZALA : C++(LVecBase3d const &copy, double w) ==> C(LVecBase3d const *, double)
+extern LVector4d * LVector4d$2$LVector4d(LVecBase3d const *copy, double w);
+
+// _inCAAAArcU1 : C++(LVecBase4d const &copy) ==> C(LVecBase4d const *)
+extern LVector4d * LVector4d$3$LVector4d(LVecBase4d const *copy);
+
+// _inCAAAA_l2Q : C++(LVector4d const &) ==> C(LVector4d const *)
+extern LVector4d * LVector4d$4$LVector4d(LVector4d const *arg0);
+// COLLISION : LVector4d_C_ctor_p_p LVector4d$4$LVector4d
+
+// _inCAAAA8AKA : C++(double fill_value) ==> C(double)
+extern LVector4d * LVector4d$5$LVector4d(double fill_value);
+
+// _inCAAAA72XI : C++(double x, double y, double z, double w) ==> C(double, double, double, double)
+extern LVector4d * LVector4d$6$LVector4d(double x, double y, double z, double w);
+
+// _inCAAAA2FUL : C++() ==> C()
+extern LVector4d const * LVector4d$7$zero(void);
+
+// _inCAAAAoXcg : C++() ==> C()
+extern LVector4d const * LVector4d$8$unit_x(void);
+
+// _inCAAAAo7Vl : C++() ==> C()
+extern LVector4d const * LVector4d$9$unit_y(void);
+
+// _inCAAAAofNq : C++() ==> C()
+extern LVector4d const * LVector4d$10$unit_z(void);
+
+// _inCAAAAozkb : C++() ==> C()
+extern LVector4d const * LVector4d$11$unit_w(void);
+
+// _inCAAAAM7q3 : C++() ==> C(LVector4d const *)
+extern LVector3d * LVector4d$12$get_xyz(LVector4d const *self);
+
+// _inCAAAAVDDl : C++() ==> C(LVector4d const *)
+extern LVector2d * LVector4d$13$get_xy(LVector4d const *self);
+
+// _inCAAAARGQy : C++() ==> C(LVector4d const *)
+extern LVector4d * LVector4d$14$normalized(LVector4d const *self);
+
+// _inCAAAA1mdN : C++(LVecBase4d const &onto) ==> C(LVector4d const *, LVecBase4d const *)
+extern LVector4d * LVector4d$15$project(LVector4d const *self, LVecBase4d const *onto);
+
+// _inCAAAAHZz8 : C++() ==> C()
+extern int LVector4d$16$get_class_type(void);
+
+// _inCAAAAe61L : C++() ==> C()
+extern void LVector4d$17$init_type(void);
+
+
+// LVector4f
+
+// _inCAAAA2hGZ : C++() ==> C()
+extern LVector4f * LVector4f$1$LVector4f(void);
+
+// _inCAAAAMmmu : C++(LVecBase3f const &copy, float w) ==> C(LVecBase3f const *, float)
+extern LVector4f * LVector4f$2$LVector4f(LVecBase3f const *copy, float w);
+
+// _inCAAAA55R7 : C++(LVecBase4f const &copy) ==> C(LVecBase4f const *)
+extern LVector4f * LVector4f$3$LVector4f(LVecBase4f const *copy);
+
+// _inCAAAAJpcU : C++(LVector4f const &) ==> C(LVector4f const *)
+extern LVector4f * LVector4f$4$LVector4f(LVector4f const *arg0);
+// COLLISION : LVector4f_C_ctor_p_p LVector4f$4$LVector4f
+
+// _inCAAAAIgP3 : C++(float fill_value) ==> C(float)
+extern LVector4f * LVector4f$5$LVector4f(float fill_value);
+
+// _inCAAAAGLX9 : C++(float x, float y, float z, float w) ==> C(float, float, float, float)
+extern LVector4f * LVector4f$6$LVector4f(float x, float y, float z, float w);
+
+// _inCAAAAPC0O : C++() ==> C()
+extern LVector4f const * LVector4f$7$zero(void);
+
+// _inCAAAAxI8j : C++() ==> C()
+extern LVector4f const * LVector4f$8$unit_x(void);
+
+// _inCAAAAxk1o : C++() ==> C()
+extern LVector4f const * LVector4f$9$unit_y(void);
+
+// _inCAAAAxAtt : C++() ==> C()
+extern LVector4f const * LVector4f$10$unit_z(void);
+
+// _inCAAAAxsEf : C++() ==> C()
+extern LVector4f const * LVector4f$11$unit_w(void);
+
+// _inCAAAA17K7 : C++() ==> C(LVector4f const *)
+extern LVector3f * LVector4f$12$get_xyz(LVector4f const *self);
+
+// _inCAAAA8Djo : C++() ==> C(LVector4f const *)
+extern LVector2f * LVector4f$13$get_xy(LVector4f const *self);
+
+// _inCAAAA6Gw1 : C++() ==> C(LVector4f const *)
+extern LVector4f * LVector4f$14$normalized(LVector4f const *self);
+
+// _inCAAAAGh8I : C++(LVecBase4f const &onto) ==> C(LVector4f const *, LVecBase4f const *)
+extern LVector4f * LVector4f$15$project(LVector4f const *self, LVecBase4f const *onto);
+
+// _inCAAAAvYTA : C++() ==> C()
+extern int LVector4f$16$get_class_type(void);
+
+// _inCAAAA16VP : C++() ==> C()
+extern void LVector4f$17$init_type(void);
+
+
+// LVector4i
+
+// _inCAAAAmVXe : C++() ==> C()
+extern LVector4i * LVector4i$1$LVector4i(void);
+
+// _inCAAAAHRmP : C++(LVecBase3i const &copy, int w) ==> C(LVecBase3i const *, int)
+extern LVector4i * LVector4i$2$LVector4i(LVecBase3i const *copy, int w);
+
+// _inCAAAA_CME : C++(LVecBase4i const &copy) ==> C(LVecBase4i const *)
+extern LVector4i * LVector4i$3$LVector4i(LVecBase4i const *copy);
+
+// _inCAAAA2j1Z : C++(LVector4i const &) ==> C(LVector4i const *)
+extern LVector4i * LVector4i$4$LVector4i(LVector4i const *arg0);
+// COLLISION : LVector4i_C_ctor_p_p LVector4i$4$LVector4i
+
+// _inCAAAAB_No : C++(int fill_value) ==> C(int)
+extern LVector4i * LVector4i$5$LVector4i(int fill_value);
+
+// _inCAAAAxpif : C++(int x, int y, int z, int w) ==> C(int, int, int, int)
+extern LVector4i * LVector4i$6$LVector4i(int x, int y, int z, int w);
+
+// _inCAAAARDE0 : C++() ==> C()
+extern LVector4i const * LVector4i$7$zero(void);
+
+// _inCAAAAOIMJ : C++() ==> C()
+extern LVector4i const * LVector4i$8$unit_x(void);
+
+// _inCAAAAOkFO : C++() ==> C()
+extern LVector4i const * LVector4i$9$unit_y(void);
+
+// _inCAAAAOA9S : C++() ==> C()
+extern LVector4i const * LVector4i$10$unit_z(void);
+
+// _inCAAAAOsUE : C++() ==> C()
+extern LVector4i const * LVector4i$11$unit_w(void);
+
+// _inCAAAAq6ag : C++() ==> C(LVector4i const *)
+extern LVector3i * LVector4i$12$get_xyz(LVector4i const *self);
+
+// _inCAAAA7EzN : C++() ==> C(LVector4i const *)
+extern LVector2i * LVector4i$13$get_xy(LVector4i const *self);
+
+// _inCAAAAlfjl : C++() ==> C()
+extern int LVector4i$14$get_class_type(void);
+
+// _inCAAAA_7l0 : C++() ==> C()
+extern void LVector4i$15$init_type(void);
 
 
 // Lens

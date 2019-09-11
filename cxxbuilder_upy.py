@@ -402,7 +402,7 @@ cxx.DECREF = Engine.dec_ref
 """
     )
 
-    if 0:
+    if 1:
         RT_UNSOLVED.sort()
         for rt in RT_UNSOLVED:
             print("407: WARNING unresolved forward types :", rt)
