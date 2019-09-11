@@ -96,26 +96,12 @@ def call1(ancestor, cls, instance, attr, decl):
         ffi = ancestor.c.lib.func(*decl[IDX_FFI])
         c['%s-ffi' % attr] = ffi
 
-    # no TRACE
-    # ffi = ancestor.c.lib.func(*decl[IDX_FFI])
 
-    # basic/complex return types can be optimized
+    # basic/complex return types can be optimized saving the passthrough call
 
-    # no call stack could be optimized via direct function pointer call
+    # empty call stack could be optimized via direct function pointer call
 
     # kw could be used to pass runtime jit info
-
-    # if not instance(rt,int):
-    if DBG:
-        print(" -> DIRECT for %s->%s calltype=%s" % (c.name, attr, ct))
-
-        if ct == 's':
-            instance = None
-
-        def jit(*argv, **kw):
-            return wrap(ffi, rt, argv, kw, instance)
-
-        return jit
 
     # static call , hide instance if any
     if ct == 's':
@@ -213,7 +199,7 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
             print(p)  # [IDX_FFI])
         raise TypeError("%s->%s : no match for arguments count %d" % (ancestor.__name__, attr, argc))
 
-    # that block would need *HUGE* optim.
+    # that block would need *HUGE* optim and should take shortcuts.
 
     if len(cl) > 1:
         # must forbid caching until someday maybe code paths can be learned ( access to line+module of caller ? )
