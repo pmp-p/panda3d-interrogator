@@ -1,5 +1,9 @@
 # upy
 
+# Experimental JavaScript interpreter for FreeBSD (Duktape FFI Experimentation)
+# https://github.com/davidchisnall/jsrun
+
+
 # py: __del__ special method not implemented for user-defined classes
 # BLOCKER: https://github.com/micropython/micropython/issues/1878
 
@@ -27,6 +31,18 @@
 
 # raspi3 fib(34) => 34s    PC+2: 36s
 
+
+# Py
+
+# PyPy, IronPython, Jython, MicroPython, StacklessPython, WPython, Pyston,
+# Hotpy, Unladen Swallow, Pyjion, pythran, Python2C, Brython, Batavia, VOC
+# https://github.com/naftaliharris/tauthon
+# https://github.com/go-python/gpython
+
+# Optimizers/compilers : Cython, Nuitka
+# https://github.com/grumpyhome/grumpy
+
+
 FFI_MARK = '_C_'
 CNI = 0
 
@@ -35,8 +51,12 @@ RETURN_TYPE_FIRST = 1
 DBG = 0
 
 
-import os
 import sys
+
+import upy as os
+
+import upy.ffilib as ffilib
+
 
 try:
     import uctypes
@@ -163,6 +183,7 @@ def dlopen(lib):
 
 # sort all the classes in order to use python class hierarchy and isinstance can work normally
 
+
 def sort_inheritance(code, fwd):
     def bases(cn):
         return list(cls[cn]['bases'])
@@ -283,6 +304,12 @@ def build(TARGET):
 
 import sys
 
+try:
+    const(0)
+except:
+    def const(x):return x
+    import ctypes
+    sys.modules['uctypes']=ctypes
 
 if not '.' in sys.path: sys.path.insert(0,'.')
 import interrogator.uplusplus as cxx
@@ -443,11 +470,15 @@ if __name__ == '__main__':
 
         E.build()
 
+        pf = E.get_framework()
+        print('PandaFramework=', pf )
 
-        print('framework=', E.get_wframe() )
+        wf = E.get_wframe()
+
+        print('WindowFramework=', wf )
 
 
-        np = E.load_model( "model.bam" )
+        np = E.load_model( "boris.bam" )
 
         print("np","=",np)
 
@@ -465,11 +496,14 @@ if __name__ == '__main__':
 
         v3 = Vec3(2.0, 2.0, 2.0)
         print( v3, v3.get_x() , v3.get_y(), v3.get_z() )
+
         np.set_scale( v3 )
 
+        np.set_pos( Vec3(.0,42.,0.) )
 
-        cube = E.new_Cube(1.0, "CubeMaker", "Data")
-        print('cube=',cube)
+
+        #cube = E.new_Cube(1.0, "CubeMaker", "Data")
+        #print('cube=',cube)
 
         while E.is_alive():
             E.step()

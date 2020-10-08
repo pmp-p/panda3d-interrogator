@@ -1,7 +1,26 @@
 #!/bin/bash
 export PYTHONDONTWRITEBYTECODE=1
 
-PYTHON=python3.8
+if echo $PYTHON|grep python
+then
+    echo -n
+else
+    for py in 8 7 6
+    do
+        if which python3.${py}
+        then
+            export PYTHON=python3.${py}
+            break
+        fi
+    done
+fi
+
+echo Will use python $PYTHON
+echo
+
+
+export CC=clang
+export CXX=clang++
 
 if which emmake
 then
@@ -9,16 +28,18 @@ then
     TARGET=emscripten
     echo EMSDK
 else
-    TARGET=panda3d-$($PYTHON -V|cut -c8-)-$(gcc -v 2>&1|grep Target|cut -c 9-)
+    TARGET=panda3d-$($PYTHON -V|cut -c8-)-$($CC -v 2>&1|grep Target|cut -c 9-)
     PLAT="--use-x11 --use-egl --use-gl --use-egg --use-png --use-jpeg"
     echo Desktop
 fi
 
-ROOT=$(realpath $(pwd)/../build/$TARGET)
+ROOT=$(realpath $(pwd)/build/$TARGET)
 
 echo $TARGET
 echo $ROOT
 echo
+
+cd panda3d-webglport
 
 PATH=${ROOT}/bin:$PATH LD_LIBRARY_PATH=${ROOT}/lib $PYTHON makepanda/makepanda.py\
  --outputdir $ROOT --nothing --threads 3\
@@ -27,4 +48,5 @@ PATH=${ROOT}/bin:$PATH LD_LIBRARY_PATH=${ROOT}/lib $PYTHON makepanda/makepanda.p
  --use-direct --use-vorbis --use-bullet --use-freetype --use-harfbuzz\
  --use-assimp --use-pandafx --use-pandaphysics --use-pandaparticlesystem --use-zlib \
  --override STDFLOAT_DOUBLE=1 "$@"
+
 # --python-incdir=${UROOT}/include --python-libdir=${UROOT}/lib $*

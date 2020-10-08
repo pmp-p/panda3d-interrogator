@@ -1,4 +1,5 @@
-#ifndef MVIEW_H
+#ifndef LIB_H
+
 
 
 #include "pandabase.h"
@@ -9,6 +10,28 @@
 #include "pandaFramework.h"
 #include "pandaSystem.h"
 #include "load_prc_file.h"
+
+
+
+
+//-------------------------- dict -----------------------------------------------------------------
+typedef std::pair<std::string, std::string> Pair;
+
+typedef std::map<std::pair<std::string, std::string>, int> Dict;
+
+typedef Dict::const_iterator It;
+/*
+PARSE ERROR in interrogator/igate_to_json.py : 34
+Pair dict_slot( std::string k , std::string v ) {
+    return std::make_pair(k,v);
+}
+*/
+
+Pair dict_slot( const char * k , const char * v ) {
+    return std::make_pair(std::string(k),std::string(v));
+}
+
+
 
 //NotifyCategoryDecl(lib, EXPCL_LIB, EXPTP_LIB);
 
@@ -102,5 +125,52 @@ class EXPORT_CLASS Engine
 
 
 
-#define MVIEW_H
+#define LIB_H
 #endif
+
+
+
+
+
+
+
+
+#ifndef CACTOR_H_
+#define CACTOR_H_
+
+#include "auto_bind.h"
+#include "character.h"
+#include "pandaFramework.h"
+
+typedef std::vector < std::string > NameVec;
+typedef std::map < std::string, NameVec > AnimMap;
+
+class EXPORT_CLASS CActor:public NodePath, public AnimControlCollection {
+  PUBLISHED:
+
+
+
+    CActor();
+    virtual ~ CActor();
+
+    Dict anim_map ;
+//    AnimMap * new_map();
+
+    void add(str path,str name);
+
+    void load_actor(WindowFramework * windowFrameworkPtr,
+                                const std::string & actorFilename, const AnimMap * animMapPtr, int hierarchyMatchFlags);
+    NodePath control_joint(const std::string & jointName);
+    NodePath expose_joint(const std::string & jointName);
+
+  private:
+
+    typedef std::vector < NodePath > NodePathVec;
+
+    void load_anims(const AnimMap * animMapPtr, const std::string & filename, int hierarchyMatchFlags);
+
+    bool is_stored(const AnimControl * animPtr);
+};
+
+#endif /* CACTOR_H_ */
+

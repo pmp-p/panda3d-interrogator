@@ -12,10 +12,12 @@
 # back to the next display module indicated by aux-display,
 # when that fails, the next aux-display line, and so on.
 
-aux-display pandagles2
-aux-display pandagles
-aux-display pandagl
-load-display *
+#aux-display pandagles2
+#aux-display pandagles
+#aux-display pandagl
+#load-display *
+
+load-display pandagl
 
 # These control the placement and size of the default rendering window.
 # A value of -2 for the origin means to center it on the screen,
@@ -61,8 +63,11 @@ default-directnotify-level warning
 # particular Config.prc file.
 
 model-path    $MAIN_DIR
-model-path    /usr/local/share/panda3d
-model-path    /usr/local/share/panda3d/models
+#model-path    /usr/local/share/panda3d
+#model-path    /usr/local/share/panda3d/models
+model-path    $THIS_PRC_DIR/samples
+model-path    $THIS_PRC_DIR/panda3d-webglport
+model-path    $THIS_PRC_DIR/panda3d-webglport/models
 
 # This enable the automatic creation of a TK window when running
 # Direct.

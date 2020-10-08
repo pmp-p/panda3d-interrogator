@@ -6,6 +6,8 @@ CONFIG=${CONFIG:-config.env}
 
 PDIR="./build/$PDIR"
 
+echo "PDIR=$PDIR"
+
 
 INC="-I. -Ilib -Ibuild -I${PDIR}/include -I/usr/include/eigen3"
 
@@ -18,15 +20,17 @@ LIBS="-Lbuild -L${ROOT}/lib ${PANDA} -lpthread -ldl -lm -lc"
 # see https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
 
 
-if true
+if false
 then
     COPT="-fmax-errors=1 -fuse-ld=gold -fextended-identifiers -fsanitize=bool -O3 ${INC} -fPIC -Wno-ignored-attributes"
     cxx="g++ ${COPT} -std=gnu++11"
     link="$cxx -shared"
     cc="gcc $COPT"
 else
-    COPT="-fextended-identifiers -fsanitize=bool -O2 ${INC} -fPIC -Wno-ignored-attributes"
-    cxx="clang++ ${COPT} -std=gnu++11"
+#    COPT="-fextended-identifiers -fsanitize=bool -O2 ${INC} -fPIC -Wno-ignored-attributes"
+# -fsanitize=bool not supported on clang10 pclinuxos
+    COPT="-fextended-identifiers -O0 -g3 ${INC} -fPIC -Wno-ignored-attributes"
+    cxx="clang++ ${COPT} -fno-vectorize -fno-slp-vectorize -std=gnu++11"
     link="$cxx -shared"
     cc="clang ${COPT}"
 fi
@@ -41,8 +45,10 @@ then
 else
     rm build/lib${LIB}_*.so mview_cpp mview_c
 
+    echo "building c++ interface"
     $link -o build/lib${LIB}_cpp.so lib/lib.cxx ${LIBS}
 
+    echo "building c++ test"
     $cxx  -fPIE $COPT -o mview_cpp -L./build -l${LIB}_cpp ${LIBS}
     if [ -f mview_cpp ]
     then
@@ -56,6 +62,9 @@ else
         echo "can't run c++ test program"
     fi
 fi
+
+
+
 
 if echo "$@" |grep -q cpponly
 then
@@ -71,11 +80,14 @@ else
 
     if [ -f build/lib${LIB}_cpp.so ]
     then
+        echo "building CNI interface"
         if $link -o build/lib${LIB}_cni.so build/interrogate_cni.cpp ${LIBS} -l${LIB}_cpp
         then
             echo "C native ffi interface for C++ built"
         fi
 
+
+        echo "building C indexed interface"
         if $link -o build/lib${LIB}_c.so build/interrogate_wrapper.cpp ${LIBS} -l${LIB}_cpp
         then
             /bin/mv -vf build/interrogate_wrapper.h build/${LIB}.h
@@ -84,6 +96,11 @@ else
             echo $cmd
             $cmd
             ./mview_c
+
+            cmd="$cc -DINDEX=1 -o mview_c_idx mview.c ${LIBS} -l${LIB}_cpp -l${LIB}_c"
+            echo $cmd
+            $cmd
+            ./mview_c_idx
         else
             echo "build C lib failed"
         fi

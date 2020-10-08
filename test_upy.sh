@@ -29,7 +29,9 @@ then
 
     if $PYTHON -m fstrings_helper cxxbuilder_cpy.py > cxxbuilder_upy.py
     then
-        micropython -X heapsize=32768K cxxbuilder_upy.py
-        LOG=nolog micropython -X heapsize=16384K build/upanda3d.py "$@"
+        LOG=nolog micropython -X heapsize=32768K cxxbuilder_upy.py
+        #LOG=nolog micropython -X heapsize=16384K build/upanda3d.py "$@"
+        #LOG=nolog wapy -X heapsize=3276800K build/upanda3d.py "$@"
+        $PYTHON build/upanda3d.py "$@"
     fi
 fi

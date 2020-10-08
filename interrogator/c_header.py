@@ -203,7 +203,13 @@ def c_header(H, source):
 
             cpp = ', '.join(proto['args'])
             c = ', '.join(proto['c_argv'])
-            print(f"// {proto['mangled']} : C++({cpp}) ==> C({c})", file=H)
+            if 0: #proto['c_ref'].count('Engine'):
+                #Engine_C_ctor_p_v
+                import json
+                print( json.dumps(proto,indent=4) )
+                #raise SystemExit
+
+            print(f"// C++ {proto['mangled']}({cpp}) ==> {proto['c_ref']}({c})", file=H)
             print(f"extern {ex_type} {ex_name}({', '.join(argv)});", file=H)
             CNI(H, proto, ex_type, ex_name, ffi_args, is_void)
             print("", file=H)
@@ -308,7 +314,11 @@ def CNI(H, proto, rt, target, ffi_args, is_void):
         proto['cni']=cni
     else:
         proto['cni'] = cni
-        #print(f"#define {cni} {target}", file=H)
+        print(f"""
+#if INDEX
+#define {cni} {target}
+#endif""", file=H)
+
     COLLISIONS.append(cni)
 
 

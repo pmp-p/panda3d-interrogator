@@ -12,6 +12,7 @@ from .utils import qualmove
 DBG = 0
 TODO = 0
 
+watchdog = True
 
 def init_classe(source, cn):
     return source['classes'].setdefault(cn, {'bases': [], 'enums': {}, 'proto': []})
@@ -19,7 +20,27 @@ def init_classe(source, cn):
 
 def igate_to_json(file_like):
     def extract_cpp_names(cpp_def):
-        head, tail = cpp_def.rsplit('(', 1)
+        global watchdog
+
+        if not watchdog:
+            raise SystemExit
+
+        # clean up unwanted initializer:   class(arg = init()) => class(arg = init)
+
+        # pass 1
+        begin = cpp_def.split('(',1)[0]
+        end = cpp_def.rsplit(')',1)[-1]
+
+        head = cpp_def[:len(begin)]
+
+        # pass 2
+        tail = cpp_def[len(begin)+1:-(1+len(end))]
+        tail = tail.replace('(0.0, 0.0, 0.0)','()')
+        tail = tail.replace('()','')
+
+
+        #head, tail = cpp_def.rsplit('(', 1)
+
         if head.find(' ') < 0:
             cpp_type = ''
             class_func = head
@@ -28,7 +49,13 @@ def igate_to_json(file_like):
 
         cpp_type, class_func = qualmove(cpp_type, class_func)
 
-        class_name, func_name = class_func.split('::')
+        ppos = class_func.find('(')
+        dpos = class_func.find('::')
+
+        if ( (ppos>0) and (cpos < dpos)) or (dpos<0):
+                print("#FIXME: not a class method", class_func)
+
+        class_name, func_name = class_func.split('::',1)
 
         STATIC = 'static '
         if cpp_type.startswith(STATIC):
@@ -61,7 +88,7 @@ def igate_to_json(file_like):
                 return_type = return_type.rsplit(' >',1)[0]
             return_type = return_type.strip()
 # fmt : off
-            if len(return_type) and return_type[-1]!='f':
+            if len(return_type) and return_type[-1] in '234':
                 for rt in [
                         'LPoint2','LPoint3',
                         'LVector2','LVector3','LVector4',
@@ -80,11 +107,13 @@ def igate_to_json(file_like):
 
         disp = 0
 
-#        if cpp_def.count('get_hash('):
-#            disp = 1
+        #if cpp_def.count('NodePath::look_at'):
+        #    disp = 1
 
         if disp:
-            print("ARGS :", args)
+            print("BEGIN: [%s]" % begin)
+            print("END: [%s]" % end)
+            print("ARGS : %r" % args)
 
         if not len(args) or (args[0] == 'void'):
             pos = 0
@@ -95,14 +124,17 @@ def igate_to_json(file_like):
                 if a.endswith(' &'):
                     a = a + f'arg{idx+decal}'
 
+                try:
+                    at, an = a.rsplit(' ', 1)
+                    at, an = qualmove( at, an )
+                    argt.append(at)
+                    # param -> arg
+                    an = an.replace('param','arg')
 
-                at, an = a.rsplit(' ', 1)
-                at, an = qualmove( at, an )
-                argt.append(at)
-                # param -> arg
-                an = an.replace('param','arg')
-
-                argn.append(an)
+                    argn.append(an)
+                except :
+                    print("113:[%s]"%a, cpp_def,"args=",args)
+                    watchdog = False
 
 
         if disp:
@@ -328,9 +360,12 @@ def igate_to_json(file_like):
                     print(ret)
                     print()
 
+            except SystemExit:
+                raise
+
             except Exception as e:
                 sys.print_exception(e, sys.stderr)
-                print("ERROR: extract_class_name:", cpp_def)
+                print("342:ERROR: extract_class_name:", cpp_def)
                 print()
 
             continue

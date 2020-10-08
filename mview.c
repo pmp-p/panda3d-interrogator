@@ -17,8 +17,8 @@ static Filename * fn;
 
 
 
-
-
+extern char const * Engine_C_get_version_string_s_v();
+extern int Engine_C_HelloEngine_i_p(Engine *self);
 
 
 
@@ -35,15 +35,19 @@ main_loop_or_step(){
         fprintf(stdout,"VERSION = %s\n", Engine_C_get_version_string_s_v());
     puts("-----------------------------");
         E = Engine_C_ctor_p_v();
+
+        fprintf(stdout,"ANSWER = %d\n",    Engine_C_HelloEngine_i_p(E));
+    puts("-----------------------------");
+
         Engine_C_build_v_p(E);
 
         PandaFramework * pf = Engine_C_get_framework_p_p(E);
         WindowFramework * wf = Engine_C_get_wframe_p_p(E) ;
 
         NodePath * mdl = Engine_C_load_model_p_ps(E, filename);
-        //Engine_C_attach_v_pp(E, mdl);
+        Engine_C_attach_v_pp(E, mdl);
 
-        //NP_C_reparent_to_v_p(mdl, rd );
+        //NodePath_C_reparent_to_v_pp(mdl, WindowFramework_C_get_render_p_p(wf) );
 
 /*
 		environ.reparent_to(ewin->get_render());

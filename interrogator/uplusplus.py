@@ -1,4 +1,8 @@
 # uplusplus
+try:
+    const(0)
+except:
+    def const(x):return x
 
 TRACE = 0
 GCBAD = 0
@@ -54,22 +58,30 @@ def cxx_stack(*argv, **kw):
     return argv, kw
 
 
-def wrap(call, rt, argv, kw, instance=None):
-    if TRACE:
-        print("  wrap", 'instance=', instance, argv, kw)
+#def wrap(call, rt, argv, kw, instance=None):
+#    if TRACE:
+#        print("  wrap", 'instance=', instance, argv, kw)
+#
+#    if instance is None:
+#        argv, kw = cxx_stack(*argv, **kw)
+#        jt = '  JIT-s'
+#    else:
+#        argv, kw = cxx_stack(instance, *argv, **kw)
+#        jt = '  JIT-d'
+#
+#    rv = call(*argv)
+#    print(jt, 'CPTR rv=', rv)
+#    rv = rt(cptr=rv)
+#    print(jt, 'PTYPE(%s) rv=' % rt, rv)
+#    return rv
 
-    if instance is None:
-        argv, kw = cxx_stack(*argv, **kw)
-        jt = '  JIT-s'
-    else:
-        argv, kw = cxx_stack(instance, *argv, **kw)
-        jt = '  JIT-d'
 
-    rv = call(*argv)
-    print(jt, 'CPTR rv=', rv)
-    rv = rt(cptr=rv)
-    print(jt, 'PTYPE(%s) rv=' % rt, rv)
-    return rv
+
+# basic return types could be optimized saving the passthrough call
+
+# empty call stack could be optimized via direct function pointer call
+
+# kw could be used to pass runtime jit info
 
 
 def call1(ancestor, cls, instance, attr, decl):
@@ -97,11 +109,6 @@ def call1(ancestor, cls, instance, attr, decl):
         c['%s-ffi' % attr] = ffi
 
 
-    # basic/complex return types can be optimized saving the passthrough call
-
-    # empty call stack could be optimized via direct function pointer call
-
-    # kw could be used to pass runtime jit info
 
     # static call , hide instance if any
     if ct == 's':
@@ -127,8 +134,14 @@ def call1(ancestor, cls, instance, attr, decl):
     ancestor.c[attr] = jit1
 
     # alias to parent so child can call directly next time
-    if instance and (ancestor is not cls):
-        c[attr] = jit1
+    #if (ancestor is not cls):
+    c[attr] = jit1
+
+    # no polymorphim
+
+    # if instance and (ancestor is not cls):
+    # if instance:
+    #   instance.c[attr]=jit1
 
     return jit1
 
@@ -178,6 +191,9 @@ def fuzzy_check(sig, match):
             return False
     return True
 
+def fuzzy2(offer,canhave):
+    print(f"{offer=}{canhave=}")
+
 
 def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
     global TRACE
@@ -199,7 +215,7 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
             print(p)  # [IDX_FFI])
         raise TypeError("%s->%s : no match for arguments count %d" % (ancestor.__name__, attr, argc))
 
-    # that block would need *HUGE* optim and should take shortcuts.
+    # FIXME: that block would need *HUGE* optim and should take shortcuts.
 
     if len(cl) > 1:
         # must forbid caching until someday maybe code paths can be learned ( access to line+module of caller ? )
@@ -217,11 +233,15 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
                     print("[%s]" % sigkey, proto[IDX_FFI][2], proto[IDX_SIG])
                 cando.append(proto)
             else:
+
                 if TRACE:
                     print("REJ (mismatch) [%s]" % sigkey, proto[IDX_FFI][2], proto[IDX_SIG])
+
+        print(f"236: #FIXME: use isinstance {cl=}")
+
+        #TRACE=1
         cl = []
 
-        print("236: #FIXME: use isinstance")
 
         for proto in cando:
             for argpos,arg in enumerate(argv):
@@ -234,8 +254,21 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
                     ffi = ancestor.c.lib.func(*proto[IDX_FFI])
                     FFI_TRACK[id(ffi)] = proto[IDX_FFI]
                     cl.append([ffi, proto[IDX_SIG]])
+
+                # fuzzy2 FIXME: this is horrible
+                elif proto[IDX_SIG][argpos].split(' ',1)[0] in arg.__class__.__name__:
+                    ffi = ancestor.c.lib.func(*proto[IDX_FFI])
+                    FFI_TRACK[id(ffi)] = proto[IDX_FFI]
+                    cl.append([ffi, proto[IDX_SIG]])
+
                 elif TRACE:
                     print("REJ (FIXME: class hierarchy) [%s]" % sigkey, proto[IDX_FFI][2], proto[IDX_SIG])
+                    print(f"{arg=} {proto[IDX_SIG]=}")
+
+        if not len(cl):
+            for proto in get_match(ancestor, cls, rt, ct, pl, argc):
+                for argpos,arg in enumerate(argv):
+                    fuzzy2(arg.__class__.__name__,proto[IDX_SIG])
 
         if len(cl)>1:
             print("\n  JIT-x ERROR N/I call sig dependant proto")
@@ -244,6 +277,8 @@ def callx(ancestor, cls, instance, rt, ct, pl, attr, argc, argv, kw):
 
         # forbid caching
         sigkey = None
+
+
     cl = cl[-1][0]
 
     if instance:
@@ -430,6 +465,9 @@ class cstructs(dict):
         if instance:
             raise AttributeError("'{0}' C++ class has no method '{1}'".format(c.name, attr))
         raise AttributeError("'{0}->{1}' is not a C++ static".format(c.name, attr))
+
+    def destroy(self, instance):
+        print('448:',instance)
 
 
 class cplusplus:
